@@ -1,0 +1,54 @@
+#  Template NodeJS build
+
+#  This template allows you to validate your NodeJS code.
+#  The workflow allows running tests and code linting on the default branch.
+
+image: node:16
+
+pipelines:
+  pull-requests:
+    '**':
+      - step:
+          name: Build and Test
+          caches:
+            - node
+          script:
+            - cd $WORKDIR
+            - yarn
+            - yarn test
+            - yarn build
+      - step:
+          name: Publish
+          script:
+            - cd $WORKDIR
+            - npm --no-git-tag-version version "0.0.$BITBUCKET_BUILD_NUMBER" -m "Upgrade to new version"
+            - git add .
+            - git commit -m 'Bump version to "0.0.$BITBUCKET_BUILD_NUMBER"'
+            - git push
+            - pipe: atlassian/npm-publish:0.3.2
+              variables:
+                NPM_TOKEN: $NPM_TOKEN
+  branches:
+    master:
+      - step:
+          name: Build and Test
+          caches:
+            - node
+          script:
+            - cd $WORKDIR
+            - yarn
+            - yarn test
+            - yarn build
+      - step:
+          name: Publish
+          script:
+            - cd $WORKDIR
+            - npm --no-git-tag-version version "0.0.$BITBUCKET_BUILD_NUMBER" -m "Upgrade to new version"
+            - git add .
+            - git commit -m 'Bump version to "0.0.$BITBUCKET_BUILD_NUMBER"'
+            - git push
+            - pipe: atlassian/npm-publish:0.3.2
+              variables:
+                NPM_TOKEN: $NPM_TOKEN
+          caches:
+            - node
