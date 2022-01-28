@@ -5,13 +5,15 @@ import indicators from 'highcharts/indicators/indicators';
 import trendline from 'highcharts/indicators/trendline';
 import highchartsAccessibility from 'highcharts/modules/accessibility';
 
-import { compareAsc, parseISO, format } from 'date-fns';
+import { compareAsc, parseISO } from 'date-fns';
 import { RailzVisualizationsConfiguration, RailzVisualizationsFilter, RailzVisualizationsOptions } from './types';
 import { Error } from '../error/error';
 import { Loading } from '../loading/loading';
 import { Alert } from '../alert/alert';
 import Translations from '../../assets/en.json';
 import { formatBalanceSheet, getOptions } from '../../utils/utils';
+import { LoggerServiceInstance } from '../../services/logger';
+import { RequestServiceInstance } from '../../services/request';
 
 exporting(Highcharts);
 indicators(Highcharts);
@@ -42,12 +44,6 @@ export class RailzVisualizations {
   private alert: string;
   private containerRef?: HTMLDivElement;
 
-  log = (message1, message2: any = '') => {
-    if (this._configuration?.debug) {
-      console.log(message1, message2);
-    }
-  };
-
   propsUpdated = () => {
     this.updateConfiguration();
     this.updateFilter();
@@ -56,16 +52,16 @@ export class RailzVisualizations {
 
   requestBalanceSheet = async () => {
     this.loading = Translations.FETCHING_REPORT;
-    const balanceSheet = await fetch(
-      `https://api.qa2.railz.ai/reports/${this._filter.reportType}?startDate=${format(parseISO(this._filter.startDate), 'yyyy-MM-dd')}&serviceName=${
-        this._filter.serviceName
-      }&businessName=${this._filter.businessName}&endDate=${format(parseISO(this._filter.endDate), 'yyyy-MM-dd')}&reportFrequency=${this._filter.reportFrequency}`,
-      {
-        headers: {
-          authorization: `Bearer ${this._configuration.token}`,
-        },
-      },
-    ).then(response => response.json());
+    const balanceSheet = await RequestServiceInstance.getBalanceSheets({
+      token: this._configuration.token,
+      reportType: this._filter.reportType,
+      startDate: this._filter.startDate,
+      endDate: this._filter.endDate,
+      businessName: this._filter.businessName,
+      reportFrequency: this._filter.reportFrequency,
+      serviceName: this._filter.serviceName,
+    });
+
     this.loading = Translations.PARSING_REPORT;
     if (balanceSheet.data) {
       this._balanceSheetFormatted = formatBalanceSheet(balanceSheet.data, this._filter.reportFrequency);
@@ -77,21 +73,22 @@ export class RailzVisualizations {
   };
 
   updateConfiguration = () => {
-    this.log(Translations.CONFIGURATION, this.configuration);
+    LoggerServiceInstance.log(Translations.CONFIGURATION, this.configuration);
     if (this.configuration) {
       if (typeof this.configuration === 'string') {
         try {
-          this.log(Translations.CONFIGURATION_PARSE_START);
+          LoggerServiceInstance.log(Translations.CONFIGURATION_PARSE_START);
           const parsedConfiguration = JSON.parse(this.configuration);
           this._configuration = parsedConfiguration;
-          this.log(Translations.CONFIGURATION_PARSE_END);
+          LoggerServiceInstance.log(Translations.CONFIGURATION_PARSE_END);
         } catch (error) {
           this.error = this.error || Translations.ERROR_PARSING_CONFIGURATION + ' ' + JSON.stringify(error);
         }
       } else {
-        this.log(Translations.CONFIGURATION_OBJECT);
+        LoggerServiceInstance.log(Translations.CONFIGURATION_OBJECT);
         this._configuration = this.configuration;
       }
+      LoggerServiceInstance.debug = this._configuration?.debug;
       if (!this._configuration?.token) {
         this.error = this.error || Translations.TOKEN_NOT_PRESENT;
         return;
@@ -102,19 +99,19 @@ export class RailzVisualizations {
   };
 
   updateFilter = () => {
-    this.log(Translations.FILTER, this.filter);
+    LoggerServiceInstance.log(Translations.FILTER, this.filter);
     if (this.filter) {
       if (typeof this.filter === 'string') {
         try {
-          this.log(Translations.FILTER_PARSE_START);
+          LoggerServiceInstance.log(Translations.FILTER_PARSE_START);
           const parsedFilter = JSON.parse(this.filter);
           this._filter = parsedFilter;
-          this.log(Translations.FILTER_PARSE_END);
+          LoggerServiceInstance.log(Translations.FILTER_PARSE_END);
         } catch (error) {
           this.error = this.error || Translations.ERROR_PARSING_FILTER + JSON.stringify(error);
         }
       } else {
-        this.log('filter as Object');
+        LoggerServiceInstance.log('filter as Object');
         this._filter = this.filter;
       }
       const compare = compareAsc(parseISO(this._filter.startDate), parseISO(this._filter.endDate));
