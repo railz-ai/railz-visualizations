@@ -7,6 +7,9 @@ import highchartsAccessibility from 'highcharts/modules/accessibility';
 import { isNil } from 'lodash';
 import { compareAsc, parseISO, format } from 'date-fns';
 import { RailzVisualizationsConfiguration, RailzVisualizationsFilter, RailzVisualizationsOptions } from './types';
+import { Error } from '../error/error';
+import { Loading } from '../loading/loading';
+import { Alert } from '../alert/alert';
 
 exporting(Highcharts);
 indicators(Highcharts);
@@ -24,7 +27,7 @@ export class RailzVisualizations {
   @Prop() options: RailzVisualizationsOptions | string;
 
   @State()
-  private _loading: string = '';
+  private loading: string = '';
   @State()
   private _configuration: RailzVisualizationsConfiguration;
   @State()
@@ -50,7 +53,7 @@ export class RailzVisualizations {
   };
 
   requestBalanceSheet = async () => {
-    this._loading = 'Fetching report';
+    this.loading = 'Fetching report';
     const balanceSheet = await fetch(
       `https://api.qa2.railz.ai/reports/${this._filter.reportType}?startDate=${format(parseISO(this._filter.startDate), 'yyyy-MM-dd')}&serviceName=${
         this._filter.serviceName
@@ -61,14 +64,14 @@ export class RailzVisualizations {
         },
       },
     ).then(response => response.json());
-    this._loading = 'Parsing report';
+    this.loading = 'Parsing report';
     if (balanceSheet.data) {
       this._balanceSheetFormatted = this.formatBalanceSheet(balanceSheet.data);
       this.updateOptions();
     } else {
       this.error = this.error || `Not able to retrieve balanceSheets. (${balanceSheet.error?.statusCode}) ${balanceSheet.error?.message?.[0]} `;
     }
-    this._loading = '';
+    this.loading = '';
   };
 
   formatBalanceSheet = summary => {
@@ -266,26 +269,13 @@ export class RailzVisualizations {
 
   render() {
     if (this.error) {
-      return (
-        <div class="error">
-          <strong>Error!</strong> <span>{this.error}</span>
-        </div>
-      );
+      return <Error error={this.error} />;
     }
-    if (this._loading) {
-      return (
-        <div class="loading">
-          <progress class="progress" />
-          <p>{this._loading}</p>
-        </div>
-      );
+    if (this.loading) {
+      return <Loading loading={this.loading} />;
     }
     if (this.alert) {
-      return (
-        <div class="alert">
-          <strong>Alert!</strong> <span>{this.alert}</span>
-        </div>
-      );
+      return <Alert alert={this.alert} />;
     }
     return <div ref={el => (this.containerRef = el)} />;
   }

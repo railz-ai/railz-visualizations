@@ -7,14 +7,11 @@
 
 ## Properties
 
-| Property                     | Attribute       | Description | Type                                 | Default     |
-| ---------------------------- | --------------- | ----------- | ------------------------------------ | ----------- |
+| Property                     | Attribute       | Description | Type                                         | Default     |
+| ---------------------------- | --------------- | ----------- | -------------------------------------------- | ----------- |
 | `configuration` _(required)_ | `configuration` |             | `RailzVisualizationsConfiguration \| string` | `undefined` |
-| `debug`                      | `debug`         |             | `boolean`                            | `false`     |
-| `filter`                     | `filter`        |             | `RailzVisualizationsFilter \| string`        | `undefined` |
-| `loading`                    | `loading`       |             | `boolean`                            | `false`     |
+| `filter` _(required)_        | `filter`        |             | `RailzVisualizationsFilter \| string`        | `undefined` |
 | `options`                    | `options`       |             | `RailzVisualizationsOptions \| string`       | `undefined` |
-| `type`                       | `type`          |             | `"balanceSheets" \| "cashFlow"`      | `undefined` |
 
 
 ----------------------------------------------

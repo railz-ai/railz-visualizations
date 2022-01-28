@@ -23,6 +23,7 @@
   },
   "dependencies": {
     "@stencil/core": "2.7.0",
+    "@stencil/sass": "^1.5.2",
     "date-fns": "^2.28.0",
     "highcharts": "9.3.2",
     "lodash": "^4.17.21"

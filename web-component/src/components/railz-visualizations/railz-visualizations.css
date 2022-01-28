@@ -1,16 +1,12 @@
-:host {
-  display: block;
+.alert {
+  padding: 20px;
+  background-color: lightslategray;
+  color: white;
 }
 
 .error {
   padding: 20px;
   background-color: #b30000;
-  color: white;
-}
-
-.alert {
-  padding: 20px;
-  background-color: lightslategray;
   color: white;
 }
 
