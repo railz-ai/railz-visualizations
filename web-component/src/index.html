@@ -10,15 +10,15 @@
   </head>
 
   <body>
-    <railz-chart />
+    <railz-visualizations />
     <script>
-      const railzChart = document.querySelector('railz-chart');
-      // railzChart.debug = true;
-      railzChart.configuration = {
+      const railzVisualizations = document.querySelector('railz-visualizations');
+      railzVisualizations.configuration = {
         token:
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIxNCwiZW1haWwiOiJhcGluaGVpcm8rcWEycWFAcmFpbHouYWkiLCJzYW5kYm94IjpmYWxzZSwidXNlclV1aWQiOiJVU1ItMTQzN2FhNTEtOGFmMi00YTIyLWE1ZGMtMzg0ODViOTlhMmI0IiwiY3VzdG9tZXJVdWlkIjoiQ1NULThhY2ViN2FlLWM5ZWItNGUwNS1iYzM2LTM4Njc1NjVjOTZlNiIsImN1c3RvbWVySWQiOjEwLCJiZXRhIjp0cnVlLCJpYXQiOjE2NDMzMjU1MjQsImV4cCI6MTY0MzMyOTEyNCwiYXVkIjoiZGFzaGJvYXJkIn0.WZ4q8GfQ9pFyoymtIcFUb3IZt2gd2Zx0T97GSHxI0kQ',
+          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIxNCwiZW1haWwiOiJhcGluaGVpcm8rcWEycWFAcmFpbHouYWkiLCJzYW5kYm94IjpmYWxzZSwidXNlclV1aWQiOiJVU1ItMTQzN2FhNTEtOGFmMi00YTIyLWE1ZGMtMzg0ODViOTlhMmI0IiwiY3VzdG9tZXJVdWlkIjoiQ1NULThhY2ViN2FlLWM5ZWItNGUwNS1iYzM2LTM4Njc1NjVjOTZlNiIsImN1c3RvbWVySWQiOjEwLCJiZXRhIjp0cnVlLCJpYXQiOjE2NDMzODcyMzgsImV4cCI6MTY0MzM5MDgzOCwiYXVkIjoiZGFzaGJvYXJkIn0.q3RSpRqo2_mP0A01EwsY-tOo7Fqg6ce4iTf1kjasqkM',
+        // debug: true,
       };
-      railzChart.filter = {
+      railzVisualizations.filter = {
         businessName: 'QuickTestFreshbooks',
         serviceName: 'freshbooks',
         connectionId: 'connectionId',

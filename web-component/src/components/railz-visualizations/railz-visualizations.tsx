@@ -6,7 +6,7 @@ import trendline from 'highcharts/indicators/trendline';
 import highchartsAccessibility from 'highcharts/modules/accessibility';
 import { isNil } from 'lodash';
 import { compareAsc, parseISO, format } from 'date-fns';
-import { RailzChartsConfiguration, RailzChartsFilter, RailzChartsOptions } from './types';
+import { RailzVisualizationsConfiguration, RailzVisualizationsFilter, RailzVisualizationsOptions } from './types';
 
 exporting(Highcharts);
 indicators(Highcharts);
@@ -14,22 +14,21 @@ trendline(Highcharts);
 highchartsAccessibility(Highcharts);
 
 @Component({
-  tag: 'railz-chart',
-  styleUrl: 'railz-chart.css',
+  tag: 'railz-visualizations',
+  styleUrl: 'railz-visualizations.css',
   shadow: true,
 })
-export class RailzChart {
-  @Prop() configuration!: RailzChartsConfiguration | string;
-  @Prop() filter: RailzChartsFilter | string;
-  @Prop() type: 'balanceSheets' | 'cashFlow';
-  @Prop() options: RailzChartsOptions | string;
-  @Prop() loading: boolean = false;
-  @Prop() debug: boolean = false;
+export class RailzVisualizations {
+  @Prop() configuration!: RailzVisualizationsConfiguration | string;
+  @Prop() filter!: RailzVisualizationsFilter | string;
+  @Prop() options: RailzVisualizationsOptions | string;
 
   @State()
-  private _configuration: RailzChartsConfiguration;
+  private _loading: string = '';
   @State()
-  private _filter: RailzChartsFilter;
+  private _configuration: RailzVisualizationsConfiguration;
+  @State()
+  private _filter: RailzVisualizationsFilter;
   @State()
   private _balanceSheetFormatted;
   @State()
@@ -39,7 +38,7 @@ export class RailzChart {
   private containerRef?: HTMLDivElement;
 
   log = (message1, message2: any = '') => {
-    if (this.debug) {
+    if (this._configuration?.debug) {
       console.log(message1, message2);
     }
   };
@@ -51,6 +50,7 @@ export class RailzChart {
   };
 
   requestBalanceSheet = async () => {
+    this._loading = 'Fetching report';
     const balanceSheet = await fetch(
       `https://api.qa2.railz.ai/reports/${this._filter.reportType}?startDate=${format(parseISO(this._filter.startDate), 'yyyy-MM-dd')}&serviceName=${
         this._filter.serviceName
@@ -61,13 +61,14 @@ export class RailzChart {
         },
       },
     ).then(response => response.json());
-
+    this._loading = 'Parsing report';
     if (balanceSheet.data) {
       this._balanceSheetFormatted = this.formatBalanceSheet(balanceSheet.data);
       this.updateOptions();
     } else {
       this.error = this.error || `Not able to retrieve balanceSheets. (${balanceSheet.error?.statusCode}) ${balanceSheet.error?.message?.[0]} `;
     }
+    this._loading = '';
   };
 
   formatBalanceSheet = summary => {
@@ -207,7 +208,6 @@ export class RailzChart {
         this.error = this.error || '"token" not present.';
         return;
       }
-      this.debug = this.debug || this._configuration?.debug;
     } else {
       this.error = this.error || '"configuration" not present.';
     }
@@ -248,8 +248,15 @@ export class RailzChart {
     }
 
     if (options) {
-      Highcharts.chart(this.containerRef, options);
+      try {
+        console.log(options);
+        Highcharts.chart(this.containerRef, options);
+      } catch (error) {
+        console.log(error);
+        this.error = this.error || 'Not able to load Highcharts. ' + JSON.stringify(error);
+      }
     }
+    console.log(7);
   };
 
   componentWillLoad() {
@@ -261,13 +268,18 @@ export class RailzChart {
   }
 
   render() {
-    if (this.loading) {
-      return <progress class="progress" />;
-    }
     if (this.error) {
       return (
         <div class="error">
           <strong>Error!</strong> <span>{this.error}</span>
+        </div>
+      );
+    }
+    if (this._loading) {
+      return (
+        <div class="loading">
+          <progress class="progress" />
+          <p>{this._loading}</p>
         </div>
       );
     }

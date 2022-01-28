@@ -53,7 +53,7 @@ export default function App() {
   return (
     <div>
       {token && (
-        <railz-chart
+        <railz-visualizations
           configuration={JSON.stringify({ token: token })}
           filter={JSON.stringify({
             businessName: "businessName",

@@ -1,4 +1,4 @@
-# railz-chart
+# railz-visualizations
 
 
 
@@ -9,12 +9,12 @@
 
 | Property                     | Attribute       | Description | Type                                 | Default     |
 | ---------------------------- | --------------- | ----------- | ------------------------------------ | ----------- |
-| `configuration` _(required)_ | `configuration` |             | `RailzChartsConfiguration \| string` | `undefined` |
+| `configuration` _(required)_ | `configuration` |             | `RailzVisualizationsConfiguration \| string` | `undefined` |
 | `debug`                      | `debug`         |             | `boolean`                            | `false`     |
-| `filter`                     | `filter`        |             | `RailzChartsFilter \| string`        | `undefined` |
+| `filter`                     | `filter`        |             | `RailzVisualizationsFilter \| string`        | `undefined` |
 | `loading`                    | `loading`       |             | `boolean`                            | `false`     |
-| `options`                    | `options`       |             | `RailzChartsOptions \| string`       | `undefined` |
-| `type`                       | `type`          |             | `"balanceSheet" \| "cashFlow"`       | `undefined` |
+| `options`                    | `options`       |             | `RailzVisualizationsOptions \| string`       | `undefined` |
+| `type`                       | `type`          |             | `"balanceSheets" \| "cashFlow"`      | `undefined` |
 
 
 ----------------------------------------------

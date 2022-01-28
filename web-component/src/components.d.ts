@@ -5,46 +5,40 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
-import { RailzChartsConfiguration, RailzChartsFilter, RailzChartsOptions } from "./components/railz-chart/types";
+import { RailzVisualizationsConfiguration, RailzVisualizationsFilter, RailzVisualizationsOptions } from "./components/railz-visualizations/types";
 export namespace Components {
-    interface RailzChart {
-        "configuration": RailzChartsConfiguration | string;
-        "debug": boolean;
-        "filter": RailzChartsFilter | string;
-        "loading": boolean;
-        "options": RailzChartsOptions | string;
-        "type": 'balanceSheets' | 'cashFlow';
+    interface RailzVisualizations {
+        "configuration": RailzVisualizationsConfiguration | string;
+        "filter": RailzVisualizationsFilter | string;
+        "options": RailzVisualizationsOptions | string;
     }
 }
 declare global {
-    interface HTMLRailzChartElement extends Components.RailzChart, HTMLStencilElement {
+    interface HTMLRailzVisualizationsElement extends Components.RailzVisualizations, HTMLStencilElement {
     }
-    var HTMLRailzChartElement: {
-        prototype: HTMLRailzChartElement;
-        new (): HTMLRailzChartElement;
+    var HTMLRailzVisualizationsElement: {
+        prototype: HTMLRailzVisualizationsElement;
+        new (): HTMLRailzVisualizationsElement;
     };
     interface HTMLElementTagNameMap {
-        "railz-chart": HTMLRailzChartElement;
+        "railz-visualizations": HTMLRailzVisualizationsElement;
     }
 }
 declare namespace LocalJSX {
-    interface RailzChart {
-        "configuration": RailzChartsConfiguration | string;
-        "debug"?: boolean;
-        "filter"?: RailzChartsFilter | string;
-        "loading"?: boolean;
-        "options"?: RailzChartsOptions | string;
-        "type"?: 'balanceSheets' | 'cashFlow';
+    interface RailzVisualizations {
+        "configuration": RailzVisualizationsConfiguration | string;
+        "filter": RailzVisualizationsFilter | string;
+        "options"?: RailzVisualizationsOptions | string;
     }
     interface IntrinsicElements {
-        "railz-chart": RailzChart;
+        "railz-visualizations": RailzVisualizations;
     }
 }
 export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
-            "railz-chart": LocalJSX.RailzChart & JSXBase.HTMLAttributes<HTMLRailzChartElement>;
+            "railz-visualizations": LocalJSX.RailzVisualizations & JSXBase.HTMLAttributes<HTMLRailzVisualizationsElement>;
         }
     }
 }
