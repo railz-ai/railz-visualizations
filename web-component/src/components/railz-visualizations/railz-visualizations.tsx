@@ -4,12 +4,14 @@ import exporting from 'highcharts/modules/exporting';
 import indicators from 'highcharts/indicators/indicators';
 import trendline from 'highcharts/indicators/trendline';
 import highchartsAccessibility from 'highcharts/modules/accessibility';
-import { isNil } from 'lodash';
+
 import { compareAsc, parseISO, format } from 'date-fns';
 import { RailzVisualizationsConfiguration, RailzVisualizationsFilter, RailzVisualizationsOptions } from './types';
 import { Error } from '../error/error';
 import { Loading } from '../loading/loading';
 import { Alert } from '../alert/alert';
+import Translations from '../../assets/en.json';
+import { formatBalanceSheet, getOptions } from '../../utils/utils';
 
 exporting(Highcharts);
 indicators(Highcharts);
@@ -53,7 +55,7 @@ export class RailzVisualizations {
   };
 
   requestBalanceSheet = async () => {
-    this.loading = 'Fetching report';
+    this.loading = Translations.FETCHING_REPORT;
     const balanceSheet = await fetch(
       `https://api.qa2.railz.ai/reports/${this._filter.reportType}?startDate=${format(parseISO(this._filter.startDate), 'yyyy-MM-dd')}&serviceName=${
         this._filter.serviceName
@@ -64,169 +66,52 @@ export class RailzVisualizations {
         },
       },
     ).then(response => response.json());
-    this.loading = 'Parsing report';
+    this.loading = Translations.PARSING_REPORT;
     if (balanceSheet.data) {
-      this._balanceSheetFormatted = this.formatBalanceSheet(balanceSheet.data);
+      this._balanceSheetFormatted = formatBalanceSheet(balanceSheet.data, this._filter.reportFrequency);
       this.updateOptions();
     } else {
-      this.error = this.error || `Not able to retrieve balanceSheets. (${balanceSheet.error?.statusCode}) ${balanceSheet.error?.message?.[0]} `;
+      this.error = this.error || `${Translations.NOT_ABLE_TO_RETRIEVE_BALANCESHEETS} (${balanceSheet.error?.statusCode}) ${balanceSheet.error?.message?.[0]} `;
     }
     this.loading = '';
   };
 
-  formatBalanceSheet = summary => {
-    const categories = this.formattedDate(summary);
-    const series = [
-      this.formatSeries(summary, 'assets'),
-      this.formatSeries(summary, 'liabilities'),
-      {
-        type: 'spline',
-        marker: {
-          enabled: false,
-        },
-        states: {
-          hover: {
-            lineWidth: 0,
-          },
-        },
-        enableMouseTracking: false,
-        ...this.formatSeries(summary, 'equity'),
-      },
-    ];
-
-    return {
-      categories,
-      series,
-      colors: ['#1D7043', '#F06C3A', '#003032'],
-    };
-  };
-
-  getOptions = ({ categories, series, colors }) => ({
-    chart: {
-      type: 'column',
-      style: {
-        fontFamily: [
-          'Inter',
-          'Roboto',
-          '-apple-system',
-          'BlinkMacSystemFont',
-          '"Segoe UI"',
-          '"Helvetica Neue"',
-          'Arial',
-          'sans-serif',
-          '"Apple Color Emoji"',
-          '"Segoe UI Emoji"',
-          '"Segoe UI Symbol"',
-        ].join(','),
-      },
-      reflow: true,
-      marginTop: 0,
-      spacingTop: 0,
-      spacingRight: 0,
-      marginRight: 0,
-      events: {
-        load(): void {
-          // eslint-disable-next-line @typescript-eslint/no-this-alias
-          const chart = this;
-          setTimeout(() => {
-            if (!isNil(chart)) {
-              try {
-                chart.reflow();
-              } catch (e) {}
-            }
-          }, 0);
-        },
-      },
-    },
-    colors: colors || ['#009BBD', '#FFD738', '#003032'],
-    title: null,
-    xAxis: {
-      categories: categories,
-      offset: 50,
-      labels: {
-        style: {
-          color: '#55565B',
-        },
-      },
-    },
-    yAxis: {
-      gridLineDashStyle: 'longdash',
-      endOnTick: false,
-      title: null,
-      labels: {
-        style: {
-          color: '#55565B',
-        },
-      },
-    },
-    credits: {
-      enabled: false,
-    },
-    plotOptions: {
-      column: {
-        stacking: 'normal',
-      },
-      series: {
-        pointWidth: 12,
-      },
-    },
-    legend: {
-      align: 'left',
-      itemMarginTop: 8,
-    },
-    series: series,
-  });
-
-  formattedDate = (summary): void => {
-    return summary.map(data => {
-      const date = parseISO(data.period.date);
-      if (this._filter.reportFrequency === 'quarter') return `Q${data.period.quarter} ${format(date, 'YYYY')}`;
-      if (this._filter.reportFrequency === 'year') return data.period.year.toString();
-      return format(date, 'MMM yy');
-    });
-  };
-
-  formatSeries = (summary, field) => ({
-    name: field,
-    data: summary.map(data => data[field]),
-  });
-
   updateConfiguration = () => {
-    this.log('configuration', this.configuration);
+    this.log(Translations.CONFIGURATION, this.configuration);
     if (this.configuration) {
       if (typeof this.configuration === 'string') {
         try {
-          this.log('configuration parse - START');
+          this.log(Translations.CONFIGURATION_PARSE_START);
           const parsedConfiguration = JSON.parse(this.configuration);
           this._configuration = parsedConfiguration;
-          this.log('configuration parse - END');
+          this.log(Translations.CONFIGURATION_PARSE_END);
         } catch (error) {
-          this.error = this.error || 'Error while parsing configuration. ' + JSON.stringify(error);
+          this.error = this.error || Translations.ERROR_PARSING_CONFIGURATION + ' ' + JSON.stringify(error);
         }
       } else {
-        this.log('configuration as Object');
+        this.log(Translations.CONFIGURATION_OBJECT);
         this._configuration = this.configuration;
       }
       if (!this._configuration?.token) {
-        this.error = this.error || '"token" not present.';
+        this.error = this.error || Translations.TOKEN_NOT_PRESENT;
         return;
       }
     } else {
-      this.error = this.error || '"configuration" not present.';
+      this.error = this.error || Translations.CONFIGURATION_NOT_PRESENT;
     }
   };
 
   updateFilter = () => {
-    this.log('filter', this.filter);
+    this.log(Translations.FILTER, this.filter);
     if (this.filter) {
       if (typeof this.filter === 'string') {
         try {
-          this.log('filter parse - START');
+          this.log(Translations.FILTER_PARSE_START);
           const parsedFilter = JSON.parse(this.filter);
           this._filter = parsedFilter;
-          this.log('filter parse - END');
+          this.log(Translations.FILTER_PARSE_END);
         } catch (error) {
-          this.error = this.error || 'Error while parsing filter. ' + JSON.stringify(error);
+          this.error = this.error || Translations.ERROR_PARSING_FILTER + JSON.stringify(error);
         }
       } else {
         this.log('filter as Object');
@@ -234,27 +119,27 @@ export class RailzVisualizations {
       }
       const compare = compareAsc(parseISO(this._filter.startDate), parseISO(this._filter.endDate));
       if (compare >= 0) {
-        this.error = this.error || '"endDate" before or equal "startDate".';
+        this.error = this.error || Translations.END_DATE_BEFORE_START_DATE;
         return;
       }
     } else {
-      this.error = this.error || '"filter" not present.';
+      this.error = this.error || Translations.FILTER_NOT_PRESENT;
     }
   };
 
   updateOptions = () => {
     let options;
     try {
-      options = this.getOptions(this._balanceSheetFormatted);
+      options = getOptions(this._balanceSheetFormatted);
     } catch (error) {
-      this.error = this.error || 'Not able to parse get balanceSheets. ' + JSON.stringify(error);
+      this.error = this.error || Translations.NOT_ABLE_TO_PARSE_BALANCESHEETS + JSON.stringify(error);
     }
 
     if (options) {
       try {
         if (this.containerRef) Highcharts.chart(this.containerRef, options);
       } catch (error) {
-        this.error = this.error || 'Not able to load Highcharts. ' + JSON.stringify(error);
+        this.error = this.error || Translations.NOT_ABLE_TO_LOAD_HIGHCHARTS + JSON.stringify(error);
       }
     }
   };

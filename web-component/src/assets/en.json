@@ -1,0 +1,23 @@
+{
+  "NOT_ABLE_TO_LOAD_HIGHCHARTS": "Not able to load Highcharts. ",
+  "NOT_ABLE_TO_PARSE_BALANCESHEETS": "Not able to parse balanceSheets. ",
+  "END_DATE_BEFORE_START_DATE": "\"endDate\" before or equal \"startDate\".",
+  "ERROR_PARSING_FILTER": "Error while parsing filter. ",
+  "FILTER_PARSE_START": "filter parse - START",
+  "FILTER_PARSE_END": "filter parse - END",
+  "FILTER": "filter",
+  "CONFIGURATION_NOT_PRESENT": "\"configuration\" not present.",
+  "FILTER_NOT_PRESENT": "\"filter\" not present.",
+  "TOKEN_NOT_PRESENT": "\"token\" not present.",
+  "CONFIGURATION_OBJECT": "configuration as Object",
+  "ERROR_PARSING_CONFIGURATION": "Error while parsing configuration.",
+  "CONFIGURATION_PARSE_START": "configuration parse - START",
+  "CONFIGURATION_PARSE_END": "configuration parse - END",
+  "CONFIGURATION": "configuration",
+  "EQUITY": "equity",
+  "ASSETS": "assets",
+  "LIABILITIES": "liabilities",
+  "FETCHING_REPORT": "Fetching report",
+  "PARSING_REPORT": "Parsing report",
+  "NOT_ABLE_TO_RETRIEVE_BALANCESHEETS": "Not able to retrieve balanceSheets."
+}
