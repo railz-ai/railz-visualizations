@@ -249,14 +249,11 @@ export class RailzVisualizations {
 
     if (options) {
       try {
-        console.log(options);
-        Highcharts.chart(this.containerRef, options);
+        if (this.containerRef) Highcharts.chart(this.containerRef, options);
       } catch (error) {
-        console.log(error);
         this.error = this.error || 'Not able to load Highcharts. ' + JSON.stringify(error);
       }
     }
-    console.log(7);
   };
 
   componentWillLoad() {
