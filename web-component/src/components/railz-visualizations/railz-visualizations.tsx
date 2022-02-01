@@ -7,7 +7,8 @@ import highchartsAccessibility from 'highcharts/modules/accessibility';
 
 import { compareAsc, parseISO } from 'date-fns';
 import { RailzVisualizationsConfiguration, RailzVisualizationsFilter, RailzVisualizationsOptions } from './types';
-import { Error } from '../error/error';
+// import { Error } from '../error/error';
+import { ErrorImage } from '../error/error-image';
 import { Loading } from '../loading/loading';
 import { Alert } from '../alert/alert';
 import Translations from '../../assets/en.json';
@@ -41,6 +42,8 @@ export class RailzVisualizations {
   @State()
   private error: string;
   @State()
+  private errorStatusCode: number;
+  @State()
   private alert: string;
   private containerRef?: HTMLDivElement;
 
@@ -58,6 +61,7 @@ export class RailzVisualizations {
       startDate: this._filter.startDate,
       endDate: this._filter.endDate,
       businessName: this._filter.businessName,
+      connectionId: this._filter.connectionId,
       reportFrequency: this._filter.reportFrequency,
       serviceName: this._filter.serviceName,
     });
@@ -68,6 +72,7 @@ export class RailzVisualizations {
       this.updateOptions();
     } else {
       this.error = this.error || `${Translations.NOT_ABLE_TO_RETRIEVE_BALANCESHEETS} (${balanceSheet.error?.statusCode}) ${balanceSheet.error?.message?.[0]} `;
+      this.errorStatusCode = balanceSheet.error?.statusCode;
     }
     this.loading = '';
   };
@@ -151,7 +156,7 @@ export class RailzVisualizations {
 
   render() {
     if (this.error) {
-      return <Error error={this.error} />;
+      return <ErrorImage error={this._configuration?.debug && this.error} statusCode={this.errorStatusCode} />;
     }
     if (this.loading) {
       return <Loading loading={this.loading} />;

@@ -80,28 +80,40 @@ export const getOptions = ({ categories, series, colors }) => ({
 
 export const formatBalanceSheet = (summary, reportFrequency) => {
   const categories = formattedDate(summary, reportFrequency);
-  const series = [
-    formatSeries(summary, Translations.ASSETS),
-    formatSeries(summary, Translations.LIABILITIES),
-    {
-      type: 'spline',
-      marker: {
-        enabled: false,
-      },
-      states: {
-        hover: {
-          lineWidth: 0,
-        },
-      },
-      enableMouseTracking: false,
-      ...formatSeries(summary, Translations.EQUITY),
+  const currentAssets = formatSeries(summary, Translations.CURRENT_ASSETS, 'currentAssets');
+  const currentLiabilities = formatSeries(summary, Translations.CURRENT_LIABILITIES, 'currentLiabilities');
+  const nonCurrentAssets = formatSeries(summary, Translations.NON_CURRENT_ASSETS, 'nonCurrentAssets');
+  const nonCurrentLiabilities = formatSeries(summary, Translations.NON_CURRENT_LIABILITIES, 'nonCurrentLiabilities');
+  const assets = formatSeries(summary, Translations.ASSETS, 'assets');
+  const liabilities = formatSeries(summary, Translations.LIABILITIES, 'liabilities');
+  const equity = {
+    type: 'spline',
+    marker: {
+      enabled: false,
     },
-  ];
+    states: {
+      hover: {
+        lineWidth: 0,
+      },
+    },
+    enableMouseTracking: false,
+    ...formatSeries(summary, Translations.EQUITY, 'equity'),
+  };
+  const series = [];
+  currentAssets?.data.length > 0 && series.push(currentAssets);
+  currentLiabilities?.data.length > 0 && series.push(currentLiabilities);
+  nonCurrentAssets?.data.length > 0 && series.push(nonCurrentAssets);
+  nonCurrentLiabilities?.data.length > 0 && series.push(nonCurrentLiabilities);
+  assets?.data.length > 0 && series.push(assets);
+  liabilities?.data.length > 0 && series.push(liabilities);
+  equity?.data.length > 0 && series.push(equity);
+
+  console.log('series', series);
 
   return {
     categories,
     series,
-    colors: ['#1D7043', '#F06C3A', '#003032'],
+    colors: ['#1D7043', '#F06C3A', '#003032', '#389BFF', '#FFD738', '#30A665', '#B30000'],
   };
 };
 
@@ -114,7 +126,7 @@ export const formattedDate = (summary, reportFrequency): void => {
   });
 };
 
-export const formatSeries = (summary, field) => ({
-  name: field,
-  data: summary.map(data => data[field]),
+export const formatSeries = (summary, name, field) => ({
+  name,
+  data: summary.map(data => data[field]).filter(data => data != undefined),
 });

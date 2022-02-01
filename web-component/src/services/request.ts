@@ -8,10 +8,18 @@ interface BalanceSheetsRequest extends RailzVisualizationsFilter {
 class RequestService {
   constructor() {}
 
-  async getBalanceSheets({ token, reportType, startDate, endDate, serviceName, businessName, reportFrequency }: BalanceSheetsRequest) {
+  async getBalanceSheets({ token, reportType, startDate, endDate, serviceName, businessName, connectionId, reportFrequency }: BalanceSheetsRequest) {
     const formattedStartDate = format(parseISO(startDate), 'yyyy-MM-dd');
     const formattedEndDate = format(parseISO(endDate), 'yyyy-MM-dd');
-    const url = `${reportType}?startDate=${formattedStartDate}&endDate=${formattedEndDate}&serviceName=${serviceName}&businessName=${businessName}&reportFrequency=${reportFrequency}`;
+    let params = [];
+    params.push(`startDate=${formattedStartDate}`);
+    params.push(`endDate=${formattedEndDate}`);
+    params.push(`reportFrequency=${reportFrequency}`);
+    if (serviceName) params.push(`serviceName=${serviceName}`);
+    if (businessName) params.push(`businessName=${businessName}`);
+    if (connectionId) params.push(`connectionId=${connectionId}`);
+
+    const url = `${reportType}?${params.join('&')}`;
 
     const toReturn = await this.getRequest({
       url,
