@@ -27,6 +27,10 @@
   "OPERATING_INCOME": "Operating Income",
   "OTHER_EXPENSES": "Other Expenses",
   "OTHER_INCOME": "Other Income",
+  "FINANCING_ACTIVITIES": "Financing Activities",
+  "INVESTING_ACTIVITIES": "Investing Activities",
+  "NET_CASH": "Net Cash",
+  "OPERATING_ACTIVITIES": "Operating Activities",
   "FETCHING_REPORT": "Fetching report",
   "PARSING_REPORT": "Parsing report",
   "NOT_ABLE_TO_RETRIEVE_REPORT_DATA": "Not able to retrieve report data."

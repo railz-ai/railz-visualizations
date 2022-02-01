@@ -92,6 +92,11 @@ export const formatData = (summary, reportFrequency) => {
   const operatingIncome = formatSeries(summary, Translations.OPERATING_INCOME, 'operatingIncome');
   const otherExpenses = formatSeries(summary, Translations.OTHER_EXPENSES, 'otherExpenses');
   const otherIncome = formatSeries(summary, Translations.OTHER_INCOME, 'otherIncome');
+  const financingActivities = formatSeries(summary, Translations.FINANCING_ACTIVITIES, 'financingActivities');
+  const investingActivities = formatSeries(summary, Translations.INVESTING_ACTIVITIES, 'investingActivities');
+  const netCash = formatSeries(summary, Translations.NET_CASH, 'netCash');
+  const operatingActivities = formatSeries(summary, Translations.OPERATING_ACTIVITIES, 'operatingActivities');
+
 
   const equity = {
     type: 'spline',
@@ -121,6 +126,10 @@ export const formatData = (summary, reportFrequency) => {
     operatingIncome,
     otherExpenses,
     otherIncome,
+    financingActivities,
+    investingActivities,
+    netCash,
+    operatingActivities,
   ].filter(seriesData => seriesData?.data.length > 0);
 
   return {
