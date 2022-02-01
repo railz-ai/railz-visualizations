@@ -1,6 +1,6 @@
 {
   "NOT_ABLE_TO_LOAD_HIGHCHARTS": "Not able to load Highcharts. ",
-  "NOT_ABLE_TO_PARSE_BALANCESHEETS": "Not able to parse balanceSheets. ",
+  "NOT_ABLE_TO_PARSE_REPORT_DATA": "Not able to parse report data. ",
   "END_DATE_BEFORE_START_DATE": "\"endDate\" before or equal \"startDate\".",
   "ERROR_PARSING_FILTER": "Error while parsing filter. ",
   "FILTER_PARSE_START": "filter parse - START",
@@ -21,7 +21,13 @@
   "CURRENT_LIABILITIES": "Current Liabilities",
   "NON_CURRENT_ASSETS": "Non-Current Assets",
   "NON_CURRENT_LIABILITIES": "Non-Current Liabilities",
+  "COST_OF_GOODS_SOLD": "Cost of Goods Sold",
+  "NET_INCOME": "Net Income",
+  "OPERATING_EXPENSES": "Operating Expenses",
+  "OPERATING_INCOME": "Operating Income",
+  "OTHER_EXPENSES": "Other Expenses",
+  "OTHER_INCOME": "Other Income",
   "FETCHING_REPORT": "Fetching report",
   "PARSING_REPORT": "Parsing report",
-  "NOT_ABLE_TO_RETRIEVE_BALANCESHEETS": "Not able to retrieve balanceSheets."
+  "NOT_ABLE_TO_RETRIEVE_REPORT_DATA": "Not able to retrieve report data."
 }

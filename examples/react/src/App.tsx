@@ -34,34 +34,20 @@ export default function App() {
       }
     ).then((response) => response.json());
     setToken(access_token);
-    try {
-      const balanceSheet = await fetch(
-        "https://api.qa2.railz.ai/reports/balanceSheets?startDate=2020-12-01&serviceName=freshbooks&businessName=QuickTestFreshbooks&endDate=2021-12-31&reportFrequency=month",
-        {
-          headers: {
-            authorization: `Bearer ${access_token}`,
-          },
-        }
-      ).then((response) => response.json());
-
-      console.log({ balanceSheet });
-    } catch (error) {
-      console.log("error", error);
-    }
   }, []);
 
   return (
     <div>
       {token && (
         <railz-visualizations
-          configuration={JSON.stringify({ token: token })}
+          configuration={JSON.stringify({ token, debug: true })}
           filter={JSON.stringify({
-            businessName: "businessName",
-            serviceName: "quickbooks",
-            connectionId: "connectionId",
-            reportType: "balanceSheet",
-            startDate: "2022-01-24T00:00:00.000Z",
-            endDate: "2022-01-25T00:00:00.000Z",
+            businessName: "QuickTestFreshbooks",
+            serviceName: "freshbooks",
+            // connectionId: "connectionId",
+            reportType: "balanceSheets",
+            startDate: "2021-01-01T00:00:00.000Z",
+            endDate: "2022-01-28T00:00:00.000Z",
             reportFrequency: "month",
           })}
           debug

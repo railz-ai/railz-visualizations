@@ -12,7 +12,7 @@ import { ErrorImage } from '../error/error-image';
 import { Loading } from '../loading/loading';
 import { Alert } from '../alert/alert';
 import Translations from '../../assets/en.json';
-import { formatBalanceSheet, getOptions } from '../../utils/utils';
+import { formatData, getOptions } from '../../utils/utils';
 import { LoggerServiceInstance } from '../../services/logger';
 import { RequestServiceInstance } from '../../services/request';
 
@@ -38,7 +38,7 @@ export class RailzVisualizations {
   @State()
   private _filter: RailzVisualizationsFilter;
   @State()
-  private _balanceSheetFormatted;
+  private _dataFormatted;
   @State()
   private error: string;
   @State()
@@ -50,12 +50,12 @@ export class RailzVisualizations {
   propsUpdated = () => {
     this.updateConfiguration();
     this.updateFilter();
-    this.requestBalanceSheet();
+    this.requestReportData();
   };
 
-  requestBalanceSheet = async () => {
+  requestReportData = async () => {
     this.loading = Translations.FETCHING_REPORT;
-    const balanceSheet = await RequestServiceInstance.getBalanceSheets({
+    const reportData = await RequestServiceInstance.getReportData({
       token: this._configuration.token,
       reportType: this._filter.reportType,
       startDate: this._filter.startDate,
@@ -67,12 +67,12 @@ export class RailzVisualizations {
     });
 
     this.loading = Translations.PARSING_REPORT;
-    if (balanceSheet.data) {
-      this._balanceSheetFormatted = formatBalanceSheet(balanceSheet.data, this._filter.reportFrequency);
+    if (reportData.data) {
+      this._dataFormatted = formatData(reportData.data, this._filter.reportFrequency);
       this.updateOptions();
     } else {
-      this.error = this.error || `${Translations.NOT_ABLE_TO_RETRIEVE_BALANCESHEETS} (${balanceSheet.error?.statusCode}) ${balanceSheet.error?.message?.[0]} `;
-      this.errorStatusCode = balanceSheet.error?.statusCode;
+      this.error = this.error || `${Translations.NOT_ABLE_TO_RETRIEVE_REPORT_DATA} (${reportData.error?.statusCode}) ${reportData.error?.message?.[0]} `;
+      this.errorStatusCode = reportData.error?.statusCode;
     }
     this.loading = '';
   };
@@ -132,9 +132,9 @@ export class RailzVisualizations {
   updateOptions = () => {
     let options;
     try {
-      options = getOptions(this._balanceSheetFormatted);
+      options = getOptions(this._dataFormatted);
     } catch (error) {
-      this.error = this.error || Translations.NOT_ABLE_TO_PARSE_BALANCESHEETS + JSON.stringify(error);
+      this.error = this.error || Translations.NOT_ABLE_TO_PARSE_REPORT_DATA + JSON.stringify(error);
     }
 
     if (options) {

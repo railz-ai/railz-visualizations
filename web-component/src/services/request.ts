@@ -1,14 +1,14 @@
 import { format, parseISO } from 'date-fns';
 import { RailzVisualizationsFilter } from '../components/railz-visualizations/types';
 
-interface BalanceSheetsRequest extends RailzVisualizationsFilter {
+interface ReportDataRequest extends RailzVisualizationsFilter {
   token: string;
 }
 
 class RequestService {
   constructor() {}
 
-  async getBalanceSheets({ token, reportType, startDate, endDate, serviceName, businessName, connectionId, reportFrequency }: BalanceSheetsRequest) {
+  async getReportData({ token, reportType, startDate, endDate, serviceName, businessName, connectionId, reportFrequency }: ReportDataRequest) {
     const formattedStartDate = format(parseISO(startDate), 'yyyy-MM-dd');
     const formattedEndDate = format(parseISO(endDate), 'yyyy-MM-dd');
     let params = [];
