@@ -7,7 +7,7 @@ import { environment } from './environments/environment';
 import {
   applyPolyfills,
   defineCustomElements,
-} from 'railz-dashboard-charts-tests/loader';
+} from 'railz-visualizations/loader';
 
 if (environment.production) {
   enableProdMode();
