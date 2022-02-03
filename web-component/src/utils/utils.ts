@@ -78,7 +78,7 @@ export const getOptions = ({ categories, series, colors }) => ({
   series: series,
 });
 
-export const formatBalanceSheet = (summary, reportFrequency) => {
+export const formatData = (summary, reportFrequency) => {
   const categories = formattedDate(summary, reportFrequency);
   const currentAssets = formatSeries(summary, Translations.CURRENT_ASSETS, 'currentAssets');
   const currentLiabilities = formatSeries(summary, Translations.CURRENT_LIABILITIES, 'currentLiabilities');
@@ -86,6 +86,18 @@ export const formatBalanceSheet = (summary, reportFrequency) => {
   const nonCurrentLiabilities = formatSeries(summary, Translations.NON_CURRENT_LIABILITIES, 'nonCurrentLiabilities');
   const assets = formatSeries(summary, Translations.ASSETS, 'assets');
   const liabilities = formatSeries(summary, Translations.LIABILITIES, 'liabilities');
+  const costOfGoodsSold = formatSeries(summary, Translations.COST_OF_GOODS_SOLD, 'costOfGoodsSold');
+  const netIncome = formatSeries(summary, Translations.NET_INCOME, 'netIncome');
+  const operatingExpenses = formatSeries(summary, Translations.OPERATING_EXPENSES, 'operatingExpenses');
+  const operatingIncome = formatSeries(summary, Translations.OPERATING_INCOME, 'operatingIncome');
+  const otherExpenses = formatSeries(summary, Translations.OTHER_EXPENSES, 'otherExpenses');
+  const otherIncome = formatSeries(summary, Translations.OTHER_INCOME, 'otherIncome');
+  const financingActivities = formatSeries(summary, Translations.FINANCING_ACTIVITIES, 'financingActivities');
+  const investingActivities = formatSeries(summary, Translations.INVESTING_ACTIVITIES, 'investingActivities');
+  const netCash = formatSeries(summary, Translations.NET_CASH, 'netCash');
+  const operatingActivities = formatSeries(summary, Translations.OPERATING_ACTIVITIES, 'operatingActivities');
+
+
   const equity = {
     type: 'spline',
     marker: {
@@ -99,16 +111,26 @@ export const formatBalanceSheet = (summary, reportFrequency) => {
     enableMouseTracking: false,
     ...formatSeries(summary, Translations.EQUITY, 'equity'),
   };
-  const series = [];
-  currentAssets?.data.length > 0 && series.push(currentAssets);
-  currentLiabilities?.data.length > 0 && series.push(currentLiabilities);
-  nonCurrentAssets?.data.length > 0 && series.push(nonCurrentAssets);
-  nonCurrentLiabilities?.data.length > 0 && series.push(nonCurrentLiabilities);
-  assets?.data.length > 0 && series.push(assets);
-  liabilities?.data.length > 0 && series.push(liabilities);
-  equity?.data.length > 0 && series.push(equity);
 
-  console.log('series', series);
+  const series = [
+    currentAssets,
+    currentLiabilities,
+    nonCurrentAssets,
+    nonCurrentLiabilities,
+    assets,
+    liabilities,
+    equity,
+    costOfGoodsSold,
+    netIncome,
+    operatingExpenses,
+    operatingIncome,
+    otherExpenses,
+    otherIncome,
+    financingActivities,
+    investingActivities,
+    netCash,
+    operatingActivities,
+  ].filter(seriesData => seriesData?.data.length > 0);
 
   return {
     categories,
