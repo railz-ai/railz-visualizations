@@ -1,5 +1,6 @@
 import { format, parseISO } from 'date-fns';
 import { RailzVisualizationsFilter } from '../components/railz-visualizations/types';
+import { isBarChart } from '../utils/utils';
 
 interface ReportDataRequest extends RailzVisualizationsFilter {
   token: string;
@@ -14,19 +15,17 @@ class RequestService {
     let params = [];
     params.push(`startDate=${formattedStartDate}`);
     params.push(`endDate=${formattedEndDate}`);
-    params.push(`reportFrequency=${reportFrequency}`);
+    if (isBarChart(reportType)) params.push(`reportFrequency=${reportFrequency}`);
     if (serviceName) params.push(`serviceName=${serviceName}`);
     if (businessName) params.push(`businessName=${businessName}`);
     if (connectionId) params.push(`connectionId=${connectionId}`);
 
     const url = `${reportType}?${params.join('&')}`;
 
-    const toReturn = await this.getRequest({
+    return await this.getRequest({
       url,
       token,
     });
-
-    return toReturn;
   }
   async getRequest({ url, token }) {
     const toReturn = await fetch('https://api.qa2.railz.ai/reports/' + url, {

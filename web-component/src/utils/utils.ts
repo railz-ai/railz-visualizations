@@ -1,8 +1,10 @@
 import { isNil } from 'lodash';
+import numbro from 'numbro';
 import { parseISO, format } from 'date-fns';
 import Translations from '../assets/en.json';
+import { RailzVisualizationsData } from '../components/railz-visualizations/types';
 
-export const getOptions = ({ categories, series, colors }) => ({
+export const getOptionsBarChart = ({ categories, series, colors }: RailzVisualizationsData) => ({
   chart: {
     type: 'column',
     style: {
@@ -78,7 +80,7 @@ export const getOptions = ({ categories, series, colors }) => ({
   series: series,
 });
 
-export const formatData = (summary, reportFrequency) => {
+export const formatBarChartData = (summary, reportFrequency): RailzVisualizationsData => {
   const categories = formattedDate(summary, reportFrequency);
   const currentAssets = formatSeries(summary, Translations.CURRENT_ASSETS, 'currentAssets');
   const currentLiabilities = formatSeries(summary, Translations.CURRENT_LIABILITIES, 'currentLiabilities');
@@ -96,7 +98,6 @@ export const formatData = (summary, reportFrequency) => {
   const investingActivities = formatSeries(summary, Translations.INVESTING_ACTIVITIES, 'investingActivities');
   const netCash = formatSeries(summary, Translations.NET_CASH, 'netCash');
   const operatingActivities = formatSeries(summary, Translations.OPERATING_ACTIVITIES, 'operatingActivities');
-
 
   const equity = {
     type: 'spline',
@@ -139,7 +140,7 @@ export const formatData = (summary, reportFrequency) => {
   };
 };
 
-export const formattedDate = (summary, reportFrequency): void => {
+export const formattedDate = (summary, reportFrequency): string => {
   return summary.map(data => {
     const date = parseISO(data.period.date);
     if (reportFrequency === 'quarter') return `Q${data.period.quarter} ${format(date, 'YYYY')}`;
@@ -148,7 +149,22 @@ export const formattedDate = (summary, reportFrequency): void => {
   });
 };
 
-export const formatSeries = (summary, name, field) => ({
+export const formatSeries = (summary, name, field): { name: string; data: [] } => ({
   name,
   data: summary.map(data => data[field]).filter(data => data != undefined),
 });
+
+export const formatNumber = (number: number, decimals = 2): string => {
+  if (!isNil(number)) {
+    return numbro(Number(number)).format(`0,000.${'0'.repeat(decimals)}`);
+  }
+  return '';
+};
+
+export const isBarChart = (reportType: string) => {
+  return reportType && ['balanceSheets', 'incomeStatement', 'cashflowStatements'].includes(reportType);
+};
+
+export const isProgressBar = (reportType: string) => {
+  return reportType && ['invoices', 'bills'].includes(reportType);
+};
