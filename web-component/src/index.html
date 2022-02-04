@@ -16,17 +16,42 @@
       railzVisualizations.configuration = {
         token:
           '',
-        // debug: true,
+        debug: true,
       };
       railzVisualizations.filter = {
         businessName: 'QuickTestQBO',
         serviceName: 'quickbooks',
         // connectionId: 'connectionId',
-        reportType: 'invoices',
+        // reportType: 'invoices',
+        // reportType: 'incomeStatement',
+        // reportType: 'cashflowStatements',
         // reportType: 'bills',
+        reportType: 'balanceSheets',
         startDate: '2021-05-01T00:00:00.000Z',
         endDate: '2022-01-28T00:00:00.000Z',
         reportFrequency: 'month',
+      };
+      railzVisualizations.options = {
+        container: {
+          style: {
+            // backgroundColor: 'red',
+            // height: '10px',
+            // overflow: 'auto',
+          },
+        },
+        title: {
+          text: 'Overriden Text',
+          style: {
+            color: '#00884F',
+            margin: 0,
+          },
+        },
+        chart: {
+          colors: ['red', 'green', 'blue', 'yellow', 'gray'],
+          style: {
+            height: '250px',
+          },
+        },
       };
     </script>
   </body>

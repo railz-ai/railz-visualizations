@@ -2,10 +2,10 @@ import { isNil } from 'lodash';
 import numbro from 'numbro';
 import { parseISO, format } from 'date-fns';
 import Translations from '../assets/en.json';
-import { RailzVisualizationsData } from '../components/railz-visualizations/types';
 
-export const getOptionsBarChart = ({ categories, series, colors }: RailzVisualizationsData) => ({
+export const getOptionsBarChart = ({ categories, series, chart }) => ({
   chart: {
+    height: chart?.style?.height,
     type: 'column',
     style: {
       fontFamily: [
@@ -41,7 +41,7 @@ export const getOptionsBarChart = ({ categories, series, colors }: RailzVisualiz
       },
     },
   },
-  colors: colors || ['#009BBD', '#FFD738', '#003032'],
+  colors: chart?.colors || ['#009BBD', '#FFD738', '#003032'],
   title: null,
   xAxis: {
     categories: categories,
@@ -80,7 +80,7 @@ export const getOptionsBarChart = ({ categories, series, colors }: RailzVisualiz
   series: series,
 });
 
-export const formatBarChartData = (summary, reportFrequency): RailzVisualizationsData => {
+export const formatBarChartData = ({ summary, reportFrequency, colors }): { categories: string; series: any[]; colors: string[] } => {
   const categories = formattedDate(summary, reportFrequency);
   const currentAssets = formatSeries(summary, Translations.CURRENT_ASSETS, 'currentAssets');
   const currentLiabilities = formatSeries(summary, Translations.CURRENT_LIABILITIES, 'currentLiabilities');
@@ -136,7 +136,7 @@ export const formatBarChartData = (summary, reportFrequency): RailzVisualization
   return {
     categories,
     series,
-    colors: ['#1D7043', '#F06C3A', '#003032', '#389BFF', '#FFD738', '#30A665', '#B30000'],
+    colors: colors || ['#1D7043', '#F06C3A', '#003032', '#389BFF', '#FFD738', '#30A665', '#B30000'],
   };
 };
 
@@ -167,4 +167,21 @@ export const isBarChart = (reportType: string) => {
 
 export const isProgressBar = (reportType: string) => {
   return reportType && ['invoices', 'bills'].includes(reportType);
+};
+
+export const getTitleByReportType = (reportType: string) => {
+  switch (reportType) {
+    case 'invoices':
+      return Translations.INVOICES;
+    case 'bills':
+      return Translations.BILLS;
+    case 'balanceSheets':
+      return Translations.BALANCE_SHEETS;
+    case 'incomeStatement':
+      return Translations.INCOME_STATEMENTS;
+    case 'cashflowStatements':
+      return Translations.CASHFLOW_STATEMENTS;
+    default:
+      return '';
+  }
 };

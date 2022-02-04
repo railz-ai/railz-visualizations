@@ -15,11 +15,11 @@ export const ProgressBar: FunctionalComponent<ProgressBarProps> = ({ reportType,
 
   return (
     <div class="progress-chart-div">
-      <h4 class="progress-chart-title">{reportType === 'invoices' ? Translations.INVOICES : Translations.BILLS}</h4>
       <p class="progress-chart-total-unpaid">
         {Translations.TOTAL_UNPAID} {reportType === 'invoices' ? Translations.INVOICES : Translations.BILLS}{' '}
         <span class="progress-chart-total-unpaid-value">${formatNumber(unpaidAmount)}</span>
       </p>
+
       <div class="progress-chart-values-div">
         <div>
           <p class="progress-chart-label">{Translations.PAID}</p>

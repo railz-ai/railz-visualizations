@@ -10,7 +10,7 @@ import { ErrorImage } from '../error/error-image';
 import { Loading } from '../loading/loading';
 import { Alert } from '../alert/alert';
 import Translations from '../../assets/en.json';
-import { formatBarChartData, getOptionsBarChart, isBarChart, isProgressBar } from '../../utils/utils';
+import { formatBarChartData, getOptionsBarChart, getTitleByReportType, isBarChart, isProgressBar } from '../../utils/utils';
 import { LoggerServiceInstance } from '../../services/logger';
 import { RequestServiceInstance } from '../../services/request';
 import { ProgressBar } from '../progress-bar/progress-bar';
@@ -39,6 +39,8 @@ export class RailzVisualizations {
   @State()
   private _filter: RailzVisualizationsFilter;
   @State()
+  private _options: RailzVisualizationsOptions;
+  @State()
   private _dataFormatted: RailzVisualizationsData;
   @State()
   private error: string;
@@ -50,6 +52,7 @@ export class RailzVisualizations {
 
   propsUpdated = () => {
     this.updateConfiguration();
+    this.updateOptions();
     this.updateFilter();
     this.requestReportData();
   };
@@ -76,8 +79,8 @@ export class RailzVisualizations {
     try {
       if (reportData?.data) {
         if (isBarChart(this._filter?.reportType)) {
-          this._dataFormatted = formatBarChartData(reportData.data, this._filter.reportFrequency);
-          this.updateOptions();
+          this._dataFormatted = formatBarChartData({ summary: reportData.data, reportFrequency: this._filter?.reportFrequency, colors: this._options?.chart?.colors });
+          this.updateHighchartsParams();
         }
         if (isProgressBar(this._filter?.reportType)) {
           this._dataFormatted = reportData.data;
@@ -146,10 +149,35 @@ export class RailzVisualizations {
   };
 
   updateOptions = () => {
+    LoggerServiceInstance.log(Translations.OPTIONS, this.options);
+    if (this.options) {
+      if (typeof this.options === 'string') {
+        try {
+          LoggerServiceInstance.log(Translations.OPTIONS + Translations.PARSE_START);
+          const parsedOptions = JSON.parse(this.options);
+          this._options = parsedOptions;
+          LoggerServiceInstance.log(Translations.OPTIONS + Translations.PARSE_END);
+        } catch (error) {
+          this.error = this.error || Translations.ERROR_PARSING + Translations.OPTIONS + JSON.stringify(error);
+        }
+      } else {
+        LoggerServiceInstance.log(Translations.OPTIONS + ' as Object');
+        this._options = this.options;
+      }
+    } else {
+      this.error = this.error || Translations.OPTIONS + Translations.NOT_PRESENT;
+    }
+  };
+
+  updateHighchartsParams = () => {
     let options;
     try {
       if (isBarChart(this._filter?.reportType)) {
-        options = getOptionsBarChart(this._dataFormatted);
+        options = getOptionsBarChart({
+          categories: this._dataFormatted?.categories,
+          series: this._dataFormatted?.series,
+          chart: this._options?.chart,
+        });
       }
     } catch (error) {
       this.error = this.error || Translations.NOT_ABLE_TO_PARSE_REPORT_DATA + JSON.stringify(error);
@@ -173,6 +201,17 @@ export class RailzVisualizations {
   }
 
   render() {
+    return (
+      <div class="global-div" style={this._options?.container?.style}>
+        <h4 class="title" style={this._options?.title?.style}>
+          {this._options?.title?.text ? this._options?.title?.text : getTitleByReportType(this._filter?.reportType)}
+        </h4>
+        {this.renderMain()}
+      </div>
+    );
+  }
+
+  renderMain() {
     if (this.error) {
       return <ErrorImage error={this._configuration?.debug && this.error} statusCode={this.errorStatusCode} />;
     }

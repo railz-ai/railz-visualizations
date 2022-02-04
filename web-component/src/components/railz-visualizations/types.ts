@@ -18,12 +18,29 @@ export interface RailzVisualizationsData {
   unpaidAmount?: number;
   categories?: string;
   series?: any[];
-  colors?: string[];
 }
 
 export interface RailzVisualizationsOptions {
   container: {
-    style: any;
-    tooltip: boolean;
+    style?: any;
+    tooltip?: boolean;
+    date?: boolean;
+  };
+  title?: {
+    text?: string;
+    style?: any;
+  };
+  chart?: {
+    colors?: string[];
+    style?: {
+      fontFamily: string;
+      label: any;
+      legend: any;
+      width: string;
+      height: string;
+    };
+    date?: {
+      quarter: string;
+    };
   };
 }
