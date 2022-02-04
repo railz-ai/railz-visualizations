@@ -32,7 +32,10 @@ class RequestService {
       headers: {
         authorization: `Bearer ${token}`,
       },
-    }).then(response => response.json());
+    }).then(response => {
+      if (response.status === 204) return response;
+      return response.json();
+    });
     return toReturn;
   }
 }

@@ -46,5 +46,6 @@
   "OPERATING_ACTIVITIES": "Operating Activities",
   "FETCHING_REPORT": "Fetching report",
   "PARSING_REPORT": "Parsing report",
-  "NOT_ABLE_TO_RETRIEVE_REPORT_DATA": "Not able to retrieve report data."
+  "NOT_ABLE_TO_RETRIEVE_REPORT_DATA": "Not able to retrieve report data.",
+  "NO_DATA": "No data."
 }

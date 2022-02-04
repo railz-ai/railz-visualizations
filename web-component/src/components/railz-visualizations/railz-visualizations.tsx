@@ -85,9 +85,12 @@ export class RailzVisualizations {
         if (isProgressBar(this._filter?.reportType)) {
           this._dataFormatted = reportData.data;
         }
-      } else {
+      } else if (reportData?.error) {
         this.error = this.error || `${Translations.NOT_ABLE_TO_RETRIEVE_REPORT_DATA} (${reportData.error?.statusCode}) ${reportData.error?.message?.[0]} `;
         this.errorStatusCode = reportData.error?.statusCode;
+      } else {
+        this.error = this.error || Translations.NO_DATA;
+        this.errorStatusCode = reportData?.status;
       }
     } catch (error) {
       this.error = this.error || `${Translations.NOT_ABLE_TO_PARSE_REPORT_DATA} (${error})`;
