@@ -162,7 +162,7 @@ export const formatNumber = (number: number, decimals = 2): string => {
 };
 
 export const isBarChart = (reportType: string) => {
-  return reportType && ['balanceSheets', 'incomeStatement', 'cashflowStatements'].includes(reportType);
+  return reportType && ['balanceSheets', 'incomeStatements', 'cashflowStatements'].includes(reportType);
 };
 
 export const isProgressBar = (reportType: string) => {
@@ -177,7 +177,7 @@ export const getTitleByReportType = (reportType: string) => {
       return Translations.BILLS;
     case 'balanceSheets':
       return Translations.BALANCE_SHEETS;
-    case 'incomeStatement':
+    case 'incomeStatements':
       return Translations.INCOME_STATEMENTS;
     case 'cashflowStatements':
       return Translations.CASHFLOW_STATEMENTS;
