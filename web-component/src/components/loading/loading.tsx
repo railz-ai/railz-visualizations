@@ -7,7 +7,7 @@ interface LoadingProps {
 export const Loading: FunctionalComponent<LoadingProps> = ({ loading }) => {
   return (
     <div>
-      <progress class="progress" />
+      <progress class="loading" />
       <p>{loading}</p>
     </div>
   );

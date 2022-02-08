@@ -1,9 +1,11 @@
 import { isNil } from 'lodash';
+import numbro from 'numbro';
 import { parseISO, format } from 'date-fns';
 import Translations from '../assets/en.json';
 
-export const getOptions = ({ categories, series, colors }) => ({
+export const getOptionsBarChart = ({ categories, series, chart }) => ({
   chart: {
+    height: chart?.style?.height,
     type: 'column',
     style: {
       fontFamily: [
@@ -39,7 +41,7 @@ export const getOptions = ({ categories, series, colors }) => ({
       },
     },
   },
-  colors: colors || ['#009BBD', '#FFD738', '#003032'],
+  colors: chart?.colors || ['#009BBD', '#FFD738', '#003032'],
   title: null,
   xAxis: {
     categories: categories,
@@ -78,7 +80,7 @@ export const getOptions = ({ categories, series, colors }) => ({
   series: series,
 });
 
-export const formatData = (summary, reportFrequency) => {
+export const formatBarChartData = ({ summary, reportFrequency, colors }): { categories: string; series: any[]; colors: string[] } => {
   const categories = formattedDate(summary, reportFrequency);
   const currentAssets = formatSeries(summary, Translations.CURRENT_ASSETS, 'currentAssets');
   const currentLiabilities = formatSeries(summary, Translations.CURRENT_LIABILITIES, 'currentLiabilities');
@@ -96,7 +98,6 @@ export const formatData = (summary, reportFrequency) => {
   const investingActivities = formatSeries(summary, Translations.INVESTING_ACTIVITIES, 'investingActivities');
   const netCash = formatSeries(summary, Translations.NET_CASH, 'netCash');
   const operatingActivities = formatSeries(summary, Translations.OPERATING_ACTIVITIES, 'operatingActivities');
-
 
   const equity = {
     type: 'spline',
@@ -135,11 +136,11 @@ export const formatData = (summary, reportFrequency) => {
   return {
     categories,
     series,
-    colors: ['#1D7043', '#F06C3A', '#003032', '#389BFF', '#FFD738', '#30A665', '#B30000'],
+    colors: colors || ['#1D7043', '#F06C3A', '#003032', '#389BFF', '#FFD738', '#30A665', '#B30000'],
   };
 };
 
-export const formattedDate = (summary, reportFrequency): void => {
+export const formattedDate = (summary, reportFrequency): string => {
   return summary.map(data => {
     const date = parseISO(data.period.date);
     if (reportFrequency === 'quarter') return `Q${data.period.quarter} ${format(date, 'YYYY')}`;
@@ -148,7 +149,39 @@ export const formattedDate = (summary, reportFrequency): void => {
   });
 };
 
-export const formatSeries = (summary, name, field) => ({
+export const formatSeries = (summary, name, field): { name: string; data: [] } => ({
   name,
   data: summary.map(data => data[field]).filter(data => data != undefined),
 });
+
+export const formatNumber = (number: number, decimals = 2): string => {
+  if (!isNil(number)) {
+    return numbro(Number(number)).format(`0,000.${'0'.repeat(decimals)}`);
+  }
+  return '';
+};
+
+export const isBarChart = (reportType: string) => {
+  return reportType && ['balanceSheets', 'incomeStatements', 'cashflowStatements'].includes(reportType);
+};
+
+export const isProgressBar = (reportType: string) => {
+  return reportType && ['invoices', 'bills'].includes(reportType);
+};
+
+export const getTitleByReportType = (reportType: string) => {
+  switch (reportType) {
+    case 'invoices':
+      return Translations.INVOICES;
+    case 'bills':
+      return Translations.BILLS;
+    case 'balanceSheets':
+      return Translations.BALANCE_SHEETS;
+    case 'incomeStatements':
+      return Translations.INCOME_STATEMENTS;
+    case 'cashflowStatements':
+      return Translations.CASHFLOW_STATEMENTS;
+    default:
+      return '';
+  }
+};

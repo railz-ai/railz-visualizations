@@ -4,17 +4,18 @@ import exporting from 'highcharts/modules/exporting';
 import indicators from 'highcharts/indicators/indicators';
 import trendline from 'highcharts/indicators/trendline';
 import highchartsAccessibility from 'highcharts/modules/accessibility';
-
 import { compareAsc, parseISO } from 'date-fns';
-import { RailzVisualizationsConfiguration, RailzVisualizationsFilter, RailzVisualizationsOptions } from './types';
-// import { Error } from '../error/error';
+
 import { ErrorImage } from '../error/error-image';
 import { Loading } from '../loading/loading';
 import { Alert } from '../alert/alert';
 import Translations from '../../assets/en.json';
-import { formatData, getOptions } from '../../utils/utils';
+import { formatBarChartData, getOptionsBarChart, getTitleByReportType, isBarChart, isProgressBar } from '../../utils/utils';
 import { LoggerServiceInstance } from '../../services/logger';
 import { RequestServiceInstance } from '../../services/request';
+import { ProgressBar } from '../progress-bar/progress-bar';
+
+import { RailzVisualizationsConfiguration, RailzVisualizationsData, RailzVisualizationsFilter, RailzVisualizationsOptions } from './types';
 
 exporting(Highcharts);
 indicators(Highcharts);
@@ -38,7 +39,9 @@ export class RailzVisualizations {
   @State()
   private _filter: RailzVisualizationsFilter;
   @State()
-  private _dataFormatted;
+  private _options: RailzVisualizationsOptions;
+  @State()
+  private _dataFormatted: RailzVisualizationsData;
   @State()
   private error: string;
   @State()
@@ -49,32 +52,51 @@ export class RailzVisualizations {
 
   propsUpdated = () => {
     this.updateConfiguration();
+    this.updateOptions();
     this.updateFilter();
     this.requestReportData();
   };
 
   requestReportData = async () => {
     this.loading = Translations.FETCHING_REPORT;
-    const reportData = await RequestServiceInstance.getReportData({
-      token: this._configuration.token,
-      reportType: this._filter.reportType,
-      startDate: this._filter.startDate,
-      endDate: this._filter.endDate,
-      businessName: this._filter.businessName,
-      connectionId: this._filter.connectionId,
-      reportFrequency: this._filter.reportFrequency,
-      serviceName: this._filter.serviceName,
-    });
+    let reportData;
+    try {
+      reportData = await RequestServiceInstance.getReportData({
+        token: this._configuration.token,
+        reportType: this._filter.reportType,
+        startDate: this._filter.startDate,
+        endDate: this._filter.endDate,
+        businessName: this._filter.businessName,
+        connectionId: this._filter.connectionId,
+        reportFrequency: this._filter.reportFrequency,
+        serviceName: this._filter.serviceName,
+      });
+    } catch (error) {
+      this.error = this.error || `${Translations.NOT_ABLE_TO_RETRIEVE_REPORT_DATA} (${error})`;
+    }
 
     this.loading = Translations.PARSING_REPORT;
-    if (reportData.data) {
-      this._dataFormatted = formatData(reportData.data, this._filter.reportFrequency);
-      this.updateOptions();
-    } else {
-      this.error = this.error || `${Translations.NOT_ABLE_TO_RETRIEVE_REPORT_DATA} (${reportData.error?.statusCode}) ${reportData.error?.message?.[0]} `;
-      this.errorStatusCode = reportData.error?.statusCode;
+    try {
+      if (reportData?.data) {
+        if (isBarChart(this._filter?.reportType)) {
+          this._dataFormatted = formatBarChartData({ summary: reportData.data, reportFrequency: this._filter?.reportFrequency, colors: this._options?.chart?.colors });
+          this.updateHighchartsParams();
+        }
+        if (isProgressBar(this._filter?.reportType)) {
+          this._dataFormatted = reportData.data;
+        }
+      } else if (reportData?.error) {
+        this.error = this.error || `${Translations.NOT_ABLE_TO_RETRIEVE_REPORT_DATA} (${reportData.error?.statusCode}) ${reportData.error?.message?.[0]} `;
+        this.errorStatusCode = reportData.error?.statusCode;
+      } else {
+        this.error = this.error || Translations.NO_DATA;
+        this.errorStatusCode = reportData?.status;
+      }
+    } catch (error) {
+      this.error = this.error || `${Translations.NOT_ABLE_TO_PARSE_REPORT_DATA} (${error})`;
+    } finally {
+      this.loading = '';
     }
-    this.loading = '';
   };
 
   updateConfiguration = () => {
@@ -130,9 +152,36 @@ export class RailzVisualizations {
   };
 
   updateOptions = () => {
+    LoggerServiceInstance.log(Translations.OPTIONS, this.options);
+    if (this.options) {
+      if (typeof this.options === 'string') {
+        try {
+          LoggerServiceInstance.log(Translations.OPTIONS + Translations.PARSE_START);
+          const parsedOptions = JSON.parse(this.options);
+          this._options = parsedOptions;
+          LoggerServiceInstance.log(Translations.OPTIONS + Translations.PARSE_END);
+        } catch (error) {
+          this.error = this.error || Translations.ERROR_PARSING + Translations.OPTIONS + JSON.stringify(error);
+        }
+      } else {
+        LoggerServiceInstance.log(Translations.OPTIONS + ' as Object');
+        this._options = this.options;
+      }
+    } else {
+      this.error = this.error || Translations.OPTIONS + Translations.NOT_PRESENT;
+    }
+  };
+
+  updateHighchartsParams = () => {
     let options;
     try {
-      options = getOptions(this._dataFormatted);
+      if (isBarChart(this._filter?.reportType)) {
+        options = getOptionsBarChart({
+          categories: this._dataFormatted?.categories,
+          series: this._dataFormatted?.series,
+          chart: this._options?.chart,
+        });
+      }
     } catch (error) {
       this.error = this.error || Translations.NOT_ABLE_TO_PARSE_REPORT_DATA + JSON.stringify(error);
     }
@@ -155,6 +204,17 @@ export class RailzVisualizations {
   }
 
   render() {
+    return (
+      <div class="global-div" style={this._options?.container?.style}>
+        <h4 class="title" style={this._options?.title?.style}>
+          {this._options?.title?.text ? this._options?.title?.text : getTitleByReportType(this._filter?.reportType)}
+        </h4>
+        {this.renderMain()}
+      </div>
+    );
+  }
+
+  renderMain() {
     if (this.error) {
       return <ErrorImage error={this._configuration?.debug && this.error} statusCode={this.errorStatusCode} />;
     }
@@ -164,6 +224,19 @@ export class RailzVisualizations {
     if (this.alert) {
       return <Alert alert={this.alert} />;
     }
-    return <div ref={el => (this.containerRef = el)} />;
+    if (isBarChart(this._filter?.reportType)) {
+      return <div ref={el => (this.containerRef = el)} />;
+    }
+    if (isProgressBar(this._filter?.reportType)) {
+      return (
+        <ProgressBar
+          reportType={this._filter?.reportType}
+          unpaidAmount={this._dataFormatted.unpaidAmount}
+          paidAmount={this._dataFormatted.paidAmount}
+          overdueAmount={this._dataFormatted.overdueAmount}
+        />
+      );
+    }
+    return <ErrorImage error={this._configuration?.debug && this.error} statusCode={this.errorStatusCode} />;
   }
 }
