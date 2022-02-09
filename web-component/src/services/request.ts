@@ -28,7 +28,7 @@ class RequestService {
     });
   }
   async getRequest({ url, token }) {
-    const toReturn = await fetch('https://api.qa2.railz.ai/reports/' + url, {
+    const toReturn = await fetch(process.env.FEEDER_URL + '/reports/' + url, {
       headers: {
         authorization: `Bearer ${token}`,
       },

@@ -4,9 +4,12 @@ Web Component sdk to use/display charts from Railz.ai
 
 ## What is this repository for?
 
-- This repo holds the principal project `web-component` that uses StencilJS (https://stenciljs.com/).
-- `examples/angular` is the proof-of-concept on how to run the `web-component` on Angular.
-- `examples/react` is the proof-of-concept on how to run the `web-component` on React.
+- ## `web-component`
+  - Holds the SDK component as Web Component built using [StencilJS](https://stenciljs.com/).
+- ## `examples/angular`
+  - The proof-of-concept on how to run the `web-component` on Angular with examples to see how to use.
+- ## `examples/react`
+  - The proof-of-concept on how to run the `web-component` on React with examples to see how to use.
 
 ---
 
@@ -74,6 +77,7 @@ yarn start // will start on port 4200
 
 1. Update dependencies with `yarn`
 2. Login with: `npm login` (using credentials from last pass)
-3. Bump version on `package.json`
+3. Bump version with: `npm version (major | minor | patch)`
+   - More info here: [Updating your published package version number](https://docs.npmjs.com/updating-your-published-package-version-number)
 4. Now just `yarn build`
 5. Now just `npm publish`

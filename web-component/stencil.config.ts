@@ -1,5 +1,6 @@
 import { Config } from '@stencil/core';
 import { sass } from '@stencil/sass';
+import dotenv from 'rollup-plugin-dotenv';
 
 export const config: Config = {
   namespace: 'stencilcomponent',
@@ -19,5 +20,5 @@ export const config: Config = {
       serviceWorker: null, // disable service workers
     },
   ],
-  plugins: [sass()],
+  plugins: [sass(), dotenv()],
 };

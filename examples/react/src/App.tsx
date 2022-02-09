@@ -8,7 +8,7 @@ export default function App() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(async () => {
     const { access_token }: { access_token: string } = await fetch(
-      "https://servant.qa2.railz.ai/auth/login",
+      process.env.REACT_APP_SERVER_URL + "/auth/login",
       {
         headers: {
           accept: "application/json, text/plain, */*",
@@ -22,7 +22,7 @@ export default function App() {
           "sec-fetch-mode": "cors",
           "sec-fetch-site": "same-site",
         },
-        referrer: "https://dashboard.qa2.railz.ai/",
+        referrer: "https://dashboard.railz.ai/",
         referrerPolicy: "strict-origin-when-cross-origin",
         body: JSON.stringify({
           email: "apinheiro+qa2qa@railz.ai",
