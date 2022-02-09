@@ -25,7 +25,15 @@ Web Component sdk to use/display charts from Railz.ai
 - After code change on `railz-visualizations` you need to run this so it can reflect on `web-dashboard`
 
 ```
+cd web-component
 yarn build
+yarn link
+```
+
+- Now you can go to `web-dashboard` and run
+
+```
+yarn link "railz-visualizations"
 ```
 
 ---
