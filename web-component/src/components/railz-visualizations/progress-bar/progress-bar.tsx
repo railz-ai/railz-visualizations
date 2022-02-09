@@ -1,7 +1,7 @@
 import { FunctionalComponent, h } from '@stencil/core';
 
-import Translations from '../../assets/en.json';
-import { formatNumber } from '../../utils/utils';
+import Translations from '../assets/en.json';
+import { formatNumber } from '../utils/utils';
 
 interface ProgressBarProps {
   reportType: string;

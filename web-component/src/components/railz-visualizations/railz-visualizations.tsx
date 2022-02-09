@@ -6,15 +6,15 @@ import trendline from 'highcharts/indicators/trendline';
 import highchartsAccessibility from 'highcharts/modules/accessibility';
 import { compareAsc, parseISO } from 'date-fns';
 
-import { ErrorImage } from '../error/error-image';
-import { Loading } from '../loading/loading';
-import { Alert } from '../alert/alert';
-import Translations from '../../assets/en.json';
-import { formatBarChartData, getOptionsBarChart, getTitleByReportType, isBarChart, isProgressBar } from '../../utils/utils';
 import { LoggerServiceInstance } from '../../services/logger';
 import { RequestServiceInstance } from '../../services/request';
-import { ProgressBar } from '../progress-bar/progress-bar';
 
+import { ErrorImage } from './error/error-image';
+import { Loading } from './loading/loading';
+import { Alert } from './alert/alert';
+import { ProgressBar } from './progress-bar/progress-bar';
+import Translations from './assets/en.json';
+import { formatBarChartData, getOptionsBarChart, getTitleByReportType, isBarChart, isProgressBar } from './utils/utils';
 import { RailzVisualizationsConfiguration, RailzVisualizationsData, RailzVisualizationsFilter, RailzVisualizationsOptions } from './types';
 
 exporting(Highcharts);
@@ -25,6 +25,7 @@ highchartsAccessibility(Highcharts);
 @Component({
   tag: 'railz-visualizations',
   styleUrl: 'railz-visualizations.css',
+  assetsDirs: ['assets'],
   shadow: true,
 })
 export class RailzVisualizations {
@@ -89,7 +90,7 @@ export class RailzVisualizations {
         this.error = this.error || `${Translations.NOT_ABLE_TO_RETRIEVE_REPORT_DATA} (${reportData.error?.statusCode}) ${reportData.error?.message?.[0]} `;
         this.errorStatusCode = reportData.error?.statusCode;
       } else {
-        this.error = this.error || Translations.NO_DATA;
+        this.error = this.error || Translations.ERROR_204;
         this.errorStatusCode = reportData?.status;
       }
     } catch (error) {

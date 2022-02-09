@@ -1,6 +1,7 @@
 import { format, parseISO } from 'date-fns';
 import { RailzVisualizationsFilter } from '../components/railz-visualizations/types';
-import { isBarChart } from '../utils/utils';
+import { isBarChart } from '../components/railz-visualizations/utils/utils';
+import { apis } from '../../utils/resources';
 
 interface ReportDataRequest extends RailzVisualizationsFilter {
   token: string;
@@ -28,7 +29,7 @@ class RequestService {
     });
   }
   async getRequest({ url, token }) {
-    const toReturn = await fetch(process.env.FEEDER_URL + '/reports/' + url, {
+    const toReturn = await fetch(apis.feeder + '/reports/' + url, {
       headers: {
         authorization: `Bearer ${token}`,
       },

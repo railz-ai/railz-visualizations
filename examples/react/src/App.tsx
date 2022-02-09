@@ -8,7 +8,7 @@ export default function App() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(async () => {
     const { access_token }: { access_token: string } = await fetch(
-      process.env.REACT_APP_SERVER_URL + "/auth/login",
+      process?.env?.REACT_APP_SERVER_URL + "/auth/login",
       {
         headers: {
           accept: "application/json, text/plain, */*",

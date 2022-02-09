@@ -47,5 +47,7 @@
   "FETCHING_REPORT": "Fetching report",
   "PARSING_REPORT": "Parsing report",
   "NOT_ABLE_TO_RETRIEVE_REPORT_DATA": "Not able to retrieve report data.",
-  "NO_DATA": "No data."
+  "ERROR_202": "Data currently unavailable",
+  "ERROR_204": "No data available",
+  "ERROR_500": "Oops, something went wrong"
 }
