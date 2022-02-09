@@ -14,7 +14,7 @@ Web Component sdk to use/display charts from Railz.ai
 
 #### First config
 
-- Just clone `web-component` on the same folder as `railz-visualizations` and on `web-component` just add on `package.json` this dependency:
+- Just clone `web-dashboard` on the same folder as `railz-visualizations` and on `web-component` just add on `package.json` this dependency:
 
 ```
 "railz-visualizations": "file:../railz-visualizations/web-component",
