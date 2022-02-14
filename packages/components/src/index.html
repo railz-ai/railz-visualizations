@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
+    <title>Stencil Component Starter</title>
+
+    <script type="module" src="/build/stencilcomponent.esm.js"></script>
+    <script nomodule src="/build/stencilcomponent.js"></script>
+    <style type="text/css">
+      @font-face {
+        font-family: Inter;
+        src: url(/assets/fonts/Inter-italic-var.woff2);
+        font-family: Inter;
+        src: url(/assets/fonts/Inter-upright-var.woff2);
+      }
+      html {
+        font-family: Inter;
+      }
+    </style>
+  </head>
+
+  <body>
+    <railz-visualizations />
+    <script>
+      const railzVisualizations = document.querySelector('railz-visualizations');
+      railzVisualizations.configuration = {
+        token: '',
+      };
+      railzVisualizations.filter = {
+        // businessName: 'QuickTestQBO',
+        serviceName: 'quickbooks',
+        connectionId: 'CON-3dc71add-47c8-4663-9c29-87593630d7f1',
+        // reportType: 'invoices',
+        // reportType: 'incomeStatements',
+        reportType: 'cashflowStatements',
+        // reportType: 'bills',
+        // reportType: 'balanceSheets',
+        startDate: '2021-05-01T00:00:00.000Z',
+        endDate: '2022-01-28T00:00:00.000Z',
+        reportFrequency: 'month',
+      };
+      railzVisualizations.options = {
+        container: {
+          style: {
+            // backgroundColor: 'red',
+            // height: '10px',
+            // overflow: 'auto',
+          },
+        },
+        title: {
+          text: 'Overriden Text',
+          style: {
+            color: '#00884F',
+            margin: 0,
+          },
+        },
+        chart: {
+          colors: ['red', 'green', 'blue', 'yellow', 'gray'],
+          style: {
+            height: '250px',
+          },
+        },
+      };
+    </script>
+  </body>
+</html>

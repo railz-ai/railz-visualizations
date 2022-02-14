@@ -1,0 +1,4 @@
+{
+  "packages": ["packages/components", "packages/components-angular", "packages/components-react"],
+  "sandboxes": ["new"]
+}
