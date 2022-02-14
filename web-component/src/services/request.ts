@@ -10,7 +10,16 @@ interface ReportDataRequest extends RailzVisualizationsFilter {
 class RequestService {
   constructor() {}
 
-  async getReportData({ token, reportType, startDate, endDate, serviceName, businessName, connectionId, reportFrequency }: ReportDataRequest) {
+  async getReportData({
+    token,
+    reportType,
+    startDate,
+    endDate,
+    serviceName,
+    businessName,
+    // connectionId,
+    reportFrequency,
+  }: ReportDataRequest) {
     const formattedStartDate = format(parseISO(startDate), 'yyyy-MM-dd');
     const formattedEndDate = format(parseISO(endDate), 'yyyy-MM-dd');
     let params = [];
@@ -19,7 +28,7 @@ class RequestService {
     if (isBarChart(reportType)) params.push(`reportFrequency=${reportFrequency}`);
     if (serviceName) params.push(`serviceName=${serviceName}`);
     if (businessName) params.push(`businessName=${businessName}`);
-    if (connectionId) params.push(`connectionId=${connectionId}`);
+    // if (connectionId) params.push(`connectionId=${connectionId}`);
 
     const url = `${reportType}?${params.join('&')}`;
 

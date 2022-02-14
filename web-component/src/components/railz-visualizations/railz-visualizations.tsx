@@ -68,7 +68,7 @@ export class RailzVisualizations {
         startDate: this._filter.startDate,
         endDate: this._filter.endDate,
         businessName: this._filter.businessName,
-        connectionId: this._filter.connectionId,
+        // connectionId: this._filter.connectionId,
         reportFrequency: this._filter.reportFrequency,
         serviceName: this._filter.serviceName,
       });
