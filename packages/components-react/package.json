@@ -46,5 +46,7 @@
       "node_modules",
       "dist"
     ]
-  }
+  },
+  "license": "MIT",
+  "packageManager": "yarn@1.22.17"
 }

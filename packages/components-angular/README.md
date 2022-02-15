@@ -1,6 +1,6 @@
-# ComponentsAngular
+# Components Angular
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.2.0.
+This is an angular wrapper for `@railzai/railz-visualization`, it was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.2.0.
 
 ## Code scaffolding
 
@@ -15,10 +15,44 @@ Run `ng build components-angular` to build the project. The build artifacts will
 
 After building your library with `ng build components-angular`, go to the dist folder `cd dist/components-angular` and run `npm publish`.
 
-## Running unit tests
+## Local Development
+To build and test your components locally, you will need to link the packages together. This is a replacement for publishing packages to npm that allows you to develop and test locally.
 
-Run `ng test components-angular` to execute the unit tests via [Karma](https://karma-runner.github.io).
+To do this, we’ll use the npm link command, follow the steps below to setup local environment.
 
-## Further help
+1. Clone this repository
+2. Install dependencies using yarn install or npm install
+3. Build the **packages/components** library and create a symlink to the library.
+```bash
+npm run build
+npm link
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+### Link Your Packages
+
+With the symlink created, the Angular component library will need to consume the stencil component library.
+Go to `packages/components-angular` folder and run the below:
+
+```bash
+npm link @railzai/railz-visualizations
+```
+And with that, the angular component library is linked to the stencil component library are linked together.
+
+In your angular component library, you need to create its own symlink.
+```bash
+npm run build
+npm link
+```
+
+#### Usage
+In your own Angular Application, you can run the below to link both libraries
+```bash
+npm link @railzai/railz-visualizations-angular
+```
+
+To make use of the Angular component library in your Angular application, set up your module file to import the visualizations module.
+
+```typescript
+import {RailzVisualizationsModule} from "@railzai/railz-visualizations-angular/src";
+```
+

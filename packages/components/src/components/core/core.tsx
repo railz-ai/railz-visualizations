@@ -1,47 +1,37 @@
-import {Component, h, Prop, State, Watch} from '@stencil/core';
-import Highcharts from 'highcharts';
-import exporting from 'highcharts/modules/exporting';
-import indicators from 'highcharts/indicators/indicators';
-import trendline from 'highcharts/indicators/trendline';
-import highchartsAccessibility from 'highcharts/modules/accessibility';
-import {isStatements, isTransactions} from '../../helpers/utils';
+/* eslint-disable max-len, @typescript-eslint/no-unused-vars */
+import { Component, h, Prop, State, Watch } from '@stencil/core';
 
-import {RVConfiguration, RVFilter, RVFilterDate, RVFilterFrequency, RVOptions} from '../../types';
-import {getConfiguration, getFilter} from "../../helpers/chart.utils";
+import { isEmpty, isEqual } from 'lodash-es';
 
-exporting(Highcharts);
-indicators(Highcharts);
-trendline(Highcharts);
-highchartsAccessibility(Highcharts);
+import { isStatements, isTransactions } from '../../helpers/utils';
 
+import { RVConfiguration, RVFilter, RVFilterDate, RVFilterFrequency, RVOptions } from '../../types';
+import { getConfiguration, getFilter } from '../../helpers/chart.utils';
 @Component({
   tag: 'railz-visualizations',
   styleUrl: './core.scss',
   shadow: true,
 })
 export class Core {
-  @Prop() configuration!: RVConfiguration;
-  @Prop() filter!: RVFilter;
-  @Prop() options: RVOptions;
+  @Prop() readonly configuration: RVConfiguration;
+  @Prop() readonly filter: RVFilter;
+  @Prop() readonly options: RVOptions;
 
-  @State()
-  private _filter: RVFilter;
-  @State()
-  private _configuration: RVConfiguration;
+  @State() private _filter: RVFilter;
+  @State() private _configuration: RVConfiguration;
 
-  @State()
-  private errorStatusCode: number;
+  @State() private errorStatusCode: number;
 
-  propsUpdated = () => {
+  private propsUpdated = (): void => {
     this.validateParams(this.configuration, this.filter);
   };
 
   /**
-  * Validates if configuration was passed correctly before setting filter
-  * @param configuration - Config for authentication
-  * @param filter - filter to decide chart type to show
-  */
-  validateParams = (configuration: RVConfiguration, filter: RVFilter) => {
+   * Validates if configuration was passed correctly before setting filter
+   * @param configuration - Config for authentication
+   * @param filter - filter to decide chart type to show
+   */
+  private validateParams = (configuration: RVConfiguration, filter: RVFilter): void => {
     this._configuration = getConfiguration(configuration);
     if (this._configuration) {
       this._filter = getFilter(filter);
@@ -49,43 +39,38 @@ export class Core {
   };
 
   @Watch('filter')
-  validateFilter(newValue: RVFilter, _: RVFilter) {
-    console.log(newValue);
-    console.log('newValue Core Filters');
-    this.validateParams(this.configuration, newValue);
+  validateFilter(newValue: RVFilter, oldValue: RVFilter): void {
+    if (newValue && oldValue && !isEqual(oldValue, newValue)) {
+      this.validateParams(this.configuration, newValue);
+    }
   }
 
   @Watch('configuration')
-  validateConfiguration(newValue: RVConfiguration, _: RVConfiguration) {
-    console.log(newValue);
-    console.log('newValue Core');
-    this.validateParams(newValue, this.filter);
+  validateConfiguration(newValue: RVConfiguration, oldValue: RVConfiguration): void {
+    if (newValue && oldValue && !isEqual(oldValue, newValue)) {
+      this.validateParams(newValue, this.filter);
+    }
   }
 
-  componentWillLoad() {
+  componentWillLoad(): void {
     this.propsUpdated && this.propsUpdated();
   }
 
-  componentDidLoad() {
+  componentDidLoad(): void {
     this.propsUpdated && this.propsUpdated();
   }
 
-  render() {
-    if (this.errorStatusCode) {
-      return <railz-error-image statusCode={this.errorStatusCode || 500}/>;
+  render(): HTMLElement {
+    if (!isEmpty(this.errorStatusCode)) {
+      return <railz-error-image statusCode={this.errorStatusCode || 500} />;
     }
 
     if (isStatements(this._filter?.reportType)) {
-      return <railz-statements-chart configuration={this.configuration} filter={this.filter as RVFilterFrequency}
-                                     options={this.options}/>;
+      return <railz-statements-chart configuration={this.configuration} filter={this.filter as RVFilterFrequency} options={this.options} />;
     }
     if (isTransactions(this._filter?.reportType)) {
-      return (
-        <railz-transactions-control
-          configuration={this.configuration} filter={this.filter as RVFilterDate} options={this.options}
-        />
-      );
+      return <railz-transactions-control configuration={this.configuration} filter={this.filter as RVFilterDate} options={this.options} />;
     }
-    return '';
+    return <span />;
   }
 }

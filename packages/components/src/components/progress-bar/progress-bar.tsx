@@ -1,5 +1,7 @@
-import {Component, h, Prop} from '@stencil/core';
-import {formatNumber} from "../../helpers/utils";
+/* eslint-disable max-len, @typescript-eslint/no-unused-vars */
+import { Component, h, Prop } from '@stencil/core';
+
+import { formatNumber } from '../../helpers/utils';
 import Translations from '../../config/translations/en.json';
 
 @Component({
@@ -8,16 +10,14 @@ import Translations from '../../config/translations/en.json';
   shadow: true,
 })
 export class ProgressBar {
-  @Prop() reportType: string;
-  @Prop() unpaidAmount: number;
-  @Prop() paidAmount: number;
-  @Prop() overdueAmount: number;
+  @Prop() readonly reportType: string;
+  @Prop() readonly unpaidAmount: number;
+  @Prop() readonly paidAmount: number;
+  @Prop() readonly overdueAmount: number;
 
+  private normalize = (value: number, max: number): number => (value * 100) / max;
 
-  normalize = (value: number, max: number): number => (value * 100) / max;
-
-
-  render() {
+  render(): HTMLElement {
     return (
       <div class="railz-progress-bar-div">
         <p class="railz-progress-bar-total-unpaid">
@@ -36,12 +36,11 @@ export class ProgressBar {
               <p class="railz-progress-bar-value railz-progress-bar-overdue">${formatNumber(this.overdueAmount)}</p>
             </div>
           </div>
-          <progress class="railz-progress-bar"
-                    value={this.normalize(this.paidAmount, this.unpaidAmount + this.paidAmount)}
-                    max={100}/>
+          <div class="railz-progress-bar">
+            <span style={{width: `${this.normalize(this.paidAmount, this.unpaidAmount + this.paidAmount)}%`}}/>
+          </div>
         </div>
       </div>
     );
   }
-
 }

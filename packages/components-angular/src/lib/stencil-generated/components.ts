@@ -8,27 +8,6 @@ import { Components } from '@railzai/railz-visualizations';
 
 
 
-export declare interface RailzChartContainer extends Components.RailzChartContainer {}
-
-@ProxyCmp({
-  defineCustomElementFn: undefined,
-  inputs: ['options']
-})
-@Component({
-  selector: 'railz-chart-container',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  template: '<ng-content></ng-content>',
-  inputs: ['options']
-})
-export class RailzChartContainer {
-  protected el: HTMLElement;
-  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
-    c.detach();
-    this.el = r.nativeElement;
-  }
-}
-
-
 export declare interface RailzErrorImage extends Components.RailzErrorImage {}
 
 @ProxyCmp({

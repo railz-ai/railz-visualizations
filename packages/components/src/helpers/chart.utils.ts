@@ -1,15 +1,11 @@
-import Translations from "../config/translations/en.json";
-import {compareAsc, parseISO} from "date-fns";
-import { getOptionsBarChart} from "../components/statements-chart/statements-chart.utils";
-import {errorLog} from "../services/logger";
-import {
-  RVAllFilter,
-  RVConfiguration, RVDateFilters, RVFilter,
-  RVOptions,
-  RVUpdateChartParameter,
-} from "../types";
-import {getTitleByReportType} from "./utils";
+import { compareAsc, parseISO } from 'date-fns';
 
+import Translations from '../config/translations/en.json';
+import { getOptionsBarChart } from '../components/statements-chart/statements-chart.utils';
+import { errorLog } from '../services/logger';
+import { RVAllFilter, RVConfiguration, RVDateFilters, RVFilter, RVOptions, RVUpdateChartParameter } from '../types';
+
+import { getTitleByReportType } from './utils';
 
 export const getConfiguration = (configuration: RVConfiguration | string): RVConfiguration => {
   let formattedConfiguration;
@@ -25,7 +21,7 @@ export const getConfiguration = (configuration: RVConfiguration | string): RVCon
         formattedConfiguration = undefined;
       }
     } catch (error) {
-      errorLog(Translations.ERROR_PARSING_CONFIGURATION,error);
+      errorLog(Translations.ERROR_PARSING_CONFIGURATION, error);
     }
   } else {
     errorLog(Translations.CONFIGURATION_NOT_PRESENT);
@@ -82,17 +78,15 @@ export const getOptions = (options: RVOptions | string, filter?: RVAllFilter): R
       errorLog(Translations.ERROR_PARSING_CONFIGURATION + ' ' + JSON.stringify(error));
     }
   } else {
-    formattedOptions = {title: {text: ''}}
+    formattedOptions = { title: { text: '' } };
   }
-  if(filter) {
-    console.log('Got here')
+  if (filter) {
     formattedOptions.title.text = getTitleByReportType(filter.reportType);
   }
-  console.log(formattedOptions);
   return formattedOptions;
 };
 
-export const getHighchartsParams = ({dataFormatted, options}: RVUpdateChartParameter) => {
+export const getHighchartsParams = ({ dataFormatted, options }: RVUpdateChartParameter): any => {
   let containerOptions;
   try {
     containerOptions = getOptionsBarChart({

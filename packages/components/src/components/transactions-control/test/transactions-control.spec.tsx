@@ -1,4 +1,5 @@
 import { newSpecPage } from '@stencil/core/testing';
+
 import { TransactionsControl } from '../transactions-control';
 
 describe('transactions-control', () => {

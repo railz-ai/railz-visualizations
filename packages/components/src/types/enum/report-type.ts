@@ -12,11 +12,15 @@ export enum RVReportTypes {
 }
 
 export type RVFinancialStatementsTypes = RVReportTypes.BALANCE_SHEET | RVReportTypes.CASHFLOW_STATEMENTS | RVReportTypes.INCOME_STATEMENTS;
-export type RVFrequencyTypes = RVFinancialStatementsTypes  | RVReportTypes.FINANCIAL_RATIO | RVReportTypes.EXPENSES | RVReportTypes.REVENUE;
-export type RVFrequencyNoCashflowTypes = RVReportTypes.BALANCE_SHEET | RVReportTypes.INCOME_STATEMENTS  | RVReportTypes.FINANCIAL_RATIO | RVReportTypes.EXPENSES | RVReportTypes.REVENUE;
+export type RVFrequencyTypes = RVFinancialStatementsTypes | RVReportTypes.FINANCIAL_RATIO | RVReportTypes.EXPENSES | RVReportTypes.REVENUE;
+export type RVFrequencyNoCashflowTypes =
+  | RVReportTypes.BALANCE_SHEET
+  | RVReportTypes.INCOME_STATEMENTS
+  | RVReportTypes.FINANCIAL_RATIO
+  | RVReportTypes.EXPENSES
+  | RVReportTypes.REVENUE;
 export type RVNoFrequencyTypes = RVReportTypes.INVOICES | RVReportTypes.BILLS;
 export type RVNoDateTypes = RVReportTypes.BANK_ACCOUNT | RVReportTypes.CREDIT_SCORE;
-
 
 export enum RVCreditScoreTypes {
   VERY_POOR = 'Very Poor',

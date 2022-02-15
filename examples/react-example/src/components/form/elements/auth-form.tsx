@@ -8,7 +8,6 @@ export default function AuthForm({ setAuthentication, setError}: FormProps) {
 
     const submitAuth = async (event: any) => {
         event.preventDefault();
-        console.log(formAuth);
         if(formAuth.apiUrl && formAuth.clientId && formAuth.clientSecret) {
             await setAuthentication(formAuth);
         } else {
@@ -20,7 +19,6 @@ export default function AuthForm({ setAuthentication, setError}: FormProps) {
         const target = event.target;
         const value = target.value;
         const name = target.name;
-        console.log(name, value)
         setFormAuth({...formAuth, [name]: value});
     }
 

@@ -14,6 +14,7 @@ export default function Basic() {
     const [error, setError] = useState('');
 
     const submitAuthentication = async (params: AuthenticationParameters): Promise<void> => {
+        setError('');
         const encodedString = encode(`${params.clientId}:${params.clientSecret}`);
         fetch(params.apiUrl, {
             "method": "GET",
@@ -21,19 +22,18 @@ export default function Basic() {
         })
             .then(async (response: any) => {
                 const result = await response.json();
-                console.log(result);
                 setToken(result.access_token);
             })
             .catch(err => {
                 console.error(err);
+                setError('Could not retrieve auth token');
             });
     }
 
     const submitFilter = (filter: RVFilter) => {
-        if (token) {
-            console.log(filter);
-            setFilter(filter);
-        } else {
+        setFilter(filter);
+        setError('');
+        if (!token) {
             setError('Token required before filter can be triggered.');
         }
 

@@ -1,20 +1,15 @@
-import {
-  RVBankAccounts,
-  RVBillInvoiceSummary,
-  RVCreditScore,
-  RVRevenueExpensesSummary
-} from "./api-response";
+import { RVBankAccounts, RVBillInvoiceSummary, RVCreditScore, RVRevenueExpensesSummary } from './api-response';
 
 export interface RVFormattedStatementSeriesOptional {
   type?: string;
   marker?: {
     enabled?: boolean;
-  },
+  };
   states?: {
     hover?: {
       lineWidth?: number;
-    }
-  },
+    };
+  };
   enableMouseTracking?: boolean;
 }
 

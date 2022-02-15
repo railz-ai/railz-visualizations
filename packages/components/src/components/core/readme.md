@@ -7,11 +7,11 @@
 
 ## Properties
 
-| Property                     | Attribute | Description | Type                                                                                                                                                                                                           | Default     |
-| ---------------------------- | --------- | ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
-| `configuration` _(required)_ | --        |             | `RVConfiguration`                                                                                                                                                                                              | `undefined` |
-| `filter` _(required)_        | --        |             | `RVBaseFilterBusinessDateFrequencyType \| RVBaseFilterBusinessDateType \| RVBaseFilterBusinessType \| RVBaseFilterConnectionDateFrequencyType \| RVBaseFilterConnectionDateType \| RVBaseFilterConnectionType` | `undefined` |
-| `options`                    | --        |             | `RVOptions`                                                                                                                                                                                                    | `undefined` |
+| Property        | Attribute | Description | Type                                                                                                                                                                                                           | Default     |
+| --------------- | --------- | ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| `configuration` | --        |             | `RVConfiguration`                                                                                                                                                                                              | `undefined` |
+| `filter`        | --        |             | `RVBaseFilterBusinessDateFrequencyType \| RVBaseFilterBusinessDateType \| RVBaseFilterBusinessType \| RVBaseFilterConnectionDateFrequencyType \| RVBaseFilterConnectionDateType \| RVBaseFilterConnectionType` | `undefined` |
+| `options`       | --        |             | `RVOptions`                                                                                                                                                                                                    | `undefined` |
 
 
 ## Dependencies
@@ -30,7 +30,6 @@ graph TD;
   railz-visualizations --> railz-transactions-control
   railz-statements-chart --> railz-error-image
   railz-statements-chart --> railz-loading
-  railz-statements-chart --> railz-chart-container
   railz-transactions-control --> railz-error-image
   railz-transactions-control --> railz-loading
   railz-transactions-control --> railz-progress-bar

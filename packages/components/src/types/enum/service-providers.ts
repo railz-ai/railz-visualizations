@@ -1,11 +1,11 @@
 // Railz Visualization Service Providers
 
 export enum RVSandboxProviders {
-  SANDBOX = 'sandbox'
+  SANDBOX = 'sandbox',
 }
 
 export enum RVBankingProviders {
-  PLAID = 'plaid'
+  PLAID = 'plaid',
 }
 
 export enum RVAccountingProviders {
@@ -17,7 +17,7 @@ export enum RVAccountingProviders {
   SAGE_BUSINESS_CLOUD = 'sageBusinessCloud',
   SAGE_INTACCT = 'sageIntacct',
   WAVE = 'wave',
-  XERO = 'xero'
+  XERO = 'xero',
 }
 
-export type RVServiceProviders = RVAccountingProviders | RVBankingProviders | RVSandboxProviders
+export type RVServiceProviders = RVAccountingProviders | RVBankingProviders | RVSandboxProviders;

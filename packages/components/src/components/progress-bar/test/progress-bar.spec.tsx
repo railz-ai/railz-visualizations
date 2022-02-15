@@ -1,4 +1,5 @@
 import { newSpecPage } from '@stencil/core/testing';
+
 import { ProgressBar } from '../progress-bar';
 
 describe('progress-bar', () => {

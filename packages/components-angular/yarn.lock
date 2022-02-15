@@ -190,6 +190,13 @@
   dependencies:
     tslib "^2.3.0"
 
+"@angular/platform-browser-dynamic@~13.2.2":
+  version "13.2.2"
+  resolved "https://registry.yarnpkg.com/@angular/platform-browser-dynamic/-/platform-browser-dynamic-13.2.2.tgz#9a50fb79b96b62c13e65c996727542c5174e9246"
+  integrity sha512-lj6xwat0StLp+ROFqXU62upwHQhlxaQi0djhrS+DGKUK0Xu9bkBeaSCfBFgS78jPm1SwL8Xztu9/vuDAHLRrqw==
+  dependencies:
+    tslib "^2.3.0"
+
 "@assemblyscript/loader@^0.10.1":
   version "0.10.1"
   resolved "https://registry.yarnpkg.com/@assemblyscript/loader/-/loader-0.10.1.tgz#70e45678f06c72fa2e350e8553ec4a4d72b92e06"

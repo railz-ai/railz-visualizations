@@ -1,25 +1,15 @@
-import {Component, h, Prop, State, Watch} from '@stencil/core';
-import Highcharts from 'highcharts';
-import exporting from 'highcharts/modules/exporting';
-import indicators from 'highcharts/indicators/indicators';
-import trendline from 'highcharts/indicators/trendline';
-import highchartsAccessibility from 'highcharts/modules/accessibility';
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { Component, h, Prop, State, Watch } from '@stencil/core';
+
+import { isEmpty, isEqual } from 'lodash-es';
+
 import Translations from '../../config/translations/en.json';
-import {errorLog} from '../../services/logger';
+import { errorLog } from '../../services/logger';
 
-import {
-  RVBillInvoiceSummary,
-  RVConfiguration, RVFilterDate,
-  RVFormattedTransactionResponse,
-  RVOptions
-} from '../../types';
-import {getConfiguration, getFilter, getOptions} from "../../helpers/chart.utils";
-import {getTransactionsData} from "./transactions-control.utils";
+import { RVBillInvoiceSummary, RVConfiguration, RVFilterDate, RVFormattedTransactionResponse, RVOptions } from '../../types';
+import { getConfiguration, getFilter, getOptions } from '../../helpers/chart.utils';
 
-exporting(Highcharts);
-indicators(Highcharts);
-trendline(Highcharts);
-highchartsAccessibility(Highcharts);
+import { getTransactionsData } from './transactions-control.utils';
 
 @Component({
   tag: 'railz-transactions-control',
@@ -27,55 +17,57 @@ highchartsAccessibility(Highcharts);
   shadow: true,
 })
 export class TransactionsControl {
-  @Prop() configuration!: RVConfiguration;
-  @Prop() filter!: RVFilterDate;
-  @Prop() options: RVOptions;
+  @Prop() readonly configuration!: RVConfiguration;
+  @Prop() readonly filter!: RVFilterDate;
+  @Prop() readonly options: RVOptions;
 
-  @State()
-  private loading: string = '';
-  @State()
-  private _configuration: RVConfiguration;
-  @State()
-  private _filter: RVFilterDate;
-  @State()
-  private _options: RVOptions;
-  @State()
-  private _dataFormatted: RVBillInvoiceSummary;
-  @State()
-  private error: string;
-  @State()
-  private errorStatusCode: number;
+  @State() private loading = '';
+  @State() private _configuration: RVConfiguration;
+  @State() private _filter: RVFilterDate;
+  @State() private _options: RVOptions;
+  @State() private _dataFormatted: RVBillInvoiceSummary;
+  @State() private error: string;
+  @State() private errorStatusCode: number;
 
-  validateParams = async (configuration: RVConfiguration, filter: RVFilterDate) => {
+  /**
+   * Validates if configuration was passed correctly before setting filter
+   * @param configuration - Config for authentication
+   * @param filter - filter to decide chart type to show
+   * @param triggerRequest - indicate if api request should be made
+   */
+  private validateParams = async (configuration: RVConfiguration, filter: RVFilterDate, triggerRequest: boolean = true): Promise<void> => {
     this._configuration = getConfiguration(configuration);
-    if(this._configuration){
+    if (this._configuration) {
       this._filter = getFilter(filter) as RVFilterDate;
       this._options = getOptions(this.options, this._filter);
-      await this.requestReportData();
+      if(triggerRequest) {
+        await this.requestReportData();
+      }
     }
   };
 
   @Watch('filter')
-  async validateFilter(newValue: RVFilterDate, _: RVFilterDate) {
-    console.log(newValue);
-    console.log('newValue Transactions');
-    await this.validateParams(this.configuration, newValue);
+  async validateFilter(newValue: RVFilterDate, oldValue: RVFilterDate): Promise<void> {
+    if (newValue && oldValue && !isEqual(oldValue, newValue)) {
+      await this.validateParams(this.configuration, newValue);
+    }
   }
 
   @Watch('configuration')
-  async validateConfiguration(newValue: RVConfiguration, _: RVConfiguration) {
-    console.log(newValue);
-    console.log('newValue Transactions');
-    await this.validateParams(newValue, this.filter);
+  async validateConfiguration(newValue: RVConfiguration, oldValue: RVConfiguration): Promise<void> {
+    if (newValue && oldValue && !isEqual(oldValue, newValue)) {
+      await this.validateParams(newValue, this.filter);
+    }
   }
 
-  propsUpdated = async () => {
-    await this.validateParams(this.configuration, this.filter);
+  private propsUpdated = async (triggerRequest: boolean = true): Promise<void> => {
+    await this.validateParams(this.configuration, this.filter, triggerRequest);
   };
 
-  requestReportData = async () => {
+  private requestReportData = async (): Promise<void> => {
+    this.error = '';
     this.loading = Translations.LOADING_REPORT;
-    let reportData = await getTransactionsData({filter: this._filter, configuration: this._configuration}) as RVFormattedTransactionResponse
+    const reportData = (await getTransactionsData({ filter: this._filter, configuration: this._configuration })) as RVFormattedTransactionResponse;
     try {
       if (reportData?.data) {
         this._dataFormatted = reportData?.data;
@@ -93,36 +85,41 @@ export class TransactionsControl {
     }
   };
 
-  componentWillLoad() {
+  componentWillLoad(): void {
+    this.propsUpdated && this.propsUpdated(false);
+  }
+
+  componentDidLoad(): void {
     this.propsUpdated && this.propsUpdated();
   }
 
-  componentDidLoad() {
-    this.propsUpdated && this.propsUpdated();
+  private renderMain(): HTMLElement {
+    if (!isEmpty(this.error)) {
+      return <railz-error-image statusCode={this.errorStatusCode || 500} />;
+    }
+    if (!isEmpty(this.loading)) {
+      return <railz-loading loadingText={this.loading} />;
+    }
+    if (!isEmpty(this._dataFormatted)) {
+      return <railz-progress-bar
+        reportType={this._filter?.reportType}
+        unpaidAmount={this._dataFormatted.unpaidAmount}
+        paidAmount={this._dataFormatted.paidAmount}
+        overdueAmount={this._dataFormatted.overdueAmount}
+      />;
+    }
   }
 
-  renderMain() {
-    if (this.error) {
-      return <railz-error-image statusCode={this.errorStatusCode || 500}/>;
-    }
-    if (this.loading) {
-      return <railz-loading loadingText={this.loading}/>;
-    }
-    return <railz-progress-bar
-      reportType={this._filter?.reportType}
-      unpaidAmount={this._dataFormatted.unpaidAmount}
-      paidAmount={this._dataFormatted.paidAmount}
-      overdueAmount={this._dataFormatted.overdueAmount}
-    />;
-  }
-
-  render() {
-    return (<div class="railz-container" style={this._options?.container?.style}>
-
-      {this._options?.title ? <p class="railz-title" style={this._options?.title?.style}>
-        {this._options?.title?.text || ''}
-      </p> : null}
-      {this.renderMain()}
-    </div>)
+  render(): HTMLElement {
+    return (
+      <div class="railz-container" style={this._options?.container?.style}>
+        {this._options?.title ? (
+          <p class="railz-title" style={this._options?.title?.style}>
+            {this._options?.title?.text || ''}
+          </p>
+        ) : null}
+        {this.renderMain()}
+      </div>
+    );
   }
 }

@@ -7,22 +7,23 @@ import dotEnvConfig from 'rollup-plugin-dotenv';
 export const config: Config = {
   namespace: 'RailzVisualizations',
   globalStyle: 'src/global/global.scss',
+  sourceMap: true,
   outputTargets: [
     angular({
       componentCorePackage: `@railzai/railz-visualizations`,
-      directivesProxyFile: `../components-angular/src/lib/stencil-generated/components.ts`
+      directivesProxyFile: `../components-angular/src/lib/stencil-generated/components.ts`,
     }),
     react({
       componentCorePackage: '@railzai/railz-visualizations',
       proxiesFile: '../components-react/src/components/stencil-generated/index.ts',
       includeDefineCustomElements: true,
+      loaderDir: 'dist/loader',
     }),
     {
       type: 'dist',
-      esmLoaderPath: '../loader',
     },
     {
-      type: 'dist-custom-elements-bundle',
+      type: 'dist-custom-elements',
     },
     {
       type: 'docs-readme',

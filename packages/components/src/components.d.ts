@@ -7,9 +7,6 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { RVConfiguration, RVFilter, RVFilterDate, RVFilterFrequency, RVOptions } from "./types";
 export namespace Components {
-    interface RailzChartContainer {
-        "options": any;
-    }
     interface RailzErrorImage {
         "statusCode": number;
     }
@@ -39,12 +36,6 @@ export namespace Components {
     }
 }
 declare global {
-    interface HTMLRailzChartContainerElement extends Components.RailzChartContainer, HTMLStencilElement {
-    }
-    var HTMLRailzChartContainerElement: {
-        prototype: HTMLRailzChartContainerElement;
-        new (): HTMLRailzChartContainerElement;
-    };
     interface HTMLRailzErrorImageElement extends Components.RailzErrorImage, HTMLStencilElement {
     }
     var HTMLRailzErrorImageElement: {
@@ -82,7 +73,6 @@ declare global {
         new (): HTMLRailzVisualizationsElement;
     };
     interface HTMLElementTagNameMap {
-        "railz-chart-container": HTMLRailzChartContainerElement;
         "railz-error-image": HTMLRailzErrorImageElement;
         "railz-loading": HTMLRailzLoadingElement;
         "railz-progress-bar": HTMLRailzProgressBarElement;
@@ -92,9 +82,6 @@ declare global {
     }
 }
 declare namespace LocalJSX {
-    interface RailzChartContainer {
-        "options"?: any;
-    }
     interface RailzErrorImage {
         "statusCode": number;
     }
@@ -118,12 +105,11 @@ declare namespace LocalJSX {
         "options"?: RVOptions;
     }
     interface RailzVisualizations {
-        "configuration": RVConfiguration;
-        "filter": RVFilter;
+        "configuration"?: RVConfiguration;
+        "filter"?: RVFilter;
         "options"?: RVOptions;
     }
     interface IntrinsicElements {
-        "railz-chart-container": RailzChartContainer;
         "railz-error-image": RailzErrorImage;
         "railz-loading": RailzLoading;
         "railz-progress-bar": RailzProgressBar;
@@ -136,7 +122,6 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
-            "railz-chart-container": LocalJSX.RailzChartContainer & JSXBase.HTMLAttributes<HTMLRailzChartContainerElement>;
             "railz-error-image": LocalJSX.RailzErrorImage & JSXBase.HTMLAttributes<HTMLRailzErrorImageElement>;
             "railz-loading": LocalJSX.RailzLoading & JSXBase.HTMLAttributes<HTMLRailzLoadingElement>;
             "railz-progress-bar": LocalJSX.RailzProgressBar & JSXBase.HTMLAttributes<HTMLRailzProgressBarElement>;

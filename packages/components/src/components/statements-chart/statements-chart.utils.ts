@@ -1,17 +1,13 @@
-import {isNil} from 'lodash';
+import { isNil, pick } from 'lodash-es';
+
+import { format, parseISO } from 'date-fns';
+
 import Translations from '../../config/translations/en.json';
-import {formatDate, formatSeries} from "../../helpers/utils";
-import {
-  RVChartStatementBaseParameter,
-  RVChartStatementParameter,
-  RVFormattedStatementData, RVFormattedStatementResponse,
-  RVReportRequestParameter
-} from "../../types";
-import {RVReportTypes} from "../../types/enum/report-type";
-import {format, parseISO} from "date-fns";
-import {RequestServiceInstance} from "../../services/request";
-import {errorLog} from "../../services/logger";
-import {pick} from "lodash";
+import { formatDate, formatSeries } from '../../helpers/utils';
+import { RVChartStatementBaseParameter, RVChartStatementParameter, RVFormattedStatementData, RVFormattedStatementResponse, RVReportRequestParameter } from '../../types';
+import { RVReportTypes } from '../../types/enum/report-type';
+import { RequestServiceInstance } from '../../services/request';
+import { errorLog } from '../../services/logger';
 
 /**
  * Setup Highcharts options for bar charts
@@ -92,8 +88,8 @@ export const getOptionsBarChart = ({ categories, series, chart }) => ({
   },
   series: series,
   exporting: {
-    enabled: false
-  }
+    enabled: false,
+  },
 });
 
 /**
@@ -118,16 +114,11 @@ export const formatCashflowData = ({ summary, reportFrequency, colors }: RVChart
     ...formatSeries(summary, Translations.NET_CASH, 'netCash'),
   };
 
-  const series = [
-    financingActivities,
-    investingActivities,
-    netCash,
-    operatingActivities,
-  ].filter(seriesData => seriesData?.data.length > 0);
+  const series = [financingActivities, investingActivities, netCash, operatingActivities].filter(seriesData => seriesData?.data.length > 0);
 
   return {
     categories,
-    series,
+    series: series as any,
     colors: colors || ['#389BFF', '#FFD738', '#1D7043', '#003032'],
   };
 };
@@ -156,17 +147,11 @@ export const formatBalanceSheetData = ({ summary, reportFrequency, colors }: RVC
     ...formatSeries(summary, Translations.EQUITY, 'equity'),
   };
 
-  const series = [
-    currentAssets,
-    currentLiabilities,
-    nonCurrentAssets,
-    nonCurrentLiabilities,
-    equity,
-  ].filter(seriesData => seriesData?.data.length > 0);
+  const series = [currentAssets, currentLiabilities, nonCurrentAssets, nonCurrentLiabilities, equity].filter(seriesData => seriesData?.data.length > 0);
 
   return {
     categories,
-    series,
+    series: series as any,
     colors: colors || ['#1D7043', '#30A665', '#F06C3A', '#B30000', '#003032'],
   };
 };
@@ -196,18 +181,11 @@ export const formatIncomeStatementData = ({ summary, reportFrequency, colors }: 
     ...formatSeries(summary, Translations.NET_INCOME, 'netIncome'),
   };
 
-  const series = [
-    costOfGoodsSold,
-    netIncome,
-    operatingExpenses,
-    operatingIncome,
-    otherExpenses,
-    otherIncome,
-  ].filter(seriesData => seriesData?.data.length > 0);
+  const series = [costOfGoodsSold, netIncome, operatingExpenses, operatingIncome, otherExpenses, otherIncome].filter(seriesData => seriesData?.data.length > 0);
 
   return {
     categories,
-    series,
+    series: series as any,
     colors: colors || ['#1D7043', '#FF804F', '#009BBD', '#BCEDD2', '#38C076', '#003032'],
   };
 };
@@ -224,16 +202,16 @@ export const formatData = (statementParameter: RVChartStatementParameter): RVFor
 /**
  * Make API call based on expected parameters for financial statements data type
  */
-export const getReportData = async ({filter, configuration}: RVReportRequestParameter): Promise<RVFormattedStatementResponse> => {
+export const getReportData = async ({ filter, configuration }: RVReportRequestParameter): Promise<RVFormattedStatementResponse> => {
   let reportData;
   try {
     const startDate = format(parseISO(filter.startDate), 'yyyy-MM-dd');
     const endDate = format(parseISO(filter.endDate), 'yyyy-MM-dd');
     let allParameters;
-    if("connectionId" in filter && filter?.connectionId) {
-      allParameters = pick({...filter, startDate, endDate}, ['startDate', 'endDate', 'reportFrequency', 'connectionId'])
-    } else  {
-      allParameters = pick({...filter, startDate, endDate}, ['startDate', 'endDate', 'reportFrequency', 'businessName', 'serviceName'])
+    if ('connectionId' in filter && filter?.connectionId) {
+      allParameters = pick({ ...filter, startDate, endDate }, ['startDate', 'endDate', 'reportFrequency', 'connectionId']);
+    } else {
+      allParameters = pick({ ...filter, startDate, endDate }, ['startDate', 'endDate', 'reportFrequency', 'businessName', 'serviceName']);
     }
     reportData = await RequestServiceInstance.getReportData({
       token: configuration.token,
@@ -242,7 +220,7 @@ export const getReportData = async ({filter, configuration}: RVReportRequestPara
     });
   } catch (error) {
     errorLog(Translations.NOT_ABLE_TO_RETRIEVE_REPORT_DATA, error);
-    reportData.error = error;
+    reportData = { error };
   }
   return reportData;
 };

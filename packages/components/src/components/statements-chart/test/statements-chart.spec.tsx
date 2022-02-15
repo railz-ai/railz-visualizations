@@ -1,4 +1,5 @@
 import { newSpecPage } from '@stencil/core/testing';
+
 import { StatementsChart } from '../statements-chart';
 
 describe('statements-chart', () => {
