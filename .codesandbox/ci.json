@@ -1,4 +1,14 @@
 {
-  "packages": ["packages/components", "packages/components-angular", "packages/components-react"],
-  "sandboxes": ["new"]
+  "installCommand": "install",
+  "buildCommand": "build",
+  "packages": [
+    "packages/components",
+    "packages/components-angular",
+    "packages/components-react"
+  ],
+  "sandboxes": [
+    "examples/react-example",
+    "examples/angular"
+  ],
+  "node": "14"
 }
