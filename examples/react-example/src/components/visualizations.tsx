@@ -31,6 +31,7 @@ interface ChartProps {
     showCode?: boolean;
     displayValue?: string;
 }
+const formatCodeFilter = () => true;
 
 const Code = ({token, filter, options, showCode, displayValue}: ChartProps) => {
     return <>
