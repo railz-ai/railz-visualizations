@@ -1,6 +1,4 @@
 {
-  "installCommand": "install",
-  "buildCommand": "build",
   "packages": [
     "packages/components",
     "packages/components-angular",
