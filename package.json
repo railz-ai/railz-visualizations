@@ -1,0 +1,14 @@
+{
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "install:codesandbox": "yarn install --ignore-engines",
+    "build:codesandbox": "lerna run --scope '{@railzai/railz-visualizations,@railzai/railz-visualizations-angular,@railzai/railz-visualizations-react}' build"
+  },
+  "devDependencies": {
+    "lerna": "^3.16.4"
+  },
+  "workspaces": [
+    "packages/*"
+  ]
+}

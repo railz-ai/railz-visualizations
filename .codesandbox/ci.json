@@ -1,13 +1,19 @@
 {
+  "buildCommand": "build:codesandbox",
+  "installCommand": "install:codesandbox",
   "packages": [
     "packages/components",
     "packages/components-angular",
     "packages/components-react"
   ],
+  "publishDirectory": {
+    "@railzai/railz-visualizations": "packages/components/dist",
+    "@railzai/railz-visualizations-angular": "packages/components-angular/dist",
+    "@railzai/railz-visualizations-react": "packages/components-react/dist"
+  },
   "sandboxes": [
     "examples/react-example",
     "examples/angular",
     "examples/nodejs"
-  ],
-  "node": "14"
+  ]
 }
