@@ -15,5 +15,6 @@
     "examples/react-example",
     "examples/angular",
     "examples/nodejs"
-  ]
+  ],
+  "node": "14"
 }
