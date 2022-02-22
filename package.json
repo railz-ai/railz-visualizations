@@ -2,8 +2,8 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "install:codesandbox": "lerna bootstrap",
-    "build:codesandbox": "lerna run --parallel --scope '{@railzai/railz-visualizations,@railzai/railz-visualizations-angular,@railzai/railz-visualizations-react}' build"
+    "install:codesandbox": "yarn install --ignore-engines",
+    "build:codesandbox": "lerna bootstrap && lerna run --parallel --scope '{@railzai/railz-visualizations,@railzai/railz-visualizations-angular,@railzai/railz-visualizations-react}' build"
   },
   "devDependencies": {
     "lerna": "4.0.0"
