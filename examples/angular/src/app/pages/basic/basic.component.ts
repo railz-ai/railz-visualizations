@@ -30,8 +30,4 @@ export class BasicComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
-  stringify = (parameter: any): string => {
-    return JSON.stringify(parameter);
-  }
 }

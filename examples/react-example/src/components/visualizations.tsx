@@ -10,7 +10,7 @@ import {
     RVServiceProviders
 } from "@railzai/railz-visualizations";
 import {RailzStatementsChart, RailzTransactionsControl, RailzVisualizations} from "@railzai/railz-visualizations-react";
-import {isEmpty, omitBy} from "lodash";
+import {isEmpty, pick} from "lodash";
 
 type AllTypes = 'all' & RVReportTypes;
 
@@ -31,13 +31,29 @@ interface ChartProps {
     showCode?: boolean;
     displayValue?: string;
 }
-const formatCodeFilter = () => true;
+const formatCodeFilter = (filter: Filter) => {
+    let allParameters;
+    if ([RVReportTypes.BILLS, RVReportTypes.INVOICES].includes(filter.reportType)) {
+        if (!isEmpty(filter?.connectionId)) {
+            allParameters = pick(filter, ['startDate', 'endDate', 'connectionId']);
+        } else {
+            allParameters = pick(filter, ['startDate', 'endDate', 'businessName', 'serviceName']);
+        }
+    } else {
+        if (!isEmpty(filter?.connectionId)) {
+            allParameters = pick(filter, ['startDate', 'endDate', 'reportFrequency', 'connectionId']);
+        } else {
+            allParameters = pick(filter, ['startDate', 'endDate', 'reportFrequency', 'businessName', 'serviceName']);
+        }
+    }
+    return allParameters
+};
 
 const Code = ({token, filter, options, showCode, displayValue}: ChartProps) => {
     return <>
         {showCode && <pre className="language-html bg-black text-white mt-4 p-4 rounded-xl overflow-hidden">
               <code className="language-html">
-                  {"<" + displayValue + " configuration={" + JSON.stringify({token: token.token.slice(0, 20) + '...'}, null, '\t') + "} filter={" + JSON.stringify(omitBy(filter, isEmpty), null, '\t') + `${options ? '} options={' + JSON.stringify(options, null, '\t') : ''}} />`}
+                  {"<" + displayValue + " configuration={" + JSON.stringify({token: token.token.slice(0, 20) + '...'}, null, '\t') + "} filter={" + JSON.stringify(formatCodeFilter(filter) as any, null, '\t') + `${options ? '} options={' + JSON.stringify(options, null, '\t') : ''}} />`}
               </code>
             </pre>}
     </>
@@ -51,7 +67,7 @@ const DefaultComponent = ({token, filter, options, showCode}: ChartProps) => {
 }
 
 const Components = ({token, filter, options, showCode}: ChartProps) => {
-    return <div className="mt-5">
+    return <div className="mt-5 md:grid md:grid-cols-1 md:gap-1">
         {/*Switch to Object.values(RVReportTypes) when all is implemented*/}
         {filter.reportType === 'all' && [RVReportTypes.BILLS, RVReportTypes.INVOICES, RVReportTypes.BALANCE_SHEET, RVReportTypes.INCOME_STATEMENTS, RVReportTypes.CASHFLOW_STATEMENTS].map((reportType) =>
             <div className="col-span-1"

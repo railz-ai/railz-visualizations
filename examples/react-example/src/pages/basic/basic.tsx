@@ -16,12 +16,10 @@ export default function Basic() {
         setError('');
         const response = await fetch(params.authUrl, { method: "GET" });
         if (!response.ok) {
-            console.error(response);
             setError('Could not retrieve auth token');
             return;
         }
         const result = await response.json();
-        console.log(result)
         setToken(result.access_token);
     }
 

@@ -13,21 +13,20 @@ export default function Customization() {
     const [error, setError] = useState('');
 
     const submitAuthentication = async (params: AuthenticationParameters): Promise<void> => {
-        fetch(params.authUrl, {
-            "method": "GET"
-        })
-            .then((response: any) => {
-                setToken(response.access_token);
-            })
-            .catch(err => {
-                console.error(err);
-            });
+        setError('');
+        const response = await fetch(params.authUrl, { method: "GET" });
+        if (!response.ok) {
+            setError('Could not retrieve auth token');
+            return;
+        }
+        const result = await response.json();
+        setToken(result.access_token);
     }
 
     const submitFilter = (filter: RVFilter) => {
-        if(token) {
-            setFilter(filter);
-        } else {
+        setFilter(filter);
+        setError('');
+        if (!token) {
             setError('Token required before filter can be triggered.');
         }
 

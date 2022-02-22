@@ -84,8 +84,17 @@ yarn add @railzai/railz-visualizations
 - [React](https://docs.railz.ai/reference/getting-started#react);
 
 ## Visualizations Usage
-
 All you have to do just to import the core component on the page and pass its parameters to access it properties as an element.
+
+### Prerequisites
+
+#### Authentication
+Setup the process of receiving an access_token from the Railz Authentication API, see details [here](https://docs.railz.ai/reference/authentication)
+
+#### Framework Specific Installation
+- [Angular](https://docs.railz.ai/reference/getting-started#angular);
+- [React](https://docs.railz.ai/reference/getting-started#react);
+
 
 ### Framework usage React example
 
