@@ -1,0 +1,14 @@
+:host {
+  flex: 1;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+.railz-error-title {
+  line-height: 1.21;
+  font-weight: 500;
+  color: #424242;
+  margin: 0;
+}

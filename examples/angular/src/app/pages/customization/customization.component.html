@@ -1,0 +1,51 @@
+<div class="md:grid md:grid-cols-3 md:gap-6">
+  <div class="md:col-span-1 shadow p-4">
+    <app-form (filterEvent)="onFilterSubmit($event)" (authEvent)="onTokenSubmit($event)"></app-form>
+  </div>
+  <div class="mt-5 md:mt-0 md:col-span-2 text-center" role="main">
+    <p *ngIf="!!token && !filter">No Filter, submit your filter details</p>
+    <p *ngIf="!token && !!filter">No Token, submit your authentication details</p>
+    <p *ngIf="!token && !filter">No Token and Filter, submit your authentication and filter information</p>
+    <div *ngIf="!!token && !!filter">
+      <div class="md:grid md:grid-cols-1 md:gap-1" *ngIf="filter?.reportType === 'all' else statements">
+        <div class="col-span-1" *ngFor="let reportType of allReportTypes">
+          <railz-visualizations
+            [configuration]='token'
+            [filter]='getNewFilter(filter, reportType)'
+          >
+          </railz-visualizations>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #visualizations>
+  <div class="md:grid md:grid-cols-1 md:gap-1">
+    <railz-visualizations
+      [configuration]='token'
+      [filter]='filter'
+    >
+    </railz-visualizations>
+  </div>
+</ng-template>
+<ng-template #statements>
+  <div class="md:grid md:grid-cols-1 md:gap-1" *ngIf="filter?.reportType === 'balanceSheets' else transactions">
+    <h4 class="text-xl font-bold text-gray-900">Using Railz Statements Chart Component</h4>
+    <railz-statements-chart
+      [configuration]='token'
+      [filter]='filter'
+    >
+    </railz-statements-chart>
+  </div>
+
+</ng-template>
+<ng-template #transactions>
+  <div class="md:grid md:grid-cols-1 md:gap-1" *ngIf="filter?.reportType === 'bills' else visualizations">
+    <h4 class="text-xl font-bold text-gray-900">Using Railz Transactions Control Component</h4>
+    <railz-transactions-control
+      [configuration]='token'
+      [filter]='filter'
+    >
+    </railz-transactions-control>
+  </div>
+</ng-template>

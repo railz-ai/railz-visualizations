@@ -1,12 +1,18 @@
-import { TestBed } from '@angular/core/testing';
-import { AppComponent } from './app.component';
+import {TestBed} from '@angular/core/testing';
+import {AppComponent} from './app.component';
+import {HeaderComponent} from "./components/header/header.component";
+import {ChartsComponent} from "./charts/charts.component";
+import {BrowserModule} from "@angular/platform-browser";
+import {FormModule} from "./components/form/form.module";
+import {RailzVisualizationsModule} from "@railzai/railz-visualizations-angular/dist";
 
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [
-        AppComponent
+        AppComponent, HeaderComponent, ChartsComponent
       ],
+      imports: [BrowserModule, FormModule, RailzVisualizationsModule],
     }).compileComponents();
   });
 
@@ -16,16 +22,9 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'angularProject'`, () => {
+  it(`should not have defined token`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('angularProject');
-  });
-
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('angularProject app is running!');
+    expect(app.token).toBeUndefined();
   });
 });

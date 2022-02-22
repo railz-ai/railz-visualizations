@@ -1,0 +1,20 @@
+.railz-container {
+  display: flex;
+  padding: 16px;
+  position: relative;
+  border: 1px solid #eeeeee;
+  border-radius: 7px;
+  flex-direction: column;
+  justify-content: space-between;
+  width: auto;
+  height: 168px;
+}
+
+.railz-title {
+  color: #003032;
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+}

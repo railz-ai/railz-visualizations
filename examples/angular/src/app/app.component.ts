@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import 'railz-visualizations';
 
 @Component({
   selector: 'app-root',
@@ -7,5 +6,7 @@ import 'railz-visualizations';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  title = 'angularProject';
+
+  constructor() {
+  }
 }
