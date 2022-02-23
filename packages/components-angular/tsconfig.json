@@ -5,8 +5,7 @@
     "baseUrl": "./",
     "paths": {
       "components-angular": [
-        "dist/components-angular/components-angular",
-        "dist/components-angular"
+        "dist"
       ]
     },
     "outDir": "./dist/out-tsc",
@@ -15,6 +14,7 @@
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
     "noImplicitReturns": true,
+    "strictPropertyInitialization": false,
     "noFallthroughCasesInSwitch": true,
     "sourceMap": true,
     "declaration": false,

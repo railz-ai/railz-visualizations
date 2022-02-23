@@ -1,11 +1,6 @@
-<div class="p-10">
-  <app-header></app-header>
-  <div class="content" role="main" *ngIf="token">
+<div>
+  <app-header>
+    <router-outlet></router-outlet>
+  </app-header>
 
-    <railz-visualizations
-      [configuration]='token'
-      [filter]='filter'
-    >
-    </railz-visualizations>
-  </div>
 </div>

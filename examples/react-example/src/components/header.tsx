@@ -1,13 +1,14 @@
 /* This example requires Tailwind CSS v2.0+ */
 import React from 'react';
 import {CalendarIcon, TagIcon} from '@heroicons/react/solid';
-import { useLocation } from 'react-router-dom';
-import { Disclosure, Menu, Transition } from '@headlessui/react'
-import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
+import {NavLink} from 'react-router-dom';
+import { Disclosure } from '@headlessui/react'
+import { MenuIcon, XIcon } from '@heroicons/react/outline'
 
 const navigation = [
     { name: 'Basic', href: '/'},
     { name: 'Customization', href: '/customization' },
+    { name: 'Other Components', href: '/others' },
 ]
 
 function classNames(...classes: string[]) {
@@ -16,24 +17,12 @@ function classNames(...classes: string[]) {
 
 interface HeaderProps {
     children: React.ReactElement;
+    description: string;
 }
-const isActive = (matchPath: string, path: string): any => {
-    return (): boolean => matchPath === path;
-};
 
-export default function Header({children}: HeaderProps) {
-    const location = useLocation();
-
+export default function Header({children, description}: HeaderProps) {
     return (
         <>
-            {/*
-        This example requires updating your template:
-
-        ```
-        <html class="h-full bg-gray-100">
-        <body class="h-full">
-        ```
-      */}
             <div className="min-h-full">
                 <Disclosure as="nav" className="bg-gray-800">
                     {({ open }) => (
@@ -51,19 +40,13 @@ export default function Header({children}: HeaderProps) {
                                         <div className="hidden md:block">
                                             <div className="ml-10 flex items-baseline space-x-4">
                                                 {navigation.map((item) => (
-                                                    <a
+                                                    <NavLink
                                                         key={item.name}
-                                                        href={item.href}
-                                                        className={classNames(
-                                                            isActive(location.pathname, item.href)
-                                                                ? 'bg-gray-900 text-white'
-                                                                : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                                                            'px-3 py-2 rounded-md text-sm font-medium'
-                                                        )}
-                                                        aria-current={isActive(location.pathname, item.href) ? 'page' : undefined}
+                                                        to={item.href}
+                                                        className={({ isActive }) => classNames(isActive ? 'bg-gray-900 text-white hover:bg-gray-800' : 'text-gray-300 hover:bg-gray-800 hover:text-white', 'px-3 py-2 rounded-md text-sm font-medium')}
                                                     >
                                                         {item.name}
-                                                    </a>
+                                                    </NavLink>
                                                 ))}
                                             </div>
                                         </div>
@@ -85,18 +68,14 @@ export default function Header({children}: HeaderProps) {
                             <Disclosure.Panel className="md:hidden">
                                 <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
                                     {navigation.map((item) => (
-                                        <Disclosure.Button
+
+                                        <NavLink
                                             key={item.name}
-                                            as="a"
-                                            href={item.href}
-                                            className={classNames(
-                                                isActive(location.pathname, item.href) ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                                                'block px-3 py-2 rounded-md text-base font-medium'
-                                            )}
-                                            aria-current={isActive(location.pathname, item.href) ? 'page' : undefined}
+                                            to={item.href}
+                                            className={({ isActive }) => classNames(isActive ? 'bg-gray-900 text-white hover:bg-gray-800' : 'text-gray-300 hover:bg-gray-800 hover:text-white', 'block px-3 py-2 rounded-md text-base font-medium')}
                                         >
                                             {item.name}
-                                        </Disclosure.Button>
+                                        </NavLink>
                                     ))}
                                 </div>
                             </Disclosure.Panel>
@@ -107,6 +86,7 @@ export default function Header({children}: HeaderProps) {
                 <header className="bg-white shadow">
                     <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 text-left">
                         <h1 className="text-3xl font-bold text-gray-900">Sample Dashboard</h1>
+                        <p className="mt-1 text-md text-gray-600">This is a quickstart example of a React application that consumes the Railz Visualizations SDK. {description}</p>
                         <div className="mt-1 flex flex-col sm:flex-row sm:flex-wrap sm:mt-0 sm:space-x-6">
                             <div className="mt-2 flex items-center text-sm text-gray-500">
                                 <CalendarIcon className="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400" aria-hidden="true"/>
@@ -114,7 +94,7 @@ export default function Header({children}: HeaderProps) {
                             </div>
                             <div className="mt-2 flex items-center text-sm text-gray-500">
                                 <TagIcon className="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400" aria-hidden="true"/>
-                                Version 1.0
+                                Version 0.0.1
                             </div>
                         </div>
                     </div>

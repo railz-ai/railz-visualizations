@@ -1,6 +1,6 @@
 {
   "name": "@railzai/railz-visualizations",
-  "version": "0.0.19",
+  "version": "0.0.1",
   "description": "Railz.ai Visualizations",
   "main": "dist/index.cjs.js",
   "module": "dist/index.js",
@@ -26,7 +26,7 @@
     "@stencil/core": "2.13.0",
     "@stencil/react-output-target": "0.3.1",
     "@stencil/sass": "1.5.2",
-    "date-fns": "2.28.0",
+    "date-fns": "2.11.1",
     "highcharts": "9.3.3",
     "lodash-es": "4.17.21"
   },

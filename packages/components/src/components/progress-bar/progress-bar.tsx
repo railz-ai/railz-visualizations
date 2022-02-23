@@ -2,6 +2,7 @@
 import { Component, h, Prop } from '@stencil/core';
 
 import { formatNumber } from '../../helpers/utils';
+import { isNil } from 'lodash-es';
 import Translations from '../../config/translations/en.json';
 
 @Component({
@@ -18,6 +19,9 @@ export class ProgressBar {
   private normalize = (value: number, max: number): number => (value * 100) / max;
 
   render(): HTMLElement {
+    if(isNil(this.paidAmount) || isNil(this.unpaidAmount)) {
+      return <span></span>;
+    }
     return (
       <div class="railz-progress-bar-div">
         <p class="railz-progress-bar-total-unpaid">
@@ -33,7 +37,7 @@ export class ProgressBar {
             </div>
             <div>
               <p class="railz-progress-bar-label railz-progress-bar-overdue">{Translations.OVERDUE}</p>
-              <p class="railz-progress-bar-value railz-progress-bar-overdue">${formatNumber(this.overdueAmount)}</p>
+              <p class="railz-progress-bar-value railz-progress-bar-overdue">${formatNumber(this.overdueAmount) || 0}</p>
             </div>
           </div>
           <div class="railz-progress-bar">

@@ -1,0 +1,54 @@
+<div class="flex flex-col mt-6">
+  <div class="px-4 sm:px-0">
+    <h3 class="text-lg font-medium leading-6 text-gray-900">Filters</h3>
+    <p class="mt-1 text-sm text-gray-600">Some fields are disabled based on criteria <a href="https://docs.railz.ai/reference/components" target="_blank" class="underline" rel="noopener noreferrer">here</a>.</p>
+    <p class="mt-1 text-sm text-gray-600 font-bold">SDK current release only works with report types (balanceSheets, incomeStatements, cashflowStatements, invoices, bills).</p>
+  </div>
+  <div class="mt-5 md:mt-0">
+    <form [formGroup]="filterForm" (ngSubmit)="onSubmit()">
+      <div class="overflow-hidden sm:rounded-md">
+        <div class="py-5 bg-white">
+          <div class="grid grid-cols-6 gap-6 items-end">
+            <div class="col-span-6 lg:col-span-6">
+              <label for="business-name" class="block text-sm font-medium text-gray-700">Business Name</label>
+              <input formControlName="businessName" type="text" name="business-name" id="business-name" class="mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" placeholder="BIZ-1223S">
+            </div>
+            <div class="col-span-6 lg:col-span-3">
+              <label for="service-name" class="block text-sm font-medium text-gray-700">Service Name</label>
+              <select formControlName="serviceName" id="service-name" name="service-name" required class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm">
+                <option *ngFor="let service of arrayServiceProviders" [ngValue]="service">{{service}}</option>
+              </select>
+            </div>
+            <div class="col-span-6 lg:col-span-3">
+              <label for="connection-id" class="block text-sm font-medium text-gray-700">Connection Id</label>
+              <input formControlName="connectionId" type="text" name="connection-id" id="connection-id" class="mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" placeholder="CON-1223S">
+            </div>
+            <div class="col-span-6 lg:col-span-3">
+              <label for="report-type" class="block text-sm font-medium text-gray-700">Report Type</label>
+              <select formControlName="reportType" id="report-type" name="report-type" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm">
+                <option *ngFor="let reportType of arrayAllReportTypes" [ngValue]="reportType">{{reportType}}</option>
+              </select>
+            </div>
+            <div class="col-span-6 lg:col-span-3">
+              <label for="start-date" class="block text-sm font-medium text-gray-700">Start Date</label>
+              <input formControlName="startDate" type="date" name="start-date" id="start-date" class="mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" placeholder="2020-01-01">
+            </div>
+            <div class="col-span-6 lg:col-span-3">
+              <label for="end-date" class="block text-sm font-medium text-gray-700">End Date</label>
+              <input formControlName="endDate" type="date" name="end-date" id="end-date" class="mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" placeholder="2020-12-01">
+            </div>
+            <div class="col-span-6 lg:col-span-3">
+              <label for="report-frequency" class="block text-sm font-medium text-gray-700">Report Frequency</label>
+              <select formControlName="reportFrequency" id="report-frequency" name="report-frequency" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm">
+                <option *ngFor="let frequency of arrayReportFrequency" [ngValue]="frequency">{{frequency}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="col-span-6 lg:col-span-6 items-end">
+          <button type="submit" class="inline-flex justify-center w-full place-items-end py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-800">Submit</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

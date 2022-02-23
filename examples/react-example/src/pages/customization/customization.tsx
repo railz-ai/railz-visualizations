@@ -6,29 +6,27 @@ import {RVFilter} from "@railzai/railz-visualizations";
 import {AuthenticationParameters} from "../../types/authentication";
 import {isEmpty} from "lodash";
 
-export default function WithStyles() {
+export default function Customization() {
 
     const [token, setToken] = useState('');
     const [filter, setFilter] = useState({});
     const [error, setError] = useState('');
 
     const submitAuthentication = async (params: AuthenticationParameters): Promise<void> => {
-        fetch(params.apiUrl, {
-            "method": "GET",
-            "headers": {'Authorization': `Basic ${Buffer.from(`${params.clientId}:${params.clientSecret}`, 'base64')}`}
-        })
-            .then((response: any) => {
-                setToken(response.access_token);
-            })
-            .catch(err => {
-                console.error(err);
-            });
+        setError('');
+        const response = await fetch(params.authUrl, { method: "GET" });
+        if (!response.ok) {
+            setError('Could not retrieve auth token');
+            return;
+        }
+        const result = await response.json();
+        setToken(result.access_token);
     }
 
     const submitFilter = (filter: RVFilter) => {
-        if(token) {
-            setFilter(filter);
-        } else {
+        setFilter(filter);
+        setError('');
+        if (!token) {
             setError('Token required before filter can be triggered.');
         }
 
@@ -36,7 +34,7 @@ export default function WithStyles() {
 
     return (
         <div className="App">
-            <Header children={<div className="md:grid md:grid-cols-3 md:gap-6">
+            <Header description={'This page shows you the customizable options that can be passed to the SDK.'} children={<div className="md:grid md:grid-cols-3 md:gap-6">
                 <div className="md:col-span-1 shadow p-4">
                     <Form setFilter={submitFilter} setAuthentication={submitAuthentication} setError={setError}/>
                 </div>

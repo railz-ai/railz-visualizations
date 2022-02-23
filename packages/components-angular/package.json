@@ -1,4 +1,5 @@
 {
+  "type": "module",
   "name": "@railzai/railz-visualizations-angular",
   "version": "0.0.1",
   "scripts": {
@@ -8,25 +9,28 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
+  "types": "dist/index.d.ts",
   "peerDependencies": {
-    "@railzai/railz-visualizations": "0.0.19",
     "@angular/common": "~13.2.2",
-    "@angular/core": "~13.2.2"
+    "@angular/core": "~13.2.2",
+    "@railzai/railz-visualizations": "*"
   },
   "dependencies": {
+    "@railzai/railz-visualizations": "^0.0.1",
     "tslib": "^2.3.0"
   },
   "devDependencies": {
-    "ng-packagr": "~13.2.1",
+    "@angular-devkit/build-angular": "~13.2.3",
+    "@angular/cli": "~13.2.3",
     "@angular/common": "~13.2.2",
-    "@angular/core": "~13.2.2",
     "@angular/compiler": "~13.2.2",
     "@angular/compiler-cli": "~13.2.2",
-    "@angular-devkit/build-angular": "~13.2.3",
+    "@angular/core": "~13.2.2",
     "@angular/platform-browser-dynamic": "~13.2.2",
-    "@angular/cli": "~13.2.3",
-    "typescript": "4.4.4",
-    "@railzai/railz-visualizations": "0.0.19"
+    "ng-packagr": "~13.2.1",
+    "rollup": "^2.67.3",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "typescript": "4.4.4"
   },
   "license": "MIT",
   "packageManager": "yarn@1.22.17"

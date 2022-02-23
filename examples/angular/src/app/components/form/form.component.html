@@ -1,0 +1,23 @@
+<!--
+  This example requires Tailwind CSS v2.0+
+
+  This example requires some changes to your config:
+
+  ```
+  // tailwind.config.js
+  module.exports = {
+    // ...
+    plugins: [
+      // ...
+      require('@tailwindcss/forms'),
+    ],
+  }
+  ```
+-->
+<div class="mt-0">
+  <app-auth-form [authForm]="authForm" (authEvent)="onAuthSubmit()"></app-auth-form>
+</div>
+
+<div class="mt-4 sm:mt-4">
+  <app-filter-form [filterForm]="filterForm" (filterEvent)="onFilterSubmit()"></app-filter-form>
+</div>

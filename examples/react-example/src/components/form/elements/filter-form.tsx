@@ -7,6 +7,7 @@ import {
 } from "@railzai/railz-visualizations";
 import {FormProps} from "../../../types/form";
 
+//TODO: this can be helper functions and objects the SDK provides
 const arrayServiceProviders = [...Object.values(RVSandboxProviders), ...Object.values(RVBankingProviders), ...Object.values(RVAccountingProviders)];
 const arrayAllReportTypes = Object.values(RVReportTypes);
 const arrayReportFrequency = Object.values(RVReportFrequency);
@@ -33,7 +34,7 @@ export default function FilterForm({setFilter}: FormProps) {
             <div className="md:col-span-1">
                 <div className="text-left">
                     <h2 className="text-lg font-medium leading-6 text-gray-900">Filters</h2>
-                    <p className="mt-1 text-sm text-gray-600">Some fields are disabled based on criteria <a href="https://docs.railz.ai/reference/components" target="_blank" className="underline">here</a>.</p>
+                    <p className="mt-1 text-sm text-gray-600">Some fields are disabled based on criteria <a href="https://docs.railz.ai/reference/components" target="_blank" className="underline"  rel="noopener noreferrer">here</a>.</p>
                     <p className="mt-1 text-sm text-gray-600 font-bold">SDK current release only works with report types (balanceSheets, incomeStatements, cashflowStatements, invoices, bills).</p>
                 </div>
             </div>
@@ -49,7 +50,7 @@ export default function FilterForm({setFilter}: FormProps) {
                                        value={formFilter.businessName}
                                        required={!formFilter.connectionId}
                                        disabled={!!formFilter.connectionId}
-                                       className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                                       className="mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                        placeholder="BIZ-1233"/>
                             </div>
                             <div className="col-span-6 lg:col-span-3">
@@ -60,7 +61,7 @@ export default function FilterForm({setFilter}: FormProps) {
                                         required={!formFilter.connectionId || !!formFilter.businessName}
                                         disabled={!!formFilter.connectionId}
                                         onChange={handleFilterChange}
-                                        className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                        className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm">
                                     { arrayServiceProviders.map((provider) => <option key={provider} value={provider}>{provider}</option>)}
                                 </select>
                             </div>
@@ -72,7 +73,7 @@ export default function FilterForm({setFilter}: FormProps) {
                                        value={formFilter.connectionId}
                                        required={!formFilter.businessName}
                                        disabled={!!formFilter.businessName}
-                                       className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                                       className="mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                        placeholder="CON-12344"/>
                             </div>
                             <div className="col-span-6 lg:col-span-3">
@@ -82,7 +83,7 @@ export default function FilterForm({setFilter}: FormProps) {
                                         onChange={handleFilterChange}
                                         required
                                         value={formFilter.reportType}
-                                        className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                        className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm">
                                     <option key="all" value="all">all</option>
                                     { arrayAllReportTypes.map((reportType) => <option key={reportType} value={reportType}>{reportType}</option>)}
                                 </select>
@@ -95,7 +96,7 @@ export default function FilterForm({setFilter}: FormProps) {
                                        value={formFilter.startDate}
                                        required={!requiresNoDate(formFilter.reportType)}
                                        disabled={requiresNoDate(formFilter.reportType)}
-                                       className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                                       className="mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                        placeholder="id_32"/>
                             </div>
                             <div className="col-span-6 lg:col-span-3">
@@ -106,7 +107,7 @@ export default function FilterForm({setFilter}: FormProps) {
                                        value={formFilter.endDate}
                                        required={!requiresNoDate(formFilter.reportType)}
                                        disabled={requiresNoDate(formFilter.reportType)}
-                                       className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                                       className="mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                        placeholder="id_ww"/>
                             </div>
                             <div className="col-span-6 lg:col-span-3">
@@ -118,7 +119,7 @@ export default function FilterForm({setFilter}: FormProps) {
                                         value={formFilter.reportFrequency}
                                         required={!requiresNoFrequency(formFilter.reportType)}
                                         disabled={requiresNoFrequency(formFilter.reportType)}
-                                        className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                        className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm">
                                     { arrayReportFrequency.map((freq) => <option key={freq} value={freq}>{freq}</option>)}
                                 </select>
                             </div>

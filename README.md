@@ -29,7 +29,7 @@
 </p>
 
 <img src="https://railz.ai/_next/image?url=https%3A%2F%2Fa.storyblok.com%2Ff%2F124388%2F2336x2080%2F62bed08777%2Frailz-data-financial-institutions.png&w=2560&q=80" alt="Railz dashboard preview" width="100%" />
-<i>Railz Dashboard.</i>
+<p align="center"><i>Railz Dashboard.</i></p>
 <br>
 
 ## Why Stencil ?
@@ -84,8 +84,17 @@ yarn add @railzai/railz-visualizations
 - [React](https://docs.railz.ai/reference/getting-started#react);
 
 ## Visualizations Usage
-
 All you have to do just to import the core component on the page and pass its parameters to access it properties as an element.
+
+### Prerequisites
+
+#### Authentication
+Setup the process of receiving an access_token from the Railz Authentication API, see details [here](https://docs.railz.ai/reference/authentication)
+
+#### Framework Specific Installation
+- [Angular](https://docs.railz.ai/reference/getting-started#angular);
+- [React](https://docs.railz.ai/reference/getting-started#react);
+
 
 ### Framework usage React example
 
@@ -104,10 +113,10 @@ function App() {
   }, []);
   return (
     <div className="App">
-      <RailzVisualizations configuration={{token: ''}} filter={{
+      <RailzVisualizations configuration={{token: 'token_1233'}} filter={{
         businessName: "testFreshbooks",
         serviceName: RVAccountingProviders.FRESHBOOKS,
-        reportType: RVReportTypes.BILLS,
+        reportType: RVReportTypes.BALANCE_SHEET,
         startDate: "2021-01-01",
         endDate: "2022-01-28",
         reportFrequency: RVReportFrequency.MONTH,
@@ -124,8 +133,15 @@ export default App;
 #### app.component.html
 ```angular
 <railz-visualizations
-  [configuration]='token'
-  [filter]='filter'
+  [configuration]='{token: 'token_1233'}'
+  [filter]='{
+        businessName: "testFreshbooks",
+        serviceName: RVAccountingProviders.FRESHBOOKS,
+        reportType: RVReportTypes.BALANCE_SHEET,
+        startDate: "2021-01-01",
+        endDate: "2022-01-28",
+        reportFrequency: RVReportFrequency.MONTH,
+      }'
 >
 </railz-visualizations>
 ```
@@ -149,35 +165,34 @@ export class AppModule {}
 
 
 ## Local Development
-### Link Your Packages (Optional)
+### Setting environment variable
+1. Copy from `.env.template` to `.env` file in the `components` directory.
+2. Set the `RAILZ_API_HOST` to the Railz API client needed for the build process in the `.env` file.
 
-To build and test your components locally, you will need to link the packages together. This is a replacement for publishing packages to npm that allows you to develop and test locally. 
+### Build Your Packages
+To build and test your components locally, you will need to link the packages together. This is a replacement for publishing packages to npm that allows you to develop and test locally.
+We are using [lerna](https://github.com/lerna/lerna) to do this for us
 
-To do this, we’ll use the npm link command, follow the steps below to setup local environment.
-
-1. Clone this repository 
-2. Install dependencies using yarn install or npm install
-3. Build the **packages/components** library and create a symlink to the library.
-```bash
-npm run build
-npm link
-```
+From the main folder:
+1. Clone this repository
+2. Install the dependency needed to setup the packages from the main folder.
+    ```bash
+   yarn
+    ```
+3. Install lerna using yarn
+    ```bash
+   yarn global add lerna
+   ```
+4. Run the bootstrap command to install all the dependencies for the packages, lerna will handle the linking between the packages
+    ```bash
+   install:codesandbox
+   ```
+5. Build the packages to begin using
+    ```bash
+   build:codesandbox
+   ```
 
 #### For React
-With the symlink created, the React component library will need to consume the stencil component library.
-Go to `packages/components-react` folder and run the below:
-
-```bash
-npm link @railzai/railz-visualizations
-```
-And with that, the react component library is linked to the stencil component library are linked together.
-
-In your react component library, you need to create its own symlink.
-```bash
-npm run build
-npm link
-```
-
 #### Usage
 In your own React Application, you can run the below to link both libraries
 ```bash
@@ -191,20 +206,6 @@ import { RailzVisualizations } from '@railzai/railz-visualizations-react';
 ```
 
 #### For Angular
-With the symlink created, the Angular component library will need to consume the stencil component library.
-Go to `packages/components-angular` folder and run the below:
-
-```bash
-npm link @railzai/railz-visualizations
-```
-And with that, the angular component library is linked to the stencil component library are linked together.
-
-In your angular component library, you need to create its own symlink.
-```bash
-npm run build
-npm link
-```
-
 #### Usage
 In your own Angular Application, you can run the below to link both libraries
 ```bash
@@ -214,9 +215,8 @@ npm link @railzai/railz-visualizations-angular
 To make use of the Angular component library in your Angular application, set up your module file to import the visualizations module.
 
 ```typescript
-import {RailzVisualizationsModule} from "@railzai/railz-visualizations-angular/src";
+import {RailzVisualizationsModule} from "@railzai/railz-visualizations-angular/dist";
 ```
-
 
 
 ## Contributing

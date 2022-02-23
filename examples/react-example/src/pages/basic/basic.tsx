@@ -4,7 +4,6 @@ import Visualizations from "../../components/visualizations";
 import {RVFilter,} from "@railzai/railz-visualizations";
 import React, {useState} from "react";
 import {AuthenticationParameters} from "../../types/authentication";
-import {encode} from 'base-64';
 import {isEmpty } from 'lodash';
 
 export default function Basic() {
@@ -15,19 +14,13 @@ export default function Basic() {
 
     const submitAuthentication = async (params: AuthenticationParameters): Promise<void> => {
         setError('');
-        const encodedString = encode(`${params.clientId}:${params.clientSecret}`);
-        fetch(params.apiUrl, {
-            "method": "GET",
-            "headers": {'Authorization': `Basic ${encodedString}`}
-        })
-            .then(async (response: any) => {
-                const result = await response.json();
-                setToken(result.access_token);
-            })
-            .catch(err => {
-                console.error(err);
-                setError('Could not retrieve auth token');
-            });
+        const response = await fetch(params.authUrl, { method: "GET" });
+        if (!response.ok) {
+            setError('Could not retrieve auth token');
+            return;
+        }
+        const result = await response.json();
+        setToken(result.access_token);
     }
 
     const submitFilter = (filter: RVFilter) => {
@@ -40,7 +33,7 @@ export default function Basic() {
     }
     return (
         <div className="App">
-            <Header children={<div className="md:grid md:grid-cols-3 md:gap-6">
+            <Header description={'This page shows you the default stylings and colors used by the SDK.'} children={<div className="md:grid md:grid-cols-3 md:gap-6">
                 <div className="md:col-span-1 shadow p-4">
                     <Form setFilter={submitFilter} setAuthentication={submitAuthentication} setError={setError}/>
                 </div>

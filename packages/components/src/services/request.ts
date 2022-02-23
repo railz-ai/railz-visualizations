@@ -25,7 +25,7 @@ class RequestService {
         authorization: `Bearer ${token}`,
       },
     }).then(response => {
-      if (response.status === 204) return response;
+      if (response.status === 204 || response.status === 202) return response;
       return response.json();
     });
   }

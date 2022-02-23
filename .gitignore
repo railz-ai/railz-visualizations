@@ -47,6 +47,10 @@ Thumbs.db
 *.flv
 *.mov
 *.wmv
+www
+dist
+loader
+.angular
 
 packages/components-angular/.angular/cache
 packages/components-react/dist

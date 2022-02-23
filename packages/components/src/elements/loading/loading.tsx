@@ -12,7 +12,7 @@ export class Loading {
 
   render(): HTMLElement {
     return (
-      <div>
+      <div class="railz-loading-container">
         <svg
           version="1.1"
           xmlns="http://www.w3.org/2000/svg"
@@ -32,7 +32,7 @@ export class Loading {
             <animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.6s" repeatCount="indefinite"></animateTransform>
           </path>
         </svg>
-        <p>{this.loadingText}</p>
+        {this.loadingText && <p>{this.loadingText}</p>}
       </div>
     );
   }

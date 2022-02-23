@@ -2,14 +2,9 @@
 
 This is an angular wrapper for `@railzai/railz-visualization`, it was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.2.0.
 
-## Code scaffolding
-
-Run `ng generate component component-name --project components-angular` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project components-angular`.
-> Note: Don't forget to add `--project components-angular` or else it will be added to the default project in your `angular.json` file. 
-
 ## Build
 
-Run `ng build components-angular` to build the project. The build artifacts will be stored in the `dist/` directory.
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
 ## Publishing
 
@@ -53,6 +48,6 @@ npm link @railzai/railz-visualizations-angular
 To make use of the Angular component library in your Angular application, set up your module file to import the visualizations module.
 
 ```typescript
-import {RailzVisualizationsModule} from "@railzai/railz-visualizations-angular/src";
+import {RailzVisualizationsModule} from "@railzai/railz-visualizations-angular/dist";
 ```
 
