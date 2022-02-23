@@ -179,11 +179,15 @@ From the main folder:
     ```bash
    yarn
     ```
-3. Run the bootstrap command to install all the dependencies for the packages, lerna will handle the linking between the packages
+3. Install lerna using yarn
+    ```bash
+   yarn global add lerna
+   ```
+4. Run the bootstrap command to install all the dependencies for the packages, lerna will handle the linking between the packages
     ```bash
    install:codesandbox
    ```
-4. Build the packages to begin using
+5. Build the packages to begin using
     ```bash
    build:codesandbox
    ```
