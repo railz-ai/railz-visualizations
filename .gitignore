@@ -51,6 +51,7 @@ www
 dist
 loader
 .angular
+.env
 
 packages/components-angular/.angular/cache
 packages/components-react/dist

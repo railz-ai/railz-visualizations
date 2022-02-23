@@ -50,6 +50,8 @@ Stencil components are just Web Components, so they work in any major framework 
 - Components
   - Visualization Controls - this is used to display status of bills and invoices
   - Statement Visualizations - this is used to display financial statements like Income Statements, Cashflow Statements, Balance Sheets.
+  - Loading Indicator Component
+  - Error/Status Image component
 
 
 ## Overview
@@ -84,9 +86,9 @@ yarn add @railzai/railz-visualizations
 - [React](https://docs.railz.ai/reference/getting-started#react);
 
 ## Visualizations Usage
-
 All you have to do just to import the core component on the page and pass its parameters to access it properties as an element.
-### Prerequisites 
+
+### Prerequisites
 
 #### Authentication
 Setup the process of receiving an access_token from the Railz Authentication API, see details [here](https://docs.railz.ai/reference/authentication)
@@ -161,4 +163,79 @@ import {RailzVisualizationsModule} from "@railzai/railz-visualizations-angular/s
   bootstrap: [AppComponent],
 })
 export class AppModule {}
+```
+
+
+## Local Development
+### Setting environment variable
+1. Copy from `.env.template` to `.env` file in the `packages/components` directory.
+2. Set the `RAILZ_API_HOST` to the Railz API client needed for the build process in the `.env` file.
+
+### Build Your Packages
+To build and test your components locally, you will need to link the packages together. This is a replacement for publishing packages to npm that allows you to develop and test locally.
+We are using [lerna](https://github.com/lerna/lerna) to do this for us
+
+From the main folder:
+1. Clone this repository
+2. Install the dependency needed to setup the packages from the main folder.
+    ```bash
+   yarn
+    ```
+3. Install lerna using yarn
+    ```bash
+   yarn global add lerna
+   ```
+4. Run the bootstrap command to install all the dependencies for the packages, lerna will handle the linking between the packages
+    ```bash
+   install:codesandbox
+   ```
+5. Build the packages to begin using
+    ```bash
+   build:codesandbox
+   ```
+6. Create a symlink to the built **packages/components** library
+    ```bash
+    yarn link
+    ```
+
+#### For React
+Lerna already linked the stencil component library to the React library during the build process so we only need to create the symlink for the React component library.
+Go to `packages/components-react` folder and run the below:
+
+```bash
+yarn link
+```
+#### Usage
+In your own React Application, you can run the below to link both libraries
+```bash
+yarn link @railzai/railz-visualizations
+yarn link @railzai/railz-visualizations-react
+```
+
+To make use of the React component library in your React application, import the components from the React component library in the file where you want to use them.
+
+```typescript jsx
+import { RailzVisualizations } from '@railzai/railz-visualizations-react';
+```
+
+#### For Angular
+Lerna already linked the stencil component library to the Angular library during the build process so we only need to create the symlink for the Angular component library.
+Go to `packages/components-angular` folder and run the below:
+
+In your angular component library, you need to create a symlink.
+```bash
+yarn link
+```
+
+#### Usage
+In your own Angular Application, you can run the below to link both libraries
+```bash
+yarn link @railzai/railz-visualizations
+yarn link @railzai/railz-visualizations-angular
+```
+
+To make use of the Angular component library in your Angular application, set up your module file to import the visualizations module.
+
+```typescript
+import {RailzVisualizationsModule} from "@railzai/railz-visualizations-angular/dist";
 ```
