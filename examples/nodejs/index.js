@@ -10,11 +10,7 @@ const app = express();
 //use env port or assign 4000
 const PORT = process.env.PORT || 4000;
 app.use(function (req, res, next) {
-    const allowedDomains = ['http://localhost:3000','http://localhost:4200' ];
-    const origin = req.headers.origin;
-    if(allowedDomains.indexOf(origin) > -1){
-        res.setHeader('Access-Control-Allow-Origin', origin);
-    }
+    res.setHeader('Access-Control-Allow-Origin', '*');
 
     // methods to allow
     res.setHeader('Access-Control-Allow-Methods', 'GET');

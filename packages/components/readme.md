@@ -191,7 +191,7 @@ From the main folder:
    ```
 5. Build the packages to begin using
     ```bash
-   build:codesandbox
+   build:local
    ```
 6. Create a symlink to the built **packages/components** library
     ```bash

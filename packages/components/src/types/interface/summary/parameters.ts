@@ -1,7 +1,7 @@
 import { RVReportFrequency } from '../../enum/date';
 import { RVFinancialStatementsTypes } from '../../enum/report-type';
 
-import { RVOptions } from '../option';
+import {RVOptions, RVOptionsChart} from '../option';
 import { RVConfiguration } from '../configuration';
 import { RVFilterDate, RVFilterFrequency } from '../filter';
 
@@ -31,6 +31,10 @@ export interface RVUpdateChartParameter {
   containerRef?: HTMLDivElement;
   dataFormatted: RVFormattedStatementData;
   options: RVOptions;
+}
+
+export interface RVChartOptionsParameter extends RVFormattedStatementData {
+  chart: RVOptionsChart;
 }
 
 export interface RVReportRequestParameter {

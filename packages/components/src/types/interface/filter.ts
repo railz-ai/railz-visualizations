@@ -1,6 +1,6 @@
-import { RVServiceProviders } from '../enum';
+import {RVFrequencyTypes, RVServiceProviders} from '../enum';
 import { RVReportFrequency } from '../enum/date';
-import { RVNoDateTypes, RVNoFrequencyTypes, RVReportTypes } from '../enum/report-type';
+import { RVNoDateTypes, RVNoFrequencyTypes } from '../enum/report-type';
 
 export interface RVBaseFilterBusiness {
   businessName: string;
@@ -38,11 +38,11 @@ export interface RVBaseFilterBusinessType extends RVBaseFilterConnection {
 }
 
 export interface RVBaseFilterConnectionDateFrequencyType extends RVBaseFilterConnectionDateFrequency {
-  reportType: RVReportTypes.FINANCIAL_RATIO;
+  reportType: RVFrequencyTypes;
 }
 
 export interface RVBaseFilterBusinessDateFrequencyType extends RVBaseFilterBusinessDateFrequency {
-  reportType: RVReportTypes.FINANCIAL_RATIO;
+  reportType: RVFrequencyTypes;
 }
 
 export interface RVBaseFilterConnectionDateType extends RVBaseFilterBusinessDate {
