@@ -33,5 +33,15 @@ export const config: Config = {
       serviceWorker: null, // disable service workers
     },
   ],
-  plugins: [sass(), dotEnvConfig()],
+  plugins: [sass({
+    injectGlobalPaths: ["src/global/global.scss"]
+  }), dotEnvConfig()],
+  testing: {
+    moduleNameMapper: {
+      "lodash-es": "lodash",
+    },
+    transformIgnorePatterns: [
+      "./node_modules/(?!lodash-es)"
+    ]
+  }
 };

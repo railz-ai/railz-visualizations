@@ -23,6 +23,7 @@ export class ErrorImage {
           </div>
         );
       case 204:
+      case 404:
         return (
           <div>
             <Error204 />

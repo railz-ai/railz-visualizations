@@ -90,8 +90,7 @@ export const getHighchartsParams = ({ dataFormatted, options }: RVUpdateChartPar
   let containerOptions;
   try {
     containerOptions = getOptionsBarChart({
-      categories: dataFormatted?.categories,
-      series: dataFormatted?.series,
+      ...dataFormatted,
       chart: options?.chart,
     });
   } catch (error) {

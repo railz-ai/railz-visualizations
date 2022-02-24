@@ -2,12 +2,14 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
+    "copy:env": "cp packages/components/.env.template packages/components/.env",
     "install:codesandbox": "yarn install --ignore-engines",
     "bootstrap": "lerna bootstrap",
     "add:angular": "lerna add @railzai/railz-visualizations --scope=@railzai/railz-visualizations-angular",
     "add:react": "lerna add @railzai/railz-visualizations --scope=@railzai/railz-visualizations-react",
     "run:build": "lerna run --scope '{@railzai/railz-visualizations,@railzai/railz-visualizations-angular,@railzai/railz-visualizations-react}' build",
-    "build:codesandbox": "yarn bootstrap && yarn run:build"
+    "build:codesandbox": "yarn copy:env && yarn bootstrap && yarn run:build",
+    "build:local": "yarn bootstrap && yarn run:build"
   },
   "devDependencies": {
     "lerna": "4.0.0"

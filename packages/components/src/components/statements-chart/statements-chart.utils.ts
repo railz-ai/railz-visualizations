@@ -4,7 +4,14 @@ import { format, parseISO } from 'date-fns';
 
 import Translations from '../../config/translations/en.json';
 import { formatDate, formatSeries } from '../../helpers/utils';
-import { RVChartStatementBaseParameter, RVChartStatementParameter, RVFormattedStatementData, RVFormattedStatementResponse, RVReportRequestParameter } from '../../types';
+import {
+  RVChartOptionsParameter,
+  RVChartStatementBaseParameter,
+  RVChartStatementParameter,
+  RVFormattedStatementData,
+  RVFormattedStatementResponse,
+  RVReportRequestParameter
+} from '../../types';
 import { RVReportTypes } from '../../types/enum/report-type';
 import { RequestServiceInstance } from '../../services/request';
 import { errorLog } from '../../services/logger';
@@ -12,7 +19,7 @@ import { errorLog } from '../../services/logger';
 /**
  * Setup Highcharts options for bar charts
  */
-export const getOptionsBarChart = ({ categories, series, chart }) => ({
+export const getOptionsBarChart = ({ categories, series, colors, chart }: RVChartOptionsParameter) => ({
   chart: {
     height: chart?.style?.height,
     type: 'column',
@@ -50,7 +57,7 @@ export const getOptionsBarChart = ({ categories, series, chart }) => ({
       },
     },
   },
-  colors: chart?.colors || ['#009BBD', '#FFD738', '#003032'],
+  colors: colors || ['#009BBD', '#FFD738', '#003032'],
   title: null,
   xAxis: {
     categories: categories,
