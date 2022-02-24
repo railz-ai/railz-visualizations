@@ -12,9 +12,9 @@
     "@railzai/railz-visualizations-react": "packages/components-react"
   },
   "sandboxes": [
-    "examples/react-example",
-    "examples/angular",
-    "examples/nodejs"
+    "/examples/react-example",
+    "/examples/angular",
+    "/examples/nodejs"
   ],
   "node": "14"
 }

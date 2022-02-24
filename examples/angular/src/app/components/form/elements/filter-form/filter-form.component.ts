@@ -4,7 +4,7 @@ import {
   RVBankingProviders, RVReportFrequency,
   RVReportTypes,
   RVSandboxProviders
-} from "../../../../../../../../packages/components";
+} from "@railzai/railz-visualizations";
 import {FormGroup} from "@angular/forms";
 
 @Component({
