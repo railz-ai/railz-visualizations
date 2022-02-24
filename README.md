@@ -188,14 +188,15 @@ From the main folder:
    ```
 4. Run the bootstrap command to install all the dependencies for the packages, lerna will handle the linking between the packages
     ```bash
-   install:codesandbox
+   yarn install:codesandbox
    ```
 5. Build the packages to begin using
     ```bash
-   build:local
+   yarn build:local
    ```
 6. Create a symlink to the built **packages/components** library
     ```bash
+    cd packages/components
     yarn link
     ```
 
