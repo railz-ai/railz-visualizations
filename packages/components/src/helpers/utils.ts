@@ -1,40 +1,74 @@
-import { isNil } from 'lodash-es';
-import { parseISO, format } from 'date-fns';
+import { isNil } from "lodash-es";
+import { parseISO, format } from "date-fns";
 
-import Translations from '../config/translations/en.json';
-import { RVReportTypes } from '../types/enum/report-type';
-import { RVReportFrequency, RVReportStatementSummary } from '../types';
+import Translations from "../config/translations/en.json";
+import { RVReportTypes } from "../types/enum/report-type";
+import { RVReportFrequency, RVReportStatementSummary } from "../types";
 
-export const formatDate = (summary: RVReportStatementSummary, reportFrequency: RVReportFrequency): string[] => {
-  return summary.map(data => {
+export const formatDate = (
+  summary: RVReportStatementSummary,
+  reportFrequency: RVReportFrequency
+): string[] => {
+  return summary.map((data) => {
     const date = parseISO(data.period.date);
-    if (reportFrequency === 'quarter') return `Q${data.period.quarter} ${format(date, 'YYYY')}`;
-    if (reportFrequency === 'year') return data.period.year.toString();
-    return format(date, 'MMM yy');
+    if (reportFrequency === "quarter")
+      return `Q${data.period.quarter} ${format(date, "YYYY")}`;
+    if (reportFrequency === "year") return data.period.year.toString();
+    return format(date, "MMM yy");
   });
 };
 
-export const formatSeries = (summary: RVReportStatementSummary, name: string, field: string): { name: string; data: RVReportStatementSummary } => ({
+export const formatSeries = (
+  summary: RVReportStatementSummary,
+  name: string,
+  field: string
+): { name: string; data: RVReportStatementSummary } => ({
   name,
-  data: summary.map(data => data[field]).filter(data => data != undefined),
+  data: summary.map((data) => data[field]).filter((data) => data != undefined),
 });
 
 export const formatNumber = (number: number, decimals = 2): string => {
   if (!isNil(number)) {
-    const formatter = new Intl.NumberFormat('en-US', {
+    const formatter = new Intl.NumberFormat("en-US", {
       maximumFractionDigits: decimals,
     });
     return formatter.format(Number(number));
   }
-  return '';
+  return "";
 };
 
 export const isStatements = (reportType: RVReportTypes): boolean => {
-  return reportType && [RVReportTypes.BALANCE_SHEET, RVReportTypes.INCOME_STATEMENTS, RVReportTypes.CASHFLOW_STATEMENTS].includes(reportType);
+  return (
+    reportType &&
+    [
+      RVReportTypes.BALANCE_SHEET,
+      RVReportTypes.INCOME_STATEMENTS,
+      RVReportTypes.CASHFLOW_STATEMENTS,
+    ].includes(reportType)
+  );
 };
 
 export const isTransactions = (reportType: RVReportTypes): boolean => {
-  return reportType && [RVReportTypes.INVOICES, RVReportTypes.BILLS].includes(reportType);
+  return (
+    reportType &&
+    [RVReportTypes.INVOICES, RVReportTypes.BILLS].includes(reportType)
+  );
+};
+
+export const isRequiredReportFrequency = (
+  reportType: RVReportTypes
+): boolean => {
+  return (
+    reportType &&
+    [
+      RVReportTypes.REVENUE,
+      RVReportTypes.EXPENSES,
+      RVReportTypes.CASHFLOW_STATEMENTS,
+      RVReportTypes.BALANCE_SHEET,
+      RVReportTypes.INCOME_STATEMENTS,
+      RVReportTypes.FINANCIAL_RATIO,
+    ].includes(reportType)
+  );
 };
 
 export const getTitleByReportType = (reportType: RVReportTypes): string => {
@@ -50,6 +84,6 @@ export const getTitleByReportType = (reportType: RVReportTypes): string => {
     case RVReportTypes.CASHFLOW_STATEMENTS:
       return Translations.CASHFLOW_STATEMENTS;
     default:
-      return '';
+      return "";
   }
 };

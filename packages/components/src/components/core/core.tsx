@@ -1,15 +1,21 @@
 /* eslint-disable max-len, @typescript-eslint/no-unused-vars */
-import { Component, h, Prop, State, Watch } from '@stencil/core';
+import { Component, h, Prop, State, Watch } from "@stencil/core";
 
-import { isEmpty, isEqual } from 'lodash-es';
+import { isEmpty, isEqual } from "lodash-es";
 
-import { isStatements, isTransactions } from '../../helpers/utils';
+import { isStatements, isTransactions } from "../../helpers/utils";
 
-import { RVConfiguration, RVFilter, RVFilterDate, RVFilterFrequency, RVOptions } from '../../types';
-import { getConfiguration, getFilter } from '../../helpers/chart.utils';
+import {
+  RVConfiguration,
+  RVFilter,
+  RVFilterDate,
+  RVFilterFrequency,
+  RVOptions,
+} from "../../types";
+import { getConfiguration, getFilter } from "../../helpers/chart.utils";
 @Component({
-  tag: 'railz-visualizations',
-  styleUrl: './core.scss',
+  tag: "railz-visualizations",
+  styleUrl: "./core.scss",
   shadow: true,
 })
 export class Core {
@@ -20,6 +26,7 @@ export class Core {
   @State() private _filter: RVFilter;
   @State() private _configuration: RVConfiguration;
 
+  @State() private error: string;
   @State() private errorStatusCode: number;
 
   private propsUpdated = (): void => {
@@ -31,22 +38,32 @@ export class Core {
    * @param configuration - Config for authentication
    * @param filter - filter to decide chart type to show
    */
-  private validateParams = (configuration: RVConfiguration, filter: RVFilter): void => {
-    this._configuration = getConfiguration(configuration);
-    if (this._configuration) {
-      this._filter = getFilter(filter);
+  private validateParams = (
+    configuration: RVConfiguration,
+    filter: RVFilter
+  ): void => {
+    try {
+      this._configuration = getConfiguration(configuration);
+      if (this._configuration) {
+        this._filter = getFilter(filter);
+      }
+    } catch (error) {
+      this.error = error.message;
     }
   };
 
-  @Watch('filter')
+  @Watch("filter")
   validateFilter(newValue: RVFilter, oldValue: RVFilter): void {
     if (newValue && oldValue && !isEqual(oldValue, newValue)) {
       this.validateParams(this.configuration, newValue);
     }
   }
 
-  @Watch('configuration')
-  validateConfiguration(newValue: RVConfiguration, oldValue: RVConfiguration): void {
+  @Watch("configuration")
+  validateConfiguration(
+    newValue: RVConfiguration,
+    oldValue: RVConfiguration
+  ): void {
     if (newValue && oldValue && !isEqual(oldValue, newValue)) {
       this.validateParams(newValue, this.filter);
     }
@@ -61,15 +78,32 @@ export class Core {
   }
 
   render(): HTMLElement {
-    if (!isEmpty(this.errorStatusCode)) {
-      return <railz-error-image statusCode={this.errorStatusCode || 500} />;
+    if (!isEmpty(this.error) || !isEmpty(this.errorStatusCode)) {
+      return (
+        <railz-error-image
+          message={this.error}
+          statusCode={this.errorStatusCode || 500}
+        />
+      );
     }
 
     if (isStatements(this._filter?.reportType)) {
-      return <railz-statements-chart configuration={this.configuration} filter={this.filter as RVFilterFrequency} options={this.options} />;
+      return (
+        <railz-statements-chart
+          configuration={this.configuration}
+          filter={this.filter as RVFilterFrequency}
+          options={this.options}
+        />
+      );
     }
     if (isTransactions(this._filter?.reportType)) {
-      return <railz-transactions-control configuration={this.configuration} filter={this.filter as RVFilterDate} options={this.options} />;
+      return (
+        <railz-transactions-control
+          configuration={this.configuration}
+          filter={this.filter as RVFilterDate}
+          options={this.options}
+        />
+      );
     }
     return <span />;
   }

@@ -8,6 +8,7 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { RVConfiguration, RVFilter, RVFilterDate, RVFilterFrequency, RVOptions } from "./types";
 export namespace Components {
     interface RailzErrorImage {
+        "message": string;
         "statusCode": number;
     }
     interface RailzLoading {
@@ -83,6 +84,7 @@ declare global {
 }
 declare namespace LocalJSX {
     interface RailzErrorImage {
+        "message"?: string;
         "statusCode": number;
     }
     interface RailzLoading {

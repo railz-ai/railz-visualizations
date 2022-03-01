@@ -24,7 +24,6 @@ export class CustomizationComponent implements OnInit {
   }
 
   onFilterSubmit = (filter: Filter) => {
-    console.log(filter);
     this.filter = filter;
   }
 

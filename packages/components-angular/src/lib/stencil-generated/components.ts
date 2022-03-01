@@ -12,13 +12,13 @@ export declare interface RailzErrorImage extends Components.RailzErrorImage {}
 
 @ProxyCmp({
   defineCustomElementFn: undefined,
-  inputs: ['statusCode']
+  inputs: ['message', 'statusCode']
 })
 @Component({
   selector: 'railz-error-image',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
-  inputs: ['statusCode']
+  inputs: ['message', 'statusCode']
 })
 export class RailzErrorImage {
   protected el: HTMLElement;

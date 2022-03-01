@@ -9,6 +9,7 @@
 
 | Property                  | Attribute     | Description | Type     | Default     |
 | ------------------------- | ------------- | ----------- | -------- | ----------- |
+| `message`                 | `message`     |             | `string` | `""`        |
 | `statusCode` _(required)_ | `status-code` |             | `number` | `undefined` |
 
 

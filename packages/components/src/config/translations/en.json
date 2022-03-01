@@ -46,7 +46,12 @@
   "OPERATING_ACTIVITIES": "Operating Activities",
   "LOADING_REPORT": "Data is loading",
   "NOT_ABLE_TO_RETRIEVE_REPORT_DATA": "Not able to retrieve report data.",
-  "ERROR_202_TITLE" : "Data currently unavailable",
-  "ERROR_204_TITLE" : "No data available",
-  "ERROR_500_TITLE" : "Oops, something went wrong"
+  "ERROR_202_TITLE": "Data currently unavailable",
+  "ERROR_204_TITLE": "No data available",
+  "ERROR_500_TITLE": "Oops, something went wrong",
+  "ERROR_START_DATE": "Start date wrong. Format should be: yyyy-MM-dd",
+  "ERROR_END_DATE": "End date wrong. Format should be: yyyy-MM-dd",
+  "ERROR_INVALID_BUSINESS_IDENTIFICATION": "Invalid business identification",
+  "ERROR_INVALID_REPORT_FREQUENCY": "Invalid reportFrequency",
+  "ERROR_INVALID_REPORT_TYPE": "Invalid reportType"
 }
