@@ -52,13 +52,13 @@ export const parseFilter = (filter: RVFilter | string): RVFilter | never => {
       } else {
         formattedFilter = filter;
       }
+      validateRequiredParams(formattedFilter);
     } catch (error) {
       errorLog(Translations.ERROR_PARSING_CONFIGURATION + " " + error.message);
       throw new Error(
         Translations.ERROR_PARSING_CONFIGURATION + " " + error.message
       );
     }
-    validateRequiredParams(formattedFilter);
   } else {
     errorLog(Translations.FILTER_NOT_PRESENT);
     throw new Error(Translations.FILTER_NOT_PRESENT);
@@ -75,22 +75,10 @@ export const validateRequiredParams = (filter): void | never => {
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const validateBusinessParams = (filter): void | never => {
-  let valid = true;
   if (
-    isEmpty(filter.businessName) &&
-    isEmpty(filter.serviceName) &&
-    isEmpty(filter.connectionId)
+    !(!isEmpty(filter.businessName) && !isEmpty(filter.serviceName)) ||
+    !isEmpty(filter.connectionId)
   ) {
-    valid = false;
-  }
-  if (isEmpty(filter.connectionId)) {
-    valid = !isEmpty(filter.businessName) && !isEmpty(filter.serviceName);
-  }
-  if (isEmpty(filter.businessName) || isEmpty(filter.serviceName)) {
-    valid = !isEmpty(filter.connectionId);
-  }
-
-  if (!valid) {
     throw new Error(Translations.ERROR_INVALID_BUSINESS_IDENTIFICATION);
   }
 };
