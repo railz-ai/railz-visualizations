@@ -12,11 +12,14 @@ import {
   RVFilterDate,
   RVFormattedTransactionResponse,
   RVOptions,
+  RVContent,
+  RVFilter,
 } from "../../types";
 import {
   getConfiguration,
   getDateFilter,
   getOptions,
+  getContent,
 } from "../../helpers/chart.utils";
 
 import { getTransactionsData } from "./transactions-control.utils";
@@ -30,11 +33,13 @@ export class TransactionsControl {
   @Prop() readonly configuration!: RVConfiguration;
   @Prop() readonly filter!: RVFilterDate;
   @Prop() readonly options: RVOptions;
+  @Prop() readonly content: RVContent;
 
   @State() private loading = "";
   @State() private _configuration: RVConfiguration;
   @State() private _filter: RVFilterDate;
   @State() private _options: RVOptions;
+  @State() private _content: RVContent;
   @State() private _dataFormatted: RVBillInvoiceSummary;
   @State() private error: string;
   @State() private errorStatusCode: number;
@@ -43,11 +48,15 @@ export class TransactionsControl {
    * Validates if configuration was passed correctly before setting filter
    * @param configuration - Config for authentication
    * @param filter - filter to decide chart type to show
+   * @param options - various options that can change display
+   * @param content - content to text that should display
    * @param triggerRequest - indicate if api request should be made
    */
   private validateParams = async (
     configuration: RVConfiguration,
-    filter: RVFilterDate,
+    filter: RVFilter,
+    options: RVOptions,
+    content: RVContent,
     triggerRequest = true
   ): Promise<void> => {
     try {
@@ -57,8 +66,9 @@ export class TransactionsControl {
     }
     if (this._configuration) {
       try {
-        this._filter = getDateFilter(filter) as RVFilterDate;
-        this._options = getOptions(this.options, this._filter);
+        this._filter = getDateFilter(filter as RVFilterDate) as RVFilterDate;
+        this._options = getOptions(options);
+        this._content = getContent(content, this._filter);
         if (triggerRequest) {
           await this.requestReportData();
         }
@@ -68,28 +78,60 @@ export class TransactionsControl {
     }
   };
 
-  @Watch("filter")
-  async validateFilter(
-    newValue: RVFilterDate,
-    oldValue: RVFilterDate
-  ): Promise<void> {
+  @Watch("configuration")
+  validateConfiguration(
+    newValue: RVConfiguration,
+    oldValue: RVConfiguration
+  ): void {
     if (newValue && oldValue && !isEqual(oldValue, newValue)) {
-      await this.validateParams(this.configuration, newValue);
+      this.validateParams(newValue, this.filter, this.options, this.content);
     }
   }
 
-  @Watch("configuration")
-  async validateConfiguration(
-    newValue: RVConfiguration,
-    oldValue: RVConfiguration
-  ): Promise<void> {
+  @Watch("filter")
+  validateFilter(newValue: RVFilter, oldValue: RVFilter): void {
     if (newValue && oldValue && !isEqual(oldValue, newValue)) {
-      await this.validateParams(newValue, this.filter);
+      this.validateParams(
+        this.configuration,
+        newValue,
+        this.options,
+        this.content
+      );
+    }
+  }
+
+  @Watch("options")
+  validateOptions(newValue: RVOptions, oldValue: RVOptions): void {
+    if (newValue && oldValue && !isEqual(oldValue, newValue)) {
+      this.validateParams(
+        this.configuration,
+        this.filter,
+        newValue,
+        this.content
+      );
+    }
+  }
+
+  @Watch("content")
+  validateContent(newValue: RVContent, oldValue: RVContent): void {
+    if (newValue && oldValue && !isEqual(oldValue, newValue)) {
+      this.validateParams(
+        this.configuration,
+        this.filter,
+        this.options,
+        newValue
+      );
     }
   }
 
   private propsUpdated = async (triggerRequest = true): Promise<void> => {
-    await this.validateParams(this.configuration, this.filter, triggerRequest);
+    await this.validateParams(
+      this.configuration,
+      this.filter,
+      this.options,
+      this.content,
+      triggerRequest
+    );
   };
 
   private requestReportData = async (): Promise<void> => {
@@ -153,9 +195,9 @@ export class TransactionsControl {
   render(): HTMLElement {
     return (
       <div class="railz-container" style={this._options?.container?.style}>
-        {this._options?.title ? (
+        {this._content?.title ? (
           <p class="railz-title" style={this._options?.title?.style}>
-            {this._options?.title?.text || ""}
+            {this._content?.title || ""}
           </p>
         ) : null}
         {this.renderMain()}

@@ -1,16 +1,15 @@
 /* eslint-disable max-len, @typescript-eslint/no-unused-vars */
 import { Component, h, Prop, State, Watch } from "@stencil/core";
-
 import { isEmpty, isEqual } from "lodash-es";
 
 import { isStatements, isTransactions } from "../../helpers/utils";
-
 import {
   RVConfiguration,
   RVFilter,
   RVFilterDate,
   RVFilterFrequency,
   RVOptions,
+  RVContent,
 } from "../../types";
 import { getConfiguration, getFilter } from "../../helpers/chart.utils";
 @Component({
@@ -22,6 +21,7 @@ export class Core {
   @Prop() readonly configuration: RVConfiguration;
   @Prop() readonly filter: RVFilter;
   @Prop() readonly options: RVOptions;
+  @Prop() readonly content: RVContent;
 
   @State() private _filter: RVFilter;
   @State() private _configuration: RVConfiguration;
@@ -52,13 +52,6 @@ export class Core {
     }
   };
 
-  @Watch("filter")
-  validateFilter(newValue: RVFilter, oldValue: RVFilter): void {
-    if (newValue && oldValue && !isEqual(oldValue, newValue)) {
-      this.validateParams(this.configuration, newValue);
-    }
-  }
-
   @Watch("configuration")
   validateConfiguration(
     newValue: RVConfiguration,
@@ -66,6 +59,27 @@ export class Core {
   ): void {
     if (newValue && oldValue && !isEqual(oldValue, newValue)) {
       this.validateParams(newValue, this.filter);
+    }
+  }
+
+  @Watch("filter")
+  validateFilter(newValue: RVFilter, oldValue: RVFilter): void {
+    if (newValue && oldValue && !isEqual(oldValue, newValue)) {
+      this.validateParams(this.configuration, newValue);
+    }
+  }
+
+  @Watch("options")
+  validateOptions(newValue: RVOptions, oldValue: RVOptions): void {
+    if (newValue && oldValue && !isEqual(oldValue, newValue)) {
+      this.validateParams(this.configuration, this.filter);
+    }
+  }
+
+  @Watch("content")
+  validateContent(newValue: RVContent, oldValue: RVContent): void {
+    if (newValue && oldValue && !isEqual(oldValue, newValue)) {
+      this.validateParams(this.configuration, this.filter);
     }
   }
 
@@ -92,6 +106,7 @@ export class Core {
         <railz-statements-chart
           configuration={this.configuration}
           filter={this.filter as RVFilterFrequency}
+          content={this.content}
           options={this.options}
         />
       );
@@ -101,6 +116,7 @@ export class Core {
         <railz-transactions-control
           configuration={this.configuration}
           filter={this.filter as RVFilterDate}
+          content={this.content}
           options={this.options}
         />
       );

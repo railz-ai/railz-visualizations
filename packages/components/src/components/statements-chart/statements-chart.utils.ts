@@ -24,7 +24,7 @@ export const getOptionsBarChart = ({
   series,
   colors,
   chart,
-}: RVChartOptionsParameter) => ({
+}: RVChartOptionsParameter): any => ({
   chart: {
     height: chart?.style?.height,
     type: "column",
@@ -111,8 +111,10 @@ export const formatCashflowData = ({
   summary,
   reportFrequency,
   colors,
+  quarter,
+  month,
 }: RVChartStatementBaseParameter): RVFormattedStatementData => {
-  const categories = formatDate(summary, reportFrequency);
+  const categories = formatDate(summary, reportFrequency, quarter, month);
   const financingActivities = formatSeries(
     summary,
     Translations.FINANCING_ACTIVITIES,
@@ -163,8 +165,10 @@ export const formatBalanceSheetData = ({
   summary,
   reportFrequency,
   colors,
+  quarter,
+  month,
 }: RVChartStatementBaseParameter): RVFormattedStatementData => {
-  const categories = formatDate(summary, reportFrequency);
+  const categories = formatDate(summary, reportFrequency, quarter, month);
   const currentAssets = formatSeries(
     summary,
     Translations.CURRENT_ASSETS,
@@ -222,8 +226,10 @@ export const formatIncomeStatementData = ({
   summary,
   reportFrequency,
   colors,
+  quarter,
+  month,
 }: RVChartStatementBaseParameter): RVFormattedStatementData => {
-  const categories = formatDate(summary, reportFrequency);
+  const categories = formatDate(summary, reportFrequency, quarter, month);
   const costOfGoodsSold = formatSeries(
     summary,
     Translations.COST_OF_GOODS_SOLD,

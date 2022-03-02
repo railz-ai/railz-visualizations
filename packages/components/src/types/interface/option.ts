@@ -5,7 +5,6 @@ export interface RVOptionsContainer {
 }
 
 export interface RVOptionsTitle {
-  text?: string;
   style?: any;
 }
 

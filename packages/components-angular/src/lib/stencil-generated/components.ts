@@ -75,13 +75,13 @@ export declare interface RailzStatementsChart extends Components.RailzStatements
 
 @ProxyCmp({
   defineCustomElementFn: undefined,
-  inputs: ['configuration', 'filter', 'options']
+  inputs: ['configuration', 'content', 'filter', 'options']
 })
 @Component({
   selector: 'railz-statements-chart',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
-  inputs: ['configuration', 'filter', 'options']
+  inputs: ['configuration', 'content', 'filter', 'options']
 })
 export class RailzStatementsChart {
   protected el: HTMLElement;
@@ -96,13 +96,13 @@ export declare interface RailzTransactionsControl extends Components.RailzTransa
 
 @ProxyCmp({
   defineCustomElementFn: undefined,
-  inputs: ['configuration', 'filter', 'options']
+  inputs: ['configuration', 'content', 'filter', 'options']
 })
 @Component({
   selector: 'railz-transactions-control',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
-  inputs: ['configuration', 'filter', 'options']
+  inputs: ['configuration', 'content', 'filter', 'options']
 })
 export class RailzTransactionsControl {
   protected el: HTMLElement;
@@ -117,13 +117,13 @@ export declare interface RailzVisualizations extends Components.RailzVisualizati
 
 @ProxyCmp({
   defineCustomElementFn: undefined,
-  inputs: ['configuration', 'filter', 'options']
+  inputs: ['configuration', 'content', 'filter', 'options']
 })
 @Component({
   selector: 'railz-visualizations',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
-  inputs: ['configuration', 'filter', 'options']
+  inputs: ['configuration', 'content', 'filter', 'options']
 })
 export class RailzVisualizations {
   protected el: HTMLElement;

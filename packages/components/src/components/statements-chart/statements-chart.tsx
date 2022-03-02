@@ -17,11 +17,16 @@ import {
   RVFormattedStatementData,
   RVFormattedStatementResponse,
   RVOptions,
+  RVContent,
+  RVFilter,
+  RVDateFilters,
+  RVAllFilter,
 } from "../../types";
 
 import { RVFinancialStatementsTypes } from "../../types/enum/report-type";
 import {
   getConfiguration,
+  getContent,
   getDateFilter,
   getHighchartsParams,
   getOptions,
@@ -43,10 +48,12 @@ export class StatementsChart {
   @Prop() readonly configuration!: RVConfiguration;
   @Prop() readonly filter!: RVFilterFrequency;
   @Prop() readonly options: RVOptions;
+  @Prop() readonly content: RVContent;
 
   @State() private loading = "";
   @State() private _configuration: RVConfiguration;
   @State() private _filter: RVFilterFrequency;
+  @State() private _content: RVContent;
   @State() private _options: RVOptions;
   @State() private _dataFormatted: RVFormattedStatementData;
   @State() private error: string;
@@ -60,18 +67,24 @@ export class StatementsChart {
    * Validates if configuration was passed correctly before setting filter
    * @param configuration - Config for authentication
    * @param filter - filter to decide chart type to show
-   * @param triggerRequest - indicate if api request should be made
+   * @param options - various options that can change display
+   * @param content - content to text that should display
    */
   private validateParams = async (
     configuration: RVConfiguration,
-    filter: RVFilterFrequency,
+    filter: RVFilter,
+    options: RVOptions,
+    content: RVContent,
     triggerRequest = true
   ): Promise<void> => {
     this._configuration = getConfiguration(configuration);
     if (this._configuration) {
       try {
-        this._filter = getDateFilter(filter) as RVFilterFrequency;
-        this._options = getOptions(this.options, this._filter);
+        this._filter = getDateFilter(
+          filter as RVDateFilters
+        ) as RVFilterFrequency;
+        this._options = getOptions(options);
+        this._content = getContent(content, filter as RVAllFilter);
         if (triggerRequest) {
           await this.requestReportData();
         }
@@ -88,28 +101,60 @@ export class StatementsChart {
     }
   }
 
-  @Watch("filter")
-  async validateFilter(
-    newValue: RVFilterFrequency,
-    oldValue: RVFilterFrequency
-  ): Promise<void> {
+  @Watch("configuration")
+  validateConfiguration(
+    newValue: RVConfiguration,
+    oldValue: RVConfiguration
+  ): void {
     if (newValue && oldValue && !isEqual(oldValue, newValue)) {
-      await this.validateParams(this.configuration, newValue);
+      this.validateParams(newValue, this.filter, this.options, this.content);
     }
   }
 
-  @Watch("configuration")
-  async validateConfiguration(
-    newValue: RVConfiguration,
-    oldValue: RVConfiguration
-  ): Promise<void> {
+  @Watch("filter")
+  validateFilter(newValue: RVFilter, oldValue: RVFilter): void {
     if (newValue && oldValue && !isEqual(oldValue, newValue)) {
-      await this.validateParams(newValue, this.filter);
+      this.validateParams(
+        this.configuration,
+        newValue,
+        this.options,
+        this.content
+      );
+    }
+  }
+
+  @Watch("options")
+  validateOptions(newValue: RVOptions, oldValue: RVOptions): void {
+    if (newValue && oldValue && !isEqual(oldValue, newValue)) {
+      this.validateParams(
+        this.configuration,
+        this.filter,
+        newValue,
+        this.content
+      );
+    }
+  }
+
+  @Watch("content")
+  validateContent(newValue: RVContent, oldValue: RVContent): void {
+    if (newValue && oldValue && !isEqual(oldValue, newValue)) {
+      this.validateParams(
+        this.configuration,
+        this.filter,
+        this.options,
+        newValue
+      );
     }
   }
 
   private propsUpdated = async (triggerRequest = true): Promise<void> => {
-    await this.validateParams(this.configuration, this.filter, triggerRequest);
+    await this.validateParams(
+      this.configuration,
+      this.filter,
+      this.options,
+      this.content,
+      triggerRequest
+    );
   };
 
   /**
@@ -131,6 +176,8 @@ export class StatementsChart {
             reportType: this._filter.reportType as RVFinancialStatementsTypes,
             reportFrequency: this._filter?.reportFrequency,
             colors: this._options?.chart?.colors,
+            quarter: this._content?.date?.quarter,
+            month: this._content?.date?.month,
           });
           this.updateHighchartsParams();
         } else if (reportData?.error) {
@@ -195,9 +242,9 @@ export class StatementsChart {
   render(): HTMLElement {
     return (
       <div class="railz-container" style={this._options?.container?.style}>
-        {this._options?.title ? (
+        {this._content?.title ? (
           <p class="railz-title" style={this._options?.title?.style}>
-            {this._options?.title?.text || ""}
+            {this._content?.title || ""}
           </p>
         ) : null}
         {this.renderMain()}

@@ -1,7 +1,9 @@
-import {AuthenticationParameters} from "./authentication";
+import { AuthenticationParameters } from "./authentication";
 
 export interface FormProps {
-    setFilter: (filter: any) => void;
-    setAuthentication: (params: AuthenticationParameters) => Promise<void>;
-    setError: (value: string) => void;
+  setAuthentication: (params: AuthenticationParameters) => Promise<void>;
+  setFilter: (filter: any) => void;
+  setCustomization: (options: any) => void;
+  setError: (value: string) => void;
+  showCustomization?: boolean;
 }

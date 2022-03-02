@@ -5,6 +5,7 @@ import {
   RVFilterDate,
   RVFilterFrequency,
   RVOptions,
+  RVContent,
   RVReportFrequency,
   RVReportTypes,
   RVServiceProviders,
@@ -31,7 +32,8 @@ interface Filter {
 interface ChartProps {
   token: RVConfiguration;
   filter: Filter;
-  options?: RVOptions;
+  options: RVOptions;
+  content: RVContent;
   showCode?: boolean;
   displayValue?: string;
 }
@@ -75,6 +77,7 @@ const Code = ({
   token,
   filter,
   options,
+  content,
   showCode,
   displayValue,
 }: ChartProps) => {
@@ -97,6 +100,10 @@ const Code = ({
                 options
                   ? "} options={" + JSON.stringify(options, null, "\t")
                   : ""
+              }${
+                content
+                  ? "} content={" + JSON.stringify(content, null, "\t")
+                  : ""
               }} />`}
           </code>
         </pre>
@@ -105,18 +112,26 @@ const Code = ({
   );
 };
 
-const DefaultComponent = ({ token, filter, options, showCode }: ChartProps) => {
+const DefaultComponent = ({
+  token,
+  filter,
+  options,
+  content,
+  showCode,
+}: ChartProps) => {
   return (
     <div>
       <RailzVisualizations
         configuration={token}
         filter={filter as RVFilter}
         options={options}
+        content={content}
       />
       <Code
         token={token}
         filter={filter}
         options={options}
+        content={content}
         showCode={showCode}
         displayValue="RailzVisualizations"
       />
@@ -124,7 +139,13 @@ const DefaultComponent = ({ token, filter, options, showCode }: ChartProps) => {
   );
 };
 
-const Components = ({ token, filter, options, showCode }: ChartProps) => {
+const Components = ({
+  token,
+  filter,
+  options,
+  content,
+  showCode,
+}: ChartProps) => {
   return (
     <div className="mt-5 md:grid md:grid-cols-1 md:gap-1">
       {/*Switch to Object.values(RVReportTypes) when all is implemented*/}
@@ -141,6 +162,7 @@ const Components = ({ token, filter, options, showCode }: ChartProps) => {
               token={token}
               filter={{ ...filter, reportType } as Filter}
               options={options}
+              content={content}
               showCode={showCode}
             />
           </div>
@@ -158,11 +180,13 @@ const Components = ({ token, filter, options, showCode }: ChartProps) => {
             configuration={token}
             filter={filter as RVFilterFrequency}
             options={options}
+            content={content as RVContent}
           />
           <Code
             token={token}
             filter={filter}
             options={options}
+            content={content}
             showCode={showCode}
             displayValue="RailzStatementsChart"
           />
@@ -180,12 +204,14 @@ const Components = ({ token, filter, options, showCode }: ChartProps) => {
           <RailzTransactionsControl
             configuration={token}
             filter={filter as RVFilterDate}
-            options={options}
+            options={options as RVOptions}
+            content={content as RVContent}
           />
           <Code
             token={token}
             filter={filter}
             options={options}
+            content={content}
             showCode={showCode}
             displayValue="RailzTransactionsControl"
           />
@@ -196,13 +222,19 @@ const Components = ({ token, filter, options, showCode }: ChartProps) => {
           token={token}
           filter={filter}
           options={options}
+          content={content}
           showCode={showCode}
         />
       )}
     </div>
   );
 };
-export default function Visualizations({ token, filter, options }: ChartProps) {
+export default function Visualizations({
+  token,
+  filter,
+  options,
+  content,
+}: ChartProps) {
   const [code, setCode] = useState(false);
   return (
     <div className="md:grid md:grid-cols-1 md:gap-1 text-left">
@@ -223,6 +255,7 @@ export default function Visualizations({ token, filter, options }: ChartProps) {
         token={token}
         filter={filter}
         options={options}
+        content={content}
         showCode={code}
       />
     </div>

@@ -5,7 +5,7 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
-import { RVConfiguration, RVFilter, RVFilterDate, RVFilterFrequency, RVOptions } from "./types";
+import { RVConfiguration, RVContent, RVFilter, RVFilterDate, RVFilterFrequency, RVOptions } from "./types";
 export namespace Components {
     interface RailzErrorImage {
         "message": string;
@@ -22,16 +22,19 @@ export namespace Components {
     }
     interface RailzStatementsChart {
         "configuration": RVConfiguration;
+        "content": RVContent;
         "filter": RVFilterFrequency;
         "options": RVOptions;
     }
     interface RailzTransactionsControl {
         "configuration": RVConfiguration;
+        "content": RVContent;
         "filter": RVFilterDate;
         "options": RVOptions;
     }
     interface RailzVisualizations {
         "configuration": RVConfiguration;
+        "content": RVContent;
         "filter": RVFilter;
         "options": RVOptions;
     }
@@ -98,16 +101,19 @@ declare namespace LocalJSX {
     }
     interface RailzStatementsChart {
         "configuration": RVConfiguration;
+        "content"?: RVContent;
         "filter": RVFilterFrequency;
         "options"?: RVOptions;
     }
     interface RailzTransactionsControl {
         "configuration": RVConfiguration;
+        "content"?: RVContent;
         "filter": RVFilterDate;
         "options"?: RVOptions;
     }
     interface RailzVisualizations {
         "configuration"?: RVConfiguration;
+        "content"?: RVContent;
         "filter"?: RVFilter;
         "options"?: RVOptions;
     }

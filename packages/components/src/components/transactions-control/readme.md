@@ -10,6 +10,7 @@
 | Property                     | Attribute | Description | Type                                                             | Default     |
 | ---------------------------- | --------- | ----------- | ---------------------------------------------------------------- | ----------- |
 | `configuration` _(required)_ | --        |             | `RVConfiguration`                                                | `undefined` |
+| `content`                    | --        |             | `RVContent`                                                      | `undefined` |
 | `filter` _(required)_        | --        |             | `RVBaseFilterBusinessDateType \| RVBaseFilterConnectionDateType` | `undefined` |
 | `options`                    | --        |             | `RVOptions`                                                      | `undefined` |
 

@@ -10,6 +10,7 @@ import {
   RVDateFilters,
   RVFilter,
   RVOptions,
+  RVContent,
   RVUpdateChartParameter,
   RVReportFrequency,
   RVReportTypes,
@@ -54,7 +55,7 @@ export const parseFilter = (filter: RVFilter | string): RVFilter | never => {
       }
       validateRequiredParams(formattedFilter);
     } catch (error) {
-      errorLog(Translations.ERROR_PARSING_CONFIGURATION + " " + error.message);
+      errorLog(Translations.ERROR_PARSING_FILTER + " " + error.message);
       throw new Error(Translations.ERROR_OOPS);
     }
   } else {
@@ -135,10 +136,7 @@ export const getDateFilter = (
   return formattedFilter;
 };
 
-export const getOptions = (
-  options: RVOptions | string,
-  filter?: RVAllFilter
-): RVOptions | never => {
+export const getOptions = (options: RVOptions | string): RVOptions | never => {
   let formattedOptions: RVOptions;
   if (options) {
     try {
@@ -151,13 +149,33 @@ export const getOptions = (
       errorLog(Translations.ERROR_PARSING_OPTIONS + " " + error.message);
       throw new Error(Translations.ERROR_OOPS);
     }
-  } else {
-    formattedOptions = { title: { text: "" } };
-  }
-  if (filter) {
-    formattedOptions.title.text = getTitleByReportType(filter.reportType);
   }
   return formattedOptions;
+};
+export const getContent = (
+  content: RVContent | string,
+  filter?: RVAllFilter
+): RVContent | never => {
+  let formattedContent: RVContent;
+  if (content) {
+    try {
+      if (typeof content === "string") {
+        formattedContent = JSON.parse(content);
+      } else {
+        formattedContent = content;
+      }
+    } catch (error) {
+      errorLog(Translations.ERROR_PARSING_CONTENT + " " + error.message);
+      throw new Error(Translations.ERROR_OOPS);
+    }
+  }
+  if (filter) {
+    formattedContent = {
+      ...formattedContent,
+      title: formattedContent.title || getTitleByReportType(filter.reportType),
+    };
+  }
+  return formattedContent;
 };
 
 export const getHighchartsParams = ({

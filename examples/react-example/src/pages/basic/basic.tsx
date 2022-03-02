@@ -42,8 +42,9 @@ export default function Basic() {
           <div className="md:grid md:grid-cols-3 md:gap-6">
             <div className="md:col-span-1 shadow p-4">
               <Form
-                setFilter={submitFilter}
                 setAuthentication={submitAuthentication}
+                setFilter={submitFilter}
+                setCustomization={() => {}}
                 setError={setError}
               />
             </div>
@@ -53,7 +54,12 @@ export default function Basic() {
                 isEmpty(filter) &&
                 "No Filter, submit your filter details"}
               {token && !isEmpty(filter) && (
-                <Visualizations token={{ token }} filter={filter as any} />
+                <Visualizations
+                  token={{ token }}
+                  filter={filter as any}
+                  options={{}}
+                  content={{}}
+                />
               )}
 
               {error && (
