@@ -145,10 +145,8 @@ export const getOptions = (
         formattedOptions = options;
       }
     } catch (error) {
-      errorLog(Translations.ERROR_PARSING_CONFIGURATION + " " + error.message);
-      throw new Error(
-        Translations.ERROR_PARSING_CONFIGURATION + " " + error.message
-      );
+      errorLog(Translations.ERROR_PARSING_OPTIONS + " " + error.message);
+      throw new Error(Translations.ERROR_PARSING_OPTIONS + " " + error.message);
     }
   } else {
     formattedOptions = { title: { text: "" } };

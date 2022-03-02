@@ -16,6 +16,7 @@
   "NOT_PRESENT": " not present.",
   "CONFIGURATION_OBJECT": "configuration as Object",
   "ERROR_PARSING_CONFIGURATION": "Error while parsing configuration.",
+  "ERROR_PARSING_OPTIONS": "Error while parsing options.",
   "CONFIGURATION_PARSE_START": "configuration parse - START",
   "CONFIGURATION_PARSE_END": "configuration parse - END",
   "CONFIGURATION": "configuration",
