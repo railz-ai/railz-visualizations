@@ -30,15 +30,15 @@ export const getConfiguration = (
       }
       if (!formattedConfiguration?.token) {
         errorLog(Translations.TOKEN_NOT_PRESENT);
-        throw new Error(Translations.TOKEN_NOT_PRESENT);
+        throw new Error(Translations.ERROR_OOPS);
       }
     } catch (error) {
       errorLog(Translations.ERROR_PARSING_CONFIGURATION, error);
-      throw new Error(error);
+      throw new Error(Translations.ERROR_OOPS);
     }
   } else {
     errorLog(Translations.CONFIGURATION_NOT_PRESENT);
-    throw new Error(Translations.CONFIGURATION_NOT_PRESENT);
+    throw new Error(Translations.ERROR_OOPS);
   }
   return formattedConfiguration;
 };
@@ -55,13 +55,11 @@ export const parseFilter = (filter: RVFilter | string): RVFilter | never => {
       validateRequiredParams(formattedFilter);
     } catch (error) {
       errorLog(Translations.ERROR_PARSING_CONFIGURATION + " " + error.message);
-      throw new Error(
-        Translations.ERROR_PARSING_CONFIGURATION + " " + error.message
-      );
+      throw new Error(Translations.ERROR_OOPS);
     }
   } else {
     errorLog(Translations.FILTER_NOT_PRESENT);
-    throw new Error(Translations.FILTER_NOT_PRESENT);
+    throw new Error(Translations.ERROR_OOPS);
   }
   return formattedFilter;
 };
@@ -79,7 +77,8 @@ export const validateBusinessParams = (filter): void | never => {
     !(!isEmpty(filter.businessName) && !isEmpty(filter.serviceName)) ||
     !isEmpty(filter.connectionId)
   ) {
-    throw new Error(Translations.ERROR_INVALID_BUSINESS_IDENTIFICATION);
+    errorLog(Translations.ERROR_INVALID_BUSINESS_IDENTIFICATION);
+    throw new Error(Translations.ERROR_OOPS);
   }
 };
 
@@ -89,14 +88,16 @@ export const validateReportFrequencyParams = (filter): void | never => {
     isRequiredReportFrequency(filter.reportType) &&
     !Object.values(RVReportFrequency).includes(filter.reportFrequency)
   ) {
-    throw new Error(Translations.ERROR_INVALID_REPORT_FREQUENCY);
+    errorLog(Translations.ERROR_INVALID_REPORT_FREQUENCY);
+    throw new Error(Translations.ERROR_OOPS);
   }
 };
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const validateReportTypeParams = (filter): void | never => {
   if (!Object.values(RVReportTypes).includes(filter.reportType)) {
-    throw new Error(Translations.ERROR_INVALID_REPORT_TYPE);
+    errorLog(Translations.ERROR_INVALID_REPORT_TYPE);
+    throw new Error(Translations.ERROR_OOPS);
   }
 };
 
@@ -115,17 +116,19 @@ export const getDateFilter = (
       try {
         startDate = parseISO(formattedFilter.startDate);
       } catch (error) {
-        throw new Error(Translations.ERROR_START_DATE);
+        errorLog(Translations.ERROR_START_DATE);
+        throw new Error(Translations.ERROR_OOPS);
       }
       try {
         endDate = parseISO(formattedFilter.endDate);
       } catch (error) {
-        throw new Error(Translations.ERROR_END_DATE);
+        errorLog(Translations.ERROR_END_DATE);
+        throw new Error(Translations.ERROR_OOPS);
       }
       const compare = compareAsc(startDate, endDate);
       if (compare >= 0) {
         errorLog(Translations.END_DATE_BEFORE_START_DATE);
-        throw new Error(Translations.END_DATE_BEFORE_START_DATE);
+        throw new Error(Translations.ERROR_OOPS);
       }
     }
   }
@@ -146,7 +149,7 @@ export const getOptions = (
       }
     } catch (error) {
       errorLog(Translations.ERROR_PARSING_OPTIONS + " " + error.message);
-      throw new Error(Translations.ERROR_PARSING_OPTIONS + " " + error.message);
+      throw new Error(Translations.ERROR_OOPS);
     }
   } else {
     formattedOptions = { title: { text: "" } };
@@ -169,9 +172,7 @@ export const getHighchartsParams = ({
     });
   } catch (error) {
     errorLog(Translations.NOT_ABLE_TO_PARSE_REPORT_DATA, error);
-    throw new Error(
-      Translations.NOT_ABLE_TO_PARSE_REPORT_DATA + " " + error.message
-    );
+    throw new Error(Translations.ERROR_OOPS);
   }
 
   return containerOptions;

@@ -54,5 +54,6 @@
   "ERROR_END_DATE": "End date wrong. Format should be: yyyy-MM-dd",
   "ERROR_INVALID_BUSINESS_IDENTIFICATION": "Invalid business identification",
   "ERROR_INVALID_REPORT_FREQUENCY": "Invalid reportFrequency",
-  "ERROR_INVALID_REPORT_TYPE": "Invalid reportType"
+  "ERROR_INVALID_REPORT_TYPE": "Invalid reportType",
+  "ERROR_OOPS": "Oops! Something went wrong."
 }

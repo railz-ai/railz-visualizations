@@ -25,12 +25,14 @@ export const getTransactionsData = async ({
   try {
     startDate = format(parseISO(filter.startDate), "yyyy-MM-dd");
   } catch (error) {
-    throw new Error(Translations.ERROR_START_DATE);
+    errorLog(Translations.ERROR_START_DATE);
+    throw new Error(Translations.ERROR_OOPS);
   }
   try {
     endDate = format(parseISO(filter.endDate), "yyyy-MM-dd");
   } catch (error) {
-    throw new Error(Translations.ERROR_END_DATE);
+    errorLog(Translations.ERROR_END_DATE);
+    throw new Error(Translations.ERROR_OOPS);
   }
   try {
     let allParameters;
@@ -55,9 +57,7 @@ export const getTransactionsData = async ({
     });
   } catch (error) {
     errorLog(Translations.NOT_ABLE_TO_RETRIEVE_REPORT_DATA, error);
-    throw new Error(
-      Translations.NOT_ABLE_TO_RETRIEVE_REPORT_DATA + " " + error.message
-    );
+    throw new Error(Translations.ERROR_OOPS);
   }
   return reportData;
 };
