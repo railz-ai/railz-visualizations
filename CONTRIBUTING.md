@@ -14,6 +14,20 @@ You can watch the series below on how to get started with contributing to open s
 ### Issues
 For uniformity, we've prepared [templates](https://github.com/railz-ai/railz-visualizations/issues/new/choose) for new issues that everyone can use. When submitting new issues, please be specific and comprehensive! Consider user stories, acceptance criteria, design, and any other details that developers and designers would find useful.
 
+### Branches
+
+The current logic of branch management is a mix of 2 ideas - a clean, linear history of changes and a flow model.
+
+`master` - main branch, should have unreleased, approved changes, always compilable and working.  Changes should never be committed directly to this branch!
+
+`development` - code of the currently ready developed features not ready to be released, Nightly builds are built from this
+
+`feature/*` - for features under development (should contain name of the ticket at begin)
+
+`bugfix/*` - for repairing non-fatal existing bugs
+
+`hotfix/*` - for critical bugs which require an immediate release
+
 ### Commits
 
 This project adheres to [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/), which are used to create the changelog. In commit messages, make sure to offer clear and sufficient information.
@@ -27,7 +41,6 @@ Your commits should also be linked to an issue to allow us track progress of iss
 ### Pull requests
 We have [Semantic Pull Request](https://github.com/probot/semantic-pull-requests) application installed on GitHub to ensure your commits follow the semantic [syntax](https://www.conventionalcommits.org/en/v1.0.0/#commit-message-with-description-and-breaking-change-footer).
 This makes it easy to manage our changelog during a release.
-
 
 ##### How it works
 
