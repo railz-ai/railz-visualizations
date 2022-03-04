@@ -11,7 +11,14 @@ import { isEmpty, isEqual } from 'lodash-es';
 import Translations from '../../config/translations/en.json';
 import { errorLog } from '../../services/logger';
 
-import { RVConfiguration, RVFilterFrequency, RVFormattedStatementData, RVFormattedStatementResponse, RVOptions } from '../../types';
+import {
+  RVBaseStatementsFilter,
+  RVConfiguration,
+  RVFilterFrequency,
+  RVFormattedStatementData,
+  RVFormattedStatementResponse,
+  RVOptions,
+} from "../../types";
 
 import { RVFinancialStatementsTypes } from '../../types/enum/report-type';
 import { getConfiguration, getDateFilter, getHighchartsParams, getOptions } from '../../helpers/chart.utils';
@@ -30,12 +37,12 @@ highchartsAccessibility(Highcharts);
 })
 export class StatementsChart {
   @Prop() readonly configuration!: RVConfiguration;
-  @Prop() readonly filter!: RVFilterFrequency;
+  @Prop() readonly filter!: RVBaseStatementsFilter;
   @Prop() readonly options: RVOptions;
 
   @State() private loading = '';
   @State() private _configuration: RVConfiguration;
-  @State() private _filter: RVFilterFrequency;
+  @State() private _filter: RVBaseStatementsFilter;
   @State() private _options: RVOptions;
   @State() private _dataFormatted: RVFormattedStatementData;
   @State() private error: string;

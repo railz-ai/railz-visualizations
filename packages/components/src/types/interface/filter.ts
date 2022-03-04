@@ -53,6 +53,13 @@ export interface RVBaseFilterBusinessDateType extends RVBaseFilterConnectionDate
   reportType: RVNoFrequencyTypes;
 }
 
+export type RVStatementsFilter = (
+  | RVBaseFilterConnectionDateFrequencyType
+  | RVBaseFilterBusinessDateFrequencyType
+) & {
+  reconstruct?: boolean;
+};
+
 export type RVBaseFilter = RVBaseFilterBusiness | RVBaseFilterConnection;
 export type RVBaseFilterDate = RVBaseFilterConnectionDate | RVBaseFilterBusinessDate;
 export type RVBaseFilterDateFrequency = RVBaseFilterConnectionDateFrequency | RVBaseFilterBusinessDateFrequency;
