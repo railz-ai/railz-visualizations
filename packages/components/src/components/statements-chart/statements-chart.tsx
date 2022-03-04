@@ -12,7 +12,7 @@ import Translations from '../../config/translations/en.json';
 import { errorLog } from '../../services/logger';
 
 import {
-  RVBaseStatementsFilter,
+  RVStatementsFilter,
   RVConfiguration,
   RVFilterFrequency,
   RVFormattedStatementData,
@@ -37,12 +37,12 @@ highchartsAccessibility(Highcharts);
 })
 export class StatementsChart {
   @Prop() readonly configuration!: RVConfiguration;
-  @Prop() readonly filter!: RVBaseStatementsFilter;
+  @Prop() readonly filter!: RVStatementsFilter;
   @Prop() readonly options: RVOptions;
 
   @State() private loading = '';
   @State() private _configuration: RVConfiguration;
-  @State() private _filter: RVBaseStatementsFilter;
+  @State() private _filter: RVStatementsFilter;
   @State() private _options: RVOptions;
   @State() private _dataFormatted: RVFormattedStatementData;
   @State() private error: string;
