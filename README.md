@@ -242,7 +242,7 @@ import {RailzVisualizationsModule} from "@railzai/railz-visualizations-angular/d
 
 
 ## Contributing
-The Railz Visualization library and documentation are open to contributions. For more information, check the [guidelines](https://docs.railz.ai/reference/contributing).
+The Railz Visualization library and documentation are open to contributions. For more information, check the [guidelines](./CONTRIBUTING.md).
 
 ## License
 
