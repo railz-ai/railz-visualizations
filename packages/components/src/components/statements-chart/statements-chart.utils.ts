@@ -216,9 +216,9 @@ export const getReportData = async ({ filter, configuration }: RVReportRequestPa
     const endDate = format(parseISO(filter.endDate), 'yyyy-MM-dd');
     let allParameters;
     if ('connectionId' in filter && filter?.connectionId) {
-      allParameters = pick({ ...filter, startDate, endDate }, ['startDate', 'endDate', 'reportFrequency', 'connectionId']);
+      allParameters = pick({ ...filter, startDate, endDate }, ['startDate', 'endDate', 'reportFrequency', 'connectionId', 'reconstruct']);
     } else {
-      allParameters = pick({ ...filter, startDate, endDate }, ['startDate', 'endDate', 'reportFrequency', 'businessName', 'serviceName']);
+      allParameters = pick({ ...filter, startDate, endDate }, ['startDate', 'endDate', 'reportFrequency', 'businessName', 'serviceName', 'reconstruct']);
     }
     reportData = await RequestServiceInstance.getReportData({
       token: configuration.token,
