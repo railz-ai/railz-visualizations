@@ -20,12 +20,11 @@
 <h2 align="center">Powerful charting components built with <a href="https://stenciljs.com" target="_blank">StencilJS</a> and <a href="https://www.highcharts.com/" target="_blank">Highcharts</a> based on <a href="https://railz.ai" target="_blank">Railz.ai</a> dashboard.</h2>
 
 <p align="center">
-  <a href="https://docs.railz.ai/reference/visualization-sdk">Demo and API</a> •
-  <a href="#key-features">Key Features</a> •
-  <a href="#basic-usage">How To Use</a> •
-  <a href="#installation">Installation</a> •
   <a href="https://docs.railz.ai/reference/visualization-sdk">Docs</a> •
-  <a href="examples">Examples</a> •
+  <a href="#key-features-of-railz-visualizations">Key Features</a> •
+  <a href="#visualizations-usage">How To Use</a> •
+  <a href="#installation">Installation</a> •
+  <a href="./examples">Examples</a> •
   <a href="#license">License</a>
 </p>
 
