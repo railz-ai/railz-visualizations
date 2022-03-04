@@ -1,9 +1,9 @@
-import { newSpecPage } from '@stencil/core/testing';
+import { newSpecPage } from "@stencil/core/testing";
 
-import { TransactionsControl } from '../transactions-control';
+import { TransactionsControl } from "../transactions-control";
 
-describe('transactions-control', () => {
-  it('renders empty without parameter', async () => {
+describe("transactions-control", () => {
+  it("renders empty without parameter", async () => {
     const page = await newSpecPage({
       components: [TransactionsControl],
       html: `<railz-transactions-control></railz-transactions-control>`,
@@ -18,7 +18,7 @@ describe('transactions-control', () => {
       </railz-transactions-control>
     `);
   });
-  it('renders header with title parameter', async () => {
+  it("renders header with title parameter", async () => {
     const page = await newSpecPage({
       components: [TransactionsControl],
       html: `<railz-transactions-control options='{title: "Invoices"}'></railz-transactions-control>`,
@@ -33,7 +33,7 @@ describe('transactions-control', () => {
       </railz-transactions-control>
     `);
   });
-  it('renders header with error parameter', async () => {
+  it("renders header with error parameter", async () => {
     const page = await newSpecPage({
       components: [TransactionsControl],
       html: `<railz-transactions-control error="true"></railz-transactions-control>`,
@@ -48,7 +48,7 @@ describe('transactions-control', () => {
       </railz-transactions-control>
     `);
   });
-  it('renders header with all valid parameter', async () => {
+  it("renders header with all valid parameter", async () => {
     const page = await newSpecPage({
       components: [TransactionsControl],
       html: `<railz-transactions-control error="true"></railz-transactions-control>`,

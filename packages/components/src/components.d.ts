@@ -5,33 +5,81 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
-import { RVConfiguration, RVFilter, RVFilterDate, RVFilterFrequency, RVOptions } from "./types";
+import { RVConfiguration, RVFilter, RVFilterDate, RVFilterFrequency, RVNoFrequencyTypes, RVOptions, RVOptionsBarStyle } from "./types";
 export namespace Components {
     interface RailzErrorImage {
+        "fillColor"?: string;
+        "message"?: string;
         "statusCode": number;
+        "textColor"?: string;
     }
     interface RailzLoading {
+        "fillColor"?: string;
         "loadingText": string;
+        "textColor"?: string;
     }
     interface RailzProgressBar {
+        /**
+          * For whitelabeling styling
+         */
+        "options": RVOptionsBarStyle;
+        /**
+          * For overdue amount of an invoice or bill
+         */
         "overdueAmount": number;
+        /**
+          * For paid amount of an invoice or bill
+         */
         "paidAmount": number;
-        "reportType": string;
+        /**
+          * To indicate if its an invoice or bill
+         */
+        "reportType": RVNoFrequencyTypes;
+        /**
+          * For unpaid amount of an invoice or bill
+         */
         "unpaidAmount": number;
     }
     interface RailzStatementsChart {
+        /**
+          * Configuration information like authentication token
+         */
         "configuration": RVConfiguration;
+        /**
+          * Filter information to query the backend APIs
+         */
         "filter": RVFilterFrequency;
+        /**
+          * For whitelabeling styling
+         */
         "options": RVOptions;
     }
     interface RailzTransactionsControl {
+        /**
+          * Configuration information like authentication token
+         */
         "configuration": RVConfiguration;
+        /**
+          * Filter information to query the backend APIs
+         */
         "filter": RVFilterDate;
+        /**
+          * For whitelabeling styling
+         */
         "options": RVOptions;
     }
     interface RailzVisualizations {
+        /**
+          * Configuration information like authentication token
+         */
         "configuration": RVConfiguration;
+        /**
+          * Filter information to query the backend APIs
+         */
         "filter": RVFilter;
+        /**
+          * For whitelabeling styling
+         */
         "options": RVOptions;
     }
 }
@@ -83,30 +131,78 @@ declare global {
 }
 declare namespace LocalJSX {
     interface RailzErrorImage {
+        "fillColor"?: string;
+        "message"?: string;
         "statusCode": number;
+        "textColor"?: string;
     }
     interface RailzLoading {
+        "fillColor"?: string;
         "loadingText"?: string;
+        "textColor"?: string;
     }
     interface RailzProgressBar {
+        /**
+          * For whitelabeling styling
+         */
+        "options"?: RVOptionsBarStyle;
+        /**
+          * For overdue amount of an invoice or bill
+         */
         "overdueAmount"?: number;
+        /**
+          * For paid amount of an invoice or bill
+         */
         "paidAmount"?: number;
-        "reportType"?: string;
+        /**
+          * To indicate if its an invoice or bill
+         */
+        "reportType"?: RVNoFrequencyTypes;
+        /**
+          * For unpaid amount of an invoice or bill
+         */
         "unpaidAmount"?: number;
     }
     interface RailzStatementsChart {
+        /**
+          * Configuration information like authentication token
+         */
         "configuration": RVConfiguration;
+        /**
+          * Filter information to query the backend APIs
+         */
         "filter": RVFilterFrequency;
+        /**
+          * For whitelabeling styling
+         */
         "options"?: RVOptions;
     }
     interface RailzTransactionsControl {
+        /**
+          * Configuration information like authentication token
+         */
         "configuration": RVConfiguration;
+        /**
+          * Filter information to query the backend APIs
+         */
         "filter": RVFilterDate;
+        /**
+          * For whitelabeling styling
+         */
         "options"?: RVOptions;
     }
     interface RailzVisualizations {
+        /**
+          * Configuration information like authentication token
+         */
         "configuration"?: RVConfiguration;
+        /**
+          * Filter information to query the backend APIs
+         */
         "filter"?: RVFilter;
+        /**
+          * For whitelabeling styling
+         */
         "options"?: RVOptions;
     }
     interface IntrinsicElements {

@@ -7,9 +7,11 @@
 
 ## Properties
 
-| Property      | Attribute      | Description | Type     | Default     |
-| ------------- | -------------- | ----------- | -------- | ----------- |
-| `loadingText` | `loading-text` |             | `string` | `undefined` |
+| Property      | Attribute      | Description | Type     | Default               |
+| ------------- | -------------- | ----------- | -------- | --------------------- |
+| `fillColor`   | `fill-color`   |             | `string` | `RAILZ_PRIMARY_COLOR` |
+| `loadingText` | `loading-text` |             | `string` | `undefined`           |
+| `textColor`   | `text-color`   |             | `string` | `"black"`             |
 
 
 ## Dependencies

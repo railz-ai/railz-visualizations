@@ -35,15 +35,15 @@ const formatCodeFilter = (filter: Filter) => {
     let allParameters;
     if ([RVReportTypes.BILLS, RVReportTypes.INVOICES].includes(filter.reportType)) {
         if (!isEmpty(filter?.connectionId)) {
-            allParameters = pick(filter, ['startDate', 'endDate', 'connectionId']);
+            allParameters = pick(filter, ['startDate', 'endDate', 'reportType', 'connectionId']);
         } else {
-            allParameters = pick(filter, ['startDate', 'endDate', 'businessName', 'serviceName']);
+            allParameters = pick(filter, ['startDate', 'endDate', 'businessName', 'reportType', 'serviceName']);
         }
     } else {
         if (!isEmpty(filter?.connectionId)) {
-            allParameters = pick(filter, ['startDate', 'endDate', 'reportFrequency', 'connectionId']);
+            allParameters = pick(filter, ['startDate', 'endDate', 'reportFrequency', 'reportType', 'connectionId']);
         } else {
-            allParameters = pick(filter, ['startDate', 'endDate', 'reportFrequency', 'businessName', 'serviceName']);
+            allParameters = pick(filter, ['startDate', 'endDate', 'reportFrequency', 'reportType', 'businessName', 'serviceName']);
         }
     }
     return allParameters

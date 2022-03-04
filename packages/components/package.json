@@ -2,6 +2,29 @@
   "name": "@railzai/railz-visualizations",
   "version": "0.0.1",
   "description": "Railz.ai Visualizations",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/railz-ai/railz-visualizations"
+  },
+  "author": "Railz.ai",
+  "homepage": "https://docs.railz.ai/reference/visualization-sdk",
+  "bugs": {
+    "url": "https://github.com/railz-ai/railz-visualizations/issues"
+  },
+  "keywords": [
+    "railz",
+    "railz.ai",
+    "css",
+    "stencil",
+    "stenciljs",
+    "storybook",
+    "angular",
+    "react",
+    "ui-framework",
+    "custom-elements",
+    "webcomponents",
+    "web-components"
+  ],
   "main": "dist/index.cjs.js",
   "module": "dist/index.js",
   "es2015": "dist/esm/index.mjs",
@@ -16,7 +39,8 @@
   "scripts": {
     "build": "stencil build --docs",
     "start": "stencil build --dev --watch --serve",
-    "test": "stencil test --spec --e2e",
+    "test": "stencil test --spec",
+    "test:e2e": "stencil test --spec --e2e",
     "test.watch": "stencil test --spec --e2e --watchAll",
     "lint": "eslint src/**/*{.ts,.tsx} --fix",
     "generate": "stencil generate"

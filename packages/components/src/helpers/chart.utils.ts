@@ -1,17 +1,27 @@
-import { compareAsc, parseISO } from 'date-fns';
+import { compareAsc, parseISO } from "date-fns";
 
-import Translations from '../config/translations/en.json';
-import { getOptionsBarChart } from '../components/statements-chart/statements-chart.utils';
-import { errorLog } from '../services/logger';
-import { RVAllFilter, RVConfiguration, RVDateFilters, RVFilter, RVOptions, RVUpdateChartParameter } from '../types';
+import Translations from "../config/translations/en.json";
+import { getOptionsBarChart } from "../components/statements-chart/statements-chart.utils";
+import { errorLog } from "../services/logger";
+import {
+  RVAllFilter,
+  RVConfiguration,
+  RVDateFilters,
+  RVFilter,
+  RVOptions,
+  RVOptionsBarStyle,
+  RVUpdateChartParameter,
+} from "../types";
 
-import { getTitleByReportType } from './utils';
+import { getTitleByReportType } from "./utils";
 
-export const getConfiguration = (configuration: RVConfiguration | string): RVConfiguration => {
+export const getConfiguration = (
+  configuration: RVConfiguration | string
+): RVConfiguration => {
   let formattedConfiguration;
   if (configuration) {
     try {
-      if (typeof configuration === 'string') {
+      if (typeof configuration === "string") {
         formattedConfiguration = JSON.parse(configuration);
       } else {
         formattedConfiguration = configuration;
@@ -33,13 +43,15 @@ export const parseFilter = (filter: RVFilter | string): RVFilter => {
   let formattedFilter;
   if (filter) {
     try {
-      if (typeof filter === 'string') {
+      if (typeof filter === "string") {
         formattedFilter = JSON.parse(filter);
       } else {
         formattedFilter = filter;
       }
     } catch (error) {
-      errorLog(Translations.ERROR_PARSING_CONFIGURATION + ' ' + JSON.stringify(error));
+      errorLog(
+        Translations.ERROR_PARSING_CONFIGURATION + " " + JSON.stringify(error)
+      );
     }
   } else {
     errorLog(Translations.FILTER_NOT_PRESENT);
@@ -51,11 +63,16 @@ export const getFilter = (filter: RVFilter | string): RVFilter => {
   return parseFilter(filter);
 };
 
-export const getDateFilter = (filter: RVDateFilters | string): RVDateFilters => {
+export const getDateFilter = (
+  filter: RVDateFilters | string
+): RVDateFilters => {
   let formattedFilter = parseFilter(filter) as RVDateFilters;
   if (formattedFilter) {
     if (formattedFilter.startDate && formattedFilter.endDate) {
-      const compare = compareAsc(parseISO(formattedFilter.startDate), parseISO(formattedFilter.endDate));
+      const compare = compareAsc(
+        parseISO(formattedFilter.startDate),
+        parseISO(formattedFilter.endDate)
+      );
       if (compare >= 0) {
         formattedFilter = undefined;
         errorLog(Translations.END_DATE_BEFORE_START_DATE);
@@ -65,20 +82,25 @@ export const getDateFilter = (filter: RVDateFilters | string): RVDateFilters => 
   return formattedFilter;
 };
 
-export const getOptions = (options: RVOptions | string, filter?: RVAllFilter): RVOptions => {
+export const getOptions = (
+  options: RVOptions | string,
+  filter?: RVAllFilter
+): RVOptions => {
   let formattedOptions: RVOptions;
   if (options) {
     try {
-      if (typeof options === 'string') {
+      if (typeof options === "string") {
         formattedOptions = JSON.parse(options);
       } else {
         formattedOptions = options;
       }
     } catch (error) {
-      errorLog(Translations.ERROR_PARSING_CONFIGURATION + ' ' + JSON.stringify(error));
+      errorLog(
+        Translations.ERROR_PARSING_CONFIGURATION + " " + JSON.stringify(error)
+      );
     }
   } else {
-    formattedOptions = { title: { text: '' } };
+    formattedOptions = { title: { text: "" } };
   }
   if (filter) {
     formattedOptions.title.text = getTitleByReportType(filter.reportType);
@@ -86,7 +108,32 @@ export const getOptions = (options: RVOptions | string, filter?: RVAllFilter): R
   return formattedOptions;
 };
 
-export const getHighchartsParams = ({ dataFormatted, options }: RVUpdateChartParameter): any => {
+export const getBarOptionsStyle = (
+  options: RVOptionsBarStyle | string
+): RVOptionsBarStyle => {
+  let formattedOptionsStyle: RVOptionsBarStyle;
+  if (options) {
+    try {
+      if (typeof options === "string") {
+        formattedOptionsStyle = JSON.parse(options);
+      } else {
+        formattedOptionsStyle = options;
+      }
+    } catch (error) {
+      errorLog(
+        Translations.ERROR_PARSING_CONFIGURATION + " " + JSON.stringify(error)
+      );
+    }
+  } else {
+    formattedOptionsStyle = {};
+  }
+  return formattedOptionsStyle;
+};
+
+export const getHighchartsParams = ({
+  dataFormatted,
+  options,
+}: RVUpdateChartParameter): any => {
   let containerOptions;
   try {
     containerOptions = getOptionsBarChart({

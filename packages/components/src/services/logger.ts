@@ -1,7 +1,9 @@
-import Config from '../config';
+import Config from "../config";
 
 export const warnLog = (...data: any[]): void => {
-  console.warn(data);
+  if (Config.DEBUG) {
+    console.warn(data);
+  }
 };
 
 export const debugLog = (...data: any[]): void => {

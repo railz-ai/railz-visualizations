@@ -7,11 +7,11 @@
 
 ## Properties
 
-| Property                     | Attribute | Description | Type                                                             | Default     |
-| ---------------------------- | --------- | ----------- | ---------------------------------------------------------------- | ----------- |
-| `configuration` _(required)_ | --        |             | `RVConfiguration`                                                | `undefined` |
-| `filter` _(required)_        | --        |             | `RVBaseFilterBusinessDateType \| RVBaseFilterConnectionDateType` | `undefined` |
-| `options`                    | --        |             | `RVOptions`                                                      | `undefined` |
+| Property                     | Attribute | Description                                         | Type                                                             | Default     |
+| ---------------------------- | --------- | --------------------------------------------------- | ---------------------------------------------------------------- | ----------- |
+| `configuration` _(required)_ | --        | Configuration information like authentication token | `RVConfiguration`                                                | `undefined` |
+| `filter` _(required)_        | --        | Filter information to query the backend APIs        | `RVBaseFilterBusinessDateType \| RVBaseFilterConnectionDateType` | `undefined` |
+| `options`                    | --        | For whitelabeling styling                           | `RVOptions`                                                      | `undefined` |
 
 
 ## Dependencies

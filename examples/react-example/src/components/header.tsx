@@ -16,7 +16,7 @@ function classNames(...classes: string[]) {
 }
 
 interface HeaderProps {
-    children: React.ReactElement;
+    children?: React.ReactNode;
     description: string;
 }
 

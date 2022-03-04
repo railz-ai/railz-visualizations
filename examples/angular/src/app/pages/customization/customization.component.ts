@@ -1,6 +1,7 @@
 import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {Filter} from "../../../types/form-submission";
-import {RVReportTypes} from "@railzai/railz-visualizations";
+import {RVReportTypes, RVOptions} from "@railzai/railz-visualizations";
+import {INITIAL_OPTIONS} from "../../../types/constants";
 
 @Component({
   selector: 'app-customization',
@@ -11,6 +12,7 @@ export class CustomizationComponent implements OnInit {
   // @ts-ignore
   token: { token: string; };
   filter: Filter;
+  options: RVOptions = INITIAL_OPTIONS;
   allReportTypes = Object.values(RVReportTypes);
 
   constructor(private ref: ChangeDetectorRef) {
@@ -24,8 +26,20 @@ export class CustomizationComponent implements OnInit {
   }
 
   onFilterSubmit = (filter: Filter) => {
-    console.log(filter);
     this.filter = filter;
+  }
+
+  get jsonOptions () {
+    return JSON.stringify(this.options, null, 2);
+  }
+
+  set jsonOptions (value) {
+    try{
+      this.options = JSON.parse(value);
+    }
+    catch(e) {
+      console.log('could not convert to json');
+    }
   }
 
   ngOnInit(): void {

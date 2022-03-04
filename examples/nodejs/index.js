@@ -24,13 +24,13 @@ app.use(function (req, res, next) {
 
 /*
 ensure you have set your auth URL, client Id and Secret as environment variables
-AUTH_URL
-CLIENT_ID
-CLIENT_SECRET
+RAILZ_AUTH_URL
+RAILZ_CLIENT_ID
+RAILZ_CLIENT_SECRET
 */
-const AUTH_URL = process.env.AUTH_URL || 'https://auth.railz.ai/getAccess';
-const CLIENT_ID = process.env.CLIENT_ID;
-const CLIENT_SECRET = process.env.CLIENT_SECRET;
+const AUTH_URL = process.env.RAILZ_AUTH_URL || 'https://auth.railz.ai/getAccess';
+const CLIENT_ID = process.env.RAILZ_CLIENT_ID;
+const CLIENT_SECRET = process.env.RAILZ_CLIENT_SECRET;
 
 
 // Main endpoint

@@ -33,21 +33,23 @@ export default function Basic() {
     }
     return (
         <div className="App">
-            <Header description={'This page shows you the default stylings and colors used by the SDK.'} children={<div className="md:grid md:grid-cols-3 md:gap-6">
-                <div className="md:col-span-1 shadow p-4">
-                    <Form setFilter={submitFilter} setAuthentication={submitAuthentication} setError={setError}/>
-                </div>
-                <div className="mt-5 md:mt-0 md:col-span-2">
-                    {!token && 'No Token, submit your authentication details' }
-                    {token && isEmpty(filter) && 'No Filter, submit your filter details' }
-                    {token && !isEmpty(filter) && <Visualizations token={{token}}
-                                                               filter={filter as any}/>}
+            <Header description={'This page shows you the default stylings and colors used by the SDK.'}>
+                <div className="md:grid md:grid-cols-3 md:gap-6">
+                    <div className="md:col-span-1 shadow p-4">
+                        <Form setFilter={submitFilter} setAuthentication={submitAuthentication} setError={setError}/>
+                    </div>
+                    <div className="mt-5 md:mt-0 md:col-span-2">
+                        {!token && 'No Token, submit your authentication details' }
+                        {token && isEmpty(filter) && 'No Filter, submit your filter details' }
+                        {token && !isEmpty(filter) && <Visualizations token={{token}}
+                                                                      filter={filter as any}/>}
 
-                    {error && <p className="mt-5 md:mt-0 md:col-span-2 text-red-700">
-                        {error}
-                    </p>}
+                        {error && <p className="mt-5 md:mt-0 md:col-span-2 text-red-700">
+                            {error}
+                        </p>}
+                    </div>
                 </div>
-            </div>}/>
+            </Header>
         </div>
     );
 }

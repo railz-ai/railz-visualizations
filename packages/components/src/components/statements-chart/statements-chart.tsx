@@ -1,22 +1,33 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { Component, h, Prop, State, Watch } from '@stencil/core';
-import Highcharts from 'highcharts';
-import exporting from 'highcharts/modules/exporting';
-import indicators from 'highcharts/indicators/indicators';
-import trendline from 'highcharts/indicators/trendline';
-import highchartsAccessibility from 'highcharts/modules/accessibility';
+import { Component, h, Prop, State, Watch } from "@stencil/core";
+import Highcharts from "highcharts";
+import exporting from "highcharts/modules/exporting";
+import indicators from "highcharts/indicators/indicators";
+import trendline from "highcharts/indicators/trendline";
+import highchartsAccessibility from "highcharts/modules/accessibility";
 
-import { isEmpty, isEqual } from 'lodash-es';
+import { isEmpty, isEqual } from "lodash-es";
 
-import Translations from '../../config/translations/en.json';
-import { errorLog } from '../../services/logger';
+import Translations from "../../config/translations/en.json";
+import { errorLog } from "../../services/logger";
 
-import { RVConfiguration, RVFilterFrequency, RVFormattedStatementData, RVFormattedStatementResponse, RVOptions } from '../../types';
+import {
+  RVConfiguration,
+  RVFilterFrequency,
+  RVFormattedStatementData,
+  RVFormattedStatementResponse,
+  RVOptions,
+} from "../../types";
 
-import { RVFinancialStatementsTypes } from '../../types/enum/report-type';
-import { getConfiguration, getDateFilter, getHighchartsParams, getOptions } from '../../helpers/chart.utils';
+import { RVFinancialStatementsTypes } from "../../types/enum/report-type";
+import {
+  getConfiguration,
+  getDateFilter,
+  getHighchartsParams,
+  getOptions,
+} from "../../helpers/chart.utils";
 
-import { formatData, getReportData } from './statements-chart.utils';
+import { formatData, getReportData } from "./statements-chart.utils";
 
 exporting(Highcharts);
 indicators(Highcharts);
@@ -24,16 +35,25 @@ trendline(Highcharts);
 highchartsAccessibility(Highcharts);
 
 @Component({
-  tag: 'railz-statements-chart',
-  styleUrl: './statements-chart.scss',
+  tag: "railz-statements-chart",
+  styleUrl: "./statements-chart.scss",
   shadow: true,
 })
 export class StatementsChart {
+  /**
+   * Configuration information like authentication token
+   */
   @Prop() readonly configuration!: RVConfiguration;
+  /**
+   * Filter information to query the backend APIs
+   */
   @Prop() readonly filter!: RVFilterFrequency;
+  /**
+   * For whitelabeling styling
+   */
   @Prop() readonly options: RVOptions;
 
-  @State() private loading = '';
+  @State() private loading = "";
   @State() private _configuration: RVConfiguration;
   @State() private _filter: RVFilterFrequency;
   @State() private _options: RVOptions;
@@ -51,39 +71,49 @@ export class StatementsChart {
    * @param filter - filter to decide chart type to show
    * @param triggerRequest - indicate if api request should be made
    */
-  private validateParams = async (configuration: RVConfiguration, filter: RVFilterFrequency, triggerRequest: boolean = true): Promise<void> => {
+  private validateParams = async (
+    configuration: RVConfiguration,
+    filter: RVFilterFrequency,
+    triggerRequest = true
+  ): Promise<void> => {
     this._configuration = getConfiguration(configuration);
     if (this._configuration) {
       this._filter = getDateFilter(filter) as RVFilterFrequency;
       this._options = getOptions(this.options, this._filter);
-      if(triggerRequest) {
+      if (triggerRequest) {
         await this.requestReportData();
       }
     }
   };
 
-  @Watch('containerRef')
-  validateContainerRef(newValue: HTMLDivElement, _: HTMLDivElement): void {
+  @Watch("containerRef")
+  watchContainerRef(newValue: HTMLDivElement, _: HTMLDivElement): void {
     if (newValue && this.chartOptions) {
       Highcharts.chart(this.containerRef, this.chartOptions);
     }
   }
 
-  @Watch('filter')
-  async validateFilter(newValue: RVFilterFrequency, oldValue: RVFilterFrequency): Promise<void> {
+  @Watch("filter")
+  async watchFilter(
+    newValue: RVFilterFrequency,
+    oldValue: RVFilterFrequency
+  ): Promise<void> {
     if (newValue && oldValue && !isEqual(oldValue, newValue)) {
       await this.validateParams(this.configuration, newValue);
     }
   }
 
-  @Watch('configuration')
-  async validateConfiguration(newValue: RVConfiguration, oldValue: RVConfiguration): Promise<void> {
+  @Watch("configuration")
+  async watchConfiguration(
+    newValue: RVConfiguration,
+    oldValue: RVConfiguration
+  ): Promise<void> {
     if (newValue && oldValue && !isEqual(oldValue, newValue)) {
       await this.validateParams(newValue, this.filter);
     }
   }
 
-  private propsUpdated = async (triggerRequest: boolean = true): Promise<void> => {
+  private propsUpdated = async (triggerRequest = true): Promise<void> => {
     await this.validateParams(this.configuration, this.filter, triggerRequest);
   };
 
@@ -92,7 +122,7 @@ export class StatementsChart {
    * formats retrieved data into Highcharts format
    */
   private requestReportData = async (): Promise<void> => {
-    this.error = '';
+    this.error = "";
     this.loading = Translations.LOADING_REPORT;
     const reportData = (await getReportData({
       filter: this._filter,
@@ -102,9 +132,9 @@ export class StatementsChart {
       if (reportData?.data) {
         this._dataFormatted = formatData({
           summary: reportData.data,
-          reportType: this._filter.reportType as RVFinancialStatementsTypes,
+          reportType: this._filter?.reportType as RVFinancialStatementsTypes,
           reportFrequency: this._filter?.reportFrequency,
-          colors: this._options?.chart?.colors,
+          chart: this._options?.chart,
         });
         this.updateHighchartsParams();
       } else if (reportData?.error) {
@@ -117,15 +147,18 @@ export class StatementsChart {
     } catch (error) {
       errorLog(Translations.NOT_ABLE_TO_PARSE_REPORT_DATA, error);
     } finally {
-      this.loading = '';
+      this.loading = "";
     }
   };
 
   private updateHighchartsParams = (): void => {
-    const options = getHighchartsParams({ dataFormatted: this._dataFormatted, options: this._options });
+    const options = getHighchartsParams({
+      dataFormatted: this._dataFormatted,
+      options: this._options,
+    });
     if (options) {
-      this.error = '';
-      this.loading = '';
+      this.error = "";
+      this.loading = "";
       this.chartOptions = options;
     }
   };
@@ -133,19 +166,31 @@ export class StatementsChart {
   componentWillLoad(): void {
     this.propsUpdated && this.propsUpdated(false);
   }
-
-  componentDidLoad(): void {
-    this.propsUpdated && this.propsUpdated();
-  }
-
+  componentDidLoad(): void {}
   private renderMain = (): HTMLElement => {
     if (!isEmpty(this.error)) {
-      return <railz-error-image statusCode={this.errorStatusCode || 500} />;
+      return (
+        <railz-error-image
+          statusCode={this.errorStatusCode || 500}
+          {...this._options?.errorIndicator}
+        />
+      );
     }
     if (!isEmpty(this.loading)) {
-      return <railz-loading loadingText={this.loading} />;
+      return (
+        <railz-loading
+          loadingText={this.loading}
+          {...this._options?.loadingIndicator}
+        />
+      );
     }
-    return <div class="railz-statement-chart-container" id="railz-chart" ref={(el): HTMLDivElement => (this.containerRef = el)} />;
+    return (
+      <div
+        class="railz-statement-chart-container"
+        id="railz-chart"
+        ref={(el): HTMLDivElement => (this.containerRef = el)}
+      />
+    );
   };
 
   render(): HTMLElement {
@@ -153,7 +198,7 @@ export class StatementsChart {
       <div class="railz-container" style={this._options?.container?.style}>
         {this._options?.title ? (
           <p class="railz-title" style={this._options?.title?.style}>
-            {this._options?.title?.text || ''}
+            {this._options?.title?.text || ""}
           </p>
         ) : null}
         {this.renderMain()}

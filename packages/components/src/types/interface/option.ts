@@ -1,12 +1,11 @@
+
 export interface RVOptionsContainer {
-  style?: any;
-  tooltip?: boolean;
-  date?: boolean;
+  style?: {[key: string]: any};
 }
 
 export interface RVOptionsTitle {
+  style?: {[key: string]: any};
   text?: string;
-  style?: any;
 }
 
 export interface RVOptionsChartDate {
@@ -14,21 +13,43 @@ export interface RVOptionsChartDate {
 }
 
 export interface RVOptionsChartStyle {
-  fontFamily: string;
-  label: any;
-  legend: any;
-  width: string;
-  height: string;
+  colors?: string[];
+  fontFamily?: string;
+  backgroundColor?: string;
+  label?: {[key: string]: any};
+  legend?: {[key: string]: any};
+  width?: string;
+  height?: string;
+  title?: {[key: string]: any};
+  subTitle?: {[key: string]: any};
 }
 
-export interface RVOptionsChart {
-  colors?: string[];
-  style?: RVOptionsChartStyle;
-  date?: RVOptionsChartDate;
+export interface RVOptionsBarStyle {
+  titleStyle?: {[key: string]: any};
+  titleValueStyle?: {[key: string]: any};
+  subTitle1Style?: {[key: string]: any};
+  subTitleValue1Style?: {[key: string]: any};
+  subTitle2Style?: {[key: string]: any};
+  subTitleValue2Style?: {[key: string]: any};
+  barStyle?: {[key: string]: any};
+  progressStyle?: {[key: string]: any};
+}
+
+export interface RVLoadingIndicatorStyle {
+  fillColor?: string;
+  textColor?: string;
+}
+
+export interface RVErrorIndicatorStyle {
+  fillColor?: string;
+  textColor?: string;
 }
 
 export interface RVOptions {
   container?: RVOptionsContainer;
   title?: RVOptionsTitle;
-  chart?: RVOptionsChart;
+  chart?: RVOptionsChartStyle;
+  bar?: RVOptionsBarStyle;
+  loadingIndicator?: RVLoadingIndicatorStyle;
+  errorIndicator?: RVErrorIndicatorStyle;
 }

@@ -9,7 +9,10 @@
 
 | Property                  | Attribute     | Description | Type     | Default     |
 | ------------------------- | ------------- | ----------- | -------- | ----------- |
+| `fillColor`               | `fill-color`  |             | `string` | `"#949494"` |
+| `message`                 | `message`     |             | `string` | `undefined` |
 | `statusCode` _(required)_ | `status-code` |             | `number` | `undefined` |
+| `textColor`               | `text-color`  |             | `string` | `"#424242"` |
 
 
 ## Dependencies

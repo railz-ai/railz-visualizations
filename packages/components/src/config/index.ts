@@ -6,7 +6,7 @@ const config = {
     return process.env.NODE_ENV;
   },
   get DEBUG(): boolean {
-    return process.env.NODE_ENV !== 'production';
+    return process.env.NODE_ENV !== "production";
   },
 };
 export default config;

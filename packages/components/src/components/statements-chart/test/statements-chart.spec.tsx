@@ -1,9 +1,9 @@
-import { newSpecPage } from '@stencil/core/testing';
+import { newSpecPage } from "@stencil/core/testing";
 
-import { StatementsChart } from '../statements-chart';
+import { StatementsChart } from "../statements-chart";
 
-describe('statements-chart', () => {
-  it('renders empty without parameter', async () => {
+describe("statements-chart", () => {
+  it("renders empty without parameter", async () => {
     const page = await newSpecPage({
       components: [StatementsChart],
       html: `<railz-statements-chart></railz-statements-chart>`,
@@ -18,7 +18,7 @@ describe('statements-chart', () => {
       </railz-statements-chart>
     `);
   });
-  it('renders header with title parameter', async () => {
+  it("renders header with title parameter", async () => {
     const page = await newSpecPage({
       components: [StatementsChart],
       html: `<railz-statements-chart options='{title: "Cashflow Statements"}'></railz-statements-chart>`,
@@ -33,7 +33,7 @@ describe('statements-chart', () => {
       </railz-statements-chart>
     `);
   });
-  it('renders header with error parameter', async () => {
+  it("renders header with error parameter", async () => {
     const page = await newSpecPage({
       components: [StatementsChart],
       html: `<railz-statements-chart error="true"></railz-statements-chart>`,
@@ -48,7 +48,7 @@ describe('statements-chart', () => {
       </railz-statements-chart>
     `);
   });
-  it('renders header with all valid parameter', async () => {
+  it("renders header with all valid parameter", async () => {
     const page = await newSpecPage({
       components: [StatementsChart],
       html: `<railz-statements-chart error="true"></railz-statements-chart>`,

@@ -1,47 +1,114 @@
 /* eslint-disable max-len, @typescript-eslint/no-unused-vars */
-import { Component, h, Prop } from '@stencil/core';
+import { Component, h, Prop, State } from "@stencil/core";
 
-import { formatNumber } from '../../helpers/utils';
-import { isNil } from 'lodash-es';
-import Translations from '../../config/translations/en.json';
+import { isNil } from "lodash-es";
+
+import { formatNumber } from "../../helpers/utils";
+import Translations from "../../config/translations/en.json";
+import { RVNoFrequencyTypes, RVOptionsBarStyle } from "../../types";
+import { getBarOptionsStyle } from "../../helpers/chart.utils";
 
 @Component({
-  tag: 'railz-progress-bar',
-  styleUrl: 'progress-bar.scss',
+  tag: "railz-progress-bar",
+  styleUrl: "progress-bar.scss",
   shadow: true,
 })
 export class ProgressBar {
-  @Prop() readonly reportType: string;
+  /**
+   * To indicate if its an invoice or bill
+   */
+  @Prop() readonly reportType: RVNoFrequencyTypes;
+  /**
+   * For unpaid amount of an invoice or bill
+   */
   @Prop() readonly unpaidAmount: number;
+  /**
+   * For paid amount of an invoice or bill
+   */
   @Prop() readonly paidAmount: number;
+  /**
+   * For overdue amount of an invoice or bill
+   */
   @Prop() readonly overdueAmount: number;
 
-  private normalize = (value: number, max: number): number => (value * 100) / max;
+  /**
+   * For whitelabeling styling
+   */
+  @Prop() readonly options: RVOptionsBarStyle;
+
+  @State() private _options: RVOptionsBarStyle;
+
+  componentWillLoad(): void {
+    this._options = getBarOptionsStyle(this.options);
+  }
+  componentDidLoad(): void {}
+
+  private normalize = (value: number, max: number): number =>
+    (value * 100) / max;
 
   render(): HTMLElement {
-    if(isNil(this.paidAmount) || isNil(this.unpaidAmount)) {
+    if (isNil(this.paidAmount) || isNil(this.unpaidAmount)) {
       return <span></span>;
     }
     return (
       <div class="railz-progress-bar-div">
-        <p class="railz-progress-bar-total-unpaid">
-          {Translations.TOTAL_UNPAID} {this.reportType === 'invoices' ? Translations.INVOICES : Translations.BILLS}{' '}
-          <span class="railz-progress-bar-total-unpaid-value">${formatNumber(this.unpaidAmount)}</span>
+        <p
+          class="railz-progress-bar-total-unpaid"
+          style={this._options?.titleStyle}
+        >
+          {Translations.TOTAL_UNPAID}{" "}
+          {this.reportType === "invoices"
+            ? Translations.INVOICES
+            : Translations.BILLS}{" "}
+          <span
+            class="railz-progress-bar-total-unpaid-value"
+            style={this._options?.titleValueStyle}
+          >
+            ${formatNumber(this.unpaidAmount)}
+          </span>
         </p>
 
         <div class="railz-progress-bar-values">
           <div class="railz-progress-bar-values-div">
             <div>
-              <p class="railz-progress-bar-label">{Translations.PAID}</p>
-              <p class="railz-progress-bar-value">${formatNumber(this.paidAmount)}</p>
+              <p
+                class="railz-progress-bar-label"
+                style={this._options?.subTitle1Style}
+              >
+                {Translations.PAID}
+              </p>
+              <p
+                class="railz-progress-bar-value"
+                style={this._options?.subTitleValue1Style}
+              >
+                ${formatNumber(this.paidAmount)}
+              </p>
             </div>
             <div>
-              <p class="railz-progress-bar-label railz-progress-bar-overdue">{Translations.OVERDUE}</p>
-              <p class="railz-progress-bar-value railz-progress-bar-overdue">${formatNumber(this.overdueAmount) || 0}</p>
+              <p
+                class="railz-progress-bar-label railz-progress-bar-overdue"
+                style={this._options?.subTitle2Style}
+              >
+                {Translations.OVERDUE}
+              </p>
+              <p
+                class="railz-progress-bar-value railz-progress-bar-overdue"
+                style={this._options?.subTitleValue2Style}
+              >
+                ${formatNumber(this.overdueAmount) || 0}
+              </p>
             </div>
           </div>
-          <div class="railz-progress-bar">
-            <span style={{width: `${this.normalize(this.paidAmount, this.unpaidAmount + this.paidAmount)}%`}}/>
+          <div class="railz-progress-bar" style={this._options?.barStyle}>
+            <span
+              style={{
+                width: `${this.normalize(
+                  this.paidAmount,
+                  this.unpaidAmount + this.paidAmount
+                )}%`,
+                ...this._options?.progressStyle,
+              }}
+            />
           </div>
         </div>
       </div>

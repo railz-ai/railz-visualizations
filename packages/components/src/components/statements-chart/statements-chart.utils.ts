@@ -1,10 +1,13 @@
-import { isNil, pick } from 'lodash-es';
+import {isNil, pick} from 'lodash-es';
 
-import { format, parseISO } from 'date-fns';
+import {format, parseISO} from 'date-fns';
 
 import Translations from '../../config/translations/en.json';
-import { formatDate, formatSeries } from '../../helpers/utils';
+import {formatDate, formatSeries} from '../../helpers/utils';
 import {
+  RAILZ_BALANCE_SHEET_COLORS,
+  RAILZ_CASHFLOW_COLORS,
+  RAILZ_INCOME_STATEMENT_COLORS,
   RVChartOptionsParameter,
   RVChartStatementBaseParameter,
   RVChartStatementParameter,
@@ -12,19 +15,20 @@ import {
   RVFormattedStatementResponse,
   RVReportRequestParameter
 } from '../../types';
-import { RVReportTypes } from '../../types/enum/report-type';
-import { RequestServiceInstance } from '../../services/request';
-import { errorLog } from '../../services/logger';
+import {RVReportTypes} from '../../types/enum/report-type';
+import {RequestServiceInstance} from '../../services/request';
+import {errorLog} from '../../services/logger';
 
 /**
  * Setup Highcharts options for bar charts
  */
-export const getOptionsBarChart = ({ categories, series, colors, chart }: RVChartOptionsParameter) => ({
+export const getOptionsBarChart = ({categories, series, colors, chart}: RVChartOptionsParameter) => ({
   chart: {
-    height: chart?.style?.height,
+    height: chart?.height,
     type: 'column',
+    backgroundColor: chart?.backgroundColor || "#ffffff",
     style: {
-      fontFamily: [
+      fontFamily: chart?.fontFamily || [
         'Inter',
         'Roboto',
         '-apple-system',
@@ -51,7 +55,8 @@ export const getOptionsBarChart = ({ categories, series, colors, chart }: RVChar
           if (!isNil(chart)) {
             try {
               chart.reflow();
-            } catch (e) {}
+            } catch (e) {
+            }
           }
         }, 0);
       },
@@ -64,8 +69,9 @@ export const getOptionsBarChart = ({ categories, series, colors, chart }: RVChar
     offset: 50,
     labels: {
       style: {
-        color: '#55565B',
+        color: '#55565B'
       },
+      ...chart?.label,
     },
   },
   yAxis: {
@@ -74,8 +80,9 @@ export const getOptionsBarChart = ({ categories, series, colors, chart }: RVChar
     title: null,
     labels: {
       style: {
-        color: '#55565B',
+        color: '#55565B'
       },
+      ...chart?.label
     },
   },
   credits: {
@@ -92,6 +99,7 @@ export const getOptionsBarChart = ({ categories, series, colors, chart }: RVChar
   legend: {
     align: 'left',
     itemMarginTop: 8,
+    ...chart?.legend,
   },
   series: series,
   exporting: {
@@ -102,7 +110,11 @@ export const getOptionsBarChart = ({ categories, series, colors, chart }: RVChar
 /**
  * Formats data into Highcharts format for cashflow statement
  */
-export const formatCashflowData = ({ summary, reportFrequency, colors }: RVChartStatementBaseParameter): RVFormattedStatementData => {
+export const formatCashflowData = ({
+                                     summary,
+                                     reportFrequency,
+                                     chart
+                                   }: RVChartStatementBaseParameter): RVFormattedStatementData => {
   const categories = formatDate(summary, reportFrequency);
   const financingActivities = formatSeries(summary, Translations.FINANCING_ACTIVITIES, 'financingActivities');
   const investingActivities = formatSeries(summary, Translations.INVESTING_ACTIVITIES, 'investingActivities');
@@ -126,14 +138,18 @@ export const formatCashflowData = ({ summary, reportFrequency, colors }: RVChart
   return {
     categories,
     series: series as any,
-    colors: colors || ['#389BFF', '#FFD738', '#1D7043', '#003032'],
+    colors: chart?.colors || RAILZ_CASHFLOW_COLORS,
   };
 };
 
 /**
  * Formats data into Highcharts format for balance sheet
  */
-export const formatBalanceSheetData = ({ summary, reportFrequency, colors }: RVChartStatementBaseParameter): RVFormattedStatementData => {
+export const formatBalanceSheetData = ({
+                                         summary,
+                                         reportFrequency,
+                                         chart
+                                       }: RVChartStatementBaseParameter): RVFormattedStatementData => {
   const categories = formatDate(summary, reportFrequency);
   const currentAssets = formatSeries(summary, Translations.CURRENT_ASSETS, 'currentAssets');
   const currentLiabilities = formatSeries(summary, Translations.CURRENT_LIABILITIES, 'currentLiabilities');
@@ -159,14 +175,18 @@ export const formatBalanceSheetData = ({ summary, reportFrequency, colors }: RVC
   return {
     categories,
     series: series as any,
-    colors: colors || ['#1D7043', '#30A665', '#F06C3A', '#B30000', '#003032'],
+    colors: chart?.colors || RAILZ_BALANCE_SHEET_COLORS,
   };
 };
 
 /**
  * Formats data into Highcharts format for income statement
  */
-export const formatIncomeStatementData = ({ summary, reportFrequency, colors }: RVChartStatementBaseParameter): RVFormattedStatementData => {
+export const formatIncomeStatementData = ({
+                                            summary,
+                                            reportFrequency,
+                                            chart
+                                          }: RVChartStatementBaseParameter): RVFormattedStatementData => {
   const categories = formatDate(summary, reportFrequency);
   const costOfGoodsSold = formatSeries(summary, Translations.COST_OF_GOODS_SOLD, 'costOfGoodsSold');
   const operatingExpenses = formatSeries(summary, Translations.OPERATING_EXPENSES, 'operatingExpenses');
@@ -193,7 +213,7 @@ export const formatIncomeStatementData = ({ summary, reportFrequency, colors }: 
   return {
     categories,
     series: series as any,
-    colors: colors || ['#1D7043', '#FF804F', '#009BBD', '#BCEDD2', '#38C076', '#003032'],
+    colors: chart?.colors || RAILZ_INCOME_STATEMENT_COLORS,
   };
 };
 
@@ -209,16 +229,27 @@ export const formatData = (statementParameter: RVChartStatementParameter): RVFor
 /**
  * Make API call based on expected parameters for financial statements data type
  */
-export const getReportData = async ({ filter, configuration }: RVReportRequestParameter): Promise<RVFormattedStatementResponse> => {
+export const getReportData = async ({
+                                      filter,
+                                      configuration
+                                    }: RVReportRequestParameter): Promise<RVFormattedStatementResponse> => {
   let reportData;
   try {
     const startDate = format(parseISO(filter.startDate), 'yyyy-MM-dd');
     const endDate = format(parseISO(filter.endDate), 'yyyy-MM-dd');
     let allParameters;
     if ('connectionId' in filter && filter?.connectionId) {
-      allParameters = pick({ ...filter, startDate, endDate }, ['startDate', 'endDate', 'reportFrequency', 'connectionId']);
+      allParameters = pick({
+        ...filter,
+        startDate,
+        endDate
+      }, ['startDate', 'endDate', 'reportFrequency', 'connectionId']);
     } else {
-      allParameters = pick({ ...filter, startDate, endDate }, ['startDate', 'endDate', 'reportFrequency', 'businessName', 'serviceName']);
+      allParameters = pick({
+        ...filter,
+        startDate,
+        endDate
+      }, ['startDate', 'endDate', 'reportFrequency', 'businessName', 'serviceName']);
     }
     reportData = await RequestServiceInstance.getReportData({
       token: configuration.token,
@@ -227,7 +258,7 @@ export const getReportData = async ({ filter, configuration }: RVReportRequestPa
     });
   } catch (error) {
     errorLog(Translations.NOT_ABLE_TO_RETRIEVE_REPORT_DATA, error);
-    reportData = { error };
+    reportData = {error};
   }
   return reportData;
 };
