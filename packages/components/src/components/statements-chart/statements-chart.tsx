@@ -58,12 +58,16 @@ export class StatementsChart {
    * @param filter - filter to decide chart type to show
    * @param triggerRequest - indicate if api request should be made
    */
-  private validateParams = async (configuration: RVConfiguration, filter: RVFilterFrequency, triggerRequest: boolean = true): Promise<void> => {
+  private validateParams = async (
+    configuration: RVConfiguration,
+    filter: RVStatementsFilter,
+    triggerRequest: boolean = true
+  ): Promise<void> => {
     this._configuration = getConfiguration(configuration);
     if (this._configuration) {
-      this._filter = getDateFilter(filter) as RVFilterFrequency;
+      this._filter = getDateFilter(filter) as RVStatementsFilter;
       this._options = getOptions(this.options, this._filter);
-      if(triggerRequest) {
+      if (triggerRequest) {
         await this.requestReportData();
       }
     }
@@ -76,8 +80,11 @@ export class StatementsChart {
     }
   }
 
-  @Watch('filter')
-  async validateFilter(newValue: RVFilterFrequency, oldValue: RVFilterFrequency): Promise<void> {
+  @Watch("filter")
+  async validateFilter(
+    newValue: RVStatementsFilter,
+    oldValue: RVStatementsFilter
+  ): Promise<void> {
     if (newValue && oldValue && !isEqual(oldValue, newValue)) {
       await this.validateParams(this.configuration, newValue);
     }
