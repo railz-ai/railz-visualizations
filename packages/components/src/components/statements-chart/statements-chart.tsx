@@ -14,7 +14,6 @@ import { errorLog } from '../../services/logger';
 import {
   RVStatementsFilter,
   RVConfiguration,
-  RVFilterFrequency,
   RVFormattedStatementData,
   RVFormattedStatementResponse,
   RVOptions,
