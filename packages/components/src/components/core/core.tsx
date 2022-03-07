@@ -46,6 +46,9 @@ export class Core {
     if (this._configuration) {
       ConfigurationInstance.configuration = this._configuration;
       this._filter = getFilter(filter);
+      if (!this._filter) {
+        this.errorStatusCode = 500;
+      }
     } else {
       this.errorStatusCode = 500;
     }
