@@ -45,8 +45,8 @@ app.get("/", (request, response) => {
 });
 
 /*
-POST endpoint to authenticate and provide access token
-Get an access token which will be used to initialize the railz-visualizations tag on the client side
+POST endpoint to authenticate and provide access configuration
+Get an access configuration which will be used to initialize the railz-visualizations tag on the client side
 */
 app.get("/authenticate", (request, response) => {
     if(!AUTH_URL || !CLIENT_ID || !CLIENT_SECRET) {

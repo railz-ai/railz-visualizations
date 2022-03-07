@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { Component, h, Prop, State, Watch } from "@stencil/core";
+import { Component, Prop, h, State, Watch } from '@stencil/core';
 
-import { isEmpty, isEqual } from "lodash-es";
+import { isEmpty, isEqual } from 'lodash-es';
 
-import Translations from "../../config/translations/en.json";
-import { errorLog } from "../../services/logger";
+import Translations from '../../config/translations/en.json';
+import { errorLog } from '../../services/logger';
 
 import {
   RVBillInvoiceSummary,
@@ -12,23 +12,21 @@ import {
   RVFilterDate,
   RVFormattedTransactionResponse,
   RVOptions,
-} from "../../types";
-import {
-  getConfiguration,
-  getFilter,
-  getOptions,
-} from "../../helpers/chart.utils";
+} from '../../types';
+import { getConfiguration, getFilter, getOptions } from '../../helpers/chart.utils';
 
-import { getTransactionsData } from "./transactions-control.utils";
+import { ConfigurationInstance } from '../../services/configuration';
+
+import { getTransactionsData } from './transactions-control.utils';
 
 @Component({
-  tag: "railz-transactions-control",
-  styleUrl: "./transactions-control.scss",
+  tag: 'railz-transactions-control',
+  styleUrl: './transactions-control.scss',
   shadow: true,
 })
 export class TransactionsControl {
   /**
-   * Configuration information like authentication token
+   * Configuration information like authentication configuration
    */
   @Prop() readonly configuration!: RVConfiguration;
   /**
@@ -40,7 +38,7 @@ export class TransactionsControl {
    */
   @Prop() readonly options: RVOptions;
 
-  @State() private loading = "";
+  @State() private loading = '';
   @State() private _configuration: RVConfiguration;
   @State() private _filter: RVFilterDate;
   @State() private _options: RVOptions;
@@ -57,10 +55,11 @@ export class TransactionsControl {
   private validateParams = async (
     configuration: RVConfiguration,
     filter: RVFilterDate,
-    triggerRequest = true
+    triggerRequest = true,
   ): Promise<void> => {
     this._configuration = getConfiguration(configuration);
     if (this._configuration) {
+      ConfigurationInstance.configuration = this._configuration;
       this._filter = getFilter(filter) as RVFilterDate;
       this._options = getOptions(this.options, this._filter);
       if (triggerRequest) {
@@ -69,21 +68,15 @@ export class TransactionsControl {
     }
   };
 
-  @Watch("filter")
-  async watchFilter(
-    newValue: RVFilterDate,
-    oldValue: RVFilterDate
-  ): Promise<void> {
+  @Watch('filter')
+  async watchFilter(newValue: RVFilterDate, oldValue: RVFilterDate): Promise<void> {
     if (newValue && oldValue && !isEqual(oldValue, newValue)) {
       await this.validateParams(this.configuration, newValue);
     }
   }
 
-  @Watch("configuration")
-  async watchConfiguration(
-    newValue: RVConfiguration,
-    oldValue: RVConfiguration
-  ): Promise<void> {
+  @Watch('configuration')
+  async watchConfiguration(newValue: RVConfiguration, oldValue: RVConfiguration): Promise<void> {
     if (newValue && oldValue && !isEqual(oldValue, newValue)) {
       await this.validateParams(newValue, this.filter);
     }
@@ -94,11 +87,10 @@ export class TransactionsControl {
   };
 
   private requestReportData = async (): Promise<void> => {
-    this.error = "";
+    this.error = '';
     this.loading = Translations.LOADING_REPORT;
     const reportData = (await getTransactionsData({
       filter: this._filter,
-      configuration: this._configuration,
     })) as RVFormattedTransactionResponse;
     try {
       if (reportData?.data) {
@@ -111,16 +103,16 @@ export class TransactionsControl {
         this.errorStatusCode = reportData?.status;
       }
     } catch (error) {
-      errorLog(Translations.NOT_ABLE_TO_PARSE_REPORT_DATA, error);
+      errorLog(Translations.RV_NOT_ABLE_TO_PARSE_REPORT_DATA, error);
     } finally {
-      this.loading = "";
+      this.loading = '';
     }
   };
 
   componentWillLoad(): void {
-    this.propsUpdated && this.propsUpdated(false);
+    this.propsUpdated && this.propsUpdated();
   }
-  componentDidLoad(): void {}
+
   private renderMain(): HTMLElement {
     if (!isEmpty(this.error)) {
       return (
@@ -131,12 +123,7 @@ export class TransactionsControl {
       );
     }
     if (!isEmpty(this.loading)) {
-      return (
-        <railz-loading
-          loadingText={this.loading}
-          {...this._options?.loadingIndicator}
-        />
-      );
+      return <railz-loading loadingText={this.loading} {...this._options?.loadingIndicator} />;
     }
     if (!isEmpty(this._dataFormatted)) {
       return (
@@ -156,7 +143,7 @@ export class TransactionsControl {
       <div class="railz-container" style={this._options?.container?.style}>
         {this._options?.title ? (
           <p class="railz-title" style={this._options?.title?.style}>
-            {this._options?.title?.text || ""}
+            {this._options?.title?.text || ''}
           </p>
         ) : null}
         {this.renderMain()}

@@ -107,15 +107,15 @@ import {RailzVisualizations} from "@railzai/railz-visualizations-react";
 import {RVAccountingProviders, RVReportFrequency, RVReportTypes} from "@railzai/railz-visualizations";
 
 function App() {
-  const [token, setToken] = useState('');
+  const [configuration, setToken] = useState('');
   
   useEffect( () => {
-    const { token }: { token: string } = {token: '12222'};
-    setToken(token);
+    const { configuration }: { configuration: string } = {configuration: '12222'};
+    setToken(configuration);
   }, []);
   return (
     <div className="App">
-      <RailzVisualizations configuration={{token: 'token_1233'}} filter={{
+      <RailzVisualizations configuration={{configuration: 'token_1233'}} filter={{
         businessName: "testFreshbooks",
         serviceName: RVAccountingProviders.FRESHBOOKS,
         reportType: RVReportTypes.BALANCE_SHEET,
@@ -135,7 +135,7 @@ export default App;
 #### app.component.html
 ```angular
 <railz-visualizations
-  [configuration]='{token: 'token_1233'}'
+  [configuration]='{configuration: 'token_1233'}'
   [filter]='{
         businessName: "testFreshbooks",
         serviceName: RVAccountingProviders.FRESHBOOKS,

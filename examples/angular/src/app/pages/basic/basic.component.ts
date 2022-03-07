@@ -20,7 +20,6 @@ export class BasicComponent implements OnInit {
   }
 
   onFilterSubmit = (filter: Filter) => {
-    console.log(filter);
     this.filter = filter;
   }
 

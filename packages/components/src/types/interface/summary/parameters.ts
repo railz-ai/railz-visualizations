@@ -1,9 +1,8 @@
 import { RVReportFrequency } from '../../enum/date';
-import { RVFinancialStatementsTypes } from '../../enum/report-type';
+import {RVFinancialStatementsTypes, RVReportTypes} from '../../enum/report-type';
 
 import {RVOptions, RVOptionsChartStyle} from '../option';
-import { RVConfiguration } from '../configuration';
-import { RVFilterDate, RVFilterFrequency } from '../filter';
+import {RVBaseAllFilter, RVFilterDate, RVFilterFrequency} from '../filter';
 
 import { RVFormattedStatementData } from './formatted-data';
 import { RVBillInvoiceSummary, RVReportStatementSummary } from './api-response';
@@ -39,9 +38,16 @@ export interface RVChartOptionsParameter extends RVFormattedStatementData {
 
 export interface RVReportRequestParameter {
   filter: RVFilterFrequency;
-  configuration: RVConfiguration;
 }
 export interface RVReportRequestDateParameter {
   filter: RVFilterDate;
-  configuration: RVConfiguration;
+}
+
+export interface RVReportDataRequest {
+  reportType: RVReportTypes;
+  filter: RVBaseAllFilter;
+}
+
+export interface RVReportRequest {
+  url: string;
 }

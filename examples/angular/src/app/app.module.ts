@@ -9,6 +9,7 @@ import {AceEditorModule} from "ng2-ace-editor";
 import {PagesModule} from "./pages/pages.module";
 import {ComponentsModule} from "./components/components.module";
 import {HeaderModule} from "./components/header/header.module";
+import {RailzVisualizationsModule} from "@railzai/railz-visualizations-angular";
 
 @NgModule({
   declarations: [AppComponent],
@@ -18,7 +19,7 @@ import {HeaderModule} from "./components/header/header.module";
       {path: 'customization', component: CustomizationComponent},
       {path: 'others', component: OthersComponent},
       {path: '', redirectTo: '/basic', pathMatch: 'full'},
-    ]), AceEditorModule, HeaderModule],
+    ]), AceEditorModule, HeaderModule, RailzVisualizationsModule],
   bootstrap: [AppComponent],
 })
 export class AppModule {

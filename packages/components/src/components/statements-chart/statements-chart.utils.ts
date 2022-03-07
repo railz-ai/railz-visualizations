@@ -231,7 +231,6 @@ export const formatData = (statementParameter: RVChartStatementParameter): RVFor
  */
 export const getReportData = async ({
                                       filter,
-                                      configuration
                                     }: RVReportRequestParameter): Promise<RVFormattedStatementResponse> => {
   let reportData;
   try {
@@ -252,7 +251,6 @@ export const getReportData = async ({
       }, ['startDate', 'endDate', 'reportFrequency', 'businessName', 'serviceName']);
     }
     reportData = await RequestServiceInstance.getReportData({
-      token: configuration.token,
       reportType: filter.reportType,
       filter: allParameters,
     });

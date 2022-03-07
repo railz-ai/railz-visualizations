@@ -1,27 +1,21 @@
 /* eslint-disable max-len, @typescript-eslint/no-unused-vars */
-import { Component, Prop, h, State, Watch } from "@stencil/core";
+import { Component, Prop, h, State, Watch } from '@stencil/core';
 
-import { isEmpty, isEqual } from "lodash-es";
+import { isEmpty, isEqual } from 'lodash-es';
 
-import { isStatements, isTransactions } from "../../helpers/utils";
+import { isStatements, isTransactions } from '../../helpers/utils';
 
-import {
-  RVConfiguration,
-  RVFilter,
-  RVFilterDate,
-  RVFilterFrequency,
-  RVOptions,
-} from "../../types";
-import { getConfiguration, getFilter } from "../../helpers/chart.utils";
+import { RVConfiguration, RVFilter, RVFilterDate, RVFilterFrequency, RVOptions } from '../../types';
+import { getConfiguration, getFilter } from '../../helpers/chart.utils';
+import { ConfigurationInstance } from '../../services/configuration';
 
 @Component({
-  tag: "railz-visualizations",
-  styleUrl: "./core.scss",
+  tag: 'railz-visualizations',
   shadow: true,
 })
 export class Core {
   /**
-   * Configuration information like authentication token
+   * Configuration information like authentication configuration
    */
   @Prop() readonly configuration: RVConfiguration;
   /**
@@ -47,28 +41,23 @@ export class Core {
    * @param configuration - Config for authentication
    * @param filter - filter to decide chart type to show
    */
-  private validateParams = (
-    configuration: RVConfiguration,
-    filter: RVFilter
-  ): void => {
+  private validateParams = (configuration: RVConfiguration, filter: RVFilter): void => {
     this._configuration = getConfiguration(configuration);
     if (this._configuration) {
+      ConfigurationInstance.configuration = this._configuration;
       this._filter = getFilter(filter);
     }
   };
 
-  @Watch("filter")
+  @Watch('filter')
   watchFilter(newValue: RVFilter, oldValue: RVFilter): void {
     if (newValue && oldValue && !isEqual(oldValue, newValue)) {
       this.validateParams(this.configuration, newValue);
     }
   }
 
-  @Watch("configuration")
-  watchConfiguration(
-    newValue: RVConfiguration,
-    oldValue: RVConfiguration
-  ): void {
+  @Watch('configuration')
+  watchConfiguration(newValue: RVConfiguration, oldValue: RVConfiguration): void {
     if (newValue && oldValue && !isEqual(oldValue, newValue)) {
       this.validateParams(newValue, this.filter);
     }
@@ -78,7 +67,9 @@ export class Core {
     this.propsUpdated && this.propsUpdated();
   }
 
-  componentDidLoad(): void {}
+  componentDidLoad(): void {
+    this.propsUpdated && this.propsUpdated();
+  }
 
   render(): HTMLElement {
     if (!isEmpty(this.errorStatusCode)) {

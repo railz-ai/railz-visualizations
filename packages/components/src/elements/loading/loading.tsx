@@ -1,31 +1,42 @@
 /* eslint-disable max-len */
 // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
-import { Component, h, Prop } from "@stencil/core";
+import { Component, h, Prop } from '@stencil/core';
 
-import { RAILZ_PRIMARY_COLOR } from "../../types";
+import { RAILZ_PRIMARY_COLOR } from '../../types';
 
 @Component({
-  tag: "railz-loading",
-  styleUrl: "./loading.scss",
+  tag: 'railz-loading',
+  styleUrl: './loading.scss',
   shadow: true,
 })
 export class Loading {
-  @Prop() readonly loadingText: string;
+  /**
+   * Text to display at the bottom of the loading indicator
+   */
+  @Prop() readonly loadingText?: string;
+  /**
+   * Fill color of the loading indicator
+   */
   @Prop() readonly fillColor?: string = RAILZ_PRIMARY_COLOR;
-  @Prop() readonly textColor?: string = "black";
+
+  /**
+   * Color of the loading text
+   */
+  @Prop() readonly textColor?: string = '#000000';
 
   render(): HTMLElement {
     return (
       <div class="railz-loading-container">
         <svg
+          aria-hidden="true"
           version="1.1"
           xmlns="http://www.w3.org/2000/svg"
           x="0px"
           y="0px"
-          width={"48px"}
-          height={"48px"}
-          viewBox={"0 0 50 50"}
-          style={{ "enable-background": "new 0 0 50 50" }}
+          width={'48px'}
+          height={'48px'}
+          viewBox={'0 0 50 50'}
+          style={{ 'enable-background': 'new 0 0 50 50' }}
           xmlSpace="preserve"
         >
           <path
@@ -45,7 +56,7 @@ export class Loading {
           </path>
         </svg>
         {this.loadingText && (
-          <p style={{ color: this.textColor || "black" }}>{this.loadingText}</p>
+          <p style={{ color: this.textColor || '#000000' }}>{this.loadingText}</p>
         )}
       </div>
     );

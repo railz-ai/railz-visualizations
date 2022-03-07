@@ -1,4 +1,4 @@
-// Railz Visualization Service Providers
+ // Railz Visualization Service Providers
 
 export enum RVSandboxProviders {
   SANDBOX = 'sandbox',
@@ -16,7 +16,6 @@ export enum RVAccountingProviders {
   ORACLE_NETSUITE = 'oracleNetsuite',
   SAGE_BUSINESS_CLOUD = 'sageBusinessCloud',
   SAGE_INTACCT = 'sageIntacct',
-  WAVE = 'wave',
   XERO = 'xero',
 }
 

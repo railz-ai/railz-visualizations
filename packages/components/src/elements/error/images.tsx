@@ -1,13 +1,12 @@
 /* eslint-disable max-len, @typescript-eslint/no-unused-vars */
-import { h } from "@stencil/core";
+import { h } from '@stencil/core';
 
-import { RVErrorIndicatorStyle } from "../../types";
+import { RVErrorIndicatorStyle } from '../../types';
 
-export function Error202({
-  fillColor = "#949494",
-}: RVErrorIndicatorStyle): HTMLOrSVGElement {
+export function Error202({ fillColor = '#949494' }: RVErrorIndicatorStyle): HTMLOrSVGElement {
   return (
     <svg
+      aria-hidden="true"
       width="48"
       height="56"
       viewBox="0 0 48 56"
@@ -56,36 +55,17 @@ export function Error202({
         d="M10.5962 38.8369C10.0439 38.8369 9.59619 39.2846 9.59619 39.8369C9.59619 40.3892 10.0439 40.8369 10.5962 40.8369V38.8369ZM24.7662 40.8369C25.3185 40.8369 25.7662 40.3892 25.7662 39.8369C25.7662 39.2846 25.3185 38.8369 24.7662 38.8369V40.8369ZM10.5962 40.8369H24.7662V38.8369H10.5962V40.8369Z"
         fill={fillColor}
       />
-      <ellipse
-        cx="34.7227"
-        cy="41.745"
-        rx="1.14892"
-        ry="1.14544"
-        fill={fillColor}
-      />
-      <ellipse
-        cx="38.5522"
-        cy="41.745"
-        rx="1.14892"
-        ry="1.14544"
-        fill={fillColor}
-      />
-      <ellipse
-        cx="30.8931"
-        cy="41.745"
-        rx="1.14892"
-        ry="1.14544"
-        fill={fillColor}
-      />
+      <ellipse cx="34.7227" cy="41.745" rx="1.14892" ry="1.14544" fill={fillColor} />
+      <ellipse cx="38.5522" cy="41.745" rx="1.14892" ry="1.14544" fill={fillColor} />
+      <ellipse cx="30.8931" cy="41.745" rx="1.14892" ry="1.14544" fill={fillColor} />
     </svg>
   );
 }
 
-export function Error204({
-  fillColor,
-}: RVErrorIndicatorStyle): HTMLOrSVGElement {
+export function Error204({ fillColor }: RVErrorIndicatorStyle): HTMLOrSVGElement {
   return (
     <svg
+      aria-hidden="true"
       width="48"
       height="56"
       viewBox="0 0 48 56"
@@ -142,11 +122,10 @@ export function Error204({
   );
 }
 
-export function Error500({
-  fillColor,
-}: RVErrorIndicatorStyle): HTMLOrSVGElement {
+export function Error500({ fillColor }: RVErrorIndicatorStyle): HTMLOrSVGElement {
   return (
     <svg
+      aria-hidden="true"
       width="88"
       height="64"
       viewBox="0 0 88 64"
@@ -194,26 +173,10 @@ export function Error500({
           stroke={fillColor}
           stroke-width="1.5"
         />
-        <path
-          d="M25.3955 41.8594L15.7508 47.6286"
-          stroke={fillColor}
-          stroke-width="1.5"
-        />
-        <path
-          d="M63.5225 23.082L73.1671 17.3128"
-          stroke={fillColor}
-          stroke-width="1.5"
-        />
-        <path
-          d="M27.1694 44.8281L17.5247 50.5973"
-          stroke={fillColor}
-          stroke-width="1.5"
-        />
-        <path
-          d="M61.7471 20.1152L71.3918 14.346"
-          stroke={fillColor}
-          stroke-width="1.5"
-        />
+        <path d="M25.3955 41.8594L15.7508 47.6286" stroke={fillColor} stroke-width="1.5" />
+        <path d="M63.5225 23.082L73.1671 17.3128" stroke={fillColor} stroke-width="1.5" />
+        <path d="M27.1694 44.8281L17.5247 50.5973" stroke={fillColor} stroke-width="1.5" />
+        <path d="M61.7471 20.1152L71.3918 14.346" stroke={fillColor} stroke-width="1.5" />
         <path
           d="M37.0234 21.8421L32.2769 17.9941"
           stroke={fillColor}

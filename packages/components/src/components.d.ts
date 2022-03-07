@@ -8,21 +8,42 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { RVConfiguration, RVFilter, RVFilterDate, RVFilterFrequency, RVNoFrequencyTypes, RVOptions, RVOptionsBarStyle } from "./types";
 export namespace Components {
     interface RailzErrorImage {
+        /**
+          * Fill color of the svg image representing a status code
+         */
         "fillColor"?: string;
-        "message"?: string;
-        "statusCode": number;
+        /**
+          * Status code based on HTTP Response codes
+         */
+        "statusCode"?: number;
+        /**
+          * Text to display at the bottom of the svg image
+         */
+        "text"?: string;
+        /**
+          * Color of the image text
+         */
         "textColor"?: string;
     }
     interface RailzLoading {
+        /**
+          * Fill color of the loading indicator
+         */
         "fillColor"?: string;
-        "loadingText": string;
+        /**
+          * Text to display at the bottom of the loading indicator
+         */
+        "loadingText"?: string;
+        /**
+          * Color of the loading text
+         */
         "textColor"?: string;
     }
     interface RailzProgressBar {
         /**
           * For whitelabeling styling
          */
-        "options": RVOptionsBarStyle;
+        "options"?: RVOptionsBarStyle;
         /**
           * For overdue amount of an invoice or bill
          */
@@ -34,7 +55,7 @@ export namespace Components {
         /**
           * To indicate if its an invoice or bill
          */
-        "reportType": RVNoFrequencyTypes;
+        "reportType"?: RVNoFrequencyTypes;
         /**
           * For unpaid amount of an invoice or bill
          */
@@ -42,7 +63,7 @@ export namespace Components {
     }
     interface RailzStatementsChart {
         /**
-          * Configuration information like authentication token
+          * Configuration information like authentication configuration
          */
         "configuration": RVConfiguration;
         /**
@@ -56,7 +77,7 @@ export namespace Components {
     }
     interface RailzTransactionsControl {
         /**
-          * Configuration information like authentication token
+          * Configuration information like authentication configuration
          */
         "configuration": RVConfiguration;
         /**
@@ -70,7 +91,7 @@ export namespace Components {
     }
     interface RailzVisualizations {
         /**
-          * Configuration information like authentication token
+          * Configuration information like authentication configuration
          */
         "configuration": RVConfiguration;
         /**
@@ -131,14 +152,35 @@ declare global {
 }
 declare namespace LocalJSX {
     interface RailzErrorImage {
+        /**
+          * Fill color of the svg image representing a status code
+         */
         "fillColor"?: string;
-        "message"?: string;
-        "statusCode": number;
+        /**
+          * Status code based on HTTP Response codes
+         */
+        "statusCode"?: number;
+        /**
+          * Text to display at the bottom of the svg image
+         */
+        "text"?: string;
+        /**
+          * Color of the image text
+         */
         "textColor"?: string;
     }
     interface RailzLoading {
+        /**
+          * Fill color of the loading indicator
+         */
         "fillColor"?: string;
+        /**
+          * Text to display at the bottom of the loading indicator
+         */
         "loadingText"?: string;
+        /**
+          * Color of the loading text
+         */
         "textColor"?: string;
     }
     interface RailzProgressBar {
@@ -165,7 +207,7 @@ declare namespace LocalJSX {
     }
     interface RailzStatementsChart {
         /**
-          * Configuration information like authentication token
+          * Configuration information like authentication configuration
          */
         "configuration": RVConfiguration;
         /**
@@ -179,7 +221,7 @@ declare namespace LocalJSX {
     }
     interface RailzTransactionsControl {
         /**
-          * Configuration information like authentication token
+          * Configuration information like authentication configuration
          */
         "configuration": RVConfiguration;
         /**
@@ -193,7 +235,7 @@ declare namespace LocalJSX {
     }
     interface RailzVisualizations {
         /**
-          * Configuration information like authentication token
+          * Configuration information like authentication configuration
          */
         "configuration"?: RVConfiguration;
         /**

@@ -18,7 +18,7 @@ export default function Customization() {
         setError('');
         const response = await fetch(params.authUrl, {method: "GET"});
         if (!response.ok) {
-            setError('Could not retrieve auth token');
+            setError('Could not retrieve auth configuration');
             return;
         }
         const result = await response.json();
@@ -36,7 +36,6 @@ export default function Customization() {
 
     const submitOptions = (options: any) => {
         setOptions(options);
-        console.log(options);
 
     }
 
@@ -50,7 +49,7 @@ export default function Customization() {
                     <div className="mt-5 md:mt-0 md:col-span-2">
                         {!token && 'No Token, submit your authentication details'}
                         {token && isEmpty(filter) && 'No Filter, submit your filter details'}
-                        {token && !isEmpty(filter) && <Visualizations token={{token}}
+                        {token && !isEmpty(filter) && <Visualizations configuration={{token, debug: true, environment: 'local'}}
                                                                       filter={filter as any} options={options}/>}
 
                         {error && <p className="mt-5 md:mt-0 md:col-span-2 text-red-700">

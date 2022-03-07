@@ -1,12 +1,13 @@
 import {NgModule} from '@angular/core';
 import {OthersComponent} from "./others.component";
-import {RailzVisualizationsModule} from "@railzai/railz-visualizations-angular/dist";
 import {BrowserModule} from "@angular/platform-browser";
+import {RailzVisualizationsModule} from "@railzai/railz-visualizations-angular";
 
 @NgModule({
   declarations: [OthersComponent],
   imports: [
-    BrowserModule, RailzVisualizationsModule
+    BrowserModule,
+    RailzVisualizationsModule
   ],
   exports: [
     OthersComponent

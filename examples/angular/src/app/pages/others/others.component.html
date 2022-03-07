@@ -1,6 +1,6 @@
 <div class="text-left">
   <h2 class="text-3xl font-bold text-gray-900">Railz Error Component</h2>
-  <div class="md:grid md:grid-cols-3 md:gap-6 mt-6">
+  <div class="md:grid md:grid-cols-4 md:gap-6 mt-6">
     <div class="mt-5 md:mt-0 md:col-span-1 flex flex-col">
       <p>202 Status Response - Represents Sync In progress</p>
       <div class="shadow p-4 mt-2 flex h-full">
@@ -17,6 +17,12 @@
       <p>Other Codes - Represents Any other status code(Customization)</p>
       <div class="shadow p-4 mt-2 flex h-full">
         <railz-error-image [statusCode]="500" fillColor="#910303" textColor="#910303"></railz-error-image>
+      </div>
+    </div>
+    <div class="mt-5 md:mt-0 md:col-span-1 flex flex-col">
+      <p>204 Response - with removed text</p>
+      <div class="shadow p-4 mt-2 flex h-full">
+        <railz-error-image [statusCode]="204" text=""></railz-error-image>
       </div>
     </div>
   </div>

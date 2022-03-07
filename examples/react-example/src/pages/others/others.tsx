@@ -7,7 +7,7 @@ const AllComponents = () => {
     return (
         <div className="text-left">
             <h2 className="text-3xl font-bold text-gray-900">Railz Error Component</h2>
-            <div className="md:grid md:grid-cols-3 md:gap-6 mt-6">
+            <div className="md:grid md:grid-cols-4 md:gap-6 mt-6">
                 <div className="mt-5 md:mt-0 md:col-span-1 flex flex-col">
                     <p>202 Status Response - Represents Sync In progress</p>
                     <div className="shadow p-4 mt-2 flex h-full">
@@ -15,7 +15,7 @@ const AllComponents = () => {
                     </div>
                 </div>
                 <div className="mt-5 md:mt-0 md:col-span-1 flex flex-col">
-                    <p>204 & 404 Status Response - Represents No Content</p>
+                    <p>204 & 404 Status Response - Represents No Content with removed text</p>
                     <div className="shadow p-4 mt-2 flex h-full">
                         <RailzErrorImage statusCode={204}/>
                     </div>
@@ -24,6 +24,12 @@ const AllComponents = () => {
                     <p>Other Codes - Represents Any other status code with color(Customization)</p>
                     <div className="shadow p-4 mt-2 flex h-full">
                         <RailzErrorImage statusCode={500} fillColor={"#910303"} textColor={"#910303"}/>
+                    </div>
+                </div>
+                <div className="mt-5 md:mt-0 md:col-span-1 flex flex-col">
+                    <p>204 Response - with removed text</p>
+                    <div className="shadow p-4 mt-2 flex h-full">
+                        <RailzErrorImage statusCode={204} text=""/>
                     </div>
                 </div>
             </div>
