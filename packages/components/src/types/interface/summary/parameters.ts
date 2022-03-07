@@ -1,12 +1,12 @@
-import { RVReportFrequency } from '../../enum/date';
-import { RVFinancialStatementsTypes } from '../../enum/report-type';
+import { RVReportFrequency } from "../../enum/date";
+import { RVFinancialStatementsTypes } from "../../enum/report-type";
 
-import {RVOptions, RVOptionsChart} from '../option';
-import { RVConfiguration } from '../configuration';
-import { RVFilterDate, RVFilterFrequency } from '../filter';
+import { RVOptions, RVOptionsChart } from "../option";
+import { RVConfiguration } from "../configuration";
+import { RVFilterDate, RVFilterFrequency } from "../filter";
 
-import { RVFormattedStatementData } from './formatted-data';
-import { RVBillInvoiceSummary, RVReportStatementSummary } from './api-response';
+import { RVFormattedStatementData } from "./formatted-data";
+import { RVBillInvoiceSummary, RVReportStatementSummary } from "./api-response";
 
 export interface RVChartStatementBaseParameter {
   summary: RVReportStatementSummary;
@@ -14,7 +14,8 @@ export interface RVChartStatementBaseParameter {
   colors: string[];
 }
 
-export interface RVChartStatementParameter extends RVChartStatementBaseParameter {
+export interface RVChartStatementParameter
+  extends RVChartStatementBaseParameter {
   reportType: RVFinancialStatementsTypes;
 }
 
@@ -23,7 +24,8 @@ export interface RVChartTransactionsBaseParameter {
   colors: string[];
 }
 
-export interface RVChartTransactionsParameter extends RVChartTransactionsBaseParameter {
+export interface RVChartTransactionsParameter
+  extends RVChartTransactionsBaseParameter {
   reportType: RVFinancialStatementsTypes;
 }
 

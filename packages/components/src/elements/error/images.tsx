@@ -1,16 +1,33 @@
 /* eslint-disable max-len, @typescript-eslint/no-unused-vars */
-import { h } from '@stencil/core';
+import { h } from "@stencil/core";
 
 export function Error202(): HTMLOrSVGElement {
   return (
-    <svg width="48" height="56" viewBox="0 0 48 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg
+      width="48"
+      height="56"
+      viewBox="0 0 48 56"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
       <path
         d="M37.4039 34.4906V18.9361C37.4039 18.1389 37.0865 17.3744 36.522 16.8115L27.5587 7.87546C26.9964 7.31482 26.2347 7 25.4406 7H9C7.34314 7 6 8.34315 6 10V41.7995C6 43.4564 7.34315 44.7995 9 44.7995H27.4465"
         stroke="#949494"
         stroke-width="2"
       />
-      <path d="M26.6812 7V15.0726C26.6812 16.7294 28.0243 18.0726 29.6812 18.0726H37.4044" stroke="#949494" stroke-width="2" />
-      <ellipse cx="34.7238" cy="41.7437" rx="7.2765" ry="7.25445" stroke="#949494" stroke-width="2" />
+      <path
+        d="M26.6812 7V15.0726C26.6812 16.7294 28.0243 18.0726 29.6812 18.0726H37.4044"
+        stroke="#949494"
+        stroke-width="2"
+      />
+      <ellipse
+        cx="34.7238"
+        cy="41.7437"
+        rx="7.2765"
+        ry="7.25445"
+        stroke="#949494"
+        stroke-width="2"
+      />
       <path
         d="M10.5962 12.1094C10.0439 12.1094 9.59619 12.5571 9.59619 13.1094C9.59619 13.6617 10.0439 14.1094 10.5962 14.1094V12.1094ZM22.4684 14.1094C23.0207 14.1094 23.4684 13.6617 23.4684 13.1094C23.4684 12.5571 23.0207 12.1094 22.4684 12.1094V14.1094ZM10.5962 14.1094H22.4684V12.1094H10.5962V14.1094Z"
         fill="#949494"
@@ -35,23 +52,58 @@ export function Error202(): HTMLOrSVGElement {
         d="M10.5962 38.8369C10.0439 38.8369 9.59619 39.2846 9.59619 39.8369C9.59619 40.3892 10.0439 40.8369 10.5962 40.8369V38.8369ZM24.7662 40.8369C25.3185 40.8369 25.7662 40.3892 25.7662 39.8369C25.7662 39.2846 25.3185 38.8369 24.7662 38.8369V40.8369ZM10.5962 40.8369H24.7662V38.8369H10.5962V40.8369Z"
         fill="#949494"
       />
-      <ellipse cx="34.7227" cy="41.745" rx="1.14892" ry="1.14544" fill="#949494" />
-      <ellipse cx="38.5522" cy="41.745" rx="1.14892" ry="1.14544" fill="#949494" />
-      <ellipse cx="30.8931" cy="41.745" rx="1.14892" ry="1.14544" fill="#949494" />
+      <ellipse
+        cx="34.7227"
+        cy="41.745"
+        rx="1.14892"
+        ry="1.14544"
+        fill="#949494"
+      />
+      <ellipse
+        cx="38.5522"
+        cy="41.745"
+        rx="1.14892"
+        ry="1.14544"
+        fill="#949494"
+      />
+      <ellipse
+        cx="30.8931"
+        cy="41.745"
+        rx="1.14892"
+        ry="1.14544"
+        fill="#949494"
+      />
     </svg>
   );
 }
 
 export function Error204(): HTMLOrSVGElement {
   return (
-    <svg width="48" height="56" viewBox="0 0 48 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg
+      width="48"
+      height="56"
+      viewBox="0 0 48 56"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
       <path
         d="M37.4044 34.491V18.9363C37.4044 18.139 37.0871 17.3746 36.5225 16.8117L27.5591 7.87546C26.9967 7.31482 26.235 7 25.441 7H9C7.34314 7 6 8.34315 6 10V41.8002C6 43.457 7.34315 44.8002 9 44.8002H27.4469"
         stroke="#949494"
         stroke-width="2"
       />
-      <path d="M26.6812 7V15.0728C26.6812 16.7296 28.0243 18.0728 29.6812 18.0728H37.4046" stroke="#949494" stroke-width="2" />
-      <ellipse cx="34.7234" cy="41.7448" rx="7.27663" ry="7.25458" stroke="#949494" stroke-width="2" />
+      <path
+        d="M26.6812 7V15.0728C26.6812 16.7296 28.0243 18.0728 29.6812 18.0728H37.4046"
+        stroke="#949494"
+        stroke-width="2"
+      />
+      <ellipse
+        cx="34.7234"
+        cy="41.7448"
+        rx="7.27663"
+        ry="7.25458"
+        stroke="#949494"
+        stroke-width="2"
+      />
       <path
         d="M38.0438 45.0562C37.7709 45.3283 37.3161 45.3283 37.0432 45.0562L34.7238 42.7438L32.4044 45.0562C32.1315 45.3283 31.6767 45.3283 31.4039 45.0562C31.131 44.7842 31.131 44.3308 31.4039 44.0587L33.7233 41.7463L31.4039 39.434C31.131 39.1619 31.131 38.7085 31.4039 38.4364C31.6767 38.1644 32.1315 38.1644 32.4044 38.4364L34.7238 40.7488L37.0432 38.4364C37.3161 38.1644 37.7709 38.1644 38.0438 38.4364C38.3166 38.7085 38.3166 39.1619 38.0438 39.434L35.7244 41.7463L38.0438 44.0587C38.3166 44.3308 38.3166 44.7842 38.0438 45.0562Z"
         fill="#949494"
@@ -86,7 +138,13 @@ export function Error204(): HTMLOrSVGElement {
 
 export function Error500(): HTMLOrSVGElement {
   return (
-    <svg width="88" height="64" viewBox="0 0 88 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg
+      width="88"
+      height="64"
+      viewBox="0 0 88 64"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
       <g clip-path="url(#clip0_1542_29859)">
         <path
           d="M40.6629 43.8093L36.9534 46.0282C33.2658 48.234 28.4881 47.0328 26.2823 43.3452V43.3452C24.0764 39.6575 25.2777 34.8799 28.9653 32.674L32.6748 30.4551"
@@ -98,8 +156,26 @@ export function Error500(): HTMLOrSVGElement {
           stroke="#949494"
           stroke-width="1.5"
         />
-        <rect x="34.4953" y="28.222" width="17.519" height="2.8225" rx="1.41125" transform="rotate(59.1132 34.4953 28.222)" stroke="#949494" stroke-width="1.5" />
-        <rect x="55.162" y="36.2741" width="17.519" height="2.82249" rx="1.41125" transform="rotate(-120.887 55.162 36.2741)" stroke="#949494" stroke-width="1.5" />
+        <rect
+          x="34.4953"
+          y="28.222"
+          width="17.519"
+          height="2.8225"
+          rx="1.41125"
+          transform="rotate(59.1132 34.4953 28.222)"
+          stroke="#949494"
+          stroke-width="1.5"
+        />
+        <rect
+          x="55.162"
+          y="36.2741"
+          width="17.519"
+          height="2.82249"
+          rx="1.41125"
+          transform="rotate(-120.887 55.162 36.2741)"
+          stroke="#949494"
+          stroke-width="1.5"
+        />
         <path
           d="M36.972 30.9057L41.7944 28.0211C42.409 27.6535 43.2053 27.8537 43.5729 28.4683V28.4683C43.9405 29.0829 43.7403 29.8792 43.1257 30.2468L38.3034 33.1314"
           stroke="#949494"
@@ -110,14 +186,50 @@ export function Error500(): HTMLOrSVGElement {
           stroke="#949494"
           stroke-width="1.5"
         />
-        <path d="M25.3955 41.8594L15.7508 47.6286" stroke="#949494" stroke-width="1.5" />
-        <path d="M63.5225 23.082L73.1671 17.3128" stroke="#949494" stroke-width="1.5" />
-        <path d="M27.1694 44.8281L17.5247 50.5973" stroke="#949494" stroke-width="1.5" />
-        <path d="M61.7471 20.1152L71.3918 14.346" stroke="#949494" stroke-width="1.5" />
-        <path d="M37.0234 21.8421L32.2769 17.9941" stroke="#949494" stroke-width="1.5" stroke-line-cap="round" />
-        <path d="M54.4273 41.3844L59.1738 45.2324" stroke="#949494" stroke-width="1.5" stroke-line-cap="round" />
-        <path d="M41.8508 18.987L40.5732 13.0117" stroke="#949494" stroke-width="1.5" stroke-line-cap="round" />
-        <path d="M49.5994 44.2395L50.877 50.2148" stroke="#949494" stroke-width="1.5" stroke-line-cap="round" />
+        <path
+          d="M25.3955 41.8594L15.7508 47.6286"
+          stroke="#949494"
+          stroke-width="1.5"
+        />
+        <path
+          d="M63.5225 23.082L73.1671 17.3128"
+          stroke="#949494"
+          stroke-width="1.5"
+        />
+        <path
+          d="M27.1694 44.8281L17.5247 50.5973"
+          stroke="#949494"
+          stroke-width="1.5"
+        />
+        <path
+          d="M61.7471 20.1152L71.3918 14.346"
+          stroke="#949494"
+          stroke-width="1.5"
+        />
+        <path
+          d="M37.0234 21.8421L32.2769 17.9941"
+          stroke="#949494"
+          stroke-width="1.5"
+          stroke-line-cap="round"
+        />
+        <path
+          d="M54.4273 41.3844L59.1738 45.2324"
+          stroke="#949494"
+          stroke-width="1.5"
+          stroke-line-cap="round"
+        />
+        <path
+          d="M41.8508 18.987L40.5732 13.0117"
+          stroke="#949494"
+          stroke-width="1.5"
+          stroke-line-cap="round"
+        />
+        <path
+          d="M49.5994 44.2395L50.877 50.2148"
+          stroke="#949494"
+          stroke-width="1.5"
+          stroke-line-cap="round"
+        />
       </g>
       <defs>
         <clipPath id="clip0_1542_29859">

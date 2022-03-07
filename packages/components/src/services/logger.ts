@@ -1,4 +1,4 @@
-import Config from '../config';
+import Config from "../config";
 
 export const warnLog = (...data: any[]): void => {
   console.warn(data);

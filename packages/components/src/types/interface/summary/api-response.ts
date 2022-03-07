@@ -1,5 +1,5 @@
-import { RVCreditScoreTypes } from '../../enum/report-type';
-import { RVReportFrequency } from '../../enum/date';
+import { RVCreditScoreTypes } from "../../enum/report-type";
+import { RVReportFrequency } from "../../enum/date";
 
 export interface RVPeriod {
   date: number;
@@ -143,9 +143,18 @@ export interface RVReportMetaResponse {
   reportFrequency: RVReportFrequency;
 }
 
-export type RVReportSummary = RVIncomeStatementSummary[] | RVBalanceSheetSummary[] | RVCashflowSummary[] | RVRevenueExpensesSummary | RVBillInvoiceSummary | RVCreditScore;
+export type RVReportSummary =
+  | RVIncomeStatementSummary[]
+  | RVBalanceSheetSummary[]
+  | RVCashflowSummary[]
+  | RVRevenueExpensesSummary
+  | RVBillInvoiceSummary
+  | RVCreditScore;
 
-export type RVReportStatementSummary = RVIncomeStatementSummary[] | RVBalanceSheetSummary[] | RVCashflowSummary[];
+export type RVReportStatementSummary =
+  | RVIncomeStatementSummary[]
+  | RVBalanceSheetSummary[]
+  | RVCashflowSummary[];
 
 export class RVReportSummaryResponse {
   meta: RVReportMetaResponse;
