@@ -1,5 +1,7 @@
 import { compareAsc, parseISO } from 'date-fns';
 
+import { isEmpty } from 'lodash-es';
+
 import Translations from '../config/translations/en.json';
 import { getOptionsBarChart } from '../components/statements-chart/statements-chart.utils';
 import { errorLog } from '../services/logger';
@@ -11,12 +13,15 @@ import {
   RVConfiguration,
   RVDateFilters,
   RVFilter,
+  RVFilterFrequency,
   RVOptions,
   RVOptionsBarStyle,
+  RVReportFrequency,
+  RVReportTypes,
   RVUpdateChartParameter,
 } from '../types';
 
-import { getTitleByReportType } from './utils';
+import { getTitleByReportType, isRequiredReportFrequency } from './utils';
 import { checkAccessibility } from './accessibility';
 
 /**
@@ -59,13 +64,51 @@ export const parseFilter = (filter: RVFilter | string): RVFilter => {
       } else {
         formattedFilter = filter;
       }
+      validateRequiredParams(formattedFilter);
     } catch (error) {
       errorLog(Translations.RV_ERROR_PARSING_CONFIGURATION + ' ' + JSON.stringify(error));
+      throw new Error(Translations.ERROR_500_TITLE);
     }
   } else {
     errorLog(Translations.RV_FILTER_NOT_PRESENT);
+    throw new Error(Translations.ERROR_500_TITLE);
   }
   return formattedFilter;
+};
+
+export const validateRequiredParams = (filter: RVFilter): void => {
+  validateReportTypeParams(filter);
+  validateBusinessParams(filter);
+  validateReportFrequencyParams(filter);
+};
+
+export const validateBusinessParams = (filter: RVFilter): void => {
+  const filterPassed = filter as unknown as any;
+  if (
+    !(!isEmpty(filterPassed?.businessName) && !isEmpty(filterPassed?.serviceName)) ||
+    !isEmpty(filterPassed?.connectionId)
+  ) {
+    errorLog(Translations.ERROR_INVALID_BUSINESS_IDENTIFICATION);
+    throw new Error(Translations.ERROR_500_TITLE);
+  }
+};
+
+export const validateReportFrequencyParams = (filter: RVFilter): void => {
+  const filterPassed = filter as unknown as RVFilterFrequency;
+  if (
+    isRequiredReportFrequency(filterPassed.reportType) &&
+    !Object.values(RVReportFrequency).includes(filterPassed?.reportFrequency)
+  ) {
+    errorLog(Translations.ERROR_INVALID_REPORT_FREQUENCY);
+    throw new Error(Translations.ERROR_500_TITLE);
+  }
+};
+
+export const validateReportTypeParams = (filter: RVFilter): void => {
+  if (!Object.values(RVReportTypes).includes(filter.reportType)) {
+    errorLog(Translations.ERROR_INVALID_REPORT_TYPE);
+    throw new Error(Translations.ERROR_500_TITLE);
+  }
 };
 
 /**
@@ -85,13 +128,18 @@ export const getDateFilter = (filter: RVDateFilters | string): RVDateFilters => 
   let formattedFilter = parseFilter(filter) as RVDateFilters;
   if (formattedFilter) {
     if (formattedFilter.startDate && formattedFilter.endDate) {
-      const compare = compareAsc(
-        parseISO(formattedFilter.startDate),
-        parseISO(formattedFilter.endDate),
-      );
-      if (compare >= 0) {
-        formattedFilter = undefined;
-        errorLog(Translations.RV_END_DATE_BEFORE_START_DATE);
+      try {
+        const compare = compareAsc(
+          parseISO(formattedFilter.startDate),
+          parseISO(formattedFilter.endDate),
+        );
+        if (compare >= 0) {
+          formattedFilter = undefined;
+          errorLog(Translations.RV_END_DATE_BEFORE_START_DATE);
+        }
+      } catch (error) {
+        errorLog(Translations.ERROR_END_DATE);
+        throw new Error(Translations.ERROR_500_TITLE);
       }
     }
   }
@@ -178,7 +226,9 @@ export const getOptions = (options: RVOptions | string, filter?: RVAllFilter): R
  * this is used if railz-progress-bar is used directly
  * @param options: Whitelabeling options
  */
-export const getBarOptionsStyle = (options: RVOptionsBarStyle | string): RVOptionsBarStyle => {
+export const getBarOptionsStyle = (
+  options: RVOptionsBarStyle | string,
+): RVOptionsBarStyle | never => {
   let formattedOptionsStyle: RVOptionsBarStyle;
   if (options) {
     try {
@@ -203,7 +253,10 @@ export const getBarOptionsStyle = (options: RVOptionsBarStyle | string): RVOptio
  * @param dataFormatted: formatted highchart data based on report type
  * @param options: Whitelabeling options
  */
-export const getHighchartsParams = ({ dataFormatted, options }: RVUpdateChartParameter): any => {
+export const getHighchartsParams = ({
+  dataFormatted,
+  options,
+}: RVUpdateChartParameter): any | never => {
   let containerOptions;
   try {
     containerOptions = getOptionsBarChart({
@@ -212,6 +265,7 @@ export const getHighchartsParams = ({ dataFormatted, options }: RVUpdateChartPar
     });
   } catch (error) {
     errorLog(Translations.RV_NOT_ABLE_TO_PARSE_REPORT_DATA, error);
+    throw new Error(Translations.ERROR_500_TITLE);
   }
 
   return containerOptions;

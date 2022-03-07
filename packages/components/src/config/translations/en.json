@@ -42,5 +42,9 @@
   "RV_ACCESSIBILITY_CHART_LABEL": "Chart labels check",
   "RV_ACCESSIBILITY_CHART_LEGEND": "Chart legend check",
   "RV_ACCESSIBILITY_CHART_ERROR_INDICATOR": "Error indicator check",
-  "RV_ACCESSIBILITY_CHART_LOADING_INDICATOR": "Loading indicator check"
+  "RV_ACCESSIBILITY_CHART_LOADING_INDICATOR": "Loading indicator check",
+  "ERROR_END_DATE": "Unable to parse Start or End date, ensure they are in a right date format",
+  "ERROR_INVALID_BUSINESS_IDENTIFICATION": "Invalid business identification",
+  "ERROR_INVALID_REPORT_FREQUENCY": "Invalid reportFrequency",
+  "ERROR_INVALID_REPORT_TYPE": "Invalid reportType"
 }

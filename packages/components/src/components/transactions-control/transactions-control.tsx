@@ -60,11 +60,17 @@ export class TransactionsControl {
     this._configuration = getConfiguration(configuration);
     if (this._configuration) {
       ConfigurationInstance.configuration = this._configuration;
-      this._filter = getFilter(filter) as RVFilterDate;
-      this._options = getOptions(this.options, this._filter);
-      if (triggerRequest) {
-        await this.requestReportData();
+      try {
+        this._filter = getFilter(filter) as RVFilterDate;
+        this._options = getOptions(this.options, this._filter);
+        if (triggerRequest) {
+          await this.requestReportData();
+        }
+      } catch (e) {
+        this.errorStatusCode = 500;
       }
+    } else {
+      this.errorStatusCode = 500;
     }
   };
 

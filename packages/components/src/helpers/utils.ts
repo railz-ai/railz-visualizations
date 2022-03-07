@@ -85,3 +85,20 @@ export const getTitleByReportType = (reportType: RVReportTypes): string => {
       return '';
   }
 };
+
+/**
+ * Get information about reports with report frequency
+ */
+export const isRequiredReportFrequency = (reportType: RVReportTypes): boolean => {
+  return (
+    reportType &&
+    [
+      RVReportTypes.REVENUE,
+      RVReportTypes.EXPENSES,
+      RVReportTypes.CASHFLOW_STATEMENTS,
+      RVReportTypes.BALANCE_SHEET,
+      RVReportTypes.INCOME_STATEMENTS,
+      RVReportTypes.FINANCIAL_RATIO,
+    ].includes(reportType)
+  );
+};

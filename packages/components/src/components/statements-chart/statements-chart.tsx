@@ -81,11 +81,17 @@ export class StatementsChart {
     this._configuration = getConfiguration(configuration);
     if (this._configuration) {
       ConfigurationInstance.configuration = this._configuration;
-      this._filter = getDateFilter(filter) as RVFilterFrequency;
-      this._options = getOptions(this.options, this._filter);
-      if (triggerRequest) {
-        await this.requestReportData();
+      try {
+        this._filter = getDateFilter(filter) as RVFilterFrequency;
+        this._options = getOptions(this.options, this._filter);
+        if (triggerRequest) {
+          await this.requestReportData();
+        }
+      } catch (e) {
+        this.errorStatusCode = 500;
       }
+    } else {
+      this.errorStatusCode = 500;
     }
   };
 
