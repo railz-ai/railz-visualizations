@@ -36,8 +36,6 @@ export default function Customization() {
 
     const submitOptions = (options: any) => {
         setOptions(options);
-        console.log(options);
-
     }
 
     return (

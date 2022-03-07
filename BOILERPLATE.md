@@ -25,7 +25,7 @@ export class RailzExample {
   _prop1: string;
 
   @Watch("prop1")
-  watchProp1(): void {
+  watchProp1(newValue, oldValue): void {
     // Content
   }
 
