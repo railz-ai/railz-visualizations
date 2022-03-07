@@ -16,9 +16,9 @@ cp .env.example .env
 ```
 3. Set the values based on your authentication details
 ```dotenv
-AUTH_URL=
-CLIENT_ID=
-CLIENT_SECRET=
+RAILZ_AUTH_URL=
+RAILZ_CLIENT_ID=
+RAILZ_CLIENT_SECRET=
 ```
 4. Start the Node.js server
 ```bash

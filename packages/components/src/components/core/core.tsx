@@ -1,32 +1,35 @@
 /* eslint-disable max-len, @typescript-eslint/no-unused-vars */
-import { Component, h, Prop, State, Watch } from "@stencil/core";
+import { Component, Prop, h, State, Watch } from '@stencil/core';
 
-import { isEmpty, isEqual } from "lodash-es";
+import { isEmpty, isEqual } from 'lodash-es';
 
-import { isStatements, isTransactions } from "../../helpers/utils";
+import { isStatements, isTransactions } from '../../helpers/utils';
 
-import {
-  RVConfiguration,
-  RVFilter,
-  RVFilterDate,
-  RVFilterFrequency,
-  RVOptions,
-} from "../../types";
-import { getConfiguration, getFilter } from "../../helpers/chart.utils";
+import { RVConfiguration, RVFilter, RVFilterDate, RVFilterFrequency, RVOptions } from '../../types';
+import { getConfiguration, getFilter } from '../../helpers/chart.utils';
+import { ConfigurationInstance } from '../../services/configuration';
+
 @Component({
-  tag: "railz-visualizations",
-  styleUrl: "./core.scss",
+  tag: 'railz-visualizations',
   shadow: true,
 })
 export class Core {
+  /**
+   * Configuration information like authentication configuration
+   */
   @Prop() readonly configuration: RVConfiguration;
+  /**
+   * Filter information to query the backend APIs
+   */
   @Prop() readonly filter: RVFilter;
+  /**
+   * For whitelabeling styling
+   */
   @Prop() readonly options: RVOptions;
 
   @State() private _filter: RVFilter;
   @State() private _configuration: RVConfiguration;
 
-  @State() private error: string;
   @State() private errorStatusCode: number;
 
   private propsUpdated = (): void => {
@@ -38,32 +41,25 @@ export class Core {
    * @param configuration - Config for authentication
    * @param filter - filter to decide chart type to show
    */
-  private validateParams = (
-    configuration: RVConfiguration,
-    filter: RVFilter
-  ): void => {
-    try {
-      this._configuration = getConfiguration(configuration);
-      if (this._configuration) {
-        this._filter = getFilter(filter);
-      }
-    } catch (error) {
-      this.error = error.message;
+  private validateParams = (configuration: RVConfiguration, filter: RVFilter): void => {
+    this._configuration = getConfiguration(configuration);
+    if (this._configuration) {
+      ConfigurationInstance.configuration = this._configuration;
+      this._filter = getFilter(filter);
+    } else {
+      this.errorStatusCode = 500;
     }
   };
 
-  @Watch("filter")
-  validateFilter(newValue: RVFilter, oldValue: RVFilter): void {
+  @Watch('filter')
+  watchFilter(newValue: RVFilter, oldValue: RVFilter): void {
     if (newValue && oldValue && !isEqual(oldValue, newValue)) {
       this.validateParams(this.configuration, newValue);
     }
   }
 
-  @Watch("configuration")
-  validateConfiguration(
-    newValue: RVConfiguration,
-    oldValue: RVConfiguration
-  ): void {
+  @Watch('configuration')
+  watchConfiguration(newValue: RVConfiguration, oldValue: RVConfiguration): void {
     if (newValue && oldValue && !isEqual(oldValue, newValue)) {
       this.validateParams(newValue, this.filter);
     }
@@ -78,13 +74,8 @@ export class Core {
   }
 
   render(): HTMLElement {
-    if (!isEmpty(this.error) || !isEmpty(this.errorStatusCode)) {
-      return (
-        <railz-error-image
-          message={this.error}
-          statusCode={this.errorStatusCode || 500}
-        />
-      );
+    if (!isEmpty(this.errorStatusCode)) {
+      return <railz-error-image statusCode={this.errorStatusCode || 500} />;
     }
 
     if (isStatements(this._filter?.reportType)) {
