@@ -9,10 +9,15 @@
     "add:react": "lerna add @railzai/railz-visualizations --scope=@railzai/railz-visualizations-react",
     "run:build": "lerna run --scope '{@railzai/railz-visualizations,@railzai/railz-visualizations-angular,@railzai/railz-visualizations-react}' build",
     "build:codesandbox": "yarn copy:env && yarn bootstrap && yarn run:build",
-    "build:local": "yarn bootstrap && yarn run:build"
+    "build:local": "yarn bootstrap && yarn run:build",
+    "prepare": "husky install",
+    "test": "yarn workspace @railzai/railz-visualizations run test"
   },
   "devDependencies": {
-    "lerna": "4.0.0"
+    "lerna": "4.0.0",
+    "@commitlint/cli": "16.2.1",
+    "@commitlint/config-conventional": "16.2.1",
+    "husky": "7.0.4"
   },
   "workspaces": [
     "packages/*"

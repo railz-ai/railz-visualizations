@@ -20,12 +20,11 @@
 <h2 align="center">Powerful charting components built with <a href="https://stenciljs.com" target="_blank">StencilJS</a> and <a href="https://www.highcharts.com/" target="_blank">Highcharts</a> based on <a href="https://railz.ai" target="_blank">Railz.ai</a> dashboard.</h2>
 
 <p align="center">
-  <a href="https://docs.railz.ai/reference/visualization-sdk">Demo and API</a> •
-  <a href="#key-features">Key Features</a> •
-  <a href="#basic-usage">How To Use</a> •
-  <a href="#installation">Installation</a> •
   <a href="https://docs.railz.ai/reference/visualization-sdk">Docs</a> •
-  <a href="examples">Examples</a> •
+  <a href="#key-features-of-railz-visualizations">Key Features</a> •
+  <a href="#visualizations-usage">How To Use</a> •
+  <a href="#installation">Installation</a> •
+  <a href="./examples">Examples</a> •
   <a href="#license">License</a>
 </p>
 
@@ -108,15 +107,15 @@ import {RailzVisualizations} from "@railzai/railz-visualizations-react";
 import {RVAccountingProviders, RVReportFrequency, RVReportTypes} from "@railzai/railz-visualizations";
 
 function App() {
-  const [token, setToken] = useState('');
+  const [configuration, setToken] = useState('');
   
   useEffect( () => {
-    const { token }: { token: string } = {token: '12222'};
-    setToken(token);
+    const { configuration }: { configuration: string } = {configuration: '12222'};
+    setToken(configuration);
   }, []);
   return (
     <div className="App">
-      <RailzVisualizations configuration={{token: 'token_1233'}} filter={{
+      <RailzVisualizations configuration={{configuration: 'token_1233'}} filter={{
         businessName: "testFreshbooks",
         serviceName: RVAccountingProviders.FRESHBOOKS,
         reportType: RVReportTypes.BALANCE_SHEET,
@@ -136,7 +135,7 @@ export default App;
 #### app.component.html
 ```angular
 <railz-visualizations
-  [configuration]='{token: 'token_1233'}'
+  [configuration]='{configuration: 'token_1233'}'
   [filter]='{
         businessName: "testFreshbooks",
         serviceName: RVAccountingProviders.FRESHBOOKS,
@@ -244,7 +243,7 @@ import {RailzVisualizationsModule} from "@railzai/railz-visualizations-angular/d
 
 
 ## Contributing
-The Railz Visualization library and documentation are open to contributions. For more information, check the [guidelines](https://docs.railz.ai/reference/contributing).
+The Railz Visualization library and documentation are open to contributions. For more information, check the [guidelines](./CONTRIBUTING.md).
 
 ## License
 

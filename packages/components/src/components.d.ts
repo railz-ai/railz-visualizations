@@ -5,33 +5,102 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
-import { RVConfiguration, RVFilter, RVFilterDate, RVFilterFrequency, RVOptions } from "./types";
+import { RVConfiguration, RVFilter, RVFilterDate, RVFilterFrequency, RVNoFrequencyTypes, RVOptions, RVOptionsBarStyle } from "./types";
 export namespace Components {
     interface RailzErrorImage {
-        "statusCode": number;
+        /**
+          * Fill color of the svg image representing a status code
+         */
+        "fillColor"?: string;
+        /**
+          * Status code based on HTTP Response codes
+         */
+        "statusCode"?: number;
+        /**
+          * Text to display at the bottom of the svg image
+         */
+        "text"?: string;
+        /**
+          * Color of the image text
+         */
+        "textColor"?: string;
     }
     interface RailzLoading {
-        "loadingText": string;
+        /**
+          * Fill color of the loading indicator
+         */
+        "fillColor"?: string;
+        /**
+          * Text to display at the bottom of the loading indicator
+         */
+        "loadingText"?: string;
+        /**
+          * Color of the loading text
+         */
+        "textColor"?: string;
     }
     interface RailzProgressBar {
+        /**
+          * For whitelabeling styling
+         */
+        "options"?: RVOptionsBarStyle;
+        /**
+          * For overdue amount of an invoice or bill
+         */
         "overdueAmount": number;
+        /**
+          * For paid amount of an invoice or bill
+         */
         "paidAmount": number;
-        "reportType": string;
+        /**
+          * To indicate if its an invoice or bill
+         */
+        "reportType"?: RVNoFrequencyTypes;
+        /**
+          * For unpaid amount of an invoice or bill
+         */
         "unpaidAmount": number;
     }
     interface RailzStatementsChart {
+        /**
+          * Configuration information like authentication configuration
+         */
         "configuration": RVConfiguration;
+        /**
+          * Filter information to query the backend APIs
+         */
         "filter": RVFilterFrequency;
+        /**
+          * For whitelabeling styling
+         */
         "options": RVOptions;
     }
     interface RailzTransactionsControl {
+        /**
+          * Configuration information like authentication configuration
+         */
         "configuration": RVConfiguration;
+        /**
+          * Filter information to query the backend APIs
+         */
         "filter": RVFilterDate;
+        /**
+          * For whitelabeling styling
+         */
         "options": RVOptions;
     }
     interface RailzVisualizations {
+        /**
+          * Configuration information like authentication configuration
+         */
         "configuration": RVConfiguration;
+        /**
+          * Filter information to query the backend APIs
+         */
         "filter": RVFilter;
+        /**
+          * For whitelabeling styling
+         */
         "options": RVOptions;
     }
 }
@@ -83,30 +152,99 @@ declare global {
 }
 declare namespace LocalJSX {
     interface RailzErrorImage {
-        "statusCode": number;
+        /**
+          * Fill color of the svg image representing a status code
+         */
+        "fillColor"?: string;
+        /**
+          * Status code based on HTTP Response codes
+         */
+        "statusCode"?: number;
+        /**
+          * Text to display at the bottom of the svg image
+         */
+        "text"?: string;
+        /**
+          * Color of the image text
+         */
+        "textColor"?: string;
     }
     interface RailzLoading {
+        /**
+          * Fill color of the loading indicator
+         */
+        "fillColor"?: string;
+        /**
+          * Text to display at the bottom of the loading indicator
+         */
         "loadingText"?: string;
+        /**
+          * Color of the loading text
+         */
+        "textColor"?: string;
     }
     interface RailzProgressBar {
+        /**
+          * For whitelabeling styling
+         */
+        "options"?: RVOptionsBarStyle;
+        /**
+          * For overdue amount of an invoice or bill
+         */
         "overdueAmount"?: number;
+        /**
+          * For paid amount of an invoice or bill
+         */
         "paidAmount"?: number;
-        "reportType"?: string;
+        /**
+          * To indicate if its an invoice or bill
+         */
+        "reportType"?: RVNoFrequencyTypes;
+        /**
+          * For unpaid amount of an invoice or bill
+         */
         "unpaidAmount"?: number;
     }
     interface RailzStatementsChart {
+        /**
+          * Configuration information like authentication configuration
+         */
         "configuration": RVConfiguration;
+        /**
+          * Filter information to query the backend APIs
+         */
         "filter": RVFilterFrequency;
+        /**
+          * For whitelabeling styling
+         */
         "options"?: RVOptions;
     }
     interface RailzTransactionsControl {
+        /**
+          * Configuration information like authentication configuration
+         */
         "configuration": RVConfiguration;
+        /**
+          * Filter information to query the backend APIs
+         */
         "filter": RVFilterDate;
+        /**
+          * For whitelabeling styling
+         */
         "options"?: RVOptions;
     }
     interface RailzVisualizations {
+        /**
+          * Configuration information like authentication configuration
+         */
         "configuration"?: RVConfiguration;
+        /**
+          * Filter information to query the backend APIs
+         */
         "filter"?: RVFilter;
+        /**
+          * For whitelabeling styling
+         */
         "options"?: RVOptions;
     }
     interface IntrinsicElements {

@@ -1,6 +1,10 @@
-MIT License
+Apache 2.0 License
+Copyright (c) 2022, Railz Financial Technologies
 
-Copyright (c) 2018
+The software in Railz Visualizations repository is free and open source,
+however it relies on Highcharts.js, the Railz team has the applicable license
+to distribute the software commercially to our clients, this license permits our
+clients to install this SDK in their environments.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

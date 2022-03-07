@@ -12,13 +12,13 @@ export declare interface RailzErrorImage extends Components.RailzErrorImage {}
 
 @ProxyCmp({
   defineCustomElementFn: undefined,
-  inputs: ['statusCode']
+  inputs: ['fillColor', 'statusCode', 'text', 'textColor']
 })
 @Component({
   selector: 'railz-error-image',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
-  inputs: ['statusCode']
+  inputs: ['fillColor', 'statusCode', 'text', 'textColor']
 })
 export class RailzErrorImage {
   protected el: HTMLElement;
@@ -33,13 +33,13 @@ export declare interface RailzLoading extends Components.RailzLoading {}
 
 @ProxyCmp({
   defineCustomElementFn: undefined,
-  inputs: ['loadingText']
+  inputs: ['fillColor', 'loadingText', 'textColor']
 })
 @Component({
   selector: 'railz-loading',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
-  inputs: ['loadingText']
+  inputs: ['fillColor', 'loadingText', 'textColor']
 })
 export class RailzLoading {
   protected el: HTMLElement;
@@ -54,13 +54,13 @@ export declare interface RailzProgressBar extends Components.RailzProgressBar {}
 
 @ProxyCmp({
   defineCustomElementFn: undefined,
-  inputs: ['overdueAmount', 'paidAmount', 'reportType', 'unpaidAmount']
+  inputs: ['options', 'overdueAmount', 'paidAmount', 'reportType', 'unpaidAmount']
 })
 @Component({
   selector: 'railz-progress-bar',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
-  inputs: ['overdueAmount', 'paidAmount', 'reportType', 'unpaidAmount']
+  inputs: ['options', 'overdueAmount', 'paidAmount', 'reportType', 'unpaidAmount']
 })
 export class RailzProgressBar {
   protected el: HTMLElement;

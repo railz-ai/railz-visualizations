@@ -18,6 +18,11 @@
   <app-auth-form [authForm]="authForm" (authEvent)="onAuthSubmit()"></app-auth-form>
 </div>
 
+<div class="mt-4 sm:mt-4" *ngIf="options">
+  <app-options-form [options]="options"></app-options-form>
+</div>
+
+
 <div class="mt-4 sm:mt-4">
   <app-filter-form [filterForm]="filterForm" (filterEvent)="onFilterSubmit()"></app-filter-form>
 </div>

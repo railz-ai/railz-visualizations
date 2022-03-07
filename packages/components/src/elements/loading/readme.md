@@ -7,9 +7,11 @@
 
 ## Properties
 
-| Property      | Attribute      | Description | Type     | Default     |
-| ------------- | -------------- | ----------- | -------- | ----------- |
-| `loadingText` | `loading-text` |             | `string` | `undefined` |
+| Property      | Attribute      | Description                                            | Type     | Default               |
+| ------------- | -------------- | ------------------------------------------------------ | -------- | --------------------- |
+| `fillColor`   | `fill-color`   | Fill color of the loading indicator                    | `string` | `RAILZ_PRIMARY_COLOR` |
+| `loadingText` | `loading-text` | Text to display at the bottom of the loading indicator | `string` | `undefined`           |
+| `textColor`   | `text-color`   | Color of the loading text                              | `string` | `'#000000'`           |
 
 
 ## Dependencies
