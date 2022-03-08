@@ -7,6 +7,14 @@
     "type": "git",
     "url": "https://github.com/railz-ai/railz-visualizations"
   },
+  "author": "Railz.ai",
+  "homepage": "https://docs.railz.ai/reference/visualization-sdk",
+  "publishConfig": {
+    "access": "public"
+  },
+  "bugs": {
+    "url": "https://github.com/railz-ai/railz-visualizations/issues"
+  },
   "scripts": {
     "build": "npm run clean && npm run compile",
     "clean": "rm -rf dist",

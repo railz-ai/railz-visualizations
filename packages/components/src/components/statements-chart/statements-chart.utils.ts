@@ -1,20 +1,24 @@
-import { isNil, pick } from "lodash-es";
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+import { isNil, pick } from 'lodash-es';
+import { format, parseISO } from 'date-fns';
 
-import { format, parseISO } from "date-fns";
-
-import Translations from "../../config/translations/en.json";
-import { formatDate, formatSeries } from "../../helpers/utils";
+import Translations from '../../config/translations/en.json';
+import { formatDate, formatSeries } from '../../helpers/utils';
 import {
+  RAILZ_BALANCE_SHEET_COLORS,
+  RAILZ_CASHFLOW_COLORS,
+  RAILZ_INCOME_STATEMENT_COLORS,
   RVChartOptionsParameter,
   RVChartStatementBaseParameter,
   RVChartStatementParameter,
   RVFormattedStatementData,
   RVFormattedStatementResponse,
   RVReportRequestParameter,
-} from "../../types";
-import { RVReportTypes } from "../../types/enum/report-type";
-import { RequestServiceInstance } from "../../services/request";
-import { errorLog } from "../../services/logger";
+} from '../../types';
+import { RVReportTypes } from '../../types/enum/report-type';
+import { RequestServiceInstance } from '../../services/request';
+import { errorLog } from '../../services/logger';
 
 /**
  * Setup Highcharts options for bar charts
@@ -24,24 +28,27 @@ export const getOptionsBarChart = ({
   series,
   colors,
   chart,
-}: RVChartOptionsParameter): any => ({
+}: RVChartOptionsParameter) => ({
   chart: {
-    height: chart?.style?.height,
-    type: "column",
+    height: chart?.height,
+    type: 'column',
+    backgroundColor: chart?.backgroundColor || '#ffffff',
     style: {
-      fontFamily: [
-        "Inter",
-        "Roboto",
-        "-apple-system",
-        "BlinkMacSystemFont",
-        '"Segoe UI"',
-        '"Helvetica Neue"',
-        "Arial",
-        "sans-serif",
-        '"Apple Color Emoji"',
-        '"Segoe UI Emoji"',
-        '"Segoe UI Symbol"',
-      ].join(","),
+      fontFamily:
+        chart?.fontFamily ||
+        [
+          'Inter',
+          'Roboto',
+          '-apple-system',
+          'BlinkMacSystemFont',
+          '"Segoe UI"',
+          '"Helvetica Neue"',
+          'Arial',
+          'sans-serif',
+          '"Apple Color Emoji"',
+          '"Segoe UI Emoji"',
+          '"Segoe UI Symbol"',
+        ].join(','),
     },
     reflow: true,
     marginTop: 0,
@@ -62,25 +69,27 @@ export const getOptionsBarChart = ({
       },
     },
   },
-  colors: colors || ["#009BBD", "#FFD738", "#003032"],
+  colors: colors || ['#009BBD', '#FFD738', '#003032'],
   title: null,
   xAxis: {
     categories: categories,
     offset: 50,
     labels: {
       style: {
-        color: "#55565B",
+        color: '#55565B',
       },
+      ...chart?.label,
     },
   },
   yAxis: {
-    gridLineDashStyle: "longdash",
+    gridLineDashStyle: 'longdash',
     endOnTick: false,
     title: null,
     labels: {
       style: {
-        color: "#55565B",
+        color: '#55565B',
       },
+      ...chart?.label,
     },
   },
   credits: {
@@ -88,15 +97,16 @@ export const getOptionsBarChart = ({
   },
   plotOptions: {
     column: {
-      stacking: "normal",
+      stacking: 'normal',
     },
     series: {
       pointWidth: 12,
     },
   },
   legend: {
-    align: "left",
+    align: 'left',
     itemMarginTop: 8,
+    ...chart?.legend,
   },
   series: series,
   exporting: {
@@ -110,28 +120,26 @@ export const getOptionsBarChart = ({
 export const formatCashflowData = ({
   summary,
   reportFrequency,
-  colors,
-  quarter,
-  month,
+  chart,
 }: RVChartStatementBaseParameter): RVFormattedStatementData => {
-  const categories = formatDate(summary, reportFrequency, quarter, month);
+  const categories = formatDate(summary, reportFrequency);
   const financingActivities = formatSeries(
     summary,
     Translations.FINANCING_ACTIVITIES,
-    "financingActivities"
+    'financingActivities',
   );
   const investingActivities = formatSeries(
     summary,
     Translations.INVESTING_ACTIVITIES,
-    "investingActivities"
+    'investingActivities',
   );
   const operatingActivities = formatSeries(
     summary,
     Translations.OPERATING_ACTIVITIES,
-    "operatingActivities"
+    'operatingActivities',
   );
   const netCash = {
-    type: "spline",
+    type: 'spline',
     marker: {
       enabled: false,
     },
@@ -141,20 +149,17 @@ export const formatCashflowData = ({
       },
     },
     enableMouseTracking: false,
-    ...formatSeries(summary, Translations.NET_CASH, "netCash"),
+    ...formatSeries(summary, Translations.NET_CASH, 'netCash'),
   };
 
-  const series = [
-    financingActivities,
-    investingActivities,
-    netCash,
-    operatingActivities,
-  ].filter((seriesData) => seriesData?.data.length > 0);
+  const series = [financingActivities, investingActivities, netCash, operatingActivities].filter(
+    (seriesData) => seriesData?.data.length > 0,
+  );
 
   return {
     categories,
     series: series as any,
-    colors: colors || ["#389BFF", "#FFD738", "#1D7043", "#003032"],
+    colors: chart?.colors || RAILZ_CASHFLOW_COLORS,
   };
 };
 
@@ -164,34 +169,28 @@ export const formatCashflowData = ({
 export const formatBalanceSheetData = ({
   summary,
   reportFrequency,
-  colors,
-  quarter,
-  month,
+  chart,
 }: RVChartStatementBaseParameter): RVFormattedStatementData => {
-  const categories = formatDate(summary, reportFrequency, quarter, month);
-  const currentAssets = formatSeries(
-    summary,
-    Translations.CURRENT_ASSETS,
-    "currentAssets"
-  );
+  const categories = formatDate(summary, reportFrequency);
+  const currentAssets = formatSeries(summary, Translations.CURRENT_ASSETS, 'currentAssets');
   const currentLiabilities = formatSeries(
     summary,
     Translations.CURRENT_LIABILITIES,
-    "currentLiabilities"
+    'currentLiabilities',
   );
   const nonCurrentAssets = formatSeries(
     summary,
     Translations.NON_CURRENT_ASSETS,
-    "nonCurrentAssets"
+    'nonCurrentAssets',
   );
   const nonCurrentLiabilities = formatSeries(
     summary,
     Translations.NON_CURRENT_LIABILITIES,
-    "nonCurrentLiabilities"
+    'nonCurrentLiabilities',
   );
 
   const equity = {
-    type: "spline",
+    type: 'spline',
     marker: {
       enabled: false,
     },
@@ -201,7 +200,7 @@ export const formatBalanceSheetData = ({
       },
     },
     enableMouseTracking: false,
-    ...formatSeries(summary, Translations.EQUITY, "equity"),
+    ...formatSeries(summary, Translations.EQUITY, 'equity'),
   };
 
   const series = [
@@ -215,7 +214,7 @@ export const formatBalanceSheetData = ({
   return {
     categories,
     series: series as any,
-    colors: colors || ["#1D7043", "#30A665", "#F06C3A", "#B30000", "#003032"],
+    colors: chart?.colors || RAILZ_BALANCE_SHEET_COLORS,
   };
 };
 
@@ -225,39 +224,23 @@ export const formatBalanceSheetData = ({
 export const formatIncomeStatementData = ({
   summary,
   reportFrequency,
-  colors,
+  chart,
   quarter,
   month,
 }: RVChartStatementBaseParameter): RVFormattedStatementData => {
   const categories = formatDate(summary, reportFrequency, quarter, month);
-  const costOfGoodsSold = formatSeries(
-    summary,
-    Translations.COST_OF_GOODS_SOLD,
-    "costOfGoodsSold"
-  );
+  const costOfGoodsSold = formatSeries(summary, Translations.COST_OF_GOODS_SOLD, 'costOfGoodsSold');
   const operatingExpenses = formatSeries(
     summary,
     Translations.OPERATING_EXPENSES,
-    "operatingExpenses"
+    'operatingExpenses',
   );
-  const operatingIncome = formatSeries(
-    summary,
-    Translations.OPERATING_INCOME,
-    "operatingIncome"
-  );
-  const otherExpenses = formatSeries(
-    summary,
-    Translations.OTHER_EXPENSES,
-    "otherExpenses"
-  );
-  const otherIncome = formatSeries(
-    summary,
-    Translations.OTHER_INCOME,
-    "otherIncome"
-  );
+  const operatingIncome = formatSeries(summary, Translations.OPERATING_INCOME, 'operatingIncome');
+  const otherExpenses = formatSeries(summary, Translations.OTHER_EXPENSES, 'otherExpenses');
+  const otherIncome = formatSeries(summary, Translations.OTHER_INCOME, 'otherIncome');
 
   const netIncome = {
-    type: "spline",
+    type: 'spline',
     marker: {
       enabled: false,
     },
@@ -267,7 +250,7 @@ export const formatIncomeStatementData = ({
       },
     },
     enableMouseTracking: false,
-    ...formatSeries(summary, Translations.NET_INCOME, "netIncome"),
+    ...formatSeries(summary, Translations.NET_INCOME, 'netIncome'),
   };
 
   const series = [
@@ -282,14 +265,7 @@ export const formatIncomeStatementData = ({
   return {
     categories,
     series: series as any,
-    colors: colors || [
-      "#1D7043",
-      "#FF804F",
-      "#009BBD",
-      "#BCEDD2",
-      "#38C076",
-      "#003032",
-    ],
+    colors: chart?.colors || RAILZ_INCOME_STATEMENT_COLORS,
   };
 };
 
@@ -297,7 +273,7 @@ export const formatIncomeStatementData = ({
  * Formats retrieved data into Highcharts format based on different report type
  */
 export const formatData = (
-  statementParameter: RVChartStatementParameter
+  statementParameter: RVChartStatementParameter,
 ): RVFormattedStatementData => {
   if (statementParameter.reportType === RVReportTypes.BALANCE_SHEET)
     return formatBalanceSheetData(statementParameter);
@@ -312,49 +288,50 @@ export const formatData = (
  */
 export const getReportData = async ({
   filter,
-  configuration,
-}: RVReportRequestParameter): Promise<RVFormattedStatementResponse> | never => {
+}: RVReportRequestParameter): Promise<RVFormattedStatementResponse> => {
   let reportData;
   try {
     let startDate;
     let endDate;
     try {
-      startDate = format(parseISO(filter.startDate), "yyyy-MM-dd");
+      startDate = format(parseISO(filter.startDate), 'yyyy-MM-dd');
     } catch (error) {
       errorLog(Translations.ERROR_START_DATE);
-      throw new Error(Translations.ERROR_OOPS);
+      throw new Error(Translations.ERROR_500_TITLE);
     }
     try {
-      endDate = format(parseISO(filter.endDate), "yyyy-MM-dd");
+      endDate = format(parseISO(filter.endDate), 'yyyy-MM-dd');
     } catch (error) {
       errorLog(Translations.ERROR_END_DATE);
-      throw new Error(Translations.ERROR_OOPS);
+      throw new Error(Translations.ERROR_500_TITLE);
     }
     let allParameters;
-    if ("connectionId" in filter && filter?.connectionId) {
-      allParameters = pick({ ...filter, startDate, endDate }, [
-        "startDate",
-        "endDate",
-        "reportFrequency",
-        "connectionId",
-      ]);
+    if ('connectionId' in filter && filter?.connectionId) {
+      allParameters = pick(
+        {
+          ...filter,
+          startDate,
+          endDate,
+        },
+        ['startDate', 'endDate', 'reportFrequency', 'connectionId'],
+      );
     } else {
-      allParameters = pick({ ...filter, startDate, endDate }, [
-        "startDate",
-        "endDate",
-        "reportFrequency",
-        "businessName",
-        "serviceName",
-      ]);
+      allParameters = pick(
+        {
+          ...filter,
+          startDate,
+          endDate,
+        },
+        ['startDate', 'endDate', 'reportFrequency', 'businessName', 'serviceName'],
+      );
     }
     reportData = await RequestServiceInstance.getReportData({
-      token: configuration.token,
       reportType: filter.reportType,
       filter: allParameters,
     });
   } catch (error) {
     errorLog(Translations.NOT_ABLE_TO_RETRIEVE_REPORT_DATA, error);
-    throw new Error(Translations.ERROR_OOPS);
+    throw new Error(Translations.ERROR_500_TITLE);
   }
   return reportData;
 };

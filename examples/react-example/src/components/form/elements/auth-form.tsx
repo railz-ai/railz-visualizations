@@ -11,7 +11,7 @@ export default function AuthForm({ setAuthentication, setError}: FormProps) {
         if(formAuth.authUrl) {
             await setAuthentication(formAuth);
         } else {
-            setError('Authentication details are required to get access token.')
+            setError('Authentication details are required to get access configuration.')
         }
     }
 

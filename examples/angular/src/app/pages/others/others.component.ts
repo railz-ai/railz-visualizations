@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OthersComponent implements OnInit {
 
+  barOptions= { barStyle: { background: '#b6ffc0'}, progressStyle: { background: '#2e6521' }};
+
   constructor() { }
 
   ngOnInit(): void {

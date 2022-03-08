@@ -1,41 +1,49 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { Component, h, Prop, State, Watch } from "@stencil/core";
+import { Component, Prop, h, State, Watch } from '@stencil/core';
 
-import { isEmpty, isEqual } from "lodash-es";
+import { isEmpty, isEqual } from 'lodash-es';
 
-import Translations from "../../config/translations/en.json";
-import { errorLog } from "../../services/logger";
+import Translations from '../../config/translations/en.json';
+import { errorLog } from '../../services/logger';
 
 import {
   RVBillInvoiceSummary,
   RVConfiguration,
+  RVContent,
   RVFilterDate,
   RVFormattedTransactionResponse,
   RVOptions,
-  RVContent,
-  RVFilter,
-} from "../../types";
-import {
-  getConfiguration,
-  getDateFilter,
-  getOptions,
-  getContent,
-} from "../../helpers/chart.utils";
+} from '../../types';
+import { getConfiguration, getContent, getFilter, getOptions } from '../../helpers/chart.utils';
 
-import { getTransactionsData } from "./transactions-control.utils";
+import { ConfigurationInstance } from '../../services/configuration';
+
+import { getTransactionsData } from './transactions-control.utils';
 
 @Component({
-  tag: "railz-transactions-control",
-  styleUrl: "./transactions-control.scss",
+  tag: 'railz-transactions-control',
+  styleUrl: './transactions-control.scss',
   shadow: true,
 })
 export class TransactionsControl {
+  /**
+   * Configuration information like authentication configuration
+   */
   @Prop() readonly configuration!: RVConfiguration;
+  /**
+   * Filter information to query the backend APIs
+   */
   @Prop() readonly filter!: RVFilterDate;
+  /**
+   * For whitelabeling styling
+   */
   @Prop() readonly options: RVOptions;
+  /**
+   * Content for text/info
+   */
   @Prop() readonly content: RVContent;
 
-  @State() private loading = "";
+  @State() private loading = '';
   @State() private _configuration: RVConfiguration;
   @State() private _filter: RVFilterDate;
   @State() private _options: RVOptions;
@@ -54,73 +62,54 @@ export class TransactionsControl {
    */
   private validateParams = async (
     configuration: RVConfiguration,
-    filter: RVFilter,
+    filter: RVFilterDate,
     options: RVOptions,
     content: RVContent,
-    triggerRequest = true
+    triggerRequest = true,
   ): Promise<void> => {
-    try {
-      this._configuration = getConfiguration(configuration);
-    } catch (error) {
-      this.error = error.message;
-    }
+    this._configuration = getConfiguration(configuration);
     if (this._configuration) {
+      ConfigurationInstance.configuration = this._configuration;
       try {
-        this._filter = getDateFilter(filter as RVFilterDate) as RVFilterDate;
-        this._options = getOptions(options);
-        this._content = getContent(content, this._filter);
+        this._filter = getFilter(filter) as RVFilterDate;
+        this._options = getOptions(options, filter);
+        this._content = getContent(content, filter);
         if (triggerRequest) {
           await this.requestReportData();
         }
-      } catch (error) {
-        this.error = error.message;
+      } catch (e) {
+        this.errorStatusCode = 500;
       }
+    } else {
+      this.errorStatusCode = 500;
     }
   };
 
-  @Watch("configuration")
-  validateConfiguration(
-    newValue: RVConfiguration,
-    oldValue: RVConfiguration
-  ): void {
+  @Watch('configuration')
+  async watchConfiguration(newValue: RVConfiguration, oldValue: RVConfiguration): Promise<void> {
     if (newValue && oldValue && !isEqual(oldValue, newValue)) {
       this.validateParams(newValue, this.filter, this.options, this.content);
     }
   }
 
-  @Watch("filter")
-  validateFilter(newValue: RVFilter, oldValue: RVFilter): void {
+  @Watch('filter')
+  async watchFilter(newValue: RVFilterDate, oldValue: RVFilterDate): Promise<void> {
     if (newValue && oldValue && !isEqual(oldValue, newValue)) {
-      this.validateParams(
-        this.configuration,
-        newValue,
-        this.options,
-        this.content
-      );
+      this.validateParams(this.configuration, newValue, this.options, this.content);
     }
   }
 
-  @Watch("options")
-  validateOptions(newValue: RVOptions, oldValue: RVOptions): void {
+  @Watch('options')
+  async watchOptions(newValue: RVOptions, oldValue: RVOptions): Promise<void> {
     if (newValue && oldValue && !isEqual(oldValue, newValue)) {
-      this.validateParams(
-        this.configuration,
-        this.filter,
-        newValue,
-        this.content
-      );
+      this.validateParams(this.configuration, this.filter, newValue, this.content);
     }
   }
 
-  @Watch("content")
-  validateContent(newValue: RVContent, oldValue: RVContent): void {
+  @Watch('content')
+  async watchContent(newValue: RVContent, oldValue: RVContent): Promise<void> {
     if (newValue && oldValue && !isEqual(oldValue, newValue)) {
-      this.validateParams(
-        this.configuration,
-        this.filter,
-        this.options,
-        newValue
-      );
+      this.validateParams(this.configuration, this.filter, this.options, newValue);
     }
   }
 
@@ -130,16 +119,15 @@ export class TransactionsControl {
       this.filter,
       this.options,
       this.content,
-      triggerRequest
+      triggerRequest,
     );
   };
 
   private requestReportData = async (): Promise<void> => {
-    this.error = "";
+    this.error = '';
     this.loading = Translations.LOADING_REPORT;
     const reportData = (await getTransactionsData({
       filter: this._filter,
-      configuration: this._configuration,
     })) as RVFormattedTransactionResponse;
     try {
       if (reportData?.data) {
@@ -152,19 +140,13 @@ export class TransactionsControl {
         this.errorStatusCode = reportData?.status;
       }
     } catch (error) {
-      errorLog(Translations.NOT_ABLE_TO_PARSE_REPORT_DATA, error);
-      this.error =
-        Translations.NOT_ABLE_TO_PARSE_REPORT_DATA + " " + error.message;
+      errorLog(Translations.RV_NOT_ABLE_TO_PARSE_REPORT_DATA, error);
     } finally {
-      this.loading = "";
+      this.loading = '';
     }
   };
 
   componentWillLoad(): void {
-    this.propsUpdated && this.propsUpdated(false);
-  }
-
-  componentDidLoad(): void {
     this.propsUpdated && this.propsUpdated();
   }
 
@@ -172,13 +154,14 @@ export class TransactionsControl {
     if (!isEmpty(this.error)) {
       return (
         <railz-error-image
-          message={this.error}
+          text={this.error}
           statusCode={this.errorStatusCode || 500}
+          {...this._options?.errorIndicator}
         />
       );
     }
     if (!isEmpty(this.loading)) {
-      return <railz-loading loadingText={this.loading} />;
+      return <railz-loading loadingText={this.loading} {...this._options?.loadingIndicator} />;
     }
     if (!isEmpty(this._dataFormatted)) {
       return (
@@ -187,6 +170,7 @@ export class TransactionsControl {
           unpaidAmount={this._dataFormatted.unpaidAmount}
           paidAmount={this._dataFormatted.paidAmount}
           overdueAmount={this._dataFormatted.overdueAmount}
+          options={this._options?.bar}
         />
       );
     }
@@ -197,7 +181,7 @@ export class TransactionsControl {
       <div class="railz-container" style={this._options?.container?.style}>
         {this._content?.title ? (
           <p class="railz-title" style={this._options?.title?.style}>
-            {this._content?.title || ""}
+            {this._content?.title || ''}
           </p>
         ) : null}
         {this.renderMain()}

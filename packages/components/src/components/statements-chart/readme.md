@@ -1,18 +1,16 @@
 # railz-statements-chart
 
-
-
 <!-- Auto Generated Below -->
 
 
 ## Properties
 
-| Property                     | Attribute | Description | Type                                                                               | Default     |
-| ---------------------------- | --------- | ----------- | ---------------------------------------------------------------------------------- | ----------- |
-| `configuration` _(required)_ | --        |             | `RVConfiguration`                                                                  | `undefined` |
-| `content`                    | --        |             | `RVContent`                                                                        | `undefined` |
-| `filter` _(required)_        | --        |             | `RVBaseFilterBusinessDateFrequencyType \| RVBaseFilterConnectionDateFrequencyType` | `undefined` |
-| `options`                    | --        |             | `RVOptions`                                                                        | `undefined` |
+| Property                     | Attribute | Description                                                 | Type                                                                               | Default     |
+| ---------------------------- | --------- | ----------------------------------------------------------- | ---------------------------------------------------------------------------------- | ----------- |
+| `configuration` _(required)_ | --        | Configuration information like authentication configuration | `RVConfiguration`                                                                  | `undefined` |
+| `content`                    | --        |                                                             | `RVContent`                                                                        | `undefined` |
+| `filter` _(required)_        | --        | Filter information to query the backend APIs                | `RVBaseFilterBusinessDateFrequencyType \| RVBaseFilterConnectionDateFrequencyType` | `undefined` |
+| `options`                    | --        | For whitelabeling styling                                   | `RVOptions`                                                                        | `undefined` |
 
 
 ## Dependencies

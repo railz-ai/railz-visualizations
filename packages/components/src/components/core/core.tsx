@@ -1,25 +1,37 @@
 /* eslint-disable max-len, @typescript-eslint/no-unused-vars */
-import { Component, h, Prop, State, Watch } from "@stencil/core";
-import { isEmpty, isEqual } from "lodash-es";
+import { Component, Prop, h, State, Watch } from '@stencil/core';
 
-import { isStatements, isTransactions } from "../../helpers/utils";
+import { isEmpty, isEqual } from 'lodash-es';
+
+import { isStatements, isTransactions } from '../../helpers/utils';
+
 import {
   RVConfiguration,
+  RVContent,
   RVFilter,
   RVFilterDate,
   RVFilterFrequency,
   RVOptions,
-  RVContent,
-} from "../../types";
-import { getConfiguration, getFilter } from "../../helpers/chart.utils";
+} from '../../types';
+import { getConfiguration, getFilter } from '../../helpers/chart.utils';
+import { ConfigurationInstance } from '../../services/configuration';
+
 @Component({
-  tag: "railz-visualizations",
-  styleUrl: "./core.scss",
+  tag: 'railz-visualizations',
   shadow: true,
 })
 export class Core {
+  /**
+   * Configuration information like authentication configuration
+   */
   @Prop() readonly configuration: RVConfiguration;
+  /**
+   * Filter information to query the backend APIs
+   */
   @Prop() readonly filter: RVFilter;
+  /**
+   * For whitelabeling styling
+   */
   @Prop() readonly options: RVOptions;
   @Prop() readonly content: RVContent;
 
@@ -38,46 +50,42 @@ export class Core {
    * @param configuration - Config for authentication
    * @param filter - filter to decide chart type to show
    */
-  private validateParams = (
-    configuration: RVConfiguration,
-    filter: RVFilter
-  ): void => {
-    try {
-      this._configuration = getConfiguration(configuration);
-      if (this._configuration) {
-        this._filter = getFilter(filter);
+  private validateParams = (configuration: RVConfiguration, filter: RVFilter): void => {
+    this._configuration = getConfiguration(configuration);
+    if (this._configuration) {
+      ConfigurationInstance.configuration = this._configuration;
+      this._filter = getFilter(filter);
+      if (!this._filter) {
+        this.errorStatusCode = 500;
       }
-    } catch (error) {
-      this.error = error.message;
+    } else {
+      this.errorStatusCode = 500;
     }
   };
 
-  @Watch("configuration")
-  validateConfiguration(
-    newValue: RVConfiguration,
-    oldValue: RVConfiguration
-  ): void {
-    if (newValue && oldValue && !isEqual(oldValue, newValue)) {
-      this.validateParams(newValue, this.filter);
-    }
-  }
-
-  @Watch("filter")
-  validateFilter(newValue: RVFilter, oldValue: RVFilter): void {
-    if (newValue && oldValue && !isEqual(oldValue, newValue)) {
-      this.validateParams(this.configuration, newValue);
-    }
-  }
-
-  @Watch("options")
-  validateOptions(newValue: RVOptions, oldValue: RVOptions): void {
+  @Watch('configuration')
+  watchConfiguration(newValue: RVConfiguration, oldValue: RVConfiguration): void {
     if (newValue && oldValue && !isEqual(oldValue, newValue)) {
       this.validateParams(this.configuration, this.filter);
     }
   }
 
-  @Watch("content")
-  validateContent(newValue: RVContent, oldValue: RVContent): void {
+  @Watch('filter')
+  watchFilter(newValue: RVFilter, oldValue: RVFilter): void {
+    if (newValue && oldValue && !isEqual(oldValue, newValue)) {
+      this.validateParams(this.configuration, newValue);
+    }
+  }
+
+  @Watch('options')
+  watchOptions(newValue: RVOptions, oldValue: RVOptions): void {
+    if (newValue && oldValue && !isEqual(oldValue, newValue)) {
+      this.validateParams(this.configuration, this.filter);
+    }
+  }
+
+  @Watch('content')
+  watchContent(newValue: RVContent, oldValue: RVContent): void {
     if (newValue && oldValue && !isEqual(oldValue, newValue)) {
       this.validateParams(this.configuration, this.filter);
     }
@@ -93,12 +101,7 @@ export class Core {
 
   render(): HTMLElement {
     if (!isEmpty(this.error) || !isEmpty(this.errorStatusCode)) {
-      return (
-        <railz-error-image
-          message={this.error}
-          statusCode={this.errorStatusCode || 500}
-        />
-      );
+      return <railz-error-image text={this.error} statusCode={this.errorStatusCode || 500} />;
     }
 
     if (isStatements(this._filter?.reportType)) {
@@ -106,7 +109,6 @@ export class Core {
         <railz-statements-chart
           configuration={this.configuration}
           filter={this.filter as RVFilterFrequency}
-          content={this.content}
           options={this.options}
         />
       );
@@ -116,7 +118,6 @@ export class Core {
         <railz-transactions-control
           configuration={this.configuration}
           filter={this.filter as RVFilterDate}
-          content={this.content}
           options={this.options}
         />
       );

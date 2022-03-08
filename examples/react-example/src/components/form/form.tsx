@@ -2,45 +2,44 @@ import React from "react";
 import { FormProps } from "../../types/form";
 import AuthForm from "./elements/auth-form";
 import FilterForm from "./elements/filter-form";
-import CustomizationForm from "./elements/customization-form";
+// import OptionsForm from "./elements/options-form";
+import ContentForm from "./elements/content-form";
 
 export default function Form({
-  setAuthentication,
   setFilter,
-  setCustomization,
+  setAuthentication,
   setError,
-  showCustomization = false,
+  options,
+  setOptions,
+  setContent,
+  showContent
 }: FormProps) {
   return (
     <>
       <div className="mt-0">
         <AuthForm
-          setAuthentication={setAuthentication}
           setFilter={setFilter}
-          setCustomization={setCustomization}
+          setAuthentication={setAuthentication}
           setError={setError}
         />
       </div>
-
-      {showCustomization ? (
+      {/* {options && (
         <div className="mt-4 sm:mt-4">
-          <CustomizationForm
-            setAuthentication={setAuthentication}
-            setFilter={setFilter}
-            setCustomization={setCustomization}
-            setError={setError}
-          />
+          <OptionsForm options={options} setOptions={setOptions} />
         </div>
-      ) : (
+      )} */}
+      {showContent && (
         <div className="mt-4 sm:mt-4">
-          <FilterForm
-            setAuthentication={setAuthentication}
-            setFilter={setFilter}
-            setCustomization={setCustomization}
-            setError={setError}
-          />
+          <ContentForm setContent={setContent} />
         </div>
       )}
+      <div className="mt-4 sm:mt-4">
+        <FilterForm
+          setFilter={setFilter}
+          setAuthentication={setAuthentication}
+          setError={setError}
+        />
+      </div>
     </>
   );
 }

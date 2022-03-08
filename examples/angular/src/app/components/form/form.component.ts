@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ApiService} from "../../../services/api";
 import {AuthenticationParameters} from "../../../types/authentication";
@@ -12,6 +12,9 @@ import {distinctUntilChanged} from "rxjs";
   styleUrls: ['./form.component.css']
 })
 export class FormComponent implements OnInit {
+  @Output() filterEvent = new EventEmitter<Filter>();
+  @Output() authEvent = new EventEmitter<string>();
+  @Input() options?: string;
 
   authForm = new FormGroup({
     authUrl: new FormControl('', Validators.required)
@@ -29,8 +32,6 @@ export class FormComponent implements OnInit {
 
   requiresNoFrequency = (type: string) => [RVReportTypes.INVOICES, RVReportTypes.BILLS, RVReportTypes.BANK_ACCOUNT, RVReportTypes.CREDIT_SCORE].includes(type as RVReportTypes);
   requiresNoDate = (type: string) => [RVReportTypes.BANK_ACCOUNT, RVReportTypes.CREDIT_SCORE].includes(type as RVReportTypes);
-  @Output() filterEvent = new EventEmitter<Filter>();
-  @Output() authEvent = new EventEmitter<string>();
 
   token: string = '';
 
@@ -40,6 +41,7 @@ export class FormComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
 
   checkValueChanges(): void {
     this.filterForm?.get('businessName')?.valueChanges.pipe(distinctUntilChanged()).subscribe(val => {

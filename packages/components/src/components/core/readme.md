@@ -7,12 +7,12 @@
 
 ## Properties
 
-| Property        | Attribute | Description | Type                                                                                                                                                                                                           | Default     |
-| --------------- | --------- | ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
-| `configuration` | --        |             | `RVConfiguration`                                                                                                                                                                                              | `undefined` |
-| `content`       | --        |             | `RVContent`                                                                                                                                                                                                    | `undefined` |
-| `filter`        | --        |             | `RVBaseFilterBusinessDateFrequencyType \| RVBaseFilterBusinessDateType \| RVBaseFilterBusinessType \| RVBaseFilterConnectionDateFrequencyType \| RVBaseFilterConnectionDateType \| RVBaseFilterConnectionType` | `undefined` |
-| `options`       | --        |             | `RVOptions`                                                                                                                                                                                                    | `undefined` |
+| Property        | Attribute | Description                                                 | Type                                                                                                                                                                                                           | Default     |
+| --------------- | --------- | ----------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| `configuration` | --        | Configuration information like authentication configuration | `RVConfiguration`                                                                                                                                                                                              | `undefined` |
+| `content`       | --        |                                                             | `RVContent`                                                                                                                                                                                                    | `undefined` |
+| `filter`        | --        | Filter information to query the backend APIs                | `RVBaseFilterBusinessDateFrequencyType \| RVBaseFilterBusinessDateType \| RVBaseFilterBusinessType \| RVBaseFilterConnectionDateFrequencyType \| RVBaseFilterConnectionDateType \| RVBaseFilterConnectionType` | `undefined` |
+| `options`       | --        | For whitelabeling styling                                   | `RVOptions`                                                                                                                                                                                                    | `undefined` |
 
 
 ## Dependencies

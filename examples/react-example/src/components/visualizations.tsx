@@ -30,10 +30,10 @@ interface Filter {
 }
 
 interface ChartProps {
-  token: RVConfiguration;
+  configuration: RVConfiguration;
   filter: Filter;
-  options: RVOptions;
-  content: RVContent;
+  options?: RVOptions | undefined;
+  content?: RVContent;
   showCode?: boolean;
   displayValue?: string;
 }
@@ -43,12 +43,18 @@ const formatCodeFilter = (filter: Filter) => {
     [RVReportTypes.BILLS, RVReportTypes.INVOICES].includes(filter.reportType)
   ) {
     if (!isEmpty(filter?.connectionId)) {
-      allParameters = pick(filter, ["startDate", "endDate", "connectionId"]);
+      allParameters = pick(filter, [
+        "startDate",
+        "endDate",
+        "reportType",
+        "connectionId",
+      ]);
     } else {
       allParameters = pick(filter, [
         "startDate",
         "endDate",
         "businessName",
+        "reportType",
         "serviceName",
       ]);
     }
@@ -58,6 +64,7 @@ const formatCodeFilter = (filter: Filter) => {
         "startDate",
         "endDate",
         "reportFrequency",
+        "reportType",
         "connectionId",
       ]);
     } else {
@@ -65,6 +72,7 @@ const formatCodeFilter = (filter: Filter) => {
         "startDate",
         "endDate",
         "reportFrequency",
+        "reportType",
         "businessName",
         "serviceName",
       ]);
@@ -74,7 +82,7 @@ const formatCodeFilter = (filter: Filter) => {
 };
 
 const Code = ({
-  token,
+  configuration,
   filter,
   options,
   content,
@@ -90,7 +98,7 @@ const Code = ({
               displayValue +
               " configuration={" +
               JSON.stringify(
-                { token: token.token.slice(0, 20) + "..." },
+                { token: configuration.token.slice(0, 20) + "..." },
                 null,
                 "\t"
               ) +
@@ -100,7 +108,8 @@ const Code = ({
                 options
                   ? "} options={" + JSON.stringify(options, null, "\t")
                   : ""
-              }${
+              }} ` +
+              `${
                 content
                   ? "} content={" + JSON.stringify(content, null, "\t")
                   : ""
@@ -113,7 +122,7 @@ const Code = ({
 };
 
 const DefaultComponent = ({
-  token,
+  configuration,
   filter,
   options,
   content,
@@ -122,13 +131,12 @@ const DefaultComponent = ({
   return (
     <div>
       <RailzVisualizations
-        configuration={token}
+        configuration={configuration}
         filter={filter as RVFilter}
         options={options}
-        content={content}
       />
       <Code
-        token={token}
+        configuration={configuration}
         filter={filter}
         options={options}
         content={content}
@@ -140,7 +148,7 @@ const DefaultComponent = ({
 };
 
 const Components = ({
-  token,
+  configuration,
   filter,
   options,
   content,
@@ -159,7 +167,7 @@ const Components = ({
         ].map((reportType) => (
           <div className="col-span-1" key={reportType}>
             <DefaultComponent
-              token={token}
+              configuration={configuration}
               filter={{ ...filter, reportType } as Filter}
               options={options}
               content={content}
@@ -177,13 +185,12 @@ const Components = ({
             <b>cashflowStatements</b> and <b>incomeStatements</b>
           </p>
           <RailzStatementsChart
-            configuration={token}
+            configuration={configuration}
             filter={filter as RVFilterFrequency}
             options={options}
-            content={content as RVContent}
           />
           <Code
-            token={token}
+            configuration={configuration}
             filter={filter}
             options={options}
             content={content}
@@ -202,13 +209,12 @@ const Components = ({
             <b>invoices</b>
           </p>
           <RailzTransactionsControl
-            configuration={token}
+            configuration={configuration}
             filter={filter as RVFilterDate}
-            options={options as RVOptions}
-            content={content as RVContent}
+            options={options}
           />
           <Code
-            token={token}
+            configuration={configuration}
             filter={filter}
             options={options}
             content={content}
@@ -219,7 +225,7 @@ const Components = ({
       )}
       {!["balanceSheets", "bills", "all"].includes(filter.reportType) && (
         <DefaultComponent
-          token={token}
+          configuration={configuration}
           filter={filter}
           options={options}
           content={content}
@@ -230,7 +236,7 @@ const Components = ({
   );
 };
 export default function Visualizations({
-  token,
+  configuration,
   filter,
   options,
   content,
@@ -252,7 +258,7 @@ export default function Visualizations({
         </label>
       </div>
       <Components
-        token={token}
+        configuration={configuration}
         filter={filter}
         options={options}
         content={content}

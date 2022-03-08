@@ -2,6 +2,18 @@
   "type": "module",
   "name": "@railzai/railz-visualizations-angular",
   "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/railz-ai/railz-visualizations"
+  },
+  "author": "Railz.ai",
+  "homepage": "https://docs.railz.ai/reference/visualization-sdk",
+  "publishConfig": {
+    "access": "public"
+  },
+  "bugs": {
+    "url": "https://github.com/railz-ai/railz-visualizations/issues"
+  },
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
