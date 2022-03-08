@@ -5,7 +5,7 @@ import { isEmpty, isEqual } from 'lodash-es';
 
 import { isStatements, isTransactions } from '../../helpers/utils';
 
-import { RVConfiguration, RVFilter, RVFilterDate, RVFilterFrequency, RVOptions } from '../../types';
+import { RVConfiguration, RVFilter, RVFilterDate, RVOptions, RVStatementsFilter } from '../../types';
 import { getConfiguration, getFilter } from '../../helpers/chart.utils';
 import { ConfigurationInstance } from '../../services/configuration';
 
@@ -85,7 +85,7 @@ export class Core {
       return (
         <railz-statements-chart
           configuration={this.configuration}
-          filter={this.filter as RVFilterFrequency}
+          filter={this.filter as RVStatementsFilter}
           options={this.options}
         />
       );
