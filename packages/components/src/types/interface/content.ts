@@ -8,7 +8,6 @@ export interface RVContentLabel {
 }
 
 export interface RVContent {
-  title?: string;
   date?: RVContentDate;
   label?: RVContentLabel;
 }

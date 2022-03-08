@@ -121,8 +121,10 @@ export const formatCashflowData = ({
   summary,
   reportFrequency,
   chart,
+  quarter,
+  month,
 }: RVChartStatementBaseParameter): RVFormattedStatementData => {
-  const categories = formatDate(summary, reportFrequency);
+  const categories = formatDate(summary, reportFrequency, quarter, month);
   const financingActivities = formatSeries(
     summary,
     Translations.FINANCING_ACTIVITIES,
@@ -170,8 +172,10 @@ export const formatBalanceSheetData = ({
   summary,
   reportFrequency,
   chart,
+  quarter,
+  month,
 }: RVChartStatementBaseParameter): RVFormattedStatementData => {
-  const categories = formatDate(summary, reportFrequency);
+  const categories = formatDate(summary, reportFrequency, quarter, month);
   const currentAssets = formatSeries(summary, Translations.CURRENT_ASSETS, 'currentAssets');
   const currentLiabilities = formatSeries(
     summary,

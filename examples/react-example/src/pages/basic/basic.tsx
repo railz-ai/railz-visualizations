@@ -25,14 +25,7 @@ export default function Basic() {
   };
 
   const submitFilter = (filter: RVFilter) => {
-    setFilter({
-      ...filter,
-      businessName: "QuickTestFreshbooks",
-      serviceName: "freshbooks",
-      startDate: "01-01-2021",
-      // endDate: "01-01-2022",
-      reportFrequency: "month",
-    });
+    setFilter(filter);
     setError("");
     if (!token) {
       setError("Token required before filter can be triggered.");
@@ -64,7 +57,7 @@ export default function Basic() {
                 configuration={{
                   token,
                   debug: true,
-                  environment: "qa2"
+                  // environment: "qa2",
                 }}
                 filter={filter as any}
               />

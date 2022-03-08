@@ -49,11 +49,9 @@ export const getConfiguration = (
       }
     } catch (error) {
       errorLog(Translations.RV_ERROR_PARSING_CONFIGURATION, error);
-      throw new Error(Translations.ERROR_500_TITLE);
     }
   } else {
     errorLog(Translations.RV_CONFIGURATION_NOT_PRESENT);
-    throw new Error(Translations.ERROR_500_TITLE);
   }
   return formattedConfiguration;
 };
@@ -234,10 +232,7 @@ export const getOptions = (options: RVOptions | string, filter?: RVAllFilter): R
  * @param content: Content text/info
  * @param filter: To retrieve reportType
  */
-export const getContent = (
-  content: RVContent | string,
-  filter?: RVAllFilter,
-): RVContent | never => {
+export const getContent = (content: RVContent | string): RVContent | never => {
   let formattedContent: RVContent;
   if (content) {
     try {
@@ -250,12 +245,6 @@ export const getContent = (
       errorLog(Translations.ERROR_PARSING_CONTENT + ' ' + error.message);
       throw new Error(Translations.ERROR_500_TITLE);
     }
-  }
-  if (filter) {
-    formattedContent = {
-      ...formattedContent,
-      title: formattedContent.title || getTitleByReportType(filter.reportType),
-    };
   }
   return formattedContent;
 };

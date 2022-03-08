@@ -11,7 +11,7 @@ export default function Customization() {
   const [token, setToken] = useState("");
   const [filter, setFilter] = useState({});
   const [options, setOptions] = useState(INITIAL_OPTIONS);
-  const [content, setContent] = useState();
+  const [content, setContent] = useState<any>();
   const [error, setError] = useState("");
 
   const submitAuthentication = async (
@@ -28,14 +28,7 @@ export default function Customization() {
   };
 
   const submitFilter = (filter: RVFilter) => {
-    setFilter({
-      ...filter,
-      businessName: "QuickTestFreshbooks",
-      serviceName: "freshbooks",
-      startDate: "01-01-2021",
-      endDate: "01-01-2022",
-      reportFrequency: "month",
-    });
+    setFilter(filter);
     setError("");
     if (!token) {
       setError("Token required before filter can be triggered.");
@@ -47,7 +40,15 @@ export default function Customization() {
   };
 
   const submitContent = (content: any) => {
-    setContent(content);
+    setContent({
+      date: {
+        month: content.dateMonth,
+        quarter: content.dateQuarter,
+      },
+      label: {
+        date: content.labelDate,
+      },
+    });
     setError("");
   };
 
@@ -80,7 +81,7 @@ export default function Customization() {
                 configuration={{
                   token,
                   debug: true,
-                  environment: "qa2"
+                  // environment: "qa2",
                 }}
                 filter={filter as any}
                 options={options}

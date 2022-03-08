@@ -14,7 +14,7 @@ import {
   RVFormattedTransactionResponse,
   RVOptions,
 } from '../../types';
-import { getConfiguration, getContent, getFilter, getOptions } from '../../helpers/chart.utils';
+import { getConfiguration, getFilter, getOptions } from '../../helpers/chart.utils';
 
 import { ConfigurationInstance } from '../../services/configuration';
 
@@ -37,17 +37,16 @@ export class TransactionsControl {
   /**
    * For whitelabeling styling
    */
-  @Prop() readonly options: RVOptions;
+  @Prop() readonly options?: RVOptions;
   /**
    * Content for text/info
    */
-  @Prop() readonly content: RVContent;
+  @Prop() readonly content?: RVContent;
 
   @State() private loading = '';
   @State() private _configuration: RVConfiguration;
   @State() private _filter: RVFilterDate;
   @State() private _options: RVOptions;
-  @State() private _content: RVContent;
   @State() private _dataFormatted: RVBillInvoiceSummary;
   @State() private error: string;
   @State() private errorStatusCode: number;
@@ -64,7 +63,6 @@ export class TransactionsControl {
     configuration: RVConfiguration,
     filter: RVFilterDate,
     options: RVOptions,
-    content: RVContent,
     triggerRequest = true,
   ): Promise<void> => {
     this._configuration = getConfiguration(configuration);
@@ -72,8 +70,9 @@ export class TransactionsControl {
       ConfigurationInstance.configuration = this._configuration;
       try {
         this._filter = getFilter(filter) as RVFilterDate;
-        this._options = getOptions(options, filter);
-        this._content = getContent(content, filter);
+        if (options) {
+          this._options = getOptions(options, filter);
+        }
         if (triggerRequest) {
           await this.requestReportData();
         }
@@ -86,41 +85,35 @@ export class TransactionsControl {
   };
 
   @Watch('configuration')
-  async watchConfiguration(newValue: RVConfiguration, oldValue: RVConfiguration): Promise<void> {
+  watchConfiguration(newValue: RVConfiguration, oldValue: RVConfiguration): void {
     if (newValue && oldValue && !isEqual(oldValue, newValue)) {
-      this.validateParams(newValue, this.filter, this.options, this.content);
+      this.validateParams(newValue, this.filter, this.options);
     }
   }
 
   @Watch('filter')
-  async watchFilter(newValue: RVFilterDate, oldValue: RVFilterDate): Promise<void> {
+  watchFilter(newValue: RVFilterDate, oldValue: RVFilterDate): void {
     if (newValue && oldValue && !isEqual(oldValue, newValue)) {
-      this.validateParams(this.configuration, newValue, this.options, this.content);
+      this.validateParams(this.configuration, newValue, this.options);
     }
   }
 
   @Watch('options')
-  async watchOptions(newValue: RVOptions, oldValue: RVOptions): Promise<void> {
+  watchOptions(newValue: RVOptions, oldValue: RVOptions): void {
     if (newValue && oldValue && !isEqual(oldValue, newValue)) {
-      this.validateParams(this.configuration, this.filter, newValue, this.content);
+      this.validateParams(this.configuration, this.filter, newValue);
     }
   }
 
   @Watch('content')
-  async watchContent(newValue: RVContent, oldValue: RVContent): Promise<void> {
+  watchContent(newValue: RVContent, oldValue: RVContent): void {
     if (newValue && oldValue && !isEqual(oldValue, newValue)) {
-      this.validateParams(this.configuration, this.filter, this.options, newValue);
+      this.validateParams(this.configuration, this.filter, this.options);
     }
   }
 
   private propsUpdated = async (triggerRequest = true): Promise<void> => {
-    await this.validateParams(
-      this.configuration,
-      this.filter,
-      this.options,
-      this.content,
-      triggerRequest,
-    );
+    await this.validateParams(this.configuration, this.filter, this.options, triggerRequest);
   };
 
   private requestReportData = async (): Promise<void> => {
@@ -179,9 +172,9 @@ export class TransactionsControl {
   render(): HTMLElement {
     return (
       <div class="railz-container" style={this._options?.container?.style}>
-        {this._content?.title ? (
+        {this._options?.title ? (
           <p class="railz-title" style={this._options?.title?.style}>
-            {this._content?.title || ''}
+            {this._options?.title?.text || ''}
           </p>
         ) : null}
         {this.renderMain()}

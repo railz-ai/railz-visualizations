@@ -134,6 +134,7 @@ const DefaultComponent = ({
         configuration={configuration}
         filter={filter as RVFilter}
         options={options}
+        content={content}
       />
       <Code
         configuration={configuration}
@@ -188,6 +189,7 @@ const Components = ({
             configuration={configuration}
             filter={filter as RVFilterFrequency}
             options={options}
+            content={content}
           />
           <Code
             configuration={configuration}
@@ -212,6 +214,7 @@ const Components = ({
             configuration={configuration}
             filter={filter as RVFilterDate}
             options={options}
+            content={content}
           />
           <Code
             configuration={configuration}

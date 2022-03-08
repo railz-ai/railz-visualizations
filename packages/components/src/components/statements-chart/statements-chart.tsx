@@ -12,7 +12,6 @@ import Translations from '../../config/translations/en.json';
 import {
   RVConfiguration,
   RVFilterFrequency,
-  RVAllFilter,
   RVFormattedStatementData,
   RVFormattedStatementResponse,
   RVOptions,
@@ -52,8 +51,11 @@ export class StatementsChart {
   /**
    * For whitelabeling styling
    */
-  @Prop() readonly options: RVOptions;
-  @Prop() readonly content: RVContent;
+  @Prop() readonly options?: RVOptions;
+  /**
+   * Content text/info
+   */
+  @Prop() readonly content?: RVContent;
 
   @State() private loading = '';
   @State() private _configuration: RVConfiguration;
@@ -87,8 +89,12 @@ export class StatementsChart {
       ConfigurationInstance.configuration = this._configuration;
       try {
         this._filter = getDateFilter(filter) as RVFilterFrequency;
-        this._options = getOptions(options, filter);
-        this._content = getContent(content, filter as RVAllFilter);
+        if (options) {
+          this._options = getOptions(options, filter);
+        }
+        if (content) {
+          this._content = getContent(content);
+        }
         if (triggerRequest) {
           await this.requestReportData();
         }
@@ -107,28 +113,28 @@ export class StatementsChart {
     }
   }
   @Watch('configuration')
-  async watchConfiguration(newValue: RVConfiguration, oldValue: RVConfiguration): Promise<void> {
+  watchConfiguration(newValue: RVConfiguration, oldValue: RVConfiguration): void {
     if (newValue && oldValue && !isEqual(oldValue, newValue)) {
       this.validateParams(newValue, this.filter, this.options, this.content);
     }
   }
 
   @Watch('filter')
-  async watchFilter(newValue: RVFilterFrequency, oldValue: RVFilterFrequency): Promise<void> {
+  watchFilter(newValue: RVFilterFrequency, oldValue: RVFilterFrequency): void {
     if (newValue && oldValue && !isEqual(oldValue, newValue)) {
       this.validateParams(this.configuration, newValue, this.options, this.content);
     }
   }
 
   @Watch('options')
-  async watchOptions(newValue: RVOptions, oldValue: RVOptions): Promise<void> {
+  watchOptions(newValue: RVOptions, oldValue: RVOptions): void {
     if (newValue && oldValue && !isEqual(oldValue, newValue)) {
       this.validateParams(this.configuration, this.filter, newValue, this.content);
     }
   }
 
   @Watch('content')
-  async watchContent(newValue: RVContent, oldValue: RVContent): Promise<void> {
+  watchContent(newValue: RVContent, oldValue: RVContent): void {
     if (newValue && oldValue && !isEqual(oldValue, newValue)) {
       this.validateParams(this.configuration, this.filter, this.options, newValue);
     }
@@ -226,9 +232,9 @@ export class StatementsChart {
   render(): HTMLElement {
     return (
       <div class="railz-container" style={this._options?.container?.style}>
-        {this._content?.title ? (
+        {this._options?.title ? (
           <p class="railz-title" style={this._options?.title?.style}>
-            {this._content?.title || ''}
+            {this._options?.title?.text || ''}
           </p>
         ) : null}
         {this.renderMain()}

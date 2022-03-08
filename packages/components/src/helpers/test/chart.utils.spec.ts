@@ -1,4 +1,4 @@
-import {getConfiguration} from "../chart.utils";
+import { getConfiguration } from '../chart.utils';
 
 // TODO: complete tests
 describe('Chart Utils Helper', () => {
@@ -32,24 +32,24 @@ describe('Chart Utils Helper', () => {
         test('returns undefined due to stringified object passed with empty configuration', async () => {
           expect(getConfiguration('{"configuration": ""}')).toBeUndefined();
         });
-      })
+      });
       describe('success path', () => {
         test('returns formatted data due to the presence of configuration', async () => {
-          expect(getConfiguration('{"token": "er2"}')).toStrictEqual({"token": "er2"});
+          expect(getConfiguration('{"token": "er2"}')).toStrictEqual({ token: 'er2' });
         });
-      })
+      });
     });
     describe('getConfiguration using object', () => {
       describe('failure path', () => {
         test('returns undefined due to empty configuration', async () => {
-          expect(getConfiguration({"token": ""})).toBeUndefined();
+          expect(getConfiguration({ token: '' })).toBeUndefined();
         });
-      })
+      });
       describe('success path', () => {
         test('returns formatted data due to the presence of configuration', async () => {
-          expect(getConfiguration({"token": "er2"})).toStrictEqual({"token": "er2"});
+          expect(getConfiguration({ token: 'er2' })).toStrictEqual({ token: 'er2' });
         });
-      })
+      });
     });
   });
 });

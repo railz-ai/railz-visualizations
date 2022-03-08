@@ -1,4 +1,4 @@
-import {RVFrequencyTypes, RVServiceProviders} from '../enum';
+import { RVFrequencyTypes, RVServiceProviders } from '../enum';
 import { RVReportFrequency } from '../enum/date';
 import { RVNoDateTypes, RVNoFrequencyTypes } from '../enum/report-type';
 
@@ -28,12 +28,12 @@ export interface RVBaseFilterConnection {
 export interface RVBaseFilterBusinessDate extends RVBaseFilterBusiness {
   /**
    * startDate: Date from which the data begins
-   * format: **YYYY-MM-DD**
+   * format: **yyyy-MM-dd**
    */
   startDate: string; // required based on report type,
   /**
    * endDate: Date which the data ends
-   * format: **YYYY-MM-DD**
+   * format: **yyyy-MM-dd**
    */
   endDate: string; // required based on report type,
 }
@@ -41,12 +41,12 @@ export interface RVBaseFilterBusinessDate extends RVBaseFilterBusiness {
 export interface RVBaseFilterConnectionDate extends RVBaseFilterConnection {
   /**
    * startDate: Date from which the data begins
-   * format: **YYYY-MM-DD**
+   * format: **yyyy-MM-dd**
    */
   startDate: string;
   /**
    * endDate: Date which the data ends
-   * format: **YYYY-MM-DD**
+   * format: **yyyy-MM-dd**
    */
   endDate: string;
 }
@@ -79,7 +79,8 @@ export interface RVBaseFilterBusinessType extends RVBaseFilterConnection {
   reportType: RVNoDateTypes;
 }
 
-export interface RVBaseFilterConnectionDateFrequencyType extends RVBaseFilterConnectionDateFrequency {
+export interface RVBaseFilterConnectionDateFrequencyType
+  extends RVBaseFilterConnectionDateFrequency {
   /**
    * reportType: Type of report, cashflowStatements, balanceSheets, incomeStatements
    */
@@ -109,9 +110,13 @@ export interface RVBaseFilterBusinessDateType extends RVBaseFilterConnectionDate
 
 export type RVBaseFilter = RVBaseFilterBusiness | RVBaseFilterConnection;
 export type RVBaseFilterDate = RVBaseFilterConnectionDate | RVBaseFilterBusinessDate;
-export type RVBaseFilterDateFrequency = RVBaseFilterConnectionDateFrequency | RVBaseFilterBusinessDateFrequency;
+export type RVBaseFilterDateFrequency =
+  | RVBaseFilterConnectionDateFrequency
+  | RVBaseFilterBusinessDateFrequency;
 export type RVBaseAllFilter = RVBaseFilter | RVBaseFilterDate | RVBaseFilterDateFrequency;
-export type RVFilterFrequency = RVBaseFilterConnectionDateFrequencyType | RVBaseFilterBusinessDateFrequencyType;
+export type RVFilterFrequency =
+  | RVBaseFilterConnectionDateFrequencyType
+  | RVBaseFilterBusinessDateFrequencyType;
 export type RVFilterDate = RVBaseFilterConnectionDateType | RVBaseFilterBusinessDateType;
 export type RVFilterType = RVBaseFilterConnectionType | RVBaseFilterBusinessType;
 export type RVFilter = RVFilterFrequency | RVFilterDate | RVFilterType;

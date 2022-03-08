@@ -93,7 +93,7 @@ export default function FilterForm({ setFilter }: FormProps) {
                   id="business-name"
                   onChange={handleFilterChange}
                   value={formFilter.businessName}
-                  //   required={!formFilter.connectionId}
+                  required={!formFilter.connectionId}
                   disabled={!!formFilter.connectionId}
                   className="mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                   placeholder="BIZ-1233"
@@ -110,9 +110,9 @@ export default function FilterForm({ setFilter }: FormProps) {
                   id="service-name"
                   name="serviceName"
                   value={formFilter.serviceName}
-                //   required={
-                //     !formFilter.connectionId || !!formFilter.businessName
-                //   }
+                  required={
+                    !formFilter.connectionId || !!formFilter.businessName
+                  }
                   disabled={!!formFilter.connectionId}
                   onChange={handleFilterChange}
                   className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm"
@@ -137,7 +137,7 @@ export default function FilterForm({ setFilter }: FormProps) {
                   id="connection-id"
                   onChange={handleFilterChange}
                   value={formFilter.connectionId}
-                  //   required={!formFilter.businessName}
+                  required={!formFilter.businessName}
                   disabled={!!formFilter.businessName}
                   className="mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                   placeholder="CON-12344"
@@ -154,7 +154,7 @@ export default function FilterForm({ setFilter }: FormProps) {
                   id="report-type"
                   name="reportType"
                   onChange={handleFilterChange}
-                  //   required
+                  required
                   value={formFilter.reportType}
                   className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm"
                 >
@@ -181,7 +181,7 @@ export default function FilterForm({ setFilter }: FormProps) {
                   id="start-date"
                   onChange={handleFilterChange}
                   value={formFilter.startDate}
-                  //   required={!requiresNoDate(formFilter.reportType)}
+                  required={!requiresNoDate(formFilter.reportType)}
                   disabled={requiresNoDate(formFilter.reportType)}
                   className="mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                   placeholder="id_32"
@@ -200,7 +200,7 @@ export default function FilterForm({ setFilter }: FormProps) {
                   id="end-date"
                   onChange={handleFilterChange}
                   value={formFilter.endDate}
-                  //   required={!requiresNoDate(formFilter.reportType)}
+                  required={!requiresNoDate(formFilter.reportType)}
                   disabled={requiresNoDate(formFilter.reportType)}
                   className="mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                   placeholder="id_ww"
@@ -218,7 +218,7 @@ export default function FilterForm({ setFilter }: FormProps) {
                   name="reportFrequency"
                   onChange={handleFilterChange}
                   value={formFilter.reportFrequency}
-                  //   required={!requiresNoFrequency(formFilter.reportType)}
+                  required={!requiresNoFrequency(formFilter.reportType)}
                   disabled={requiresNoFrequency(formFilter.reportType)}
                   className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm"
                 >

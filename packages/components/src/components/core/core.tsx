@@ -32,8 +32,11 @@ export class Core {
   /**
    * For whitelabeling styling
    */
-  @Prop() readonly options: RVOptions;
-  @Prop() readonly content: RVContent;
+  @Prop() readonly options?: RVOptions;
+  /**
+   * Content text/info
+   */
+  @Prop() readonly content?: RVContent;
 
   @State() private _filter: RVFilter;
   @State() private _configuration: RVConfiguration;
@@ -110,6 +113,7 @@ export class Core {
           configuration={this.configuration}
           filter={this.filter as RVFilterFrequency}
           options={this.options}
+          content={this.content}
         />
       );
     }
@@ -119,6 +123,7 @@ export class Core {
           configuration={this.configuration}
           filter={this.filter as RVFilterDate}
           options={this.options}
+          content={this.content}
         />
       );
     }

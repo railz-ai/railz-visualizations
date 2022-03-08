@@ -66,7 +66,10 @@ export namespace Components {
           * Configuration information like authentication configuration
          */
         "configuration": RVConfiguration;
-        "content": RVContent;
+        /**
+          * Content text/info
+         */
+        "content"?: RVContent;
         /**
           * Filter information to query the backend APIs
          */
@@ -74,7 +77,7 @@ export namespace Components {
         /**
           * For whitelabeling styling
          */
-        "options": RVOptions;
+        "options"?: RVOptions;
     }
     interface RailzTransactionsControl {
         /**
@@ -84,7 +87,7 @@ export namespace Components {
         /**
           * Content for text/info
          */
-        "content": RVContent;
+        "content"?: RVContent;
         /**
           * Filter information to query the backend APIs
          */
@@ -92,14 +95,17 @@ export namespace Components {
         /**
           * For whitelabeling styling
          */
-        "options": RVOptions;
+        "options"?: RVOptions;
     }
     interface RailzVisualizations {
         /**
           * Configuration information like authentication configuration
          */
         "configuration": RVConfiguration;
-        "content": RVContent;
+        /**
+          * Content text/info
+         */
+        "content"?: RVContent;
         /**
           * Filter information to query the backend APIs
          */
@@ -107,7 +113,7 @@ export namespace Components {
         /**
           * For whitelabeling styling
          */
-        "options": RVOptions;
+        "options"?: RVOptions;
     }
 }
 declare global {
@@ -216,6 +222,9 @@ declare namespace LocalJSX {
           * Configuration information like authentication configuration
          */
         "configuration": RVConfiguration;
+        /**
+          * Content text/info
+         */
         "content"?: RVContent;
         /**
           * Filter information to query the backend APIs
@@ -249,6 +258,9 @@ declare namespace LocalJSX {
           * Configuration information like authentication configuration
          */
         "configuration"?: RVConfiguration;
+        /**
+          * Content text/info
+         */
         "content"?: RVContent;
         /**
           * Filter information to query the backend APIs

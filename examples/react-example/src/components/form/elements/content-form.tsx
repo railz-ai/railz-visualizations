@@ -3,13 +3,12 @@ import { ContentFormProps } from "../../../types/form";
 
 export default function ContentForm({ setContent }: ContentFormProps) {
   const [formContent, setFormContent] = useState<any>({
-    title: "",
     dateMonth: "MMM yyyy",
     dateQuarter: "Q",
     labelDate: "As of",
   });
 
-  const submitCustomization = (event: any) => {
+  const submitContent = (event: any) => {
     event.preventDefault();
     setContent && setContent(formContent);
   };
@@ -26,36 +25,19 @@ export default function ContentForm({ setContent }: ContentFormProps) {
       <div className="md:col-span-1">
         <div className="text-left">
           <h2 className="text-lg font-medium leading-6 text-gray-900">
-            Customization
+            Content
           </h2>
           <p className="mt-1 text-sm text-gray-600">
-            Customize here params you can send to the SDK.
+            Customize content for text/info that is send to the SDK.
           </p>
         </div>
       </div>
       <div className="mt-2 md:mt-2 md:col-span-2 text-left">
-        <form onSubmit={submitCustomization} method="POST">
+        <form onSubmit={submitContent} method="POST">
           <div className="overflow-hidden sm:rounded-md bg-white">
             <div className="grid grid-cols-6 gap-6 items-end">
               <div className="col-span-6 lg:col-span-6">
                 <hr />
-              </div>
-              <div className="col-span-6 lg:col-span-3">
-                <label
-                  htmlFor="title"
-                  className="block text-sm font-medium text-gray-700"
-                >
-                  Title
-                </label>
-                <input
-                  id="title"
-                  type="text"
-                  name="title"
-                  onChange={handleContentChange}
-                  value={formContent.title}
-                  className="mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                  placeholder="Title"
-                />
               </div>
               <div className="col-span-6 lg:col-span-3">
                 <label
