@@ -17,6 +17,8 @@ import {
   RVFormattedStatementData,
   RVFormattedStatementResponse,
   RVOptions,
+  RVBaseFilterBusinessDateFrequencyType,
+  RVAccountingProviders,
 } from "../../types";
 
 import { RVFinancialStatementsTypes } from '../../types/enum/report-type';
@@ -52,6 +54,20 @@ export class StatementsChart {
   @State() private containerRef?: HTMLDivElement;
 
   /**
+   * Checks whether we need to add reconstruct: true to the params or not
+   * @param {RVStatementsFilter} filter - Current filter
+   * @returns {boolean}
+   */
+   private shouldAddReconstructParam = (
+    filter: RVBaseFilterBusinessDateFrequencyType
+  ): boolean => {
+    return ![
+      RVAccountingProviders.ORACLE_NETSUITE,
+      RVAccountingProviders.SAGE_INTACCT,
+    ].includes(filter.serviceName as RVAccountingProviders);
+  };
+
+  /**
    * Validates if configuration was passed correctly before setting filter
    * @param configuration - Config for authentication
    * @param filter - filter to decide chart type to show
@@ -65,6 +81,15 @@ export class StatementsChart {
     this._configuration = getConfiguration(configuration);
     if (this._configuration) {
       this._filter = getDateFilter(filter) as RVStatementsFilter;
+
+      if (
+        this.shouldAddReconstructParam(
+          this._filter as RVBaseFilterBusinessDateFrequencyType
+        )
+      ) {
+        this._filter = { ...this._filter, reconstruct: true };
+      }
+
       this._options = getOptions(this.options, this._filter);
       if (triggerRequest) {
         await this.requestReportData();
