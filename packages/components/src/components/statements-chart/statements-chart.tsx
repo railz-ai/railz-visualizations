@@ -15,7 +15,6 @@ import {
   RVAccountingProviders,
   RVBaseFilterBusinessDateFrequencyType,
   RVConfiguration,
-  RVFilterFrequency,
   RVFormattedStatementData,
   RVFormattedStatementResponse,
   RVOptions,
@@ -75,15 +74,12 @@ export class StatementsChart {
    * @param {RVStatementsFilter} filter - Current filter
    * @returns {boolean}
    */
-     private shouldAddReconstructParam = (
-      filter: RVBaseFilterBusinessDateFrequencyType
-    ): boolean => {
-      return ![
-        RVAccountingProviders.ORACLE_NETSUITE,
-        RVAccountingProviders.SAGE_INTACCT,
-      ].includes(filter.serviceName as RVAccountingProviders);
-    };
-    
+  private shouldAddReconstructParam = (filter: RVBaseFilterBusinessDateFrequencyType): boolean => {
+    return ![RVAccountingProviders.ORACLE_NETSUITE, RVAccountingProviders.SAGE_INTACCT].includes(
+      filter.serviceName as RVAccountingProviders,
+    );
+  };
+
   /**
    * Validates if configuration was passed correctly before setting filter
    * @param configuration - Config for authentication
@@ -102,9 +98,9 @@ export class StatementsChart {
         this._filter = getDateFilter(filter) as RVStatementsFilter;
 
         if (this.shouldAddReconstructParam(this._filter as RVBaseFilterBusinessDateFrequencyType)) {
-          this._filter = {...this._filter, reconstruct: true}
+          this._filter = { ...this._filter, reconstruct: true };
         }
-            
+
         this._options = getOptions(this.options, this._filter);
         if (triggerRequest) {
           await this.requestReportData();

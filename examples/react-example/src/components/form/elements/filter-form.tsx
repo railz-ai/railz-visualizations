@@ -11,11 +11,12 @@ import {FormProps} from "../../../types/form";
 const arrayServiceProviders = [...Object.values(RVSandboxProviders), ...Object.values(RVBankingProviders), ...Object.values(RVAccountingProviders)];
 const arrayAllReportTypes = Object.values(RVReportTypes);
 const arrayReportFrequency = Object.values(RVReportFrequency);
+const arrayTrueFalse = ['true','false'];
 const requiresNoFrequency = (type: string) => [RVReportTypes.INVOICES, RVReportTypes.BILLS, RVReportTypes.BANK_ACCOUNT, RVReportTypes.CREDIT_SCORE].includes(type as RVReportTypes);
 const requiresNoDate = (type: string) => [RVReportTypes.BANK_ACCOUNT, RVReportTypes.CREDIT_SCORE].includes(type as RVReportTypes);
 
 export default function FilterForm({setFilter}: FormProps) {
-    const [formFilter, setFormFilter] = useState({businessName: '', serviceName: arrayServiceProviders[0], connectionId: '', reportType: arrayAllReportTypes[0], reportFrequency: arrayReportFrequency[0], startDate: '', endDate: ''});
+    const [formFilter, setFormFilter] = useState({businessName: '', serviceName: arrayServiceProviders[0], connectionId: '', reportType: arrayAllReportTypes[0], reportFrequency: arrayReportFrequency[0], startDate: '', endDate: '', reconstruct: 'true'});
 
     const submitFilter = (event: any) => {
         event.preventDefault();
@@ -121,6 +122,17 @@ export default function FilterForm({setFilter}: FormProps) {
                                         disabled={requiresNoFrequency(formFilter.reportType)}
                                         className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm">
                                     { arrayReportFrequency.map((freq) => <option key={freq} value={freq}>{freq}</option>)}
+                                </select>
+                            </div>
+                            <div className="col-span-6 lg:col-span-3">
+                                <label htmlFor="reconstruct"
+                                       className="block text-sm font-medium text-gray-700">Reconstruct</label>
+                                <select id="reconstruct" name="reconstruct"
+                                        onChange={handleFilterChange}
+                                        value={formFilter.reconstruct}
+                                        required
+                                        className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm">
+                                    { arrayTrueFalse.map((boolValue) => <option key={boolValue} value={boolValue}>{boolValue}</option>)}
                                 </select>
                             </div>
 

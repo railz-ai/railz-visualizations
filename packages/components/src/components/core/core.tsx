@@ -5,7 +5,13 @@ import { isEmpty, isEqual } from 'lodash-es';
 
 import { isStatements, isTransactions } from '../../helpers/utils';
 
-import { RVConfiguration, RVFilter, RVFilterDate, RVOptions, RVStatementsFilter } from '../../types';
+import {
+  RVConfiguration,
+  RVFilter,
+  RVFilterDate,
+  RVOptions,
+  RVStatementsFilter,
+} from '../../types';
 import { getConfiguration, getFilter } from '../../helpers/chart.utils';
 import { ConfigurationInstance } from '../../services/configuration';
 

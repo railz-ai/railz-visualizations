@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Header from "../../components/header";
 import Form from "../../components/form/form";
 import Visualizations from "../../components/visualizations";
-import { RVFilter } from "@railzai/railz-visualizations";
 import { AuthenticationParameters } from "../../types/authentication";
 import { isEmpty } from "lodash";
 import { INITIAL_OPTIONS } from "../../types/constants";
@@ -26,8 +25,8 @@ export default function Customization() {
     setToken(result.access_token);
   };
 
-  const submitFilter = (filter: RVFilter) => {
-    setFilter(filter);
+  const submitFilter = (filter: any) => {
+    setFilter({ ...filter, reconstruct: filter.reconstruct === "true" });
     setError("");
     if (!token) {
       setError("Token required before filter can be triggered.");
@@ -65,7 +64,7 @@ export default function Customization() {
                 configuration={{
                   token,
                   debug: true,
-                  // environment: "qa2"
+                  // environment: "qa2",
                 }}
                 filter={filter as any}
                 options={options}

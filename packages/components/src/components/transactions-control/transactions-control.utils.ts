@@ -10,16 +10,27 @@ import Translations from '../../config/translations/en.json';
 /**
  * Make API call based on expected parameters for invoices and bills data type
  */
-export const getTransactionsData = async ({ filter }: RVReportRequestDateParameter): Promise<RVFormattedTransactionResponse> => {
+export const getTransactionsData = async ({
+  filter,
+}: RVReportRequestDateParameter): Promise<RVFormattedTransactionResponse> => {
   let reportData = {};
   try {
     const startDate = format(parseISO(filter.startDate), 'yyyy-MM-dd');
     const endDate = format(parseISO(filter.endDate), 'yyyy-MM-dd');
     let allParameters;
     if ('connectionId' in filter && filter?.connectionId) {
-      allParameters = pick({ ...filter, startDate, endDate }, ['startDate', 'endDate', 'connectionId']);
+      allParameters = pick({ ...filter, startDate, endDate }, [
+        'startDate',
+        'endDate',
+        'connectionId',
+      ]);
     } else {
-      allParameters = pick({ ...filter, startDate, endDate }, ['startDate', 'endDate', 'businessName', 'serviceName']);
+      allParameters = pick({ ...filter, startDate, endDate }, [
+        'startDate',
+        'endDate',
+        'businessName',
+        'serviceName',
+      ]);
     }
     reportData = await RequestServiceInstance.getReportData({
       reportType: filter.reportType,
