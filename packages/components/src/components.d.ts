@@ -5,7 +5,7 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
-import { RVConfiguration, RVFilter, RVFilterDate, RVFilterFrequency, RVOptions } from "./types";
+import { RVConfiguration, RVFilter, RVFilterDate, RVOptions, RVStatementsFilter } from "./types";
 export namespace Components {
     interface RailzErrorImage {
         "statusCode": number;
@@ -21,7 +21,7 @@ export namespace Components {
     }
     interface RailzStatementsChart {
         "configuration": RVConfiguration;
-        "filter": RVFilterFrequency;
+        "filter": RVStatementsFilter;
         "options": RVOptions;
     }
     interface RailzTransactionsControl {
@@ -96,7 +96,7 @@ declare namespace LocalJSX {
     }
     interface RailzStatementsChart {
         "configuration": RVConfiguration;
-        "filter": RVFilterFrequency;
+        "filter": RVStatementsFilter;
         "options"?: RVOptions;
     }
     interface RailzTransactionsControl {
