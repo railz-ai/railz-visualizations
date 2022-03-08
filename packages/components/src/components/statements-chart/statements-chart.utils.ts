@@ -242,13 +242,13 @@ export const getReportData = async ({
         ...filter,
         startDate,
         endDate
-      }, ['startDate', 'endDate', 'reportFrequency', 'connectionId']);
+      }, ['startDate', 'endDate', 'reportFrequency', 'connectionId', 'reconstruct']);
     } else {
       allParameters = pick({
         ...filter,
         startDate,
         endDate
-      }, ['startDate', 'endDate', 'reportFrequency', 'businessName', 'serviceName']);
+      }, ['startDate', 'endDate', 'reportFrequency', 'businessName', 'serviceName', 'reconstruct']);
     }
     reportData = await RequestServiceInstance.getReportData({
       reportType: filter.reportType,

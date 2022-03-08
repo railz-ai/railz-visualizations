@@ -117,3 +117,4 @@ export type RVFilterType = RVBaseFilterConnectionType | RVBaseFilterBusinessType
 export type RVFilter = RVFilterFrequency | RVFilterDate | RVFilterType;
 export type RVDateFilters = RVFilterDate | RVFilterFrequency;
 export type RVAllFilter = RVFilterDate | RVFilterFrequency;
+export type RVStatementsFilter = RVFilterFrequency & { reconstruct: boolean };
