@@ -3,11 +3,13 @@ import { isNil, pick } from 'lodash-es';
 import { format, parseISO } from 'date-fns';
 
 import Translations from '../../config/translations/en.json';
-import { formatDate, formatSeries } from '../../helpers/utils';
+import {formatDate, formatSeries, isStatements} from '../../helpers/utils';
 import {
   RAILZ_BALANCE_SHEET_COLORS,
   RAILZ_CASHFLOW_COLORS,
   RAILZ_INCOME_STATEMENT_COLORS,
+  RVAccountingProviders,
+  RVBaseFilterBusinessDateFrequencyType,
   RVChartOptionsParameter,
   RVChartStatementBaseParameter,
   RVChartStatementParameter,
@@ -310,6 +312,11 @@ export const getReportData = async ({
         ['startDate', 'endDate', 'reportFrequency', 'businessName', 'serviceName', 'reconstruct'],
       );
     }
+
+    if (shouldAddReconstructParam(filter as RVBaseFilterBusinessDateFrequencyType)) {
+      allParameters = { ...allParameters, reconstruct: true };
+    }
+
     reportData = await RequestServiceInstance.getReportData({
       reportType: filter.reportType,
       filter: allParameters,
@@ -319,4 +326,22 @@ export const getReportData = async ({
     reportData = { error };
   }
   return reportData;
+};
+
+/**
+ * Checks whether we need to add reconstruct: true to the params or not
+ * @param {RVStatementsFilter} filter - Current filter
+ * @returns {boolean}
+ */
+export const shouldAddReconstructParam = (
+  filter: RVBaseFilterBusinessDateFrequencyType,
+): boolean => {
+  const isFinancialStatement = isStatements(filter.reportType);
+
+  return (
+    isFinancialStatement &&
+    ![RVAccountingProviders.ORACLE_NETSUITE, RVAccountingProviders.SAGE_INTACCT].includes(
+      filter.serviceName as RVAccountingProviders,
+    )
+  );
 };
