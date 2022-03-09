@@ -5,7 +5,7 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
-import { RVConfiguration, RVFilter, RVFilterDate, RVNoFrequencyTypes, RVOptions, RVOptionsBarStyle, RVStatementsFilter } from "./types";
+import { RVConfiguration, RVFilter, RVFilterDate, RVFilterFrequency, RVNoFrequencyTypes, RVOptions, RVOptionsBarStyle } from "./types";
 export namespace Components {
     interface RailzErrorImage {
         /**
@@ -69,7 +69,7 @@ export namespace Components {
         /**
           * Filter information to query the backend APIs
          */
-        "filter": RVStatementsFilter;
+        "filter": RVFilterFrequency;
         /**
           * For whitelabeling styling
          */
@@ -213,7 +213,7 @@ declare namespace LocalJSX {
         /**
           * Filter information to query the backend APIs
          */
-        "filter": RVStatementsFilter;
+        "filter": RVFilterFrequency;
         /**
           * For whitelabeling styling
          */

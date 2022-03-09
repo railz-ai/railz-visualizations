@@ -12,14 +12,11 @@ import Translations from '../../config/translations/en.json';
 import { errorLog } from '../../services/logger';
 
 import {
-  RVAccountingProviders,
-  RVBaseFilterBusinessDateFrequencyType,
   RVConfiguration,
   RVFilterFrequency,
   RVFormattedStatementData,
   RVFormattedStatementResponse,
   RVOptions,
-  RVStatementsFilter,
 } from '../../types';
 
 import { RVFinancialStatementsTypes } from '../../types/enum/report-type';
@@ -52,7 +49,7 @@ export class StatementsChart {
   /**
    * Filter information to query the backend APIs
    */
-  @Prop() readonly filter!: RVStatementsFilter;
+  @Prop() readonly filter!: RVFilterFrequency;
   /**
    * For whitelabeling styling
    */
@@ -60,7 +57,7 @@ export class StatementsChart {
 
   @State() private loading = '';
   @State() private _configuration: RVConfiguration;
-  @State() private _filter: RVStatementsFilter;
+  @State() private _filter: RVFilterFrequency;
   @State() private _options: RVOptions;
   @State() private _dataFormatted: RVFormattedStatementData;
   @State() private error: string;
@@ -70,19 +67,6 @@ export class StatementsChart {
 
   @State() private containerRef?: HTMLDivElement;
 
-  /**
-   * Checks whether we need to add reconstruct: true to the params or not
-   * @param {RVStatementsFilter} filter - Current filter
-   * @returns {boolean}
-   */
-     private shouldAddReconstructParam = (
-      filter: RVBaseFilterBusinessDateFrequencyType
-    ): boolean => {
-      return ![
-        RVAccountingProviders.ORACLE_NETSUITE,
-        RVAccountingProviders.SAGE_INTACCT,
-      ].includes(filter.serviceName as RVAccountingProviders);
-    };
     
   /**
    * Validates if configuration was passed correctly before setting filter
@@ -92,19 +76,14 @@ export class StatementsChart {
    */
   private validateParams = async (
     configuration: RVConfiguration,
-    filter: RVStatementsFilter,
+    filter: RVFilterFrequency,
     triggerRequest = true,
   ): Promise<void> => {
     this._configuration = getConfiguration(configuration);
     if (this._configuration) {
       ConfigurationInstance.configuration = this._configuration;
       try {
-        this._filter = getDateFilter(filter) as RVStatementsFilter;
-
-        if (this.shouldAddReconstructParam(this._filter as RVBaseFilterBusinessDateFrequencyType)) {
-          this._filter = {...this._filter, reconstruct: true}
-        }
-            
+        this._filter = getDateFilter(filter) as RVFilterFrequency;
         this._options = getOptions(this.options, this._filter);
         if (triggerRequest) {
           await this.requestReportData();
@@ -125,7 +104,7 @@ export class StatementsChart {
   }
 
   @Watch('filter')
-  async watchFilter(newValue: RVStatementsFilter, oldValue: RVStatementsFilter): Promise<void> {
+  async watchFilter(newValue: RVFilterFrequency, oldValue: RVFilterFrequency): Promise<void> {
     if (newValue && oldValue && !isEqual(oldValue, newValue)) {
       await this.validateParams(this.configuration, newValue);
     }
