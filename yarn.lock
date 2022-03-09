@@ -2513,20 +2513,6 @@
   dependencies:
     "@octokit/openapi-types" "^11.2.0"
 
-"@railzai/railz-visualizations@^0.0.1":
-  version "0.0.1-beta.1"
-  resolved "https://registry.yarnpkg.com/@railzai/railz-visualizations/-/railz-visualizations-0.0.1-beta.1.tgz#7faf70dda0b3f97b232aa2e50a810c13fa33ec26"
-  integrity sha512-v5EfJdQniCaHdOjLmjDb+zFOFeYdZyknI67o76hqUosdcBvfMOyfGcrSrv5dobLHnQMlJ4pIfkF0h3diUdQX0Q==
-  dependencies:
-    "@stencil/angular-output-target" "0.4.0"
-    "@stencil/core" "2.13.0"
-    "@stencil/react-output-target" "0.3.1"
-    "@stencil/sass" "1.5.2"
-    date-fns "2.11.1"
-    get-contrast "^3.0.0"
-    highcharts "9.3.3"
-    lodash-es "4.17.21"
-
 "@rollup/plugin-json@^4.1.0":
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/@rollup/plugin-json/-/plugin-json-4.1.0.tgz#54e09867ae6963c593844d8bd7a9c718294496f3"
