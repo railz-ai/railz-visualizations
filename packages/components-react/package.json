@@ -1,7 +1,7 @@
 {
   "name": "@railzai/railz-visualizations-react",
   "sideEffects": false,
-  "version": "0.0.1-beta.2",
+  "version": "0.0.1-beta.3",
   "description": "React specific wrapper for @railzai/railz-visualizations",
   "repository": {
     "type": "git",
@@ -41,7 +41,7 @@
     "typescript": "^3.3.4000"
   },
   "dependencies": {
-    "@railzai/railz-visualizations": "0.0.1-beta.2"
+    "@railzai/railz-visualizations": "0.0.1-beta.3"
   },
   "peerDependencies": {
     "@railzai/railz-visualizations": "*",

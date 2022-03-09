@@ -2,7 +2,9 @@
 import { h } from '@stencil/core';
 
 import { RVErrorIndicatorStyle } from '../../types';
-
+/**
+ * SVG Images of errors
+ */
 export function Error202({ fillColor = '#949494' }: RVErrorIndicatorStyle): HTMLOrSVGElement {
   return (
     <svg
