@@ -12,7 +12,7 @@
     "prepare": "husky install",
     "test": "yarn workspace @railzai/railz-visualizations run test",
     "publish": "lerna publish from-package",
-    "publish:beta": "lerna publish from-package"
+    "publish:beta": "lerna publish --canary --preid beta"
   },
   "devDependencies": {
     "@commitlint/cli": "16.2.1",

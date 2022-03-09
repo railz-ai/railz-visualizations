@@ -28,7 +28,7 @@
     "@railzai/railz-visualizations": "*"
   },
   "dependencies": {
-    "@railzai/railz-visualizations": "0.0.1-beta.3",
+    "@railzai/railz-visualizations": "0.0.1-beta.4",
     "tslib": "^2.3.0"
   },
   "devDependencies": {

@@ -16,9 +16,9 @@
     "url": "https://github.com/railz-ai/railz-visualizations/issues"
   },
   "scripts": {
-    "build": "npm run clean && npm run compile",
+    "build": "yarn clean && yarn compile",
     "clean": "rm -rf dist",
-    "compile": "npm run tsc",
+    "compile": "yarn tsc",
     "tsc": "tsc -p .",
     "rollup": "rollup -c"
   },
@@ -41,7 +41,7 @@
     "typescript": "^3.3.4000"
   },
   "dependencies": {
-    "@railzai/railz-visualizations": "0.0.1-beta.3"
+    "@railzai/railz-visualizations": "0.0.1-beta.4"
   },
   "peerDependencies": {
     "@railzai/railz-visualizations": "*",
