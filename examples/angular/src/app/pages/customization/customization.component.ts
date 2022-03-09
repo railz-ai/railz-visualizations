@@ -10,7 +10,7 @@ import { INITIAL_OPTIONS } from '../../../types/constants';
 })
 export class CustomizationComponent implements OnInit {
   // @ts-ignore
-  token: { token: string };
+  token: { token: string; endpoint?: string };
   filter: Filter;
   options: RVOptions = INITIAL_OPTIONS;
   allReportTypes = Object.values(RVReportTypes);
@@ -21,7 +21,7 @@ export class CustomizationComponent implements OnInit {
     <Filter>{ ...filter, reportType };
 
   onTokenSubmit = (token: string) => {
-    this.token = { token: token };
+    this.token = { token: token, endpoint: 'http://localhost:3001' };
     this.ref.detectChanges();
   };
 

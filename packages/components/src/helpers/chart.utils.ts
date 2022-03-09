@@ -64,51 +64,53 @@ export const parseFilter = (filter: RVFilter | string): RVFilter => {
       } else {
         formattedFilter = filter;
       }
-      validateRequiredParams(formattedFilter);
     } catch (error) {
       errorLog(Translations.RV_ERROR_PARSING_CONFIGURATION + ' ' + JSON.stringify(error));
-      throw new Error(Translations.ERROR_500_TITLE);
     }
   } else {
     errorLog(Translations.RV_FILTER_NOT_PRESENT);
-    throw new Error(Translations.ERROR_500_TITLE);
   }
   return formattedFilter;
 };
 
-export const validateRequiredParams = (filter: RVFilter): void => {
-  validateReportTypeParams(filter);
-  validateBusinessParams(filter);
-  validateReportFrequencyParams(filter);
+export const validateRequiredParams = (filter: RVFilter): boolean => {
+  return (
+    validateReportTypeParams(filter) &&
+    validateBusinessParams(filter) &&
+    validateReportFrequencyParams(filter)
+  );
 };
 
-export const validateBusinessParams = (filter: RVFilter): void => {
+export const validateBusinessParams = (filter: RVFilter): boolean => {
   const filterPassed = filter as unknown as any;
   if (
     !(!isEmpty(filterPassed?.businessName) && !isEmpty(filterPassed?.serviceName)) ||
     !isEmpty(filterPassed?.connectionId)
   ) {
     errorLog(Translations.ERROR_INVALID_BUSINESS_IDENTIFICATION);
-    throw new Error(Translations.ERROR_500_TITLE);
+    return false;
   }
+  return true;
 };
 
-export const validateReportFrequencyParams = (filter: RVFilter): void => {
+export const validateReportFrequencyParams = (filter: RVFilter): boolean => {
   const filterPassed = filter as unknown as RVFilterFrequency;
   if (
     isRequiredReportFrequency(filterPassed.reportType) &&
     !Object.values(RVReportFrequency).includes(filterPassed?.reportFrequency)
   ) {
     errorLog(Translations.ERROR_INVALID_REPORT_FREQUENCY);
-    throw new Error(Translations.ERROR_500_TITLE);
+    return false;
   }
+  return true;
 };
 
-export const validateReportTypeParams = (filter: RVFilter): void => {
+export const validateReportTypeParams = (filter: RVFilter): boolean => {
   if (!Object.values(RVReportTypes).includes(filter.reportType)) {
     errorLog(Translations.ERROR_INVALID_REPORT_TYPE);
-    throw new Error(Translations.ERROR_500_TITLE);
+    return false;
   }
+  return true;
 };
 
 /**
@@ -201,23 +203,38 @@ export const checkAccessibilityFromOptions = (options: RVOptions): void => {
  */
 export const getOptions = (options: RVOptions | string, filter?: RVAllFilter): RVOptions => {
   let formattedOptions: RVOptions;
-  if (options) {
-    try {
-      if (typeof options === 'string') {
-        formattedOptions = JSON.parse(options);
-      } else {
-        formattedOptions = options;
+  try {
+    if (options) {
+      try {
+        if (typeof options === 'string') {
+          formattedOptions = JSON.parse(options);
+        } else {
+          formattedOptions = options;
+        }
+      } catch (error) {
+        errorLog(Translations.RV_ERROR_PARSING_OPTIONS + ' ' + JSON.stringify(error));
       }
-    } catch (error) {
-      errorLog(Translations.RV_ERROR_PARSING_CONFIGURATION + ' ' + JSON.stringify(error));
+    } else {
+      formattedOptions = { title: { text: '' } };
     }
-  } else {
-    formattedOptions = { title: { text: '' } };
+    if (filter) {
+      if (formattedOptions?.title) {
+        if (!formattedOptions.title.text) {
+          formattedOptions.title.text = getTitleByReportType(filter.reportType);
+        }
+      } else if (formattedOptions) {
+        formattedOptions = {
+          ...formattedOptions,
+          title: { text: getTitleByReportType(filter.reportType) },
+        };
+      } else {
+        formattedOptions = { title: { text: getTitleByReportType(filter.reportType) } };
+      }
+    }
+    checkAccessibilityFromOptions(formattedOptions);
+  } catch (error) {
+    errorLog(Translations.RV_ERROR_PARSING_OPTIONS + ' ' + JSON.stringify(error));
   }
-  if (filter) {
-    formattedOptions.title.text = getTitleByReportType(filter.reportType);
-  }
-  checkAccessibilityFromOptions(formattedOptions);
   return formattedOptions;
 };
 

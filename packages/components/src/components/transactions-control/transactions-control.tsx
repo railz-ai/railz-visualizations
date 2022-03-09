@@ -13,7 +13,12 @@ import {
   RVFormattedTransactionResponse,
   RVOptions,
 } from '../../types';
-import { getConfiguration, getFilter, getOptions } from '../../helpers/chart.utils';
+import {
+  getConfiguration,
+  getFilter,
+  getOptions,
+  validateRequiredParams,
+} from '../../helpers/chart.utils';
 
 import { ConfigurationInstance } from '../../services/configuration';
 
@@ -63,14 +68,24 @@ export class TransactionsControl {
       try {
         this._filter = getFilter(filter) as RVFilterDate;
         this._options = getOptions(this.options, this._filter);
-        if (triggerRequest) {
-          await this.requestReportData();
+        const valid = validateRequiredParams(this._filter);
+        if (valid) {
+          if (triggerRequest) {
+            await this.requestReportData();
+          }
+        } else {
+          this.errorStatusCode = 204;
+          this.error = Translations.ERROR_204_TITLE;
         }
       } catch (e) {
         this.errorStatusCode = 500;
+        this.error = Translations.RV_ERROR_PARSING_OPTIONS;
+        errorLog(e);
       }
     } else {
       this.errorStatusCode = 500;
+      this.error = Translations.RV_CONFIGURATION_NOT_PRESENT;
+      errorLog(Translations.RV_CONFIGURATION_NOT_PRESENT);
     }
   };
 
@@ -102,10 +117,10 @@ export class TransactionsControl {
       if (reportData?.data) {
         this._dataFormatted = reportData?.data;
       } else if (reportData?.error) {
-        this.error = Translations.NOT_ABLE_TO_RETRIEVE_REPORT_DATA;
+        this.error = Translations.ERROR_500_TITLE;
         this.errorStatusCode = reportData.error?.statusCode;
       } else {
-        this.error = Translations.ERROR_202_TITLE;
+        this.error = Translations.ERROR_500_TITLE;
         this.errorStatusCode = reportData?.status;
       }
     } catch (error) {

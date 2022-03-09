@@ -1,7 +1,7 @@
 {
   "name": "@railzai/railz-visualizations-react",
   "sideEffects": false,
-  "version": "0.0.1-beta.4",
+  "version": "0.0.1-beta.5",
   "description": "React specific wrapper for @railzai/railz-visualizations",
   "repository": {
     "type": "git",
@@ -16,15 +16,17 @@
     "url": "https://github.com/railz-ai/railz-visualizations/issues"
   },
   "scripts": {
-    "build": "yarn clean && yarn compile",
-    "clean": "rm -rf dist",
-    "compile": "yarn tsc",
     "tsc": "tsc -p .",
-    "rollup": "rollup -c"
+    "rollup": "rollup -c",
+    "build": "yarn clean && yarn compile",
+    "clean": "rimraf dist",
+    "compile": "yarn build:cjs && yarn build:esm",
+    "build:cjs": "tsc --module commonjs --outDir dist/cjs",
+    "build:esm": "tsc --module es6 --outDir dist/esm"
   },
-  "main": "./dist/index.js",
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/types/index.d.ts",
   "files": [
     "dist/"
   ],
@@ -41,7 +43,7 @@
     "typescript": "^3.3.4000"
   },
   "dependencies": {
-    "@railzai/railz-visualizations": "0.0.1-beta.4"
+    "@railzai/railz-visualizations": "0.0.1-beta.5"
   },
   "peerDependencies": {
     "@railzai/railz-visualizations": "*",

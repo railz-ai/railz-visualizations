@@ -8,13 +8,13 @@ import { Filter } from '../../../types/form-submission';
 })
 export class BasicComponent implements OnInit {
   // @ts-ignore
-  token: { token: string };
+  token: { token: string; endpoint: string };
   filter: Filter;
 
   constructor(private ref: ChangeDetectorRef) {}
 
   onTokenSubmit = (token: string) => {
-    this.token = { token: token };
+    this.token = { token: token, endpoint: 'http://localhost:3001' };
     this.ref.detectChanges();
   };
 

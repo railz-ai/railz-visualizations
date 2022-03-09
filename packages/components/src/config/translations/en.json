@@ -5,6 +5,7 @@
   "RV_FILTER_NOT_PRESENT": "\"filter\" not present.",
   "RV_TOKEN_NOT_PRESENT": "\"token\" not present.",
   "RV_ERROR_PARSING_CONFIGURATION": "Error while parsing configuration.",
+  "RV_ERROR_PARSING_OPTIONS": "Error while parsing options.",
   "PAID": "Paid",
   "OVERDUE": "Overdue",
   "TOTAL_UNPAID": "Total Unpaid",

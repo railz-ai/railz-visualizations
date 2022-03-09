@@ -25,6 +25,7 @@ import {
   getDateFilter,
   getHighchartsParams,
   getOptions,
+  validateRequiredParams,
 } from '../../helpers/chart.utils';
 
 import { ConfigurationInstance } from '../../services/configuration';
@@ -84,14 +85,23 @@ export class StatementsChart {
       try {
         this._filter = getDateFilter(filter) as RVFilterFrequency;
         this._options = getOptions(this.options, this._filter);
-        if (triggerRequest) {
-          await this.requestReportData();
+        const valid = validateRequiredParams(this._filter);
+        if (valid) {
+          if (triggerRequest) {
+            await this.requestReportData();
+          }
+        } else {
+          this.errorStatusCode = 204;
+          this.error = Translations.ERROR_204_TITLE;
         }
       } catch (e) {
         this.errorStatusCode = 500;
+        this.error = e;
+        errorLog(e);
       }
     } else {
       this.errorStatusCode = 500;
+      this.error = Translations.RV_CONFIGURATION_NOT_PRESENT;
     }
   };
 
@@ -128,10 +138,10 @@ export class StatementsChart {
   private requestReportData = async (): Promise<void> => {
     this.error = '';
     this.loading = Translations.LOADING_REPORT;
-    const reportData = (await getReportData({
-      filter: this._filter,
-    })) as RVFormattedStatementResponse;
     try {
+      const reportData = (await getReportData({
+        filter: this._filter,
+      })) as RVFormattedStatementResponse;
       if (reportData?.data) {
         this._dataFormatted = formatData({
           summary: reportData.data,

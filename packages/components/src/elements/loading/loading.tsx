@@ -56,7 +56,9 @@ export class Loading {
           </path>
         </svg>
         {this.loadingText && (
-          <p style={{ color: this.textColor || '#000000' }}>{this.loadingText}</p>
+          <p class="railz-loading-title" style={{ color: this.textColor || '#000000' }}>
+            {this.loadingText}
+          </p>
         )}
       </div>
     );
