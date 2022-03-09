@@ -1,0 +1,126 @@
+<div class="text-left">
+  <h2 class="text-3xl font-bold text-gray-900">Railz Error Component</h2>
+  <div class="md:grid md:grid-cols-4 md:gap-6 mt-6">
+    <div class="mt-5 md:mt-0 md:col-span-1 flex flex-col">
+      <p>202 Status Response - Represents Sync In progress</p>
+      <div class="shadow p-4 mt-2 flex h-full">
+        <railz-error-image [statusCode]="202"></railz-error-image>
+      </div>
+    </div>
+    <div class="mt-5 md:mt-0 md:col-span-1 flex flex-col">
+      <p>204 & 404 Status Response - Represents No Content</p>
+      <div class="shadow p-4 mt-2 flex h-full">
+        <railz-error-image [statusCode]="204"></railz-error-image>
+      </div>
+    </div>
+    <div class="mt-5 md:mt-0 md:col-span-1 flex flex-col">
+      <p>Other Codes - Represents Any other status code(Customization)</p>
+      <div class="shadow p-4 mt-2 flex h-full">
+        <railz-error-image
+          [statusCode]="500"
+          fillColor="#910303"
+          textColor="#910303"
+        ></railz-error-image>
+      </div>
+    </div>
+    <div class="mt-5 md:mt-0 md:col-span-1 flex flex-col">
+      <p>204 Response - with removed text</p>
+      <div class="shadow p-4 mt-2 flex h-full">
+        <railz-error-image [statusCode]="204" text=""></railz-error-image>
+      </div>
+    </div>
+  </div>
+  <h2 class="text-3xl font-bold text-gray-900 mt-10">
+    Railz Loading Component
+  </h2>
+  <div class="grid grid-cols-3 gap-6 mx-auto mt-6">
+    <div class="col-span-1 flex flex-col">
+      <p>Loading Indicator Only - No Text</p>
+      <div class="shadow p-4 mt-2 flex items-center h-full">
+        <railz-loading></railz-loading>
+      </div>
+    </div>
+    <div class="col-span-1 flex flex-col">
+      <p>Loading Indicator with text</p>
+      <div class="shadow p-4 mt-2 flex items-center h-full">
+        <railz-loading loadingText="Loading Data"></railz-loading>
+      </div>
+    </div>
+    <div class="col-span-1 flex flex-col">
+      <p>Loading Indicator with text(customization)</p>
+      <div class="shadow p-4 mt-2 flex items-center h-full">
+        <railz-loading
+          loadingText="Loading Data"
+          fillColor="#000000"
+          textColor="#00884f"
+        ></railz-loading>
+      </div>
+    </div>
+  </div>
+  <h2 class="text-3xl font-bold text-gray-900 mt-10">
+    Railz Progress Bar Component
+  </h2>
+  <div class="grid grid-cols-2 gap-4 mx-auto mt-6">
+    <div class="col-span-1 flex flex-col">
+      <p>Invoices - No Parameter</p>
+      <div class="shadow p-4 mt-2 flex items-center h-full">
+        <railz-progress-bar reportType="invoices"></railz-progress-bar>
+      </div>
+    </div>
+    <div class="mt-3 col-span-1 flex flex-col">
+      <p>Bills - Overdue Parameter</p>
+      <div class="shadow p-4 mt-2 flex items-center h-full">
+        <railz-progress-bar
+          reportType="bills"
+          [overdueAmount]="2000"
+        ></railz-progress-bar>
+      </div>
+    </div>
+    <div class="col-span-1 flex flex-col">
+      <p>Invoices - No Paid Data</p>
+      <div class="shadow p-4 mt-2 flex items-center h-full">
+        <railz-progress-bar
+          reportType="invoices"
+          [overdueAmount]="2000"
+          [unpaidAmount]="15000"
+          [paidAmount]="0"
+        ></railz-progress-bar>
+      </div>
+    </div>
+    <div class="mt-3 col-span-1 flex flex-col">
+      <p>Bills - No Paid Data(Bar color customization)</p>
+      <div class="shadow p-4 mt-2 flex items-center h-full">
+        <railz-progress-bar
+          reportType="invoices"
+          [overdueAmount]="5000"
+          [unpaidAmount]="13000"
+          [paidAmount]="0"
+          [options]="barOptions"
+        ></railz-progress-bar>
+      </div>
+    </div>
+    <div class="col-span-1 flex flex-col">
+      <p>Invoices - Partial Payment</p>
+      <div class="shadow p-4 mt-2 flex items-center h-full">
+        <railz-progress-bar
+          reportType="invoices"
+          [overdueAmount]="2000"
+          [unpaidAmount]="12000"
+          [paidAmount]="15000"
+        ></railz-progress-bar>
+      </div>
+    </div>
+    <div class="mt-3 col-span-1 flex flex-col">
+      <p>Bills - Paid in full(Bar color customization)</p>
+      <div class="shadow p-4 mt-2 flex items-center h-full">
+        <railz-progress-bar
+          reportType="invoices"
+          [overdueAmount]="0"
+          [unpaidAmount]="0"
+          [paidAmount]="15000"
+          [options]="barOptions"
+        ></railz-progress-bar>
+      </div>
+    </div>
+  </div>
+</div>
