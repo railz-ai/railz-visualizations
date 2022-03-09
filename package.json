@@ -12,7 +12,10 @@
     "prepare": "husky install",
     "test": "yarn workspace @railzai/railz-visualizations run test",
     "publish": "lerna publish from-package",
-    "publish:beta": "lerna publish --canary --preid beta"
+    "publish:beta": "lerna publish --canary --preid beta",
+    "eslint": "yarn workspace @railzai/railz-visualizations run lint",
+    "stylelint": "yarn workspace @railzai/railz-visualizations run stylelint",
+    "lint": "yarn eslint && yarn stylelint"
   },
   "devDependencies": {
     "@commitlint/cli": "16.2.1",

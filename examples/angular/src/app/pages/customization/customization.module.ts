@@ -1,8 +1,12 @@
 import { NgModule } from '@angular/core';
-import { CustomizationComponent } from './customization.component';
-import { VisualizationsModule } from '../../components/visualizations/visualizations.module';
-import { FormModule } from '../../components/form/form.module';
+
 import { BrowserModule } from '@angular/platform-browser';
+
+import { VisualizationsModule } from '../../components/visualizations/visualizations.module';
+
+import { FormModule } from '../../components/form/form.module';
+
+import { CustomizationComponent } from './customization.component';
 
 @NgModule({
   declarations: [CustomizationComponent],

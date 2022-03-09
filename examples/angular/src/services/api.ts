@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
-import { AuthenticationParameters } from '../types/authentication';
+
 import { Injectable } from '@angular/core';
+
+import { AuthenticationParameters } from '../types/authentication';
 
 @Injectable({
   providedIn: 'root',

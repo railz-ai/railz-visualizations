@@ -1,9 +1,12 @@
 import { TestBed } from '@angular/core/testing';
+
+import { BrowserModule } from '@angular/platform-browser';
+
+import { RailzVisualizationsModule } from '@railzai/railz-visualizations-angular/dist';
+
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
-import { BrowserModule } from '@angular/platform-browser';
 import { FormModule } from './components/form/form.module';
-import { RailzVisualizationsModule } from '@railzai/railz-visualizations-angular/dist';
 
 describe('AppComponent', () => {
   beforeEach(async () => {

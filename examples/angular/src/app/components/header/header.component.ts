@@ -15,7 +15,7 @@ export class HeaderComponent implements OnInit {
     '/others':
       'This page shows you other reusable components provided the SDK.',
   };
-  description: string = '';
+  description = '';
 
   constructor(private router: Router) {
     this.router.events.subscribe((event: any) => {

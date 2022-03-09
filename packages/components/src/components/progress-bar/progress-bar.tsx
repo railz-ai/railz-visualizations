@@ -44,8 +44,8 @@ export class ProgressBar {
 
   private normalize = (value: number, max: number): number => (value * 100) / max;
   private titleMapping = {
-    [RVReportTypes.INVOICES]: Translations.INVOICES,
-    [RVReportTypes.BILLS]: Translations.BILLS,
+    [RVReportTypes.INVOICES]: Translations.RV_INVOICES,
+    [RVReportTypes.BILLS]: Translations.RV_BILLS,
   };
 
   render(): HTMLElement {
@@ -57,9 +57,9 @@ export class ProgressBar {
         <p
           class="railz-progress-bar-total-unpaid"
           style={this._options?.titleStyle}
-          aria-label={`${Translations.TOTAL_UNPAID} ${formatNumber(this.unpaidAmount)}`}
+          aria-label={`${Translations.RV_TOTAL_UNPAID} ${formatNumber(this.unpaidAmount)}`}
         >
-          {Translations.TOTAL_UNPAID} {this.titleMapping[this.reportType] || ''}{' '}
+          {Translations.RV_TOTAL_UNPAID} {this.titleMapping[this.reportType] || ''}{' '}
           <span
             class="railz-progress-bar-total-unpaid-value"
             style={this._options?.titleValueStyle}
@@ -75,9 +75,9 @@ export class ProgressBar {
               <p
                 class="railz-progress-bar-label"
                 style={this._options?.subTitle1Style}
-                aria-label={`${Translations.PAID} ${formatNumber(this.paidAmount)}`}
+                aria-label={`${Translations.RV_PAID} ${formatNumber(this.paidAmount)}`}
               >
-                {Translations.PAID}
+                {Translations.RV_PAID}
               </p>
               <p
                 class="railz-progress-bar-value"
@@ -91,9 +91,9 @@ export class ProgressBar {
               <p
                 class="railz-progress-bar-label railz-progress-bar-overdue"
                 style={this._options?.subTitle2Style}
-                aria-label={`${Translations.OVERDUE} ${formatNumber(this.overdueAmount) || 0}`}
+                aria-label={`${Translations.RV_OVERDUE} ${formatNumber(this.overdueAmount) || 0}`}
               >
-                {Translations.OVERDUE}
+                {Translations.RV_OVERDUE}
               </p>
               <p
                 class="railz-progress-bar-value railz-progress-bar-overdue"

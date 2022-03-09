@@ -15,7 +15,7 @@
     "strictPropertyInitialization": false,
     "noFallthroughCasesInSwitch": true,
     "sourceMap": false,
-    "declaration": false,
+    "declaration": true,
     "downlevelIteration": true,
     "experimentalDecorators": true,
     "moduleResolution": "node",

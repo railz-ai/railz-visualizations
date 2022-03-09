@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
-import { VisualizationsComponent } from './visualizations.component';
+
 import { BrowserModule } from '@angular/platform-browser';
 import { RailzVisualizationsModule } from '@railzai/railz-visualizations-angular/dist';
+
+import { VisualizationsComponent } from './visualizations.component';
 
 @NgModule({
   declarations: [VisualizationsComponent],

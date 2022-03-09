@@ -9,7 +9,11 @@ You can watch the series below on how to get started with contributing to open s
 
 ### Formatting
 
-... Put instructions about linter
+Railz Visualizations makes use of stylelint and eslint, therefore enable linting in your editor for automatic lint detection will make it easy for you to commit your code.
+
+To format, run: `yarn lint`
+
+When you submit a Pull Request, our continuous integration pipeline will test for lint errors.
 
 ## GitHub
 
@@ -21,9 +25,9 @@ For uniformity, we've prepared [templates](https://github.com/railz-ai/railz-vis
 
 The current logic of branch management is a mix of 2 ideas - a clean, linear history of changes and a flow model.
 
-`master` - main branch, should have unreleased, approved changes, always compilable and working. Changes should never be committed directly to this branch!
+`master` - main branch, should have latest released, approved changes, always compilable and working. Changes should never be committed directly to this branch!
 
-`development` - code of the currently ready developed features not ready to be released, Nightly builds are built from this
+`development` - prerelease branch, code of the latest released beta feature.
 
 `feature/*` - for features under development (should contain name of the ticket at begin)
 
@@ -117,7 +121,7 @@ New components should be associated with an [issue](https://github.com/railz-ai/
 
 ## Documentation
 
-Submit a new issue with details containing information about new documentation item and it will be updated on our general docs page.
+Submit a new [issue](https://github.com/railz-ai/railz-visualizations/issues/new?assignees=&labels=&template=documentation-update-request.md&title=) with details containing information about new documentation item and it will be updated on our general docs page.
 
 ## Examples
 

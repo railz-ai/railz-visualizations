@@ -1,7 +1,7 @@
 {
   "type": "module",
   "name": "@railzai/railz-visualizations-angular",
-  "version": "0.0.1-beta.5",
+  "version": "0.0.1-beta.6",
   "repository": {
     "type": "git",
     "url": "https://github.com/railz-ai/railz-visualizations"
@@ -22,13 +22,16 @@
     "test": "ng test"
   },
   "types": "dist/index.d.ts",
+  "files": [
+    "dist/"
+  ],
   "peerDependencies": {
     "@angular/common": "~13.2.2",
     "@angular/core": "~13.2.2",
     "@railzai/railz-visualizations": "*"
   },
   "dependencies": {
-    "@railzai/railz-visualizations": "0.0.1-beta.5",
+    "@railzai/railz-visualizations": "0.0.1-beta.6",
     "tslib": "^2.3.0"
   },
   "devDependencies": {
@@ -38,6 +41,7 @@
     "@angular/compiler": "~13.2.2",
     "@angular/compiler-cli": "~13.2.2",
     "@angular/core": "~13.2.2",
+    "@angular/platform-browser": "^13.2.6",
     "@angular/platform-browser-dynamic": "~13.2.2",
     "ng-packagr": "~13.2.1",
     "rollup": "^2.67.3",

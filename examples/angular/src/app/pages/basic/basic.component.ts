@@ -1,5 +1,7 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+
 import { Filter } from '../../../types/form-submission';
+import { RVConfiguration } from '@railzai/railz-visualizations';
 
 @Component({
   selector: 'app-basic',
@@ -8,13 +10,13 @@ import { Filter } from '../../../types/form-submission';
 })
 export class BasicComponent implements OnInit {
   // @ts-ignore
-  token: { token: string; endpoint: string };
+  token: RVConfiguration;
   filter: Filter;
 
   constructor(private ref: ChangeDetectorRef) {}
 
   onTokenSubmit = (token: string) => {
-    this.token = { token: token, endpoint: 'http://localhost:3001' };
+    this.token = { token: token };
     this.ref.detectChanges();
   };
 

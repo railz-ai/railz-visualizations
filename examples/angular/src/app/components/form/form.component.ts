@@ -1,14 +1,17 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ApiService } from '../../../services/api';
-import { AuthenticationParameters } from '../../../types/authentication';
-import { Filter } from '../../../types/form-submission';
+
 import {
   RVAccountingProviders,
   RVReportFrequency,
   RVReportTypes,
 } from '@railzai/railz-visualizations';
+
 import { distinctUntilChanged } from 'rxjs';
+
+import { ApiService } from '../../../services/api';
+import { AuthenticationParameters } from '../../../types/authentication';
+import { Filter } from '../../../types/form-submission';
 
 @Component({
   selector: 'app-form',
@@ -55,7 +58,7 @@ export class FormComponent implements OnInit {
       type as RVReportTypes
     );
 
-  token: string = '';
+  token = '';
 
   constructor(private apiService: ApiService) {
     this.checkValueChanges();

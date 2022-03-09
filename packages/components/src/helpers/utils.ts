@@ -72,11 +72,11 @@ export const isTransactions = (reportType: RVReportTypes): boolean => {
 export const getTitleByReportType = (reportType: RVReportTypes): string => {
   switch (reportType) {
     case RVReportTypes.INVOICES:
-      return Translations.INVOICES;
+      return Translations.RV_INVOICES;
     case RVReportTypes.BILLS:
-      return Translations.BILLS;
+      return Translations.RV_BILLS;
     case RVReportTypes.BALANCE_SHEET:
-      return Translations.BALANCE_SHEETS;
+      return Translations.RV_BALANCE_SHEETS;
     case RVReportTypes.INCOME_STATEMENTS:
       return Translations.INCOME_STATEMENTS;
     case RVReportTypes.CASHFLOW_STATEMENTS:

@@ -29,7 +29,7 @@ export const getOptionsBarChart = ({
   series,
   colors,
   chart,
-}: RVChartOptionsParameter) => ({
+}: RVChartOptionsParameter): any => ({
   chart: {
     height: chart?.height,
     type: 'column',

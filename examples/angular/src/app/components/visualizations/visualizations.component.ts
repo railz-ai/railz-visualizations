@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Filter } from '../../../types/form-submission';
+
 import { RVReportTypes, RVOptions } from '@railzai/railz-visualizations';
+
+import { Filter } from '../../../types/form-submission';
 
 @Component({
   selector: 'app-visualizations',

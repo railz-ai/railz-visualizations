@@ -1,6 +1,12 @@
 MIT License
+Copyright (c) 2022, Railz Financial Technologies
 
-Copyright (c) 2018
+The software in the Railz Visualizations repository is free and open source,
+but it depends on Highcharts.js. The Railz team has the appropriate permission
+to commercially distribute the software to our clients, and this licence allows
+them to install this SDK in their environments. You must obtain your own licence
+from Highcharts.js if you want to copy and customise this programme for your
+own use or distribution.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -9,8 +15,8 @@ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 copies of the Software, and to permit persons to whom the Software is
 furnished to do so, subject to the following conditions:
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+The above copyright notice and this permission notice shall be adhered to and
+included in all copies or substantial portions of the Software.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,

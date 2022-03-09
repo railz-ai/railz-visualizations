@@ -12,6 +12,7 @@ export const config: Config = {
     angular({
       componentCorePackage: `@railzai/railz-visualizations`,
       directivesProxyFile: `../components-angular/src/lib/stencil-generated/components.ts`,
+      directivesArrayFile: `../components-angular/src/lib/stencil-generated/index.ts`,
     }),
     react({
       componentCorePackage: '@railzai/railz-visualizations',

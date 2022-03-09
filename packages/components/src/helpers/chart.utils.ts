@@ -87,7 +87,7 @@ export const validateBusinessParams = (filter: RVFilter): boolean => {
     !(!isEmpty(filterPassed?.businessName) && !isEmpty(filterPassed?.serviceName)) ||
     !isEmpty(filterPassed?.connectionId)
   ) {
-    errorLog(Translations.ERROR_INVALID_BUSINESS_IDENTIFICATION);
+    errorLog(Translations.RV_ERROR_INVALID_BUSINESS_IDENTIFICATION);
     return false;
   }
   return true;
@@ -99,7 +99,7 @@ export const validateReportFrequencyParams = (filter: RVFilter): boolean => {
     isRequiredReportFrequency(filterPassed.reportType) &&
     !Object.values(RVReportFrequency).includes(filterPassed?.reportFrequency)
   ) {
-    errorLog(Translations.ERROR_INVALID_REPORT_FREQUENCY);
+    errorLog(Translations.RV_ERROR_INVALID_REPORT_FREQUENCY);
     return false;
   }
   return true;
@@ -107,7 +107,7 @@ export const validateReportFrequencyParams = (filter: RVFilter): boolean => {
 
 export const validateReportTypeParams = (filter: RVFilter): boolean => {
   if (!Object.values(RVReportTypes).includes(filter.reportType)) {
-    errorLog(Translations.ERROR_INVALID_REPORT_TYPE);
+    errorLog(Translations.RV_ERROR_INVALID_REPORT_TYPE);
     return false;
   }
   return true;
@@ -140,7 +140,7 @@ export const getDateFilter = (filter: RVDateFilters | string): RVDateFilters => 
           errorLog(Translations.RV_END_DATE_BEFORE_START_DATE);
         }
       } catch (error) {
-        errorLog(Translations.ERROR_END_DATE);
+        errorLog(Translations.RV_DATE_DIFF_ERROR);
         throw new Error(Translations.ERROR_500_TITLE);
       }
     }
