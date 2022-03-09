@@ -8,6 +8,9 @@ import { RAILZ_API_HOST } from '../types/constants/endpoints';
 
 import { ConfigurationInstance } from './configuration';
 
+/**
+ * RequestService to make API Calls to services
+ **/
 class RequestService {
   getUrl = (): string => {
     return ConfigurationInstance.configuration?.endpoint || RAILZ_API_HOST;
