@@ -3,11 +3,11 @@ import {
   RVConfiguration,
   RVFilter,
   RVFilterDate,
-  RVStatementsFilter,
   RVOptions,
   RVReportFrequency,
   RVReportTypes,
   RVServiceProviders,
+  RVFilterFrequency,
 } from "@railzai/railz-visualizations";
 import {
   RailzStatementsChart,
@@ -179,7 +179,7 @@ const Components = ({
           </p>
           <RailzStatementsChart
             configuration={configuration}
-            filter={filter as RVStatementsFilter}
+            filter={filter as RVFilterFrequency}
             options={options}
           />
           <Code

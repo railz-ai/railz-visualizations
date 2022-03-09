@@ -56,6 +56,7 @@ export default function Basic() {
                 configuration={{
                   token,
                   debug: true,
+                  endpoint: "http://localhost:3001",
                 }}
                 filter={filter as any}
               />

@@ -5,6 +5,7 @@ import Visualizations from "../../components/visualizations";
 import { AuthenticationParameters } from "../../types/authentication";
 import { isEmpty } from "lodash";
 import { INITIAL_OPTIONS } from "../../types/constants";
+import { RVFilter } from "@railzai/railz-visualizations";
 
 export default function Customization() {
   const [token, setToken] = useState("");
@@ -25,8 +26,8 @@ export default function Customization() {
     setToken(result.access_token);
   };
 
-  const submitFilter = (filter: any) => {
-    setFilter({ ...filter, reconstruct: filter.reconstruct === "true" });
+  const submitFilter = (filter: RVFilter) => {
+    setFilter(filter);
     setError("");
     if (!token) {
       setError("Token required before filter can be triggered.");
@@ -64,6 +65,7 @@ export default function Customization() {
                 configuration={{
                   token,
                   debug: true,
+                  endpoint: "http://localhost:3001",
                 }}
                 filter={filter as any}
                 options={options}
