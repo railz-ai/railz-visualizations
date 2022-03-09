@@ -9,7 +9,7 @@ import { AceEditorModule } from 'ng2-ace-editor';
 import { PagesModule } from './pages/pages.module';
 import { ComponentsModule } from './components/components.module';
 import { HeaderModule } from './components/header/header.module';
-import { RailzVisualizationsModule } from '@railzai/railz-visualizations-angular';
+import { RailzVisualizationsModule } from '@railzai/railz-visualizations-angular/dist';
 
 @NgModule({
   declarations: [AppComponent],
