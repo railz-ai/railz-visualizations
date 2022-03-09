@@ -5,9 +5,9 @@ export interface RVConfiguration {
   token: string;
 
   /**
-   * environment: use 'production'
+   * endpoint:
    */
-  environment?: string;
+  endpoint?: string;
 
   /**
    * debug: use to print out logs

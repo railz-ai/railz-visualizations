@@ -30,7 +30,7 @@
     "@railzai/railz-visualizations-angular": "0.0.1"
   },
   "scripts": {
-    "start": "RAILZ_SDK_API_HOST=https://api.qa.railz.ai react-scripts start",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

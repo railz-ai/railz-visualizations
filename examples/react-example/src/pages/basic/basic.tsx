@@ -56,7 +56,6 @@ export default function Basic() {
                 configuration={{
                   token,
                   debug: true,
-                  // environment: "qa2",
                 }}
                 filter={filter as any}
               />

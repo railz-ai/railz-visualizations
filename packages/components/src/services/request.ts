@@ -10,14 +10,7 @@ import { ConfigurationInstance } from './configuration';
 
 class RequestService {
   getUrl = (): string => {
-    const environment = ConfigurationInstance.configuration?.environment;
-    if (environment && environment !== 'production') {
-      if (environment === 'local') {
-        return 'http://localhost:3001';
-      }
-      return `https://api.${environment}.railz.ai`;
-    }
-    return RAILZ_API_HOST;
+    return ConfigurationInstance.configuration?.endpoint || RAILZ_API_HOST;
   };
   async getReportData({
     reportType,

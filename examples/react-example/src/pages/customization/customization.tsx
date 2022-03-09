@@ -64,7 +64,6 @@ export default function Customization() {
                 configuration={{
                   token,
                   debug: true,
-                  // environment: "qa2",
                 }}
                 filter={filter as any}
                 options={options}
