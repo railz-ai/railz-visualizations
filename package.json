@@ -8,10 +8,11 @@
     "add:angular": "lerna add @railzai/railz-visualizations --scope=@railzai/railz-visualizations-angular",
     "add:react": "lerna add @railzai/railz-visualizations --scope=@railzai/railz-visualizations-react",
     "run:build": "lerna run --scope '{@railzai/railz-visualizations,@railzai/railz-visualizations-angular,@railzai/railz-visualizations-react}' build",
-    "build:codesandbox": "yarn copy:env && yarn bootstrap && yarn run:build",
-    "build:local": "yarn bootstrap && yarn run:build",
+    "build": "yarn bootstrap && yarn run:build",
     "prepare": "husky install",
-    "test": "yarn workspace @railzai/railz-visualizations run test"
+    "test": "yarn workspace @railzai/railz-visualizations run test",
+    "publish": "lerna publish from-package",
+    "publish:beta": "lerna version prerelease --preid beta && lerna publish --canary --preid beta"
   },
   "devDependencies": {
     "@commitlint/cli": "16.2.1",

@@ -194,7 +194,7 @@ From the main folder:
    ```
 5. Build the packages to begin using
    ```bash
-   yarn build:local
+   yarn build
    ```
 6. Create a symlink to the built **packages/components** library
    ```bash
@@ -258,6 +258,6 @@ The Railz Visualization library and documentation are open to contributions. For
 
 ## License
 
-[MIT License](./LICENSE) - To verify
+[MIT License](./LICENSE)
 
 ---
