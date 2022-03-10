@@ -12,11 +12,13 @@ import {
   RVFilterDate,
   RVFormattedTransactionResponse,
   RVOptions,
+  RVContent,
 } from '../../types';
 import {
   getConfiguration,
   getFilter,
   getOptions,
+  getContent,
   validateRequiredParams,
 } from '../../helpers/chart.utils';
 
@@ -41,33 +43,43 @@ export class TransactionsControl {
   /**
    * For whitelabeling styling
    */
-  @Prop() readonly options: RVOptions;
+  @Prop() readonly options?: RVOptions;
+  /**
+   * Content text/info
+   */
+  @Prop() readonly content?: RVContent;
 
   @State() private loading = '';
   @State() private _configuration: RVConfiguration;
   @State() private _filter: RVFilterDate;
   @State() private _options: RVOptions;
+  @State() private _content: RVContent;
   @State() private _dataFormatted: RVBillInvoiceSummary;
-  @State() private error: string;
-  @State() private errorStatusCode: number;
+  @State() private errorStatusCode = 0;
 
   /**
    * Validates if configuration was passed correctly before setting filter
    * @param configuration - Config for authentication
    * @param filter - filter to decide chart type to show
+   * @param options: Whitelabeling options
+   * @param content - content to text that should display
    * @param triggerRequest - indicate if api request should be made
    */
   private validateParams = async (
     configuration: RVConfiguration,
     filter: RVFilterDate,
+    options: RVOptions,
+    content: RVContent,
     triggerRequest = true,
   ): Promise<void> => {
+    this.errorStatusCode = 0;
     this._configuration = getConfiguration(configuration);
     if (this._configuration) {
       ConfigurationInstance.configuration = this._configuration;
       try {
         this._filter = getFilter(filter) as RVFilterDate;
-        this._options = getOptions(this.options, this._filter);
+        this._options = getOptions(options, filter);
+        this._content = getContent(content);
         const valid = validateRequiredParams(this._filter);
         if (valid) {
           if (triggerRequest) {
@@ -75,40 +87,61 @@ export class TransactionsControl {
           }
         } else {
           this.errorStatusCode = 204;
-          this.error = Translations.ERROR_204_TITLE;
+          errorLog(Translations.ERROR_204_TITLE);
         }
       } catch (e) {
         this.errorStatusCode = 500;
-        this.error = Translations.RV_ERROR_PARSING_OPTIONS;
-        errorLog(e);
+        errorLog(Translations.RV_ERROR_PARSING_OPTIONS, e);
       }
     } else {
       this.errorStatusCode = 500;
-      this.error = Translations.RV_CONFIGURATION_NOT_PRESENT;
       errorLog(Translations.RV_CONFIGURATION_NOT_PRESENT);
     }
   };
 
-  @Watch('filter')
-  async watchFilter(newValue: RVFilterDate, oldValue: RVFilterDate): Promise<void> {
-    if (newValue && oldValue && !isEqual(oldValue, newValue)) {
-      await this.validateParams(this.configuration, newValue);
-    }
-  }
-
   @Watch('configuration')
   async watchConfiguration(newValue: RVConfiguration, oldValue: RVConfiguration): Promise<void> {
     if (newValue && oldValue && !isEqual(oldValue, newValue)) {
-      await this.validateParams(newValue, this.filter);
+      await this.validateParams(newValue, this.filter, this.options, this.content);
+    }
+  }
+
+  @Watch('filter')
+  async watchFilter(newValue: RVFilterDate, oldValue: RVFilterDate): Promise<void> {
+    if (newValue && oldValue && !isEqual(oldValue, newValue)) {
+      await this.validateParams(this.configuration, newValue, this.options, this.content);
+    }
+  }
+
+  @Watch('options')
+  async watchOptions(newValue: RVOptions, oldValue: RVOptions): Promise<void> {
+    if (newValue && oldValue && !isEqual(oldValue, newValue)) {
+      await this.validateParams(this.configuration, this.filter, newValue, this.content);
+    }
+  }
+
+  @Watch('content')
+  async watchContent(newValue: RVContent, oldValue: RVContent): Promise<void> {
+    if (newValue && oldValue && !isEqual(oldValue, newValue)) {
+      await this.validateParams(this.configuration, this.filter, this.options, newValue);
     }
   }
 
   private propsUpdated = async (triggerRequest = true): Promise<void> => {
-    await this.validateParams(this.configuration, this.filter, triggerRequest);
+    await this.validateParams(
+      this.configuration,
+      this.filter,
+      this.options,
+      this.content,
+      triggerRequest,
+    );
   };
 
+  /**
+   * Request report data based on filter and configuration param
+   */
   private requestReportData = async (): Promise<void> => {
-    this.error = '';
+    this.errorStatusCode = 0;
     this.loading = Translations.LOADING_REPORT;
     const reportData = (await getTransactionsData({
       filter: this._filter,
@@ -117,10 +150,8 @@ export class TransactionsControl {
       if (reportData?.data) {
         this._dataFormatted = reportData?.data;
       } else if (reportData?.error) {
-        this.error = Translations.ERROR_500_TITLE;
         this.errorStatusCode = reportData.error?.statusCode;
       } else {
-        this.error = Translations.ERROR_500_TITLE;
         this.errorStatusCode = reportData?.status;
       }
     } catch (error) {
@@ -135,7 +166,8 @@ export class TransactionsControl {
   }
 
   private renderMain(): HTMLElement {
-    if (!isEmpty(this.error)) {
+    console.log('transactions-control this.errorStatusCode', this.errorStatusCode);
+    if (this.errorStatusCode !== 0) {
       return (
         <railz-error-image
           statusCode={this.errorStatusCode || 500}
@@ -162,9 +194,9 @@ export class TransactionsControl {
   render(): HTMLElement {
     return (
       <div class="railz-container" style={this._options?.container?.style}>
-        {this._options?.title ? (
+        {this._content?.title ? (
           <p class="railz-title" style={this._options?.title?.style}>
-            {this._options?.title?.text || ''}
+            {this._content?.title || ''}
           </p>
         ) : null}
         {this.renderMain()}

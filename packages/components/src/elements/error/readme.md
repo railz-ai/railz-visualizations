@@ -8,7 +8,6 @@
 | ------------ | ------------- | ------------------------------------------------------ | -------- | ----------- |
 | `fillColor`  | `fill-color`  | Fill color of the svg image representing a status code | `string` | `'#949494'` |
 | `statusCode` | `status-code` | Status code based on HTTP Response codes               | `number` | `undefined` |
-| `text`       | `text`        | Text to display at the bottom of the svg image         | `string` | `undefined` |
 | `textColor`  | `text-color`  | Color of the image text                                | `string` | `'#424242'` |
 
 ## Dependencies

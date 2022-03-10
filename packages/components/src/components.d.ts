@@ -7,6 +7,7 @@
 import { HTMLStencilElement, JSXBase } from '@stencil/core/internal';
 import {
   RVConfiguration,
+  RVContent,
   RVFilter,
   RVFilterDate,
   RVFilterFrequency,
@@ -24,10 +25,6 @@ export namespace Components {
      * Status code based on HTTP Response codes
      */
     statusCode?: number;
-    /**
-     * Text to display at the bottom of the svg image
-     */
-    text?: string;
     /**
      * Color of the image text
      */
@@ -75,13 +72,17 @@ export namespace Components {
      */
     configuration: RVConfiguration;
     /**
+     * Content text/info
+     */
+    content?: RVContent;
+    /**
      * Filter information to query the backend APIs
      */
     filter: RVFilterFrequency;
     /**
      * For whitelabeling styling
      */
-    options: RVOptions;
+    options?: RVOptions;
   }
   interface RailzTransactionsControl {
     /**
@@ -89,13 +90,17 @@ export namespace Components {
      */
     configuration: RVConfiguration;
     /**
+     * Content text/info
+     */
+    content?: RVContent;
+    /**
      * Filter information to query the backend APIs
      */
     filter: RVFilterDate;
     /**
      * For whitelabeling styling
      */
-    options: RVOptions;
+    options?: RVOptions;
   }
   interface RailzVisualizations {
     /**
@@ -103,13 +108,17 @@ export namespace Components {
      */
     configuration: RVConfiguration;
     /**
+     * Content text/info
+     */
+    content?: RVContent;
+    /**
      * Filter information to query the backend APIs
      */
     filter: RVFilter;
     /**
      * For whitelabeling styling
      */
-    options: RVOptions;
+    options?: RVOptions;
   }
 }
 declare global {
@@ -169,10 +178,6 @@ declare namespace LocalJSX {
      */
     statusCode?: number;
     /**
-     * Text to display at the bottom of the svg image
-     */
-    text?: string;
-    /**
      * Color of the image text
      */
     textColor?: string;
@@ -219,6 +224,10 @@ declare namespace LocalJSX {
      */
     configuration: RVConfiguration;
     /**
+     * Content text/info
+     */
+    content?: RVContent;
+    /**
      * Filter information to query the backend APIs
      */
     filter: RVFilterFrequency;
@@ -233,6 +242,10 @@ declare namespace LocalJSX {
      */
     configuration: RVConfiguration;
     /**
+     * Content text/info
+     */
+    content?: RVContent;
+    /**
      * Filter information to query the backend APIs
      */
     filter: RVFilterDate;
@@ -246,6 +259,10 @@ declare namespace LocalJSX {
      * Configuration information like authentication configuration
      */
     configuration?: RVConfiguration;
+    /**
+     * Content text/info
+     */
+    content?: RVContent;
     /**
      * Filter information to query the backend APIs
      */

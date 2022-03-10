@@ -5,7 +5,6 @@ import exporting from 'highcharts/modules/exporting';
 import indicators from 'highcharts/indicators/indicators';
 import trendline from 'highcharts/indicators/trendline';
 import highchartsAccessibility from 'highcharts/modules/accessibility';
-
 import { isEmpty, isEqual } from 'lodash-es';
 
 import Translations from '../../config/translations/en.json';
@@ -17,6 +16,7 @@ import {
   RVFormattedStatementData,
   RVFormattedStatementResponse,
   RVOptions,
+  RVContent,
 } from '../../types';
 
 import { RVFinancialStatementsTypes } from '../../types/enum/report-type';
@@ -25,6 +25,7 @@ import {
   getDateFilter,
   getHighchartsParams,
   getOptions,
+  getContent,
   validateRequiredParams,
 } from '../../helpers/chart.utils';
 
@@ -54,15 +55,19 @@ export class StatementsChart {
   /**
    * For whitelabeling styling
    */
-  @Prop() readonly options: RVOptions;
+  @Prop() readonly options?: RVOptions;
+  /**
+   * Content text/info
+   */
+  @Prop() readonly content?: RVContent;
 
   @State() private loading = '';
   @State() private _configuration: RVConfiguration;
   @State() private _filter: RVFilterFrequency;
   @State() private _options: RVOptions;
+  @State() private _content: RVContent;
   @State() private _dataFormatted: RVFormattedStatementData;
-  @State() private error: string;
-  @State() private errorStatusCode: number;
+  @State() private errorStatusCode = 0;
 
   @State() private chartOptions: any;
 
@@ -72,19 +77,26 @@ export class StatementsChart {
    * Validates if configuration was passed correctly before setting filter
    * @param configuration - Config for authentication
    * @param filter - filter to decide chart type to show
+   * @param options: Whitelabeling options
+   * @param content - content to text that should display
    * @param triggerRequest - indicate if api request should be made
    */
   private validateParams = async (
     configuration: RVConfiguration,
     filter: RVFilterFrequency,
+    options: RVOptions,
+    content: RVContent,
     triggerRequest = true,
   ): Promise<void> => {
+    this.errorStatusCode = 0;
     this._configuration = getConfiguration(configuration);
     if (this._configuration) {
       ConfigurationInstance.configuration = this._configuration;
       try {
         this._filter = getDateFilter(filter) as RVFilterFrequency;
-        this._options = getOptions(this.options, this._filter);
+        this._options = getOptions(options, filter);
+        this._content = getContent(content);
+
         const valid = validateRequiredParams(this._filter);
         if (valid) {
           if (triggerRequest) {
@@ -92,16 +104,14 @@ export class StatementsChart {
           }
         } else {
           this.errorStatusCode = 204;
-          this.error = Translations.ERROR_204_TITLE;
         }
       } catch (e) {
         this.errorStatusCode = 500;
-        this.error = e;
         errorLog(e);
       }
     } else {
       this.errorStatusCode = 500;
-      this.error = Translations.RV_CONFIGURATION_NOT_PRESENT;
+      errorLog(Translations.RV_CONFIGURATION_NOT_PRESENT);
     }
   };
 
@@ -112,22 +122,42 @@ export class StatementsChart {
     }
   }
 
-  @Watch('filter')
-  async watchFilter(newValue: RVFilterFrequency, oldValue: RVFilterFrequency): Promise<void> {
-    if (newValue && oldValue && !isEqual(oldValue, newValue)) {
-      await this.validateParams(this.configuration, newValue);
-    }
-  }
-
   @Watch('configuration')
   async watchConfiguration(newValue: RVConfiguration, oldValue: RVConfiguration): Promise<void> {
     if (newValue && oldValue && !isEqual(oldValue, newValue)) {
-      await this.validateParams(newValue, this.filter);
+      await this.validateParams(newValue, this.filter, this.options, this.content);
+    }
+  }
+
+  @Watch('filter')
+  async watchFilter(newValue: RVFilterFrequency, oldValue: RVFilterFrequency): Promise<void> {
+    if (newValue && oldValue && !isEqual(oldValue, newValue)) {
+      await this.validateParams(this.configuration, newValue, this.options, this.content);
+    }
+  }
+
+  @Watch('options')
+  async watchOptions(newValue: RVOptions, oldValue: RVOptions): Promise<void> {
+    if (newValue && oldValue && !isEqual(oldValue, newValue)) {
+      await this.validateParams(this.configuration, this.filter, newValue, this.content);
+    }
+  }
+
+  @Watch('content')
+  async watchContent(newValue: RVContent, oldValue: RVContent): Promise<void> {
+    if (newValue && oldValue && !isEqual(oldValue, newValue)) {
+      await this.validateParams(this.configuration, this.filter, this.options, newValue);
     }
   }
 
   private propsUpdated = async (triggerRequest = true): Promise<void> => {
-    await this.validateParams(this.configuration, this.filter, triggerRequest);
+    await this.validateParams(
+      this.configuration,
+      this.filter,
+      this.options,
+      this.content,
+      triggerRequest,
+    );
   };
 
   /**
@@ -136,28 +166,36 @@ export class StatementsChart {
    * Updated Highchart params using updateHighchartsParams
    */
   private requestReportData = async (): Promise<void> => {
-    this.error = '';
+    this.errorStatusCode = 0;
+    console.log('statements-chart requestReportData');
     this.loading = Translations.LOADING_REPORT;
     try {
+      console.log(1);
       const reportData = (await getReportData({
         filter: this._filter,
       })) as RVFormattedStatementResponse;
+      console.log('1.a', reportData);
       if (reportData?.data) {
+        console.log(2);
         this._dataFormatted = formatData({
           summary: reportData.data,
           reportType: this._filter?.reportType as RVFinancialStatementsTypes,
           reportFrequency: this._filter?.reportFrequency,
           chart: this._options?.chart,
         });
+        console.log(3);
+        console.log('statements-chart requestReportData this._dataFormatted', this._dataFormatted);
         this.updateHighchartsParams();
+        console.log(4);
       } else if (reportData?.error) {
-        this.error = Translations.NOT_ABLE_TO_RETRIEVE_REPORT_DATA;
+        console.log(5);
         this.errorStatusCode = reportData.error?.statusCode;
       } else {
-        this.error = Translations.ERROR_202_TITLE;
+        console.log(6, reportData?.status);
         this.errorStatusCode = reportData?.status;
       }
     } catch (error) {
+      console.log(7);
       errorLog(Translations.RV_NOT_ABLE_TO_PARSE_REPORT_DATA, error);
     } finally {
       this.loading = '';
@@ -175,7 +213,6 @@ export class StatementsChart {
       options: this._options,
     });
     if (options) {
-      this.error = '';
       this.loading = '';
       this.chartOptions = options;
     }
@@ -186,7 +223,10 @@ export class StatementsChart {
   }
 
   private renderMain = (): HTMLElement => {
-    if (!isEmpty(this.error)) {
+    console.log('statements-chart this.errorStatusCode', this.errorStatusCode);
+    if (this.errorStatusCode !== 0) {
+      console.log('this.errorStatusCode', this.errorStatusCode);
+      console.log('this._options?.errorIndicator', this._options?.errorIndicator);
       return (
         <railz-error-image
           statusCode={this.errorStatusCode || 500}
@@ -209,9 +249,9 @@ export class StatementsChart {
   render(): HTMLElement {
     return (
       <div class="railz-container" style={this._options?.container?.style}>
-        {this._options?.title ? (
+        {this._content?.title ? (
           <p class="railz-title" style={this._options?.title?.style}>
-            {this._options?.title?.text || ''}
+            {this._content?.title || ''}
           </p>
         ) : null}
         {this.renderMain()}

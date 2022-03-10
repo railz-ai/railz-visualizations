@@ -16,10 +16,6 @@ export class ErrorImage {
    */
   @Prop() readonly statusCode?: number;
   /**
-   * Text to display at the bottom of the svg image
-   */
-  @Prop() readonly text?: string;
-  /**
    * Fill color of the svg image representing a status code
    */
   @Prop() readonly fillColor?: string = '#949494';
@@ -29,13 +25,14 @@ export class ErrorImage {
   @Prop() readonly textColor?: string = '#424242';
 
   render(): HTMLElement {
+    console.log('error-image this.statusCode', this.statusCode);
     switch (this.statusCode) {
       case 202:
         return (
           <div>
             <Error202 fillColor={this.fillColor} />
             <p class="railz-error-title" style={{ color: this.textColor }}>
-              {this.text || Translations.ERROR_202_TITLE}
+              {Translations.ERROR_202_TITLE}
             </p>
           </div>
         );
@@ -45,7 +42,7 @@ export class ErrorImage {
           <div>
             <Error204 fillColor={this.fillColor} />
             <p class="railz-error-title" style={{ color: this.textColor }}>
-              {this.text || Translations.ERROR_204_TITLE}
+              {Translations.ERROR_204_TITLE}
             </p>
           </div>
         );
@@ -54,7 +51,7 @@ export class ErrorImage {
           <div>
             <Error500 fillColor={this.fillColor} />
             <p class="railz-error-title" style={{ color: this.textColor }}>
-              {this.text || Translations.ERROR_500_TITLE}
+              {Translations.ERROR_500_TITLE}
             </p>
           </div>
         );

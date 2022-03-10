@@ -1394,18 +1394,18 @@
     node-gyp "^8.2.0"
     read-package-json-fast "^2.0.1"
 
-"@railzai/railz-visualizations-angular@0.0.1-beta.4":
-  version "0.0.1-beta.4"
-  resolved "https://registry.yarnpkg.com/@railzai/railz-visualizations-angular/-/railz-visualizations-angular-0.0.1-beta.4.tgz#d406a87b5b6616fb3d74db7034b9f55fee1047da"
-  integrity sha512-wjnh6t+y8MXu9E8gWWC9ekpEkkZGo/BX5fZSAaEsMtocL/WlqcC4rBsQGpDoOPYDMlg89TMqvwUmIlXgUtrGMQ==
+"@railzai/railz-visualizations-angular@0.0.1-beta.6":
+  version "0.0.1-beta.6"
+  resolved "https://registry.yarnpkg.com/@railzai/railz-visualizations-angular/-/railz-visualizations-angular-0.0.1-beta.6.tgz#1e1924d06b5fe86f32e42eccf03dda6580ba58cd"
+  integrity sha512-KPdzYBTKz+Hf6LEhSNig9NfSmivLbRg4VZU3EobokftBr1YvruBt80FKvY/H65nfzkxnBwzns131LgOgcYBlJA==
   dependencies:
-    "@railzai/railz-visualizations" "0.0.1-beta.4"
+    "@railzai/railz-visualizations" "0.0.1-beta.6"
     tslib "^2.3.0"
 
-"@railzai/railz-visualizations@0.0.1-beta.4":
-  version "0.0.1-beta.4"
-  resolved "https://registry.yarnpkg.com/@railzai/railz-visualizations/-/railz-visualizations-0.0.1-beta.4.tgz#dc004b1a835492a7d24ceed4aa4068ab7524b0b6"
-  integrity sha512-eU3Ef41NcWYGIXD6Ne8POaOwRQ7QkszqoWfyHaklrkogMlCz4Q6Of0h3zOFx91sY+D+JBvFP8THeoly1cj7vyg==
+"@railzai/railz-visualizations@0.0.1-beta.6":
+  version "0.0.1-beta.6"
+  resolved "https://registry.yarnpkg.com/@railzai/railz-visualizations/-/railz-visualizations-0.0.1-beta.6.tgz#eab6dcedd3a6ebcfb2b2ee50c4378ec500adc754"
+  integrity sha512-Zhr+WQNPozMX80JlUgWEuEATBcdwqXgpOwLxFIB22VOHmzdR0ByAqoFuP1liByl/rqPcIIHxm+Jlf8VDXZToGg==
   dependencies:
     "@stencil/angular-output-target" "0.4.0"
     "@stencil/core" "2.13.0"

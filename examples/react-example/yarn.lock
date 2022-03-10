@@ -1380,17 +1380,17 @@
     schema-utils "^3.0.0"
     source-map "^0.7.3"
 
-"@railzai/railz-visualizations-react@0.0.1-beta.5":
-  version "0.0.1-beta.5"
-  resolved "https://registry.yarnpkg.com/@railzai/railz-visualizations-react/-/railz-visualizations-react-0.0.1-beta.5.tgz#f1c87ee74e6bfceb5e3a7e7015d675cee7c9d2d1"
-  integrity sha512-L+5wwdMLNaagvGpc/9tl/FP9JnigZWYjzYtBiBRjQ1artzGWsyf1kXg109a25y5gYQSWyx11RZyd8eg6vOFvZA==
+"@railzai/railz-visualizations-react@0.0.1-beta.6":
+  version "0.0.1-beta.6"
+  resolved "https://registry.yarnpkg.com/@railzai/railz-visualizations-react/-/railz-visualizations-react-0.0.1-beta.6.tgz#1388b965fff2e7a654389bb70b65c76c013f2432"
+  integrity sha512-Ji/2PdG/nDBq7vYFVUWO+GV4cQ0qnKBcadzcAqn+ucS1qd0MbbkxT06SW0yuDZvE9QwnGbj9wnsTScpv4oNoGA==
   dependencies:
-    "@railzai/railz-visualizations" "0.0.1-beta.5"
+    "@railzai/railz-visualizations" "0.0.1-beta.6"
 
-"@railzai/railz-visualizations@0.0.1-beta.5":
-  version "0.0.1-beta.5"
-  resolved "https://registry.yarnpkg.com/@railzai/railz-visualizations/-/railz-visualizations-0.0.1-beta.5.tgz#a6135c8586e830d012cf6a2dc3a3d011ae43ac83"
-  integrity sha512-1kPTiB31PemJhSbz9FHZMKVwBnBEh4bnGq4NK7RyOZSp7EbPJ/6b3dLRkxMCxhji6FQGCVqQPpGnu51kJxJRTw==
+"@railzai/railz-visualizations@0.0.1-beta.6":
+  version "0.0.1-beta.6"
+  resolved "https://registry.yarnpkg.com/@railzai/railz-visualizations/-/railz-visualizations-0.0.1-beta.6.tgz#eab6dcedd3a6ebcfb2b2ee50c4378ec500adc754"
+  integrity sha512-Zhr+WQNPozMX80JlUgWEuEATBcdwqXgpOwLxFIB22VOHmzdR0ByAqoFuP1liByl/rqPcIIHxm+Jlf8VDXZToGg==
   dependencies:
     "@stencil/angular-output-target" "0.4.0"
     "@stencil/core" "2.13.0"

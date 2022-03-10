@@ -11,6 +11,7 @@ import {
   RAILZ_TEXT_COLOR,
   RVAllFilter,
   RVConfiguration,
+  RVContent,
   RVDateFilters,
   RVFilter,
   RVFilterFrequency,
@@ -141,7 +142,6 @@ export const getDateFilter = (filter: RVDateFilters | string): RVDateFilters => 
         }
       } catch (error) {
         errorLog(Translations.RV_DATE_DIFF_ERROR);
-        throw new Error(Translations.ERROR_500_TITLE);
       }
     }
   }
@@ -201,7 +201,7 @@ export const checkAccessibilityFromOptions = (options: RVOptions): void => {
  * @param options: Whitelabeling options
  * @param filter: Filter query
  */
-export const getOptions = (options: RVOptions | string, filter?: RVAllFilter): RVOptions => {
+export const getOptions = (options: RVOptions | string, filter: RVFilter): RVOptions => {
   let formattedOptions: RVOptions;
   try {
     if (options) {
@@ -264,6 +264,34 @@ export const getBarOptionsStyle = (
 };
 
 /**
+ * @function getContent: if configuration is a string, convert to an object
+ * Validate that configuration is present, if not, return formatted configuration as undefined
+ * @param content: Content text/info
+ * @param filter: To retrieve reportType
+ */
+export const getContent = (
+  content: RVContent | string,
+  filter?: RVAllFilter,
+): RVContent | never => {
+  let formattedContent: RVContent;
+  if (content) {
+    try {
+      if (typeof content === 'string') {
+        formattedContent = JSON.parse(content);
+      } else {
+        formattedContent = content;
+      }
+    } catch (error) {
+      errorLog(Translations.RV_ERROR_PARSING_CONTENT + ' ' + error.message);
+    }
+  }
+  if (filter) {
+    formattedContent.title = formattedContent.title || getTitleByReportType(filter.reportType);
+  }
+  return formattedContent;
+};
+
+/**
  * getHighchartsParams: Combine generic stacked bar line chart
  * options and formatted data based on a given report type
  * into one option for highcharts usage
@@ -282,7 +310,6 @@ export const getHighchartsParams = ({
     });
   } catch (error) {
     errorLog(Translations.RV_NOT_ABLE_TO_PARSE_REPORT_DATA, error);
-    throw new Error(Translations.ERROR_500_TITLE);
   }
 
   return containerOptions;

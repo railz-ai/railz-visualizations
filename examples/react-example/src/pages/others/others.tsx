@@ -44,7 +44,7 @@ const AllComponents = () => {
         <div className="mt-5 md:mt-0 md:col-span-1 flex flex-col">
           <p>204 Response - with removed text</p>
           <div className="shadow p-4 mt-2 flex h-full">
-            <RailzErrorImage statusCode={204} text="" />
+            <RailzErrorImage statusCode={204} />
           </div>
         </div>
       </div>

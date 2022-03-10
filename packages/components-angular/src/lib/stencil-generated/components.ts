@@ -16,13 +16,13 @@ export declare interface RailzErrorImage extends Components.RailzErrorImage {}
 
 @ProxyCmp({
   defineCustomElementFn: undefined,
-  inputs: ["fillColor", "statusCode", "text", "textColor"],
+  inputs: ["fillColor", "statusCode", "textColor"],
 })
 @Component({
   selector: "railz-error-image",
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: "<ng-content></ng-content>",
-  inputs: ["fillColor", "statusCode", "text", "textColor"],
+  inputs: ["fillColor", "statusCode", "textColor"],
 })
 export class RailzErrorImage {
   protected el: HTMLElement;
@@ -89,13 +89,13 @@ export declare interface RailzStatementsChart
 
 @ProxyCmp({
   defineCustomElementFn: undefined,
-  inputs: ["configuration", "filter", "options"],
+  inputs: ["configuration", "content", "filter", "options"],
 })
 @Component({
   selector: "railz-statements-chart",
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: "<ng-content></ng-content>",
-  inputs: ["configuration", "filter", "options"],
+  inputs: ["configuration", "content", "filter", "options"],
 })
 export class RailzStatementsChart {
   protected el: HTMLElement;
@@ -110,13 +110,13 @@ export declare interface RailzTransactionsControl
 
 @ProxyCmp({
   defineCustomElementFn: undefined,
-  inputs: ["configuration", "filter", "options"],
+  inputs: ["configuration", "content", "filter", "options"],
 })
 @Component({
   selector: "railz-transactions-control",
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: "<ng-content></ng-content>",
-  inputs: ["configuration", "filter", "options"],
+  inputs: ["configuration", "content", "filter", "options"],
 })
 export class RailzTransactionsControl {
   protected el: HTMLElement;
@@ -131,13 +131,13 @@ export declare interface RailzVisualizations
 
 @ProxyCmp({
   defineCustomElementFn: undefined,
-  inputs: ["configuration", "filter", "options"],
+  inputs: ["configuration", "content", "filter", "options"],
 })
 @Component({
   selector: "railz-visualizations",
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: "<ng-content></ng-content>",
-  inputs: ["configuration", "filter", "options"],
+  inputs: ["configuration", "content", "filter", "options"],
 })
 export class RailzVisualizations {
   protected el: HTMLElement;
