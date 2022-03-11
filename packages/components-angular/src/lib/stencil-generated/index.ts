@@ -1,4 +1,5 @@
-import * as d from "./components";
+
+import * as d from './components';
 
 export const DIRECTIVES = [
   d.RailzErrorImage,
@@ -6,5 +7,5 @@ export const DIRECTIVES = [
   d.RailzProgressBar,
   d.RailzStatementsChart,
   d.RailzTransactionsControl,
-  d.RailzVisualizations,
+  d.RailzVisualizations
 ];

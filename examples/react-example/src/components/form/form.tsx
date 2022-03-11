@@ -3,6 +3,7 @@ import { FormProps } from "../../types/form";
 import AuthForm from "./elements/auth-form";
 import FilterForm from "./elements/filter-form";
 import OptionsForm from "./elements/options-form";
+import ContentForm from "./elements/content-form";
 
 export default function Form({
   setFilter,
@@ -10,6 +11,8 @@ export default function Form({
   setError,
   options,
   setOptions,
+  setContent,
+  showContent,
 }: FormProps) {
   return (
     <>
@@ -32,6 +35,11 @@ export default function Form({
           setError={setError}
         />
       </div>
+      {showContent && (
+        <div className="mt-4 sm:mt-4">
+          <ContentForm setContent={setContent} />
+        </div>
+      )}
     </>
   );
 }

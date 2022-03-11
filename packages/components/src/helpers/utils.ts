@@ -11,12 +11,15 @@ import { RVReportFrequency, RVReportStatementSummary } from '../types';
 export const formatDate = (
   summary: RVReportStatementSummary,
   reportFrequency: RVReportFrequency,
+  quarter = 'Q',
+  month = 'MMM yy',
 ): string[] => {
   return summary.map((data) => {
     const date = parseISO(data.period.date);
-    if (reportFrequency === 'quarter') return `Q${data.period.quarter} ${format(date, 'YYYY')}`;
+    if (reportFrequency === 'quarter')
+      return `${quarter}${data.period.quarter} ${format(date, 'yyyy')}`;
     if (reportFrequency === 'year') return data.period.year.toString();
-    return format(date, 'MMM yy');
+    return format(date, month);
   });
 };
 

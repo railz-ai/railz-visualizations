@@ -166,7 +166,6 @@ export class TransactionsControl {
   }
 
   private renderMain(): HTMLElement {
-    console.log('transactions-control this.errorStatusCode', this.errorStatusCode);
     if (this.errorStatusCode !== 0) {
       return (
         <railz-error-image

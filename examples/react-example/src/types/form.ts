@@ -1,5 +1,5 @@
 import { AuthenticationParameters } from "./authentication";
-import { RVOptions } from "@railzai/railz-visualizations/src";
+import { RVOptions } from "@railzai/railz-visualizations";
 
 export interface OptionFormProps {
   setOptions?: (params: any) => void;
@@ -11,7 +11,7 @@ export interface ContentFormProps {
   showContent?: boolean;
 }
 
-export interface FormProps extends OptionFormProps {
+export interface FormProps extends OptionFormProps, ContentFormProps {
   setFilter: (filter: any) => void;
   setAuthentication: (params: AuthenticationParameters) => Promise<void>;
   setError: (value: string) => void;

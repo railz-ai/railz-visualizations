@@ -167,35 +167,27 @@ export class StatementsChart {
    */
   private requestReportData = async (): Promise<void> => {
     this.errorStatusCode = 0;
-    console.log('statements-chart requestReportData');
     this.loading = Translations.LOADING_REPORT;
     try {
-      console.log(1);
       const reportData = (await getReportData({
         filter: this._filter,
       })) as RVFormattedStatementResponse;
-      console.log('1.a', reportData);
       if (reportData?.data) {
-        console.log(2);
         this._dataFormatted = formatData({
           summary: reportData.data,
           reportType: this._filter?.reportType as RVFinancialStatementsTypes,
           reportFrequency: this._filter?.reportFrequency,
           chart: this._options?.chart,
+          month: this._content?.date.month,
+          quarter: this._content?.date.quarter,
         });
-        console.log(3);
-        console.log('statements-chart requestReportData this._dataFormatted', this._dataFormatted);
         this.updateHighchartsParams();
-        console.log(4);
       } else if (reportData?.error) {
-        console.log(5);
         this.errorStatusCode = reportData.error?.statusCode;
       } else {
-        console.log(6, reportData?.status);
         this.errorStatusCode = reportData?.status;
       }
     } catch (error) {
-      console.log(7);
       errorLog(Translations.RV_NOT_ABLE_TO_PARSE_REPORT_DATA, error);
     } finally {
       this.loading = '';
@@ -223,10 +215,7 @@ export class StatementsChart {
   }
 
   private renderMain = (): HTMLElement => {
-    console.log('statements-chart this.errorStatusCode', this.errorStatusCode);
     if (this.errorStatusCode !== 0) {
-      console.log('this.errorStatusCode', this.errorStatusCode);
-      console.log('this._options?.errorIndicator', this._options?.errorIndicator);
       return (
         <railz-error-image
           statusCode={this.errorStatusCode || 500}

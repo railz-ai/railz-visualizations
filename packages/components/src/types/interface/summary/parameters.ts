@@ -11,6 +11,8 @@ export interface RVChartStatementBaseParameter {
   summary: RVReportStatementSummary;
   reportFrequency: RVReportFrequency;
   chart: RVOptionsChartStyle;
+  quarter: string;
+  month: string;
 }
 
 export interface RVChartStatementParameter extends RVChartStatementBaseParameter {

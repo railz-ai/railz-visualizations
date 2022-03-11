@@ -8,6 +8,7 @@ import {
   RVReportTypes,
   RVServiceProviders,
   RVFilterFrequency,
+  RVContent,
 } from "@railzai/railz-visualizations";
 import {
   RailzStatementsChart,
@@ -33,6 +34,7 @@ interface ChartProps {
   configuration: RVConfiguration;
   filter: Filter;
   options?: RVOptions;
+  content?: RVContent;
   showCode?: boolean;
   displayValue?: string;
 }
@@ -88,6 +90,7 @@ const Code = ({
   configuration,
   filter,
   options,
+  content,
   showCode,
   displayValue,
 }: ChartProps) => {
@@ -110,6 +113,11 @@ const Code = ({
                 options
                   ? "} options={" + JSON.stringify(options, null, "\t")
                   : ""
+              }} ` +
+              `${
+                content
+                  ? "} content={" + JSON.stringify(content, null, "\t")
+                  : ""
               }} />`}
           </code>
         </pre>
@@ -122,6 +130,7 @@ const DefaultComponent = ({
   configuration,
   filter,
   options,
+  content,
   showCode,
 }: ChartProps) => {
   return (
@@ -130,11 +139,13 @@ const DefaultComponent = ({
         configuration={configuration}
         filter={filter as RVFilter}
         options={options}
+        content={content}
       />
       <Code
         configuration={configuration}
         filter={filter}
         options={options}
+        content={content}
         showCode={showCode}
         displayValue="RailzVisualizations"
       />
@@ -146,6 +157,7 @@ const Components = ({
   configuration,
   filter,
   options,
+  content,
   showCode,
 }: ChartProps) => {
   return (
@@ -181,11 +193,13 @@ const Components = ({
             configuration={configuration}
             filter={filter as RVFilterFrequency}
             options={options}
+            content={content}
           />
           <Code
             configuration={configuration}
             filter={filter}
             options={options}
+            content={content}
             showCode={showCode}
             displayValue="RailzStatementsChart"
           />
@@ -204,11 +218,13 @@ const Components = ({
             configuration={configuration}
             filter={filter as RVFilterDate}
             options={options}
+            content={content}
           />
           <Code
             configuration={configuration}
             filter={filter}
             options={options}
+            content={content}
             showCode={showCode}
             displayValue="RailzTransactionsControl"
           />
@@ -219,6 +235,7 @@ const Components = ({
           configuration={configuration}
           filter={filter}
           options={options}
+          content={content}
           showCode={showCode}
         />
       )}
@@ -229,6 +246,7 @@ export default function Visualizations({
   configuration,
   filter,
   options,
+  content,
 }: ChartProps) {
   const [code, setCode] = useState(false);
   return (
@@ -250,6 +268,7 @@ export default function Visualizations({
         configuration={configuration}
         filter={filter}
         options={options}
+        content={content}
         showCode={code}
       />
     </div>

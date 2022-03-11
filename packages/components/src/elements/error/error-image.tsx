@@ -25,7 +25,6 @@ export class ErrorImage {
   @Prop() readonly textColor?: string = '#424242';
 
   render(): HTMLElement {
-    console.log('error-image this.statusCode', this.statusCode);
     switch (this.statusCode) {
       case 202:
         return (

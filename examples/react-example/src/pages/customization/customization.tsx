@@ -11,6 +11,7 @@ export default function Customization() {
   const [token, setToken] = useState("");
   const [filter, setFilter] = useState({});
   const [options, setOptions] = useState(INITIAL_OPTIONS);
+  const [content, setContent] = useState<any>();
   const [error, setError] = useState("");
 
   const submitAuthentication = async (
@@ -38,6 +39,19 @@ export default function Customization() {
     setOptions(options);
   };
 
+  const submitContent = (content: any) => {
+    setContent({
+      date: {
+        month: content.dateMonth,
+        quarter: content.dateQuarter,
+      },
+      label: {
+        date: content.labelDate,
+      },
+    });
+    setError("");
+  };
+
   return (
     <div className="App">
       <Header
@@ -53,6 +67,8 @@ export default function Customization() {
               setError={setError}
               options={options}
               setOptions={submitOptions}
+              setContent={submitContent}
+              showContent={true}
             />
           </div>
           <div className="mt-5 md:mt-0 md:col-span-2">
@@ -69,6 +85,7 @@ export default function Customization() {
                 }}
                 filter={filter as any}
                 options={options}
+                content={content}
               />
             )}
 
