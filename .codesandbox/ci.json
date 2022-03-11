@@ -1,5 +1,5 @@
 {
-  "buildCommand": "build:codesandbox",
+  "buildCommand": "build",
   "installCommand": "install:codesandbox",
   "packages": [
     "packages/components",
