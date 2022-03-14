@@ -1,14 +1,15 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import {
   RVAccountingProviders,
   RVBankingProviders,
   RVReportFrequency,
   RVReportTypes,
   RVSandboxProviders,
-} from "@railzai/railz-visualizations";
-import { FormProps } from "../../../types/form";
+} from '@railzai/railz-visualizations';
+import { FormProps } from '../../../types/form';
 
-//TODO: this can be helper functions and objects the SDK provides
+// TODO: this can be helper functions and objects the SDK provides
+// This is still not possible: https://github.com/ionic-team/stencil/issues/2865
 const arrayServiceProviders = [
   ...Object.values(RVSandboxProviders),
   ...Object.values(RVBankingProviders),
@@ -16,7 +17,6 @@ const arrayServiceProviders = [
 ];
 const arrayAllReportTypes = Object.values(RVReportTypes);
 const arrayReportFrequency = Object.values(RVReportFrequency);
-const arrayTrueFalse = ["true", "false"];
 const requiresNoFrequency = (type: string) =>
   [
     RVReportTypes.INVOICES,
@@ -25,19 +25,17 @@ const requiresNoFrequency = (type: string) =>
     RVReportTypes.CREDIT_SCORE,
   ].includes(type as RVReportTypes);
 const requiresNoDate = (type: string) =>
-  [RVReportTypes.BANK_ACCOUNT, RVReportTypes.CREDIT_SCORE].includes(
-    type as RVReportTypes
-  );
+  [RVReportTypes.BANK_ACCOUNT, RVReportTypes.CREDIT_SCORE].includes(type as RVReportTypes);
 
 export default function FilterForm({ setFilter }: FormProps) {
   const [formFilter, setFormFilter] = useState({
-    businessName: "",
+    businessName: '',
     serviceName: arrayServiceProviders[0],
-    connectionId: "",
+    connectionId: '',
     reportType: arrayAllReportTypes[0],
     reportFrequency: arrayReportFrequency[0],
-    startDate: "",
-    endDate: "",
+    startDate: '',
+    endDate: '',
   });
 
   const submitFilter = (event: any) => {
@@ -56,11 +54,9 @@ export default function FilterForm({ setFilter }: FormProps) {
     <div className="flex flex-col">
       <div className="md:col-span-1">
         <div className="text-left">
-          <h2 className="text-lg font-medium leading-6 text-gray-900">
-            Filters
-          </h2>
+          <h2 className="text-lg font-medium leading-6 text-gray-900">Filters</h2>
           <p className="mt-1 text-sm text-gray-600">
-            Some fields are disabled based on criteria{" "}
+            Some fields are disabled based on criteria{' '}
             <a
               href="https://docs.railz.ai/reference/components"
               target="_blank"
@@ -72,8 +68,8 @@ export default function FilterForm({ setFilter }: FormProps) {
             .
           </p>
           <p className="mt-1 text-sm text-gray-600 font-bold">
-            SDK current release only works with report types (balanceSheets,
-            incomeStatements, cashflowStatements, invoices, bills).
+            SDK current release only works with report types (balanceSheets, incomeStatements,
+            cashflowStatements, invoices, bills).
           </p>
         </div>
       </div>
@@ -82,10 +78,7 @@ export default function FilterForm({ setFilter }: FormProps) {
           <div className="overflow-hidden sm:rounded-md bg-white">
             <div className="grid grid-cols-6 gap-6 items-end">
               <div className="col-span-6 lg:col-span-6">
-                <label
-                  htmlFor="business-name"
-                  className="block text-sm font-medium text-gray-700"
-                >
+                <label htmlFor="business-name" className="block text-sm font-medium text-gray-700">
                   Business Name
                 </label>
                 <input
@@ -101,19 +94,14 @@ export default function FilterForm({ setFilter }: FormProps) {
                 />
               </div>
               <div className="col-span-6 lg:col-span-3">
-                <label
-                  htmlFor="service-name"
-                  className="block text-sm font-medium text-gray-700"
-                >
+                <label htmlFor="service-name" className="block text-sm font-medium text-gray-700">
                   Service Name
                 </label>
                 <select
                   id="service-name"
                   name="serviceName"
                   value={formFilter.serviceName}
-                  required={
-                    !formFilter.connectionId || !!formFilter.businessName
-                  }
+                  required={!formFilter.connectionId || !!formFilter.businessName}
                   disabled={!!formFilter.connectionId}
                   onChange={handleFilterChange}
                   className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm"
@@ -126,10 +114,7 @@ export default function FilterForm({ setFilter }: FormProps) {
                 </select>
               </div>
               <div className="col-span-6 lg:col-span-3">
-                <label
-                  htmlFor="business-name"
-                  className="block text-sm font-medium text-gray-700"
-                >
+                <label htmlFor="business-name" className="block text-sm font-medium text-gray-700">
                   Connection Id
                 </label>
                 <input
@@ -145,10 +130,7 @@ export default function FilterForm({ setFilter }: FormProps) {
                 />
               </div>
               <div className="col-span-6 lg:col-span-3">
-                <label
-                  htmlFor="report-type"
-                  className="block text-sm font-medium text-gray-700"
-                >
+                <label htmlFor="report-type" className="block text-sm font-medium text-gray-700">
                   Report Type
                 </label>
                 <select
@@ -170,10 +152,7 @@ export default function FilterForm({ setFilter }: FormProps) {
                 </select>
               </div>
               <div className="col-span-6 lg:col-span-3">
-                <label
-                  htmlFor="start-date"
-                  className="block text-sm font-medium text-gray-700"
-                >
+                <label htmlFor="start-date" className="block text-sm font-medium text-gray-700">
                   Start Date
                 </label>
                 <input
@@ -189,10 +168,7 @@ export default function FilterForm({ setFilter }: FormProps) {
                 />
               </div>
               <div className="col-span-6 lg:col-span-3">
-                <label
-                  htmlFor="end-date"
-                  className="block text-sm font-medium text-gray-700"
-                >
+                <label htmlFor="end-date" className="block text-sm font-medium text-gray-700">
                   End Date
                 </label>
                 <input
