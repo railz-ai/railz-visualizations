@@ -15,7 +15,8 @@
     "publish:beta": "lerna publish --canary --preid beta",
     "eslint": "yarn workspace @railzai/railz-visualizations run lint",
     "stylelint": "yarn workspace @railzai/railz-visualizations run stylelint",
-    "lint": "yarn eslint && yarn stylelint"
+    "lint": "yarn eslint && yarn stylelint",
+    "ci:publish:prepatch": "lerna publish prepatch --yes"
   },
   "devDependencies": {
     "@commitlint/cli": "16.2.1",

@@ -1,0 +1,46 @@
+# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: Publish npm
+
+on:
+  pull_request:
+    types: [closed]
+    branches: [master, development]
+
+jobs:
+  publish:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [16.x]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+    steps:
+      - name: Use Node.js ${{ matrix.node-vQersion }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+          registry-url: https://registry.npmjs.org/
+      - uses: actions/checkout@v2
+      - name: Setup yarn
+        run: npm install -g yarn
+      - name: Install testing dependencies
+        run: yarn install
+      - name: Run Build
+        run: yarn build
+      - name: Run Publish
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          HUSKY: 0
+        run: |
+          git config user.name "${{ github.actor }}"
+          git config user.email "${{ github.actor }}@users.noreply.github.com"
+
+          if [ ${{ github.base_ref }} = development ]; then
+            yarn ci:publish:prepatch
+          else
+            yarn ci:publish:prepatch
+          fi
