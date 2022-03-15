@@ -1,8 +1,8 @@
-import React from "react";
-import { FormProps } from "../../types/form";
-import AuthForm from "./elements/auth-form";
-import FilterForm from "./elements/filter-form";
-import OptionsForm from "./elements/options-form";
+import React from 'react';
+import { FormProps } from '../../types/form';
+import AuthForm from './elements/auth-form';
+import FilterForm from './elements/filter-form';
+import OptionsForm from './elements/options-form';
 
 export default function Form({
   setFilter,
@@ -14,11 +14,7 @@ export default function Form({
   return (
     <>
       <div className="mt-0">
-        <AuthForm
-          setFilter={setFilter}
-          setAuthentication={setAuthentication}
-          setError={setError}
-        />
+        <AuthForm setFilter={setFilter} setAuthentication={setAuthentication} setError={setError} />
       </div>
       {options && (
         <div className="mt-4 sm:mt-4">

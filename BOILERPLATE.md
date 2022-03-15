@@ -8,11 +8,11 @@ Components tags should be prefixed with `railz`.
 To generate a component, run `yarn generate`
 
 ```tsx
-import { Component, Prop, State, Watch, h } from "@stencil/core";
+import { Component, Prop, State, Watch, h } from '@stencil/core';
 
 @Component({
-  tag: "railz-example",
-  styleUrl: "example.scss",
+  tag: 'railz-example',
+  styleUrl: 'example.scss',
   shadow: true,
 })
 export class RailzExample {
@@ -24,7 +24,7 @@ export class RailzExample {
   @State()
   _prop1: string;
 
-  @Watch("prop1")
+  @Watch('prop1')
   watchProp1(newValue, oldValue): void {
     // Content
   }
@@ -35,7 +35,7 @@ export class RailzExample {
   }
 
   render() {
-    return <div class="railz-div">{this._prop1 || ""}</div>;
+    return <div class="railz-div">{this._prop1 || ''}</div>;
   }
 }
 ```
@@ -61,11 +61,11 @@ Interfaces, Enums and Constants should be added in the `types` directory
 ## Spec Test
 
 ```tsx
-import { newSpecPage } from "@stencil/core/testing";
-import { RailzExample } from "../example";
+import { newSpecPage } from '@stencil/core/testing';
+import { RailzExample } from '../example';
 
-describe.skip("railz-example", () => {
-  it("renders empty without parameter", async () => {
+describe.skip('railz-example', () => {
+  it('renders empty without parameter', async () => {
     const page = await newSpecPage({
       components: [RailzExample],
       html: `<railz-example></railz-example>`,

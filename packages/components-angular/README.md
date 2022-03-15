@@ -54,5 +54,5 @@ npm link @railzai/railz-visualizations-angular
 To make use of the Angular component library in your Angular application, set up your module file to import the visualizations module.
 
 ```typescript
-import { RailzVisualizationsModule } from "@railzai/railz-visualizations-angular/dist";
+import { RailzVisualizationsModule } from '@railzai/railz-visualizations-angular/dist';
 ```
