@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import {
   RVConfiguration,
   RVFilter,
@@ -8,15 +8,15 @@ import {
   RVReportTypes,
   RVServiceProviders,
   RVFilterFrequency,
-} from "@railzai/railz-visualizations";
+} from '@railzai/railz-visualizations';
 import {
   RailzStatementsChart,
   RailzTransactionsControl,
   RailzVisualizations,
-} from "@railzai/railz-visualizations-react";
-import { isEmpty, pick } from "lodash";
+} from '@railzai/railz-visualizations-react';
+import { isEmpty, pick } from 'lodash';
 
-type AllTypes = "all" & RVReportTypes;
+type AllTypes = 'all' & RVReportTypes;
 
 interface Filter {
   businessName?: string;
@@ -38,79 +38,63 @@ interface ChartProps {
 }
 const formatCodeFilter = (filter: Filter) => {
   let allParameters;
-  if (
-    [RVReportTypes.BILLS, RVReportTypes.INVOICES].includes(filter.reportType)
-  ) {
+  if ([RVReportTypes.BILLS, RVReportTypes.INVOICES].includes(filter.reportType)) {
     if (!isEmpty(filter?.connectionId)) {
       allParameters = pick(filter, [
-        "startDate",
-        "endDate",
-        "reportType",
-        "connectionId",
-        "reconstruct",
+        'startDate',
+        'endDate',
+        'reportType',
+        'connectionId',
+        'reconstruct',
       ]);
     } else {
       allParameters = pick(filter, [
-        "startDate",
-        "endDate",
-        "businessName",
-        "reportType",
-        "serviceName",
-        "reconstruct",
+        'startDate',
+        'endDate',
+        'businessName',
+        'reportType',
+        'serviceName',
+        'reconstruct',
       ]);
     }
   } else {
     if (!isEmpty(filter?.connectionId)) {
       allParameters = pick(filter, [
-        "startDate",
-        "endDate",
-        "reportFrequency",
-        "reportType",
-        "connectionId",
-        "reconstruct",
+        'startDate',
+        'endDate',
+        'reportFrequency',
+        'reportType',
+        'connectionId',
+        'reconstruct',
       ]);
     } else {
       allParameters = pick(filter, [
-        "startDate",
-        "endDate",
-        "reportFrequency",
-        "reportType",
-        "businessName",
-        "serviceName",
-        "reconstruct",
+        'startDate',
+        'endDate',
+        'reportFrequency',
+        'reportType',
+        'businessName',
+        'serviceName',
+        'reconstruct',
       ]);
     }
   }
   return allParameters;
 };
 
-const Code = ({
-  configuration,
-  filter,
-  options,
-  showCode,
-  displayValue,
-}: ChartProps) => {
+const Code = ({ configuration, filter, options, showCode, displayValue }: ChartProps) => {
   return (
     <>
       {showCode && (
         <pre className="language-html bg-black text-white mt-4 p-4 rounded-xl overflow-hidden">
           <code className="language-html">
-            {"<" +
+            {'<' +
               displayValue +
-              " configuration={" +
-              JSON.stringify(
-                { token: configuration.token.slice(0, 20) + "..." },
-                null,
-                "\t"
-              ) +
-              "} filter={" +
-              JSON.stringify(formatCodeFilter(filter) as any, null, "\t") +
-              `${
-                options
-                  ? "} options={" + JSON.stringify(options, null, "\t")
-                  : ""
-              }} />`}
+              ' configuration={' +
+              JSON.stringify({ token: configuration.token.slice(0, 20) + '...' }, null, '\t') +
+              '} filter={' +
+              JSON.stringify(formatCodeFilter(filter) as any, null, '\t') +
+              `${options ? '} options={' + JSON.stringify(options, null, '\t') : ''}} />`}
           </code>
         </pre>
       )}
@@ -118,12 +102,7 @@ const Code = ({
   );
 };
 
-const DefaultComponent = ({
-  configuration,
-  filter,
-  options,
-  showCode,
-}: ChartProps) => {
+const DefaultComponent = ({ configuration, filter, options, showCode }: ChartProps) => {
   return (
     <div>
       <RailzVisualizations
@@ -142,16 +121,11 @@ const DefaultComponent = ({
   );
 };
 
-const Components = ({
-  configuration,
-  filter,
-  options,
-  showCode,
-}: ChartProps) => {
+const Components = ({ configuration, filter, options, showCode }: ChartProps) => {
   return (
     <div className="mt-5 md:grid md:grid-cols-1 md:gap-1">
       {/*Switch to Object.values(RVReportTypes) when all is implemented*/}
-      {filter.reportType === "all" &&
+      {filter.reportType === 'all' &&
         [
           RVReportTypes.BILLS,
           RVReportTypes.INVOICES,
@@ -168,13 +142,13 @@ const Components = ({
             />
           </div>
         ))}
-      {filter.reportType === "balanceSheets" && (
+      {filter.reportType === 'balanceSheets' && (
         <div>
           <h4 className="text-xl font-bold text-gray-900">
             Using Railz Statements Chart Component
           </h4>
           <p>
-            Railz Statements Chart Component only accepts <b>balanceSheets</b>,{" "}
+            Railz Statements Chart Component only accepts <b>balanceSheets</b>,{' '}
             <b>cashflowStatements</b> and <b>incomeStatements</b>
           </p>
           <RailzStatementsChart
@@ -191,14 +165,13 @@ const Components = ({
           />
         </div>
       )}
-      {filter.reportType === "bills" && (
+      {filter.reportType === 'bills' && (
         <div>
           <h4 className="text-xl font-bold text-gray-900">
             Using Railz Transactions Control Component
           </h4>
           <p>
-            Railz Transactions Control Component only accepts <b>bills</b> and{" "}
-            <b>invoices</b>
+            Railz Transactions Control Component only accepts <b>bills</b> and <b>invoices</b>
           </p>
           <RailzTransactionsControl
             configuration={configuration}
@@ -214,7 +187,7 @@ const Components = ({
           />
         </div>
       )}
-      {!["balanceSheets", "bills", "all"].includes(filter.reportType) && (
+      {!['balanceSheets', 'bills', 'all'].includes(filter.reportType) && (
         <DefaultComponent
           configuration={configuration}
           filter={filter}
@@ -225,11 +198,7 @@ const Components = ({
     </div>
   );
 };
-export default function Visualizations({
-  configuration,
-  filter,
-  options,
-}: ChartProps) {
+export default function Visualizations({ configuration, filter, options }: ChartProps) {
   const [code, setCode] = useState(false);
   return (
     <div className="md:grid md:grid-cols-1 md:gap-1 text-left">
@@ -246,12 +215,7 @@ export default function Visualizations({
           <span className="text-gray-800 ml-2"> Show Code Example</span>
         </label>
       </div>
-      <Components
-        configuration={configuration}
-        filter={filter}
-        options={options}
-        showCode={code}
-      />
+      <Components configuration={configuration} filter={filter} options={options} showCode={code} />
     </div>
   );
 }

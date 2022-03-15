@@ -46,5 +46,5 @@ npm link @railzai/railz-visualizations-react
 To make use of the React component library in your React application, import the components from the React component library in the file where you want to use them.
 
 ```typescript jsx
-import { RailzVisualizations } from "@railzai/railz-visualizations-react";
+import { RailzVisualizations } from '@railzai/railz-visualizations-react';
 ```

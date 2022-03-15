@@ -1,18 +1,18 @@
 /* This example requires Tailwind CSS v2.0+ */
-import React from "react";
-import { CalendarIcon, TagIcon } from "@heroicons/react/solid";
-import { NavLink } from "react-router-dom";
-import { Disclosure } from "@headlessui/react";
-import { MenuIcon, XIcon } from "@heroicons/react/outline";
+import React from 'react';
+import { CalendarIcon, TagIcon } from '@heroicons/react/solid';
+import { NavLink } from 'react-router-dom';
+import { Disclosure } from '@headlessui/react';
+import { MenuIcon, XIcon } from '@heroicons/react/outline';
 
 const navigation = [
-  { name: "Basic", href: "/" },
-  { name: "Customization", href: "/customization" },
-  { name: "Other Components", href: "/others" },
+  { name: 'Basic', href: '/' },
+  { name: 'Customization', href: '/customization' },
+  { name: 'Other Components', href: '/others' },
 ];
 
 function classNames(...classes: string[]) {
-  return classes.filter(Boolean).join(" ");
+  return classes.filter(Boolean).join(' ');
 }
 
 interface HeaderProps {
@@ -46,9 +46,9 @@ export default function Header({ children, description }: HeaderProps) {
                             className={({ isActive }) =>
                               classNames(
                                 isActive
-                                  ? "bg-gray-900 text-white hover:bg-gray-800"
-                                  : "text-gray-300 hover:bg-gray-800 hover:text-white",
-                                "px-3 py-2 rounded-md text-sm font-medium"
+                                  ? 'bg-gray-900 text-white hover:bg-gray-800'
+                                  : 'text-gray-300 hover:bg-gray-800 hover:text-white',
+                                'px-3 py-2 rounded-md text-sm font-medium',
                               )
                             }
                           >
@@ -65,10 +65,7 @@ export default function Header({ children, description }: HeaderProps) {
                       {open ? (
                         <XIcon className="block h-6 w-6" aria-hidden="true" />
                       ) : (
-                        <MenuIcon
-                          className="block h-6 w-6"
-                          aria-hidden="true"
-                        />
+                        <MenuIcon className="block h-6 w-6" aria-hidden="true" />
                       )}
                     </Disclosure.Button>
                   </div>
@@ -84,9 +81,9 @@ export default function Header({ children, description }: HeaderProps) {
                       className={({ isActive }) =>
                         classNames(
                           isActive
-                            ? "bg-gray-900 text-white hover:bg-gray-800"
-                            : "text-gray-300 hover:bg-gray-800 hover:text-white",
-                          "block px-3 py-2 rounded-md text-base font-medium"
+                            ? 'bg-gray-900 text-white hover:bg-gray-800'
+                            : 'text-gray-300 hover:bg-gray-800 hover:text-white',
+                          'block px-3 py-2 rounded-md text-base font-medium',
                         )
                       }
                     >
@@ -101,12 +98,10 @@ export default function Header({ children, description }: HeaderProps) {
 
         <header className="bg-white shadow">
           <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 text-left">
-            <h1 className="text-3xl font-bold text-gray-900">
-              Sample Dashboard
-            </h1>
+            <h1 className="text-3xl font-bold text-gray-900">Sample Dashboard</h1>
             <p className="mt-1 text-md text-gray-600">
-              This is a quickstart example of a React application that consumes
-              the Railz Visualizations SDK. {description}
+              This is a quickstart example of a React application that consumes the Railz
+              Visualizations SDK. {description}
             </p>
             <div className="mt-1 flex flex-col sm:flex-row sm:flex-wrap sm:mt-0 sm:space-x-6">
               <div className="mt-2 flex items-center text-sm text-gray-500">
@@ -127,9 +122,7 @@ export default function Header({ children, description }: HeaderProps) {
           </div>
         </header>
         <main>
-          <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
-            {children}
-          </div>
+          <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">{children}</div>
         </main>
       </div>
     </>

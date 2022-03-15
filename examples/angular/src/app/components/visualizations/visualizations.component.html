@@ -20,14 +20,8 @@
 </div>
 <ng-template #visualizations>
   <div class="md:grid md:grid-cols-1 md:gap-1 text-left">
-    <h4 class="text-xl font-bold text-gray-900">
-      Using Railz Visualizations Component
-    </h4>
-    <railz-visualizations
-      [configuration]="token"
-      [filter]="filter"
-      [options]="options"
-    >
+    <h4 class="text-xl font-bold text-gray-900">Using Railz Visualizations Component</h4>
+    <railz-visualizations [configuration]="token" [filter]="filter" [options]="options">
     </railz-visualizations>
   </div>
 </ng-template>
@@ -36,18 +30,12 @@
     class="md:grid md:grid-cols-1 md:gap-1 text-left"
     *ngIf="filter?.reportType === 'balanceSheets'; else transactions"
   >
-    <h4 class="text-xl font-bold text-gray-900">
-      Using Railz Statements Chart Component
-    </h4>
+    <h4 class="text-xl font-bold text-gray-900">Using Railz Statements Chart Component</h4>
     <p>
       Railz Statements Chart Component only accepts <b>balanceSheets</b>,
       <b>cashflowStatements</b> and <b>incomeStatements</b>
     </p>
-    <railz-statements-chart
-      [configuration]="token"
-      [filter]="filter"
-      [options]="options"
-    >
+    <railz-statements-chart [configuration]="token" [filter]="filter" [options]="options">
     </railz-statements-chart>
   </div>
 </ng-template>
@@ -56,18 +44,12 @@
     class="md:grid md:grid-cols-1 md:gap-1 text-left"
     *ngIf="filter?.reportType === 'bills'; else visualizations"
   >
-    <h4 class="text-xl font-bold text-gray-900">
-      Using Railz Transactions Control Component
-    </h4>
+    <h4 class="text-xl font-bold text-gray-900">Using Railz Transactions Control Component</h4>
     <p>
       Railz Transactions Control Component only accepts <b>bills</b> and
       <b>invoices</b>
     </p>
-    <railz-transactions-control
-      [configuration]="token"
-      [filter]="filter"
-      [options]="options"
-    >
+    <railz-transactions-control [configuration]="token" [filter]="filter" [options]="options">
     </railz-transactions-control>
   </div>
 </ng-template>

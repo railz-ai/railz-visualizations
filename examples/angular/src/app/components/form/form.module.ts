@@ -16,18 +16,8 @@ import { AuthFormComponent } from './elements/auth-form/auth-form.component';
 import { OptionsFormComponent } from './elements/options-form/options-form.component';
 
 @NgModule({
-  declarations: [
-    FormComponent,
-    FilterFormComponent,
-    AuthFormComponent,
-    OptionsFormComponent,
-  ],
-  imports: [
-    BrowserModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    AceEditorModule,
-  ],
+  declarations: [FormComponent, FilterFormComponent, AuthFormComponent, OptionsFormComponent],
+  imports: [BrowserModule, ReactiveFormsModule, HttpClientModule, AceEditorModule],
   exports: [FormComponent],
   providers: [ApiService],
 })

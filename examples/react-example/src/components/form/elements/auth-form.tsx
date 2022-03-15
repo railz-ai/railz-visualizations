@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import { AuthenticationParameters } from "../../../types/authentication";
-import { FormProps } from "../../../types/form";
+import React, { useState } from 'react';
+import { AuthenticationParameters } from '../../../types/authentication';
+import { FormProps } from '../../../types/form';
 
 export default function AuthForm({ setAuthentication, setError }: FormProps) {
   const [formAuth, setFormAuth] = useState<AuthenticationParameters>({
-    authUrl: "",
+    authUrl: '',
   });
 
   const submitAuth = async (event: any) => {
@@ -12,9 +12,7 @@ export default function AuthForm({ setAuthentication, setError }: FormProps) {
     if (formAuth.authUrl) {
       await setAuthentication(formAuth);
     } else {
-      setError(
-        "Authentication details are required to get access configuration."
-      );
+      setError('Authentication details are required to get access configuration.');
     }
   };
 
@@ -28,12 +26,9 @@ export default function AuthForm({ setAuthentication, setError }: FormProps) {
   return (
     <div className="flex flex-col">
       <div className="text-left">
-        <h2 className="text-lg font-medium leading-6 text-gray-900">
-          Authentication
-        </h2>
+        <h2 className="text-lg font-medium leading-6 text-gray-900">Authentication</h2>
         <p className="mt-1 text-sm text-gray-600">
-          Include your Authentication server URL here, see our quickstart
-          example{" "}
+          Include your Authentication server URL here, see our quickstart example{' '}
           <a
             href="https://github.com/railz-ai/railz-visualizations/tree/master/examples/nodejs"
             target="_blank"
@@ -44,19 +39,14 @@ export default function AuthForm({ setAuthentication, setError }: FormProps) {
           </a>
           .
         </p>
-        <p className="mt-1 text-sm text-gray-600 font-bold">
-          This is not implemented by the SDK.
-        </p>
+        <p className="mt-1 text-sm text-gray-600 font-bold">This is not implemented by the SDK.</p>
       </div>
       <div className="mt-4 md:mt-2 text-left items-end">
         <form onSubmit={submitAuth} method="POST">
           <div className="overflow-hidden sm:rounded-md bg-white">
             <div className="grid grid-cols-6 gap-6 items-end">
               <div className="col-span-6 lg:col-span-6">
-                <label
-                  htmlFor="api-url"
-                  className="block text-sm font-medium text-gray-700"
-                >
+                <label htmlFor="api-url" className="block text-sm font-medium text-gray-700">
                   Auth Url
                 </label>
                 <input
