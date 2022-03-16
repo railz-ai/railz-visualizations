@@ -2,7 +2,7 @@ import { RVCreditScoreTypes } from '../../enum/report-type';
 import { RVReportFrequency } from '../../enum/date';
 
 export interface RVPeriod {
-  date: number;
+  date: number | string;
   day: number;
   month: number;
   quarter: number;
