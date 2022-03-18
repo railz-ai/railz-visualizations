@@ -94,14 +94,14 @@ export interface RVBaseFilterBusinessDateFrequencyType extends RVBaseFilterBusin
   reportType: RVFrequencyTypes;
 }
 
-export interface RVBaseFilterConnectionDateType extends RVBaseFilterBusinessDate {
+export interface RVBaseFilterBusinessDateType extends RVBaseFilterBusinessDate {
   /**
    * reportType: Type of transaction, invoices, bills
    */
   reportType: RVNoFrequencyTypes;
 }
 
-export interface RVBaseFilterBusinessDateType extends RVBaseFilterConnectionDate {
+export interface RVBaseFilterConnectionDateType extends RVBaseFilterConnectionDate {
   /**
    * reportType: Type of transaction, invoices, bills
    */
