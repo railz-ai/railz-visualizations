@@ -12,8 +12,8 @@
       >.
     </p>
     <p class="mt-1 text-sm text-gray-600 font-bold">
-      SDK current release only works with report types (balanceSheets,
-      incomeStatements, cashflowStatements, invoices, bills).
+      SDK current release only works with report types (balanceSheets, incomeStatements,
+      cashflowStatements, invoices, bills).
     </p>
   </div>
   <div class="mt-5 md:mt-0">
@@ -22,9 +22,7 @@
         <div class="py-5 bg-white">
           <div class="grid grid-cols-6 gap-6 items-end">
             <div class="col-span-6 lg:col-span-6">
-              <label
-                for="business-name"
-                class="block text-sm font-medium text-gray-700"
+              <label for="business-name" class="block text-sm font-medium text-gray-700"
                 >Business Name</label
               >
               <input
@@ -37,9 +35,7 @@
               />
             </div>
             <div class="col-span-6 lg:col-span-3">
-              <label
-                for="service-name"
-                class="block text-sm font-medium text-gray-700"
+              <label for="service-name" class="block text-sm font-medium text-gray-700"
                 >Service Name</label
               >
               <select
@@ -49,18 +45,13 @@
                 required
                 class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm"
               >
-                <option
-                  *ngFor="let service of arrayServiceProviders"
-                  [ngValue]="service"
-                >
+                <option *ngFor="let service of arrayServiceProviders" [ngValue]="service">
                   {{ service }}
                 </option>
               </select>
             </div>
             <div class="col-span-6 lg:col-span-3">
-              <label
-                for="connection-id"
-                class="block text-sm font-medium text-gray-700"
+              <label for="connection-id" class="block text-sm font-medium text-gray-700"
                 >Connection Id</label
               >
               <input
@@ -73,9 +64,7 @@
               />
             </div>
             <div class="col-span-6 lg:col-span-3">
-              <label
-                for="report-type"
-                class="block text-sm font-medium text-gray-700"
+              <label for="report-type" class="block text-sm font-medium text-gray-700"
                 >Report Type</label
               >
               <select
@@ -84,18 +73,13 @@
                 name="report-type"
                 class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm"
               >
-                <option
-                  *ngFor="let reportType of arrayAllReportTypes"
-                  [ngValue]="reportType"
-                >
+                <option *ngFor="let reportType of arrayAllReportTypes" [ngValue]="reportType">
                   {{ reportType }}
                 </option>
               </select>
             </div>
             <div class="col-span-6 lg:col-span-3">
-              <label
-                for="start-date"
-                class="block text-sm font-medium text-gray-700"
+              <label for="start-date" class="block text-sm font-medium text-gray-700"
                 >Start Date</label
               >
               <input
@@ -108,11 +92,7 @@
               />
             </div>
             <div class="col-span-6 lg:col-span-3">
-              <label
-                for="end-date"
-                class="block text-sm font-medium text-gray-700"
-                >End Date</label
-              >
+              <label for="end-date" class="block text-sm font-medium text-gray-700">End Date</label>
               <input
                 formControlName="endDate"
                 type="date"
@@ -123,9 +103,7 @@
               />
             </div>
             <div class="col-span-6 lg:col-span-3">
-              <label
-                for="report-frequency"
-                class="block text-sm font-medium text-gray-700"
+              <label for="report-frequency" class="block text-sm font-medium text-gray-700"
                 >Report Frequency</label
               >
               <select
@@ -134,10 +112,7 @@
                 name="report-frequency"
                 class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm"
               >
-                <option
-                  *ngFor="let frequency of arrayReportFrequency"
-                  [ngValue]="frequency"
-                >
+                <option *ngFor="let frequency of arrayReportFrequency" [ngValue]="frequency">
                   {{ frequency }}
                 </option>
               </select>

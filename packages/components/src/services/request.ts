@@ -15,6 +15,7 @@ class RequestService {
   getUrl = (): string => {
     return ConfigurationInstance.configuration?.endpoint || RAILZ_API_HOST;
   };
+
   async getReportData({
     reportType,
     filter,

@@ -61,6 +61,10 @@ export const parseFilter = (filter: RVFilter | string): RVFilter => {
     try {
       if (typeof filter === 'string') {
         formattedFilter = JSON.parse(filter);
+
+        if (!validateBusinessParams(formattedFilter)) {
+          formattedFilter = undefined;
+        }
       } else {
         formattedFilter = filter;
       }
@@ -83,10 +87,10 @@ export const validateRequiredParams = (filter: RVFilter): boolean => {
 
 export const validateBusinessParams = (filter: RVFilter): boolean => {
   const filterPassed = filter as unknown as any;
-  if (
-    !(!isEmpty(filterPassed?.businessName) && !isEmpty(filterPassed?.serviceName)) ||
-    !isEmpty(filterPassed?.connectionId)
-  ) {
+  const hasConnectionId = !isEmpty(filterPassed?.connectionId);
+  const hasBusinessName = !isEmpty(filterPassed?.businessName);
+  const hasServiceName = !isEmpty(filterPassed?.serviceName);
+  if (!(hasBusinessName && hasServiceName) && !hasConnectionId) {
     errorLog(Translations.RV_ERROR_INVALID_BUSINESS_IDENTIFICATION);
     return false;
   }
@@ -150,7 +154,7 @@ export const getDateFilter = (filter: RVDateFilters | string): RVDateFilters => 
 
 /**
  * @function checkAccessibilityFromOptions:
- * Check if options passed are accessibililty friendly
+ * Check if options passed are accessibility friendly
  * @param options: Whitelabeling options
  */
 export const checkAccessibilityFromOptions = (options: RVOptions): void => {

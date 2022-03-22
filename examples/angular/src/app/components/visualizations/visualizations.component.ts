@@ -20,6 +20,5 @@ export class VisualizationsComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  getNewFilter = (filter: Filter, reportType: any): Filter =>
-    <Filter>{ ...filter, reportType };
+  getNewFilter = (filter: Filter, reportType: any): Filter => <Filter>{ ...filter, reportType };
 }

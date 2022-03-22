@@ -156,12 +156,11 @@ export default App;
 Import the `RailzVisualizationsModule` into your component module or app.module.ts file
 
 ```angular
-import { NgModule } from '@angular/core'; import { BrowserModule } from
-'@angular/platform-browser'; import { AppComponent } from './app.component';
-import {RailzVisualizationsModule} from
-"@railzai/railz-visualizations-angular/dist"; @NgModule({ declarations:
-[AppComponent], imports: [BrowserModule, RailzVisualizationsModule], providers:
-[], bootstrap: [AppComponent], }) export class AppModule {}
+import { NgModule } from '@angular/core'; import { BrowserModule } from '@angular/platform-browser';
+import { AppComponent } from './app.component'; import {RailzVisualizationsModule} from
+"@railzai/railz-visualizations-angular/dist"; @NgModule({ declarations: [AppComponent], imports:
+[BrowserModule, RailzVisualizationsModule], providers: [], bootstrap: [AppComponent], }) export
+class AppModule {}
 ```
 
 ## Local Development
@@ -217,7 +216,7 @@ yarn link @railzai/railz-visualizations-react
 To make use of the React component library in your React application, import the components from the React component library in the file where you want to use them.
 
 ```typescript jsx
-import { RailzVisualizations } from "@railzai/railz-visualizations-react";
+import { RailzVisualizations } from '@railzai/railz-visualizations-react';
 ```
 
 #### For Angular
@@ -243,7 +242,7 @@ yarn link @railzai/railz-visualizations-angular
 To make use of the Angular component library in your Angular application, set up your module file to import the visualizations module.
 
 ```typescript
-import { RailzVisualizationsModule } from "@railzai/railz-visualizations-angular/dist";
+import { RailzVisualizationsModule } from '@railzai/railz-visualizations-angular/dist';
 ```
 
 ## Contributing

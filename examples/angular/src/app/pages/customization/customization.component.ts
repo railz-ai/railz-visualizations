@@ -1,10 +1,6 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 
-import {
-  RVReportTypes,
-  RVOptions,
-  RVConfiguration,
-} from '@railzai/railz-visualizations';
+import { RVReportTypes, RVOptions, RVConfiguration } from '@railzai/railz-visualizations';
 
 import { Filter } from '../../../types/form-submission';
 import { INITIAL_OPTIONS } from '../../../types/constants';
@@ -23,8 +19,7 @@ export class CustomizationComponent implements OnInit {
 
   constructor(private ref: ChangeDetectorRef) {}
 
-  getNewFilter = (filter: Filter, reportType: any): Filter =>
-    <Filter>{ ...filter, reportType };
+  getNewFilter = (filter: Filter, reportType: any): Filter => <Filter>{ ...filter, reportType };
 
   onTokenSubmit = (token: string) => {
     this.token = { token: token };

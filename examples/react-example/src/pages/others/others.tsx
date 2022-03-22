@@ -1,18 +1,16 @@
-import React from "react";
-import Header from "../../components/header";
-import { RVReportTypes } from "@railzai/railz-visualizations";
+import React from 'react';
+import Header from '../../components/header';
+import { RVReportTypes } from '@railzai/railz-visualizations';
 import {
   RailzErrorImage,
   RailzLoading,
   RailzProgressBar,
-} from "@railzai/railz-visualizations-react";
+} from '@railzai/railz-visualizations-react';
 
 const AllComponents = () => {
   return (
     <div className="text-left">
-      <h2 className="text-3xl font-bold text-gray-900">
-        Railz Error Component
-      </h2>
+      <h2 className="text-3xl font-bold text-gray-900">Railz Error Component</h2>
       <div className="md:grid md:grid-cols-4 md:gap-6 mt-6">
         <div className="mt-5 md:mt-0 md:col-span-1 flex flex-col">
           <p>202 Status Response - Represents Sync In progress</p>
@@ -21,24 +19,15 @@ const AllComponents = () => {
           </div>
         </div>
         <div className="mt-5 md:mt-0 md:col-span-1 flex flex-col">
-          <p>
-            204 & 404 Status Response - Represents No Content with removed text
-          </p>
+          <p>204 & 404 Status Response - Represents No Content with removed text</p>
           <div className="shadow p-4 mt-2 flex h-full">
             <RailzErrorImage statusCode={204} />
           </div>
         </div>
         <div className="mt-5 md:mt-0 md:col-span-1 flex flex-col">
-          <p>
-            Other Codes - Represents Any other status code with
-            color(Customization)
-          </p>
+          <p>Other Codes - Represents Any other status code with color(Customization)</p>
           <div className="shadow p-4 mt-2 flex h-full">
-            <RailzErrorImage
-              statusCode={500}
-              fillColor={"#910303"}
-              textColor={"#910303"}
-            />
+            <RailzErrorImage statusCode={500} fillColor={'#910303'} textColor={'#910303'} />
           </div>
         </div>
         <div className="mt-5 md:mt-0 md:col-span-1 flex flex-col">
@@ -48,9 +37,7 @@ const AllComponents = () => {
           </div>
         </div>
       </div>
-      <h2 className="text-3xl font-bold text-gray-900 mt-10">
-        Railz Loading Component
-      </h2>
+      <h2 className="text-3xl font-bold text-gray-900 mt-10">Railz Loading Component</h2>
       <div className="md:grid md:grid-cols-3 md:gap-6 mt-6">
         <div className="mt-5 md:mt-0 md:col-span-1 flex flex-col">
           <p>Loading Indicator Only - No Text</p>
@@ -67,17 +54,11 @@ const AllComponents = () => {
         <div className="mt-5 md:mt-0 md:col-span-1 flex flex-col">
           <p>Loading Indicator with text(Customization)</p>
           <div className="shadow p-4 mt-2 flex items-center h-full">
-            <RailzLoading
-              loadingText="Loading Data"
-              fillColor={"#000000"}
-              textColor={"#00884f"}
-            />
+            <RailzLoading loadingText="Loading Data" fillColor={'#000000'} textColor={'#00884f'} />
           </div>
         </div>
       </div>
-      <h2 className="text-3xl font-bold text-gray-900 mt-10">
-        Railz Progress Bar Component
-      </h2>
+      <h2 className="text-3xl font-bold text-gray-900 mt-10">Railz Progress Bar Component</h2>
       <div className="grid grid-cols-2 gap-4 mx-auto mt-6">
         <div className="col-span-1 flex flex-col">
           <p>Invoices - No Parameter</p>
@@ -88,10 +69,7 @@ const AllComponents = () => {
         <div className="col-span-1 flex flex-col">
           <p>Bills - Overdue Parameter</p>
           <div className="shadow p-4 mt-2 flex items-center h-full">
-            <RailzProgressBar
-              reportType={RVReportTypes.BILLS}
-              overdueAmount={2000}
-            />
+            <RailzProgressBar reportType={RVReportTypes.BILLS} overdueAmount={2000} />
           </div>
         </div>
         <div className="col-span-1 flex flex-col">
@@ -115,7 +93,7 @@ const AllComponents = () => {
               overdueAmount={5000}
               options={{
                 barStyle: {
-                  background: "#a6d2ac",
+                  background: '#a6d2ac',
                 },
               }}
             />
@@ -142,7 +120,7 @@ const AllComponents = () => {
               overdueAmount={0}
               options={{
                 progressStyle: {
-                  background: "#2e6521",
+                  background: '#2e6521',
                 },
               }}
             />
@@ -155,11 +133,7 @@ const AllComponents = () => {
 export default function Others() {
   return (
     <div className="App">
-      <Header
-        description={
-          "This page shows you other reusable components provided the SDK."
-        }
-      >
+      <Header description={'This page shows you other reusable components provided the SDK.'}>
         <AllComponents />
       </Header>
     </div>

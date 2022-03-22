@@ -4,7 +4,6 @@ about: Suggest a documentation update for this project
 title: ''
 labels: ''
 assignees: ''
-
 ---
 
 **Is your documentation update request related to a new feature? Please describe.**

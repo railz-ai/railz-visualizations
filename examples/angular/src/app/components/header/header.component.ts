@@ -8,12 +8,9 @@ import { NavigationEnd, Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
   descriptions: any = {
-    '/basic':
-      'This page shows you the default stylings and colors used by the SDK.',
-    '/customization':
-      'This page shows you the customizable options that can be passed to the SDK.',
-    '/others':
-      'This page shows you other reusable components provided the SDK.',
+    '/basic': 'This page shows you the default stylings and colors used by the SDK.',
+    '/customization': 'This page shows you the customizable options that can be passed to the SDK.',
+    '/others': 'This page shows you other reusable components provided the SDK.',
   };
   description = '';
 

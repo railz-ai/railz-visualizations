@@ -15,10 +15,7 @@
   ```
 -->
 <div class="mt-0">
-  <app-auth-form
-    [authForm]="authForm"
-    (authEvent)="onAuthSubmit()"
-  ></app-auth-form>
+  <app-auth-form [authForm]="authForm" (authEvent)="onAuthSubmit()"></app-auth-form>
 </div>
 
 <div class="mt-4 sm:mt-4" *ngIf="options">
@@ -26,8 +23,5 @@
 </div>
 
 <div class="mt-4 sm:mt-4">
-  <app-filter-form
-    [filterForm]="filterForm"
-    (filterEvent)="onFilterSubmit()"
-  ></app-filter-form>
+  <app-filter-form [filterForm]="filterForm" (filterEvent)="onFilterSubmit()"></app-filter-form>
 </div>

@@ -11,20 +11,14 @@
         >here</a
       >.
     </p>
-    <p class="mt-1 text-sm text-gray-600 font-bold">
-      This is not implemented by the SDK.
-    </p>
+    <p class="mt-1 text-sm text-gray-600 font-bold">This is not implemented by the SDK.</p>
   </div>
   <div class="mt-4 md:mt-3 text-left items-end">
     <form [formGroup]="authForm" (ngSubmit)="onSubmit()">
       <div class="overflow-hidden sm:rounded-md">
         <div class="grid grid-cols-6 gap-6 items-end">
           <div class="col-span-6 sm:col-span-6">
-            <label
-              for="auth-url"
-              class="block text-sm font-medium text-gray-700"
-              >Auth Url</label
-            >
+            <label for="auth-url" class="block text-sm font-medium text-gray-700">Auth Url</label>
             <input
               formControlName="authUrl"
               type="text"

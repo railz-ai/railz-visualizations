@@ -28,20 +28,11 @@ export class FormComponent implements OnInit {
   });
 
   filterForm = new FormGroup({
-    serviceName: new FormControl(
-      RVAccountingProviders.QUICKBOOKS,
-      Validators.required
-    ),
+    serviceName: new FormControl(RVAccountingProviders.QUICKBOOKS, Validators.required),
     businessName: new FormControl('', Validators.required),
     connectionId: new FormControl('', Validators.required),
-    reportType: new FormControl(
-      RVReportTypes.BALANCE_SHEET,
-      Validators.required
-    ),
-    reportFrequency: new FormControl(
-      RVReportFrequency.MONTH,
-      Validators.required
-    ),
+    reportType: new FormControl(RVReportTypes.BALANCE_SHEET, Validators.required),
+    reportFrequency: new FormControl(RVReportFrequency.MONTH, Validators.required),
     startDate: new FormControl('', Validators.required),
     endDate: new FormControl('', Validators.required),
   });
@@ -54,9 +45,7 @@ export class FormComponent implements OnInit {
       RVReportTypes.CREDIT_SCORE,
     ].includes(type as RVReportTypes);
   requiresNoDate = (type: string) =>
-    [RVReportTypes.BANK_ACCOUNT, RVReportTypes.CREDIT_SCORE].includes(
-      type as RVReportTypes
-    );
+    [RVReportTypes.BANK_ACCOUNT, RVReportTypes.CREDIT_SCORE].includes(type as RVReportTypes);
 
   token = '';
 
@@ -76,9 +65,7 @@ export class FormComponent implements OnInit {
             this.filterForm.controls['connectionId'].clearValidators();
             this.filterForm.controls['connectionId'].disable();
           } else {
-            this.filterForm.controls['connectionId'].setValidators([
-              Validators.required,
-            ]);
+            this.filterForm.controls['connectionId'].setValidators([Validators.required]);
             this.filterForm.controls['connectionId'].enable();
           }
           this.filterForm.controls['connectionId'].updateValueAndValidity();
@@ -95,13 +82,9 @@ export class FormComponent implements OnInit {
             this.filterForm.controls['serviceName'].clearValidators();
             this.filterForm.controls['serviceName'].disable();
           } else {
-            this.filterForm.controls['businessName'].setValidators([
-              Validators.required,
-            ]);
+            this.filterForm.controls['businessName'].setValidators([Validators.required]);
             this.filterForm.controls['businessName'].enable();
-            this.filterForm.controls['serviceName'].setValidators([
-              Validators.required,
-            ]);
+            this.filterForm.controls['serviceName'].setValidators([Validators.required]);
             this.filterForm.controls['serviceName'].enable();
           }
           this.filterForm.controls['businessName'].updateValueAndValidity();
@@ -120,36 +103,24 @@ export class FormComponent implements OnInit {
               this.filterForm.controls['endDate'].clearValidators();
               this.filterForm.controls['endDate'].disable();
             } else {
-              this.filterForm.controls['startDate'].setValidators([
-                Validators.required,
-              ]);
+              this.filterForm.controls['startDate'].setValidators([Validators.required]);
               this.filterForm.controls['startDate'].enable();
-              this.filterForm.controls['endDate'].setValidators([
-                Validators.required,
-              ]);
+              this.filterForm.controls['endDate'].setValidators([Validators.required]);
               this.filterForm.controls['endDate'].enable();
             }
             if (this.requiresNoFrequency(val)) {
               this.filterForm.controls['reportFrequency'].clearValidators();
               this.filterForm.controls['reportFrequency'].disable();
             } else {
-              this.filterForm.controls['reportFrequency'].setValidators([
-                Validators.required,
-              ]);
+              this.filterForm.controls['reportFrequency'].setValidators([Validators.required]);
               this.filterForm.controls['reportFrequency'].enable();
             }
           } else {
-            this.filterForm.controls['startDate'].setValidators([
-              Validators.required,
-            ]);
+            this.filterForm.controls['startDate'].setValidators([Validators.required]);
             this.filterForm.controls['startDate'].enable();
-            this.filterForm.controls['endDate'].setValidators([
-              Validators.required,
-            ]);
+            this.filterForm.controls['endDate'].setValidators([Validators.required]);
             this.filterForm.controls['endDate'].enable();
-            this.filterForm.controls['reportFrequency'].setValidators([
-              Validators.required,
-            ]);
+            this.filterForm.controls['reportFrequency'].setValidators([Validators.required]);
             this.filterForm.controls['reportFrequency'].enable();
           }
           this.filterForm.controls['startDate'].updateValueAndValidity();

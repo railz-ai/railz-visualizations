@@ -1,10 +1,10 @@
-import React from "react";
-import "./App.css";
+import React from 'react';
+import './App.css';
 
-import { Routes, Route } from "react-router-dom";
-import Basic from "./pages/basic/basic";
-import Customization from "./pages/customization/customization";
-import Others from "./pages/others/others";
+import { Routes, Route } from 'react-router-dom';
+import Basic from './pages/basic/basic';
+import Customization from './pages/customization/customization';
+import Others from './pages/others/others';
 
 function App() {
   return (

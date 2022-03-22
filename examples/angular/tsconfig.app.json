@@ -6,10 +6,6 @@
     "types": [],
     "paths": { "@angular/*": ["./node_modules/@angular/*"] }
   },
-  "files": [
-    "src/main.ts",
-    "src/polyfills.ts",
-    "node_modules/@types/node/globals.d.ts"
-  ],
+  "files": ["src/main.ts", "src/polyfills.ts", "node_modules/@types/node/globals.d.ts"],
   "include": ["src/**/*.d.ts"]
 }

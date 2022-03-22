@@ -12,7 +12,7 @@ export const formatDate = (
   summary: RVReportStatementSummary,
   reportFrequency: RVReportFrequency,
 ): string[] => {
-  return summary.map((data) => {
+  return summary?.map((data) => {
     const date = parseISO(data.period.date);
     if (reportFrequency === 'quarter') return `Q${data.period.quarter} ${format(date, 'YYYY')}`;
     if (reportFrequency === 'year') return data.period.year.toString();
@@ -29,7 +29,7 @@ export const formatSeries = (
   field: string,
 ): { name: string; data: RVReportStatementSummary } => ({
   name,
-  data: summary.map((data) => data[field]).filter((data) => data != undefined),
+  data: summary?.map((data) => data[field]).filter((data) => data != undefined),
 });
 
 /**
