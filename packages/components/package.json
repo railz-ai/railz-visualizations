@@ -72,6 +72,7 @@
     "eslint-plugin-react": "7.28.0",
     "jest": "27.5.1",
     "jest-cli": "27.5.1",
+    "npx": "^10.2.2",
     "prettier": "2.5.1",
     "puppeteer": "10.0.0",
     "rollup-plugin-dotenv": "0.3.0",
