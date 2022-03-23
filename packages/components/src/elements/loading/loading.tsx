@@ -24,6 +24,16 @@ export class Loading {
    */
   @Prop() readonly textColor?: string = '#000000';
 
+  /**
+   * Width of the SVG Loading Indicator
+   */
+  @Prop() readonly width?: string = '48px';
+
+  /**
+   * Height of the SVG Loading Indicator
+   */
+  @Prop() readonly height?: string = '48px';
+
   render(): HTMLElement {
     return (
       <div class="railz-loading-container">
@@ -33,8 +43,8 @@ export class Loading {
           xmlns="http://www.w3.org/2000/svg"
           x="0px"
           y="0px"
-          width={'48px'}
-          height={'48px'}
+          width={this.width || '48px'}
+          height={this.height || '48px'}
           viewBox={'0 0 50 50'}
           style={{ 'enable-background': 'new 0 0 50 50' }}
           xmlSpace="preserve"
