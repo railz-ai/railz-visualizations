@@ -8,7 +8,7 @@
     "add:angular": "lerna add @railzai/railz-visualizations --scope=@railzai/railz-visualizations-angular",
     "add:react": "lerna add @railzai/railz-visualizations --scope=@railzai/railz-visualizations-react",
     "run:build": "lerna run --scope '{@railzai/railz-visualizations,@railzai/railz-visualizations-angular,@railzai/railz-visualizations-react}' build",
-    "build": "yarn bootstrap && yarn run:build",
+    "build": "yarn bootstrap && yarn run:build && yarn lint",
     "prepare": "husky install",
     "test": "yarn workspace @railzai/railz-visualizations run test",
     "publish": "lerna publish from-package",
