@@ -7,10 +7,50 @@
       content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
     />
     <title>Stencil Component Starter</title>
-
-    <script type="module" src="/build/stencilcomponent.esm.js"></script>
-    <script nomodule src="/build/stencilcomponent.js"></script>
+    <script type="module" src="/build/railzvisualizations.esm.js"></script>
+    <script nomodule src="/build/railzvisualizations.js"></script>
   </head>
 
-  <body></body>
+  <body>
+    <script>
+      async function main(params) {
+        const response = await fetch('http://localhost:4000/authenticate', { method: 'GET' });
+        const result = await response.json();
+
+        const railzGauge = document.createElement('railz-gauge-chart');
+        const railzStatments = document.createElement('railz-statements-chart');
+
+        const configuration = {
+          token: result.access_token,
+          debug: true,
+        };
+        if (railzGauge) {
+          railzGauge.configuration = configuration;
+          railzGauge.filter = {
+            businessName: 'qbostyling',
+            serviceName: 'quickbooks',
+            reportType: 'railzScore',
+            startDate: '2021-01-01',
+            endDate: '2022-01-31',
+          };
+        }
+
+        if (railzStatments) {
+          railzStatments.configuration = configuration;
+          railzStatments.filter = {
+            businessName: 'qbostyling',
+            serviceName: 'quickbooks',
+            reportType: 'balanceSheets',
+            startDate: '2021-02-01',
+            endDate: '2022-02-28',
+            reportFrequency: 'month',
+          };
+        }
+
+        document.body.appendChild(railzGauge);
+        document.body.appendChild(railzStatments);
+      }
+      main();
+    </script>
+  </body>
 </html>

@@ -20,6 +20,7 @@ import {
 import { RVReportTypes } from '../../types/enum/report-type';
 import { RequestServiceInstance } from '../../services/request';
 import { errorLog } from '../../services/logger';
+import { ALL_FONTS } from '../../helpers/chart.utils';
 
 /**
  * Setup Highcharts options for bar charts
@@ -35,21 +36,7 @@ export const getOptionsBarChart = ({
     type: 'column',
     backgroundColor: chart?.backgroundColor || '#ffffff',
     style: {
-      fontFamily:
-        chart?.fontFamily ||
-        [
-          'Inter',
-          'Roboto',
-          '-apple-system',
-          'BlinkMacSystemFont',
-          '"Segoe UI"',
-          '"Helvetica Neue"',
-          'Arial',
-          'sans-serif',
-          '"Apple Color Emoji"',
-          '"Segoe UI Emoji"',
-          '"Segoe UI Symbol"',
-        ].join(','),
+      fontFamily: chart?.fontFamily || ALL_FONTS,
     },
     reflow: true,
     marginTop: 0,

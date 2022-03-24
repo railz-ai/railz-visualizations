@@ -46,6 +46,13 @@ export const formatNumber = (number: number | string, decimals = 2): string => {
 };
 
 /**
+ * Determine if report type is gauge
+ */
+export const isGauge = (reportType: RVReportTypes): boolean => {
+  return reportType && [RVReportTypes.SCORE].includes(reportType);
+};
+
+/**
  * Determine if report type is financial statements
  */
 export const isStatements = (reportType: RVReportTypes): boolean => {
@@ -81,6 +88,8 @@ export const getTitleByReportType = (reportType: RVReportTypes): string => {
       return Translations.INCOME_STATEMENTS;
     case RVReportTypes.CASHFLOW_STATEMENTS:
       return Translations.CASHFLOW_STATEMENTS;
+    case RVReportTypes.SCORE:
+      return Translations.SCORE;
     default:
       return '';
   }

@@ -12,6 +12,10 @@ export const RailzErrorImage = /*@__PURE__*/ createReactComponent<
   JSX.RailzErrorImage,
   HTMLRailzErrorImageElement
 >('railz-error-image');
+export const RailzGaugeChart = /*@__PURE__*/ createReactComponent<
+  JSX.RailzGaugeChart,
+  HTMLRailzGaugeChartElement
+>('railz-gauge-chart');
 export const RailzLoading = /*@__PURE__*/ createReactComponent<
   JSX.RailzLoading,
   HTMLRailzLoadingElement

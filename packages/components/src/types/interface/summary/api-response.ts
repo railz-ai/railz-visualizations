@@ -179,6 +179,18 @@ export class RVReportSummaryApiResponse {
   status?: number;
 }
 
+export interface RVGaugeChartSummary {
+  score: number;
+  rating: string;
+  lastUpdated: string;
+}
+
+export class RVFormattedGaugeResponse {
+  error?: RVErrorResponse;
+  data?: RVGaugeChartSummary;
+  status?: number;
+}
+
 export class RVFormattedStatementResponse {
   error?: RVErrorResponse;
   data?: RVReportStatementSummary;

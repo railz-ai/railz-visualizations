@@ -15,6 +15,7 @@
 ### Depends on
 
 - [railz-error-image](../error)
+- [railz-gauge-chart](../gauge-chart)
 - [railz-statements-chart](../statements-chart)
 - [railz-transactions-control](../transactions-control)
 
@@ -23,8 +24,11 @@
 ```mermaid
 graph TD;
   railz-visualizations --> railz-error-image
+  railz-visualizations --> railz-gauge-chart
   railz-visualizations --> railz-statements-chart
   railz-visualizations --> railz-transactions-control
+  railz-gauge-chart --> railz-error-image
+  railz-gauge-chart --> railz-loading
   railz-statements-chart --> railz-error-image
   railz-statements-chart --> railz-loading
   railz-transactions-control --> railz-error-image

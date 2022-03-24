@@ -41,6 +41,20 @@ export namespace Components {
      */
     width?: string;
   }
+  interface RailzGaugeChart {
+    /**
+     * Configuration information like authentication configuration
+     */
+    configuration: RVConfiguration;
+    /**
+     * Filter information to query the backend APIs
+     */
+    filter: RVFilterDate;
+    /**
+     * For whitelabeling styling
+     */
+    options: RVOptions;
+  }
   interface RailzLoading {
     /**
      * Fill color of the loading indicator
@@ -134,6 +148,11 @@ declare global {
     prototype: HTMLRailzErrorImageElement;
     new (): HTMLRailzErrorImageElement;
   };
+  interface HTMLRailzGaugeChartElement extends Components.RailzGaugeChart, HTMLStencilElement {}
+  var HTMLRailzGaugeChartElement: {
+    prototype: HTMLRailzGaugeChartElement;
+    new (): HTMLRailzGaugeChartElement;
+  };
   interface HTMLRailzLoadingElement extends Components.RailzLoading, HTMLStencilElement {}
   var HTMLRailzLoadingElement: {
     prototype: HTMLRailzLoadingElement;
@@ -167,6 +186,7 @@ declare global {
   };
   interface HTMLElementTagNameMap {
     'railz-error-image': HTMLRailzErrorImageElement;
+    'railz-gauge-chart': HTMLRailzGaugeChartElement;
     'railz-loading': HTMLRailzLoadingElement;
     'railz-progress-bar': HTMLRailzProgressBarElement;
     'railz-statements-chart': HTMLRailzStatementsChartElement;
@@ -200,6 +220,20 @@ declare namespace LocalJSX {
      * Width of the SVG Error Indicator
      */
     width?: string;
+  }
+  interface RailzGaugeChart {
+    /**
+     * Configuration information like authentication configuration
+     */
+    configuration: RVConfiguration;
+    /**
+     * Filter information to query the backend APIs
+     */
+    filter: RVFilterDate;
+    /**
+     * For whitelabeling styling
+     */
+    options?: RVOptions;
   }
   interface RailzLoading {
     /**
@@ -289,6 +323,7 @@ declare namespace LocalJSX {
   }
   interface IntrinsicElements {
     'railz-error-image': RailzErrorImage;
+    'railz-gauge-chart': RailzGaugeChart;
     'railz-loading': RailzLoading;
     'railz-progress-bar': RailzProgressBar;
     'railz-statements-chart': RailzStatementsChart;
@@ -302,6 +337,8 @@ declare module '@stencil/core' {
     interface IntrinsicElements {
       'railz-error-image': LocalJSX.RailzErrorImage &
         JSXBase.HTMLAttributes<HTMLRailzErrorImageElement>;
+      'railz-gauge-chart': LocalJSX.RailzGaugeChart &
+        JSXBase.HTMLAttributes<HTMLRailzGaugeChartElement>;
       'railz-loading': LocalJSX.RailzLoading & JSXBase.HTMLAttributes<HTMLRailzLoadingElement>;
       'railz-progress-bar': LocalJSX.RailzProgressBar &
         JSXBase.HTMLAttributes<HTMLRailzProgressBarElement>;

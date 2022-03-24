@@ -32,6 +32,26 @@ export class RailzErrorImage {
   }
 }
 
+export declare interface RailzGaugeChart extends Components.RailzGaugeChart {}
+
+@ProxyCmp({
+  defineCustomElementFn: undefined,
+  inputs: ['configuration', 'filter', 'options'],
+})
+@Component({
+  selector: 'railz-gauge-chart',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  inputs: ['configuration', 'filter', 'options'],
+})
+export class RailzGaugeChart {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
 export declare interface RailzLoading extends Components.RailzLoading {}
 
 @ProxyCmp({
