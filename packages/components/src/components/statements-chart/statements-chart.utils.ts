@@ -313,10 +313,6 @@ export const getReportData = async ({
       );
     }
 
-    if (shouldAddReconstructParam(filter as RVBaseFilterBusinessDateFrequencyType)) {
-      allParameters = { ...allParameters, reconstruct: true };
-    }
-
     reportData = await RequestServiceInstance.getReportData({
       reportType: filter.reportType,
       filter: allParameters,
