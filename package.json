@@ -19,7 +19,7 @@
     "publish:beta": "lerna publish --canary --preid beta",
     "eslint": "yarn workspace @railzai/railz-visualizations run lint",
     "stylelint": "yarn workspace @railzai/railz-visualizations run stylelint",
-    "ci:publish:prepatch": "lerna publish prepatch --yes"
+    "ci:publish:prepatch": "lerna publish prepatch --yes",
     "prettier:write": "prettier . --write --ignore-unknown --allow-empty",
     "lint": "yarn eslint && yarn stylelint && yarn prettier:write"
   },
