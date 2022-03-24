@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.1-beta.10](https://github.com/railz-ai/railz-visualizations/compare/@railzai/railz-visualizations@0.0.1-beta.8...@railzai/railz-visualizations@0.0.1-beta.10) (2022-03-24)
+
+**Note:** Version bump only for package @railzai/railz-visualizations
+
 ## [0.0.1-beta.2](https://github.com/railz-ai/railz-visualizations/compare/@railzai/railz-visualizations@0.0.1-beta.0...@railzai/railz-visualizations@0.0.1-beta.2) (2022-03-09)
 
 **Note:** Version bump only for package @railzai/railz-visualizations
