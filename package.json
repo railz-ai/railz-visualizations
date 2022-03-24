@@ -12,6 +12,8 @@
     "build:codesandbox": "yarn bootstrap && yarn run:build",
     "prepare": "husky install",
     "test": "yarn workspace @railzai/railz-visualizations run test",
+    "patch": "lerna version patch",
+    "prerelease": "lerna version prerelease",
     "publish": "lerna publish from-package",
     "publish:beta": "lerna publish --canary --preid beta",
     "eslint": "yarn workspace @railzai/railz-visualizations run lint",
