@@ -60,4 +60,10 @@ module.exports = {
     ],
     'import/no-unresolved': [2, { commonjs: true, amd: true }],
   },
+  settings: {
+    'import/core-modules': ['@stencil/core/testing'],
+    react: {
+      version: 'detect', // Tells eslint-plugin-react to automatically detect the version of React to use
+    },
+  },
 };
