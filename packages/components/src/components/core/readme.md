@@ -14,7 +14,7 @@
 
 ### Depends on
 
-- [railz-error-image](../../elements/error)
+- [railz-error-image](../error)
 - [railz-statements-chart](../statements-chart)
 - [railz-transactions-control](../transactions-control)
 

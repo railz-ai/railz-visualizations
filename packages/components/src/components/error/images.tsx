@@ -5,12 +5,16 @@ import { RVErrorIndicatorStyle } from '../../types';
 /**
  * SVG Images of errors
  */
-export function Error202({ fillColor = '#949494' }: RVErrorIndicatorStyle): HTMLOrSVGElement {
+export function Error202({
+  fillColor = '#949494',
+  width = '48px',
+  height = '56px',
+}: RVErrorIndicatorStyle): HTMLOrSVGElement {
   return (
     <svg
       aria-hidden="true"
-      width="48"
-      height="56"
+      width={width}
+      height={height}
       viewBox="0 0 48 56"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -64,12 +68,16 @@ export function Error202({ fillColor = '#949494' }: RVErrorIndicatorStyle): HTML
   );
 }
 
-export function Error204({ fillColor }: RVErrorIndicatorStyle): HTMLOrSVGElement {
+export function Error204({
+  fillColor,
+  width = '48px',
+  height = '56px',
+}: RVErrorIndicatorStyle): HTMLOrSVGElement {
   return (
     <svg
       aria-hidden="true"
-      width="48"
-      height="56"
+      width={width}
+      height={height}
       viewBox="0 0 48 56"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -124,12 +132,16 @@ export function Error204({ fillColor }: RVErrorIndicatorStyle): HTMLOrSVGElement
   );
 }
 
-export function Error500({ fillColor }: RVErrorIndicatorStyle): HTMLOrSVGElement {
+export function Error500({
+  fillColor,
+  width = '88px',
+  height = '64px',
+}: RVErrorIndicatorStyle): HTMLOrSVGElement {
   return (
     <svg
       aria-hidden="true"
-      width="88"
-      height="64"
+      width={width}
+      height={height}
       viewBox="0 0 88 64"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

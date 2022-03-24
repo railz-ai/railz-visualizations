@@ -14,7 +14,7 @@ import {
   RailzTransactionsControl,
   RailzVisualizations,
 } from '@railzai/railz-visualizations-react';
-import { isEmpty, pick } from 'lodash';
+import { cloneDeep, isEmpty, pick } from 'lodash';
 
 type AllTypes = 'all' & RVReportTypes;
 
@@ -136,8 +136,8 @@ const Components = ({ configuration, filter, options, showCode }: ChartProps) =>
           <div className="col-span-1" key={reportType}>
             <DefaultComponent
               configuration={configuration}
-              filter={{ ...filter, reportType } as Filter}
-              options={options}
+              filter={cloneDeep({ ...filter, reportType }) as Filter}
+              options={cloneDeep(options)}
               showCode={showCode}
             />
           </div>

@@ -90,24 +90,52 @@ export interface RVOptionsBarStyle {
 
 export interface RVLoadingIndicatorStyle {
   /**
+   * loadingText: Text value for the loading indicator
+   */
+  loadingText?: string;
+  /**
    * fillColor: Color for the loading indicator
    */
   fillColor?: string;
   /**
-   * textColor: Color for the text displayed in the loading indicator
+   * width: Width of the SVG Loading Indicator
    */
-  textColor?: string;
+  width?: string;
+  /**
+   * height: Height of the SVG Loading Indicator
+   */
+  height?: string;
+  /**
+   * textStyle: CSS object based on HTML stylings for the loading indicator text
+   */
+  textStyle?: { [key: string]: any };
 }
 
 export interface RVErrorIndicatorStyle {
+  /**
+   * Status code based on HTTP Response codes
+   */
+  statusCode?: number;
+  /**
+   * width: Width of the SVG Error Indicator
+   */
+  width?: string;
+  /**
+   * height: Height of the SVG Error Indicator
+   */
+  height?: string;
+  /**
+   * Text to display at the bottom of the svg image
+   */
+  text?: string;
   /**
    * fillColor: Color for the error indicator
    */
   fillColor?: string;
   /**
-   * textColor: Color for the text displayed in the error indicator
+   * textStyle: CSS object based on HTML stylings for the text displayed in the error indicator
    */
-  textColor?: string;
+  textStyle?: { [key: string]: any };
 }
 
 export interface RVOptions {

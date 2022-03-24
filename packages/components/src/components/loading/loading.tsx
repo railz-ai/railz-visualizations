@@ -20,11 +20,6 @@ export class Loading {
   @Prop() readonly fillColor?: string = RAILZ_PRIMARY_COLOR;
 
   /**
-   * Color of the loading text
-   */
-  @Prop() readonly textColor?: string = '#000000';
-
-  /**
    * Width of the SVG Loading Indicator
    */
   @Prop() readonly width?: string = '48px';
@@ -33,6 +28,11 @@ export class Loading {
    * Height of the SVG Loading Indicator
    */
   @Prop() readonly height?: string = '48px';
+
+  /**
+   * Style of the text
+   */
+  @Prop() readonly textStyle?: { [key: string]: any };
 
   render(): HTMLElement {
     return (
@@ -66,7 +66,7 @@ export class Loading {
           </path>
         </svg>
         {this.loadingText && (
-          <p class="railz-loading-title" style={{ color: this.textColor || '#000000' }}>
+          <p class="railz-loading-title" style={this.textStyle}>
             {this.loadingText}
           </p>
         )}

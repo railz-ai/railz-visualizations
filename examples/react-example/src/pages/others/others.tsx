@@ -27,7 +27,13 @@ const AllComponents = () => {
         <div className="mt-5 md:mt-0 md:col-span-1 flex flex-col">
           <p>Other Codes - Represents Any other status code with color(Customization)</p>
           <div className="shadow p-4 mt-2 flex h-full">
-            <RailzErrorImage statusCode={500} fillColor={'#910303'} textColor={'#910303'} />
+            <RailzErrorImage
+              statusCode={500}
+              fillColor={'#910303'}
+              textStyle={{ color: '#910303', fontSize: '18px', fontWeight: 600 }}
+              width="150px"
+              height="150px"
+            />
           </div>
         </div>
         <div className="mt-5 md:mt-0 md:col-span-1 flex flex-col">
@@ -54,7 +60,13 @@ const AllComponents = () => {
         <div className="mt-5 md:mt-0 md:col-span-1 flex flex-col">
           <p>Loading Indicator with text(Customization)</p>
           <div className="shadow p-4 mt-2 flex items-center h-full">
-            <RailzLoading loadingText="Loading Data" fillColor={'#000000'} textColor={'#00884f'} />
+            <RailzLoading
+              loadingText="Loading Data"
+              fillColor={'#000000'}
+              textStyle={{ color: '#00884f', fontSize: '18px', fontWeight: 400 }}
+              width="150px"
+              height="150px"
+            />
           </div>
         </div>
       </div>
