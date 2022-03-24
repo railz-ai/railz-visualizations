@@ -21,6 +21,10 @@ export namespace Components {
      */
     fillColor?: string;
     /**
+     * Height of the SVG Error Indicator
+     */
+    height?: string;
+    /**
      * Status code based on HTTP Response codes
      */
     statusCode?: number;
@@ -31,7 +35,11 @@ export namespace Components {
     /**
      * Color of the image text
      */
-    textColor?: string;
+    textStyle?: { [key: string]: any };
+    /**
+     * Width of the SVG Error Indicator
+     */
+    width?: string;
   }
   interface RailzLoading {
     /**
@@ -39,13 +47,21 @@ export namespace Components {
      */
     fillColor?: string;
     /**
+     * Height of the SVG Loading Indicator
+     */
+    height?: string;
+    /**
      * Text to display at the bottom of the loading indicator
      */
     loadingText?: string;
     /**
-     * Color of the loading text
+     * Style of the text
      */
-    textColor?: string;
+    textStyle?: { [key: string]: any };
+    /**
+     * Width of the SVG Loading Indicator
+     */
+    width?: string;
   }
   interface RailzProgressBar {
     /**
@@ -165,6 +181,10 @@ declare namespace LocalJSX {
      */
     fillColor?: string;
     /**
+     * Height of the SVG Error Indicator
+     */
+    height?: string;
+    /**
      * Status code based on HTTP Response codes
      */
     statusCode?: number;
@@ -175,7 +195,11 @@ declare namespace LocalJSX {
     /**
      * Color of the image text
      */
-    textColor?: string;
+    textStyle?: { [key: string]: any };
+    /**
+     * Width of the SVG Error Indicator
+     */
+    width?: string;
   }
   interface RailzLoading {
     /**
@@ -183,13 +207,21 @@ declare namespace LocalJSX {
      */
     fillColor?: string;
     /**
+     * Height of the SVG Loading Indicator
+     */
+    height?: string;
+    /**
      * Text to display at the bottom of the loading indicator
      */
     loadingText?: string;
     /**
-     * Color of the loading text
+     * Style of the text
      */
-    textColor?: string;
+    textStyle?: { [key: string]: any };
+    /**
+     * Width of the SVG Loading Indicator
+     */
+    width?: string;
   }
   interface RailzProgressBar {
     /**

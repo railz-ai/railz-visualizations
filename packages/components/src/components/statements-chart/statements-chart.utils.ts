@@ -300,7 +300,7 @@ export const getReportData = async ({
           startDate,
           endDate,
         },
-        ['startDate', 'endDate', 'reportFrequency', 'connectionId', 'reconstruct'],
+        ['startDate', 'endDate', 'reportFrequency', 'connectionId'],
       );
     } else {
       allParameters = pick(
@@ -309,12 +309,8 @@ export const getReportData = async ({
           startDate,
           endDate,
         },
-        ['startDate', 'endDate', 'reportFrequency', 'businessName', 'serviceName', 'reconstruct'],
+        ['startDate', 'endDate', 'reportFrequency', 'businessName', 'serviceName'],
       );
-    }
-
-    if (shouldAddReconstructParam(filter as RVBaseFilterBusinessDateFrequencyType)) {
-      allParameters = { ...allParameters, reconstruct: true };
     }
 
     reportData = await RequestServiceInstance.getReportData({

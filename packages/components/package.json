@@ -1,6 +1,6 @@
 {
   "name": "@railzai/railz-visualizations",
-  "version": "0.0.1-beta.8",
+  "version": "0.0.1-beta.12",
   "description": "Railz.ai Visualizations",
   "repository": {
     "type": "git",
@@ -51,7 +51,7 @@
   },
   "dependencies": {
     "@stencil/angular-output-target": "0.4.0",
-    "@stencil/core": "2.13.0",
+    "@stencil/core": "2.14.2",
     "@stencil/react-output-target": "0.3.1",
     "@stencil/sass": "1.5.2",
     "date-fns": "2.11.1",
@@ -72,6 +72,7 @@
     "eslint-plugin-react": "7.28.0",
     "jest": "27.5.1",
     "jest-cli": "27.5.1",
+    "npx": "^10.2.2",
     "prettier": "2.5.1",
     "puppeteer": "10.0.0",
     "rollup-plugin-dotenv": "0.3.0",

@@ -63,10 +63,14 @@ export const INITIAL_OPTIONS: RVOptions = {
   },
   loadingIndicator: {
     fillColor: '#2E6521FF',
-    textColor: '#2E6521FF',
+    textStyle: {
+      color: '#2E6521FF',
+    },
   },
   errorIndicator: {
     fillColor: '#ff4545',
-    textColor: '#ff4545',
+    textStyle: {
+      color: '#ff4545',
+    },
   },
 };

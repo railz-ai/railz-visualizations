@@ -27,8 +27,6 @@ The current logic of branch management is a mix of 2 ideas - a clean, linear his
 
 `master` - main branch, should have latest released, approved changes, always compilable and working. Changes should never be committed directly to this branch!
 
-`development` - prerelease branch, code of the latest released beta feature.
-
 `feature/*` - for features under development (should contain name of the ticket at begin)
 
 `bugfix/*` - for repairing non-fatal existing bugs

@@ -16,13 +16,13 @@ export declare interface RailzErrorImage extends Components.RailzErrorImage {}
 
 @ProxyCmp({
   defineCustomElementFn: undefined,
-  inputs: ['fillColor', 'statusCode', 'text', 'textColor'],
+  inputs: ['fillColor', 'height', 'statusCode', 'text', 'textStyle', 'width'],
 })
 @Component({
   selector: 'railz-error-image',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
-  inputs: ['fillColor', 'statusCode', 'text', 'textColor'],
+  inputs: ['fillColor', 'height', 'statusCode', 'text', 'textStyle', 'width'],
 })
 export class RailzErrorImage {
   protected el: HTMLElement;
@@ -36,13 +36,13 @@ export declare interface RailzLoading extends Components.RailzLoading {}
 
 @ProxyCmp({
   defineCustomElementFn: undefined,
-  inputs: ['fillColor', 'loadingText', 'textColor'],
+  inputs: ['fillColor', 'height', 'loadingText', 'textStyle', 'width'],
 })
 @Component({
   selector: 'railz-loading',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
-  inputs: ['fillColor', 'loadingText', 'textColor'],
+  inputs: ['fillColor', 'height', 'loadingText', 'textStyle', 'width'],
 })
 export class RailzLoading {
   protected el: HTMLElement;
