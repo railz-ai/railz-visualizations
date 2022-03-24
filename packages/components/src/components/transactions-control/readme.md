@@ -18,8 +18,8 @@
 
 ### Depends on
 
-- [railz-error-image](../../elements/error)
-- [railz-loading](../../elements/loading)
+- [railz-error-image](../error)
+- [railz-loading](../loading)
 - [railz-progress-bar](../progress-bar)
 
 ### Graph

@@ -19,7 +19,7 @@
         <railz-error-image
           [statusCode]="500"
           fillColor="#910303"
-          textColor="#910303"
+          [textStyle]="{ color: '#910303' }"
         ></railz-error-image>
       </div>
     </div>
@@ -50,7 +50,9 @@
         <railz-loading
           loadingText="Loading Data"
           fillColor="#000000"
-          textColor="#00884f"
+          width="150px"
+          height="150px"
+          [textStyle]="{ color: '#00884f' }"
         ></railz-loading>
       </div>
     </div>
@@ -85,9 +87,9 @@
       <div class="shadow p-4 mt-2 flex items-center h-full">
         <railz-progress-bar
           reportType="invoices"
-          [overdueAmount]="5000"
-          [unpaidAmount]="13000"
-          [paidAmount]="0"
+          overdueAmount="5000"
+          unpaidAmount="13000"
+          paidAmount="0"
           [options]="barOptions"
         ></railz-progress-bar>
       </div>

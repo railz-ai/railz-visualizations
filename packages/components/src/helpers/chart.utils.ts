@@ -169,12 +169,12 @@ export const checkAccessibilityFromOptions = (options: RVOptions): void => {
       }
       checkAccessibility(
         options?.container?.style?.backgroundColor || options?.container?.style?.background,
-        options?.loadingIndicator?.textColor || RAILZ_CHART_LABEL_COLOR,
+        options?.loadingIndicator?.textStyle?.color || RAILZ_CHART_LABEL_COLOR,
         Translations.RV_ACCESSIBILITY_CHART_LOADING_INDICATOR,
       );
       checkAccessibility(
         options?.container?.style?.backgroundColor || options?.container?.style?.background,
-        options?.errorIndicator?.textColor || RAILZ_CHART_LABEL_COLOR,
+        options?.errorIndicator?.textStyle?.color || RAILZ_CHART_LABEL_COLOR,
         Translations.RV_ACCESSIBILITY_CHART_ERROR_INDICATOR,
       );
     }

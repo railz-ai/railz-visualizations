@@ -35,7 +35,7 @@ export const formatSeries = (
 /**
  * Format number displayed on UI to 2 decimals and thousand seperator
  */
-export const formatNumber = (number: number, decimals = 2): string => {
+export const formatNumber = (number: number | string, decimals = 2): string => {
   if (!isNil(number)) {
     const formatter = new Intl.NumberFormat('en-US', {
       maximumFractionDigits: decimals,

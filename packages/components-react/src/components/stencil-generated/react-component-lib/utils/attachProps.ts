@@ -84,9 +84,7 @@ export const isCoveredByReact = (eventNameSuffix: string) => {
 };
 
 export const syncEvent = (
-  node: Element & {
-    __events?: { [key: string]: ((e: Event) => any) | undefined };
-  },
+  node: Element & { __events?: { [key: string]: ((e: Event) => any) | undefined } },
   eventName: string,
   newEventHandler?: (e: Event) => any,
 ) => {
