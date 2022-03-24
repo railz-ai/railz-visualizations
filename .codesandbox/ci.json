@@ -1,5 +1,5 @@
 {
-  "buildCommand": "build",
+  "buildCommand": "build:codesandbox",
   "installCommand": "install:codesandbox",
   "packages": ["packages/components", "packages/components-angular", "packages/components-react"],
   "publishDirectory": {
