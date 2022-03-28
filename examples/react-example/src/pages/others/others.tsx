@@ -9,7 +9,7 @@ import {
 
 const AllComponents = () => {
   return (
-    <div className="text-left">
+    <div className="text-left px-2">
       <h2 className="text-3xl font-bold text-gray-900">Railz Error Component</h2>
       <div className="md:grid md:grid-cols-4 md:gap-6 mt-6">
         <div className="mt-5 md:mt-0 md:col-span-1 flex flex-col">
@@ -71,20 +71,20 @@ const AllComponents = () => {
         </div>
       </div>
       <h2 className="text-3xl font-bold text-gray-900 mt-10">Railz Progress Bar Component</h2>
-      <div className="grid grid-cols-2 gap-4 mx-auto mt-6">
-        <div className="col-span-1 flex flex-col">
+      <div className="md:grid md:grid-cols-2 md:gap-6 mt-6">
+        <div className="mt-5 md:mt-0 md:col-span-1 flex flex-col">
           <p>Invoices - No Parameter</p>
           <div className="shadow p-4 mt-2 flex items-center h-full">
             <RailzProgressBar reportType={RVReportTypes.INVOICES} />
           </div>
         </div>
-        <div className="col-span-1 flex flex-col">
+        <div className="mt-5 md:mt-0 md:col-span-1 flex flex-col">
           <p>Bills - Overdue Parameter</p>
           <div className="shadow p-4 mt-2 flex items-center h-full">
             <RailzProgressBar reportType={RVReportTypes.BILLS} overdueAmount={2000} />
           </div>
         </div>
-        <div className="col-span-1 flex flex-col">
+        <div className="mt-5 md:mt-0 md:col-span-1 flex flex-col">
           <p>Invoices - No Paid Data</p>
           <div className="shadow p-4 mt-2 flex items-center h-full">
             <RailzProgressBar
@@ -95,7 +95,7 @@ const AllComponents = () => {
             />
           </div>
         </div>
-        <div className="col-span-1 flex flex-col">
+        <div className="mt-5 md:mt-0 md:col-span-1 flex flex-col">
           <p>Bills - No Paid Data(Bar color customization)</p>
           <div className="shadow p-4 mt-2 flex items-center h-full">
             <RailzProgressBar
@@ -111,7 +111,7 @@ const AllComponents = () => {
             />
           </div>
         </div>
-        <div className="col-span-1 flex flex-col">
+        <div className="mt-5 md:mt-0 md:col-span-1 flex flex-col">
           <p>Invoices - Partial Payment</p>
           <div className="shadow p-4 mt-2 flex items-center h-full">
             <RailzProgressBar
@@ -122,7 +122,7 @@ const AllComponents = () => {
             />
           </div>
         </div>
-        <div className="col-span-1 flex flex-col">
+        <div className="mt-5 md:mt-0 md:col-span-1 flex flex-col">
           <p>Bills - Paid in full(Bar color customization)</p>
           <div className="shadow p-4 mt-2 flex items-center h-full">
             <RailzProgressBar

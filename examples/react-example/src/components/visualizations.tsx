@@ -26,7 +26,6 @@ interface Filter {
   endDate: string;
   reportFrequency: RVReportFrequency;
   reportType: AllTypes;
-  reconstruct: boolean;
 }
 
 interface ChartProps {
@@ -40,13 +39,7 @@ const formatCodeFilter = (filter: Filter) => {
   let allParameters;
   if ([RVReportTypes.BILLS, RVReportTypes.INVOICES].includes(filter.reportType)) {
     if (!isEmpty(filter?.connectionId)) {
-      allParameters = pick(filter, [
-        'startDate',
-        'endDate',
-        'reportType',
-        'connectionId',
-        'reconstruct',
-      ]);
+      allParameters = pick(filter, ['startDate', 'endDate', 'reportType', 'connectionId']);
     } else {
       allParameters = pick(filter, [
         'startDate',
@@ -54,7 +47,6 @@ const formatCodeFilter = (filter: Filter) => {
         'businessName',
         'reportType',
         'serviceName',
-        'reconstruct',
       ]);
     }
   } else {
@@ -65,7 +57,6 @@ const formatCodeFilter = (filter: Filter) => {
         'reportFrequency',
         'reportType',
         'connectionId',
-        'reconstruct',
       ]);
     } else {
       allParameters = pick(filter, [
@@ -75,7 +66,6 @@ const formatCodeFilter = (filter: Filter) => {
         'reportType',
         'businessName',
         'serviceName',
-        'reconstruct',
       ]);
     }
   }
@@ -133,7 +123,7 @@ const Components = ({ configuration, filter, options, showCode }: ChartProps) =>
           RVReportTypes.INCOME_STATEMENTS,
           RVReportTypes.CASHFLOW_STATEMENTS,
         ].map((reportType) => (
-          <div className="col-span-1" key={reportType}>
+          <div className="col-span-1 mt-1" key={reportType}>
             <DefaultComponent
               configuration={configuration}
               filter={cloneDeep({ ...filter, reportType }) as Filter}
@@ -202,7 +192,7 @@ export default function Visualizations({ configuration, filter, options }: Chart
   const [code, setCode] = useState(false);
   return (
     <div className="md:grid md:grid-cols-1 md:gap-1 text-left">
-      <div className="col-span-1 inline-flex justify-end">
+      <div className="col-span-1 flex justify-end">
         <label htmlFor="switch-code">
           <input
             checked={code}
