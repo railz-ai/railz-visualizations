@@ -3,7 +3,7 @@ import { compareAsc, parseISO } from 'date-fns';
 import { isEmpty } from 'lodash-es';
 
 import Translations from '../config/translations/en.json';
-import { getOptionsBarChart } from '../components/statements-chart/statements-chart.utils';
+import { getOptionsBarChart } from '../elements/statements-chart/statements-chart.utils';
 import { errorLog } from '../services/logger';
 import {
   RAILZ_CHART_LABEL_COLOR,
