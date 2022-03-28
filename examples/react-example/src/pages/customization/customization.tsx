@@ -41,7 +41,7 @@ export default function Customization() {
       <Header
         description={'This page shows you the customizable options that can be passed to the SDK.'}
       >
-        <div className="md:grid md:grid-cols-3 md:gap-6">
+        <div className="md:grid md:grid-cols-3 md:gap-6 px-1">
           <div className="md:col-span-1 shadow p-4">
             <Form
               setFilter={submitFilter}
@@ -51,7 +51,7 @@ export default function Customization() {
               setOptions={submitOptions}
             />
           </div>
-          <div className="mt-5 md:mt-0 md:col-span-2">
+          <div className="mt-5 md:mt-0 md:col-span-2 px-1">
             {!token && 'No Token, submit your authentication details'}
             {token && isEmpty(filter) && 'No Filter, submit your filter details'}
             {token && !isEmpty(filter) && (

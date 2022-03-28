@@ -22,7 +22,7 @@ export default function Basic() {
   };
 
   const submitFilter = (filter: any) => {
-    setFilter({ ...filter, reconstruct: filter.reconstruct === 'true' });
+    setFilter(filter);
     setError('');
     if (!token) {
       setError('Token required before filter can be triggered.');
@@ -32,7 +32,7 @@ export default function Basic() {
   return (
     <div className="App">
       <Header description={'This page shows you the default stylings and colors used by the SDK.'}>
-        <div className="md:grid md:grid-cols-3 md:gap-6">
+        <div className="md:grid md:grid-cols-3 md:gap-6 px-1">
           <div className="md:col-span-1 shadow p-4">
             <Form
               setFilter={submitFilter}
@@ -40,7 +40,7 @@ export default function Basic() {
               setError={setError}
             />
           </div>
-          <div className="mt-5 md:mt-0 md:col-span-2">
+          <div className="mt-5 md:mt-0 md:col-span-2 px-1">
             {!token && 'No Token, submit your authentication details'}
             {token && isEmpty(filter) && 'No Filter, submit your filter details'}
             {token && !isEmpty(filter) && (

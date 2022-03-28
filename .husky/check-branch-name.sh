@@ -7,7 +7,7 @@ if [ "$branch_name" = "master" ]; then
   exit 1
 fi
 
-valid_regex='^((bugfix|feature|hotfix)\/[a-zA-Z0-9\-]+)$'
+valid_regex='^((bugfix|feature|hotfix|chore)\/[a-zA-Z0-9\-]+)$'
 
 message="Your branch name does not conform to: $valid_regex."
 
