@@ -77,6 +77,20 @@ export namespace Components {
      */
     width?: string;
   }
+  interface RailzPieChart {
+    /**
+     * Configuration information like authentication configuration
+     */
+    configuration: RVConfiguration;
+    /**
+     * Filter information to query the backend APIs
+     */
+    filter: RVFilterDate;
+    /**
+     * For whitelabeling styling
+     */
+    options: RVOptions;
+  }
   interface RailzProgressBar {
     /**
      * For whitelabeling styling
@@ -158,6 +172,11 @@ declare global {
     prototype: HTMLRailzLoadingElement;
     new (): HTMLRailzLoadingElement;
   };
+  interface HTMLRailzPieChartElement extends Components.RailzPieChart, HTMLStencilElement {}
+  var HTMLRailzPieChartElement: {
+    prototype: HTMLRailzPieChartElement;
+    new (): HTMLRailzPieChartElement;
+  };
   interface HTMLRailzProgressBarElement extends Components.RailzProgressBar, HTMLStencilElement {}
   var HTMLRailzProgressBarElement: {
     prototype: HTMLRailzProgressBarElement;
@@ -188,6 +207,7 @@ declare global {
     'railz-error-image': HTMLRailzErrorImageElement;
     'railz-gauge-chart': HTMLRailzGaugeChartElement;
     'railz-loading': HTMLRailzLoadingElement;
+    'railz-pie-chart': HTMLRailzPieChartElement;
     'railz-progress-bar': HTMLRailzProgressBarElement;
     'railz-statements-chart': HTMLRailzStatementsChartElement;
     'railz-transactions-control': HTMLRailzTransactionsControlElement;
@@ -257,6 +277,20 @@ declare namespace LocalJSX {
      */
     width?: string;
   }
+  interface RailzPieChart {
+    /**
+     * Configuration information like authentication configuration
+     */
+    configuration: RVConfiguration;
+    /**
+     * Filter information to query the backend APIs
+     */
+    filter: RVFilterDate;
+    /**
+     * For whitelabeling styling
+     */
+    options?: RVOptions;
+  }
   interface RailzProgressBar {
     /**
      * For whitelabeling styling
@@ -325,6 +359,7 @@ declare namespace LocalJSX {
     'railz-error-image': RailzErrorImage;
     'railz-gauge-chart': RailzGaugeChart;
     'railz-loading': RailzLoading;
+    'railz-pie-chart': RailzPieChart;
     'railz-progress-bar': RailzProgressBar;
     'railz-statements-chart': RailzStatementsChart;
     'railz-transactions-control': RailzTransactionsControl;
@@ -340,6 +375,7 @@ declare module '@stencil/core' {
       'railz-gauge-chart': LocalJSX.RailzGaugeChart &
         JSXBase.HTMLAttributes<HTMLRailzGaugeChartElement>;
       'railz-loading': LocalJSX.RailzLoading & JSXBase.HTMLAttributes<HTMLRailzLoadingElement>;
+      'railz-pie-chart': LocalJSX.RailzPieChart & JSXBase.HTMLAttributes<HTMLRailzPieChartElement>;
       'railz-progress-bar': LocalJSX.RailzProgressBar &
         JSXBase.HTMLAttributes<HTMLRailzProgressBarElement>;
       'railz-statements-chart': LocalJSX.RailzStatementsChart &

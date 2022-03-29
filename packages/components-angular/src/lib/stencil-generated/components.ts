@@ -72,6 +72,26 @@ export class RailzLoading {
   }
 }
 
+export declare interface RailzPieChart extends Components.RailzPieChart {}
+
+@ProxyCmp({
+  defineCustomElementFn: undefined,
+  inputs: ['configuration', 'filter', 'options'],
+})
+@Component({
+  selector: 'railz-pie-chart',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  inputs: ['configuration', 'filter', 'options'],
+})
+export class RailzPieChart {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
 export declare interface RailzProgressBar extends Components.RailzProgressBar {}
 
 @ProxyCmp({

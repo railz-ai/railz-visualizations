@@ -21,6 +21,7 @@ import { RVReportTypes } from '../../types/enum/report-type';
 import { RequestServiceInstance } from '../../services/request';
 import { errorLog } from '../../services/logger';
 import { ALL_FONTS } from '../../helpers/chart.utils';
+import { RAILZ_DATE_FORMAT } from '../../types/constants/date';
 
 /**
  * Setup Highcharts options for bar charts
@@ -277,8 +278,8 @@ export const getReportData = async ({
 }: RVReportRequestParameter): Promise<RVFormattedStatementResponse> => {
   let reportData;
   try {
-    const startDate = format(parseISO(filter.startDate), 'yyyy-MM-dd');
-    const endDate = format(parseISO(filter.endDate), 'yyyy-MM-dd');
+    const startDate = format(parseISO(filter.startDate), RAILZ_DATE_FORMAT);
+    const endDate = format(parseISO(filter.endDate), RAILZ_DATE_FORMAT);
     let allParameters;
     if ('connectionId' in filter && filter?.connectionId) {
       allParameters = pick(

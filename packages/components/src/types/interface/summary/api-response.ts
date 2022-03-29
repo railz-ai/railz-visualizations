@@ -185,9 +185,19 @@ export interface RVGaugeChartSummary {
   lastUpdated: string;
 }
 
+export interface RVPieChartSummary {
+  subSections: any[];
+}
+
 export class RVFormattedGaugeResponse {
   error?: RVErrorResponse;
   data?: RVGaugeChartSummary;
+  status?: number;
+}
+
+export class RVFormattedPieResponse {
+  error?: RVErrorResponse;
+  data?: RVPieChartSummary;
   status?: number;
 }
 

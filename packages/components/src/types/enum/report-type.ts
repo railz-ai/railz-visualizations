@@ -12,6 +12,15 @@ export enum RVReportTypes {
   SCORE = 'railzScore',
 }
 
+export enum RVParams {
+  START_DATE = 'startDate',
+  END_DATE = 'endDate',
+  REPORT_FREQUENCY = 'reportFrequency',
+  BUSINESS_NAME = 'businessName',
+  SERVICE_NAME = 'serviceName',
+  CONNECTION_ID = 'connectionId',
+}
+
 export type RVFinancialStatementsTypes =
   | RVReportTypes.BALANCE_SHEET
   | RVReportTypes.CASHFLOW_STATEMENTS

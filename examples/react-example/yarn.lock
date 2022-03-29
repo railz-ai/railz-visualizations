@@ -1380,20 +1380,20 @@
     schema-utils "^3.0.0"
     source-map "^0.7.3"
 
-"@railzai/railz-visualizations-react@0.0.1-beta.8":
-  version "0.0.1-beta.8"
-  resolved "https://registry.yarnpkg.com/@railzai/railz-visualizations-react/-/railz-visualizations-react-0.0.1-beta.8.tgz#59232a2d39a76c32de861fe848130bfaf83fd97a"
-  integrity sha512-QG8SYnl0zPLNXdO8GSPk5epEOto7iiyR+fT/bTqJbvFOyQ1UjxofrKiJB10EnXGZzy/WJqr/2eKsvXEFFS4Kbw==
+"@railzai/railz-visualizations-react@latest":
+  version "0.0.1-beta.12"
+  resolved "https://registry.yarnpkg.com/@railzai/railz-visualizations-react/-/railz-visualizations-react-0.0.1-beta.12.tgz#c617e5abef3d1bf8ea219bc343e753a8194c1f61"
+  integrity sha512-rNZEnnVwshjgzYJStVOurM6fjaHvq/gMjM92uO6mv9x8xbqolWHs59qCDNepY256/nawc+y9xX1e2493+emmbg==
   dependencies:
-    "@railzai/railz-visualizations" "0.0.1-beta.8"
+    "@railzai/railz-visualizations" "^0.0.1-beta.12"
 
-"@railzai/railz-visualizations@0.0.1-beta.8":
-  version "0.0.1-beta.8"
-  resolved "https://registry.yarnpkg.com/@railzai/railz-visualizations/-/railz-visualizations-0.0.1-beta.8.tgz#8420d94e6d91f60d5cd71e94f32937ad1de44df0"
-  integrity sha512-hsXhq5xU1qi7VG2LEMuyTma58Py9wPsUgfupFkdU0dQZF4MPXfX1mmnozaFeREoMQlheTjDSSMCfmcKkPxZ67A==
+"@railzai/railz-visualizations@^0.0.1-beta.12":
+  version "0.0.1-beta.12"
+  resolved "https://registry.yarnpkg.com/@railzai/railz-visualizations/-/railz-visualizations-0.0.1-beta.12.tgz#5566dc4976984da438ac7ce94a13551287726a18"
+  integrity sha512-Rmf2rylnqSbd8CEMF/DEJ8WknbZYGfbZQma7YaKi9tra/ZBookkyU+NQd1J/aXEQhPZgE/ctELgLKloB7giObw==
   dependencies:
     "@stencil/angular-output-target" "0.4.0"
-    "@stencil/core" "2.13.0"
+    "@stencil/core" "2.14.2"
     "@stencil/react-output-target" "0.3.1"
     "@stencil/sass" "1.5.2"
     date-fns "2.11.1"
@@ -1462,10 +1462,10 @@
   resolved "https://registry.yarnpkg.com/@stencil/angular-output-target/-/angular-output-target-0.4.0.tgz#6724ed805d50e802f58212d74a71caf442e0b569"
   integrity sha512-zauaj0za46IWoPgv2IanDp3tiljwDRDNk4jB7WII6KeL66dkk7ffeqYZ0CgySTU5W2FjnKR6JEKbAnwUxjGIsA==
 
-"@stencil/core@2.13.0":
-  version "2.13.0"
-  resolved "https://registry.yarnpkg.com/@stencil/core/-/core-2.13.0.tgz#993fd74a5c7c8fe8af75848ca9df2211cd05b818"
-  integrity sha512-EEKHOHgYpg3/iFUKMXTZJjUayRul7sXDwNw0OGgkEOe4t7JWiibDkzUHuruvpbqEydX+z1+ez5K2bMMY76c2wA==
+"@stencil/core@2.14.2":
+  version "2.14.2"
+  resolved "https://registry.yarnpkg.com/@stencil/core/-/core-2.14.2.tgz#c221d18bbfd9b637d755d43631598695c7526ff2"
+  integrity sha512-NMC5Xi8sPFJxaO4rz6CbMHuD6PteE/RJWtjrbkusmpjKRtMXkfZJPIgOrleZ4xO+vXcNyL535Ru7vUADqEsTiQ==
 
 "@stencil/react-output-target@0.3.1":
   version "0.3.1"

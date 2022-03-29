@@ -1,4 +1,5 @@
 import {
+  RVFormattedGaugeResponse,
   RVFormattedTransactionResponse,
   RVReportDataRequest,
   RVReportRequest,
@@ -19,7 +20,9 @@ class RequestService {
   async getReportData({
     reportType,
     filter,
-  }: RVReportDataRequest): Promise<RVReportSummaryApiResponse | RVFormattedTransactionResponse> {
+  }: RVReportDataRequest): Promise<
+    RVReportSummaryApiResponse | RVFormattedTransactionResponse | RVFormattedGaugeResponse
+  > {
     const url = `${reportType}?${new URLSearchParams(filter as any)}`;
 
     return await this.getRequest({

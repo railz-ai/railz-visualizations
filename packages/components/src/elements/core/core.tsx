@@ -3,7 +3,7 @@ import { Component, Prop, h, State, Watch } from '@stencil/core';
 
 import { isEmpty, isEqual } from 'lodash-es';
 
-import { isGauge, isStatements, isTransactions } from '../../helpers/utils';
+import { isGauge, isPie, isStatements, isTransactions } from '../../helpers/utils';
 
 import { RVConfiguration, RVFilter, RVFilterDate, RVFilterFrequency, RVOptions } from '../../types';
 import { getConfiguration, getFilter } from '../../helpers/chart.utils';
@@ -84,6 +84,16 @@ export class Core {
     if (isGauge(this._filter?.reportType)) {
       return (
         <railz-gauge-chart
+          configuration={this.configuration}
+          filter={this.filter as RVFilterDate}
+          options={this.options}
+        />
+      );
+    }
+
+    if (isPie(this._filter?.reportType)) {
+      return (
+        <railz-pie-chart
           configuration={this.configuration}
           filter={this.filter as RVFilterDate}
           options={this.options}

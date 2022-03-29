@@ -1,6 +1,8 @@
 import { isNil } from 'lodash-es';
 import { parseISO, format } from 'date-fns';
 
+import numbro from 'numbro';
+
 import Translations from '../config/translations/en.json';
 import { RVReportTypes } from '../types/enum/report-type';
 import { RVReportFrequency, RVReportStatementSummary } from '../types';
@@ -50,6 +52,13 @@ export const formatNumber = (number: number | string, decimals = 2): string => {
  */
 export const isGauge = (reportType: RVReportTypes): boolean => {
   return reportType && [RVReportTypes.SCORE].includes(reportType);
+};
+
+/**
+ * Determine if report type is pie
+ */
+export const isPie = (reportType: RVReportTypes): boolean => {
+  return reportType && [RVReportTypes.EXPENSES, RVReportTypes.REVENUE].includes(reportType);
 };
 
 /**
@@ -110,4 +119,21 @@ export const isRequiredReportFrequency = (reportType: RVReportTypes): boolean =>
       RVReportTypes.FINANCIAL_RATIO,
     ].includes(reportType)
   );
+};
+
+/**
+ * Round number and format to display
+ */
+export const roundNumber = (number: number, mantissa = 2): string => {
+  if (!isNil(number)) {
+    return numbro(Number(number))
+      .format({
+        average: true,
+        mantissa,
+        optionalMantissa: true,
+        lowPrecision: false,
+      })
+      ?.toUpperCase();
+  }
+  return '';
 };

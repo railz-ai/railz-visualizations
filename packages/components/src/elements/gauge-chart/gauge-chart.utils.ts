@@ -11,6 +11,7 @@ import {
 import { RequestServiceInstance } from '../../services/request';
 import { errorLog } from '../../services/logger';
 import { ALL_FONTS } from '../../helpers/chart.utils';
+import { RAILZ_DATE_FORMAT } from '../../types/constants/date';
 
 const linearGradient = {
   x1: 0,
@@ -260,15 +261,15 @@ export const getOptionsGauge = (gauge: RVGaugeChartSummary): any => ({
 });
 
 /**
- * Make API call based on expected parameters for financial statements data type
+ * Make API call based on expected parameters for score data type
  */
 export const getReportData = async ({
   filter,
 }: RVReportRequestDateParameter): Promise<RVFormattedGaugeResponse> => {
   let reportData;
   try {
-    const startDate = format(parseISO(filter.startDate), 'yyyy-MM-dd');
-    const endDate = format(parseISO(filter.endDate), 'yyyy-MM-dd');
+    const startDate = format(parseISO(filter.startDate), RAILZ_DATE_FORMAT);
+    const endDate = format(parseISO(filter.endDate), RAILZ_DATE_FORMAT);
     const parametersToAdd =
       'connectionId' in filter && filter?.connectionId
         ? ['connectionId']

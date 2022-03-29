@@ -11,6 +11,7 @@ import {
 } from '@railzai/railz-visualizations';
 import {
   RailzGaugeChart,
+  RailzPieChart,
   RailzStatementsChart,
   RailzTransactionsControl,
   RailzVisualizations,
@@ -124,6 +125,8 @@ const Components = ({ configuration, filter, options, showCode }: ChartProps) =>
           RVReportTypes.INCOME_STATEMENTS,
           RVReportTypes.CASHFLOW_STATEMENTS,
           RVReportTypes.SCORE,
+          RVReportTypes.EXPENSES,
+          RVReportTypes.REVENUE,
         ].map((reportType) => (
           <div className="col-span-1 mt-1" key={reportType}>
             <DefaultComponent
@@ -151,6 +154,26 @@ const Components = ({ configuration, filter, options, showCode }: ChartProps) =>
             options={options}
             showCode={showCode}
             displayValue="RailzGaugeChart"
+          />
+        </div>
+      )}
+      {[RVReportTypes.EXPENSES, RVReportTypes.REVENUE].includes(filter.reportType) && (
+        <div>
+          <h4 className="text-xl font-bold text-gray-900">Using Railz Pie Chart Component</h4>
+          <p>
+            Railz Pie Chart Component only accepts <b>expenses</b> and <b>revenues</b>
+          </p>
+          <RailzPieChart
+            configuration={configuration}
+            filter={filter as RVFilterDate}
+            options={options}
+          />
+          <Code
+            configuration={configuration}
+            filter={filter}
+            options={options}
+            showCode={showCode}
+            displayValue="RailzPieChart"
           />
         </div>
       )}
@@ -199,9 +222,14 @@ const Components = ({ configuration, filter, options, showCode }: ChartProps) =>
           />
         </div>
       )}
-      {![RVReportTypes.SCORE, RVReportTypes.BALANCE_SHEET, RVReportTypes.BILLS, 'all'].includes(
-        filter.reportType,
-      ) && (
+      {![
+        RVReportTypes.EXPENSES,
+        RVReportTypes.REVENUE,
+        RVReportTypes.SCORE,
+        RVReportTypes.BALANCE_SHEET,
+        RVReportTypes.BILLS,
+        'all',
+      ].includes(filter.reportType) && (
         <DefaultComponent
           configuration={configuration}
           filter={filter}
