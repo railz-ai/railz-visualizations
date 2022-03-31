@@ -1,2 +1,2 @@
 export * from './types';
-export { Components, JSX } from './components';
+export { Components, JSX } from './components.d';
