@@ -2,8 +2,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "copy:env": "cp packages/components/.env.template packages/components/.env",
-    "install:codesandbox": "yarn install --ignore-engines",
+    "install:codesandbox": "yarn install",
     "bootstrap": "lerna bootstrap",
     "add:angular": "lerna add @railzai/railz-visualizations --scope=@railzai/railz-visualizations-angular",
     "add:react": "lerna add @railzai/railz-visualizations --scope=@railzai/railz-visualizations-react",
@@ -21,6 +20,7 @@
     "stylelint": "yarn workspace @railzai/railz-visualizations run stylelint",
     "ci:publish:prepatch": "lerna publish prepatch --yes",
     "prettier:write": "prettier . --write --ignore-unknown --allow-empty",
+    "run:lint-staged": "lint-staged",
     "lint": "yarn eslint && yarn stylelint && yarn prettier:write"
   },
   "devDependencies": {
