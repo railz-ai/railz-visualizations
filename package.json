@@ -36,5 +36,6 @@
   ],
   "lint-staged": {
     "**/*": "prettier . --write --ignore-unknown --allow-empty"
-  }
+  },
+  "packageManager": "yarn@1.22.17"
 }
