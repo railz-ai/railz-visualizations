@@ -24,20 +24,6 @@ import {
 import { getTitleByReportType, isRequiredReportFrequency } from './utils';
 import { checkAccessibility } from './accessibility';
 
-export const ALL_FONTS = [
-  'Inter',
-  'Roboto',
-  '-apple-system',
-  'BlinkMacSystemFont',
-  '"Segoe UI"',
-  '"Helvetica Neue"',
-  'Arial',
-  'sans-serif',
-  '"Apple Color Emoji"',
-  '"Segoe UI Emoji"',
-  '"Segoe UI Symbol"',
-].join(',');
-
 /**
  * @function getConfiguration: if configuration is a string, convert to an object
  * Validate that configuration is present, if not, return formatted configuration as undefined

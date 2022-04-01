@@ -123,7 +123,7 @@ const Components = ({ configuration, filter, options, showCode }: ChartProps) =>
           RVReportTypes.BALANCE_SHEET,
           RVReportTypes.INCOME_STATEMENTS,
           RVReportTypes.CASHFLOW_STATEMENTS,
-          RVReportTypes.SCORE,
+          RVReportTypes.RAILZ_SCORE,
         ].map((reportType) => (
           <div className="col-span-1 mt-1" key={reportType}>
             <DefaultComponent
@@ -134,7 +134,7 @@ const Components = ({ configuration, filter, options, showCode }: ChartProps) =>
             />
           </div>
         ))}
-      {filter.reportType === RVReportTypes.SCORE && (
+      {filter.reportType === RVReportTypes.RAILZ_SCORE && (
         <div>
           <h4 className="text-xl font-bold text-gray-900">Using Railz Gauge Chart Component</h4>
           <p>
@@ -199,9 +199,12 @@ const Components = ({ configuration, filter, options, showCode }: ChartProps) =>
           />
         </div>
       )}
-      {![RVReportTypes.SCORE, RVReportTypes.BALANCE_SHEET, RVReportTypes.BILLS, 'all'].includes(
-        filter.reportType,
-      ) && (
+      {![
+        RVReportTypes.RAILZ_SCORE,
+        RVReportTypes.BALANCE_SHEET,
+        RVReportTypes.BILLS,
+        'all',
+      ].includes(filter.reportType) && (
         <DefaultComponent
           configuration={configuration}
           filter={filter}

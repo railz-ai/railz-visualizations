@@ -3,51 +3,62 @@ import { format, parseISO } from 'date-fns';
 
 import Translations from '../../config/translations/en.json';
 import {
-  RAILZ_PRIMARY_COLOR,
+  ALL_FONTS,
   RVFormattedGaugeResponse,
   RVGaugeChartSummary,
   RVReportRequestDateParameter,
 } from '../../types';
 import { RequestServiceInstance } from '../../services/request';
 import { errorLog } from '../../services/logger';
-import { ALL_FONTS } from '../../helpers/chart.utils';
 
-const linearGradient = {
-  x1: 0,
-  x2: 1,
-  y1: 0,
-  y2: 0,
-};
 const plotLine = {
   width: 3,
   color: '#fff',
   zIndex: 4,
 };
-const gradientColors = ['#FFD738', '#25E896', RAILZ_PRIMARY_COLOR];
 const getData = (score: number): number[] => {
   const data = [];
-  if (score > 800) {
+  if (score > 850) {
     data.push(score);
   }
   if (score > 750) {
-    data.push(800);
+    data.push(850);
   }
-  if (score > 700) {
+  if (score > 675) {
     data.push(750);
   }
-  if (score > 650) {
-    data.push(700);
+  if (score > 625) {
+    data.push(675);
   }
-  if (score > 550) {
-    data.push(650);
+  if (score > 575) {
+    data.push(625);
   }
-  if (score > 300) {
-    data.push(550);
+  if (score > 525) {
+    data.push(575);
   }
   if (score > 0) {
-    data.push(300);
+    data.push(525);
   }
   return data;
+};
+
+const getColor = (score: number): string => {
+  if (score > 750) {
+    return '#00884F';
+  }
+  if (score > 675) {
+    return '#15D283';
+  }
+  if (score > 625) {
+    return '#6DE18D';
+  }
+  if (score > 575) {
+    return '#A2DF61';
+  }
+  if (score > 525) {
+    return '#E0E345';
+  }
+  return ' #FFD839';
 };
 
 /**
@@ -118,86 +129,22 @@ export const getOptionsGauge = (gauge: RVGaugeChartSummary): any => ({
       y: 15,
       style: { color: '#757575' },
     },
-    stops: [
-      [
-        450 / 850,
-        {
-          linearGradient,
-          stops: [
-            [0, gradientColors[0]],
-            [1, gradientColors[0]],
-          ],
-        },
-      ],
-      [
-        550 / 850,
-        {
-          linearGradient,
-          stops: [
-            [0, gradientColors[0]],
-            [0.5, gradientColors[0]],
-            [1, gradientColors[1]],
-          ],
-        },
-      ],
-      [
-        650 / 850,
-        {
-          linearGradient,
-          stops: [[1, gradientColors[1]]],
-        },
-      ],
-      [
-        700 / 850,
-        {
-          linearGradient,
-          stops: [[1, gradientColors[1]]],
-        },
-      ],
-      [
-        750 / 850,
-        {
-          linearGradient: {
-            x1: 0,
-            x2: 0,
-            y1: 0,
-            y2: 1,
-          },
-          stops: [
-            [0, gradientColors[1]],
-            [0.5, gradientColors[1]],
-            [0.65, gradientColors[2]],
-            [0.85, gradientColors[2]],
-            [1, gradientColors[2]],
-          ],
-        },
-      ],
-      [
-        800 / 850,
-        {
-          linearGradient,
-          stops: [[1, gradientColors[2]]],
-        },
-      ],
-      [
-        850 / 850,
-        {
-          linearGradient,
-          stops: [[1, gradientColors[2]]],
-        },
-      ],
-    ],
+    stops: [[0, getColor(gauge?.score)]],
     plotLines: [
       {
-        value: 550,
+        value: 525,
         ...plotLine,
       },
       {
-        value: 650,
+        value: 575,
         ...plotLine,
       },
       {
-        value: 700,
+        value: 625,
+        ...plotLine,
+      },
+      {
+        value: 675,
         ...plotLine,
       },
       {
@@ -205,7 +152,7 @@ export const getOptionsGauge = (gauge: RVGaugeChartSummary): any => ({
         ...plotLine,
       },
       {
-        value: 800,
+        value: 850,
         ...plotLine,
       },
     ],
@@ -231,14 +178,11 @@ export const getOptionsGauge = (gauge: RVGaugeChartSummary): any => ({
           fontFamily: ALL_FONTS,
         },
         formatter: function (): string {
-          return (
-            '<div style="width:100%;text-align:center;">' +
-            '<span style="font-size:2.25rem;color: black;font-weight:600;">' +
-            gauge?.score +
-            '</span><br/><span style="font-size:1rem;font-weight: 400;">' +
-            gauge?.rating +
-            '</span>'
-          );
+          return `
+            <div style="width:100%;text-align:center;">
+              <span style="font-size:2.25rem;color: black;font-weight:600;">${gauge?.score}</span><br/>
+              <span style="font-size:1rem;font-weight: 400;">${gauge?.rating}</span>
+            </div>`;
         },
       },
       tooltip: {
@@ -290,5 +234,25 @@ export const getReportData = async ({
     errorLog(Translations.NOT_ABLE_TO_RETRIEVE_REPORT_DATA, error);
     reportData = { error };
   }
+  // console.log('reportData.data', reportData.data);
+  // reportData.data.lastUpdated = '2022-03-31';
+
+  // reportData.data.rating = 'Excellent';
+  // reportData.data.score = 839;
+
+  // reportData.data.rating = 'Very Good';
+  // reportData.data.score = 702;
+
+  // reportData.data.rating = 'Good';
+  // reportData.data.score = 667;
+
+  // reportData.data.rating = 'Fair';
+  // reportData.data.score = 603;
+
+  // reportData.data.rating = 'Poor';
+  // reportData.data.score = 567;
+
+  // reportData.data.rating = 'Very Poor';
+  // reportData.data.score = 464;
   return reportData;
 };

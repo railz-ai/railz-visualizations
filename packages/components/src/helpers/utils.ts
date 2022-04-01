@@ -49,7 +49,7 @@ export const formatNumber = (number: number | string, decimals = 2): string => {
  * Determine if report type is gauge
  */
 export const isGauge = (reportType: RVReportTypes): boolean => {
-  return reportType && [RVReportTypes.SCORE].includes(reportType);
+  return reportType && [RVReportTypes.RAILZ_SCORE].includes(reportType);
 };
 
 /**
@@ -88,8 +88,8 @@ export const getTitleByReportType = (reportType: RVReportTypes): string => {
       return Translations.INCOME_STATEMENTS;
     case RVReportTypes.CASHFLOW_STATEMENTS:
       return Translations.CASHFLOW_STATEMENTS;
-    case RVReportTypes.SCORE:
-      return Translations.SCORE;
+    case RVReportTypes.RAILZ_SCORE:
+      return Translations.RAILZ_SCORE;
     default:
       return '';
   }

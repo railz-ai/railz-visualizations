@@ -22,7 +22,7 @@ describe('Gauge Chart Utils', () => {
           filter: {
             businessName: 'qbostyling',
             serviceName: RVAccountingProviders.QUICKBOOKS,
-            reportType: RVReportTypes.SCORE,
+            reportType: RVReportTypes.RAILZ_SCORE,
             startDate: '2021-01-01',
             endDate: '2022-01-31',
           },

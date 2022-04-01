@@ -1,6 +1,7 @@
 /* eslint-disable max-len, @typescript-eslint/no-unused-vars */
 import { Component, h, Prop, State, Watch } from '@stencil/core';
 import { isEmpty, isEqual } from 'lodash-es';
+import { format, parseISO } from 'date-fns';
 import Highcharts from 'highcharts';
 import highchartsMore from 'highcharts/highcharts-more.js';
 import solidGauge from 'highcharts/modules/solid-gauge.js';
@@ -54,6 +55,7 @@ export class GaugeChart {
   @State() private _options: RVOptions;
   @State() private error: string;
   @State() private errorStatusCode: number;
+  @State() private lastUpdated: string;
   @State() private chartOptions: any;
   @State() private containerRef?: HTMLDivElement;
 
@@ -142,6 +144,7 @@ export class GaugeChart {
       })) as RVFormattedGaugeResponse;
 
       if (reportData?.data) {
+        this.lastUpdated = reportData.data.lastUpdated;
         this.updateHighchartsParams(reportData.data);
       } else if (reportData?.error) {
         this.error = Translations.NOT_ABLE_TO_RETRIEVE_REPORT_DATA;
@@ -205,6 +208,9 @@ export class GaugeChart {
           </p>
         ) : null}
         {this.renderMain()}
+        <p class="railz-gauge-last-updated">
+          {Translations.AS_OF} {format(parseISO(this.lastUpdated), 'dd MMM yyyy')}
+        </p>
       </div>
     );
   }

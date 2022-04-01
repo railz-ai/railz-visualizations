@@ -5,6 +5,7 @@ import { format, parseISO } from 'date-fns';
 import Translations from '../../config/translations/en.json';
 import { formatDate, formatSeries, isStatements } from '../../helpers/utils';
 import {
+  ALL_FONTS,
   RAILZ_BALANCE_SHEET_COLORS,
   RAILZ_CASHFLOW_COLORS,
   RAILZ_INCOME_STATEMENT_COLORS,
@@ -20,7 +21,6 @@ import {
 import { RVReportTypes } from '../../types/enum/report-type';
 import { RequestServiceInstance } from '../../services/request';
 import { errorLog } from '../../services/logger';
-import { ALL_FONTS } from '../../helpers/chart.utils';
 
 /**
  * Setup Highcharts options for bar charts

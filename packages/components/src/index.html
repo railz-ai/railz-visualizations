@@ -17,38 +17,39 @@
         const response = await fetch('http://localhost:4000/authenticate', { method: 'GET' });
         const result = await response.json();
 
-        const railzGauge = document.createElement('railz-gauge-chart');
-        const railzStatments = document.createElement('railz-statements-chart');
-
         const configuration = {
           token: result.access_token,
           debug: true,
+          endpoint: 'https://api.qa2.railz.ai',
         };
+
+        // let railzStatements = document.createElement('railz-statements-chart');
+        // if (railzStatements) {
+        //   railzStatements.configuration = configuration;
+        //   railzStatements.filter = {
+        //     businessName: 'qbostyling',
+        //     serviceName: 'quickbooks',
+        //     reportType: 'balanceSheets',
+        //     startDate: '2021-02-01',
+        //     endDate: '2022-02-28',
+        //     reportFrequency: 'month',
+        //   };
+        //   document.body.appendChild(railzStatements);
+        // }
+
+        let railzGauge = document.createElement('railz-gauge-chart');
         if (railzGauge) {
           railzGauge.configuration = configuration;
           railzGauge.filter = {
             businessName: 'qbostyling',
             serviceName: 'quickbooks',
             reportType: 'railzScore',
-            startDate: '2021-01-01',
-            endDate: '2022-01-31',
-          };
-        }
-
-        if (railzStatments) {
-          railzStatments.configuration = configuration;
-          railzStatments.filter = {
-            businessName: 'qbostyling',
-            serviceName: 'quickbooks',
-            reportType: 'balanceSheets',
             startDate: '2021-02-01',
             endDate: '2022-02-28',
             reportFrequency: 'month',
           };
+          document.body.appendChild(railzGauge);
         }
-
-        document.body.appendChild(railzGauge);
-        document.body.appendChild(railzStatments);
       }
       main();
     </script>
