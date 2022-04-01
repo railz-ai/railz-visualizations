@@ -50,20 +50,20 @@
         //   document.body.appendChild(railzStatements);
         // }
 
-        // let railzPie = document.createElement('railz-pie-chart');
-        // if (railzPie) {
-        //   railzPie.configuration = configuration;
-        //   railzPie.filter = {
-        //     businessName: 'qbostyling',
-        //     serviceName: 'quickbooks',
-        //     reportType: 'revenue',
-        //     // reportType: 'expenses',
-        //     startDate: '2021-03-01',
-        //     endDate: '2022-02-28',
-        //     reportFrequency: 'month',
-        //   };
-        //   document.body.appendChild(railzPie);
-        // }
+        let railzPie = document.createElement('railz-pie-chart');
+        if (railzPie) {
+          railzPie.configuration = configuration;
+          railzPie.filter = {
+            businessName: 'QBOmanyAttachments',
+            serviceName: 'quickbooks',
+            reportType: 'revenue',
+            // reportType: 'expenses',
+            startDate: '2021-03-01',
+            endDate: '2022-02-28',
+            reportFrequency: 'month',
+          };
+          document.body.appendChild(railzPie);
+        }
       }
       main();
     </script>

@@ -192,6 +192,7 @@ export class PieChart {
     }
     return (
       <div class="railz-pie-chart-container">
+        <div class="railz-pie-chart-tooltip">tooltip</div>
         <div id="railz-pie-chart" ref={(el): HTMLDivElement => (this.containerRef = el)} />
         <div class="railz-pie-chart-box">
           {!isNil(this._summary?.percentageChange) && (
@@ -209,13 +210,22 @@ export class PieChart {
     );
   };
 
+  // {toolTip && (
+  //   <Grid>
+  //     <Tooltip arrow title={t(toolTip)} placement="right" classes={tooltipClasses}>
+  //       <HelpIcon className={classes.toolTipIcon} />
+  //     </Tooltip>
+  //   </Grid>
+  // )}
   render(): HTMLElement {
     return (
       <div class="railz-container" style={this._options?.container?.style}>
         {this._options?.title ? (
-          <p class="railz-title" style={this._options?.title?.style}>
-            {this._options?.title?.text || ''}
-          </p>
+          <div>
+            <p class="railz-title" style={this._options?.title?.style}>
+              {this._options?.title?.text || ''}
+            </p>
+          </div>
         ) : null}
         {this.renderMain()}
       </div>
