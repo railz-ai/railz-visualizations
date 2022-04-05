@@ -9,6 +9,16 @@ export enum RVReportTypes {
   INCOME_STATEMENTS = 'incomeStatements',
   INVOICES = 'invoices',
   REVENUE = 'revenue',
+  RAILZ_SCORE = 'railzScore',
+}
+
+export enum RVParams {
+  START_DATE = 'startDate',
+  END_DATE = 'endDate',
+  REPORT_FREQUENCY = 'reportFrequency',
+  BUSINESS_NAME = 'businessName',
+  SERVICE_NAME = 'serviceName',
+  CONNECTION_ID = 'connectionId',
 }
 
 export type RVFinancialStatementsTypes =
@@ -26,7 +36,10 @@ export type RVFrequencyNoCashflowTypes =
   | RVReportTypes.FINANCIAL_RATIO
   | RVReportTypes.EXPENSES
   | RVReportTypes.REVENUE;
-export type RVNoFrequencyTypes = RVReportTypes.INVOICES | RVReportTypes.BILLS;
+export type RVNoFrequencyTypes =
+  | RVReportTypes.INVOICES
+  | RVReportTypes.BILLS
+  | RVReportTypes.RAILZ_SCORE;
 export type RVNoDateTypes = RVReportTypes.BANK_ACCOUNT | RVReportTypes.CREDIT_SCORE;
 
 export enum RVCreditScoreTypes {

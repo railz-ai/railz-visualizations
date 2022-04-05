@@ -10,6 +10,8 @@ import {
   RVFilterFrequency,
 } from '@railzai/railz-visualizations';
 import {
+  RailzGaugeChart,
+  RailzPieChart,
   RailzStatementsChart,
   RailzTransactionsControl,
   RailzVisualizations,
@@ -122,6 +124,9 @@ const Components = ({ configuration, filter, options, showCode }: ChartProps) =>
           RVReportTypes.BALANCE_SHEET,
           RVReportTypes.INCOME_STATEMENTS,
           RVReportTypes.CASHFLOW_STATEMENTS,
+          RVReportTypes.EXPENSES,
+          RVReportTypes.REVENUE,
+          RVReportTypes.RAILZ_SCORE,
         ].map((reportType) => (
           <div className="col-span-1 mt-1" key={reportType}>
             <DefaultComponent
@@ -132,7 +137,47 @@ const Components = ({ configuration, filter, options, showCode }: ChartProps) =>
             />
           </div>
         ))}
-      {filter.reportType === 'balanceSheets' && (
+      {filter.reportType === RVReportTypes.RAILZ_SCORE && (
+        <div>
+          <h4 className="text-xl font-bold text-gray-900">Using Railz Gauge Chart Component</h4>
+          <p>
+            Railz Gauge Chart Component only accepts <b>railzScore</b>
+          </p>
+          <RailzGaugeChart
+            configuration={configuration}
+            filter={filter as RVFilterDate}
+            options={options}
+          />
+          <Code
+            configuration={configuration}
+            filter={filter}
+            options={options}
+            showCode={showCode}
+            displayValue="RailzGaugeChart"
+          />
+        </div>
+      )}
+      {[RVReportTypes.EXPENSES, RVReportTypes.REVENUE].includes(filter.reportType) && (
+        <div>
+          <h4 className="text-xl font-bold text-gray-900">Using Railz Pie Chart Component</h4>
+          <p>
+            Railz Pie Chart Component only accepts <b>expenses</b> and <b>revenues</b>
+          </p>
+          <RailzPieChart
+            configuration={configuration}
+            filter={filter as RVFilterDate}
+            options={options}
+          />
+          <Code
+            configuration={configuration}
+            filter={filter}
+            options={options}
+            showCode={showCode}
+            displayValue="RailzPieChart"
+          />
+        </div>
+      )}
+      {filter.reportType === RVReportTypes.BALANCE_SHEET && (
         <div>
           <h4 className="text-xl font-bold text-gray-900">
             Using Railz Statements Chart Component
@@ -155,7 +200,7 @@ const Components = ({ configuration, filter, options, showCode }: ChartProps) =>
           />
         </div>
       )}
-      {filter.reportType === 'bills' && (
+      {filter.reportType === RVReportTypes.BILLS && (
         <div>
           <h4 className="text-xl font-bold text-gray-900">
             Using Railz Transactions Control Component
@@ -177,7 +222,14 @@ const Components = ({ configuration, filter, options, showCode }: ChartProps) =>
           />
         </div>
       )}
-      {!['balanceSheets', 'bills', 'all'].includes(filter.reportType) && (
+      {![
+        RVReportTypes.EXPENSES,
+        RVReportTypes.REVENUE,
+        RVReportTypes.RAILZ_SCORE,
+        RVReportTypes.BALANCE_SHEET,
+        RVReportTypes.BILLS,
+        'all',
+      ].includes(filter.reportType) && (
         <DefaultComponent
           configuration={configuration}
           filter={filter}

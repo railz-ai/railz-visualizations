@@ -12,3 +12,4 @@ export const RAILZ_INCOME_STATEMENT_COLORS = [
   '#003032',
 ];
 export const RAILZ_BALANCE_SHEET_COLORS = ['#1D7043', '#30A665', '#F06C3A', '#B30000', '#003032'];
+export const RAILZ_PIE_COLORS = ['#00883D', '#009BBD', '#38C076', '#B5F4FD', '#FFD738'];

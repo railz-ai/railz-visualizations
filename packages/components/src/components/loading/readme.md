@@ -17,7 +17,6 @@
 ### Used by
 
 - [railz-gauge-chart](../gauge-chart)
-- [railz-pie-chart](../pie-chart)
 - [railz-statements-chart](../statements-chart)
 - [railz-transactions-control](../transactions-control)
 
@@ -26,7 +25,6 @@
 ```mermaid
 graph TD;
   railz-gauge-chart --> railz-loading
-  railz-pie-chart --> railz-loading
   railz-statements-chart --> railz-loading
   railz-transactions-control --> railz-loading
   style railz-loading fill:#f9f,stroke:#333,stroke-width:4px

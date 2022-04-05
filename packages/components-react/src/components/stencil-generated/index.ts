@@ -12,10 +12,18 @@ export const RailzErrorImage = /*@__PURE__*/ createReactComponent<
   JSX.RailzErrorImage,
   HTMLRailzErrorImageElement
 >('railz-error-image');
+export const RailzGaugeChart = /*@__PURE__*/ createReactComponent<
+  JSX.RailzGaugeChart,
+  HTMLRailzGaugeChartElement
+>('railz-gauge-chart');
 export const RailzLoading = /*@__PURE__*/ createReactComponent<
   JSX.RailzLoading,
   HTMLRailzLoadingElement
 >('railz-loading');
+export const RailzPieChart = /*@__PURE__*/ createReactComponent<
+  JSX.RailzPieChart,
+  HTMLRailzPieChartElement
+>('railz-pie-chart');
 export const RailzProgressBar = /*@__PURE__*/ createReactComponent<
   JSX.RailzProgressBar,
   HTMLRailzProgressBarElement

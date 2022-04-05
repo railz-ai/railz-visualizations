@@ -14,6 +14,9 @@
   "RV_BALANCE_SHEETS": "Balance Sheet",
   "INCOME_STATEMENTS": "Income Statements",
   "CASHFLOW_STATEMENTS": "Cashflow Statements",
+  "EXPENSES": "Expenses",
+  "REVENUE": "Revenue",
+  "RAILZ_SCORE": "Score",
   "EQUITY": "Equity",
   "ASSETS": "Assets",
   "LIABILITIES": "Liabilities",
@@ -47,5 +50,6 @@
   "RV_DATE_DIFF_ERROR": "Unable to parse Start or End date, ensure they are in a right date format",
   "RV_ERROR_INVALID_BUSINESS_IDENTIFICATION": "Invalid business identification",
   "RV_ERROR_INVALID_REPORT_FREQUENCY": "Invalid Report Frequency",
-  "RV_ERROR_INVALID_REPORT_TYPE": "Invalid Report Type"
+  "RV_ERROR_INVALID_REPORT_TYPE": "Invalid Report Type",
+  "AS_OF": "As of"
 }

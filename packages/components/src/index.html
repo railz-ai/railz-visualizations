@@ -7,10 +7,65 @@
       content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
     />
     <title>Stencil Component Starter</title>
-
-    <script type="module" src="/build/stencilcomponent.esm.js"></script>
-    <script nomodule src="/build/stencilcomponent.js"></script>
+    <script type="module" src="/build/railzvisualizations.esm.js"></script>
+    <script nomodule src="/build/railzvisualizations.js"></script>
   </head>
 
-  <body></body>
+  <body>
+    <script>
+      async function main(params) {
+        const response = await fetch('http://localhost:4000/authenticate', { method: 'GET' });
+        const result = await response.json();
+
+        const configuration = {
+          token: result.access_token,
+          debug: true,
+          endpoint: 'https://api.railz.ai',
+        };
+
+        let railzStatements = document.createElement('railz-statements-chart');
+        if (railzStatements) {
+          railzStatements.configuration = configuration;
+          railzStatements.filter = {
+            businessName: 'qbostyling',
+            serviceName: 'quickbooks',
+            reportType: 'balanceSheets',
+            startDate: '2021-04-01',
+            endDate: '2022-03-31',
+            reportFrequency: 'month',
+          };
+          document.body.appendChild(railzStatements);
+        }
+
+        let railzGauge = document.createElement('railz-gauge-chart');
+        if (railzGauge) {
+          railzGauge.configuration = configuration;
+          railzGauge.filter = {
+            businessName: 'QBOmanyAttachments',
+            serviceName: 'quickbooks',
+            reportType: 'railzScore',
+            startDate: '2021-04-01',
+            endDate: '2022-03-31',
+          };
+          document.body.appendChild(railzGauge);
+        }
+
+        let railzPie = document.createElement('railz-pie-chart');
+        if (railzPie) {
+          railzPie.configuration = configuration;
+          railzPie.filter = {
+            businessName: 'QBOmanyAttachments',
+            serviceName: 'quickbooks',
+            reportType: 'revenue',
+            // reportType: 'expenses',
+            startDate: '2021-04-01',
+            endDate: '2022-03-31',
+            reportFrequency: 'month',
+          };
+          document.body.appendChild(railzPie);
+        }
+      }
+      main();
+    </script>
+  </body>
 </html>

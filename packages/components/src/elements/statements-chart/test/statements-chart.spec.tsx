@@ -35,5 +35,7 @@ describe('statements-chart', () => {
     `);
     });
   });
-  describe.skip('Render successfully due to correct parameters', () => {});
+  describe.skip('Render successfully due to correct parameters', () => {
+    return;
+  });
 });

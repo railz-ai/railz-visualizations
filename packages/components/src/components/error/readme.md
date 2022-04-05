@@ -18,7 +18,6 @@
 ### Used by
 
 - [railz-gauge-chart](../gauge-chart)
-- [railz-pie-chart](../pie-chart)
 - [railz-statements-chart](../statements-chart)
 - [railz-transactions-control](../transactions-control)
 - [railz-visualizations](../core)
@@ -28,7 +27,6 @@
 ```mermaid
 graph TD;
   railz-gauge-chart --> railz-error-image
-  railz-pie-chart --> railz-error-image
   railz-statements-chart --> railz-error-image
   railz-transactions-control --> railz-error-image
   railz-visualizations --> railz-error-image
