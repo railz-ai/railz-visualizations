@@ -212,13 +212,13 @@ export class PieChart {
   render(): HTMLElement {
     return (
       <div class="railz-container" style={this._options?.container?.style}>
-        {this._options?.title ? (
+        {this._options?.title && (
           <div>
             <p class="railz-title" style={this._options?.title?.style}>
               {this._options?.title?.text || ''}
             </p>
           </div>
-        ) : null}
+        )}
         {this.renderMain()}
       </div>
     );

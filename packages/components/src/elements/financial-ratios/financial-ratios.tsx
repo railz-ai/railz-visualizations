@@ -1,10 +1,6 @@
 /* eslint-disable max-len, @typescript-eslint/no-unused-vars */
 import { Component, h, Prop, State, Watch } from '@stencil/core';
 import { isEmpty, isEqual } from 'lodash-es';
-import Highcharts from 'highcharts';
-import highchartsMore from 'highcharts/highcharts-more.js';
-import solidGauge from 'highcharts/modules/solid-gauge.js';
-import highchartsAccessibility from 'highcharts/modules/accessibility';
 
 import {
   getConfiguration,
@@ -17,24 +13,21 @@ import Translations from '../../config/translations/en.json';
 import {
   RVConfiguration,
   RVFilterDate,
-  RVFormattedGaugeResponse,
-  RVGaugeChartSummary,
+  RVFinancialRatioItem,
+  RVFinancialRatioSummary,
+  RVFormattedFinancialRatioResponse,
   RVOptions,
 } from '../../types';
 import { errorLog } from '../../services/logger';
 
-import { getOptionsGauge, getReportData } from './gauge-chart.utils';
-
-highchartsMore(Highcharts);
-solidGauge(Highcharts);
-highchartsAccessibility(Highcharts);
+import { getReportData } from './financial-ratios.utils';
 
 @Component({
-  tag: 'railz-gauge-chart',
-  styleUrl: 'gauge-chart.scss',
+  tag: 'railz-financial-ratios',
+  styleUrl: 'financial-ratios.scss',
   shadow: true,
 })
-export class GaugeChart {
+export class FinancialRatios {
   /**
    * Configuration information like authentication configuration
    */
@@ -52,10 +45,10 @@ export class GaugeChart {
   @State() private _configuration: RVConfiguration;
   @State() private _filter: RVFilterDate;
   @State() private _options: RVOptions;
+  @State() private _summary: RVFinancialRatioSummary;
+  @State() private _selected: RVFinancialRatioItem;
   @State() private error: string;
   @State() private errorStatusCode: number;
-  @State() private chartOptions: any;
-  @State() private containerRef?: HTMLDivElement;
 
   /**
    * Validates if configuration was passed correctly before setting filter
@@ -96,13 +89,6 @@ export class GaugeChart {
     }
   };
 
-  @Watch('containerRef')
-  watchContainerRef(newValue: HTMLDivElement, _: HTMLDivElement): void {
-    if (newValue && this.chartOptions) {
-      Highcharts.chart(this.containerRef, this.chartOptions);
-    }
-  }
-
   @Watch('configuration')
   async watchConfiguration(newValue: RVConfiguration, oldValue: RVConfiguration): Promise<void> {
     if (newValue && oldValue && !isEqual(oldValue, newValue)) {
@@ -130,8 +116,6 @@ export class GaugeChart {
 
   /**
    * Request report data based on filter and configuration param
-   * Formats retrieved data into Highcharts format using formatData
-   * Updated Highchart params using updateHighchartsParams
    */
   private requestReportData = async (): Promise<void> => {
     this.error = '';
@@ -139,10 +123,10 @@ export class GaugeChart {
     try {
       const reportData = (await getReportData({
         filter: this._filter,
-      })) as RVFormattedGaugeResponse;
+      })) as RVFormattedFinancialRatioResponse;
 
       if (reportData?.data) {
-        this.updateHighchartsParams(reportData.data);
+        this._summary = reportData?.data as RVFinancialRatioSummary;
       } else if (reportData?.error) {
         this.error = Translations.NOT_ABLE_TO_RETRIEVE_REPORT_DATA;
         this.errorStatusCode = reportData.error?.statusCode;
@@ -154,20 +138,6 @@ export class GaugeChart {
       errorLog(Translations.RV_NOT_ABLE_TO_PARSE_REPORT_DATA, error);
     } finally {
       this.loading = '';
-    }
-  };
-
-  /**
-   * Using getHighchartsParams,Combine generic stacked bar line
-   * chart options and formatted data based on the report type
-   * into one option for highcharts
-   */
-  private updateHighchartsParams = (gauge: RVGaugeChartSummary): void => {
-    const options = getOptionsGauge(gauge);
-    if (options) {
-      this.error = '';
-      this.loading = '';
-      this.chartOptions = options;
     }
   };
 
@@ -188,11 +158,36 @@ export class GaugeChart {
       return <railz-loading loadingText={this.loading} {...this._options?.loadingIndicator} />;
     }
     return (
-      <div
-        class="railz-gauge-chart-container"
-        id="railz-gauge-chart"
-        ref={(el): HTMLDivElement => (this.containerRef = el)}
-      />
+      <div>
+        {Object.keys(this._summary)?.map((key, index) => {
+          return (
+            <div>
+              <p>
+                {index} - {key}
+                {console.log(this._summary[key])}
+                <ul>
+                  {Object.keys(this._summary[key])?.map((key2, index2) => {
+                    return (
+                      <li>
+                        {index2} - {key2}
+                        <ul>
+                          {Object.keys(this._summary[key][key2])?.map((key3, index3) => {
+                            return (
+                              <li>
+                                {index3} - {key3}
+                              </li>
+                            );
+                          })}
+                        </ul>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </p>
+            </div>
+          );
+        })}
+      </div>
     );
   };
 
@@ -200,9 +195,11 @@ export class GaugeChart {
     return (
       <div class="railz-container" style={this._options?.container?.style}>
         {this._options?.title && (
-          <p class="railz-title" style={this._options?.title?.style}>
-            {this._options?.title?.text || ''}
-          </p>
+          <div>
+            <p class="railz-title" style={this._options?.title?.style}>
+              {this._options?.title?.text || ''}
+            </p>
+          </div>
         )}
         {this.renderMain()}
       </div>

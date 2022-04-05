@@ -201,6 +201,12 @@ export class RVFormattedPieResponse {
   status?: number;
 }
 
+export class RVFormattedFinancialRatioResponse {
+  error?: RVErrorResponse;
+  data?: RVFinancialRatioSummary;
+  status?: number;
+}
+
 export class RVFormattedStatementResponse {
   error?: RVErrorResponse;
   data?: RVReportStatementSummary;

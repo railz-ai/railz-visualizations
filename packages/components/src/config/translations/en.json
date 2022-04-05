@@ -51,5 +51,6 @@
   "RV_ERROR_INVALID_BUSINESS_IDENTIFICATION": "Invalid business identification",
   "RV_ERROR_INVALID_REPORT_FREQUENCY": "Invalid Report Frequency",
   "RV_ERROR_INVALID_REPORT_TYPE": "Invalid Report Type",
-  "AS_OF": "As of"
+  "AS_OF": "As of",
+  "FINANCIAL_RATIOS": "Financial Ratios"
 }

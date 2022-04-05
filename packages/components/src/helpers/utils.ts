@@ -103,6 +103,8 @@ export const getTitleByReportType = (reportType: RVReportTypes): string => {
       return Translations.REVENUE;
     case RVReportTypes.RAILZ_SCORE:
       return Translations.RAILZ_SCORE;
+    case RVReportTypes.FINANCIAL_RATIO:
+      return Translations.FINANCIAL_RATIOS;
     default:
       return '';
   }
