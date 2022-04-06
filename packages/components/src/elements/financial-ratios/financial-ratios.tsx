@@ -1,3 +1,7 @@
+/* eslint-disable @stencil/own-methods-must-be-private */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+/* eslint-disable react/jsx-no-bind */
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 /* eslint-disable max-len, @typescript-eslint/no-unused-vars */
 import { Component, h, Prop, State, Watch } from '@stencil/core';
 import { isEmpty, isEqual } from 'lodash-es';
@@ -127,6 +131,9 @@ export class FinancialRatios {
 
       if (reportData?.data) {
         this._summary = reportData?.data as RVFinancialRatioSummary;
+        this._selected = this._summary[
+          Object.keys(this._summary)[0]
+        ] as unknown as RVFinancialRatioItem;
       } else if (reportData?.error) {
         this.error = Translations.NOT_ABLE_TO_RETRIEVE_REPORT_DATA;
         this.errorStatusCode = reportData.error?.statusCode;
@@ -145,6 +152,10 @@ export class FinancialRatios {
     this.propsUpdated && this.propsUpdated();
   }
 
+  private handleSelect(event) {
+    this._selected = this._summary[event.target.value] as unknown as RVFinancialRatioItem;
+  }
+
   private renderMain = (): HTMLElement => {
     if (!isEmpty(this.error)) {
       return (
@@ -158,49 +169,39 @@ export class FinancialRatios {
       return <railz-loading loadingText={this.loading} {...this._options?.loadingIndicator} />;
     }
     return (
-      <div>
-        {Object.keys(this._summary)?.map((key, index) => {
-          return (
-            <div>
-              <p>
-                {index} - {key}
-                {console.log(this._summary[key])}
-                <ul>
-                  {Object.keys(this._summary[key])?.map((key2, index2) => {
-                    return (
-                      <li>
-                        {index2} - {key2}
-                        <ul>
-                          {Object.keys(this._summary[key][key2])?.map((key3, index3) => {
-                            return (
-                              <li>
-                                {index3} - {key3}
-                              </li>
-                            );
-                          })}
-                        </ul>
-                      </li>
-                    );
-                  })}
-                </ul>
-              </p>
+      this._selected && (
+        <div>
+          {Object.keys(this._selected)?.map((key: string) => (
+            <div class="railz-financial-ratio-container">
+              <div class="railz-financial-ratio-info">{key}</div>
+              <div class="railz-financial-ratio-ratios">{key}</div>
             </div>
-          );
-        })}
-      </div>
+          ))}
+        </div>
+      )
     );
   };
 
   render(): HTMLElement {
+    const TitleElement = () => (
+      <p class="railz-title" style={this._options?.title?.style}>
+        {(this._options?.title && this._options?.title?.text) || ''}
+      </p>
+    );
+
+    const SelectElement = () => (
+      <select onInput={(event) => this.handleSelect(event)}>
+        {!isEmpty(this._summary) &&
+          Object.keys(this._summary)?.map((key: string) => <option value={key}>{key}</option>)}
+      </select>
+    );
+
     return (
       <div class="railz-container" style={this._options?.container?.style}>
-        {this._options?.title && (
-          <div>
-            <p class="railz-title" style={this._options?.title?.style}>
-              {this._options?.title?.text || ''}
-            </p>
-          </div>
-        )}
+        <div class="railz-title-grid">
+          <TitleElement />
+          <SelectElement />
+        </div>
         {this.renderMain()}
       </div>
     );

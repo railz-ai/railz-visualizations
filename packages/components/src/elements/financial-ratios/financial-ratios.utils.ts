@@ -42,6 +42,5 @@ export const getReportData = async ({
     errorLog(Translations.NOT_ABLE_TO_RETRIEVE_REPORT_DATA, error);
     reportData = { error };
   }
-  console.log('reportData', reportData);
   return reportData;
 };

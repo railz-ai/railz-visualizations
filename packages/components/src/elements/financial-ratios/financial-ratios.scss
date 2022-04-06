@@ -5,9 +5,13 @@
   border: 1px solid #eee;
   border-radius: 7px;
   flex-direction: column;
-  justify-content: space-between;
   width: auto;
   height: 360px;
+}
+
+.railz-title-grid {
+  display: grid;
+  grid-template-columns: 10fr 2fr;
 }
 
 .railz-title {
@@ -19,17 +23,36 @@
   text-align: left;
 }
 
-.railz-pie-chart-container {
-  visibility: inherit;
-  -webkit-font-smoothing: antialiased;
-  color: rgb(0 0 0 / 87%);
-  height: 100%;
+.railz-financial-ratio-container {
+  flex-direction: column;
   display: flex;
-  margin-left: -10px;
-  flex-direction: row;
+  flex-grow: 1;
+  padding-top: 8px;
+  border-bottom: thin solid #e0e0e0;
+  padding-bottom: 8px;
+  justify-content: space-between;
+
+  &:last-child {
+    border-bottom: 'none';
+  }
+
+  height: 240px;
+  overflow: auto;
 }
 
-.railz-pie-chart-box {
+.railz-financial-ratio-info {
+  width: 100%;
+  max-width: 192px;
+  border: 1px solid greenyellow;
+}
+
+.railz-financial-ratio-ratios {
+  width: 100%;
+  border: 1px solid red;
+  max-width: 132px;
+}
+
+.railz-financial-ratio-box {
   visibility: inherit;
   -webkit-font-smoothing: antialiased;
   color: rgb(0 0 0 / 87%);
@@ -40,7 +63,7 @@
   justify-content: center;
 }
 
-.railz-pie-chart-text {
+.railz-financial-ratio-text {
   visibility: inherit;
   -webkit-font-smoothing: antialiased;
   color: rgb(0 0 0 / 87%);
@@ -50,7 +73,7 @@
   font-weight: 700;
 }
 
-.railz-pie-chart-percentage {
+.railz-financial-ratio-percentage {
   visibility: inherit;
   -webkit-font-smoothing: antialiased;
   margin: 0;
