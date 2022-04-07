@@ -1,8 +1,6 @@
-/* eslint-disable @stencil/own-methods-must-be-private */
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-/* eslint-disable react/jsx-no-bind */
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
-/* eslint-disable max-len, @typescript-eslint/no-unused-vars */
+/* eslint-disable react/jsx-no-bind */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Component, h, Prop, State, Watch } from '@stencil/core';
 import { isEmpty, isEqual } from 'lodash-es';
 
@@ -152,7 +150,7 @@ export class FinancialRatios {
     this.propsUpdated && this.propsUpdated();
   }
 
-  private handleSelect(event) {
+  private handleSelect(event): void {
     this._selected = this._summary[event.target.value] as unknown as RVFinancialRatioItem;
   }
 
@@ -168,14 +166,36 @@ export class FinancialRatios {
     if (!isEmpty(this.loading)) {
       return <railz-loading loadingText={this.loading} {...this._options?.loadingIndicator} />;
     }
+
+    const FinancialRatioItem = ({ key }) => {
+      //TODO use item to get values placed
+      const item: RVFinancialRatioItem = this._selected[key];
+      return (
+        <div class="railz-financial-ratio-container-item">
+          <div class="railz-financial-ratio-info">
+            <div class="railz-ratio-name">
+              <div class="railz-ratio-tooltip">*</div>
+              <div>{key}</div>
+            </div>
+
+            <div class="railz-ratio-values">
+              <div class="railz-ratio-summary">value</div>
+              <div class="railz-ratio-percentage">percentage</div>
+            </div>
+          </div>
+
+          <div class="railz-financial-ratio-ratios">
+            <div class="chart">chart</div>
+          </div>
+        </div>
+      );
+    };
+
     return (
       this._selected && (
-        <div>
+        <div class="railz-financial-ratios">
           {Object.keys(this._selected)?.map((key: string) => (
-            <div class="railz-financial-ratio-container">
-              <div class="railz-financial-ratio-info">{key}</div>
-              <div class="railz-financial-ratio-ratios">{key}</div>
-            </div>
+            <FinancialRatioItem key={key} />
           ))}
         </div>
       )
@@ -183,14 +203,14 @@ export class FinancialRatios {
   };
 
   render(): HTMLElement {
-    const TitleElement = () => (
+    const TitleElement = (): HTMLElement => (
       <p class="railz-title" style={this._options?.title?.style}>
         {(this._options?.title && this._options?.title?.text) || ''}
       </p>
     );
 
-    const SelectElement = () => (
-      <select onInput={(event) => this.handleSelect(event)}>
+    const SelectElement = (): HTMLElement => (
+      <select onInput={(event): void => this.handleSelect(event)}>
         {!isEmpty(this._summary) &&
           Object.keys(this._summary)?.map((key: string) => <option value={key}>{key}</option>)}
       </select>
@@ -198,7 +218,7 @@ export class FinancialRatios {
 
     return (
       <div class="railz-container" style={this._options?.container?.style}>
-        <div class="railz-title-grid">
+        <div class="railz-header-container">
           <TitleElement />
           <SelectElement />
         </div>
