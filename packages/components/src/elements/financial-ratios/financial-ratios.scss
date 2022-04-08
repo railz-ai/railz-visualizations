@@ -47,11 +47,11 @@
 
   overflow: auto;
 
-  border: 1px solid yellow;
+  // border: 1px solid yellow;
 }
 
 .railz-financial-ratio-info {
-  border: 1px solid green;
+  // border: 1px solid green;
 
   .railz-ratio-values {
     display: flex;
@@ -64,13 +64,13 @@
     }
   }
 
-  * {
-    border: 1px solid blue;
-  }
+  // * {
+  //   border: 1px solid blue;
+  // }
 }
 
 .railz-financial-ratio-ratios {
-  border: 1px solid red;
+  // border: 1px solid red;
   .chart {
     width: 132px;
     height: 60px;
@@ -98,20 +98,10 @@
   font-weight: 700;
 }
 
-.railz-financial-ratio-percentage {
-  visibility: inherit;
-  -webkit-font-smoothing: antialiased;
-  margin: 0;
+.railz-financial-ratio-summary {
   line-height: 1.5;
-  display: flex;
-  font-size: 0.877em;
-  font-weight: 500;
-
-  .positive {
-    color: #003032;
-  }
-
-  .negative {
-    color: #7d0000;
-  }
+  font-size: 1.25rem;
+  max-width: 70%;
+  font-weight: 700;
+  margin-right: 8px;
 }

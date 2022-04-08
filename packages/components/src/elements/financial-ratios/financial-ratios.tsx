@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/explicit-function-return-type */
-/* eslint-disable react/jsx-no-bind */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Component, h, Prop, State, Watch } from '@stencil/core';
 import { isEmpty, isEqual } from 'lodash-es';
@@ -13,6 +11,7 @@ import {
 import { ConfigurationInstance } from '../../services/configuration';
 import Translations from '../../config/translations/en.json';
 import {
+  FinancialRatio,
   RVConfiguration,
   RVFilterDate,
   RVFinancialRatioItem,
@@ -21,6 +20,8 @@ import {
   RVOptions,
 } from '../../types';
 import { errorLog } from '../../services/logger';
+
+import { roundNumber } from '../../helpers/utils';
 
 import { getReportData } from './financial-ratios.utils';
 
@@ -150,10 +151,6 @@ export class FinancialRatios {
     this.propsUpdated && this.propsUpdated();
   }
 
-  private handleSelect(event): void {
-    this._selected = this._summary[event.target.value] as unknown as RVFinancialRatioItem;
-  }
-
   private renderMain = (): HTMLElement => {
     if (!isEmpty(this.error)) {
       return (
@@ -167,20 +164,26 @@ export class FinancialRatios {
       return <railz-loading loadingText={this.loading} {...this._options?.loadingIndicator} />;
     }
 
-    const FinancialRatioItem = ({ key }) => {
-      //TODO use item to get values placed
+    const FinancialRatioItem = ({ key }: { key: string }): HTMLElement => {
+      const translation = (key: string): string => {
+        const financialRatioKey = Object.keys(FinancialRatio).find(
+          (ratio: string): boolean => FinancialRatio[ratio] === key,
+        );
+        return Translations['FINANCIAL_RATIO_' + financialRatioKey] || key;
+      };
       const item: RVFinancialRatioItem = this._selected[key];
       return (
         <div class="railz-financial-ratio-container-item">
           <div class="railz-financial-ratio-info">
             <div class="railz-ratio-name">
               <div class="railz-ratio-tooltip">*</div>
-              <div>{key}</div>
+              <div>{translation(key)}</div>
             </div>
-
             <div class="railz-ratio-values">
-              <div class="railz-ratio-summary">value</div>
-              <div class="railz-ratio-percentage">percentage</div>
+              <div class="railz-ratio-summary">{roundNumber(item.currentValue)}</div>
+              <div class="railz-ratio-percentage">
+                <railz-percentage percentage={item.percentageChange} />
+              </div>
             </div>
           </div>
 
@@ -209,12 +212,18 @@ export class FinancialRatios {
       </p>
     );
 
-    const SelectElement = (): HTMLElement => (
-      <select onInput={(event): void => this.handleSelect(event)}>
-        {!isEmpty(this._summary) &&
-          Object.keys(this._summary)?.map((key: string) => <option value={key}>{key}</option>)}
-      </select>
-    );
+    const SelectElement = (): HTMLElement => {
+      const handleSelect = (event): void => {
+        this._selected = this._summary[event.target.value] as unknown as RVFinancialRatioItem;
+      };
+      return (
+        // eslint-disable-next-line react/jsx-no-bind
+        <select onInput={handleSelect}>
+          {!isEmpty(this._summary) &&
+            Object.keys(this._summary)?.map((key: string) => <option value={key}>{key}</option>)}
+        </select>
+      );
+    };
 
     return (
       <div class="railz-container" style={this._options?.container?.style}>

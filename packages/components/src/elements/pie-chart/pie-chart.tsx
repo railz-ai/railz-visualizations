@@ -195,13 +195,7 @@ export class PieChart {
         <div id="railz-pie-chart" ref={(el): HTMLDivElement => (this.containerRef = el)} />
         <div class="railz-pie-chart-box">
           {!isNil(this._summary?.percentageChange) && (
-            <div class="railz-pie-chart-percentage">
-              {this._summary?.percentageChange >= 0 ? (
-                <div class="positive">&#x25B2; {this._summary?.percentageChange}%</div>
-              ) : (
-                <div class="negative">&#x25BC; {this._summary?.percentageChange}%</div>
-              )}
-            </div>
+            <railz-percentage percentage={this._summary?.percentageChange} />
           )}
           <p class="railz-pie-chart-text">${roundNumber(this._summary?.totalAmount)}</p>
         </div>

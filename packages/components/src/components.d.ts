@@ -83,6 +83,12 @@ export namespace Components {
          */
         "width"?: string;
     }
+    interface RailzPercentage {
+        /**
+          * Percentage to show
+         */
+        "percentage": number;
+    }
     interface RailzPieChart {
         /**
           * Configuration information like authentication configuration
@@ -187,6 +193,12 @@ declare global {
         prototype: HTMLRailzLoadingElement;
         new (): HTMLRailzLoadingElement;
     };
+    interface HTMLRailzPercentageElement extends Components.RailzPercentage, HTMLStencilElement {
+    }
+    var HTMLRailzPercentageElement: {
+        prototype: HTMLRailzPercentageElement;
+        new (): HTMLRailzPercentageElement;
+    };
     interface HTMLRailzPieChartElement extends Components.RailzPieChart, HTMLStencilElement {
     }
     var HTMLRailzPieChartElement: {
@@ -222,6 +234,7 @@ declare global {
         "railz-financial-ratios": HTMLRailzFinancialRatiosElement;
         "railz-gauge-chart": HTMLRailzGaugeChartElement;
         "railz-loading": HTMLRailzLoadingElement;
+        "railz-percentage": HTMLRailzPercentageElement;
         "railz-pie-chart": HTMLRailzPieChartElement;
         "railz-progress-bar": HTMLRailzProgressBarElement;
         "railz-statements-chart": HTMLRailzStatementsChartElement;
@@ -306,6 +319,12 @@ declare namespace LocalJSX {
          */
         "width"?: string;
     }
+    interface RailzPercentage {
+        /**
+          * Percentage to show
+         */
+        "percentage": number;
+    }
     interface RailzPieChart {
         /**
           * Configuration information like authentication configuration
@@ -389,6 +408,7 @@ declare namespace LocalJSX {
         "railz-financial-ratios": RailzFinancialRatios;
         "railz-gauge-chart": RailzGaugeChart;
         "railz-loading": RailzLoading;
+        "railz-percentage": RailzPercentage;
         "railz-pie-chart": RailzPieChart;
         "railz-progress-bar": RailzProgressBar;
         "railz-statements-chart": RailzStatementsChart;
@@ -404,6 +424,7 @@ declare module "@stencil/core" {
             "railz-financial-ratios": LocalJSX.RailzFinancialRatios & JSXBase.HTMLAttributes<HTMLRailzFinancialRatiosElement>;
             "railz-gauge-chart": LocalJSX.RailzGaugeChart & JSXBase.HTMLAttributes<HTMLRailzGaugeChartElement>;
             "railz-loading": LocalJSX.RailzLoading & JSXBase.HTMLAttributes<HTMLRailzLoadingElement>;
+            "railz-percentage": LocalJSX.RailzPercentage & JSXBase.HTMLAttributes<HTMLRailzPercentageElement>;
             "railz-pie-chart": LocalJSX.RailzPieChart & JSXBase.HTMLAttributes<HTMLRailzPieChartElement>;
             "railz-progress-bar": LocalJSX.RailzProgressBar & JSXBase.HTMLAttributes<HTMLRailzProgressBarElement>;
             "railz-statements-chart": LocalJSX.RailzStatementsChart & JSXBase.HTMLAttributes<HTMLRailzStatementsChartElement>;
