@@ -1,7 +1,7 @@
 {
   "name": "@railzai/railz-visualizations-react",
   "sideEffects": false,
-  "version": "0.0.1-beta.12",
+  "version": "0.0.1",
   "description": "React specific wrapper for @railzai/railz-visualizations",
   "repository": {
     "type": "git",
