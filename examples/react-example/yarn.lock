@@ -1411,17 +1411,18 @@
     schema-utils "^3.0.0"
     source-map "^0.7.3"
 
-"@railzai/railz-visualizations-react@latest":
-  version "0.0.1-beta.12"
-  resolved "https://registry.yarnpkg.com/@railzai/railz-visualizations-react/-/railz-visualizations-react-0.0.1-beta.12.tgz#c617e5abef3d1bf8ea219bc343e753a8194c1f61"
-  integrity sha512-rNZEnnVwshjgzYJStVOurM6fjaHvq/gMjM92uO6mv9x8xbqolWHs59qCDNepY256/nawc+y9xX1e2493+emmbg==
+"@railzai/railz-visualizations-react@0.0.1":
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/@railzai/railz-visualizations-react/-/railz-visualizations-react-0.0.1.tgz#3cfc6c09c48a336d41ed8065f10ebda34ffe0fbd"
+  integrity sha512-a59oJK4QlEG4veM7pMkw8dS8PCoVB/XDGp9HPe9enI6ROXURhAsOFYtfrb7FNbP69de0pqE6OliKJ5oZOSxRnw==
   dependencies:
-    "@railzai/railz-visualizations" "^0.0.1-beta.12"
+    "@railzai/railz-visualizations" "^0.0.1"
+    minimist "1.2.6"
 
-"@railzai/railz-visualizations@^0.0.1-beta.12":
-  version "0.0.1-beta.12"
-  resolved "https://registry.yarnpkg.com/@railzai/railz-visualizations/-/railz-visualizations-0.0.1-beta.12.tgz#5566dc4976984da438ac7ce94a13551287726a18"
-  integrity sha512-Rmf2rylnqSbd8CEMF/DEJ8WknbZYGfbZQma7YaKi9tra/ZBookkyU+NQd1J/aXEQhPZgE/ctELgLKloB7giObw==
+"@railzai/railz-visualizations@^0.0.1":
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/@railzai/railz-visualizations/-/railz-visualizations-0.0.1.tgz#021f82f9fb8a35426a45b8124b925859e233ac48"
+  integrity sha512-CdO/d/DtfMV8OdjIxwtgeHa/HDKIiacuozeeagPUr6NYwQKNZEX07AM+sEQHs0N/JFs3qocwlqveTMtR0FICiA==
   dependencies:
     "@stencil/angular-output-target" "0.4.0"
     "@stencil/core" "2.14.2"
@@ -6061,7 +6062,7 @@ minimatch@^3.0.4, minimatch@^3.1.2:
   dependencies:
     brace-expansion "^1.1.7"
 
-minimist@^1.1.1, minimist@^1.2.0, minimist@^1.2.6:
+minimist@1.2.6, minimist@^1.1.1, minimist@^1.2.0, minimist@^1.2.6:
   version "1.2.6"
   resolved "https://registry.yarnpkg.com/minimist/-/minimist-1.2.6.tgz#8637a5b759ea0d6e98702cfb3a9283323c93af44"
   integrity sha512-Jsjnk4bw3YJqYzbdyBiNsPWHPfO++UGG749Cxs6peCu5Xg4nrena6OVxOYxrQTqww0Jmwt+Ref8rggumkTLz9Q==
