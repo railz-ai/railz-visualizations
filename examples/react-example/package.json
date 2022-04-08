@@ -32,7 +32,7 @@
     "react-router-dom": "~6.2.1",
     "tailwindcss": "~3.0.22",
     "typescript": "~4.5.5",
-    "@railzai/railz-visualizations-react": "latest",
+    "@railzai/railz-visualizations-react": "0.0.1",
     "web-vitals": "~2.1.0"
   },
   "resolutions": {
