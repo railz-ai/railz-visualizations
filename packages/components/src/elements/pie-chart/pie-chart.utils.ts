@@ -70,6 +70,9 @@ export const getOptionsPie = (summary: RVPieChartSummary, id = 'id'): any => {
         enableMouseTracking: false,
       },
     ],
+    exporting: {
+      enabled: false,
+    },
     legend: {
       align: 'left',
       layout: 'vertical',

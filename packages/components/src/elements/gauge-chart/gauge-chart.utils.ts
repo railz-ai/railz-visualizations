@@ -202,6 +202,9 @@ export const getOptionsGauge = (gauge: RVGaugeChartSummary): any => ({
       },
     },
   ],
+  exporting: {
+    enabled: false,
+  },
 });
 
 /**
