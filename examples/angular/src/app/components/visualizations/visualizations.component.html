@@ -56,12 +56,10 @@
 <ng-template #pie>
   <div
     class="md:grid md:grid-cols-1 md:gap-1 text-left"
-    *ngIf="['expenses', 'revenues'].includes(''+filter?.reportType); else gauge"
+    *ngIf="['expenses', 'revenues'].includes('' + filter?.reportType); else gauge"
   >
     <h4 class="text-xl font-bold text-gray-900">Using Railz Pie Component</h4>
-    <p>
-      Railz Pie Component only accepts <b>expenses</b> and <b>revenues</b>
-    </p>
+    <p>Railz Pie Component only accepts <b>expenses</b> and <b>revenues</b></p>
     <railz-pie-chart [configuration]="token" [filter]="filter" [options]="options">
     </railz-pie-chart>
   </div>
@@ -69,12 +67,10 @@
 <ng-template #gauge>
   <div
     class="md:grid md:grid-cols-1 md:gap-1 text-left"
-    *ngIf="['railzScore'].includes(''+filter?.reportType); else visualizations"
+    *ngIf="['railzScore'].includes('' + filter?.reportType); else visualizations"
   >
     <h4 class="text-xl font-bold text-gray-900">Using Railz Gauge Component</h4>
-    <p>
-      Railz Gauge Component only accepts <b>railzScore</b>
-    </p>
+    <p>Railz Gauge Component only accepts <b>railzScore</b></p>
     <railz-gauge-chart [configuration]="token" [filter]="filter" [options]="options">
     </railz-gauge-chart>
   </div>
