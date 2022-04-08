@@ -48,10 +48,14 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           HUSKY: 0
         run: |
+          git remote rm origin
+          git remote add origin "https://${{ github.actor }}:$GH_TOKEN@github.com/railz-ai/railz-visualizations.git"
+          git fetch origin
+
           git config user.name "${{ github.actor }}"
           git config user.email "${{ github.actor }}@users.noreply.github.com"
 
-          if [ ${{ github.event.inputs.yarnCommand }} != ''  ]; then
+          if [ "${{ github.event.inputs.yarnCommand }}" != ''  ]; then
             yarn run "${{ github.event.inputs.yarnCommand }}"
           else
             if [ ${{ github.base_ref }} = development ]; then
