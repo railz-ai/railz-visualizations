@@ -7,6 +7,18 @@ on:
   pull_request:
     types: [closed]
     branches: [master, development]
+  workflow_dispatch:
+    inputs:
+      yarnCommand:
+        type: choice
+        description: 'Trigger which release command'
+        required: true
+        default: 'ci:publish:prepatch'
+        options:
+          - ci:publish:prepatch
+          - ci:publish:patch
+          - ci:publish:minor
+          - ci:publish:major
 
 jobs:
   publish:
@@ -39,8 +51,12 @@ jobs:
           git config user.name "${{ github.actor }}"
           git config user.email "${{ github.actor }}@users.noreply.github.com"
 
-          if [ ${{ github.base_ref }} = development ]; then
-            yarn ci:publish:prepatch
+          if [ ${{ github.event.inputs.yarnCommand }} != ''  ]; then
+            yarn run "${{ github.event.inputs.yarnCommand }}"
           else
-            yarn ci:publish:prepatch
+            if [ ${{ github.base_ref }} = development ]; then
+              yarn run ci:publish:prepatch
+            else
+              yarn run ci:publish:prepatch
+            fi
           fi
