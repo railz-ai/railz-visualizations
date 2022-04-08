@@ -8,9 +8,9 @@
   width: auto;
   height: 360px;
 
-  * {
-    box-sizing: border-box;
-  }
+  // * {
+  //   box-sizing: border-box;
+  // }
 }
 
 .railz-header-container {
@@ -59,6 +59,11 @@
 
   .railz-ratio-name {
     display: flex;
+    line-height: 1.5;
+    color: #424242;
+    font-size: 0.75rem;
+    font-weight: 600;
+
     .railz-ratio-tooltip {
       margin-right: 8px;
     }
@@ -77,31 +82,14 @@
   }
 }
 
-.railz-financial-ratio-box {
-  visibility: inherit;
-  -webkit-font-smoothing: antialiased;
-  color: rgb(0 0 0 / 87%);
-  width: 128px;
-  display: flex;
-  align-items: flex-start;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.railz-financial-ratio-text {
-  visibility: inherit;
-  -webkit-font-smoothing: antialiased;
-  color: rgb(0 0 0 / 87%);
-  margin: 0;
-  line-height: 1.5;
-  font-size: 1.25em;
-  font-weight: 700;
-}
-
-.railz-financial-ratio-summary {
+.railz-ratio-summary {
   line-height: 1.5;
   font-size: 1.25rem;
   max-width: 70%;
   font-weight: 700;
   margin-right: 8px;
+}
+
+.railz-ratio-percentage {
+  align-self: center;
 }
