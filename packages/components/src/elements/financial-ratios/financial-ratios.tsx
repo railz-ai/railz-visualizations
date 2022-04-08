@@ -165,18 +165,24 @@ export class FinancialRatios {
     }
 
     const FinancialRatioItem = ({ key }: { key: string }): HTMLElement => {
-      const translation = (key: string): string => {
+      const translation = (key: string, tooltip = false): string => {
         const financialRatioKey = Object.keys(FinancialRatio).find(
           (ratio: string): boolean => FinancialRatio[ratio] === key,
         );
-        return Translations['FINANCIAL_RATIO_' + financialRatioKey] || key;
+        return (
+          (tooltip
+            ? Translations['FINANCIAL_RATIO_TOOLTIP_' + financialRatioKey]
+            : Translations['FINANCIAL_RATIO_' + financialRatioKey]) || key
+        );
       };
       const item: RVFinancialRatioItem = this._selected[key];
       return (
         <div class="railz-financial-ratio-container-item">
           <div class="railz-financial-ratio-info">
             <div class="railz-ratio-name">
-              <div class="railz-ratio-tooltip">*</div>
+              <div class="railz-ratio-tooltip">
+                <railz-tooltip tooltipText={translation(key, true)} />
+              </div>
               <div>{translation(key)}</div>
             </div>
             <div class="railz-ratio-values">
