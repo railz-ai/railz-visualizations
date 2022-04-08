@@ -42,7 +42,7 @@
 <ng-template #transactions>
   <div
     class="md:grid md:grid-cols-1 md:gap-1 text-left"
-    *ngIf="filter?.reportType === 'bills'; else visualizations"
+    *ngIf="filter?.reportType === 'bills'; else pie"
   >
     <h4 class="text-xl font-bold text-gray-900">Using Railz Transactions Control Component</h4>
     <p>
@@ -51,5 +51,31 @@
     </p>
     <railz-transactions-control [configuration]="token" [filter]="filter" [options]="options">
     </railz-transactions-control>
+  </div>
+</ng-template>
+<ng-template #pie>
+  <div
+    class="md:grid md:grid-cols-1 md:gap-1 text-left"
+    *ngIf="['expenses', 'revenues'].includes(''+filter?.reportType); else gauge"
+  >
+    <h4 class="text-xl font-bold text-gray-900">Using Railz Pie Component</h4>
+    <p>
+      Railz Pie Component only accepts <b>expenses</b> and <b>revenues</b>
+    </p>
+    <railz-pie-chart [configuration]="token" [filter]="filter" [options]="options">
+    </railz-pie-chart>
+  </div>
+</ng-template>
+<ng-template #gauge>
+  <div
+    class="md:grid md:grid-cols-1 md:gap-1 text-left"
+    *ngIf="['railzScore'].includes(''+filter?.reportType); else visualizations"
+  >
+    <h4 class="text-xl font-bold text-gray-900">Using Railz Gauge Component</h4>
+    <p>
+      Railz Gauge Component only accepts <b>railzScore</b>
+    </p>
+    <railz-gauge-chart [configuration]="token" [filter]="filter" [options]="options">
+    </railz-gauge-chart>
   </div>
 </ng-template>
