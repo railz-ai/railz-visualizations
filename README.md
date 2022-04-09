@@ -10,9 +10,7 @@
   <a href="https://github.com/railz-ai/railz-visualizations/blob/master/LICENSE"><img src="https://img.shields.io/npm/l/@railzai/railz-visualizations" alt="Software License"/></a>
   <img src="https://badgen.net/bundlephobia/dependency-count/@railzai/railz-visualizations?v=1" alt="Tree shaking"/>
   <img src="https://badgen.net/bundlephobia/tree-shaking/@railzai/railz-visualizations?v=1" alt="Tree shaking"/>
-  <a href="https://opensource.org/licenses/MIT">
-      <img src="https://img.shields.io/badge/License-MIT-black.svg?style=flat-square" alt="License MIT" />
-  </a>
+  [![Publish npm](https://github.com/railz-ai/railz-visualizations/actions/workflows/publish.yml/badge.svg)](https://github.com/railz-ai/railz-visualizations/actions/workflows/publish.yml)
   <a href="https://stenciljs.com/docs/style-guide">
       <img src="https://img.shields.io/badge/code_style-stencil/stylelint/prettier-5851ff.svg?style=flat-square" alt="Code Style" />
   </a>
