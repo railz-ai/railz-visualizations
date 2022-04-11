@@ -42,7 +42,7 @@
     "typescript": "^3.3.4000"
   },
   "dependencies": {
-    "@railzai/railz-visualizations": "^0.0.1-beta.13",
+    "@railzai/railz-visualizations": "^0.0.2",
     "minimist": "1.2.6"
   },
   "peerDependencies": {

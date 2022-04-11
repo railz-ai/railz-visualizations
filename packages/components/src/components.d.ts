@@ -13,6 +13,7 @@ import {
   RVNoFrequencyTypes,
   RVOptions,
   RVOptionsBarStyle,
+  RVPeriodData,
 } from './types';
 export namespace Components {
   interface RailzErrorImage {
@@ -135,17 +136,9 @@ export namespace Components {
   }
   interface RailzSparklineChart {
     /**
-     * Configuration information like authentication configuration
+     * Data to display for sparkline
      */
-    configuration: RVConfiguration;
-    /**
-     * Filter information to query the backend APIs
-     */
-    filter: RVFilterFrequency;
-    /**
-     * For whitelabeling styling
-     */
-    options: RVOptions;
+    data: Array<RVPeriodData>;
   }
   interface RailzStatementsChart {
     /**
@@ -404,17 +397,9 @@ declare namespace LocalJSX {
   }
   interface RailzSparklineChart {
     /**
-     * Configuration information like authentication configuration
+     * Data to display for sparkline
      */
-    configuration: RVConfiguration;
-    /**
-     * Filter information to query the backend APIs
-     */
-    filter: RVFilterFrequency;
-    /**
-     * For whitelabeling styling
-     */
-    options?: RVOptions;
+    data: Array<RVPeriodData>;
   }
   interface RailzStatementsChart {
     /**

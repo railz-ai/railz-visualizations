@@ -4,31 +4,23 @@
 
 ## Properties
 
-| Property                     | Attribute | Description                                                 | Type                                                             | Default     |
-| ---------------------------- | --------- | ----------------------------------------------------------- | ---------------------------------------------------------------- | ----------- |
-| `configuration` _(required)_ | --        | Configuration information like authentication configuration | `RVConfiguration`                                                | `undefined` |
-| `filter` _(required)_        | --        | Filter information to query the backend APIs                | `RVBaseFilterBusinessDateType \| RVBaseFilterConnectionDateType` | `undefined` |
-| `options`                    | --        | For whitelabeling styling                                   | `RVOptions`                                                      | `undefined` |
+| Property                   | Attribute      | Description                       | Type     | Default     |
+| -------------------------- | -------------- | --------------------------------- | -------- | ----------- |
+| `text`                     | `text`         | Question mark with a tooltip text | `string` | `''`        |
+| `tooltipText` _(required)_ | `tooltip-text` |                                   | `string` | `undefined` |
 
 ## Dependencies
 
 ### Used by
 
-- [railz-visualizations](../core)
-
-### Depends on
-
-- [railz-error-image](../error)
-- [railz-loading](../loading)
+- [railz-financial-ratios](../financial-ratios)
 
 ### Graph
 
 ```mermaid
 graph TD;
-  railz-pie-chart --> railz-error-image
-  railz-pie-chart --> railz-loading
-  railz-visualizations --> railz-pie-chart
-  style railz-pie-chart fill:#f9f,stroke:#333,stroke-width:4px
+  railz-financial-ratios --> railz-tooltip
+  style railz-tooltip fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
 ---

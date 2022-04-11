@@ -37,7 +37,7 @@
 
 .railz-financial-ratio-container-item {
   display: flex;
-  flex-wrap: wrap;
+  flex-grow: 1;
   padding-top: 8px;
   border-bottom: thin solid #e0e0e0;
   padding-bottom: 8px;
@@ -48,13 +48,9 @@
   }
 
   overflow: auto;
-
-  // border: 1px solid yellow;
 }
 
 .railz-financial-ratio-info {
-  // border: 1px solid green;
-
   .railz-ratio-values {
     display: flex;
   }
@@ -75,15 +71,10 @@
       margin-right: 8px;
     }
   }
-
-  // * {
-  //   border: 1px solid blue;
-  // }
 }
 
 .railz-financial-ratio-ratios {
-  // border: 1px solid red;
-  .chart {
+  .railz-sparkline {
     width: 132px;
     height: 60px;
   }

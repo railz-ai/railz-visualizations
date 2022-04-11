@@ -12,32 +12,6 @@
   </head>
 
   <body>
-    <script>
-      async function main(params) {
-        const response = await fetch('http://localhost:4000/authenticate', { method: 'GET' });
-        const result = await response.json();
-
-        const configuration = {
-          token: result.access_token,
-          debug: true,
-          endpoint: 'https://api.qa2.railz.ai',
-        };
-
-        let railzFinancialRatios = document.createElement('railz-financial-ratios');
-        if (railzFinancialRatios) {
-          railzFinancialRatios.configuration = configuration;
-          railzFinancialRatios.filter = {
-            businessName: 'QBOmanyAttachments',
-            serviceName: 'quickbooks',
-            reportType: 'financialRatios',
-            startDate: '2021-04-01',
-            endDate: '2022-03-31',
-            reportFrequency: 'month',
-          };
-          document.body.appendChild(railzFinancialRatios);
-        }
-      }
-      main();
-    </script>
+    <script></script>
   </body>
 </html>

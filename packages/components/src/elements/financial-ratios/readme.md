@@ -12,23 +12,24 @@
 
 ## Dependencies
 
-### Used by
-
-- [railz-visualizations](../core)
-
 ### Depends on
 
 - [railz-error-image](../error)
 - [railz-loading](../loading)
+- [railz-tooltip](../tooltip)
+- [railz-percentage](../percentage)
+- [railz-sparkline-chart](../sparkline-chart)
 
 ### Graph
 
 ```mermaid
 graph TD;
-  railz-pie-chart --> railz-error-image
-  railz-pie-chart --> railz-loading
-  railz-visualizations --> railz-pie-chart
-  style railz-pie-chart fill:#f9f,stroke:#333,stroke-width:4px
+  railz-financial-ratios --> railz-error-image
+  railz-financial-ratios --> railz-loading
+  railz-financial-ratios --> railz-tooltip
+  railz-financial-ratios --> railz-percentage
+  railz-financial-ratios --> railz-sparkline-chart
+  style railz-financial-ratios fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
 ---

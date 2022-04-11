@@ -32,6 +32,26 @@ export class RailzErrorImage {
   }
 }
 
+export declare interface RailzFinancialRatios extends Components.RailzFinancialRatios {}
+
+@ProxyCmp({
+  defineCustomElementFn: undefined,
+  inputs: ['configuration', 'filter', 'options'],
+})
+@Component({
+  selector: 'railz-financial-ratios',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  inputs: ['configuration', 'filter', 'options'],
+})
+export class RailzFinancialRatios {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
 export declare interface RailzGaugeChart extends Components.RailzGaugeChart {}
 
 @ProxyCmp({
@@ -65,6 +85,26 @@ export declare interface RailzLoading extends Components.RailzLoading {}
   inputs: ['fillColor', 'height', 'loadingText', 'textStyle', 'width'],
 })
 export class RailzLoading {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+export declare interface RailzPercentage extends Components.RailzPercentage {}
+
+@ProxyCmp({
+  defineCustomElementFn: undefined,
+  inputs: ['percentage'],
+})
+@Component({
+  selector: 'railz-percentage',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  inputs: ['percentage'],
+})
+export class RailzPercentage {
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
@@ -112,6 +152,26 @@ export class RailzProgressBar {
   }
 }
 
+export declare interface RailzSparklineChart extends Components.RailzSparklineChart {}
+
+@ProxyCmp({
+  defineCustomElementFn: undefined,
+  inputs: ['data'],
+})
+@Component({
+  selector: 'railz-sparkline-chart',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  inputs: ['data'],
+})
+export class RailzSparklineChart {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
 export declare interface RailzStatementsChart extends Components.RailzStatementsChart {}
 
 @ProxyCmp({
@@ -125,6 +185,26 @@ export declare interface RailzStatementsChart extends Components.RailzStatements
   inputs: ['configuration', 'filter', 'options'],
 })
 export class RailzStatementsChart {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+export declare interface RailzTooltip extends Components.RailzTooltip {}
+
+@ProxyCmp({
+  defineCustomElementFn: undefined,
+  inputs: ['text', 'tooltipText'],
+})
+@Component({
+  selector: 'railz-tooltip',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  inputs: ['text', 'tooltipText'],
+})
+export class RailzTooltip {
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();

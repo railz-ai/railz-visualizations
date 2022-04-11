@@ -130,9 +130,13 @@ export class FinancialRatios {
 
       if (reportData?.data) {
         this._summary = reportData?.data as RVFinancialRatioSummary;
-        this._selected = this._summary[
-          Object.keys(this._summary)[0]
-        ] as unknown as RVFinancialRatioItem;
+        if (!isEmpty(this._summary)) {
+          const firstKey = Object.keys(this._summary)[0];
+          this._selected = this._summary[firstKey] as unknown as RVFinancialRatioItem;
+        } else {
+          this.error = Translations.NOT_ABLE_TO_RETRIEVE_REPORT_DATA;
+          this.errorStatusCode = reportData.error?.statusCode;
+        }
       } else if (reportData?.error) {
         this.error = Translations.NOT_ABLE_TO_RETRIEVE_REPORT_DATA;
         this.errorStatusCode = reportData.error?.statusCode;
@@ -178,8 +182,6 @@ export class FinancialRatios {
       const item: RVFinancialRatioItem = this._selected[key];
       const tooltipText = translation(key, true);
 
-      const ChartElement = (): HTMLElement => <p>paragraph</p>;
-
       return (
         <div class="railz-financial-ratio-container-item">
           <div class="railz-financial-ratio-info">
@@ -201,7 +203,7 @@ export class FinancialRatios {
 
           <div class="railz-financial-ratio-ratios">
             <div class="railz-sparkline">
-              <ChartElement />
+              <railz-sparkline-chart data={item.timePeriodData} />
             </div>
           </div>
         </div>
