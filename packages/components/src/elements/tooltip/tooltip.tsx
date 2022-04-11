@@ -18,10 +18,12 @@ export class Tooltip {
 
   render(): HTMLElement {
     return (
-      <div class="tooltip">
-        {isEmpty(this.text) ? <TooltipImage /> : this.text}
-        <span class="tooltiptext">{this.tooltipText || 'test2'}</span>
-      </div>
+      !isEmpty(this.tooltipText) && (
+        <div class="railz-tooltip">
+          {isEmpty(this.text) ? <TooltipImage /> : this.text}
+          <span class="railz-tooltiptext">{this.tooltipText}</span>
+        </div>
+      )
     );
   }
 }

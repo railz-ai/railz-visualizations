@@ -172,17 +172,23 @@ export class FinancialRatios {
         return (
           (tooltip
             ? Translations['FINANCIAL_RATIO_TOOLTIP_' + financialRatioKey]
-            : Translations['FINANCIAL_RATIO_' + financialRatioKey]) || key
+            : Translations['FINANCIAL_RATIO_' + financialRatioKey]) || ''
         );
       };
       const item: RVFinancialRatioItem = this._selected[key];
+      const tooltipText = translation(key, true);
+
+      const ChartElement = (): HTMLElement => <p>paragraph</p>;
+
       return (
         <div class="railz-financial-ratio-container-item">
           <div class="railz-financial-ratio-info">
             <div class="railz-ratio-name">
-              <div class="railz-ratio-tooltip">
-                <railz-tooltip tooltipText={translation(key, true)} />
-              </div>
+              {!isEmpty(tooltipText) && (
+                <div class="railz-ratio-tooltip">
+                  <railz-tooltip tooltipText={tooltipText} />
+                </div>
+              )}
               <div>{translation(key)}</div>
             </div>
             <div class="railz-ratio-values">
@@ -194,7 +200,9 @@ export class FinancialRatios {
           </div>
 
           <div class="railz-financial-ratio-ratios">
-            <div class="chart">chart</div>
+            <div class="railz-sparkline">
+              <ChartElement />
+            </div>
           </div>
         </div>
       );
@@ -224,7 +232,7 @@ export class FinancialRatios {
       };
       return (
         // eslint-disable-next-line react/jsx-no-bind
-        <select onInput={handleSelect}>
+        <select onInput={handleSelect} class="railz-select">
           {!isEmpty(this._summary) &&
             Object.keys(this._summary)?.map((key: string) => <option value={key}>{key}</option>)}
         </select>
