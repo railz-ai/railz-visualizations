@@ -7,7 +7,7 @@
   flex-direction: column;
   justify-content: space-between;
   width: auto;
-  height: 360px;
+  height: 300px;
 }
 
 .railz-title {
@@ -33,7 +33,6 @@
   visibility: inherit;
   -webkit-font-smoothing: antialiased;
   color: rgb(0 0 0 / 87%);
-  width: 128px;
   display: flex;
   align-items: flex-start;
   flex-direction: column;
@@ -66,4 +65,17 @@
   .negative {
     color: #7d0000;
   }
+}
+
+.legend-value {
+  font-size: 14px;
+  color: #070a0e !important;
+}
+
+.legend-name {
+  font-size: 12px;
+  font-weight: normal;
+  margin-top: 4px;
+  color: #424242 !important;
+  white-space: normal;
 }

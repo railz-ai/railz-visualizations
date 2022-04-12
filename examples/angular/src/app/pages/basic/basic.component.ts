@@ -16,7 +16,7 @@ export class BasicComponent implements OnInit {
   constructor(private ref: ChangeDetectorRef) {}
 
   onTokenSubmit = (token: string) => {
-    this.token = { token: token };
+    this.token = { token: token, debug: true };
     this.ref.detectChanges();
   };
 
