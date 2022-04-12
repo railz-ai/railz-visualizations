@@ -2528,6 +2528,20 @@
   dependencies:
     "@octokit/openapi-types" "^11.2.0"
 
+"@railzai/railz-visualizations@^0.0.1":
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/@railzai/railz-visualizations/-/railz-visualizations-0.0.1.tgz#021f82f9fb8a35426a45b8124b925859e233ac48"
+  integrity sha512-CdO/d/DtfMV8OdjIxwtgeHa/HDKIiacuozeeagPUr6NYwQKNZEX07AM+sEQHs0N/JFs3qocwlqveTMtR0FICiA==
+  dependencies:
+    "@stencil/angular-output-target" "0.4.0"
+    "@stencil/core" "2.14.2"
+    "@stencil/react-output-target" "0.3.1"
+    "@stencil/sass" "1.5.2"
+    date-fns "2.11.1"
+    get-contrast "^3.0.0"
+    highcharts "9.3.3"
+    lodash-es "4.17.21"
+
 "@rollup/plugin-json@^4.1.0":
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/@rollup/plugin-json/-/plugin-json-4.1.0.tgz#54e09867ae6963c593844d8bd7a9c718294496f3"
@@ -8735,7 +8749,7 @@ number-is-nan@^1.0.0:
   resolved "https://registry.yarnpkg.com/number-is-nan/-/number-is-nan-1.0.1.tgz#097b602b53422a522c1afb8790318336941a011d"
   integrity sha1-CXtgK1NCKlIsGvuHkDGDNpQaAR0=
 
-numbro@^2.3.6:
+numbro@2.3.6:
   version "2.3.6"
   resolved "https://registry.yarnpkg.com/numbro/-/numbro-2.3.6.tgz#4bd622ebe59ccbc49dad365c5b9eed200781fa21"
   integrity sha512-pxpoTT3hVxQGaOA2RTzXR/muonQNd1K1HPJbWo7QOmxPwiPmoFCFfsG9XXgW3uqjyzezJ0P9IvCPDXUtJexjwg==
