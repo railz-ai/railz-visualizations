@@ -9,6 +9,8 @@
     "run:build": "lerna run --scope '{@railzai/railz-visualizations,@railzai/railz-visualizations-angular,@railzai/railz-visualizations-react}' build",
     "server": "(cd examples/nodejs && yarn && yarn start)",
     "dev": "(cd packages/components && yarn && yarn start)",
+    "react": "(cd examples/react-example/ && yarn && yarn start)",
+    "angular": "(cd examples/angular/ && yarn && yarn start)",
     "build": "yarn bootstrap && yarn run:build && yarn lint",
     "build:codesandbox": "yarn bootstrap && yarn run:build",
     "prepare": "husky install",

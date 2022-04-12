@@ -42,7 +42,7 @@
 <ng-template #transactions>
   <div
     class="md:grid md:grid-cols-1 md:gap-1 text-left"
-    *ngIf="filter?.reportType === 'bills'; else visualizations"
+    *ngIf="filter?.reportType === 'bills'; else financialratios"
   >
     <h4 class="text-xl font-bold text-gray-900">Using Railz Transactions Control Component</h4>
     <p>
@@ -51,5 +51,17 @@
     </p>
     <railz-transactions-control [configuration]="token" [filter]="filter" [options]="options">
     </railz-transactions-control>
+  </div>
+</ng-template>
+<ng-template #financialratios>
+  <div
+    class="md:grid md:grid-cols-1 md:gap-1 text-left"
+    *ngIf="filter?.reportType === 'financialRatios'; else visualizations"
+    S
+  >
+    <h4 class="text-xl font-bold text-gray-900">Using Railz Financial Ratios Component</h4>
+    <p>Railz Financial Ratios Component only accepts <b>financialratios</b></p>
+    <railz-financial-ratios [configuration]="token" [filter]="filter" [options]="options">
+    </railz-financial-ratios>
   </div>
 </ng-template>
