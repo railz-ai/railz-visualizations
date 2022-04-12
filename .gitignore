@@ -21,7 +21,6 @@ dist/
 
 # Maven
 target/
-dist/
 
 # JetBrains IDE
 .idea/
@@ -56,4 +55,4 @@ loader
 packages/components-angular/.angular/cache
 packages/components-react/dist
 packages/components-react/node_modules
-examples/react-15-example/*
+examples/dev/*
