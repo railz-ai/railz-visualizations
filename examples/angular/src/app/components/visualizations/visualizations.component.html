@@ -4,16 +4,9 @@
   No Token and Filter, submit your authentication and filter information
 </p>
 <div *ngIf="!!token && !!filter">
-  <div
-    class="md:grid md:grid-cols-1 md:gap-1"
-    *ngIf="filter?.reportType === 'all'; else statements"
-  >
+  <div class="md:grid md:grid-cols-1 md:gap-1" *ngIf="filter?.reportType === 'all'; else statements">
     <div class="col-span-1 mt-1" *ngFor="let reportType of allReportTypes">
-      <railz-visualizations
-        [configuration]="token"
-        [filter]="getNewFilter(filter, reportType)"
-        [options]="options"
-      >
+      <railz-visualizations [configuration]="token" [filter]="getNewFilter(filter, reportType)" [options]="options">
       </railz-visualizations>
     </div>
   </div>
@@ -26,10 +19,8 @@
   </div>
 </ng-template>
 <ng-template #statements>
-  <div
-    class="md:grid md:grid-cols-1 md:gap-1 text-left"
-    *ngIf="filter?.reportType === 'balanceSheets'; else transactions"
-  >
+  <div class="md:grid md:grid-cols-1 md:gap-1 text-left"
+    *ngIf="filter?.reportType === 'balanceSheets'; else transactions">
     <h4 class="text-xl font-bold text-gray-900">Using Railz Statements Chart Component</h4>
     <p>
       Railz Statements Chart Component only accepts <b>balanceSheets</b>,
@@ -40,10 +31,7 @@
   </div>
 </ng-template>
 <ng-template #transactions>
-  <div
-    class="md:grid md:grid-cols-1 md:gap-1 text-left"
-    *ngIf="filter?.reportType === 'bills'; else financialratios"
-  >
+  <div class="md:grid md:grid-cols-1 md:gap-1 text-left" *ngIf="filter?.reportType === 'bills'; else financialratios">
     <h4 class="text-xl font-bold text-gray-900">Using Railz Transactions Control Component</h4>
     <p>
       Railz Transactions Control Component only accepts <b>bills</b> and
@@ -54,33 +42,25 @@
   </div>
 </ng-template>
 <ng-template #financialratios>
-  <div
-    class="md:grid md:grid-cols-1 md:gap-1 text-left"
-    *ngIf="filter?.reportType === 'financialRatios'; else pie"
-    S
-  >
+  <div class="md:grid md:grid-cols-1 md:gap-1 text-left" *ngIf="filter?.reportType === 'financialRatios'; else pie">
     <h4 class="text-xl font-bold text-gray-900">Using Railz Financial Ratios Component</h4>
-    <p>Railz Financial Ratios Component only accepts <b>financialratios</b></p>
+    <p>Railz Financial Ratios Component only accepts <b>financialRatios</b></p>
     <railz-financial-ratios [configuration]="token" [filter]="filter" [options]="options">
     </railz-financial-ratios>
   </div>
 </ng-template>
 <ng-template #pie>
-  <div
-    class="md:grid md:grid-cols-1 md:gap-1 text-left"
-    *ngIf="['expenses', 'revenues'].includes('' + filter?.reportType); else gauge"
-  >
-    <h4 class="text-xl font-bold text-gray-900">Using Railz Pie Component</h4>
-    <p>Railz Pie Component only accepts <b>expenses</b> and <b>revenues</b></p>
+  <div class="md:grid md:grid-cols-1 md:gap-1 text-left"
+    *ngIf="['expenses','revenue'].includes('' + filter?.reportType); else visualizations">
+    <h4 class="text-xl font-bold text-gray-900">Using Railz Pie Chart Component</h4>
+    <p>Railz Pie Chart Component only accepts <b>expenses</b> and <b>revenue</b></p>
     <railz-pie-chart [configuration]="token" [filter]="filter" [options]="options">
     </railz-pie-chart>
   </div>
 </ng-template>
 <ng-template #gauge>
-  <div
-    class="md:grid md:grid-cols-1 md:gap-1 text-left"
-    *ngIf="['railzScore'].includes('' + filter?.reportType); else visualizations"
-  >
+  <div class="md:grid md:grid-cols-1 md:gap-1 text-left"
+    *ngIf="['railzScore'].includes('' + filter?.reportType); else visualizations">
     <h4 class="text-xl font-bold text-gray-900">Using Railz Gauge Component</h4>
     <p>Railz Gauge Component only accepts <b>railzScore</b></p>
     <railz-gauge-chart [configuration]="token" [filter]="filter" [options]="options">

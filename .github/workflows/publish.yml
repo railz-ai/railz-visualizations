@@ -30,18 +30,25 @@ jobs:
         node-version: [16.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
     steps:
+      - name: Copy repo code
+        uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.GH_TOKEN }}
       - name: Use Node.js ${{ matrix.node-vQersion }}
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
           registry-url: https://registry.npmjs.org/
-      - uses: actions/checkout@v2
       - name: Setup yarn
         run: npm install -g yarn
       - name: Install testing dependencies
         run: yarn install
       - name: Run Build
         run: yarn build
+      - name: Authenticate NPM
+        run: npm config set //registry.npmjs.org/:_authToken ${NPM_TOKEN}
+        env:
+          NPM_TOKEN: ${{ secrets.NPMTOKEN }}
       - name: Run Publish
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
