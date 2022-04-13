@@ -42,14 +42,6 @@ jobs:
           node-version: ${{ matrix.node-version }}
           registry-url: 'https://registry.npmjs.org/'
 
-      - name: Authenticate NPM
-        run: |
-          npm config set @railzai:registry https://registry.npmjs.org
-          npm config set //registry.npmjs.org/:_authToken ${NPM_TOKEN}
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-
       - name: Setup yarn
         run: npm install -g yarn
 
@@ -66,6 +58,9 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           HUSKY: 0
         run: |
+          npm config set @railzai:registry https://registry.npmjs.org
+          npm config set //registry.npmjs.org/:_authToken ${NPM_TOKEN}
+          npm config get
           git remote rm origin
           git remote add origin "https://${{ github.actor }}:$GH_TOKEN@github.com/railz-ai/railz-visualizations.git"
           git fetch origin
