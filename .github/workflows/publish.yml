@@ -58,7 +58,6 @@ jobs:
           git remote rm origin
           git remote add origin "https://${{ github.actor }}:$GH_TOKEN@github.com/railz-ai/railz-visualizations.git"
           git fetch origin
-          git stash
 
           git config user.name "${{ github.actor }}"
           git config user.email "${{ github.actor }}@users.noreply.github.com"
