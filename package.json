@@ -23,6 +23,7 @@
     "publish:beta": "lerna publish --canary --preid beta",
     "eslint": "yarn workspace @railzai/railz-visualizations run lint",
     "stylelint": "yarn workspace @railzai/railz-visualizations run stylelint",
+    "ci:publish:prerelease": "lerna publish prerelease --yes --no-verify-access",
     "ci:publish:prepatch": "lerna publish prepatch --yes --no-verify-access",
     "ci:publish:patch": "lerna publish patch --yes --no-verify-access",
     "ci:publish:minor": "lerna publish minor --yes --no-verify-access",
