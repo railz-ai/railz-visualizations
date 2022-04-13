@@ -177,7 +177,7 @@ using [lerna](https://github.com/lerna/lerna) to do this for us
 
 From the main folder:
 
-1. Clone this repository
+1. Clone this [repository](https://github.com/railz-ai/railz-visualizations.git)
 2. Install the dependency needed to setup the packages from the main folder.
    ```bash
    yarn
