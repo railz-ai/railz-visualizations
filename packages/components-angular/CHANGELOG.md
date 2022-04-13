@@ -7,10 +7,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package @railzai/railz-visualizations-angular
 
-
-
-
-
 ## [0.0.1](https://github.com/railz-ai/railz-visualizations/compare/@railzai/railz-visualizations-angular@0.0.1-beta.8...@railzai/railz-visualizations-angular@0.0.1) (2022-04-08)
 
 **Note:** Version bump only for package @railzai/railz-visualizations-angular
