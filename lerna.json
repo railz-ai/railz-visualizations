@@ -3,5 +3,12 @@
   "npmClient": "yarn",
   "useWorkspaces": true,
   "version": "independent",
-  "conventionalCommits": true
+  "conventionalCommits": true,
+  "command": {
+    "publish": {
+      "npmClient": "npm",
+      "allowBranch": ["master"],
+      "registry": "https://registry.npmjs.org/"
+    }
+  }
 }
