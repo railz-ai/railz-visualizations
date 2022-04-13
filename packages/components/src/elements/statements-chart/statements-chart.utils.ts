@@ -5,6 +5,7 @@ import { format, parseISO } from 'date-fns';
 import Translations from '../../config/translations/en.json';
 import { formatDate, formatSeries, isStatements } from '../../helpers/utils';
 import {
+  ALL_FONTS,
   RAILZ_BALANCE_SHEET_COLORS,
   RAILZ_CASHFLOW_COLORS,
   RAILZ_INCOME_STATEMENT_COLORS,
@@ -20,6 +21,7 @@ import {
 import { RVReportTypes } from '../../types/enum/report-type';
 import { RequestServiceInstance } from '../../services/request';
 import { errorLog } from '../../services/logger';
+import { RAILZ_DATE_FORMAT } from '../../types/constants/date';
 
 /**
  * Setup Highcharts options for bar charts
@@ -35,21 +37,7 @@ export const getOptionsBarChart = ({
     type: 'column',
     backgroundColor: chart?.backgroundColor || '#ffffff',
     style: {
-      fontFamily:
-        chart?.fontFamily ||
-        [
-          'Inter',
-          'Roboto',
-          '-apple-system',
-          'BlinkMacSystemFont',
-          '"Segoe UI"',
-          '"Helvetica Neue"',
-          'Arial',
-          'sans-serif',
-          '"Apple Color Emoji"',
-          '"Segoe UI Emoji"',
-          '"Segoe UI Symbol"',
-        ].join(','),
+      fontFamily: chart?.fontFamily || ALL_FONTS,
     },
     reflow: true,
     marginTop: 0,
@@ -290,8 +278,8 @@ export const getReportData = async ({
 }: RVReportRequestParameter): Promise<RVFormattedStatementResponse> => {
   let reportData;
   try {
-    const startDate = format(parseISO(filter.startDate), 'yyyy-MM-dd');
-    const endDate = format(parseISO(filter.endDate), 'yyyy-MM-dd');
+    const startDate = format(parseISO(filter.startDate), RAILZ_DATE_FORMAT);
+    const endDate = format(parseISO(filter.endDate), RAILZ_DATE_FORMAT);
     let allParameters;
     if ('connectionId' in filter && filter?.connectionId) {
       allParameters = pick(

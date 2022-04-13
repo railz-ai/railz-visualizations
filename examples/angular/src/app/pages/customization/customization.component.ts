@@ -22,7 +22,7 @@ export class CustomizationComponent implements OnInit {
   getNewFilter = (filter: Filter, reportType: any): Filter => <Filter>{ ...filter, reportType };
 
   onTokenSubmit = (token: string) => {
-    this.token = { token: token };
+    this.token = { token: token, debug: true };
     this.ref.detectChanges();
   };
 

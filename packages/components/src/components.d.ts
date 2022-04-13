@@ -41,6 +41,20 @@ export namespace Components {
      */
     width?: string;
   }
+  interface RailzGaugeChart {
+    /**
+     * Configuration information like authentication configuration
+     */
+    configuration: RVConfiguration;
+    /**
+     * Filter information to query the backend APIs
+     */
+    filter: RVFilterDate;
+    /**
+     * For whitelabeling styling
+     */
+    options: RVOptions;
+  }
   interface RailzLoading {
     /**
      * Fill color of the loading indicator
@@ -62,6 +76,20 @@ export namespace Components {
      * Width of the SVG Loading Indicator
      */
     width?: string;
+  }
+  interface RailzPieChart {
+    /**
+     * Configuration information like authentication configuration
+     */
+    configuration: RVConfiguration;
+    /**
+     * Filter information to query the backend APIs
+     */
+    filter: RVFilterDate;
+    /**
+     * For whitelabeling styling
+     */
+    options: RVOptions;
   }
   interface RailzProgressBar {
     /**
@@ -134,10 +162,20 @@ declare global {
     prototype: HTMLRailzErrorImageElement;
     new (): HTMLRailzErrorImageElement;
   };
+  interface HTMLRailzGaugeChartElement extends Components.RailzGaugeChart, HTMLStencilElement {}
+  var HTMLRailzGaugeChartElement: {
+    prototype: HTMLRailzGaugeChartElement;
+    new (): HTMLRailzGaugeChartElement;
+  };
   interface HTMLRailzLoadingElement extends Components.RailzLoading, HTMLStencilElement {}
   var HTMLRailzLoadingElement: {
     prototype: HTMLRailzLoadingElement;
     new (): HTMLRailzLoadingElement;
+  };
+  interface HTMLRailzPieChartElement extends Components.RailzPieChart, HTMLStencilElement {}
+  var HTMLRailzPieChartElement: {
+    prototype: HTMLRailzPieChartElement;
+    new (): HTMLRailzPieChartElement;
   };
   interface HTMLRailzProgressBarElement extends Components.RailzProgressBar, HTMLStencilElement {}
   var HTMLRailzProgressBarElement: {
@@ -167,7 +205,9 @@ declare global {
   };
   interface HTMLElementTagNameMap {
     'railz-error-image': HTMLRailzErrorImageElement;
+    'railz-gauge-chart': HTMLRailzGaugeChartElement;
     'railz-loading': HTMLRailzLoadingElement;
+    'railz-pie-chart': HTMLRailzPieChartElement;
     'railz-progress-bar': HTMLRailzProgressBarElement;
     'railz-statements-chart': HTMLRailzStatementsChartElement;
     'railz-transactions-control': HTMLRailzTransactionsControlElement;
@@ -201,6 +241,20 @@ declare namespace LocalJSX {
      */
     width?: string;
   }
+  interface RailzGaugeChart {
+    /**
+     * Configuration information like authentication configuration
+     */
+    configuration: RVConfiguration;
+    /**
+     * Filter information to query the backend APIs
+     */
+    filter: RVFilterDate;
+    /**
+     * For whitelabeling styling
+     */
+    options?: RVOptions;
+  }
   interface RailzLoading {
     /**
      * Fill color of the loading indicator
@@ -222,6 +276,20 @@ declare namespace LocalJSX {
      * Width of the SVG Loading Indicator
      */
     width?: string;
+  }
+  interface RailzPieChart {
+    /**
+     * Configuration information like authentication configuration
+     */
+    configuration: RVConfiguration;
+    /**
+     * Filter information to query the backend APIs
+     */
+    filter: RVFilterDate;
+    /**
+     * For whitelabeling styling
+     */
+    options?: RVOptions;
   }
   interface RailzProgressBar {
     /**
@@ -289,7 +357,9 @@ declare namespace LocalJSX {
   }
   interface IntrinsicElements {
     'railz-error-image': RailzErrorImage;
+    'railz-gauge-chart': RailzGaugeChart;
     'railz-loading': RailzLoading;
+    'railz-pie-chart': RailzPieChart;
     'railz-progress-bar': RailzProgressBar;
     'railz-statements-chart': RailzStatementsChart;
     'railz-transactions-control': RailzTransactionsControl;
@@ -302,7 +372,10 @@ declare module '@stencil/core' {
     interface IntrinsicElements {
       'railz-error-image': LocalJSX.RailzErrorImage &
         JSXBase.HTMLAttributes<HTMLRailzErrorImageElement>;
+      'railz-gauge-chart': LocalJSX.RailzGaugeChart &
+        JSXBase.HTMLAttributes<HTMLRailzGaugeChartElement>;
       'railz-loading': LocalJSX.RailzLoading & JSXBase.HTMLAttributes<HTMLRailzLoadingElement>;
+      'railz-pie-chart': LocalJSX.RailzPieChart & JSXBase.HTMLAttributes<HTMLRailzPieChartElement>;
       'railz-progress-bar': LocalJSX.RailzProgressBar &
         JSXBase.HTMLAttributes<HTMLRailzProgressBarElement>;
       'railz-statements-chart': LocalJSX.RailzStatementsChart &
