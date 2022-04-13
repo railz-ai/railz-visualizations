@@ -9,11 +9,10 @@
   <a href="https://www.npmjs.com/package/@railzai/railz-visualizations"><img src="https://img.shields.io/npm/v/@railzai/railz-visualizations" alt="Latest Version on NPM"/></a>
   <a href="https://github.com/railz-ai/railz-visualizations/blob/master/LICENSE"><img src="https://img.shields.io/npm/l/@railzai/railz-visualizations" alt="Software License"/></a>
   <img src="https://badgen.net/bundlephobia/dependency-count/@railzai/railz-visualizations?v=1" alt="Tree shaking"/>
-  <img src="https://badgen.net/bundlephobia/tree-shaking/@railzai/railz-visualizations?v=1" alt="Tree shaking"/>
-  [![Publish npm](https://github.com/railz-ai/railz-visualizations/actions/workflows/publish.yml/badge.svg)](https://github.com/railz-ai/railz-visualizations/actions/workflows/publish.yml)
+  <a href="https://github.com/railz-ai/railz-visualizations/actions/workflows/publish.yml"><img src="https://github.com/railz-ai/railz-visualizations/actions/workflows/publish.yml/badge.svg?branch=master&event=deployment_status" alt="Latest Version on NPM"/></a>
   <a href="https://stenciljs.com/docs/style-guide">
-      <img src="https://img.shields.io/badge/code_style-stencil/stylelint/prettier-5851ff.svg?style=flat-square" alt="Code Style" />
-  </a>
+          <img src="https://img.shields.io/badge/code_style-stencil/stylelint/prettier-5851ff.svg?style=flat-square" alt="Code Style" />
+      </a>
 </p>
 <h2 align="center">Powerful charting components built with <a href="https://stenciljs.com" target="_blank">StencilJS</a> and <a href="https://www.highcharts.com/" target="_blank">Highcharts</a> based on <a href="https://railz.ai" target="_blank">Railz.ai</a> dashboard.</h2>
 
@@ -34,7 +33,10 @@
 
 Stencil is a compiler for building fast web apps using Web Components.
 
-Stencil combines the best concepts of the most popular frontend frameworks into a compile-time rather than run-time tool. Stencil takes TypeScript, JSX, a tiny virtual DOM layer, efficient one-way data binding, an asynchronous rendering pipeline (similar to React Fiber), and lazy-loadingText out of the box, and generates 100% standards-based Web Components that run in any browser supporting the Custom Elements v1 spec.
+Stencil combines the best concepts of the most popular frontend frameworks into a compile-time rather than run-time
+tool. Stencil takes TypeScript, JSX, a tiny virtual DOM layer, efficient one-way data binding, an asynchronous rendering
+pipeline (similar to React Fiber), and lazy-loadingText out of the box, and generates 100% standards-based Web
+Components that run in any browser supporting the Custom Elements v1 spec.
 
 Stencil components are just Web Components, so they work in any major framework or with no framework at all.
 
@@ -47,7 +49,8 @@ Stencil components are just Web Components, so they work in any major framework 
   - Change text content and styles;
 - Components
   - Visualization Controls - this is used to display status of bills and invoices
-  - Statement Visualizations - this is used to display financial statements like Income Statements, Cashflow Statements, Balance Sheets.
+  - Statement Visualizations - this is used to display financial statements like Income Statements, Cashflow
+    Statements, Balance Sheets.
   - Loading Indicator Component
   - Error/Status Image component
 
@@ -62,7 +65,8 @@ The Railz Visualization components helps to build your dashboard easily with dat
 
 ## Installation
 
-The library is published as a [scoped NPM package](https://docs.npmjs.com/misc/scope) in the [NPMJS Railz account](https://www.npmjs.com/org/railzai).
+The library is published as a [scoped NPM package](https://docs.npmjs.com/misc/scope) in
+the [NPMJS Railz account](https://www.npmjs.com/org/railzai).
 
 [Check our docs on detailed instruction guide](https://docs.railz.ai/reference/getting-started).
 
@@ -85,13 +89,15 @@ yarn add @railzai/railz-visualizations
 
 ## Visualizations Usage
 
-All you have to do just to import the core component on the page and pass its parameters to access it properties as an element.
+All you have to do just to import the core component on the page and pass its parameters to access it properties as an
+element.
 
 ### Prerequisites
 
 #### Authentication
 
-Setup the process of receiving an access_token from the Railz Authentication API, see details [here](https://docs.railz.ai/reference/authentication)
+Setup the process of receiving an access_token from the Railz Authentication API, see
+details [here](https://docs.railz.ai/reference/authentication)
 
 #### Framework Specific Installation
 
@@ -165,8 +171,9 @@ class AppModule {}
 
 ### Build Your Packages
 
-To build and test your components locally, you will need to link the packages together. This is a replacement for publishing packages to npm that allows you to develop and test locally.
-We are using [lerna](https://github.com/lerna/lerna) to do this for us
+To build and test your components locally, you will need to link the packages together. This is a replacement for
+publishing packages to npm that allows you to develop and test locally. We are
+using [lerna](https://github.com/lerna/lerna) to do this for us
 
 From the main folder:
 
@@ -179,7 +186,8 @@ From the main folder:
    ```bash
    yarn global add lerna
    ```
-4. Run the bootstrap command to install all the dependencies for the packages, lerna will handle the linking between the packages
+4. Run the bootstrap command to install all the dependencies for the packages, lerna will handle the linking between the
+   packages
    ```bash
    yarn install:codesandbox
    ```
@@ -195,8 +203,8 @@ From the main folder:
 
 #### For React
 
-Lerna already linked the stencil component library to the React library during the build process so we only need to create the symlink for the React component library.
-Go to `packages/components-react` folder and run the below:
+Lerna already linked the stencil component library to the React library during the build process so we only need to
+create the symlink for the React component library. Go to `packages/components-react` folder and run the below:
 
 ```bash
 yarn link
@@ -211,7 +219,8 @@ yarn link @railzai/railz-visualizations
 yarn link @railzai/railz-visualizations-react
 ```
 
-To make use of the React component library in your React application, import the components from the React component library in the file where you want to use them.
+To make use of the React component library in your React application, import the components from the React component
+library in the file where you want to use them.
 
 ```typescript jsx
 import { RailzVisualizations } from '@railzai/railz-visualizations-react';
@@ -219,8 +228,8 @@ import { RailzVisualizations } from '@railzai/railz-visualizations-react';
 
 #### For Angular
 
-Lerna already linked the stencil component library to the Angular library during the build process so we only need to create the symlink for the Angular component library.
-Go to `packages/components-angular` folder and run the below:
+Lerna already linked the stencil component library to the Angular library during the build process so we only need to
+create the symlink for the Angular component library. Go to `packages/components-angular` folder and run the below:
 
 In your angular component library, you need to create a symlink.
 
@@ -237,7 +246,8 @@ yarn link @railzai/railz-visualizations
 yarn link @railzai/railz-visualizations-angular
 ```
 
-To make use of the Angular component library in your Angular application, set up your module file to import the visualizations module.
+To make use of the Angular component library in your Angular application, set up your module file to import the
+visualizations module.
 
 ```typescript
 import { RailzVisualizationsModule } from '@railzai/railz-visualizations-angular/dist';
@@ -245,7 +255,8 @@ import { RailzVisualizationsModule } from '@railzai/railz-visualizations-angular
 
 ## Contributing
 
-The Railz Visualization library and documentation are open to contributions. For more information, check the [guidelines](./CONTRIBUTING.md).
+The Railz Visualization library and documentation are open to contributions. For more information, check
+the [guidelines](./CONTRIBUTING.md).
 
 ## License
 
