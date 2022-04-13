@@ -13,8 +13,9 @@ on:
         type: choice
         description: 'Trigger which release command'
         required: true
-        default: 'ci:publish:prepatch'
+        default: 'ci:publish:prerelease'
         options:
+          - ci:publish:prerelease
           - ci:publish:prepatch
           - ci:publish:patch
           - ci:publish:minor
@@ -65,9 +66,5 @@ jobs:
           if [ "${{ github.event.inputs.yarnCommand }}" != ''  ]; then
             yarn run "${{ github.event.inputs.yarnCommand }}"
           else
-            if [ ${{ github.base_ref }} = development ]; then
-              yarn run ci:publish:prepatch
-            else
-              yarn run ci:publish:prepatch
-            fi
+            yarn run ci:publish:prerelease
           fi
