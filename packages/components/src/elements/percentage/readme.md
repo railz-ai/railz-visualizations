@@ -13,14 +13,12 @@
 ### Used by
 
 - [railz-financial-ratios](../financial-ratios)
-- [railz-pie-chart](../pie-chart)
 
 ### Graph
 
 ```mermaid
 graph TD;
   railz-financial-ratios --> railz-percentage
-  railz-pie-chart --> railz-percentage
   style railz-percentage fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

@@ -20,7 +20,6 @@
 
 - [railz-error-image](../error)
 - [railz-loading](../loading)
-- [railz-percentage](../percentage)
 
 ### Graph
 
@@ -28,7 +27,6 @@
 graph TD;
   railz-pie-chart --> railz-error-image
   railz-pie-chart --> railz-loading
-  railz-pie-chart --> railz-percentage
   railz-visualizations --> railz-pie-chart
   style railz-pie-chart fill:#f9f,stroke:#333,stroke-width:4px
 ```

@@ -30,7 +30,7 @@
     "@angular/core": "~13.2.2"
   },
   "dependencies": {
-    "@railzai/railz-visualizations": "^0.0.3-alpha.0",
+    "@railzai/railz-visualizations": "link:../components",
     "tslib": "^2.3.0"
   },
   "devDependencies": {

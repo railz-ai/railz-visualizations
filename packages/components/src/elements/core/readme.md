@@ -33,7 +33,6 @@ graph TD;
   railz-gauge-chart --> railz-loading
   railz-pie-chart --> railz-error-image
   railz-pie-chart --> railz-loading
-  railz-pie-chart --> railz-percentage
   railz-statements-chart --> railz-error-image
   railz-statements-chart --> railz-loading
   railz-transactions-control --> railz-error-image
