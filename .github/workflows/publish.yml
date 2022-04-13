@@ -6,7 +6,7 @@ name: Publish npm
 on:
   pull_request:
     types: [closed]
-    branches: [master, development]
+    branches: [master]
   workflow_dispatch:
     inputs:
       yarnCommand:
