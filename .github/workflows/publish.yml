@@ -40,11 +40,15 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
-          registry-url: 'https://registry.npmjs.com/'
+          registry-url: 'https://registry.npmjs.org/'
 
       - name: Authenticate NPM
-        run: npm config set //registry.npmjs.com/:_authToken ${NPM_TOKEN}
+        run: |
+          npm config set @railzai:registry https://registry.npmjs.org
+          npm config set //registry.npmjs.org/:_authToken ${NPM_TOKEN}
+          echo ${NPM_TOKEN}
         env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Setup yarn
