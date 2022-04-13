@@ -47,9 +47,7 @@ jobs:
         run: yarn build
       - name: Authenticate NPM
         run: |
-          echo "registry=https://registry.npmjs.org/" >> .npmrc
-          echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> .npmrc
-          npm whoami
+          npm config set //registry.npmjs.org/:_authToken ${NPM_TOKEN}
         env:
           NPM_TOKEN: ${{ secrets.NPMTOKEN }}
       - name: Run Publish
