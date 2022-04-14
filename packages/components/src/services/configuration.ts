@@ -1,5 +1,8 @@
 import { RVConfiguration } from '../types';
 
+/**
+ * Service for handling configuration options
+ */
 class ConfigurationService {
   private _configuration: RVConfiguration;
 
