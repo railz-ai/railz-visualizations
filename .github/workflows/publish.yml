@@ -58,7 +58,6 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           HUSKY: 0
         run: |
-          npm config set @railzai:registry https://registry.npmjs.org
           npm config set //registry.npmjs.org/:_authToken ${NPM_TOKEN}
           git remote rm origin
           git remote add origin "https://${{ github.actor }}:$GH_TOKEN@github.com/railz-ai/railz-visualizations.git"
