@@ -6,15 +6,16 @@ name: Publish npm
 on:
   pull_request:
     types: [closed]
-    branches: [master, development]
+    branches: [master]
   workflow_dispatch:
     inputs:
       yarnCommand:
         type: choice
         description: 'Trigger which release command'
         required: true
-        default: 'ci:publish:prepatch'
+        default: 'ci:publish:prerelease'
         options:
+          - ci:publish:prerelease
           - ci:publish:prepatch
           - ci:publish:patch
           - ci:publish:minor
@@ -34,27 +35,32 @@ jobs:
         uses: actions/checkout@v2
         with:
           token: ${{ secrets.GH_TOKEN }}
+
       - name: Use Node.js ${{ matrix.node-vQersion }}
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
-          registry-url: https://registry.npmjs.org/
+          registry-url: 'https://registry.npmjs.org/'
+
       - name: Setup yarn
         run: npm install -g yarn
+
       - name: Install testing dependencies
         run: yarn install
+
       - name: Run Build
         run: yarn build
-      - name: Authenticate NPM
-        run: npm config set //registry.npmjs.org/:_authToken ${NPM_TOKEN}
-        env:
-          NPM_TOKEN: ${{ secrets.NPMTOKEN }}
+
       - name: Run Publish
         env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           HUSKY: 0
         run: |
+          npm config set @railzai:registry https://registry.npmjs.org
+          npm config set //registry.npmjs.org/:_authToken ${NPM_TOKEN}
+          npm config get
           git remote rm origin
           git remote add origin "https://${{ github.actor }}:$GH_TOKEN@github.com/railz-ai/railz-visualizations.git"
           git fetch origin
@@ -65,9 +71,5 @@ jobs:
           if [ "${{ github.event.inputs.yarnCommand }}" != ''  ]; then
             yarn run "${{ github.event.inputs.yarnCommand }}"
           else
-            if [ ${{ github.base_ref }} = development ]; then
-              yarn run ci:publish:prepatch
-            else
-              yarn run ci:publish:prepatch
-            fi
+            yarn run ci:publish:prerelease
           fi
