@@ -28,12 +28,12 @@ export interface RVBaseFilterConnection {
 export interface RVBaseFilterBusinessDate extends RVBaseFilterBusiness {
   /**
    * startDate: Date from which the data begins
-   * format: **YYYY-MM-DD**
+   * format: **yyyy-MM-dd**
    */
   startDate: string; // required based on report type,
   /**
    * endDate: Date which the data ends
-   * format: **YYYY-MM-DD**
+   * format: **yyyy-MM-dd**
    */
   endDate: string; // required based on report type,
 }
@@ -41,12 +41,12 @@ export interface RVBaseFilterBusinessDate extends RVBaseFilterBusiness {
 export interface RVBaseFilterConnectionDate extends RVBaseFilterConnection {
   /**
    * startDate: Date from which the data begins
-   * format: **YYYY-MM-DD**
+   * format: **yyyy-MM-dd**
    */
   startDate: string;
   /**
    * endDate: Date which the data ends
-   * format: **YYYY-MM-DD**
+   * format: **yyyy-MM-dd**
    */
   endDate: string;
 }

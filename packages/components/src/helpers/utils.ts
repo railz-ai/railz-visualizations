@@ -16,7 +16,7 @@ export const formatDate = (
 ): string[] => {
   return summary?.map((data) => {
     const date = parseISO(data.period.date);
-    if (reportFrequency === 'quarter') return `Q${data.period.quarter} ${format(date, 'YYYY')}`;
+    if (reportFrequency === 'quarter') return `Q${data.period.quarter} ${format(date, 'yyyy')}`;
     if (reportFrequency === 'year') return data.period.year.toString();
     return format(date, 'MMM yy');
   });
