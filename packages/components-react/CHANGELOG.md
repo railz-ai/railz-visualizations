@@ -3,7 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## 0.0.3-alpha.5 (2022-04-13)
+## 0.0.3-alpha.12 (2022-04-14)
+
+
+### Bug Fixes
+
+* changing date format to year: yyyy, instead of YYYY ([6445aae](https://github.com/railz-ai/railz-visualizations/commit/6445aae65e835816dedf43024c863a885923cfc6))
+
+
+
+
+
+## 0.0.3-alpha.11 (2022-04-14)
 
 **Note:** Version bump only for package @railzai/railz-visualizations-react
 
@@ -11,47 +22,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## 0.0.3-alpha.4 (2022-04-13)
-
-**Note:** Version bump only for package @railzai/railz-visualizations-react
-
-
-
-
-
-## 0.0.3-alpha.3 (2022-04-13)
-
-**Note:** Version bump only for package @railzai/railz-visualizations-react
-
-
-
-
-
-## 0.0.3-alpha.2 (2022-04-13)
-
-**Note:** Version bump only for package @railzai/railz-visualizations-react
-
-
-
-
-
-## 0.0.3-alpha.1 (2022-04-13)
-
-**Note:** Version bump only for package @railzai/railz-visualizations-react
-
-
-
-
-
-## 0.0.3-alpha.0 (2022-04-13)
-
-**Note:** Version bump only for package @railzai/railz-visualizations-react
-
-
-
-
-
-## 0.0.2-alpha.0 (2022-04-13)
+## 0.0.3-alpha.10 (2022-04-14)
 
 **Note:** Version bump only for package @railzai/railz-visualizations-react
 

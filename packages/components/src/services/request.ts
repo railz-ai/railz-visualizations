@@ -10,7 +10,7 @@ import { RAILZ_API_HOST } from '../types/constants/endpoints';
 import { ConfigurationInstance } from './configuration';
 
 /**
- * RequestService to make API Calls to services
+ * RequestService to make API Calls to Railz
  **/
 class RequestService {
   getUrl = (): string => {

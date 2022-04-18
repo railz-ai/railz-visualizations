@@ -1,3 +1,6 @@
+/**
+ * File for managing logs
+ */
 import { ConfigurationInstance } from './configuration';
 
 export const warnLog = (...data: any[]): void => {
