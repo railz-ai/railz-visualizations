@@ -83,13 +83,13 @@ export const getOptionsPie = (summary: RVPieChartSummary, id = 'id'): any => {
       y: 15,
       x: -10,
       useHTML: true,
-      itemMarginBottom: 16,
+      itemMarginBottom: 48,
       labelFormatter: function (): any {
-        return `<span style="display: flex; flex-direction: column">
-          <span class="legend-value">$${roundNumber(this.y)}</span><span class="legend-name">${
-          this.name
-        }</span>
-        </span>`;
+        return `
+        <div class="legend">
+          <span class="legend-value">$${roundNumber(this.y)}</span>
+          <span class="legend-name">${this.name}</span>
+        </div>`;
       },
     },
   };

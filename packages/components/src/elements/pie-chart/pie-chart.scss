@@ -67,6 +67,12 @@
   }
 }
 
+.legend {
+  display: flex;
+  flex-direction: column;
+  margin-top: -3px;
+}
+
 .legend-value {
   font-size: 14px;
   color: #070a0e !important;
@@ -75,7 +81,6 @@
 .legend-name {
   font-size: 12px;
   font-weight: normal;
-  margin-top: 4px;
   color: #424242 !important;
   white-space: normal;
 }
