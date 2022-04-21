@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.0.3-alpha.13 (2022-04-21)
+
+
+### Bug Fixes
+
+* reorganize css legend ([042ff90](https://github.com/railz-ai/railz-visualizations/commit/042ff9076d4dc847b89104fd657fa80dee87bb24))
+
+
+
+
+
 ## 0.0.3-alpha.12 (2022-04-14)
 
 
