@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.0.3-alpha.15 (2022-04-26)
+
+
+### Features
+
+* Change validation for business params ([47db4a0](https://github.com/railz-ai/railz-visualizations/commit/47db4a0058a31c7bfbe8efc9860adea4da5fbe80))
+
+
+
+
+
 ## 0.0.3-alpha.14 (2022-04-25)
 
 **Note:** Version bump only for package @railzai/railz-visualizations
