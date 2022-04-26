@@ -17,6 +17,8 @@ export enum RVAccountingProviders {
   SAGE_BUSINESS_CLOUD = 'sageBusinessCloud',
   SAGE_INTACCT = 'sageIntacct',
   XERO = 'xero',
+  PLAID = 'plaid',
+  WAVE = 'wave',
 }
 
 export type RVServiceProviders = RVAccountingProviders | RVBankingProviders | RVSandboxProviders;
