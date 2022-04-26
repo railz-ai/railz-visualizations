@@ -4,7 +4,7 @@ import { isEmpty } from 'lodash-es';
 
 import Translations from '../config/translations/en.json';
 import { getOptionsBarChart } from '../elements/statements-chart/statements-chart.utils';
-import { errorLog } from '../services/logger';
+import { errorLog, warnLog } from '../services/logger';
 import {
   RAILZ_CHART_LABEL_COLOR,
   RAILZ_CHART_LEGEND_COLOR,
@@ -90,7 +90,10 @@ export const validateBusinessParams = (filter: RVFilter): boolean => {
   const hasConnectionId = !isEmpty(filterPassed?.connectionId);
   const hasBusinessName = !isEmpty(filterPassed?.businessName);
   const hasServiceName = !isEmpty(filterPassed?.serviceName);
-  if (!(hasBusinessName && hasServiceName) && !hasConnectionId) {
+  if (!hasServiceName) {
+    warnLog(Translations.RV_ERROR_NO_SERVICE_NAME);
+  }
+  if (!hasBusinessName && !hasConnectionId) {
     errorLog(Translations.RV_ERROR_INVALID_BUSINESS_IDENTIFICATION);
     return false;
   }

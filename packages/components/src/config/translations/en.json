@@ -49,6 +49,7 @@
   "RV_ACCESSIBILITY_CHART_LOADING_INDICATOR": "Loading indicator check",
   "RV_DATE_DIFF_ERROR": "Unable to parse Start or End date, ensure they are in a right date format",
   "RV_ERROR_INVALID_BUSINESS_IDENTIFICATION": "Invalid business identification",
+  "RV_ERROR_NO_SERVICE_NAME": "No serviceName sent",
   "RV_ERROR_INVALID_REPORT_FREQUENCY": "Invalid Report Frequency",
   "RV_ERROR_INVALID_REPORT_TYPE": "Invalid Report Type",
   "AS_OF": "As of"
