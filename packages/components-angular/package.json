@@ -1,7 +1,7 @@
 {
   "type": "module",
   "name": "@railzai/railz-visualizations-angular",
-  "version": "0.0.3-alpha.15",
+  "version": "0.0.3-alpha.16",
   "repository": {
     "type": "git",
     "url": "https://github.com/railz-ai/railz-visualizations"
@@ -30,7 +30,7 @@
     "@angular/core": "~13.2.2"
   },
   "dependencies": {
-    "@railzai/railz-visualizations": "^0.0.3-alpha.15",
+    "@railzai/railz-visualizations": "^0.0.3-alpha.16",
     "tslib": "^2.3.0"
   },
   "devDependencies": {
