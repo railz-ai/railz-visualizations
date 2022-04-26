@@ -1,14 +1,25 @@
-# Components Angular
+# Railz Visualizations Angular
+
+<p align="center">
+  <a href="https://www.npmjs.com/package/@railzai/railz-visualizations"><img src="https://img.shields.io/npm/v/@railzai/railz-visualizations-angular" alt="Latest Version on NPM"/></a>
+  <img src="https://badgen.net/bundlephobia/dependency-count/@railzai/railz-visualizations-angular" alt="Tree shaking"/>
+</p>
 
 This is an angular wrapper for `@railzai/railz-visualization`, it was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.2.0.
 
-## Build
+## To Install
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+With NPM:
 
-## Publishing
+```bash
+npm install @railzai/railz-visualizations-react
+```
 
-After building your library with `ng build components-angular`, go to the dist folder `cd dist/components-angular` and run `npm publish`.
+With Yarn:
+
+```bash
+yarn add @railzai/railz-visualizations-react
+```
 
 ## Local Development
 
