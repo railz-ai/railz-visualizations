@@ -82,7 +82,7 @@ With Yarn:
 yarn add @railzai/railz-visualizations
 ```
 
-## Framework
+## Framework Support
 
 - Angular
 - React
