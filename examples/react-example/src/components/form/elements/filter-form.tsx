@@ -58,7 +58,7 @@ export default function FilterForm({ setFilter }: FormProps) {
           <p className="mt-1 text-sm text-gray-600">
             Some fields are disabled based on criteria{' '}
             <a
-              href="https://docs.railz.ai/reference/components"
+              href="https://docs.railz.ai/docs/visualization-sdk-components"
               target="_blank"
               className="underline"
               rel="noopener noreferrer"
