@@ -138,6 +138,16 @@ export interface RVErrorIndicatorStyle {
   textStyle?: { [key: string]: any };
 }
 
+/**
+ * tooltipStyle: Object to cover basic styling of tooltip message
+ */
+export interface RVTooltipStyle {
+  /**
+   * Position where the tooltip text will appear
+   */
+  position?: 'bottom-left' | 'bottom-right' | 'center-left' | 'center-right';
+}
+
 export interface RVOptions {
   /**
    * container: object to cover the bounding box of the chart
