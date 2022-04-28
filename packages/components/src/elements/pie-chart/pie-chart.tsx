@@ -32,6 +32,11 @@ import { getOptionsPie, getReportData } from './pie-chart.utils';
 variablePie(Highcharts);
 highchartsAccessibility(Highcharts);
 
+const TranslationMapping = {
+  [RVReportTypes.EXPENSES]: 'EXPENSES',
+  [RVReportTypes.REVENUE]: 'REVENUES',
+};
+
 @Component({
   tag: 'railz-pie-chart',
   styleUrl: 'pie-chart.scss',
@@ -212,10 +217,6 @@ export class PieChart {
   };
 
   render(): HTMLElement {
-    const TranslationMapping = {
-      [RVReportTypes.EXPENSES]: 'EXPENSES',
-      [RVReportTypes.REVENUE]: 'REVENUES',
-    };
     return (
       <div class="railz-container" style={this._options?.container?.style}>
         {this._options?.title ? (
