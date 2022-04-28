@@ -1,37 +1,67 @@
-/* Tooltip container */
-.railz-tooltip {
-  fill: currentcolor;
+/* Tooltip container (question sign) */
+.rv-tooltip {
+  position: relative;
   display: inline-block;
   flex-shrink: 0;
-  color: #9e9e9e;
+
   width: 13px;
   height: 13px;
+  margin: 0px 4px;
+
+  fill: currentcolor;
+  color: #9e9e9e;
 }
 
 /* Tooltip text */
-.railz-tooltip .railz-tooltiptext {
+.rv-tooltiptext {
+  position: absolute;
   visibility: hidden;
-  width: 120px;
-  // background-color: black;
-  color: #fff;
-  text-align: center;
-  padding: 13px 0;
-  border-radius: 6px;
-  position: absolute; /* Position the tooltip text */
   z-index: 1;
+  user-select: none;
+
+  width: 120px;
+  max-width: 300px;
+
+  padding: 4px 8px;
+  margin: 2px;
+  border-radius: 4px;
+
+  background-color: rgba(97, 97, 97, 0.92);
+  color: #fff;
+  overflow-wrap: break-word;
+  text-align: center;
+
+  font-size: 0.6875rem;
+  font-weight: 500;
+}
+
+/* Tooltip text positioning */
+.rv-tooltiptext.rv-center-right {
+  top: 0px;
+  left: 15px;
+}
+
+.rv-tooltiptext.rv-center-left {
+  top: 0px;
+  right: 15px;
+}
+
+.rv-tooltiptext.rv-bottom-right {
+  top: 18px;
+  left: -2px;
+}
+
+.rv-tooltiptext.rv-bottom-left {
+  top: 18px;
+  right: -2px;
 }
 
 /* Show the tooltip text when you mouse over the tooltip container */
-.railz-tooltip:hover,
-.railz-tooltip:focus {
-  .railz-tooltiptext {
+.rv-tooltip:hover,
+.rv-tooltip:focus {
+  .rv-tooltiptext {
     visibility: visible;
-
-    // fill: currentcolor;
     display: inline-block;
     flex-shrink: 0;
-    user-select: none;
-    color: #9e9e9e;
-    margin-right: 8px;
   }
 }

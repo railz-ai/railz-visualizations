@@ -15,13 +15,17 @@ export class Tooltip {
    */
   @Prop() readonly text: string = '';
   @Prop() readonly tooltipText!: string;
+  /**
+   * Position of the Tooltip text when hovered
+   */
+  @Prop() readonly position?: string = 'bottom-right';
 
   render(): HTMLElement {
     return (
       !isEmpty(this.tooltipText) && (
-        <div class="railz-tooltip">
+        <div class="rv-tooltip">
           {isEmpty(this.text) ? <TooltipImage /> : this.text}
-          <span class="railz-tooltiptext">{this.tooltipText}</span>
+          <span class={`rv-tooltiptext rv-${this.position}`}>{this.tooltipText}</span>
         </div>
       )
     );

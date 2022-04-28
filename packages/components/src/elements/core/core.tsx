@@ -12,7 +12,6 @@ import { ConfigurationInstance } from '../../services/configuration';
 
 @Component({
   tag: 'railz-visualizations',
-  styleUrl: 'core.scss',
   shadow: true,
 })
 export class Core {
@@ -75,9 +74,7 @@ export class Core {
     return (
       <div>
         text information too
-        <div class="railz-ratio-tooltip">
-          <railz-tooltip tooltipText="tooltipText ASD" />
-        </div>
+        <railz-tooltip tooltipText="tooltipText ASD" />
         text information
       </div>
     );
