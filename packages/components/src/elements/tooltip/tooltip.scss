@@ -3,11 +3,9 @@
   position: relative;
   display: inline-block;
   flex-shrink: 0;
-
   width: 13px;
   height: 13px;
-  margin: 0px 4px;
-
+  margin: 0 4px;
   fill: currentcolor;
   color: #9e9e9e;
 }
@@ -18,31 +16,27 @@
   visibility: hidden;
   z-index: 1;
   user-select: none;
-
   width: 120px;
   max-width: 300px;
-
   padding: 4px 8px;
   margin: 2px;
   border-radius: 4px;
-
-  background-color: rgba(97, 97, 97, 0.92);
+  background-color: rgb(97 97 97 / 92%);
   color: #fff;
   overflow-wrap: break-word;
   text-align: center;
-
   font-size: 0.6875rem;
   font-weight: 500;
 }
 
 /* Tooltip text positioning */
 .rv-tooltiptext.rv-center-right {
-  top: 0px;
+  top: 0;
   left: 15px;
 }
 
 .rv-tooltiptext.rv-center-left {
-  top: 0px;
+  top: 0;
   right: 15px;
 }
 
