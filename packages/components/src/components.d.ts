@@ -6,6 +6,7 @@
  */
 import { HTMLStencilElement, JSXBase } from '@stencil/core/internal';
 import {
+  RVAllFilter,
   RVConfiguration,
   RVFilter,
   RVFilterDate,
@@ -13,6 +14,7 @@ import {
   RVNoFrequencyTypes,
   RVOptions,
   RVOptionsBarStyle,
+  RVTooltipStyle,
 } from './types';
 export namespace Components {
   interface RailzErrorImage {
@@ -85,7 +87,7 @@ export namespace Components {
     /**
      * Filter information to query the backend APIs
      */
-    filter: RVFilterDate;
+    filter: RVAllFilter;
     /**
      * For whitelabeling styling
      */
@@ -126,6 +128,17 @@ export namespace Components {
      * For whitelabeling styling
      */
     options: RVOptions;
+  }
+  interface RailzTooltip {
+    /**
+     * Question mark with a tooltip text
+     */
+    text: string;
+    /**
+     * Position of the Tooltip text when hovered
+     */
+    tooltipStyle?: RVTooltipStyle;
+    tooltipText: string;
   }
   interface RailzTransactionsControl {
     /**
@@ -189,6 +202,11 @@ declare global {
     prototype: HTMLRailzStatementsChartElement;
     new (): HTMLRailzStatementsChartElement;
   };
+  interface HTMLRailzTooltipElement extends Components.RailzTooltip, HTMLStencilElement {}
+  var HTMLRailzTooltipElement: {
+    prototype: HTMLRailzTooltipElement;
+    new (): HTMLRailzTooltipElement;
+  };
   interface HTMLRailzTransactionsControlElement
     extends Components.RailzTransactionsControl,
       HTMLStencilElement {}
@@ -210,6 +228,7 @@ declare global {
     'railz-pie-chart': HTMLRailzPieChartElement;
     'railz-progress-bar': HTMLRailzProgressBarElement;
     'railz-statements-chart': HTMLRailzStatementsChartElement;
+    'railz-tooltip': HTMLRailzTooltipElement;
     'railz-transactions-control': HTMLRailzTransactionsControlElement;
     'railz-visualizations': HTMLRailzVisualizationsElement;
   }
@@ -285,7 +304,7 @@ declare namespace LocalJSX {
     /**
      * Filter information to query the backend APIs
      */
-    filter: RVFilterDate;
+    filter: RVAllFilter;
     /**
      * For whitelabeling styling
      */
@@ -327,6 +346,17 @@ declare namespace LocalJSX {
      */
     options?: RVOptions;
   }
+  interface RailzTooltip {
+    /**
+     * Question mark with a tooltip text
+     */
+    text?: string;
+    /**
+     * Position of the Tooltip text when hovered
+     */
+    tooltipStyle?: RVTooltipStyle;
+    tooltipText: string;
+  }
   interface RailzTransactionsControl {
     /**
      * Configuration information like authentication configuration
@@ -362,6 +392,7 @@ declare namespace LocalJSX {
     'railz-pie-chart': RailzPieChart;
     'railz-progress-bar': RailzProgressBar;
     'railz-statements-chart': RailzStatementsChart;
+    'railz-tooltip': RailzTooltip;
     'railz-transactions-control': RailzTransactionsControl;
     'railz-visualizations': RailzVisualizations;
   }
@@ -380,6 +411,7 @@ declare module '@stencil/core' {
         JSXBase.HTMLAttributes<HTMLRailzProgressBarElement>;
       'railz-statements-chart': LocalJSX.RailzStatementsChart &
         JSXBase.HTMLAttributes<HTMLRailzStatementsChartElement>;
+      'railz-tooltip': LocalJSX.RailzTooltip & JSXBase.HTMLAttributes<HTMLRailzTooltipElement>;
       'railz-transactions-control': LocalJSX.RailzTransactionsControl &
         JSXBase.HTMLAttributes<HTMLRailzTransactionsControlElement>;
       'railz-visualizations': LocalJSX.RailzVisualizations &

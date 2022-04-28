@@ -20,6 +20,7 @@
 
 - [railz-error-image](../error)
 - [railz-loading](../loading)
+- [railz-tooltip](../tooltip)
 
 ### Graph
 
@@ -27,6 +28,7 @@
 graph TD;
   railz-gauge-chart --> railz-error-image
   railz-gauge-chart --> railz-loading
+  railz-gauge-chart --> railz-tooltip
   railz-visualizations --> railz-gauge-chart
   style railz-gauge-chart fill:#f9f,stroke:#333,stroke-width:4px
 ```

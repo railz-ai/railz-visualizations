@@ -2,6 +2,8 @@
 import { Component, h, Prop } from '@stencil/core';
 import { isEmpty } from 'lodash-es';
 
+import { RVTooltipStyle } from '../../types';
+
 import { TooltipImage } from './tooltip-image';
 
 @Component({
@@ -18,14 +20,14 @@ export class Tooltip {
   /**
    * Position of the Tooltip text when hovered
    */
-  @Prop() readonly position?: string = 'bottom-right';
+  @Prop() readonly tooltipStyle?: RVTooltipStyle = { position: 'bottom-right' };
 
   render(): HTMLElement {
     return (
       !isEmpty(this.tooltipText) && (
         <div class="rv-tooltip">
           {isEmpty(this.text) ? <TooltipImage /> : this.text}
-          <span class={`rv-tooltiptext rv-${this.position}`}>{this.tooltipText}</span>
+          <span class={`rv-tooltiptext rv-${this.tooltipStyle?.position}`}>{this.tooltipText}</span>
         </div>
       )
     );

@@ -31,8 +31,10 @@ graph TD;
   railz-visualizations --> railz-transactions-control
   railz-gauge-chart --> railz-error-image
   railz-gauge-chart --> railz-loading
+  railz-gauge-chart --> railz-tooltip
   railz-pie-chart --> railz-error-image
   railz-pie-chart --> railz-loading
+  railz-pie-chart --> railz-tooltip
   railz-statements-chart --> railz-error-image
   railz-statements-chart --> railz-loading
   railz-transactions-control --> railz-error-image

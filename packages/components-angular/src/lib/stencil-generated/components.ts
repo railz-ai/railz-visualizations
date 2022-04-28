@@ -136,13 +136,13 @@ export declare interface RailzTooltip extends Components.RailzTooltip {}
 
 @ProxyCmp({
   defineCustomElementFn: undefined,
-  inputs: ['text', 'tooltipText'],
+  inputs: ['text', 'tooltipStyle', 'tooltipText'],
 })
 @Component({
   selector: 'railz-tooltip',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
-  inputs: ['text', 'tooltipText'],
+  inputs: ['text', 'tooltipStyle', 'tooltipText'],
 })
 export class RailzTooltip {
   protected el: HTMLElement;
