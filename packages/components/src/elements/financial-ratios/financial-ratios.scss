@@ -1,4 +1,4 @@
-.railz-container {
+.rv-container {
   display: flex;
   padding: 16px;
   position: relative;
@@ -14,11 +14,11 @@
   }
 }
 
-.railz-header-container {
+.rv-header-container {
   display: flex;
 }
 
-.railz-title {
+.rv-title {
   color: #006037;
   font-size: 18px;
   font-weight: 600;
@@ -29,13 +29,13 @@
   line-height: 1.235;
 }
 
-.railz-financial-ratios {
+.rv-financial-ratios {
   overflow-y: auto;
   overflow-x: hidden;
   padding-top: 8px;
 }
 
-.railz-financial-ratio-container-item {
+.rv-financial-ratio-container-item {
   display: flex;
   flex-grow: 1;
   padding-top: 8px;
@@ -50,37 +50,28 @@
   overflow: auto;
 }
 
-.railz-financial-ratio-info {
-  .railz-ratio-values {
+.rv-financial-ratio-info {
+  .rv-ratio-values {
     display: flex;
   }
 
-  .railz-ratio-name {
+  .rv-ratio-name {
     display: flex;
     line-height: 1.5;
     color: #424242;
     font-size: 0.75rem;
     font-weight: 600;
-
-    .railz-ratio-tooltip {
-      fill: currentcolor;
-      display: inline-block;
-      flex-shrink: 0;
-      user-select: none;
-      color: #9e9e9e;
-      margin-right: 8px;
-    }
   }
 }
 
-.railz-financial-ratio-ratios {
-  .railz-sparkline {
+.rv-financial-ratio-ratios {
+  .rv-sparkline {
     width: 132px;
     height: 60px;
   }
 }
 
-.railz-ratio-summary {
+.rv-ratio-summary {
   line-height: 1.5;
   font-size: 1.25rem;
   max-width: 70%;
@@ -88,11 +79,11 @@
   margin-right: 8px;
 }
 
-.railz-ratio-percentage {
+.rv-ratio-percentage {
   align-self: center;
 }
 
-.railz-select {
+.rv-select {
   border: 0;
   font-size: 14px;
 }

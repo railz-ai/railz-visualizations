@@ -90,7 +90,7 @@ export class Core {
 
     if (RVReportTypes.FINANCIAL_RATIO === this._filter?.reportType) {
       return (
-        <railz-financial-ratio
+        <railz-financial-ratios
           configuration={this.configuration}
           filter={this.filter as RVFilterDate}
           options={this.options}

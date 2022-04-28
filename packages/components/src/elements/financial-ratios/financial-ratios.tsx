@@ -175,34 +175,34 @@ export class FinancialRatios {
         );
         return (
           (tooltip
-            ? Translations['FINANCIAL_RATIO_TOOLTIP_' + financialRatioKey]
-            : Translations['FINANCIAL_RATIO_' + financialRatioKey]) || ''
+            ? Translations['RV_FINANCIAL_RATIO_TOOLTIP_' + financialRatioKey]
+            : Translations['RV_FINANCIAL_RATIO_' + financialRatioKey]) || ''
         );
       };
       const item: RVFinancialRatioItem = this._selected[key];
       const tooltipText = translation(key, true);
 
       return (
-        <div class="railz-financial-ratio-container-item">
-          <div class="railz-financial-ratio-info">
-            <div class="railz-ratio-name">
+        <div class="rv-financial-ratio-container-item">
+          <div class="rv-financial-ratio-info">
+            <div class="rv-ratio-name">
               {!isEmpty(tooltipText) && (
-                <div class="railz-ratio-tooltip">
+                <div class="rv-ratio-tooltip">
                   <railz-tooltip tooltipText={tooltipText} />
                 </div>
               )}
               <div>{translation(key)}</div>
             </div>
-            <div class="railz-ratio-values">
-              <div class="railz-ratio-summary">{roundNumber(item.currentValue)}</div>
-              <div class="railz-ratio-percentage">
+            <div class="rv-ratio-values">
+              <div class="rv-ratio-summary">{roundNumber(item.currentValue)}</div>
+              <div class="rv-ratio-percentage">
                 <railz-percentage percentage={item.percentageChange} />
               </div>
             </div>
           </div>
 
-          <div class="railz-financial-ratio-ratios">
-            <div class="railz-sparkline">
+          <div class="rv-financial-ratio-ratios">
+            <div class="rv-sparkline">
               <railz-sparkline-chart data={item.timePeriodData} />
             </div>
           </div>
@@ -212,7 +212,7 @@ export class FinancialRatios {
 
     return (
       this._selected && (
-        <div class="railz-financial-ratios">
+        <div class="rv-financial-ratios">
           {Object.keys(this._selected)?.map((key: string) => (
             <FinancialRatioItem key={key} />
           ))}
@@ -223,8 +223,9 @@ export class FinancialRatios {
 
   render(): HTMLElement {
     const TitleElement = (): HTMLElement => (
-      <p class="railz-title" style={this._options?.title?.style}>
-        {(this._options?.title && this._options?.title?.text) || ''}
+      <p class="rv-title" style={this._options?.title?.style}>
+        {(this._options?.title && this._options?.title?.text) || ''}{' '}
+        <railz-tooltip tooltipText={Translations.RV_TOOLTIP_FINANCIAL_RATIOS} />
       </p>
     );
 
@@ -234,7 +235,7 @@ export class FinancialRatios {
       };
       return (
         // eslint-disable-next-line react/jsx-no-bind
-        <select onInput={handleSelect} class="railz-select">
+        <select onInput={handleSelect} class="rv-select">
           {!isEmpty(this._summary) &&
             Object.keys(this._summary)?.map((key: string) => <option value={key}>{key}</option>)}
         </select>
@@ -242,8 +243,8 @@ export class FinancialRatios {
     };
 
     return (
-      <div class="railz-container" style={this._options?.container?.style}>
-        <div class="railz-header-container">
+      <div class="rv-container" style={this._options?.container?.style}>
+        <div class="rv-header-container">
           <TitleElement />
           <SelectElement />
         </div>
