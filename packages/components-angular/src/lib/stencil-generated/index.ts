@@ -7,6 +7,7 @@ export const DIRECTIVES = [
   d.RailzPieChart,
   d.RailzProgressBar,
   d.RailzStatementsChart,
+  d.RailzTooltip,
   d.RailzTransactionsControl,
   d.RailzVisualizations,
 ];

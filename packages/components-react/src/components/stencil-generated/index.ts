@@ -32,6 +32,10 @@ export const RailzStatementsChart = /*@__PURE__*/ createReactComponent<
   JSX.RailzStatementsChart,
   HTMLRailzStatementsChartElement
 >('railz-statements-chart');
+export const RailzTooltip = /*@__PURE__*/ createReactComponent<
+  JSX.RailzTooltip,
+  HTMLRailzTooltipElement
+>('railz-tooltip');
 export const RailzTransactionsControl = /*@__PURE__*/ createReactComponent<
   JSX.RailzTransactionsControl,
   HTMLRailzTransactionsControlElement
