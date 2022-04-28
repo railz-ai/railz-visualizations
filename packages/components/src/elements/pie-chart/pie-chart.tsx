@@ -15,11 +15,12 @@ import { ConfigurationInstance } from '../../services/configuration';
 import Translations from '../../config/translations/en.json';
 import {
   RVConfiguration,
-  RVFilterDate,
+  RVAllFilter,
   RVFormattedPieResponse,
   RVOptions,
   RVPieChartSummary,
   RVRevenueExpensesSummary,
+  RVFilterDate,
 } from '../../types';
 import { errorLog } from '../../services/logger';
 
@@ -43,7 +44,7 @@ export class PieChart {
   /**
    * Filter information to query the backend APIs
    */
-  @Prop() readonly filter!: RVFilterDate;
+  @Prop() readonly filter!: RVAllFilter;
   /**
    * For whitelabeling styling
    */
@@ -51,7 +52,7 @@ export class PieChart {
 
   @State() private loading = '';
   @State() private _configuration: RVConfiguration;
-  @State() private _filter: RVFilterDate;
+  @State() private _filter: RVAllFilter;
   @State() private _options: RVOptions;
   @State() private _summary: RVRevenueExpensesSummary;
   @State() private error: string;
@@ -68,7 +69,7 @@ export class PieChart {
    */
   private validateParams = async (
     configuration: RVConfiguration,
-    filter: RVFilterDate,
+    filter: RVAllFilter,
     options: RVOptions,
     triggerRequest = true,
   ): Promise<void> => {
@@ -113,7 +114,7 @@ export class PieChart {
   }
 
   @Watch('filter')
-  async watchFilter(newValue: RVFilterDate, oldValue: RVFilterDate): Promise<void> {
+  async watchFilter(newValue: RVAllFilter, oldValue: RVAllFilter): Promise<void> {
     if (newValue && oldValue && !isEqual(oldValue, newValue)) {
       await this.validateParams(this.configuration, newValue, this.options);
     }
@@ -140,7 +141,7 @@ export class PieChart {
     this.loading = Translations.LOADING_REPORT;
     try {
       const reportData = (await getReportData({
-        filter: this._filter,
+        filter: this._filter as RVFilterDate,
       })) as RVFormattedPieResponse;
 
       if (reportData?.data) {
@@ -215,7 +216,8 @@ export class PieChart {
         {this._options?.title ? (
           <div>
             <p class="railz-title" style={this._options?.title?.style}>
-              {this._options?.title?.text || ''}
+              {this._options?.title?.text || ''}{' '}
+              <railz-tooltip tooltipText={`RV_TOOLTIP_${this._filter?.reportType.toUpperCase()}`} />
             </p>
           </div>
         ) : null}

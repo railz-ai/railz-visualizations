@@ -204,13 +204,14 @@ export class GaugeChart {
       <div class="railz-container" style={this._options?.container?.style}>
         {this._options?.title ? (
           <p class="railz-title" style={this._options?.title?.style}>
-            {this._options?.title?.text || ''}
+            {this._options?.title?.text || ''}{' '}
+            <railz-tooltip tooltipText={`RV_TOOLTIP_${this._filter?.reportType.toUpperCase()}`} />
           </p>
         ) : null}
         {this.renderMain()}
         {this.lastUpdated && (
           <p class="railz-gauge-last-updated">
-            {Translations.AS_OF} {format(parseISO(this.lastUpdated), 'dd MMM yyyy')}
+            {Translations.RV_AS_OF} {format(parseISO(this.lastUpdated), 'dd MMM yyyy')}
           </p>
         )}
       </div>

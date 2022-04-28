@@ -52,5 +52,8 @@
   "RV_ERROR_NO_SERVICE_NAME": "No serviceName sent",
   "RV_ERROR_INVALID_REPORT_FREQUENCY": "Invalid Report Frequency",
   "RV_ERROR_INVALID_REPORT_TYPE": "Invalid Report Type",
-  "AS_OF": "As of"
+  "RV_AS_OF": "As of",
+  "RV_TOOLTIP_EXPENSES": "The top 3 cumulative expenses incurred by the business based no the selected start date and end date. Percent change measures the expense change between the end date period and start date period.",
+  "RV_TOOLTIP_REVENUES": "The top 3 cumulative revenue sources based on the selected start date and end date. Percent change measures the revenue change between the end date period and start date period.",
+  "RV_TOOLTIP_RAILZ_SCORE": "The Railz credit score is based on proprietary models that rely on a business's financial statements to calculate the probability of default at a point in time."
 }
