@@ -132,6 +132,26 @@ export class RailzStatementsChart {
   }
 }
 
+export declare interface RailzTooltip extends Components.RailzTooltip {}
+
+@ProxyCmp({
+  defineCustomElementFn: undefined,
+  inputs: ['text', 'tooltipText'],
+})
+@Component({
+  selector: 'railz-tooltip',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  inputs: ['text', 'tooltipText'],
+})
+export class RailzTooltip {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
 export declare interface RailzTransactionsControl extends Components.RailzTransactionsControl {}
 
 @ProxyCmp({

@@ -1,16 +1,18 @@
 /* eslint-disable max-len, @typescript-eslint/no-unused-vars */
 import { Component, Prop, h, State, Watch } from '@stencil/core';
 
-import { isEmpty, isEqual } from 'lodash-es';
+// import { isEmpty, isEqual } from 'lodash-es';
+import { isEqual } from 'lodash-es';
 
-import { isGauge, isPie, isStatements, isTransactions } from '../../helpers/utils';
+// import { isGauge, isPie, isStatements, isTransactions } from '../../helpers/utils';
 
-import { RVConfiguration, RVFilter, RVFilterDate, RVFilterFrequency, RVOptions } from '../../types';
+import { RVConfiguration, RVFilter, RVOptions } from '../../types';
 import { getConfiguration, getFilter } from '../../helpers/chart.utils';
 import { ConfigurationInstance } from '../../services/configuration';
 
 @Component({
   tag: 'railz-visualizations',
+  styleUrl: 'core.scss',
   shadow: true,
 })
 export class Core {
@@ -30,8 +32,6 @@ export class Core {
   @State() private _filter: RVFilter;
   @State() private _configuration: RVConfiguration;
 
-  @State() private errorStatusCode: number;
-
   private propsUpdated = (): void => {
     this.validateParams(this.configuration, this.filter);
   };
@@ -46,11 +46,6 @@ export class Core {
     if (this._configuration) {
       ConfigurationInstance.configuration = this._configuration;
       this._filter = getFilter(filter);
-      if (!this._filter) {
-        this.errorStatusCode = 500;
-      }
-    } else {
-      this.errorStatusCode = 500;
     }
   };
 
@@ -77,47 +72,58 @@ export class Core {
   }
 
   render(): HTMLElement {
-    if (!isEmpty(this.errorStatusCode)) {
-      return <railz-error-image statusCode={this.errorStatusCode || 500} />;
-    }
+    return (
+      <div>
+        text information too
+        <div class="railz-ratio-tooltip">
+          <railz-tooltip tooltipText="tooltipText ASD" />
+        </div>
+        text information
+      </div>
+    );
+    // return <span>test</span>;
 
-    if (isGauge(this._filter?.reportType)) {
-      return (
-        <railz-gauge-chart
-          configuration={this.configuration}
-          filter={this.filter as RVFilterDate}
-          options={this.options}
-        />
-      );
-    }
+    // if (!isEmpty(this.errorStatusCode)) {
+    //   return <railz-error-image statusCode={this.errorStatusCode || 500} />;
+    // }
 
-    if (isPie(this._filter?.reportType)) {
-      return (
-        <railz-pie-chart
-          configuration={this.configuration}
-          filter={this.filter as RVFilterDate}
-          options={this.options}
-        />
-      );
-    }
-    if (isStatements(this._filter?.reportType)) {
-      return (
-        <railz-statements-chart
-          configuration={this.configuration}
-          filter={this.filter as RVFilterFrequency}
-          options={this.options}
-        />
-      );
-    }
-    if (isTransactions(this._filter?.reportType)) {
-      return (
-        <railz-transactions-control
-          configuration={this.configuration}
-          filter={this.filter as RVFilterDate}
-          options={this.options}
-        />
-      );
-    }
-    return <span />;
+    // if (isGauge(this._filter?.reportType)) {
+    //   return (
+    //     <railz-gauge-chart
+    //       configuration={this.configuration}
+    //       filter={this.filter as RVFilterDate}
+    //       options={this.options}
+    //     />
+    //   );
+    // }
+
+    // if (isPie(this._filter?.reportType)) {
+    //   return (
+    //     <railz-pie-chart
+    //       configuration={this.configuration}
+    //       filter={this.filter as RVFilterDate}
+    //       options={this.options}
+    //     />
+    //   );
+    // }
+    // if (isStatements(this._filter?.reportType)) {
+    //   return (
+    //     <railz-statements-chart
+    //       configuration={this.configuration}
+    //       filter={this.filter as RVFilterFrequency}
+    //       options={this.options}
+    //     />
+    //   );
+    // }
+    // if (isTransactions(this._filter?.reportType)) {
+    //   return (
+    //     <railz-transactions-control
+    //       configuration={this.configuration}
+    //       filter={this.filter as RVFilterDate}
+    //       options={this.options}
+    //     />
+    //   );
+    // }
+    // return <span />;
   }
 }
