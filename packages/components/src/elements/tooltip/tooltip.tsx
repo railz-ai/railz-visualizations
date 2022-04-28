@@ -20,7 +20,7 @@ export class Tooltip {
   /**
    * Position of the Tooltip text when hovered
    */
-  @Prop() readonly tooltipStyle?: RVTooltipStyle = { position: 'bottom-right' };
+  @Prop() readonly tooltipStyle?: RVTooltipStyle = { position: 'bottom-center' };
 
   render(): HTMLElement {
     return (

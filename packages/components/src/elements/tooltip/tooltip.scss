@@ -41,13 +41,18 @@
 }
 
 .rv-tooltiptext.rv-bottom-right {
-  top: 18px;
+  top: 24px;
   left: -2px;
 }
 
 .rv-tooltiptext.rv-bottom-left {
-  top: 18px;
+  top: 24px;
   right: -2px;
+}
+
+.rv-tooltiptext.rv-bottom-center {
+  top: 24px;
+  left: -60px;
 }
 
 /* Show the tooltip text when you mouse over the tooltip container */

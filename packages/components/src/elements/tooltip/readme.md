@@ -4,11 +4,11 @@
 
 ## Properties
 
-| Property                   | Attribute      | Description                               | Type             | Default                        |
-| -------------------------- | -------------- | ----------------------------------------- | ---------------- | ------------------------------ |
-| `text`                     | `text`         | Question mark with a tooltip text         | `string`         | `''`                           |
-| `tooltipStyle`             | --             | Position of the Tooltip text when hovered | `RVTooltipStyle` | `{ position: 'bottom-right' }` |
-| `tooltipText` _(required)_ | `tooltip-text` |                                           | `string`         | `undefined`                    |
+| Property                   | Attribute      | Description                               | Type             | Default                         |
+| -------------------------- | -------------- | ----------------------------------------- | ---------------- | ------------------------------- |
+| `text`                     | `text`         | Question mark with a tooltip text         | `string`         | `''`                            |
+| `tooltipStyle`             | --             | Position of the Tooltip text when hovered | `RVTooltipStyle` | `{ position: 'bottom-center' }` |
+| `tooltipText` _(required)_ | `tooltip-text` |                                           | `string`         | `undefined`                     |
 
 ## Dependencies
 
