@@ -49,9 +49,9 @@
   "RV_ACCESSIBILITY_CHART_LOADING_INDICATOR": "Loading indicator check",
   "RV_DATE_DIFF_ERROR": "Unable to parse Start or End date, ensure they are in a right date format",
   "RV_ERROR_INVALID_BUSINESS_IDENTIFICATION": "Invalid business identification",
+  "RV_ERROR_NO_SERVICE_NAME": "No serviceName sent",
   "RV_ERROR_INVALID_REPORT_FREQUENCY": "Invalid Report Frequency",
   "RV_ERROR_INVALID_REPORT_TYPE": "Invalid Report Type",
-  "AS_OF": "As of",
   "FINANCIAL_RATIOS": "Financial Ratios",
   "FINANCIAL_RATIO_TOOLTIP_PROBABILITY_OF_DEFAULT": "Probability of default (PD) is the likelihood that a business will fail to pay back a debt over a specified period, usually one year. It can be applied to a variety of different risk management or credit analysis scenarios. ",
   "FINANCIAL_RATIO_TOOLTIP_DISTANCE_TO_DEFAULT": "Distance to default determines the level of default risk. This key ratio compares the business' net worth to its volatility.",
@@ -129,5 +129,9 @@
   "FINANCIAL_RATIO_SALES_MARGIN_INDEX": "Sales Growth Index",
   "FINANCIAL_RATIO_SGA_EXPENSES_INDEX": "Sales, General, and Administrative Expenses Index",
   "FINANCIAL_RATIO_GROSS_MARGIN_INDEX": "Gross Margin Index",
-  "FINANCIAL_RATIO_PAYABLES_CONVERSION_PERIOD": "Payables Conversion Period"
+  "FINANCIAL_RATIO_PAYABLES_CONVERSION_PERIOD": "Payables Conversion Period",
+  "RV_AS_OF": "As of",
+  "RV_TOOLTIP_EXPENSES": "The top 3 cumulative expenses incurred by the business based no the selected start date and end date. Percent change measures the expense change between the end date period and start date period.",
+  "RV_TOOLTIP_REVENUES": "The top 3 cumulative revenue sources based on the selected start date and end date. Percent change measures the revenue change between the end date period and start date period.",
+  "RV_TOOLTIP_RAILZ_SCORE": "The Railz credit score is based on proprietary models that rely on a business's financial statements to calculate the probability of default at a point in time."
 }

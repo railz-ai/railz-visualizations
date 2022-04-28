@@ -1,13 +1,13 @@
 {
   "name": "@railzai/railz-visualizations",
-  "version": "0.0.3-alpha.13",
+  "version": "0.0.3-alpha.17",
   "description": "Railz.ai Visualizations",
   "repository": {
     "type": "git",
     "url": "https://github.com/railz-ai/railz-visualizations"
   },
   "author": "Railz.ai",
-  "homepage": "https://docs.railz.ai/reference/visualization-sdk",
+  "homepage": "https://docs.railz.ai/docs/visualization-sdk-overview",
   "bugs": {
     "url": "https://github.com/railz-ai/railz-visualizations/issues"
   },

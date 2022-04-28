@@ -1,15 +1,14 @@
 <h1 align="center">
-  <a href="https://docs.railz.ai/reference/visualization-sdk">
+  <a href="https://docs.railz.ai/docs/visualization-sdk-overview">
     Railz Visualizations
   </a>
 </h1>
 
 <p align="center">
-  <img alt="Built With Stencil" src="https://img.shields.io/badge/-Built%20With%20Stencil-16161d.svg?logo=data%3Aimage%2Fsvg%2Bxml%3Bbase64%2CPD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE5LjIuMSwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA1MTIgNTEyOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI%2BCjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI%2BCgkuc3Qwe2ZpbGw6I0ZGRkZGRjt9Cjwvc3R5bGU%2BCjxwYXRoIGNsYXNzPSJzdDAiIGQ9Ik00MjQuNywzNzMuOWMwLDM3LjYtNTUuMSw2OC42LTkyLjcsNjguNkgxODAuNGMtMzcuOSwwLTkyLjctMzAuNy05Mi43LTY4LjZ2LTMuNmgzMzYuOVYzNzMuOXoiLz4KPHBhdGggY2xhc3M9InN0MCIgZD0iTTQyNC43LDI5Mi4xSDE4MC40Yy0zNy42LDAtOTIuNy0zMS05Mi43LTY4LjZ2LTMuNkgzMzJjMzcuNiwwLDkyLjcsMzEsOTIuNyw2OC42VjI5Mi4xeiIvPgo8cGF0aCBjbGFzcz0ic3QwIiBkPSJNNDI0LjcsMTQxLjdIODcuN3YtMy42YzAtMzcuNiw1NC44LTY4LjYsOTIuNy02OC42SDMzMmMzNy45LDAsOTIuNywzMC43LDkyLjcsNjguNlYxNDEuN3oiLz4KPC9zdmc%2BCg%3D%3D&colorA=16161d&style=flat-square" alt="Latest Version on NPM"/></a>
+  <img alt="Built With Stencil" src="https://img.shields.io/badge/-Built%20With%20Stencil-16161d.svg?logo=data%3Aimage%2Fsvg%2Bxml%3Bbase64%2CPD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE5LjIuMSwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA1MTIgNTEyOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI%2BCjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI%2BCgkuc3Qwe2ZpbGw6I0ZGRkZGRjt9Cjwvc3R5bGU%2BCjxwYXRoIGNsYXNzPSJzdDAiIGQ9Ik00MjQuNywzNzMuOWMwLDM3LjYtNTUuMSw2OC42LTkyLjcsNjguNkgxODAuNGMtMzcuOSwwLTkyLjctMzAuNy05Mi43LTY4LjZ2LTMuNmgzMzYuOVYzNzMuOXoiLz4KPHBhdGggY2xhc3M9InN0MCIgZD0iTTQyNC43LDI5Mi4xSDE4MC40Yy0zNy42LDAtOTIuNy0zMS05Mi43LTY4LjZ2LTMuNkgzMzJjMzcuNiwwLDkyLjcsMzEsOTIuNyw2OC42VjI5Mi4xeiIvPgo8cGF0aCBjbGFzcz0ic3QwIiBkPSJNNDI0LjcsMTQxLjdIODcuN3YtMy42YzAtMzcuNiw1NC44LTY4LjYsOTIuNy02OC42SDMzMmMzNy45LDAsOTIuNywzMC43LDkyLjcsNjguNlYxNDEuN3oiLz4KPC9zdmc%2BCg%3D%3D&colorA=16161d&style=flat-square"/></a>
   <a href="https://www.npmjs.com/package/@railzai/railz-visualizations"><img src="https://img.shields.io/npm/v/@railzai/railz-visualizations" alt="Latest Version on NPM"/></a>
   <a href="https://github.com/railz-ai/railz-visualizations/blob/master/LICENSE"><img src="https://img.shields.io/npm/l/@railzai/railz-visualizations" alt="Software License"/></a>
   <img src="https://badgen.net/bundlephobia/dependency-count/@railzai/railz-visualizations" alt="Tree shaking"/>
-  <img src="https://badgen.net/bundlephobia/tree-shaking/@railzai/railz-visualizations" alt="Tree shaking"/>
   <a href="https://opensource.org/licenses/MIT">
       <img src="https://img.shields.io/badge/License-MIT-black.svg?style=flat-square" alt="License MIT" />
   </a>
@@ -20,7 +19,7 @@
 <h2 align="center">Powerful charting components built with <a href="https://stenciljs.com" target="_blank">StencilJS</a> and <a href="https://www.highcharts.com/" target="_blank">Highcharts</a> based on <a href="https://railz.ai" target="_blank">Railz.ai</a> dashboard.</h2>
 
 <p align="center">
-  <a href="https://docs.railz.ai/reference/visualization-sdk">Docs</a> •
+  <a href="https://docs.railz.ai/docs/visualization-sdk-overview">Docs</a> •
   <a href="#key-features-of-railz-visualizations">Key Features</a> •
   <a href="#visualizations-usage">How To Use</a> •
   <a href="#installation">Installation</a> •
@@ -66,7 +65,7 @@ The Railz Visualization components helps to build your dashboard easily with dat
 
 The library is published as a [scoped NPM package](https://docs.npmjs.com/misc/scope) in the [NPMJS Railz account](https://www.npmjs.com/org/railzai).
 
-[Check our docs on detailed instruction guide](https://docs.railz.ai/reference/getting-started).
+[Check our docs on detailed instruction guide](https://docs.railz.ai/docs/visualization-sdk-quickstart).
 
 With NPM:
 
@@ -80,11 +79,6 @@ With Yarn:
 yarn add @railzai/railz-visualizations
 ```
 
-## Framework
-
-- [Angular](https://docs.railz.ai/reference/getting-started#angular);
-- [React](https://docs.railz.ai/reference/getting-started#react);
-
 ## Visualizations Usage
 
 All you have to do just to import the core component on the page and pass its parameters to access it properties as an element.
@@ -97,8 +91,8 @@ Setup the process of receiving an access_token from the Railz Authentication API
 
 #### Framework Specific Installation
 
-- [Angular](https://docs.railz.ai/reference/getting-started#angular);
-- [React](https://docs.railz.ai/reference/getting-started#react);
+- [Angular](https://www.npmjs.com/package/@railzai/railz-visualizations-angular);
+- [React](https://www.npmjs.com/package/@railzai/railz-visualizations-react);
 
 ### Framework usage React example
 
