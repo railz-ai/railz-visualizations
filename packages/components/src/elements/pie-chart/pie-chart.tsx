@@ -21,6 +21,7 @@ import {
   RVPieChartSummary,
   RVRevenueExpensesSummary,
   RVFilterDate,
+  RVReportTypes,
 } from '../../types';
 import { errorLog } from '../../services/logger';
 
@@ -211,13 +212,21 @@ export class PieChart {
   };
 
   render(): HTMLElement {
+    const TranslationMapping = {
+      [RVReportTypes.EXPENSES]: 'EXPENSES',
+      [RVReportTypes.REVENUE]: 'REVENUES',
+    };
     return (
       <div class="railz-container" style={this._options?.container?.style}>
         {this._options?.title ? (
           <div>
             <p class="railz-title" style={this._options?.title?.style}>
               {this._options?.title?.text || ''}{' '}
-              <railz-tooltip tooltipText={`RV_TOOLTIP_${this._filter?.reportType.toUpperCase()}`} />
+              <railz-tooltip
+                tooltipText={
+                  Translations[`RV_TOOLTIP_${TranslationMapping[this._filter?.reportType]}`]
+                }
+              />
             </p>
           </div>
         ) : null}
