@@ -24,7 +24,7 @@
   background-color: rgb(97 97 97 / 92%);
   color: #fff;
   overflow-wrap: break-word;
-  text-align: center;
+  text-align: left;
   font-size: 0.6875rem;
   font-weight: 500;
 }
@@ -41,13 +41,18 @@
 }
 
 .rv-tooltiptext.rv-bottom-right {
-  top: 18px;
+  top: 24px;
   left: -2px;
 }
 
 .rv-tooltiptext.rv-bottom-left {
-  top: 18px;
+  top: 24px;
   right: -2px;
+}
+
+.rv-tooltiptext.rv-bottom-center {
+  top: 24px;
+  left: -60px;
 }
 
 /* Show the tooltip text when you mouse over the tooltip container */
