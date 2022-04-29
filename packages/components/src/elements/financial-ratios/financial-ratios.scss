@@ -42,12 +42,11 @@
   border-bottom: thin solid #e0e0e0;
   padding-bottom: 8px;
   justify-content: space-between;
+  overflow: visible;
 
   &:last-child {
     border-bottom: 'none';
   }
-
-  overflow: auto;
 }
 
 .rv-financial-ratio-info {
