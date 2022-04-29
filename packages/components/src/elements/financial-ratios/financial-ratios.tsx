@@ -50,6 +50,7 @@ export class FinancialRatios {
   @State() private _options: RVOptions;
   @State() private _summary: RVFinancialRatioSummary;
   @State() private _selected: RVFinancialRatioItem;
+  @State() private _selectedKey = '';
   @State() private error: string;
   @State() private errorStatusCode: number;
 
@@ -133,6 +134,7 @@ export class FinancialRatios {
         if (!isEmpty(this._summary)) {
           const firstKey = Object.keys(this._summary)[0];
           this._selected = this._summary[firstKey] as unknown as RVFinancialRatioItem;
+          this._selectedKey = firstKey;
         } else {
           this.error = Translations.NOT_ABLE_TO_RETRIEVE_REPORT_DATA;
           this.errorStatusCode = reportData.error?.statusCode;
@@ -234,13 +236,19 @@ export class FinancialRatios {
 
     const SelectElement = (): HTMLElement => {
       const handleSelect = (event): void => {
-        this._selected = this._summary[event.target.value] as unknown as RVFinancialRatioItem;
+        this._selectedKey = event.target.value;
+        this._selected = this._summary[this._selectedKey] as unknown as RVFinancialRatioItem;
       };
+
       return (
         // eslint-disable-next-line react/jsx-no-bind
         <select onInput={handleSelect} class="rv-select">
           {!isEmpty(this._summary) &&
-            Object.keys(this._summary)?.map((key: string) => <option value={key}>{key}</option>)}
+            Object.keys(this._summary)?.map((key: string) => (
+              <option value={key} class={`${this._selectedKey === key ? 'selected' : ''}`}>
+                {key}
+              </option>
+            ))}
         </select>
       );
     };
