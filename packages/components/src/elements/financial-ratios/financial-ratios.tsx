@@ -188,7 +188,10 @@ export class FinancialRatios {
             <div class="rv-ratio-name">
               {!isEmpty(tooltipText) && (
                 <div class="rv-ratio-tooltip">
-                  <railz-tooltip tooltipText={tooltipText} />
+                  <railz-tooltip
+                    tooltipText={tooltipText}
+                    tooltipStyle={{ position: 'bottom-right' }}
+                  />
                 </div>
               )}
               <div>{translation(key)}</div>
