@@ -152,6 +152,32 @@ export class RailzProgressBar {
   }
 }
 
+export declare interface RailzSelect extends Components.RailzSelect {
+  /**
+   *
+   */
+  selectedItem: EventEmitter<CustomEvent<number>>;
+}
+
+@ProxyCmp({
+  defineCustomElementFn: undefined,
+  inputs: ['items', 'selectStyle'],
+})
+@Component({
+  selector: 'railz-select',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  inputs: ['items', 'selectStyle'],
+})
+export class RailzSelect {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['selectedItem']);
+  }
+}
+
 export declare interface RailzSparklineChart extends Components.RailzSparklineChart {}
 
 @ProxyCmp({

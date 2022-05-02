@@ -1,3 +1,5 @@
+/* eslint-disable react/jsx-no-bind */
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Component, h, Prop, State, Watch } from '@stencil/core';
 import { isEmpty, isEqual } from 'lodash-es';
@@ -20,7 +22,6 @@ import {
   RVOptions,
 } from '../../types';
 import { errorLog } from '../../services/logger';
-
 import { roundNumber } from '../../helpers/utils';
 
 import { getReportData } from './financial-ratios.utils';
@@ -50,7 +51,6 @@ export class FinancialRatios {
   @State() private _options: RVOptions;
   @State() private _summary: RVFinancialRatioSummary;
   @State() private _selected: RVFinancialRatioItem;
-  @State() private _selectedKey = '';
   @State() private error: string;
   @State() private errorStatusCode: number;
 
@@ -118,6 +118,12 @@ export class FinancialRatios {
     await this.validateParams(this.configuration, this.filter, this.options, triggerRequest);
   };
 
+  private handleSelected = (selectedIndex: number): void => {
+    const summaryKeys = Object.keys(this._summary);
+    const selectedKey = summaryKeys[selectedIndex];
+    this._selected = this._summary[selectedKey] as unknown as RVFinancialRatioItem;
+  };
+
   /**
    * Request report data based on filter and configuration param
    */
@@ -132,9 +138,7 @@ export class FinancialRatios {
       if (reportData?.data) {
         this._summary = reportData?.data as RVFinancialRatioSummary;
         if (!isEmpty(this._summary)) {
-          const firstKey = Object.keys(this._summary)[0];
-          this._selected = this._summary[firstKey] as unknown as RVFinancialRatioItem;
-          this._selectedKey = firstKey;
+          this.handleSelected(0);
         } else {
           this.error = Translations.NOT_ABLE_TO_RETRIEVE_REPORT_DATA;
           this.errorStatusCode = reportData.error?.statusCode;
@@ -235,21 +239,18 @@ export class FinancialRatios {
     );
 
     const SelectElement = (): HTMLElement => {
-      const handleSelect = (event): void => {
-        this._selectedKey = event.target.value;
-        this._selected = this._summary[this._selectedKey] as unknown as RVFinancialRatioItem;
-      };
+      const items = Object.keys(this._summary).map(
+        (item) => Translations[`RV_FINANCIAL_RATIO_TYPE_${item.toUpperCase()}`],
+      );
 
       return (
-        // eslint-disable-next-line react/jsx-no-bind
-        <select onInput={handleSelect} class="rv-select">
-          {!isEmpty(this._summary) &&
-            Object.keys(this._summary)?.map((key: string) => (
-              <option value={key} class={`${this._selectedKey === key ? 'selected' : ''}`}>
-                {key}
-              </option>
-            ))}
-        </select>
+        <railz-select
+          items={items}
+          selectStyle={{ position: 'left' }}
+          onSelectedItem={(event) => {
+            this.handleSelected(event.detail);
+          }}
+        />
       );
     };
 
@@ -257,7 +258,7 @@ export class FinancialRatios {
       <div class="rv-container" style={this._options?.container?.style}>
         <div class="rv-header-container">
           <TitleElement />
-          <SelectElement />
+          {!isEmpty(this._summary) && <SelectElement />}
         </div>
         {this.renderMain()}
       </div>

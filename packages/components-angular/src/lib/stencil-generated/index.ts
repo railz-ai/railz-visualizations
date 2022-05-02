@@ -8,6 +8,7 @@ export const DIRECTIVES = [
   d.RailzPercentage,
   d.RailzPieChart,
   d.RailzProgressBar,
+  d.RailzSelect,
   d.RailzSparklineChart,
   d.RailzStatementsChart,
   d.RailzTooltip,

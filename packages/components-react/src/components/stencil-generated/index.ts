@@ -36,6 +36,10 @@ export const RailzProgressBar = /*@__PURE__*/ createReactComponent<
   JSX.RailzProgressBar,
   HTMLRailzProgressBarElement
 >('railz-progress-bar');
+export const RailzSelect = /*@__PURE__*/ createReactComponent<
+  JSX.RailzSelect,
+  HTMLRailzSelectElement
+>('railz-select');
 export const RailzSparklineChart = /*@__PURE__*/ createReactComponent<
   JSX.RailzSparklineChart,
   HTMLRailzSparklineChartElement

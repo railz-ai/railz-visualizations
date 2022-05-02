@@ -15,6 +15,7 @@ import {
   RVOptions,
   RVOptionsBarStyle,
   RVPeriodData,
+  RVSelectStyle,
   RVTooltipStyle,
 } from './types';
 export namespace Components {
@@ -43,6 +44,20 @@ export namespace Components {
      * Width of the SVG Error Indicator
      */
     width?: string;
+  }
+  interface RailzFinancialRatios {
+    /**
+     * Configuration information like authentication configuration
+     */
+    configuration: RVConfiguration;
+    /**
+     * Filter information to query the backend APIs
+     */
+    filter: RVFilterDate;
+    /**
+     * For whitelabeling styling
+     */
+    options: RVOptions;
   }
   interface RailzGaugeChart {
     /**
@@ -122,6 +137,16 @@ export namespace Components {
      */
     unpaidAmount: number;
   }
+  interface RailzSelect {
+    /**
+     * The items to be listed
+     */
+    items: string[];
+    /**
+     * Position of the Select text when opened
+     */
+    selectStyle?: RVSelectStyle;
+  }
   interface RailzSparklineChart {
     /**
      * Data to display for sparkline
@@ -181,26 +206,19 @@ export namespace Components {
      */
     options: RVOptions;
   }
-  interface RvFinancialRatios {
-    /**
-     * Configuration information like authentication configuration
-     */
-    configuration: RVConfiguration;
-    /**
-     * Filter information to query the backend APIs
-     */
-    filter: RVFilterDate;
-    /**
-     * For whitelabeling styling
-     */
-    options: RVOptions;
-  }
 }
 declare global {
   interface HTMLRailzErrorImageElement extends Components.RailzErrorImage, HTMLStencilElement {}
   var HTMLRailzErrorImageElement: {
     prototype: HTMLRailzErrorImageElement;
     new (): HTMLRailzErrorImageElement;
+  };
+  interface HTMLRailzFinancialRatiosElement
+    extends Components.RailzFinancialRatios,
+      HTMLStencilElement {}
+  var HTMLRailzFinancialRatiosElement: {
+    prototype: HTMLRailzFinancialRatiosElement;
+    new (): HTMLRailzFinancialRatiosElement;
   };
   interface HTMLRailzGaugeChartElement extends Components.RailzGaugeChart, HTMLStencilElement {}
   var HTMLRailzGaugeChartElement: {
@@ -226,6 +244,11 @@ declare global {
   var HTMLRailzProgressBarElement: {
     prototype: HTMLRailzProgressBarElement;
     new (): HTMLRailzProgressBarElement;
+  };
+  interface HTMLRailzSelectElement extends Components.RailzSelect, HTMLStencilElement {}
+  var HTMLRailzSelectElement: {
+    prototype: HTMLRailzSelectElement;
+    new (): HTMLRailzSelectElement;
   };
   interface HTMLRailzSparklineChartElement
     extends Components.RailzSparklineChart,
@@ -260,24 +283,20 @@ declare global {
     prototype: HTMLRailzVisualizationsElement;
     new (): HTMLRailzVisualizationsElement;
   };
-  interface HTMLRvFinancialRatiosElement extends Components.RvFinancialRatios, HTMLStencilElement {}
-  var HTMLRvFinancialRatiosElement: {
-    prototype: HTMLRvFinancialRatiosElement;
-    new (): HTMLRvFinancialRatiosElement;
-  };
   interface HTMLElementTagNameMap {
     'railz-error-image': HTMLRailzErrorImageElement;
+    'railz-financial-ratios': HTMLRailzFinancialRatiosElement;
     'railz-gauge-chart': HTMLRailzGaugeChartElement;
     'railz-loading': HTMLRailzLoadingElement;
     'railz-percentage': HTMLRailzPercentageElement;
     'railz-pie-chart': HTMLRailzPieChartElement;
     'railz-progress-bar': HTMLRailzProgressBarElement;
+    'railz-select': HTMLRailzSelectElement;
     'railz-sparkline-chart': HTMLRailzSparklineChartElement;
     'railz-statements-chart': HTMLRailzStatementsChartElement;
     'railz-tooltip': HTMLRailzTooltipElement;
     'railz-transactions-control': HTMLRailzTransactionsControlElement;
     'railz-visualizations': HTMLRailzVisualizationsElement;
-    'rv-financial-ratios': HTMLRvFinancialRatiosElement;
   }
 }
 declare namespace LocalJSX {
@@ -306,6 +325,20 @@ declare namespace LocalJSX {
      * Width of the SVG Error Indicator
      */
     width?: string;
+  }
+  interface RailzFinancialRatios {
+    /**
+     * Configuration information like authentication configuration
+     */
+    configuration: RVConfiguration;
+    /**
+     * Filter information to query the backend APIs
+     */
+    filter: RVFilterDate;
+    /**
+     * For whitelabeling styling
+     */
+    options?: RVOptions;
   }
   interface RailzGaugeChart {
     /**
@@ -385,6 +418,17 @@ declare namespace LocalJSX {
      */
     unpaidAmount?: number;
   }
+  interface RailzSelect {
+    /**
+     * The items to be listed
+     */
+    items?: string[];
+    onSelectedItem?: (event: CustomEvent<number>) => void;
+    /**
+     * Position of the Select text when opened
+     */
+    selectStyle?: RVSelectStyle;
+  }
   interface RailzSparklineChart {
     /**
      * Data to display for sparkline
@@ -444,33 +488,20 @@ declare namespace LocalJSX {
      */
     options?: RVOptions;
   }
-  interface RvFinancialRatios {
-    /**
-     * Configuration information like authentication configuration
-     */
-    configuration: RVConfiguration;
-    /**
-     * Filter information to query the backend APIs
-     */
-    filter: RVFilterDate;
-    /**
-     * For whitelabeling styling
-     */
-    options?: RVOptions;
-  }
   interface IntrinsicElements {
     'railz-error-image': RailzErrorImage;
+    'railz-financial-ratios': RailzFinancialRatios;
     'railz-gauge-chart': RailzGaugeChart;
     'railz-loading': RailzLoading;
     'railz-percentage': RailzPercentage;
     'railz-pie-chart': RailzPieChart;
     'railz-progress-bar': RailzProgressBar;
+    'railz-select': RailzSelect;
     'railz-sparkline-chart': RailzSparklineChart;
     'railz-statements-chart': RailzStatementsChart;
     'railz-tooltip': RailzTooltip;
     'railz-transactions-control': RailzTransactionsControl;
     'railz-visualizations': RailzVisualizations;
-    'rv-financial-ratios': RvFinancialRatios;
   }
 }
 export { LocalJSX as JSX };
@@ -479,6 +510,8 @@ declare module '@stencil/core' {
     interface IntrinsicElements {
       'railz-error-image': LocalJSX.RailzErrorImage &
         JSXBase.HTMLAttributes<HTMLRailzErrorImageElement>;
+      'railz-financial-ratios': LocalJSX.RailzFinancialRatios &
+        JSXBase.HTMLAttributes<HTMLRailzFinancialRatiosElement>;
       'railz-gauge-chart': LocalJSX.RailzGaugeChart &
         JSXBase.HTMLAttributes<HTMLRailzGaugeChartElement>;
       'railz-loading': LocalJSX.RailzLoading & JSXBase.HTMLAttributes<HTMLRailzLoadingElement>;
@@ -487,6 +520,7 @@ declare module '@stencil/core' {
       'railz-pie-chart': LocalJSX.RailzPieChart & JSXBase.HTMLAttributes<HTMLRailzPieChartElement>;
       'railz-progress-bar': LocalJSX.RailzProgressBar &
         JSXBase.HTMLAttributes<HTMLRailzProgressBarElement>;
+      'railz-select': LocalJSX.RailzSelect & JSXBase.HTMLAttributes<HTMLRailzSelectElement>;
       'railz-sparkline-chart': LocalJSX.RailzSparklineChart &
         JSXBase.HTMLAttributes<HTMLRailzSparklineChartElement>;
       'railz-statements-chart': LocalJSX.RailzStatementsChart &
@@ -496,8 +530,6 @@ declare module '@stencil/core' {
         JSXBase.HTMLAttributes<HTMLRailzTransactionsControlElement>;
       'railz-visualizations': LocalJSX.RailzVisualizations &
         JSXBase.HTMLAttributes<HTMLRailzVisualizationsElement>;
-      'rv-financial-ratios': LocalJSX.RvFinancialRatios &
-        JSXBase.HTMLAttributes<HTMLRvFinancialRatiosElement>;
     }
   }
 }

@@ -148,6 +148,16 @@ export interface RVTooltipStyle {
   position?: 'bottom-center' | 'bottom-left' | 'bottom-right' | 'center-left' | 'center-right';
 }
 
+/**
+ * RVSelectStyle: Object to cover basic styling of select
+ */
+export interface RVSelectStyle {
+  /**
+   * Position where the select options will appear
+   */
+  position?: 'center' | 'left' | 'right';
+}
+
 export interface RVOptions {
   /**
    * container: object to cover the bounding box of the chart
