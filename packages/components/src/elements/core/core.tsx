@@ -5,7 +5,14 @@ import { isEmpty, isEqual } from 'lodash-es';
 
 import { isGauge, isPie, isStatements, isTransactions } from '../../helpers/utils';
 
-import { RVConfiguration, RVFilter, RVFilterDate, RVFilterFrequency, RVOptions } from '../../types';
+import {
+  RVConfiguration,
+  RVFilter,
+  RVFilterDate,
+  RVFilterFrequency,
+  RVOptions,
+  RVReportTypes,
+} from '../../types';
 import { getConfiguration, getFilter } from '../../helpers/chart.utils';
 import { ConfigurationInstance } from '../../services/configuration';
 
@@ -79,6 +86,16 @@ export class Core {
   render(): HTMLElement {
     if (!isEmpty(this.errorStatusCode)) {
       return <railz-error-image statusCode={this.errorStatusCode || 500} />;
+    }
+
+    if (RVReportTypes.FINANCIAL_RATIO === this._filter?.reportType) {
+      return (
+        <railz-financial-ratios
+          configuration={this.configuration}
+          filter={this.filter as RVFilterDate}
+          options={this.options}
+        />
+      );
     }
 
     if (isGauge(this._filter?.reportType)) {

@@ -16,6 +16,7 @@
 
 ### Used by
 
+- [railz-financial-ratios](../financial-ratios)
 - [railz-gauge-chart](../gauge-chart)
 - [railz-pie-chart](../pie-chart)
 - [railz-statements-chart](../statements-chart)
@@ -25,6 +26,7 @@
 
 ```mermaid
 graph TD;
+  railz-financial-ratios --> railz-loading
   railz-gauge-chart --> railz-loading
   railz-pie-chart --> railz-loading
   railz-statements-chart --> railz-loading

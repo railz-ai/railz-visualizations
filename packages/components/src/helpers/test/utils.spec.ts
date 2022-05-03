@@ -185,7 +185,6 @@ describe('Utils Helper Tests', () => {
       test('returns empty when the type has no translation', async () => {
         expect(getTitleByReportType(RVReportTypes.BANK_ACCOUNT)).toEqual('');
         expect(getTitleByReportType(RVReportTypes.CREDIT_SCORE)).toEqual('');
-        expect(getTitleByReportType(RVReportTypes.FINANCIAL_RATIO)).toEqual('');
       });
     });
   });

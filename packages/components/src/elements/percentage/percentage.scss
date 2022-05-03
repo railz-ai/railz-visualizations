@@ -1,0 +1,14 @@
+.railz-percentage {
+  line-height: 1.5;
+  display: flex;
+  font-size: 0.877em;
+  font-weight: 500;
+
+  .positive {
+    color: #003032;
+  }
+
+  .negative {
+    color: #7d0000;
+  }
+}
