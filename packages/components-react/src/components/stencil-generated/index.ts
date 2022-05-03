@@ -12,6 +12,10 @@ export const RailzErrorImage = /*@__PURE__*/ createReactComponent<
   JSX.RailzErrorImage,
   HTMLRailzErrorImageElement
 >('railz-error-image');
+export const RailzFinancialRatios = /*@__PURE__*/ createReactComponent<
+  JSX.RailzFinancialRatios,
+  HTMLRailzFinancialRatiosElement
+>('railz-financial-ratios');
 export const RailzGaugeChart = /*@__PURE__*/ createReactComponent<
   JSX.RailzGaugeChart,
   HTMLRailzGaugeChartElement
@@ -20,6 +24,10 @@ export const RailzLoading = /*@__PURE__*/ createReactComponent<
   JSX.RailzLoading,
   HTMLRailzLoadingElement
 >('railz-loading');
+export const RailzPercentage = /*@__PURE__*/ createReactComponent<
+  JSX.RailzPercentage,
+  HTMLRailzPercentageElement
+>('railz-percentage');
 export const RailzPieChart = /*@__PURE__*/ createReactComponent<
   JSX.RailzPieChart,
   HTMLRailzPieChartElement
@@ -28,6 +36,14 @@ export const RailzProgressBar = /*@__PURE__*/ createReactComponent<
   JSX.RailzProgressBar,
   HTMLRailzProgressBarElement
 >('railz-progress-bar');
+export const RailzSelect = /*@__PURE__*/ createReactComponent<
+  JSX.RailzSelect,
+  HTMLRailzSelectElement
+>('railz-select');
+export const RailzSparklineChart = /*@__PURE__*/ createReactComponent<
+  JSX.RailzSparklineChart,
+  HTMLRailzSparklineChartElement
+>('railz-sparkline-chart');
 export const RailzStatementsChart = /*@__PURE__*/ createReactComponent<
   JSX.RailzStatementsChart,
   HTMLRailzStatementsChartElement

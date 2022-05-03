@@ -156,7 +156,7 @@ export type RVReportStatementSummary =
   | RVBalanceSheetSummary[]
   | RVCashflowSummary[];
 
-export class RVReportSummaryResponse {
+export interface RVReportSummaryResponse {
   meta: RVReportMetaResponse;
   data: RVReportSummary;
 }
@@ -173,7 +173,7 @@ export interface RVErrorResponse {
   statusCode?: number;
 }
 
-export class RVReportSummaryApiResponse {
+export interface RVReportSummaryApiResponse {
   error?: RVErrorResponse;
   data?: RVReportSummaryResponse;
   status?: number;
@@ -189,25 +189,31 @@ export interface RVPieChartSummary {
   subSections: any[];
 }
 
-export class RVFormattedGaugeResponse {
+export interface RVFormattedGaugeResponse {
   error?: RVErrorResponse;
   data?: RVGaugeChartSummary;
   status?: number;
 }
 
-export class RVFormattedPieResponse {
+export interface RVFormattedPieResponse {
   error?: RVErrorResponse;
   data?: RVPieChartSummary;
   status?: number;
 }
 
-export class RVFormattedStatementResponse {
+export interface RVFormattedFinancialRatioResponse {
+  error?: RVErrorResponse;
+  data?: RVFinancialRatioSummary;
+  status?: number;
+}
+
+export interface RVFormattedStatementResponse {
   error?: RVErrorResponse;
   data?: RVReportStatementSummary;
   status?: number;
 }
 
-export class RVFormattedTransactionResponse {
+export interface RVFormattedTransactionResponse {
   error?: RVErrorResponse;
   data?: RVBillInvoiceSummary;
   status?: number;

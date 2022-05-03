@@ -14,6 +14,7 @@
 
 ### Used by
 
+- [railz-financial-ratios](../financial-ratios)
 - [railz-gauge-chart](../gauge-chart)
 - [railz-pie-chart](../pie-chart)
 
@@ -21,6 +22,7 @@
 
 ```mermaid
 graph TD;
+  railz-financial-ratios --> railz-tooltip
   railz-gauge-chart --> railz-tooltip
   railz-pie-chart --> railz-tooltip
   style railz-tooltip fill:#f9f,stroke:#333,stroke-width:4px

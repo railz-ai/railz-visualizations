@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Component, h, Prop, State, Watch } from '@stencil/core';
 import Highcharts from 'highcharts';
-import exporting from 'highcharts/modules/exporting';
 import indicators from 'highcharts/indicators/indicators';
 import trendline from 'highcharts/indicators/trendline';
 import highchartsAccessibility from 'highcharts/modules/accessibility';
@@ -32,7 +31,6 @@ import { ConfigurationInstance } from '../../services/configuration';
 
 import { formatData, getReportData } from './statements-chart.utils';
 
-exporting(Highcharts);
 indicators(Highcharts);
 trendline(Highcharts);
 highchartsAccessibility(Highcharts);
