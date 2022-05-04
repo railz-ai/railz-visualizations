@@ -1,0 +1,40 @@
+.railz-bank-accounts-ul {
+  * {
+    font-family: Inter, Roboto, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue',
+      Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+  }
+
+  list-style-type: none;
+  font-weight: 400;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.railz-bank-accounts-ul-title {
+  color: black;
+  margin-top: 8px;
+  line-height: 28px;
+}
+
+.railz-bank-accounts-item-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.railz-bank-accounts-item-name {
+  color: #424242;
+  font-size: 14px;
+}
+
+.railz-bank-accounts-item-dot {
+  margin: 0 16px 8px;
+  display: flex;
+  flex-grow: 1;
+  border-bottom: 1px dashed #9e9e9e;
+}
+
+.railz-bank-accounts-item-value {
+  text-align: end;
+  font-weight: 500;
+}

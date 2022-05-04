@@ -19,6 +19,7 @@ import {
   RVTooltipStyle,
 } from './types';
 export namespace Components {
+  interface RailzBankAccounts {}
   interface RailzErrorImage {
     /**
      * Fill color of the svg image representing a status code
@@ -208,6 +209,11 @@ export namespace Components {
   }
 }
 declare global {
+  interface HTMLRailzBankAccountsElement extends Components.RailzBankAccounts, HTMLStencilElement {}
+  var HTMLRailzBankAccountsElement: {
+    prototype: HTMLRailzBankAccountsElement;
+    new (): HTMLRailzBankAccountsElement;
+  };
   interface HTMLRailzErrorImageElement extends Components.RailzErrorImage, HTMLStencilElement {}
   var HTMLRailzErrorImageElement: {
     prototype: HTMLRailzErrorImageElement;
@@ -284,6 +290,7 @@ declare global {
     new (): HTMLRailzVisualizationsElement;
   };
   interface HTMLElementTagNameMap {
+    'railz-bank-accounts': HTMLRailzBankAccountsElement;
     'railz-error-image': HTMLRailzErrorImageElement;
     'railz-financial-ratios': HTMLRailzFinancialRatiosElement;
     'railz-gauge-chart': HTMLRailzGaugeChartElement;
@@ -300,6 +307,7 @@ declare global {
   }
 }
 declare namespace LocalJSX {
+  interface RailzBankAccounts {}
   interface RailzErrorImage {
     /**
      * Fill color of the svg image representing a status code
@@ -489,6 +497,7 @@ declare namespace LocalJSX {
     options?: RVOptions;
   }
   interface IntrinsicElements {
+    'railz-bank-accounts': RailzBankAccounts;
     'railz-error-image': RailzErrorImage;
     'railz-financial-ratios': RailzFinancialRatios;
     'railz-gauge-chart': RailzGaugeChart;
@@ -508,6 +517,8 @@ export { LocalJSX as JSX };
 declare module '@stencil/core' {
   export namespace JSX {
     interface IntrinsicElements {
+      'railz-bank-accounts': LocalJSX.RailzBankAccounts &
+        JSXBase.HTMLAttributes<HTMLRailzBankAccountsElement>;
       'railz-error-image': LocalJSX.RailzErrorImage &
         JSXBase.HTMLAttributes<HTMLRailzErrorImageElement>;
       'railz-financial-ratios': LocalJSX.RailzFinancialRatios &

@@ -88,6 +88,10 @@ export class Core {
       return <railz-error-image statusCode={this.errorStatusCode || 500} />;
     }
 
+    if (RVReportTypes.BANK_ACCOUNT === this._filter?.reportType) {
+      return <railz-bank-accounts />;
+    }
+
     if (RVReportTypes.FINANCIAL_RATIO === this._filter?.reportType) {
       return (
         <railz-financial-ratios
