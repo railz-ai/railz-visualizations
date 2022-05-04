@@ -190,6 +190,14 @@ describe('Chart Utils Helper', () => {
         };
         expect(validateBusinessParams(filter)).toEqual(false);
       });
+      test('returns false if there is not businessName/serviceName', async () => {
+        const filter: RVFilter = {
+          reportType: RVReportTypes.BANK_ACCOUNT,
+          businessName: '',
+          serviceName: undefined,
+        };
+        expect(validateBusinessParams(filter)).toEqual(false);
+      });
       test('returns false if there is not businessName', async () => {
         const filter: RVFilter = {
           reportType: RVReportTypes.BANK_ACCOUNT,
@@ -207,6 +215,15 @@ describe('Chart Utils Helper', () => {
           serviceName: RVAccountingProviders.QUICKBOOKS,
         };
         expect(validateBusinessParams(filter)).toEqual(true);
+      });
+
+      test('returns false for businessName with not serviceName', async () => {
+        const filter: RVFilter = {
+          reportType: RVReportTypes.BANK_ACCOUNT,
+          businessName: 'businessNames',
+          serviceName: undefined,
+        };
+        expect(validateBusinessParams(filter)).toEqual(false);
       });
 
       test('returns true for connectionId', async () => {
