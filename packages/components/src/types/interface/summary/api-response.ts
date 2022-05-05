@@ -207,6 +207,12 @@ export interface RVFormattedFinancialRatioResponse {
   status?: number;
 }
 
+export interface RVFormattedBankAccountsResponse {
+  error?: RVErrorResponse;
+  data?: RVBankAccountsReportSummary;
+  status?: number;
+}
+
 export interface RVFormattedStatementResponse {
   error?: RVErrorResponse;
   data?: RVReportStatementSummary;

@@ -19,7 +19,20 @@ import {
   RVTooltipStyle,
 } from './types';
 export namespace Components {
-  interface RailzBankAccounts {}
+  interface RailzBankAccounts {
+    /**
+     * Configuration information like authentication configuration
+     */
+    configuration: RVConfiguration;
+    /**
+     * Filter information to query the backend APIs
+     */
+    filter: RVFilterDate;
+    /**
+     * For whitelabeling styling
+     */
+    options: RVOptions;
+  }
   interface RailzErrorImage {
     /**
      * Fill color of the svg image representing a status code
@@ -307,7 +320,20 @@ declare global {
   }
 }
 declare namespace LocalJSX {
-  interface RailzBankAccounts {}
+  interface RailzBankAccounts {
+    /**
+     * Configuration information like authentication configuration
+     */
+    configuration: RVConfiguration;
+    /**
+     * Filter information to query the backend APIs
+     */
+    filter: RVFilterDate;
+    /**
+     * For whitelabeling styling
+     */
+    options?: RVOptions;
+  }
   interface RailzErrorImage {
     /**
      * Fill color of the svg image representing a status code

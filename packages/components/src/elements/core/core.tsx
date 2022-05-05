@@ -89,7 +89,13 @@ export class Core {
     }
 
     if (RVReportTypes.BANK_ACCOUNT === this._filter?.reportType) {
-      return <railz-bank-accounts />;
+      return (
+        <railz-bank-accounts
+          configuration={this.configuration}
+          filter={this.filter as RVFilterDate}
+          options={this.options}
+        />
+      );
     }
 
     if (RVReportTypes.FINANCIAL_RATIO === this._filter?.reportType) {
