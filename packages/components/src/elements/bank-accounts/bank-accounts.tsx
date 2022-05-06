@@ -29,7 +29,7 @@ import { getReportData } from './bank-accounts.utils';
   styleUrl: 'bank-accounts.scss',
   shadow: true,
 })
-export class ProgressBar {
+export class BanksAccounts {
   /**
    * Configuration information like authentication configuration
    */

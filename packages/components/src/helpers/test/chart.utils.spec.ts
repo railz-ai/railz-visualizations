@@ -217,7 +217,7 @@ describe('Chart Utils Helper', () => {
         expect(validateBusinessParams(filter)).toEqual(true);
       });
 
-      test('returns true for businessName with not serviceName and type BANK_ACCOUNT', async () => {
+      test('returns true for businessName with no serviceName and type BANK_ACCOUNT', async () => {
         const filter: RVFilter = {
           reportType: RVReportTypes.BANK_ACCOUNT,
           businessName: 'businessNames',

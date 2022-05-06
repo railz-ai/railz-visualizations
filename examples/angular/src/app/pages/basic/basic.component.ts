@@ -16,7 +16,7 @@ export class BasicComponent implements OnInit {
   constructor(private ref: ChangeDetectorRef) {}
 
   onTokenSubmit = (token: string) => {
-    this.configuration = { token: token, debug: true, endpoint: 'https://api.qa2.railz.ai' };
+    this.configuration = { token: token, debug: true };
     this.ref.detectChanges();
   };
 
