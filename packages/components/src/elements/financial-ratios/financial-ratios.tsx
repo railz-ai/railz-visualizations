@@ -233,8 +233,7 @@ export class FinancialRatios {
   render(): HTMLElement {
     const TitleElement = (): HTMLElement => (
       <p class="rv-title" style={this._options?.title?.style}>
-        {(this._options?.title && this._options?.title?.text) || ''}{' '}
-        <railz-tooltip tooltipText={Translations.RV_TOOLTIP_FINANCIAL_RATIOS} />
+        {(this._options?.title && this._options?.title?.text) || ''}
       </p>
     );
 
