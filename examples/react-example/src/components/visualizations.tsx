@@ -130,6 +130,7 @@ const Components = ({ configuration, filter, options, showCode }: ChartProps) =>
           RVReportTypes.REVENUE,
           RVReportTypes.RAILZ_SCORE,
           RVReportTypes.FINANCIAL_RATIO,
+          RVReportTypes.BANK_ACCOUNT,
         ].map((reportType) => (
           <div className="col-span-1 mt-1" key={reportType}>
             <DefaultComponent
@@ -245,11 +246,11 @@ const Components = ({ configuration, filter, options, showCode }: ChartProps) =>
           />
         </div>
       )}
-      {filter.reportType === RVReportTypes.FINANCIAL_RATIO && (
+      {filter.reportType === RVReportTypes.BANK_ACCOUNT && (
         <div>
-          <h4 className="text-xl font-bold text-gray-900">Using Railz FinancialRatios Component</h4>
+          <h4 className="text-xl font-bold text-gray-900">Using Railz Bank Accounts Component</h4>
           <p>
-            Railz Financial Ratios Component only accepts <b>financialRatios</b>
+            Railz Bank Accounts Component only accepts <b>bankAccounts</b>
           </p>
           <RailzBankAccounts
             configuration={configuration}
@@ -261,7 +262,7 @@ const Components = ({ configuration, filter, options, showCode }: ChartProps) =>
             filter={filter}
             options={options}
             showCode={showCode}
-            displayValue="RailzFinancialRatios"
+            displayValue="RailzBankAccounts"
           />
         </div>
       )}
@@ -272,6 +273,7 @@ const Components = ({ configuration, filter, options, showCode }: ChartProps) =>
         RVReportTypes.BALANCE_SHEET,
         RVReportTypes.BILLS,
         RVReportTypes.FINANCIAL_RATIO,
+        RVReportTypes.BANK_ACCOUNT,
         'all',
       ].includes(filter.reportType) && (
         <DefaultComponent

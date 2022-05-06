@@ -12,7 +12,7 @@ import { INITIAL_OPTIONS } from '../../../types/constants';
 })
 export class CustomizationComponent implements OnInit {
   // @ts-ignore
-  token: RVConfiguration;
+  configuration: RVConfiguration;
   filter: Filter;
   options: RVOptions = INITIAL_OPTIONS;
   allReportTypes = Object.values(RVReportTypes);
@@ -22,7 +22,7 @@ export class CustomizationComponent implements OnInit {
   getNewFilter = (filter: Filter, reportType: any): Filter => <Filter>{ ...filter, reportType };
 
   onTokenSubmit = (token: string) => {
-    this.token = { token: token, debug: true };
+    this.configuration = { token: token, debug: true };
     this.ref.detectChanges();
   };
 
