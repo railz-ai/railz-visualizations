@@ -10,6 +10,7 @@ import {
   RVFilterFrequency,
 } from '@railzai/railz-visualizations';
 import {
+  RailzBankAccounts,
   RailzFinancialRatios,
   RailzGaugeChart,
   RailzPieChart,
@@ -231,6 +232,26 @@ const Components = ({ configuration, filter, options, showCode }: ChartProps) =>
             Railz Financial Ratios Component only accepts <b>financialRatios</b>
           </p>
           <RailzFinancialRatios
+            configuration={configuration}
+            filter={filter as RVFilterDate}
+            options={options}
+          />
+          <Code
+            configuration={configuration}
+            filter={filter}
+            options={options}
+            showCode={showCode}
+            displayValue="RailzFinancialRatios"
+          />
+        </div>
+      )}
+      {filter.reportType === RVReportTypes.FINANCIAL_RATIO && (
+        <div>
+          <h4 className="text-xl font-bold text-gray-900">Using Railz FinancialRatios Component</h4>
+          <p>
+            Railz Financial Ratios Component only accepts <b>financialRatios</b>
+          </p>
+          <RailzBankAccounts
             configuration={configuration}
             filter={filter as RVFilterDate}
             options={options}

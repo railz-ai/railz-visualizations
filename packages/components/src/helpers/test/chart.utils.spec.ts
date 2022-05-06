@@ -217,13 +217,25 @@ describe('Chart Utils Helper', () => {
         expect(validateBusinessParams(filter)).toEqual(true);
       });
 
-      test('returns false for businessName with not serviceName', async () => {
+      test('returns true for businessName with not serviceName and type BANK_ACCOUNT', async () => {
         const filter: RVFilter = {
           reportType: RVReportTypes.BANK_ACCOUNT,
           businessName: 'businessNames',
           serviceName: undefined,
         };
-        expect(validateBusinessParams(filter)).toEqual(false);
+        expect(validateBusinessParams(filter)).toEqual(true);
+      });
+
+      test('returns true correct params on validateBusinessParams', async () => {
+        const filter: RVFilter = {
+          startDate: '2022-04-01',
+          endDate: '2022-04-30',
+          reportFrequency: RVReportFrequency.MONTH,
+          businessName: 'QBOmanyAttachments',
+          serviceName: RVAccountingProviders.QUICKBOOKS,
+          reportType: RVReportTypes.BALANCE_SHEET,
+        };
+        expect(validateBusinessParams(filter)).toEqual(true);
       });
 
       test('returns true for connectionId', async () => {

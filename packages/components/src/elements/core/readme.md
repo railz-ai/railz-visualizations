@@ -33,6 +33,8 @@ graph TD;
   railz-visualizations --> railz-pie-chart
   railz-visualizations --> railz-statements-chart
   railz-visualizations --> railz-transactions-control
+  railz-bank-accounts --> railz-error-image
+  railz-bank-accounts --> railz-loading
   railz-financial-ratios --> railz-error-image
   railz-financial-ratios --> railz-loading
   railz-financial-ratios --> railz-tooltip

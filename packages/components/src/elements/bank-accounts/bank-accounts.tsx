@@ -1,7 +1,6 @@
 /* eslint-disable max-len, @typescript-eslint/no-unused-vars */
 import { Component, h, State, Prop, Watch } from '@stencil/core';
-import { isEqual } from 'lodash-es';
-// import { isEmpty, isEqual } from 'lodash-es';
+import { isEmpty, isEqual } from 'lodash-es';
 
 import Translations from '../../config/translations/en.json';
 import { errorLog } from '../../services/logger';
@@ -14,13 +13,14 @@ import {
 } from '../../helpers/chart.utils';
 import {
   RVAllFilter,
-  RVBankAccountsReportSummary,
+  RVBankAccounts,
   RVBankingProviders,
   RVConfiguration,
   RVFilterDate,
   RVFormattedBankAccountsResponse,
   RVOptions,
 } from '../../types';
+import { formatNumber } from '../../helpers/utils';
 
 import { getReportData } from './bank-accounts.utils';
 
@@ -47,21 +47,9 @@ export class ProgressBar {
   @State() private _configuration: RVConfiguration;
   @State() private _filter: RVAllFilter;
   @State() private _options: RVOptions;
-  // @State() private _summary: RVFinancialRatioSummary;
-  // @State() private _selected: RVFinancialRatioItem;
+  @State() private _summary: RVBankAccounts[];
   @State() private error: string;
   @State() private errorStatusCode: number;
-  @State() private elements = [
-    { name: 'Plaid Checking', value: '$110.00' },
-    { name: 'Plaid Saving', value: '$210.00' },
-    { name: 'Plaid CD', value: '$1,000.00' },
-    { name: 'Plaid Credit Card', value: '$410.00' },
-    { name: 'Plaid Money Market', value: '$43,200.00' },
-    { name: 'Plaid IRA', value: '$320.76' },
-    { name: 'Plaid 401 K', value: '$23,631.98' },
-    { name: 'Plaid Student Loan', value: '$65,262.00' },
-    { name: 'Plaid Mortgage', value: '$56,302.06' },
-  ];
 
   @Watch('configuration')
   async watchConfiguration(newValue: RVConfiguration, oldValue: RVConfiguration): Promise<void> {
@@ -144,9 +132,7 @@ export class ProgressBar {
       const reportData = (await getReportData({
         filter: this._filter as RVFilterDate,
       })) as RVFormattedBankAccountsResponse;
-      // console.log('requestReportData', { reportData });
-      const bankAccounts = reportData.data as RVBankAccountsReportSummary;
-      console.log({ bankAccounts });
+      this._summary = reportData.data as RVBankAccounts[];
     } catch (error) {
       errorLog(Translations.RV_NOT_ABLE_TO_PARSE_REPORT_DATA, error);
     } finally {
@@ -154,30 +140,54 @@ export class ProgressBar {
     }
   };
 
-  render(): HTMLElement {
-    console.log({
-      loading: this.loading,
-      error: this.error,
-      errorStatusCode: this.errorStatusCode,
-      options: this._options,
-    });
+  private renderMain = (): HTMLElement => {
+    if (!isEmpty(this.error)) {
+      return (
+        <railz-error-image
+          statusCode={this.errorStatusCode || 500}
+          {...this._options?.errorIndicator}
+        />
+      );
+    }
+    if (!isEmpty(this.loading)) {
+      return <railz-loading loadingText={this.loading} {...this._options?.loadingIndicator} />;
+    }
 
     return (
-      <div>
-        <ul class="railz-bank-accounts-ul">
-          <li class="railz-bank-accounts-ul-title">Citibank Online</li>
-          {this.elements.map((element) => {
-            return (
-              <li class="">
+      !isEmpty(this._summary) && (
+        <div>
+          <ul class="railz-bank-accounts-ul">
+            <li class="railz-bank-accounts-ul-title">{this._summary[0].institutionName}</li>
+            {this._summary.map((bankAccount: RVBankAccounts) => (
+              <li>
                 <div class="railz-bank-accounts-item-container">
-                  <span class="railz-bank-accounts-item-name">{element.name}</span>
+                  <span class="railz-bank-accounts-item-name">{bankAccount.accountName}</span>
                   <span class="railz-bank-accounts-item-dot"></span>
-                  <span class="railz-bank-accounts-item-value">{element.value}</span>
+                  <span class="railz-bank-accounts-item-value">
+                    ${formatNumber(bankAccount.currentBalance, 2, 2)}
+                  </span>
                 </div>
               </li>
-            );
-          })}
-        </ul>
+            ))}
+          </ul>
+        </div>
+      )
+    );
+  };
+
+  render(): HTMLElement {
+    const TitleElement = (): HTMLElement => (
+      <p class="rv-title" style={this._options?.title?.style}>
+        {(this._options?.title && this._options?.title?.text) || ''}
+      </p>
+    );
+
+    return (
+      <div class="rv-container" style={this._options?.container?.style}>
+        <div class="rv-header-container">
+          <TitleElement />
+        </div>
+        {this.renderMain()}
       </div>
     );
   }

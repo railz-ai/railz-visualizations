@@ -26,15 +26,20 @@
         let railzVisualizations = document.createElement('railz-visualizations');
         if (railzVisualizations) {
           railzVisualizations.configuration = configuration;
+
+          // balanceSheets
+          // railzVisualizations.filter = {
+          //   startDate: '2022-04-01',
+          //   endDate: '2022-04-30',
+          //   reportFrequency: 'month',
+          //   businessName: 'QBOmanyAttachments',
+          //   serviceName: 'quickbooks',
+          //   reportType: 'balanceSheets',
+          // };
+
+          // bankAccounts
           railzVisualizations.filter = {
-            startDate: '2022-04-01',
-            endDate: '2022-04-30',
-            reportFrequency: 'month',
-            // businessName: 'QBOmanyAttachments',
-            // serviceName: 'quickbooks',
-            // reportType: 'balanceSheets',
             businessName: 'TestBusinessAutomationPlaid',
-            serviceName: undefined,
             reportType: 'bankAccounts',
           };
           document.body.appendChild(railzVisualizations);

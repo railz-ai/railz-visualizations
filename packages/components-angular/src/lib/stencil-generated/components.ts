@@ -16,11 +16,13 @@ export declare interface RailzBankAccounts extends Components.RailzBankAccounts 
 
 @ProxyCmp({
   defineCustomElementFn: undefined,
+  inputs: ['configuration', 'filter', 'options'],
 })
 @Component({
   selector: 'railz-bank-accounts',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
+  inputs: ['configuration', 'filter', 'options'],
 })
 export class RailzBankAccounts {
   protected el: HTMLElement;

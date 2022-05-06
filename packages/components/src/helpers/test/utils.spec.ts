@@ -22,7 +22,7 @@ describe('Utils Helper Tests', () => {
     describe('success path', () => {
       test('returns value with correct report type', async () => {
         expect(getTitleByReportType(RVReportTypes.INCOME_STATEMENTS)).toEqual(
-          Translations.INCOME_STATEMENTS,
+          Translations.RV_INCOME_STATEMENTS,
         );
       });
     });
@@ -94,6 +94,11 @@ describe('Utils Helper Tests', () => {
     });
     describe('happy day', () => {
       test('returns number on the correct format', async () => {
+        expect(formatNumber(100.223, 3, 1)).toEqual('100.223');
+        expect(formatNumber(100.223, 3, 2)).toEqual('100.223');
+        expect(formatNumber(100.223, 2, 2)).toEqual('100.22');
+        expect(formatNumber(100.22, 2, 2)).toEqual('100.22');
+        expect(formatNumber(1000000, 2, 2)).toEqual('1,000,000.00');
         expect(formatNumber(1000000, 2)).toEqual('1,000,000');
         expect(formatNumber(1000000, 4)).toEqual('1,000,000');
         expect(formatNumber(1000000)).toEqual('1,000,000');
@@ -172,19 +177,14 @@ describe('Utils Helper Tests', () => {
         expect(getTitleByReportType(RVReportTypes.INVOICES)).toEqual(Translations.RV_INVOICES);
         expect(getTitleByReportType(RVReportTypes.BILLS)).toEqual(Translations.RV_BILLS);
         expect(getTitleByReportType(RVReportTypes.BALANCE_SHEET)).toEqual(
-          Translations.RV_BALANCE_SHEETS,
+          Translations.RV_BALANCE_SHEET,
         );
         expect(getTitleByReportType(RVReportTypes.INCOME_STATEMENTS)).toEqual(
-          Translations.INCOME_STATEMENTS,
+          Translations.RV_INCOME_STATEMENTS,
         );
         expect(getTitleByReportType(RVReportTypes.CASHFLOW_STATEMENTS)).toEqual(
-          Translations.CASHFLOW_STATEMENTS,
+          Translations.RV_CASHFLOW_STATEMENTS,
         );
-      });
-
-      test('returns empty when the type has no translation', async () => {
-        expect(getTitleByReportType(RVReportTypes.BANK_ACCOUNT)).toEqual('');
-        expect(getTitleByReportType(RVReportTypes.CREDIT_SCORE)).toEqual('');
       });
     });
   });
