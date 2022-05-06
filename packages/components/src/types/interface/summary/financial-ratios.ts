@@ -42,4 +42,10 @@ export enum FinancialRatio {
   DAYS_SALES_RECEIVABLES_INDEX = 'daysSalesReceivablesIndex',
   ASSET_QUALITY_INDEX = 'assetQualityIndex',
   DEPRECIATION_INDEX = 'depreciationIndex',
+  ACCOUNTS_RECEIVABLE_TUENOVER_RATIO = 'accountsReceivableTurnoverRatio',
+  ACCOUNTS_PAYABLE_TUENOVER_RATIO = 'accountsPayableTurnoverRatio',
+  DAYS_PAYABLE_OUTSTANDING = 'daysPayableOutstanding',
+  DAYS_SALES_OUTSTANDING = 'daysSalesOutstanding',
+  AVERAGE_OUTSTANDING_PAYABLES_BALANCE = 'averageOutstandingPayablesBalance',
+  AVERAGE_OUTSTANDING_RECEIVABLES_BALANCE = 'averageOutstandingReceivablesBalance',
 }
