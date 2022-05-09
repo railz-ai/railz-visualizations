@@ -15,13 +15,13 @@ import { ConfigurationInstance } from '../../services/configuration';
 import Translations from '../../config/translations/en.json';
 import {
   RVConfiguration,
-  RVAllFilter,
   RVFormattedPieResponse,
   RVOptions,
   RVPieChartSummary,
   RVRevenueExpensesSummary,
-  RVFilterDate,
   RVReportTypes,
+  RVFilterPie,
+  RVFilterAll,
 } from '../../types';
 import { errorLog } from '../../services/logger';
 
@@ -50,7 +50,7 @@ export class PieChart {
   /**
    * Filter information to query the backend APIs
    */
-  @Prop() readonly filter!: RVAllFilter;
+  @Prop() readonly filter!: RVFilterPie;
   /**
    * For whitelabeling styling
    */
@@ -58,7 +58,7 @@ export class PieChart {
 
   @State() private loading = '';
   @State() private _configuration: RVConfiguration;
-  @State() private _filter: RVAllFilter;
+  @State() private _filter: RVFilterPie;
   @State() private _options: RVOptions;
   @State() private _summary: RVRevenueExpensesSummary;
   @State() private error: string;
@@ -75,7 +75,7 @@ export class PieChart {
    */
   private validateParams = async (
     configuration: RVConfiguration,
-    filter: RVAllFilter,
+    filter: RVFilterPie,
     options: RVOptions,
     triggerRequest = true,
   ): Promise<void> => {
@@ -83,9 +83,9 @@ export class PieChart {
     if (this._configuration) {
       ConfigurationInstance.configuration = this._configuration;
       try {
-        this._filter = getDateFilter(filter) as RVFilterDate;
-        this._options = getOptions(options, filter);
-        const valid = validateRequiredParams(filter);
+        this._filter = getDateFilter(filter as RVFilterAll) as RVFilterPie;
+        this._options = getOptions(options, filter as RVFilterAll);
+        const valid = validateRequiredParams(filter as RVFilterAll);
         if (valid) {
           if (triggerRequest) {
             await this.requestReportData();
@@ -120,7 +120,7 @@ export class PieChart {
   }
 
   @Watch('filter')
-  async watchFilter(newValue: RVAllFilter, oldValue: RVAllFilter): Promise<void> {
+  async watchFilter(newValue: RVFilterPie, oldValue: RVFilterPie): Promise<void> {
     if (newValue && oldValue && !isEqual(oldValue, newValue)) {
       await this.validateParams(this.configuration, newValue, this.options);
     }
@@ -147,7 +147,7 @@ export class PieChart {
     this.loading = Translations.LOADING_REPORT;
     try {
       const reportData = (await getReportData({
-        filter: this._filter as RVFilterDate,
+        filter: this._filter as RVFilterAll,
       })) as RVFormattedPieResponse;
 
       if (reportData?.data) {

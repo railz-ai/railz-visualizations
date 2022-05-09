@@ -15,7 +15,8 @@ import Translations from '../../config/translations/en.json';
 import {
   FinancialRatio,
   RVConfiguration,
-  RVFilterDate,
+  RVFilterAll,
+  RVFilterFinancialRatio,
   RVFinancialRatioItem,
   RVFinancialRatioSummary,
   RVFormattedFinancialRatioResponse,
@@ -39,7 +40,7 @@ export class FinancialRatios {
   /**
    * Filter information to query the backend APIs
    */
-  @Prop() readonly filter!: RVFilterDate;
+  @Prop() readonly filter!: RVFilterFinancialRatio;
   /**
    * For whitelabeling styling
    */
@@ -47,7 +48,7 @@ export class FinancialRatios {
 
   @State() private loading = '';
   @State() private _configuration: RVConfiguration;
-  @State() private _filter: RVFilterDate;
+  @State() private _filter: RVFilterFinancialRatio;
   @State() private _options: RVOptions;
   @State() private _summary: RVFinancialRatioSummary;
   @State() private _selected: RVFinancialRatioItem;
@@ -63,7 +64,7 @@ export class FinancialRatios {
    */
   private validateParams = async (
     configuration: RVConfiguration,
-    filter: RVFilterDate,
+    filter: RVFilterFinancialRatio,
     options: RVOptions,
     triggerRequest = true,
   ): Promise<void> => {
@@ -71,9 +72,9 @@ export class FinancialRatios {
     if (this._configuration) {
       ConfigurationInstance.configuration = this._configuration;
       try {
-        this._filter = getDateFilter(filter) as RVFilterDate;
-        this._options = getOptions(options, filter);
-        const valid = validateRequiredParams(filter);
+        this._filter = getDateFilter(filter) as RVFilterFinancialRatio;
+        this._options = getOptions(options, filter as RVFilterAll);
+        const valid = validateRequiredParams(filter as RVFilterAll);
         if (valid) {
           if (triggerRequest) {
             await this.requestReportData();
@@ -101,7 +102,10 @@ export class FinancialRatios {
   }
 
   @Watch('filter')
-  async watchFilter(newValue: RVFilterDate, oldValue: RVFilterDate): Promise<void> {
+  async watchFilter(
+    newValue: RVFilterFinancialRatio,
+    oldValue: RVFilterFinancialRatio,
+  ): Promise<void> {
     if (newValue && oldValue && !isEqual(oldValue, newValue)) {
       await this.validateParams(this.configuration, newValue, this.options);
     }
@@ -132,7 +136,7 @@ export class FinancialRatios {
     this.loading = Translations.LOADING_REPORT;
     try {
       const reportData = (await getReportData({
-        filter: this._filter,
+        filter: this._filter as RVFilterAll,
       })) as RVFormattedFinancialRatioResponse;
 
       if (reportData?.data) {

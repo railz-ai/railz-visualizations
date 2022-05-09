@@ -4,6 +4,8 @@ import {
   RVBaseFilterBusinessDateFrequencyType,
   RVChartStatementBaseParameter,
   RVChartStatementParameter,
+  RVFilterBalanceSheet,
+  RVFilterStatements,
   RVReportFrequency,
   RVReportTypes,
 } from '../../../types';
@@ -177,7 +179,7 @@ describe('Statements Chart Utils', () => {
   describe('shouldAddReconstructParam', () => {
     describe('success path', () => {
       test('returns formatted data to correct sent data for month', async () => {
-        const baseFilterBusinessDateFrequencyType: RVBaseFilterBusinessDateFrequencyType = {
+        const filterStatements: RVFilterStatements = {
           businessName: 'businessName',
           serviceName: RVAccountingProviders.QUICKBOOKS,
           reportFrequency: RVReportFrequency.MONTH,
@@ -185,10 +187,10 @@ describe('Statements Chart Utils', () => {
           startDate: '2020-01-01',
           endDate: '2021-01-01',
         };
-        expect(shouldAddReconstructParam(baseFilterBusinessDateFrequencyType)).toEqual(true);
+        expect(shouldAddReconstructParam(filterStatements)).toEqual(true);
       });
       test('returns formatted data to correct sent data for month', async () => {
-        const baseFilterBusinessDateFrequencyType: RVBaseFilterBusinessDateFrequencyType = {
+        const filterBalanceSheet: RVFilterBalanceSheet = {
           businessName: 'businessName',
           serviceName: RVAccountingProviders.ORACLE_NETSUITE,
           reportFrequency: RVReportFrequency.MONTH,
@@ -196,7 +198,7 @@ describe('Statements Chart Utils', () => {
           startDate: '2020-01-01',
           endDate: '2021-01-01',
         };
-        expect(shouldAddReconstructParam(baseFilterBusinessDateFrequencyType)).toEqual(false);
+        expect(shouldAddReconstructParam(filterBalanceSheet)).toEqual(false);
       });
     });
   });

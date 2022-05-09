@@ -6,15 +6,17 @@
  */
 import { HTMLStencilElement, JSXBase } from '@stencil/core/internal';
 import {
-  RVAllFilter,
   RVConfiguration,
-  RVFilter,
-  RVFilterDate,
-  RVFilterFrequency,
-  RVNoFrequencyTypes,
+  RVFilterAllReportTypes,
+  RVFilterFinancialRatio,
+  RVFilterGauge,
+  RVFilterPie,
+  RVFilterStatements,
+  RVFilterTransactions,
   RVOptions,
   RVOptionsBarStyle,
   RVPeriodData,
+  RVReportTypes,
   RVSelectStyle,
   RVTooltipStyle,
 } from './types';
@@ -53,7 +55,7 @@ export namespace Components {
     /**
      * Filter information to query the backend APIs
      */
-    filter: RVFilterDate;
+    filter: RVFilterFinancialRatio;
     /**
      * For whitelabeling styling
      */
@@ -67,7 +69,7 @@ export namespace Components {
     /**
      * Filter information to query the backend APIs
      */
-    filter: RVFilterDate;
+    filter: RVFilterGauge;
     /**
      * For whitelabeling styling
      */
@@ -109,7 +111,7 @@ export namespace Components {
     /**
      * Filter information to query the backend APIs
      */
-    filter: RVAllFilter;
+    filter: RVFilterPie;
     /**
      * For whitelabeling styling
      */
@@ -131,7 +133,7 @@ export namespace Components {
     /**
      * To indicate if its an invoice or bill
      */
-    reportType?: RVNoFrequencyTypes;
+    reportType?: RVReportTypes.INVOICES | RVReportTypes.BILLS;
     /**
      * For unpaid amount of an invoice or bill
      */
@@ -161,7 +163,7 @@ export namespace Components {
     /**
      * Filter information to query the backend APIs
      */
-    filter: RVFilterFrequency;
+    filter: RVFilterStatements;
     /**
      * For whitelabeling styling
      */
@@ -186,7 +188,7 @@ export namespace Components {
     /**
      * Filter information to query the backend APIs
      */
-    filter: RVFilterDate;
+    filter: RVFilterTransactions;
     /**
      * For whitelabeling styling
      */
@@ -200,7 +202,7 @@ export namespace Components {
     /**
      * Filter information to query the backend APIs
      */
-    filter: RVFilter;
+    filter: RVFilterAllReportTypes;
     /**
      * For whitelabeling styling
      */
@@ -334,7 +336,7 @@ declare namespace LocalJSX {
     /**
      * Filter information to query the backend APIs
      */
-    filter: RVFilterDate;
+    filter: RVFilterFinancialRatio;
     /**
      * For whitelabeling styling
      */
@@ -348,7 +350,7 @@ declare namespace LocalJSX {
     /**
      * Filter information to query the backend APIs
      */
-    filter: RVFilterDate;
+    filter: RVFilterGauge;
     /**
      * For whitelabeling styling
      */
@@ -390,7 +392,7 @@ declare namespace LocalJSX {
     /**
      * Filter information to query the backend APIs
      */
-    filter: RVAllFilter;
+    filter: RVFilterPie;
     /**
      * For whitelabeling styling
      */
@@ -412,7 +414,7 @@ declare namespace LocalJSX {
     /**
      * To indicate if its an invoice or bill
      */
-    reportType?: RVNoFrequencyTypes;
+    reportType?: RVReportTypes.INVOICES | RVReportTypes.BILLS;
     /**
      * For unpaid amount of an invoice or bill
      */
@@ -443,7 +445,7 @@ declare namespace LocalJSX {
     /**
      * Filter information to query the backend APIs
      */
-    filter: RVFilterFrequency;
+    filter: RVFilterStatements;
     /**
      * For whitelabeling styling
      */
@@ -468,7 +470,7 @@ declare namespace LocalJSX {
     /**
      * Filter information to query the backend APIs
      */
-    filter: RVFilterDate;
+    filter: RVFilterTransactions;
     /**
      * For whitelabeling styling
      */
@@ -482,7 +484,7 @@ declare namespace LocalJSX {
     /**
      * Filter information to query the backend APIs
      */
-    filter?: RVFilter;
+    filter?: RVFilterAllReportTypes;
     /**
      * For whitelabeling styling
      */

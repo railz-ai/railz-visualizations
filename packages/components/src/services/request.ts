@@ -1,8 +1,8 @@
 import {
   RVFormattedGaugeResponse,
   RVFormattedTransactionResponse,
-  RVReportDataRequest,
   RVReportRequest,
+  RVReportRequestParameter,
   RVReportSummaryApiResponse,
 } from '../types';
 import { RAILZ_API_HOST } from '../types/constants/endpoints';
@@ -18,12 +18,11 @@ class RequestService {
   };
 
   async getReportData({
-    reportType,
     filter,
-  }: RVReportDataRequest): Promise<
+  }: RVReportRequestParameter): Promise<
     RVReportSummaryApiResponse | RVFormattedTransactionResponse | RVFormattedGaugeResponse
   > {
-    const url = `${reportType}?${new URLSearchParams(filter as any)}`;
+    const url = `${filter.reportType}?${new URLSearchParams(filter as any)}`;
 
     return await this.getRequest({
       url,

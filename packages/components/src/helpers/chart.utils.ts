@@ -9,11 +9,9 @@ import {
   RAILZ_CHART_LABEL_COLOR,
   RAILZ_CHART_LEGEND_COLOR,
   RAILZ_TEXT_COLOR,
-  RVAllFilter,
   RVConfiguration,
-  RVDateFilters,
-  RVFilter,
-  RVFilterFrequency,
+  RVFilterAll,
+  RVFilterDate,
   RVOptions,
   RVOptionsBarStyle,
   RVReportFrequency,
@@ -52,10 +50,10 @@ export const getConfiguration = (configuration: RVConfiguration | string): RVCon
 };
 
 /**
- * @function parseFilter: if filter is a string, convert to an object
+ * @function getFilter: if filter is a string, convert to an object
  * @param filter: Filter query
  */
-export const parseFilter = (filter: RVFilter | string): RVFilter => {
+export const getFilter = (filter: RVFilterAll | string): RVFilterAll => {
   let formattedFilter;
   if (filter) {
     try {
@@ -77,7 +75,7 @@ export const parseFilter = (filter: RVFilter | string): RVFilter => {
   return formattedFilter;
 };
 
-export const validateRequiredParams = (filter: RVFilter): boolean => {
+export const validateRequiredParams = (filter: RVFilterAll): boolean => {
   return (
     validateReportTypeParams(filter) &&
     validateBusinessParams(filter) &&
@@ -85,7 +83,7 @@ export const validateRequiredParams = (filter: RVFilter): boolean => {
   );
 };
 
-export const validateBusinessParams = (filter: RVFilter): boolean => {
+export const validateBusinessParams = (filter: RVFilterAll): boolean => {
   const filterPassed = filter as unknown as any;
   const hasConnectionId = !isEmpty(filterPassed?.connectionId);
   const hasBusinessName = !isEmpty(filterPassed?.businessName);
@@ -106,11 +104,10 @@ export const validateBusinessParams = (filter: RVFilter): boolean => {
   return true;
 };
 
-export const validateReportFrequencyParams = (filter: RVFilter): boolean => {
-  const filterPassed = filter as unknown as RVFilterFrequency;
+export const validateReportFrequencyParams = (filter: RVFilterAll): boolean => {
   if (
-    isRequiredReportFrequency(filterPassed.reportType) &&
-    !Object.values(RVReportFrequency).includes(filterPassed?.reportFrequency)
+    isRequiredReportFrequency(filter?.reportType) &&
+    !Object.values(RVReportFrequency).includes(filter?.reportFrequency)
   ) {
     errorLog(Translations.RV_ERROR_INVALID_REPORT_FREQUENCY);
     return false;
@@ -118,7 +115,7 @@ export const validateReportFrequencyParams = (filter: RVFilter): boolean => {
   return true;
 };
 
-export const validateReportTypeParams = (filter: RVFilter): boolean => {
+export const validateReportTypeParams = (filter: RVFilterAll): boolean => {
   if (!Object.values(RVReportTypes).includes(filter.reportType)) {
     errorLog(Translations.RV_ERROR_INVALID_REPORT_TYPE);
     return false;
@@ -127,20 +124,12 @@ export const validateReportTypeParams = (filter: RVFilter): boolean => {
 };
 
 /**
- * @function getFilter: retrieve formatted filter
- * @param filter: Filter query
- */
-export const getFilter = (filter: RVFilter | string): RVFilter => {
-  return parseFilter(filter);
-};
-
-/**
  * @function getDateFilter: Compare start and end date passed and ensure
  * end date is greater than start date
  * @param filter: Filter query
  */
-export const getDateFilter = (filter: RVDateFilters | string): RVDateFilters => {
-  let formattedFilter = parseFilter(filter) as RVDateFilters;
+export const getDateFilter = (filter: RVFilterDate | string): RVFilterDate => {
+  let formattedFilter = getFilter(filter as RVFilterAll) as RVFilterDate;
   if (formattedFilter) {
     if (formattedFilter.startDate && formattedFilter.endDate) {
       try {
@@ -214,7 +203,7 @@ export const checkAccessibilityFromOptions = (options: RVOptions): void => {
  * @param options: Whitelabeling options
  * @param filter: Filter query
  */
-export const getOptions = (options: RVOptions | string, filter?: RVAllFilter): RVOptions => {
+export const getOptions = (options: RVOptions | string, filter?: RVFilterAll): RVOptions => {
   let formattedOptions: RVOptions;
   try {
     if (options) {

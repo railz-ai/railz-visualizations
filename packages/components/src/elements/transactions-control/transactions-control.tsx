@@ -9,7 +9,8 @@ import { errorLog } from '../../services/logger';
 import {
   RVBillInvoiceSummary,
   RVConfiguration,
-  RVFilterDate,
+  RVFilterAll,
+  RVFilterTransactions,
   RVFormattedTransactionResponse,
   RVOptions,
 } from '../../types';
@@ -37,7 +38,7 @@ export class TransactionsControl {
   /**
    * Filter information to query the backend APIs
    */
-  @Prop() readonly filter!: RVFilterDate;
+  @Prop() readonly filter!: RVFilterTransactions;
   /**
    * For whitelabeling styling
    */
@@ -45,7 +46,7 @@ export class TransactionsControl {
 
   @State() private loading = '';
   @State() private _configuration: RVConfiguration;
-  @State() private _filter: RVFilterDate;
+  @State() private _filter: RVFilterTransactions;
   @State() private _options: RVOptions;
   @State() private _dataFormatted: RVBillInvoiceSummary;
   @State() private error: string;
@@ -59,16 +60,16 @@ export class TransactionsControl {
    */
   private validateParams = async (
     configuration: RVConfiguration,
-    filter: RVFilterDate,
+    filter: RVFilterTransactions,
     triggerRequest = true,
   ): Promise<void> => {
     this._configuration = getConfiguration(configuration);
     if (this._configuration) {
       ConfigurationInstance.configuration = this._configuration;
       try {
-        this._filter = getFilter(filter) as RVFilterDate;
-        this._options = getOptions(this.options, this._filter);
-        const valid = validateRequiredParams(this._filter);
+        this._filter = getFilter(filter as RVFilterAll) as RVFilterTransactions;
+        this._options = getOptions(this.options, this._filter as RVFilterAll);
+        const valid = validateRequiredParams(this._filter as RVFilterAll);
         if (valid) {
           if (triggerRequest) {
             await this.requestReportData();
@@ -90,7 +91,7 @@ export class TransactionsControl {
   };
 
   @Watch('filter')
-  async watchFilter(newValue: RVFilterDate, oldValue: RVFilterDate): Promise<void> {
+  async watchFilter(newValue: RVFilterTransactions, oldValue: RVFilterTransactions): Promise<void> {
     if (newValue && oldValue && !isEqual(oldValue, newValue)) {
       await this.validateParams(this.configuration, newValue);
     }
@@ -111,7 +112,7 @@ export class TransactionsControl {
     this.error = '';
     this.loading = Translations.LOADING_REPORT;
     const reportData = (await getTransactionsData({
-      filter: this._filter,
+      filter: this._filter as RVFilterAll,
     })) as RVFormattedTransactionResponse;
     try {
       if (reportData?.data) {

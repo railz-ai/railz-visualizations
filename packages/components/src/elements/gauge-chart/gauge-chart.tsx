@@ -17,7 +17,8 @@ import { ConfigurationInstance } from '../../services/configuration';
 import Translations from '../../config/translations/en.json';
 import {
   RVConfiguration,
-  RVFilterDate,
+  RVFilterAll,
+  RVFilterGauge,
   RVFormattedGaugeResponse,
   RVGaugeChartSummary,
   RVOptions,
@@ -43,7 +44,7 @@ export class GaugeChart {
   /**
    * Filter information to query the backend APIs
    */
-  @Prop() readonly filter!: RVFilterDate;
+  @Prop() readonly filter!: RVFilterGauge;
   /**
    * For whitelabeling styling
    */
@@ -51,7 +52,7 @@ export class GaugeChart {
 
   @State() private loading = '';
   @State() private _configuration: RVConfiguration;
-  @State() private _filter: RVFilterDate;
+  @State() private _filter: RVFilterGauge;
   @State() private _options: RVOptions;
   @State() private error: string;
   @State() private errorStatusCode: number;
@@ -68,7 +69,7 @@ export class GaugeChart {
    */
   private validateParams = async (
     configuration: RVConfiguration,
-    filter: RVFilterDate,
+    filter: RVFilterGauge,
     options: RVOptions,
     triggerRequest = true,
   ): Promise<void> => {
@@ -76,9 +77,9 @@ export class GaugeChart {
     if (this._configuration) {
       ConfigurationInstance.configuration = this._configuration;
       try {
-        this._filter = getDateFilter(filter) as RVFilterDate;
-        this._options = getOptions(options, filter);
-        const valid = validateRequiredParams(filter);
+        this._filter = getDateFilter(filter) as RVFilterGauge;
+        this._options = getOptions(options, filter as RVFilterAll);
+        const valid = validateRequiredParams(filter as RVFilterAll);
         if (valid) {
           if (triggerRequest) {
             await this.requestReportData();
@@ -113,7 +114,7 @@ export class GaugeChart {
   }
 
   @Watch('filter')
-  async watchFilter(newValue: RVFilterDate, oldValue: RVFilterDate): Promise<void> {
+  async watchFilter(newValue: RVFilterGauge, oldValue: RVFilterGauge): Promise<void> {
     if (newValue && oldValue && !isEqual(oldValue, newValue)) {
       await this.validateParams(this.configuration, newValue, this.options);
     }
@@ -140,7 +141,7 @@ export class GaugeChart {
     this.loading = Translations.LOADING_REPORT;
     try {
       const reportData = (await getReportData({
-        filter: this._filter,
+        filter: this._filter as RVFilterAll,
       })) as RVFormattedGaugeResponse;
 
       if (reportData?.data) {

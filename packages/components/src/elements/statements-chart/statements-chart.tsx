@@ -12,7 +12,8 @@ import { errorLog } from '../../services/logger';
 
 import {
   RVConfiguration,
-  RVFilterFrequency,
+  RVFilterAll,
+  RVFilterStatements,
   RVFormattedStatementData,
   RVFormattedStatementResponse,
   RVOptions,
@@ -48,7 +49,7 @@ export class StatementsChart {
   /**
    * Filter information to query the backend APIs
    */
-  @Prop() readonly filter!: RVFilterFrequency;
+  @Prop() readonly filter!: RVFilterStatements;
   /**
    * For whitelabeling styling
    */
@@ -56,7 +57,7 @@ export class StatementsChart {
 
   @State() private loading = '';
   @State() private _configuration: RVConfiguration;
-  @State() private _filter: RVFilterFrequency;
+  @State() private _filter: RVFilterStatements;
   @State() private _options: RVOptions;
   @State() private _dataFormatted: RVFormattedStatementData;
   @State() private error: string;
@@ -74,16 +75,16 @@ export class StatementsChart {
    */
   private validateParams = async (
     configuration: RVConfiguration,
-    filter: RVFilterFrequency,
+    filter: RVFilterStatements,
     triggerRequest = true,
   ): Promise<void> => {
     this._configuration = getConfiguration(configuration);
     if (this._configuration) {
       ConfigurationInstance.configuration = this._configuration;
       try {
-        this._filter = getDateFilter(filter) as RVFilterFrequency;
-        this._options = getOptions(this.options, this._filter);
-        const valid = validateRequiredParams(this._filter);
+        this._filter = getDateFilter(filter) as RVFilterStatements;
+        this._options = getOptions(this.options, this._filter as RVFilterAll);
+        const valid = validateRequiredParams(this._filter as RVFilterAll);
         if (valid) {
           if (triggerRequest) {
             await this.requestReportData();
@@ -111,7 +112,7 @@ export class StatementsChart {
   }
 
   @Watch('filter')
-  async watchFilter(newValue: RVFilterFrequency, oldValue: RVFilterFrequency): Promise<void> {
+  async watchFilter(newValue: RVFilterStatements, oldValue: RVFilterStatements): Promise<void> {
     if (newValue && oldValue && !isEqual(oldValue, newValue)) {
       await this.validateParams(this.configuration, newValue);
     }
@@ -138,7 +139,7 @@ export class StatementsChart {
     this.loading = Translations.LOADING_REPORT;
     try {
       const reportData = (await getReportData({
-        filter: this._filter,
+        filter: this._filter as RVFilterAll,
       })) as RVFormattedStatementResponse;
       if (reportData?.data) {
         this._dataFormatted = formatData({

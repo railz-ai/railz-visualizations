@@ -2,11 +2,7 @@ import { pick } from 'lodash-es';
 import { format, parseISO } from 'date-fns';
 
 import Translations from '../../config/translations/en.json';
-import {
-  RVFormattedFinancialRatioResponse,
-  RVParams,
-  RVReportRequestDateParameter,
-} from '../../types';
+import { RVFormattedFinancialRatioResponse, RVParams, RVReportRequestParameter } from '../../types';
 import { RequestServiceInstance } from '../../services/request';
 import { errorLog } from '../../services/logger';
 import { RAILZ_DATE_FORMAT } from '../../types/constants/date';
@@ -16,7 +12,7 @@ import { RAILZ_DATE_FORMAT } from '../../types/constants/date';
  */
 export const getReportData = async ({
   filter,
-}: RVReportRequestDateParameter): Promise<RVFormattedFinancialRatioResponse> => {
+}: RVReportRequestParameter): Promise<RVFormattedFinancialRatioResponse> => {
   let reportData;
   try {
     const startDate = format(parseISO(filter.startDate), RAILZ_DATE_FORMAT);
@@ -35,8 +31,7 @@ export const getReportData = async ({
     );
 
     reportData = await RequestServiceInstance.getReportData({
-      reportType: filter.reportType,
-      filter: allParameters,
+      filter: { ...allParameters, reportType: filter.reportType },
     });
   } catch (error) {
     errorLog(Translations.NOT_ABLE_TO_RETRIEVE_REPORT_DATA, error);

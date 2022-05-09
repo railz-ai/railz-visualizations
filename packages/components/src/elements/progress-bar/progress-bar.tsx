@@ -5,7 +5,7 @@ import { isNil } from 'lodash-es';
 
 import { formatNumber } from '../../helpers/utils';
 import Translations from '../../config/translations/en.json';
-import { RVNoFrequencyTypes, RVOptionsBarStyle, RVReportTypes } from '../../types';
+import { RVOptionsBarStyle, RVReportTypes } from '../../types';
 import { getBarOptionsStyle } from '../../helpers/chart.utils';
 
 @Component({
@@ -17,7 +17,7 @@ export class ProgressBar {
   /**
    * To indicate if its an invoice or bill
    */
-  @Prop() readonly reportType?: RVNoFrequencyTypes;
+  @Prop() readonly reportType?: RVReportTypes.INVOICES | RVReportTypes.BILLS;
   /**
    * For unpaid amount of an invoice or bill
    */

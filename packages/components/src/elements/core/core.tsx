@@ -1,15 +1,17 @@
 /* eslint-disable max-len, @typescript-eslint/no-unused-vars */
 import { Component, Prop, h, State, Watch } from '@stencil/core';
-
 import { isEmpty, isEqual } from 'lodash-es';
 
 import { isGauge, isPie, isStatements, isTransactions } from '../../helpers/utils';
-
 import {
   RVConfiguration,
-  RVFilter,
-  RVFilterDate,
-  RVFilterFrequency,
+  RVFilterAll,
+  RVFilterAllReportTypes,
+  RVFilterFinancialRatio,
+  RVFilterGauge,
+  RVFilterPie,
+  RVFilterStatements,
+  RVFilterTransactions,
   RVOptions,
   RVReportTypes,
 } from '../../types';
@@ -28,13 +30,13 @@ export class Core {
   /**
    * Filter information to query the backend APIs
    */
-  @Prop() readonly filter: RVFilter;
+  @Prop() readonly filter: RVFilterAllReportTypes;
   /**
    * For whitelabeling styling
    */
   @Prop() readonly options: RVOptions;
 
-  @State() private _filter: RVFilter;
+  @State() private _filter: RVFilterAllReportTypes;
   @State() private _configuration: RVConfiguration;
 
   @State() private errorStatusCode: number;
@@ -48,11 +50,14 @@ export class Core {
    * @param configuration - Config for authentication
    * @param filter - filter to decide chart type to show
    */
-  private validateParams = (configuration: RVConfiguration, filter: RVFilter): void => {
+  private validateParams = (
+    configuration: RVConfiguration,
+    filter: RVFilterAllReportTypes,
+  ): void => {
     this._configuration = getConfiguration(configuration);
     if (this._configuration) {
       ConfigurationInstance.configuration = this._configuration;
-      this._filter = getFilter(filter);
+      this._filter = getFilter(filter as RVFilterAll);
       if (!this._filter) {
         this.errorStatusCode = 500;
       }
@@ -62,7 +67,7 @@ export class Core {
   };
 
   @Watch('filter')
-  watchFilter(newValue: RVFilter, oldValue: RVFilter): void {
+  watchFilter(newValue: RVFilterAllReportTypes, oldValue: RVFilterAllReportTypes): void {
     if (newValue && oldValue && !isEqual(oldValue, newValue)) {
       this.validateParams(this.configuration, newValue);
     }
@@ -88,49 +93,51 @@ export class Core {
       return <railz-error-image statusCode={this.errorStatusCode || 500} />;
     }
 
-    if (RVReportTypes.FINANCIAL_RATIO === this._filter?.reportType) {
+    const reportType = (this._filter as RVFilterAll)?.reportType;
+
+    if (RVReportTypes.FINANCIAL_RATIO === reportType) {
       return (
         <railz-financial-ratios
           configuration={this.configuration}
-          filter={this.filter as RVFilterDate}
+          filter={this.filter as RVFilterFinancialRatio}
           options={this.options}
         />
       );
     }
 
-    if (isGauge(this._filter?.reportType)) {
+    if (isGauge(reportType)) {
       return (
         <railz-gauge-chart
           configuration={this.configuration}
-          filter={this.filter as RVFilterDate}
+          filter={this.filter as RVFilterGauge}
           options={this.options}
         />
       );
     }
 
-    if (isPie(this._filter?.reportType)) {
+    if (isPie(reportType)) {
       return (
         <railz-pie-chart
           configuration={this.configuration}
-          filter={this.filter as RVFilterDate}
+          filter={this.filter as RVFilterPie}
           options={this.options}
         />
       );
     }
-    if (isStatements(this._filter?.reportType)) {
+    if (isStatements(reportType)) {
       return (
         <railz-statements-chart
           configuration={this.configuration}
-          filter={this.filter as RVFilterFrequency}
+          filter={this.filter as RVFilterStatements}
           options={this.options}
         />
       );
     }
-    if (isTransactions(this._filter?.reportType)) {
+    if (isTransactions(reportType)) {
       return (
         <railz-transactions-control
           configuration={this.configuration}
-          filter={this.filter as RVFilterDate}
+          filter={this.filter as RVFilterTransactions}
           options={this.options}
         />
       );
