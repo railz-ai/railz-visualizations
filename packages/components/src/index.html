@@ -11,5 +11,45 @@
     <script nomodule src="/build/railzvisualizations.js"></script>
   </head>
 
-  <body></body>
+  <body>
+    <script>
+      async function main(params) {
+        const response = await fetch('http://localhost:4000/authenticate', { method: 'GET' });
+        const result = await response.json();
+
+        const configuration = {
+          token: result.access_token,
+          debug: true,
+          endpoint: 'https://api.qa2.railz.ai',
+        };
+
+        let railzVisualizations = document.createElement('railz-visualizations');
+        if (railzVisualizations) {
+          railzVisualizations.configuration = configuration;
+          railzVisualizations.filter = {
+            startDate: '2022-03-01',
+            endDate: '2022-03-31',
+            reportFrequency: 'month',
+            businessName: 'QBOmanyAttachments',
+            serviceName: 'quickbooks',
+            reportType: 'balanceSheets',
+          };
+          document.body.appendChild(railzVisualizations);
+        }
+      }
+      main();
+    </script>
+  </body>
 </html>
+
+<!-- BALANCE_SHEET = 'balanceSheets',
+BANK_ACCOUNT = 'bankAccounts',
+BILLS = 'bills',
+CASHFLOW_STATEMENTS = 'cashflowStatements',
+CREDIT_SCORE = 'creditScores',
+EXPENSES = 'expenses',
+FINANCIAL_RATIO = 'financialRatios',
+INCOME_STATEMENTS = 'incomeStatements',
+INVOICES = 'invoices',
+REVENUE = 'revenue',
+RAILZ_SCORE = 'railzScore', -->

@@ -90,6 +90,9 @@ export const validateBusinessParams = (filter: RVFilter): boolean => {
   const hasConnectionId = !isEmpty(filterPassed?.connectionId);
   const hasBusinessName = !isEmpty(filterPassed?.businessName);
   const hasServiceName = !isEmpty(filterPassed?.serviceName);
+  if (hasConnectionId) {
+    warnLog(Translations.RV_WARN_CONNECTION_ID_NOT_RELEASED);
+  }
   if (!hasBusinessName && !hasConnectionId) {
     errorLog(Translations.RV_ERROR_INVALID_BUSINESS_IDENTIFICATION);
     return false;

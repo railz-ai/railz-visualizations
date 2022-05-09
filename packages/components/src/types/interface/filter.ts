@@ -114,11 +114,13 @@ export type RVBaseFilterDateFrequency =
   | RVBaseFilterConnectionDateFrequency
   | RVBaseFilterBusinessDateFrequency;
 export type RVBaseAllFilter = RVBaseFilter | RVBaseFilterDate | RVBaseFilterDateFrequency;
+
 export type RVFilterFrequency =
   | RVBaseFilterConnectionDateFrequencyType
   | RVBaseFilterBusinessDateFrequencyType;
 export type RVFilterDate = RVBaseFilterConnectionDateType | RVBaseFilterBusinessDateType;
 export type RVFilterType = RVBaseFilterConnectionType | RVBaseFilterBusinessType;
 export type RVFilter = RVFilterFrequency | RVFilterDate | RVFilterType;
+
 export type RVDateFilters = RVFilterDate | RVFilterFrequency;
 export type RVAllFilter = RVFilterDate | RVFilterFrequency;

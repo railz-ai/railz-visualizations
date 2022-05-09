@@ -21,6 +21,11 @@ export enum RVParams {
   CONNECTION_ID = 'connectionId',
 }
 
+export enum RVAccountingMethod {
+  ACCRUALS = 'accruals',
+  CASH = 'cash',
+}
+
 export type RVFinancialStatementsTypes =
   | RVReportTypes.BALANCE_SHEET
   | RVReportTypes.CASHFLOW_STATEMENTS
@@ -41,6 +46,7 @@ export type RVNoFrequencyTypes =
   | RVReportTypes.BILLS
   | RVReportTypes.RAILZ_SCORE;
 export type RVNoDateTypes = RVReportTypes.BANK_ACCOUNT | RVReportTypes.CREDIT_SCORE;
+export type RVHasAccountingMethod = RVReportTypes.BALANCE_SHEET;
 
 export enum RVCreditScoreTypes {
   VERY_POOR = 'Very Poor',
