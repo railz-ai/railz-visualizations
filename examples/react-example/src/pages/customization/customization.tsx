@@ -5,7 +5,7 @@ import Visualizations from '../../components/visualizations';
 import { AuthenticationParameters } from '../../types/authentication';
 import { isEmpty } from 'lodash';
 import { INITIAL_OPTIONS } from '../../types/constants';
-import { RVFilter } from '@railzai/railz-visualizations';
+import { RVFilterAll } from '@railzai/railz-visualizations';
 
 export default function Customization() {
   const [token, setToken] = useState('');
@@ -24,7 +24,7 @@ export default function Customization() {
     setToken(result.access_token);
   };
 
-  const submitFilter = (filter: RVFilter) => {
+  const submitFilter = (filter: RVFilterAll) => {
     setFilter(filter);
     setError('');
     if (!token) {

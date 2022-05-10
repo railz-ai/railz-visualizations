@@ -83,13 +83,24 @@ export const validateRequiredParams = (filter: RVFilterAll): boolean => {
   );
 };
 
+export const validateReportTypeParams = (filter: RVFilterAll): boolean => {
+  if (!Object.values(RVReportTypes).includes(filter.reportType)) {
+    errorLog(Translations.RV_ERROR_INVALID_REPORT_TYPE);
+    return false;
+  }
+  return true;
+};
+
 export const validateBusinessParams = (filter: RVFilterAll): boolean => {
   const filterPassed = filter as unknown as any;
   const hasConnectionId = !isEmpty(filterPassed?.connectionId);
   const hasBusinessName = !isEmpty(filterPassed?.businessName);
   const hasServiceName = !isEmpty(filterPassed?.serviceName);
+
+  //TODO: To remove when connectionId is implemented on the API
   if (hasConnectionId) {
     warnLog(Translations.RV_WARN_CONNECTION_ID_NOT_RELEASED);
+    return false;
   }
   if (!hasBusinessName && !hasConnectionId) {
     errorLog(Translations.RV_ERROR_INVALID_BUSINESS_IDENTIFICATION);
@@ -110,14 +121,6 @@ export const validateReportFrequencyParams = (filter: RVFilterAll): boolean => {
     !Object.values(RVReportFrequency).includes(filter?.reportFrequency)
   ) {
     errorLog(Translations.RV_ERROR_INVALID_REPORT_FREQUENCY);
-    return false;
-  }
-  return true;
-};
-
-export const validateReportTypeParams = (filter: RVFilterAll): boolean => {
-  if (!Object.values(RVReportTypes).includes(filter.reportType)) {
-    errorLog(Translations.RV_ERROR_INVALID_REPORT_TYPE);
     return false;
   }
   return true;

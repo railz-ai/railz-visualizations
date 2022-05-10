@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import {
   RVConfiguration,
-  RVFilter,
-  RVFilterDate,
   RVOptions,
   RVReportFrequency,
   RVReportTypes,
   RVServiceProviders,
-  RVFilterFrequency,
+  RVFilterFinancialRatio,
+  RVFilterPie,
+  RVFilterStatements,
+  RVFilterTransactions,
+  RVFilterAll,
 } from '@railzai/railz-visualizations';
 import {
   RailzFinancialRatios,
@@ -18,6 +20,7 @@ import {
   RailzVisualizations,
 } from '@railzai/railz-visualizations-react';
 import { cloneDeep, isEmpty, pick } from 'lodash';
+import { RVFilterGauge } from '@railzai/railz-visualizations/src';
 
 type AllTypes = 'all' & RVReportTypes;
 
@@ -100,7 +103,7 @@ const DefaultComponent = ({ configuration, filter, options, showCode }: ChartPro
     <div>
       <RailzVisualizations
         configuration={configuration}
-        filter={filter as RVFilter}
+        filter={filter as unknown as RVFilterAll}
         options={options}
       />
       <Code
@@ -139,7 +142,7 @@ const Components = ({ configuration, filter, options, showCode }: ChartProps) =>
             />
           </div>
         ))}
-      {filter.reportType === RVReportTypes.RAILZ_SCORE && (
+      {[RVReportTypes.RAILZ_SCORE].includes(filter.reportType) && (
         <div>
           <h4 className="text-xl font-bold text-gray-900">Using Railz Gauge Chart Component</h4>
           <p>
@@ -147,7 +150,7 @@ const Components = ({ configuration, filter, options, showCode }: ChartProps) =>
           </p>
           <RailzGaugeChart
             configuration={configuration}
-            filter={filter as RVFilterDate}
+            filter={filter as RVFilterGauge}
             options={options}
           />
           <Code
@@ -167,7 +170,7 @@ const Components = ({ configuration, filter, options, showCode }: ChartProps) =>
           </p>
           <RailzPieChart
             configuration={configuration}
-            filter={filter as RVFilterDate}
+            filter={filter as RVFilterPie}
             options={options}
           />
           <Code
@@ -179,7 +182,11 @@ const Components = ({ configuration, filter, options, showCode }: ChartProps) =>
           />
         </div>
       )}
-      {filter.reportType === RVReportTypes.BALANCE_SHEET && (
+      {[
+        RVReportTypes.BALANCE_SHEET,
+        RVReportTypes.CASHFLOW_STATEMENTS,
+        RVReportTypes.INCOME_STATEMENTS,
+      ].includes(filter.reportType) && (
         <div>
           <h4 className="text-xl font-bold text-gray-900">
             Using Railz Statements Chart Component
@@ -190,7 +197,7 @@ const Components = ({ configuration, filter, options, showCode }: ChartProps) =>
           </p>
           <RailzStatementsChart
             configuration={configuration}
-            filter={filter as RVFilterFrequency}
+            filter={filter as RVFilterStatements}
             options={options}
           />
           <Code
@@ -202,7 +209,7 @@ const Components = ({ configuration, filter, options, showCode }: ChartProps) =>
           />
         </div>
       )}
-      {filter.reportType === RVReportTypes.BILLS && (
+      {[RVReportTypes.BILLS, RVReportTypes.INVOICES].includes(filter.reportType) && (
         <div>
           <h4 className="text-xl font-bold text-gray-900">
             Using Railz Transactions Control Component
@@ -212,7 +219,7 @@ const Components = ({ configuration, filter, options, showCode }: ChartProps) =>
           </p>
           <RailzTransactionsControl
             configuration={configuration}
-            filter={filter as RVFilterDate}
+            filter={filter as RVFilterTransactions}
             options={options}
           />
           <Code
@@ -224,7 +231,7 @@ const Components = ({ configuration, filter, options, showCode }: ChartProps) =>
           />
         </div>
       )}
-      {filter.reportType === RVReportTypes.FINANCIAL_RATIO && (
+      {[RVReportTypes.FINANCIAL_RATIO].includes(filter.reportType) && (
         <div>
           <h4 className="text-xl font-bold text-gray-900">Using Railz FinancialRatios Component</h4>
           <p>
@@ -232,7 +239,7 @@ const Components = ({ configuration, filter, options, showCode }: ChartProps) =>
           </p>
           <RailzFinancialRatios
             configuration={configuration}
-            filter={filter as RVFilterDate}
+            filter={filter as RVFilterFinancialRatio}
             options={options}
           />
           <Code
@@ -245,11 +252,14 @@ const Components = ({ configuration, filter, options, showCode }: ChartProps) =>
         </div>
       )}
       {![
+        RVReportTypes.RAILZ_SCORE,
         RVReportTypes.EXPENSES,
         RVReportTypes.REVENUE,
-        RVReportTypes.RAILZ_SCORE,
         RVReportTypes.BALANCE_SHEET,
+        RVReportTypes.CASHFLOW_STATEMENTS,
+        RVReportTypes.INCOME_STATEMENTS,
         RVReportTypes.BILLS,
+        RVReportTypes.INVOICES,
         RVReportTypes.FINANCIAL_RATIO,
         'all',
       ].includes(filter.reportType) && (

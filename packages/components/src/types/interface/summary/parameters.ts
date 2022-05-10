@@ -1,7 +1,7 @@
 import { RVReportFrequency } from '../../enum/date';
 import { RVFinancialStatementsTypes } from '../../enum/report-type';
 import { RVOptions, RVOptionsChartStyle } from '../option';
-import { RVFilterAll } from '../filter2';
+import { RVFilterAll } from '../filter';
 
 import { RVFormattedStatementData } from './formatted-data';
 import { RVBillInvoiceSummary, RVReportStatementSummary } from './api-response';
