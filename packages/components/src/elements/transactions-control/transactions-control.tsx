@@ -161,9 +161,9 @@ export class TransactionsControl {
 
   render(): HTMLElement {
     return (
-      <div class="railz-container" style={this._options?.container?.style}>
+      <div class="rv-container" style={this._options?.container?.style}>
         {this._options?.title ? (
-          <p class="railz-title" style={this._options?.title?.style}>
+          <p class="rv-title" style={this._options?.title?.style}>
             {this._options?.title?.text || ''}
           </p>
         ) : null}
