@@ -9,6 +9,7 @@ import {
   RAILZ_CHART_LABEL_COLOR,
   RAILZ_CHART_LEGEND_COLOR,
   RAILZ_TEXT_COLOR,
+  RVAccountingMethod,
   RVConfiguration,
   RVFilterAll,
   RVFilterDate,
@@ -19,7 +20,11 @@ import {
   RVUpdateChartParameter,
 } from '../types';
 
-import { getTitleByReportType, isRequiredReportFrequency } from './utils';
+import {
+  getTitleByReportType,
+  isRequiredAccountingMethod,
+  isRequiredReportFrequency,
+} from './utils';
 import { checkAccessibility } from './accessibility';
 
 /**
@@ -79,6 +84,7 @@ export const validateRequiredParams = (filter: RVFilterAll): boolean => {
   return (
     validateReportTypeParams(filter) &&
     validateBusinessParams(filter) &&
+    validateReportFrequencyParams(filter) &&
     validateReportFrequencyParams(filter)
   );
 };
@@ -121,6 +127,17 @@ export const validateReportFrequencyParams = (filter: RVFilterAll): boolean => {
     !Object.values(RVReportFrequency).includes(filter?.reportFrequency)
   ) {
     errorLog(Translations.RV_ERROR_INVALID_REPORT_FREQUENCY);
+    return false;
+  }
+  return true;
+};
+
+export const validateAccountingMethodParams = (filter: RVFilterAll): boolean => {
+  if (
+    isRequiredAccountingMethod(filter?.reportType) &&
+    !Object.values(RVAccountingMethod).includes(filter?.accountingMethod)
+  ) {
+    errorLog(Translations.RV_ERROR_INVALID_ACCOUNTING_METHOD);
     return false;
   }
   return true;

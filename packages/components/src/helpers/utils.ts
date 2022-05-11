@@ -128,6 +128,13 @@ export const isRequiredReportFrequency = (reportType: RVReportTypes): boolean =>
 };
 
 /**
+ * Get information about reports with accounting method
+ */
+export const isRequiredAccountingMethod = (reportType: RVReportTypes): boolean => {
+  return reportType && [RVReportTypes.BALANCE_SHEET].includes(reportType);
+};
+
+/**
  * Round number and format to display
  */
 export const roundNumber = (number: number, mantissa = 2): string => {

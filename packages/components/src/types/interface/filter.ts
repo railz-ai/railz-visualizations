@@ -65,7 +65,8 @@ export interface RVFilterBalanceSheet
   extends RVFilterReportType,
     RVFilterBusiness,
     RVFilterDate,
-    RVFilterReportFrequency {
+    RVFilterReportFrequency,
+    RVFilterAccountingMethod {
   reportType: RVReportTypes.BALANCE_SHEET;
 }
 

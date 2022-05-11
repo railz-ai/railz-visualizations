@@ -51,6 +51,7 @@
   "RV_ERROR_INVALID_BUSINESS_IDENTIFICATION": "Invalid business identification",
   "RV_ERROR_NO_SERVICE_NAME": "No serviceName sent",
   "RV_ERROR_INVALID_REPORT_FREQUENCY": "Invalid Report Frequency",
+  "RV_ERROR_INVALID_ACCOUNTING_METHOD": "Invalid Accounting Method",
   "RV_ERROR_INVALID_REPORT_TYPE": "Invalid Report Type",
   "RV_FINANCIAL_RATIOS": "Financial Ratios",
   "RV_FINANCIAL_RATIO_TOOLTIP_PROBABILITY_OF_DEFAULT": "Probability of default (PD) is the likelihood that a business will fail to pay back a debt over a specified period, usually one year. It can be applied to a variety of different risk management or credit analysis scenarios. ",
