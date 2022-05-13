@@ -101,8 +101,15 @@ details [here](https://docs.railz.ai/reference/authentication)
 
 #### Framework Specific Installation
 
+- Javascript;
 - [Angular](https://www.npmjs.com/package/@railzai/railz-visualizations-angular);
 - [React](https://www.npmjs.com/package/@railzai/railz-visualizations-react);
+
+### Framework usage React example
+
+```html
+TODO insert javascript example
+```
 
 ### Framework usage React example
 
