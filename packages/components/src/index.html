@@ -7,21 +7,21 @@
       content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
     />
     <title>Stencil Component Starter</title>
-    <!-- <script type="module" src="/build/railzvisualizations.esm.js"></script>
-    <script nomodule src="/build/railzvisualizations.js"></script> -->
-    <!-- <script nomodule src="../dist/index.js"></script> -->
 
-    <script
+    <script type="module" src="/build/railzvisualizations.esm.js"></script>
+    <script nomodule src="/build/railzvisualizations.js"></script>
+
+    <!-- <script
       type="module"
-      src="https://cdn.jsdelivr.net/npm/@railzai/railz-visualizations@0.0.4-alpha.0/dist/index.cjs.min.js"
+      src="https://cdn.jsdelivr.net/npm/@railzai/railz-visualizations@0.0.4-alpha.0/dist/railzvisualizations/railzvisualizations.esm.js"
     ></script>
+    <script
+      nomodule
+      src="https://cdn.jsdelivr.net/npm/@railzai/railz-visualizations@0.0.4-alpha.0/dist/railzvisualizations/railzvisualizations.js"
+    ></script> -->
   </head>
 
   <body>
-    <h1>h1</h1>
-    <!-- <railz-visualizations /> -->
-    <railz-loading />
-    <h2>h2</h2>
     <script>
       async function main(params) {
         const response = await fetch('http://localhost:4000/authenticate', { method: 'GET' });
@@ -49,6 +49,8 @@
       }
       main();
     </script>
+
+    <!-- <railz-loading /> -->
   </body>
 </html>
 
