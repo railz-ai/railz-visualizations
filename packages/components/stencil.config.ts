@@ -30,8 +30,9 @@ export const config: Config = {
       type: 'docs-readme',
     },
     {
+      baseUrl: 'https://railz.ai/',
       type: 'www',
-      serviceWorker: null, // disable service workers
+      // serviceWorker: null, // disable service workers
     },
   ],
   plugins: [
