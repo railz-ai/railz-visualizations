@@ -4,6 +4,7 @@ import {
   RVReportRequest,
   RVReportRequestParameter,
   RVReportSummaryApiResponse,
+  RVReportTypes,
 } from '../types';
 import { RAILZ_API_HOST } from '../types/constants/endpoints';
 
@@ -22,8 +23,8 @@ class RequestService {
   }: RVReportRequestParameter): Promise<
     RVReportSummaryApiResponse | RVFormattedTransactionResponse | RVFormattedGaugeResponse
   > {
-    const url = `${filter.reportType}?${new URLSearchParams(filter as any)}`;
-
+    const prefixReports = filter.reportType === RVReportTypes.BANK_ACCOUNT ? '/' : '/reports/';
+    const url = `${prefixReports}${filter.reportType}?${new URLSearchParams(filter as any)}`;
     return await this.getRequest({
       url,
     });
@@ -34,7 +35,7 @@ class RequestService {
   }: RVReportRequest): Promise<RVReportSummaryApiResponse | RVFormattedTransactionResponse> {
     const token = ConfigurationInstance.configuration?.token;
     const baseUrl = this.getUrl();
-    return await fetch(`${baseUrl}/reports/${url}`, {
+    return await fetch(`${baseUrl}${url}`, {
       headers: {
         authorization: `Bearer ${token}`,
       },

@@ -3,6 +3,6 @@
     <app-form (filterEvent)="onFilterSubmit($event)" (authEvent)="onTokenSubmit($event)"></app-form>
   </div>
   <div class="mt-5 md:mt-0 md:col-span-2 text-center" role="main">
-    <app-visualizations [token]="token" [filter]="filter"></app-visualizations>
+    <app-visualizations [configuration]="configuration" [filter]="filter"></app-visualizations>
   </div>
 </div>

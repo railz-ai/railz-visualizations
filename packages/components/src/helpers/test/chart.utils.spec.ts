@@ -1,4 +1,10 @@
-import { RVAccountingProviders, RVOptions, RVReportFrequency, RVReportTypes } from '../../types';
+import {
+  RVAccountingMethod,
+  RVAccountingProviders,
+  RVOptions,
+  RVReportFrequency,
+  RVReportTypes,
+} from '../../types';
 import {
   getConfiguration,
   getDateFilter,
@@ -224,7 +230,20 @@ describe('Chart Utils Helper', () => {
           businessName: 'businessNames',
           serviceName: undefined,
         };
-        expect(validateBusinessParams(filter as RVFilterAll)).toEqual(false);
+        expect(validateBusinessParams(filter as RVFilterAll)).toEqual(true);
+      });
+
+      test('returns true correct params on validateBusinessParams', async () => {
+        const filter: RVFilterBalanceSheet = {
+          startDate: '2022-04-01',
+          endDate: '2022-04-30',
+          reportFrequency: RVReportFrequency.MONTH,
+          businessName: 'QBOmanyAttachments',
+          serviceName: RVAccountingProviders.QUICKBOOKS,
+          reportType: RVReportTypes.BALANCE_SHEET,
+          accountingMethod: RVAccountingMethod.ACCRUALS,
+        };
+        expect(validateBusinessParams(filter as RVFilterAll)).toEqual(true);
       });
 
       // TODO: When connection is ready on web-backend
