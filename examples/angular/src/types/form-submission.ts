@@ -9,8 +9,8 @@ export interface Filter {
   businessName?: string;
   serviceName?: RVServiceProviders;
   connectionId?: string;
-  startDate: string;
-  endDate: string;
-  reportFrequency: RVReportFrequency;
+  startDate?: string;
+  endDate?: string;
+  reportFrequency?: RVReportFrequency;
   reportType: AllTypes;
 }

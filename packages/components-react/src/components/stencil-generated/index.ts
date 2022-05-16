@@ -8,6 +8,10 @@ import type { JSX } from '@railzai/railz-visualizations';
 import { defineCustomElements } from '@railzai/railz-visualizations/dist/loader';
 
 defineCustomElements();
+export const RailzBankAccounts = /*@__PURE__*/ createReactComponent<
+  JSX.RailzBankAccounts,
+  HTMLRailzBankAccountsElement
+>('railz-bank-accounts');
 export const RailzErrorImage = /*@__PURE__*/ createReactComponent<
   JSX.RailzErrorImage,
   HTMLRailzErrorImageElement

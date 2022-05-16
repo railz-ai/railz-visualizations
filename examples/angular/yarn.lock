@@ -1320,13 +1320,27 @@
     node-gyp "^8.2.0"
     read-package-json-fast "^2.0.1"
 
-"@railzai/railz-visualizations-angular@link:../../packages/components-angular":
-  version "0.0.0"
-  uid ""
+"@railzai/railz-visualizations-angular@0.0.1":
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/@railzai/railz-visualizations-angular/-/railz-visualizations-angular-0.0.1.tgz#e0119a3b86a59a5f09be54cd6235918e04b44bd9"
+  integrity sha512-mkbVt12ua1riUSc7Xz5qtZGygdc7y5M869x076c2gFi7V6VYERVRLD/+few8mEifW70ffkNDYUkds8G4RPCAVw==
+  dependencies:
+    "@railzai/railz-visualizations" "^0.0.1"
+    tslib "^2.3.0"
 
-"@railzai/railz-visualizations@link:../../packages/components":
-  version "0.0.0"
-  uid ""
+"@railzai/railz-visualizations@^0.0.1":
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/@railzai/railz-visualizations/-/railz-visualizations-0.0.1.tgz#021f82f9fb8a35426a45b8124b925859e233ac48"
+  integrity sha512-CdO/d/DtfMV8OdjIxwtgeHa/HDKIiacuozeeagPUr6NYwQKNZEX07AM+sEQHs0N/JFs3qocwlqveTMtR0FICiA==
+  dependencies:
+    "@stencil/angular-output-target" "0.4.0"
+    "@stencil/core" "2.14.2"
+    "@stencil/react-output-target" "0.3.1"
+    "@stencil/sass" "1.5.2"
+    date-fns "2.11.1"
+    get-contrast "^3.0.0"
+    highcharts "9.3.3"
+    lodash-es "4.17.21"
 
 "@schematics/angular@13.0.4":
   version "13.0.4"
@@ -2028,11 +2042,6 @@ big.js@^5.2.2:
   version "5.2.2"
   resolved "https://registry.yarnpkg.com/big.js/-/big.js-5.2.2.tgz#65f0af382f578bcdc742bd9c281e9cb2d7768328"
   integrity sha512-vyL2OymJxmarO8gxMr0mhChsO9QGwhynfuu4+MHTAW6czfq9humCB7rKpUjDd9YUiDPU4mzpyupFSvOClAwbmQ==
-
-bignumber.js@^8.1.1:
-  version "8.1.1"
-  resolved "https://registry.yarnpkg.com/bignumber.js/-/bignumber.js-8.1.1.tgz#4b072ae5aea9c20f6730e4e5d529df1271c4d885"
-  integrity sha512-QD46ppGintwPGuL1KqmwhR0O+N2cZUg8JG/VzwI2e28sM9TqHjQB10lI4QAaMHVbLzwVLLAwEglpKPViWX+5NQ==
 
 binary-extensions@^2.0.0:
   version "2.2.0"
@@ -4717,13 +4726,6 @@ nth-check@^2.0.1:
   integrity sha512-it1vE95zF6dTT9lBsYbxvqh0Soy4SPowchj0UBGj/V6cTPnXXtQOPUbhZ6CmGzAD/rW22LQK6E96pcdJXk4A4w==
   dependencies:
     boolbase "^1.0.0"
-
-numbro@2.3.6:
-  version "2.3.6"
-  resolved "https://registry.yarnpkg.com/numbro/-/numbro-2.3.6.tgz#4bd622ebe59ccbc49dad365c5b9eed200781fa21"
-  integrity sha512-pxpoTT3hVxQGaOA2RTzXR/muonQNd1K1HPJbWo7QOmxPwiPmoFCFfsG9XXgW3uqjyzezJ0P9IvCPDXUtJexjwg==
-  dependencies:
-    bignumber.js "^8.1.1"
 
 object-assign@^4:
   version "4.1.1"
