@@ -133,6 +133,10 @@ export class BanksAccounts {
         filter: this._filter as RVFilterDate,
       })) as RVFormattedBankAccountsResponse;
       this._summary = reportData.data as RVBankAccounts[];
+      if (isEmpty(this._summary)) {
+        this.errorStatusCode = 204;
+        this.error = Translations.ERROR_204_TITLE;
+      }
     } catch (error) {
       errorLog(Translations.RV_NOT_ABLE_TO_PARSE_REPORT_DATA, error);
     } finally {
