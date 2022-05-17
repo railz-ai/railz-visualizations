@@ -9,7 +9,7 @@ import {
   RAILZ_CHART_LABEL_COLOR,
   RAILZ_CHART_LEGEND_COLOR,
   RAILZ_TEXT_COLOR,
-  RVAccountingMethod,
+  // RVAccountingMethod,
   RVConfiguration,
   RVFilterAll,
   RVFilterDate,
@@ -22,7 +22,7 @@ import {
 
 import {
   getTitleByReportType,
-  isRequiredAccountingMethod,
+  // isRequiredAccountingMethod,
   isRequiredReportFrequency,
 } from './utils';
 import { checkAccessibility } from './accessibility';
@@ -132,16 +132,16 @@ export const validateReportFrequencyParams = (filter: RVFilterAll): boolean => {
   return true;
 };
 
-export const validateAccountingMethodParams = (filter: RVFilterAll): boolean => {
-  if (
-    isRequiredAccountingMethod(filter?.reportType) &&
-    !Object.values(RVAccountingMethod).includes(filter?.accountingMethod)
-  ) {
-    errorLog(Translations.RV_ERROR_INVALID_ACCOUNTING_METHOD);
-    return false;
-  }
-  return true;
-};
+// export const validateAccountingMethodParams = (filter: RVFilterAll): boolean => {
+//   if (
+//     isRequiredAccountingMethod(filter?.reportType) &&
+//     !Object.values(RVAccountingMethod).includes(filter?.accountingMethod)
+//   ) {
+//     errorLog(Translations.RV_ERROR_INVALID_ACCOUNTING_METHOD);
+//     return false;
+//   }
+//   return true;
+// };
 
 /**
  * @function getDateFilter: Compare start and end date passed and ensure

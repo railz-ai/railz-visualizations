@@ -8,15 +8,15 @@ import { ConfigurationInstance } from '../../services/configuration';
 import {
   getOptions,
   getConfiguration,
-  getDateFilter,
   validateRequiredParams,
+  getFilter,
 } from '../../helpers/chart.utils';
 import {
-  RVAllFilter,
   RVBankAccounts,
   RVBankingProviders,
   RVConfiguration,
-  RVFilterDate,
+  RVFilterAll,
+  RVFilterBankAccount,
   RVFormattedBankAccountsResponse,
   RVOptions,
 } from '../../types';
@@ -37,7 +37,7 @@ export class BanksAccounts {
   /**
    * Filter information to query the backend APIs
    */
-  @Prop() readonly filter!: RVFilterDate;
+  @Prop() readonly filter!: RVFilterBankAccount;
   /**
    * For whitelabeling styling
    */
@@ -45,7 +45,7 @@ export class BanksAccounts {
 
   @State() private loading = '';
   @State() private _configuration: RVConfiguration;
-  @State() private _filter: RVAllFilter;
+  @State() private _filter: RVFilterBankAccount;
   @State() private _options: RVOptions;
   @State() private _summary: RVBankAccounts[];
   @State() private error: string;
@@ -59,7 +59,7 @@ export class BanksAccounts {
   }
 
   @Watch('filter')
-  async watchFilter(newValue: RVFilterDate, oldValue: RVFilterDate): Promise<void> {
+  async watchFilter(newValue: RVFilterBankAccount, oldValue: RVFilterBankAccount): Promise<void> {
     if (newValue && oldValue && !isEqual(oldValue, newValue)) {
       await this.validateParams(this.configuration, newValue, this.options);
     }
@@ -89,7 +89,7 @@ export class BanksAccounts {
    */
   private validateParams = async (
     configuration: RVConfiguration,
-    filter: RVFilterDate,
+    filter: RVFilterBankAccount,
     options: RVOptions,
     triggerRequest = true,
   ): Promise<void> => {
@@ -98,11 +98,11 @@ export class BanksAccounts {
       ConfigurationInstance.configuration = this._configuration;
       try {
         this._filter = {
-          ...getDateFilter(filter),
+          ...(getFilter(filter as RVFilterAll) as RVFilterBankAccount),
           serviceName: RVBankingProviders.PLAID,
-        } as RVFilterDate;
-        this._options = getOptions(options, filter);
-        const valid = validateRequiredParams(filter);
+        };
+        this._options = getOptions(options, filter as RVFilterAll);
+        const valid = validateRequiredParams(filter as RVFilterAll);
         if (valid) {
           if (triggerRequest) {
             await this.requestReportData();
@@ -130,7 +130,7 @@ export class BanksAccounts {
     this.loading = Translations.LOADING_REPORT;
     try {
       const reportData = (await getReportData({
-        filter: this._filter as RVFilterDate,
+        filter: this._filter as RVFilterAll,
       })) as RVFormattedBankAccountsResponse;
       this._summary = reportData.data as RVBankAccounts[];
       if (isEmpty(this._summary)) {

@@ -10,6 +10,7 @@ import {
   RVFilterStatements,
   RVFilterTransactions,
   RVFilterAll,
+  RVFilterBankAccount,
 } from '@railzai/railz-visualizations';
 import {
   RailzBankAccounts,
@@ -261,7 +262,7 @@ const Components = ({ configuration, filter, options, showCode }: ChartProps) =>
           </p>
           <RailzBankAccounts
             configuration={configuration}
-            filter={filter as RVFilterDate}
+            filter={filter as RVFilterBankAccount}
             options={options}
           />
           <Code
