@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { RVConfiguration } from '@railzai/railz-visualizations';
 
 import { RVReportTypes, RVOptions } from '@railzai/railz-visualizations';
 
@@ -10,7 +11,7 @@ import { Filter } from '../../../types/form-submission';
   styleUrls: ['./visualizations.component.css'],
 })
 export class VisualizationsComponent implements OnInit {
-  @Input() token: { token: string };
+  @Input() configuration: RVConfiguration;
   @Input() filter: Filter;
   @Input() options: RVOptions;
 

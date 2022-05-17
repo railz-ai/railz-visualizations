@@ -121,10 +121,6 @@ export interface RVCreditScore {
   lastUpdated: string;
 }
 
-export interface RVBankAccountsReportSummary extends RVLoadingErrorState {
-  summary: RVBankAccounts[];
-}
-
 export interface BankAccountReportSummary extends RVLoadingErrorState {
   summary: RVBankAccount;
 }
@@ -204,6 +200,12 @@ export interface RVFormattedPieResponse {
 export interface RVFormattedFinancialRatioResponse {
   error?: RVErrorResponse;
   data?: RVFinancialRatioSummary;
+  status?: number;
+}
+
+export interface RVFormattedBankAccountsResponse {
+  error?: RVErrorResponse;
+  data?: RVBankAccounts[];
   status?: number;
 }
 

@@ -10,13 +10,13 @@ import { RVConfiguration } from '@railzai/railz-visualizations';
 })
 export class BasicComponent implements OnInit {
   // @ts-ignore
-  token: RVConfiguration;
+  configuration: RVConfiguration;
   filter: Filter;
 
   constructor(private ref: ChangeDetectorRef) {}
 
   onTokenSubmit = (token: string) => {
-    this.token = { token: token, debug: true };
+    this.configuration = { token: token, debug: true };
     this.ref.detectChanges();
   };
 

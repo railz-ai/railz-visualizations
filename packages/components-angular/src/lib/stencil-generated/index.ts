@@ -1,6 +1,7 @@
 import * as d from './components';
 
 export const DIRECTIVES = [
+  d.RailzBankAccounts,
   d.RailzErrorImage,
   d.RailzFinancialRatios,
   d.RailzGaugeChart,

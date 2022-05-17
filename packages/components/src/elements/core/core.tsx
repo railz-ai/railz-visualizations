@@ -7,6 +7,7 @@ import {
   RVConfiguration,
   RVFilterAll,
   RVFilterAllReportTypes,
+  RVFilterBankAccount,
   RVFilterFinancialRatio,
   RVFilterGauge,
   RVFilterPie,
@@ -94,6 +95,16 @@ export class Core {
     }
 
     const reportType = (this._filter as RVFilterAll)?.reportType;
+
+    if (RVReportTypes.BANK_ACCOUNT === reportType) {
+      return (
+        <railz-bank-accounts
+          configuration={this.configuration}
+          filter={this.filter as RVFilterBankAccount}
+          options={this.options}
+        />
+      );
+    }
 
     if (RVReportTypes.FINANCIAL_RATIO === reportType) {
       return (

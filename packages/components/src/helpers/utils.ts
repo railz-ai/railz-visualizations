@@ -1,4 +1,4 @@
-import { isNil } from 'lodash-es';
+import { isNil, invert } from 'lodash-es';
 import { parseISO, format } from 'date-fns';
 
 import numbro from 'numbro';
@@ -35,11 +35,12 @@ export const formatSeries = (
 });
 
 /**
- * Format number displayed on UI to 2 decimals and thousand seperator
+ * Format number displayed on UI to 2 decimals and thousand separator
  */
-export const formatNumber = (number: number | string, decimals = 2): string => {
+export const formatNumber = (number: number | string, decimals = 2, minimum = 0): string => {
   if (!isNil(number)) {
     const formatter = new Intl.NumberFormat('en-US', {
+      minimumFractionDigits: minimum,
       maximumFractionDigits: decimals,
     });
     return formatter.format(Number(number));
@@ -86,28 +87,8 @@ export const isTransactions = (reportType: RVReportTypes): boolean => {
  * Get title of report types to be displayed on the box
  */
 export const getTitleByReportType = (reportType: RVReportTypes): string => {
-  switch (reportType) {
-    case RVReportTypes.INVOICES:
-      return Translations.RV_INVOICES;
-    case RVReportTypes.BILLS:
-      return Translations.RV_BILLS;
-    case RVReportTypes.BALANCE_SHEET:
-      return Translations.RV_BALANCE_SHEETS;
-    case RVReportTypes.INCOME_STATEMENTS:
-      return Translations.INCOME_STATEMENTS;
-    case RVReportTypes.CASHFLOW_STATEMENTS:
-      return Translations.CASHFLOW_STATEMENTS;
-    case RVReportTypes.EXPENSES:
-      return Translations.EXPENSES;
-    case RVReportTypes.REVENUE:
-      return Translations.REVENUE;
-    case RVReportTypes.RAILZ_SCORE:
-      return Translations.RAILZ_SCORE;
-    case RVReportTypes.FINANCIAL_RATIO:
-      return Translations.RV_FINANCIAL_RATIOS;
-    default:
-      return '';
-  }
+  const mappingReportTypeTranslation = invert(RVReportTypes);
+  return Translations[`RV_${mappingReportTypeTranslation[reportType]}`] || '';
 };
 
 /**
