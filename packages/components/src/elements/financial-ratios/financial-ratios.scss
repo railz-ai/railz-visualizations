@@ -59,6 +59,16 @@
     color: #424242;
     font-size: 0.75rem;
     font-weight: 600;
+
+    .rv-ratio-tooltip {
+      padding: 0;
+      width: 13px;
+      height: 13px;
+    }
+
+    .rv-ratio-name-text {
+      padding-left: 4px;
+    }
   }
 
   .rv-ratio-values {
