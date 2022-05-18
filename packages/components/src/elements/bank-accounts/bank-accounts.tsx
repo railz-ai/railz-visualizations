@@ -101,15 +101,18 @@ export class BanksAccounts {
           ...(getFilter(filter as RVFilterAll) as RVFilterBankAccount),
           serviceName: RVBankingProviders.PLAID,
         };
-        this._options = getOptions(options, filter as RVFilterAll);
-        const valid = validateRequiredParams(filter as RVFilterAll);
-        if (valid) {
-          if (triggerRequest) {
-            await this.requestReportData();
+        if (this._filter) {
+          this._options = getOptions(options, filter as RVFilterAll);
+          const valid = validateRequiredParams(filter as RVFilterAll);
+          if (valid) {
+            if (triggerRequest) {
+              await this.requestReportData();
+            }
+          } else {
+            this.errorStatusCode = 204;
           }
         } else {
           this.errorStatusCode = 204;
-          this.error = Translations.ERROR_204_TITLE;
         }
       } catch (e) {
         this.errorStatusCode = 500;
@@ -135,7 +138,6 @@ export class BanksAccounts {
       this._summary = reportData.data as RVBankAccounts[];
       if (isEmpty(this._summary)) {
         this.errorStatusCode = 204;
-        this.error = Translations.ERROR_204_TITLE;
       }
     } catch (error) {
       errorLog(Translations.RV_NOT_ABLE_TO_PARSE_REPORT_DATA, error);

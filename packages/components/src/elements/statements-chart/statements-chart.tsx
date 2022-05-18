@@ -22,7 +22,7 @@ import {
 import { RVFinancialStatementsTypes } from '../../types/enum/report-type';
 import {
   getConfiguration,
-  getDateFilter,
+  getFilter,
   getHighchartsParams,
   getOptions,
   validateRequiredParams,
@@ -82,16 +82,19 @@ export class StatementsChart {
     if (this._configuration) {
       ConfigurationInstance.configuration = this._configuration;
       try {
-        this._filter = getDateFilter(filter) as RVFilterStatements;
-        this._options = getOptions(this.options, this._filter as RVFilterAll);
-        const valid = validateRequiredParams(this._filter as RVFilterAll);
-        if (valid) {
-          if (triggerRequest) {
-            await this.requestReportData();
+        this._filter = getFilter(filter as RVFilterAll) as RVFilterStatements;
+        if (this._filter) {
+          this._options = getOptions(this.options, this._filter as RVFilterAll);
+          const valid = validateRequiredParams(this._filter as RVFilterAll);
+          if (valid) {
+            if (triggerRequest) {
+              await this.requestReportData();
+            }
+          } else {
+            this.errorStatusCode = 204;
           }
         } else {
           this.errorStatusCode = 204;
-          this.error = Translations.ERROR_204_TITLE;
         }
       } catch (e) {
         this.errorStatusCode = 500;

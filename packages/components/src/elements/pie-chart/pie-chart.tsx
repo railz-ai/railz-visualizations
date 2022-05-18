@@ -7,9 +7,9 @@ import highchartsAccessibility from 'highcharts/modules/accessibility';
 
 import {
   getConfiguration,
-  getDateFilter,
   validateRequiredParams,
   getOptions,
+  getFilter,
 } from '../../helpers/chart.utils';
 import { ConfigurationInstance } from '../../services/configuration';
 import Translations from '../../config/translations/en.json';
@@ -83,16 +83,19 @@ export class PieChart {
     if (this._configuration) {
       ConfigurationInstance.configuration = this._configuration;
       try {
-        this._filter = getDateFilter(filter as RVFilterAll) as RVFilterPie;
-        this._options = getOptions(options, filter as RVFilterAll);
-        const valid = validateRequiredParams(filter as RVFilterAll);
-        if (valid) {
-          if (triggerRequest) {
-            await this.requestReportData();
+        this._filter = getFilter(filter as RVFilterAll) as RVFilterPie;
+        if (this._filter) {
+          this._options = getOptions(options, filter as RVFilterAll);
+          const valid = validateRequiredParams(filter as RVFilterAll);
+          if (valid) {
+            if (triggerRequest) {
+              await this.requestReportData();
+            }
+          } else {
+            this.errorStatusCode = 204;
           }
         } else {
           this.errorStatusCode = 204;
-          this.error = Translations.ERROR_204_TITLE;
         }
       } catch (e) {
         this.errorStatusCode = 500;

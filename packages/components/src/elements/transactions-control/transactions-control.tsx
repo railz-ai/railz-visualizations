@@ -68,15 +68,18 @@ export class TransactionsControl {
       ConfigurationInstance.configuration = this._configuration;
       try {
         this._filter = getFilter(filter as RVFilterAll) as RVFilterTransactions;
-        this._options = getOptions(this.options, this._filter as RVFilterAll);
-        const valid = validateRequiredParams(this._filter as RVFilterAll);
-        if (valid) {
-          if (triggerRequest) {
-            await this.requestReportData();
+        if (this._filter) {
+          this._options = getOptions(this.options, this._filter as RVFilterAll);
+          const valid = validateRequiredParams(this._filter as RVFilterAll);
+          if (valid) {
+            if (triggerRequest) {
+              await this.requestReportData();
+            }
+          } else {
+            this.errorStatusCode = 204;
           }
         } else {
           this.errorStatusCode = 204;
-          this.error = Translations.ERROR_204_TITLE;
         }
       } catch (e) {
         this.errorStatusCode = 500;

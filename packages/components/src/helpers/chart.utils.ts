@@ -9,22 +9,17 @@ import {
   RAILZ_CHART_LABEL_COLOR,
   RAILZ_CHART_LEGEND_COLOR,
   RAILZ_TEXT_COLOR,
-  // RVAccountingMethod,
   RVConfiguration,
   RVFilterAll,
-  RVFilterDate,
   RVOptions,
   RVOptionsBarStyle,
   RVReportFrequency,
   RVReportTypes,
+  RVAllProviders,
   RVUpdateChartParameter,
 } from '../types';
 
-import {
-  getTitleByReportType,
-  // isRequiredAccountingMethod,
-  isRequiredReportFrequency,
-} from './utils';
+import { getTitleByReportType, isRequiredReportFrequency } from './utils';
 import { checkAccessibility } from './accessibility';
 
 /**
@@ -65,7 +60,7 @@ export const getFilter = (filter: RVFilterAll | string): RVFilterAll => {
       if (typeof filter === 'string') {
         formattedFilter = JSON.parse(filter);
 
-        if (!validateBusinessParams(formattedFilter)) {
+        if (!validateRequiredParams(formattedFilter)) {
           formattedFilter = undefined;
         }
       } else {
@@ -82,22 +77,15 @@ export const getFilter = (filter: RVFilterAll | string): RVFilterAll => {
 
 export const validateRequiredParams = (filter: RVFilterAll): boolean => {
   return (
-    validateReportTypeParams(filter) &&
-    validateBusinessParams(filter) &&
+    validateBusinessServiceNameParams(filter) &&
+    validateDateParams(filter) &&
     validateReportFrequencyParams(filter) &&
-    validateReportFrequencyParams(filter)
+    // validateAccountingMethodParams(filter) &&
+    validateReportTypeParams(filter)
   );
 };
 
-export const validateReportTypeParams = (filter: RVFilterAll): boolean => {
-  if (!Object.values(RVReportTypes).includes(filter.reportType)) {
-    errorLog(Translations.RV_ERROR_INVALID_REPORT_TYPE);
-    return false;
-  }
-  return true;
-};
-
-export const validateBusinessParams = (filter: RVFilterAll): boolean => {
+export const validateBusinessServiceNameParams = (filter: RVFilterAll): boolean => {
   const filterPassed = filter as unknown as any;
   const hasConnectionId = !isEmpty(filterPassed?.connectionId);
   const hasBusinessName = !isEmpty(filterPassed?.businessName);
@@ -117,6 +105,27 @@ export const validateBusinessParams = (filter: RVFilterAll): boolean => {
     if (hasBusinessName && filter.reportType !== RVReportTypes.BANK_ACCOUNT) {
       return false;
     }
+  } else if (!Object.values(RVAllProviders).includes(filter.serviceName)) {
+    errorLog(Translations.RV_ERROR_INVALID_SERVICE_NAME);
+    return false;
+  }
+  return true;
+};
+
+export const validateDateParams = (filter: RVFilterAll): boolean => {
+  const { startDate, endDate, reportType } = filter;
+  if (reportType === RVReportTypes.BANK_ACCOUNT) {
+    return true;
+  }
+  if (startDate && endDate) {
+    const compare = compareAsc(parseISO(startDate), parseISO(endDate));
+    if (compare >= 0) {
+      errorLog(Translations.RV_END_DATE_BEFORE_START_DATE);
+      return false;
+    }
+  } else {
+    errorLog(Translations.RV_DATE_REQUIRED);
+    return false;
   }
   return true;
 };
@@ -143,32 +152,40 @@ export const validateReportFrequencyParams = (filter: RVFilterAll): boolean => {
 //   return true;
 // };
 
-/**
- * @function getDateFilter: Compare start and end date passed and ensure
- * end date is greater than start date
- * @param filter: Filter query
- */
-export const getDateFilter = (filter: RVFilterDate | string): RVFilterDate => {
-  let formattedFilter = getFilter(filter as RVFilterAll) as RVFilterDate;
-  if (formattedFilter) {
-    if (formattedFilter.startDate && formattedFilter.endDate) {
-      try {
-        const compare = compareAsc(
-          parseISO(formattedFilter.startDate),
-          parseISO(formattedFilter.endDate),
-        );
-        if (compare >= 0) {
-          formattedFilter = undefined;
-          errorLog(Translations.RV_END_DATE_BEFORE_START_DATE);
-        }
-      } catch (error) {
-        errorLog(Translations.RV_DATE_DIFF_ERROR);
-        throw new Error(Translations.ERROR_500_TITLE);
-      }
-    }
+export const validateReportTypeParams = (filter: RVFilterAll): boolean => {
+  if (!Object.values(RVReportTypes).includes(filter.reportType)) {
+    errorLog(Translations.RV_ERROR_INVALID_REPORT_TYPE);
+    return false;
   }
-  return formattedFilter;
+  return true;
 };
+
+// /**
+//  * @function getDateFilter: Compare start and end date passed and ensure
+//  * end date is greater than start date
+//  * @param filter: Filter query
+//  */
+// export const getDateFilter = (filter: RVFilterDate | string): RVFilterDate => {
+//   let formattedFilter = getFilter(filter as RVFilterAll) as RVFilterDate;
+//   if (formattedFilter) {
+//     if (formattedFilter.startDate && formattedFilter.endDate) {
+//       try {
+//         const compare = compareAsc(
+//           parseISO(formattedFilter.startDate),
+//           parseISO(formattedFilter.endDate),
+//         );
+//         if (compare >= 0) {
+//           formattedFilter = undefined;
+//           errorLog(Translations.RV_END_DATE_BEFORE_START_DATE);
+//         }
+//       } catch (error) {
+//         errorLog(Translations.RV_DATE_DIFF_ERROR);
+//         throw new Error(Translations.ERROR_500_TITLE);
+//       }
+//     }
+//   }
+//   return formattedFilter;
+// };
 
 /**
  * @function checkAccessibilityFromOptions:

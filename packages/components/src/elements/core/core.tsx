@@ -60,7 +60,7 @@ export class Core {
       ConfigurationInstance.configuration = this._configuration;
       this._filter = getFilter(filter as RVFilterAll);
       if (!this._filter) {
-        this.errorStatusCode = 500;
+        this.errorStatusCode = 204;
       }
     } else {
       this.errorStatusCode = 500;
