@@ -1,6 +1,6 @@
 /* eslint-disable max-len, @typescript-eslint/no-unused-vars */
 import { Component, Prop, h, State, Watch } from '@stencil/core';
-import { isEmpty, isEqual } from 'lodash-es';
+import { isEqual } from 'lodash-es';
 
 import { isGauge, isPie, isStatements, isTransactions } from '../../helpers/utils';
 import {
@@ -90,7 +90,7 @@ export class Core {
   }
 
   render(): HTMLElement {
-    if (!isEmpty(this.errorStatusCode)) {
+    if (this.errorStatusCode !== undefined) {
       return <railz-error-image statusCode={this.errorStatusCode || 500} />;
     }
 

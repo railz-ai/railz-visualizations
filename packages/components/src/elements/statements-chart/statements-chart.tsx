@@ -188,7 +188,7 @@ export class StatementsChart {
   }
 
   private renderMain = (): HTMLElement => {
-    if (!isEmpty(this.error)) {
+    if (!isEmpty(this.error) || this.errorStatusCode !== undefined) {
       return (
         <railz-error-image
           statusCode={this.errorStatusCode || 500}
