@@ -50,9 +50,8 @@
 }
 
 .rv-financial-ratio-info {
-  .rv-ratio-values {
-    display: flex;
-  }
+  display: flex;
+  flex-direction: column;
 
   .rv-ratio-name {
     display: flex;
@@ -60,6 +59,30 @@
     color: #424242;
     font-size: 0.75rem;
     font-weight: 600;
+
+    .rv-ratio-tooltip {
+      padding: 0;
+      width: 13px;
+      height: 13px;
+    }
+
+    .rv-ratio-name-text {
+      padding-left: 4px;
+    }
+  }
+
+  .rv-ratio-values {
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+
+    .rv-ratio-summary {
+      line-height: 1.5;
+      font-size: 1.25rem;
+      max-width: 70%;
+      font-weight: 700;
+      margin-right: 8px;
+    }
   }
 }
 
@@ -68,18 +91,6 @@
     width: 132px;
     height: 60px;
   }
-}
-
-.rv-ratio-summary {
-  line-height: 1.5;
-  font-size: 1.25rem;
-  max-width: 70%;
-  font-weight: 700;
-  margin-right: 8px;
-}
-
-.rv-ratio-percentage {
-  align-self: center;
 }
 
 .rv-select {
