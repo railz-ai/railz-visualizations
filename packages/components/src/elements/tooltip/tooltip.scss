@@ -1,13 +1,17 @@
 /* Tooltip container (question sign) */
 .rv-tooltip {
+  fill: currentcolor;
+  color: #9e9e9e;
   position: relative;
   display: inline-block;
   flex-shrink: 0;
   width: 13px;
   height: 13px;
-  margin: 0 4px;
-  fill: currentcolor;
-  color: #9e9e9e;
+
+  .rv-tooltip-image {
+    width: 13px;
+    margin-top: 2px;
+  }
 }
 
 /* Tooltip text */
