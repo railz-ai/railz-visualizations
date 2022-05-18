@@ -107,12 +107,6 @@ details [here](https://docs.railz.ai/reference/authentication)
 
 ### Framework usage React example
 
-```html
-TODO insert javascript example
-```
-
-### Framework usage React example
-
 ```react
 import React, {useEffect, useState} from 'react';
 import './App.css';
