@@ -204,7 +204,7 @@ export class FinancialRatios {
                   />
                 </div>
               )}
-              <div>{translation(key)}</div>
+              <div class="rv-ratio-name-text">{translation(key)}</div>
             </div>
             <div class="rv-ratio-values">
               <div class="rv-ratio-summary">{roundNumber(item.currentValue)}</div>

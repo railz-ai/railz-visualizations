@@ -146,6 +146,10 @@ export interface RVTooltipStyle {
    * Position where the tooltip text will appear
    */
   position?: 'bottom-center' | 'bottom-left' | 'bottom-right' | 'center-left' | 'center-right';
+  /**
+   * style: CSS object based on HTML stylings for the container
+   */
+  style?: { [key: string]: any };
 }
 
 /**

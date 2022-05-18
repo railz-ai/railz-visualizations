@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.0.4-alpha.3 (2022-05-18)
+
+
+### Bug Fixes
+
+* Updating financial ratios ui ([#69](https://github.com/railz-ai/railz-visualizations/issues/69)) ([91a5767](https://github.com/railz-ai/railz-visualizations/commit/91a5767ab11caaf54f237b0d8e89038e9ab6f4b2))
+
+
+
+
+
 ## 0.0.4-alpha.2 (2022-05-18)
 
 **Note:** Version bump only for package @railzai/railz-visualizations-angular

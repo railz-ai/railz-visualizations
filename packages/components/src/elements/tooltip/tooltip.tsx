@@ -26,7 +26,7 @@ export class Tooltip {
     return (
       !isEmpty(this.tooltipText) && (
         <div class="rv-tooltip">
-          {isEmpty(this.text) ? <TooltipImage /> : this.text}
+          <div class="rv-tooltip-image">{isEmpty(this.text) ? <TooltipImage /> : this.text}</div>
           <span class={`rv-tooltiptext rv-${this.tooltipStyle?.position}`}>{this.tooltipText}</span>
         </div>
       )
