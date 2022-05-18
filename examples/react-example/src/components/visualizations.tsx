@@ -145,7 +145,7 @@ const Components = ({ configuration, filter, options, showCode }: ChartProps) =>
             />
           </div>
         ))}
-      {[RVReportTypes.RAILZ_SCORE].includes(filter.reportType) && (
+      {filter.reportType === RVReportTypes.RAILZ_SCORE && (
         <div>
           <h4 className="text-xl font-bold text-gray-900">Using Railz Gauge Chart Component</h4>
           <p>
@@ -165,7 +165,7 @@ const Components = ({ configuration, filter, options, showCode }: ChartProps) =>
           />
         </div>
       )}
-      {[RVReportTypes.EXPENSES, RVReportTypes.REVENUE].includes(filter.reportType) && (
+      {filter.reportType === RVReportTypes.EXPENSES && (
         <div>
           <h4 className="text-xl font-bold text-gray-900">Using Railz Pie Chart Component</h4>
           <p>
@@ -185,11 +185,7 @@ const Components = ({ configuration, filter, options, showCode }: ChartProps) =>
           />
         </div>
       )}
-      {[
-        RVReportTypes.BALANCE_SHEET,
-        RVReportTypes.CASHFLOW_STATEMENTS,
-        RVReportTypes.INCOME_STATEMENTS,
-      ].includes(filter.reportType) && (
+      {filter.reportType === RVReportTypes.BALANCE_SHEET && (
         <div>
           <h4 className="text-xl font-bold text-gray-900">
             Using Railz Statements Chart Component
@@ -212,7 +208,7 @@ const Components = ({ configuration, filter, options, showCode }: ChartProps) =>
           />
         </div>
       )}
-      {[RVReportTypes.BILLS, RVReportTypes.INVOICES].includes(filter.reportType) && (
+      {filter.reportType === RVReportTypes.BILLS && (
         <div>
           <h4 className="text-xl font-bold text-gray-900">
             Using Railz Transactions Control Component
@@ -234,7 +230,7 @@ const Components = ({ configuration, filter, options, showCode }: ChartProps) =>
           />
         </div>
       )}
-      {[RVReportTypes.FINANCIAL_RATIO].includes(filter.reportType) && (
+      {filter.reportType === RVReportTypes.FINANCIAL_RATIO && (
         <div>
           <h4 className="text-xl font-bold text-gray-900">Using Railz FinancialRatios Component</h4>
           <p>
@@ -277,12 +273,8 @@ const Components = ({ configuration, filter, options, showCode }: ChartProps) =>
       {![
         RVReportTypes.RAILZ_SCORE,
         RVReportTypes.EXPENSES,
-        RVReportTypes.REVENUE,
         RVReportTypes.BALANCE_SHEET,
-        RVReportTypes.CASHFLOW_STATEMENTS,
-        RVReportTypes.INCOME_STATEMENTS,
         RVReportTypes.BILLS,
-        RVReportTypes.INVOICES,
         RVReportTypes.FINANCIAL_RATIO,
         RVReportTypes.BANK_ACCOUNT,
         'all',
