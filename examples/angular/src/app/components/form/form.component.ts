@@ -94,10 +94,10 @@ export class FormComponent implements OnInit {
     this.filterForm
       ?.get('reportType')
       ?.valueChanges.pipe(distinctUntilChanged())
-      .subscribe((val) => {
+      .subscribe((reportTypeValue) => {
         if (this.filterForm) {
-          if (val) {
-            if (this.requiresNoDate(val)) {
+          if (reportTypeValue) {
+            if (this.requiresNoDate(reportTypeValue)) {
               this.filterForm.controls['startDate'].clearValidators();
               this.filterForm.controls['startDate'].disable();
               this.filterForm.controls['endDate'].clearValidators();
@@ -108,7 +108,7 @@ export class FormComponent implements OnInit {
               this.filterForm.controls['endDate'].setValidators([Validators.required]);
               this.filterForm.controls['endDate'].enable();
             }
-            if (this.requiresNoFrequency(val)) {
+            if (this.requiresNoFrequency(reportTypeValue)) {
               this.filterForm.controls['reportFrequency'].clearValidators();
               this.filterForm.controls['reportFrequency'].disable();
             } else {

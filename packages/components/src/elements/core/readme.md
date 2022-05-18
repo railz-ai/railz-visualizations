@@ -15,6 +15,7 @@
 ### Depends on
 
 - [railz-error-image](../error)
+- [railz-bank-accounts](../bank-accounts)
 - [railz-financial-ratios](../financial-ratios)
 - [railz-gauge-chart](../gauge-chart)
 - [railz-pie-chart](../pie-chart)
@@ -26,11 +27,14 @@
 ```mermaid
 graph TD;
   railz-visualizations --> railz-error-image
+  railz-visualizations --> railz-bank-accounts
   railz-visualizations --> railz-financial-ratios
   railz-visualizations --> railz-gauge-chart
   railz-visualizations --> railz-pie-chart
   railz-visualizations --> railz-statements-chart
   railz-visualizations --> railz-transactions-control
+  railz-bank-accounts --> railz-error-image
+  railz-bank-accounts --> railz-loading
   railz-financial-ratios --> railz-error-image
   railz-financial-ratios --> railz-loading
   railz-financial-ratios --> railz-tooltip

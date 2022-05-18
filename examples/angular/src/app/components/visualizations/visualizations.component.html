@@ -1,16 +1,16 @@
-<p *ngIf="!!token && !filter">No Filter, submit your filter details</p>
-<p *ngIf="!token && !!filter">No Token, submit your authentication details</p>
-<p *ngIf="!token && !filter">
+<p *ngIf="!!configuration && !filter">No Filter, submit your filter details</p>
+<p *ngIf="!configuration && !!filter">No Token, submit your authentication details</p>
+<p *ngIf="!configuration && !filter">
   No Token and Filter, submit your authentication and filter information
 </p>
-<div *ngIf="!!token && !!filter">
+<div *ngIf="!!configuration && !!filter">
   <div
     class="md:grid md:grid-cols-1 md:gap-1"
     *ngIf="filter?.reportType === 'all'; else statements"
   >
     <div class="col-span-1 mt-1" *ngFor="let reportType of allReportTypes">
       <railz-visualizations
-        [configuration]="token"
+        [configuration]="configuration"
         [filter]="getNewFilter(filter, reportType)"
         [options]="options"
       >
@@ -28,7 +28,7 @@
       Railz Statements Chart Component only accepts <b>balanceSheets</b>,
       <b>cashflowStatements</b> and <b>incomeStatements</b>
     </p>
-    <railz-statements-chart [configuration]="token" [filter]="filter" [options]="options">
+    <railz-statements-chart [configuration]="configuration" [filter]="filter" [options]="options">
     </railz-statements-chart>
   </div>
 </ng-template>
@@ -42,7 +42,11 @@
       Railz Transactions Control Component only accepts <b>bills</b> and
       <b>invoices</b>
     </p>
-    <railz-transactions-control [configuration]="token" [filter]="filter" [options]="options">
+    <railz-transactions-control
+      [configuration]="configuration"
+      [filter]="filter"
+      [options]="options"
+    >
     </railz-transactions-control>
   </div>
 </ng-template>
@@ -53,7 +57,7 @@
   >
     <h4 class="text-xl font-bold text-gray-900">Using Railz Financial Ratios Component</h4>
     <p>Railz Financial Ratios Component only accepts <b>financialRatios</b></p>
-    <railz-financial-ratios [configuration]="token" [filter]="filter" [options]="options">
+    <railz-financial-ratios [configuration]="configuration" [filter]="filter" [options]="options">
     </railz-financial-ratios>
   </div>
 </ng-template>
@@ -64,25 +68,36 @@
   >
     <h4 class="text-xl font-bold text-gray-900">Using Railz Pie Chart Component</h4>
     <p>Railz Pie Chart Component only accepts <b>expenses</b> and <b>revenue</b></p>
-    <railz-pie-chart [configuration]="token" [filter]="filter" [options]="options">
+    <railz-pie-chart [configuration]="configuration" [filter]="filter" [options]="options">
     </railz-pie-chart>
   </div>
 </ng-template>
 <ng-template #gauge>
   <div
     class="md:grid md:grid-cols-1 md:gap-1 text-left"
-    *ngIf="['railzScore'].includes('' + filter?.reportType); else visualizations"
+    *ngIf="['railzScore'].includes('' + filter?.reportType); else bankaccounts"
   >
     <h4 class="text-xl font-bold text-gray-900">Using Railz Gauge Component</h4>
     <p>Railz Gauge Component only accepts <b>railzScore</b></p>
-    <railz-gauge-chart [configuration]="token" [filter]="filter" [options]="options">
+    <railz-gauge-chart [configuration]="configuration" [filter]="filter" [options]="options">
     </railz-gauge-chart>
+  </div>
+</ng-template>
+<ng-template #bankaccounts>
+  <div
+    class="md:grid md:grid-cols-1 md:gap-1 text-left"
+    *ngIf="filter?.reportType === 'bankAccounts'; else visualizations"
+  >
+    <h4 class="text-xl font-bold text-gray-900">Using Railz Bank Accounts Component</h4>
+    <p>Railz Bank Accounts Component only accepts <b>bankAccounts</b></p>
+    <railz-bank-accounts [configuration]="configuration" [filter]="filter" [options]="options">
+    </railz-bank-accounts>
   </div>
 </ng-template>
 <ng-template #visualizations>
   <div class="md:grid md:grid-cols-1 md:gap-1 text-left">
     <h4 class="text-xl font-bold text-gray-900">Using Railz Visualizations Component</h4>
-    <railz-visualizations [configuration]="token" [filter]="filter" [options]="options">
+    <railz-visualizations [configuration]="configuration" [filter]="filter" [options]="options">
     </railz-visualizations>
   </div>
 </ng-template>

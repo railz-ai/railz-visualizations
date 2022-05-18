@@ -96,7 +96,7 @@ export const validateBusinessParams = (filter: RVFilter): boolean => {
   }
   if (!hasServiceName) {
     warnLog(Translations.RV_ERROR_NO_SERVICE_NAME);
-    if (hasBusinessName) {
+    if (hasBusinessName && filter.reportType !== RVReportTypes.BANK_ACCOUNT) {
       return false;
     }
   }

@@ -17,6 +17,7 @@
 
 ### Used by
 
+- [railz-bank-accounts](../bank-accounts)
 - [railz-financial-ratios](../financial-ratios)
 - [railz-gauge-chart](../gauge-chart)
 - [railz-pie-chart](../pie-chart)
@@ -28,6 +29,7 @@
 
 ```mermaid
 graph TD;
+  railz-bank-accounts --> railz-error-image
   railz-financial-ratios --> railz-error-image
   railz-gauge-chart --> railz-error-image
   railz-pie-chart --> railz-error-image

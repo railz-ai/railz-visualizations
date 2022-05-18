@@ -10,6 +10,7 @@ import {
   RVFilterFrequency,
 } from '@railzai/railz-visualizations';
 import {
+  RailzBankAccounts,
   RailzFinancialRatios,
   RailzGaugeChart,
   RailzPieChart,
@@ -129,6 +130,7 @@ const Components = ({ configuration, filter, options, showCode }: ChartProps) =>
           RVReportTypes.REVENUE,
           RVReportTypes.RAILZ_SCORE,
           RVReportTypes.FINANCIAL_RATIO,
+          RVReportTypes.BANK_ACCOUNT,
         ].map((reportType) => (
           <div className="col-span-1 mt-1" key={reportType}>
             <DefaultComponent
@@ -244,6 +246,26 @@ const Components = ({ configuration, filter, options, showCode }: ChartProps) =>
           />
         </div>
       )}
+      {filter.reportType === RVReportTypes.BANK_ACCOUNT && (
+        <div>
+          <h4 className="text-xl font-bold text-gray-900">Using Railz Bank Accounts Component</h4>
+          <p>
+            Railz Bank Accounts Component only accepts <b>bankAccounts</b>
+          </p>
+          <RailzBankAccounts
+            configuration={configuration}
+            filter={filter as RVFilterDate}
+            options={options}
+          />
+          <Code
+            configuration={configuration}
+            filter={filter}
+            options={options}
+            showCode={showCode}
+            displayValue="RailzBankAccounts"
+          />
+        </div>
+      )}
       {![
         RVReportTypes.EXPENSES,
         RVReportTypes.REVENUE,
@@ -251,6 +273,7 @@ const Components = ({ configuration, filter, options, showCode }: ChartProps) =>
         RVReportTypes.BALANCE_SHEET,
         RVReportTypes.BILLS,
         RVReportTypes.FINANCIAL_RATIO,
+        RVReportTypes.BANK_ACCOUNT,
         'all',
       ].includes(filter.reportType) && (
         <DefaultComponent
