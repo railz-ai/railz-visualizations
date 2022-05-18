@@ -8,6 +8,7 @@ import { HTMLStencilElement, JSXBase } from '@stencil/core/internal';
 import {
   RVConfiguration,
   RVFilterAllReportTypes,
+  RVFilterDate,
   RVFilterFinancialRatio,
   RVFilterGauge,
   RVFilterPie,

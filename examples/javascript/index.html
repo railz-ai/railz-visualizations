@@ -91,176 +91,177 @@
         </div>
       </header>
       <div class="grid grid-cols-2">
-        <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-          <div>
-            <div class="flex flex-col">
-              <div class="text-left">
-                <h2 class="text-lg font-medium leading-6 text-gray-900">Authentication</h2>
-                <p class="mt-1 text-sm text-gray-600">
-                  Include your Authentication server URL here, see our quickstart example
-                  <a
-                    href="https://github.com/railz-ai/railz-visualizations/tree/master/examples/nodejs"
-                    target="_blank"
-                    class="underline"
-                    rel="noopener noreferrer"
-                    >here</a
-                  >.
-                </p>
-                <p class="mt-1 text-sm text-gray-600 font-bold">
-                  This is not implemented by the SDK.
-                </p>
-              </div>
-              <div class="mt-4 md:mt-3 text-left items-end">
-                <div class="overflow-hidden sm:rounded-md">
-                  <div class="grid grid-cols-6 gap-6 items-end">
-                    <div class="col-span-6 sm:col-span-6">
-                      <label for="auth-url" class="block text-sm font-medium text-gray-700"
-                        >Auth Url</label
-                      >
-                      <input
-                        type="text"
-                        name="auth-url"
-                        id="auth-url"
-                        class="mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                        placeholder="http://localhost:4000/authenticate"
-                      />
-                    </div>
-                  </div>
+        <form action="">
+          <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+            <div>
+              <div class="flex flex-col">
+                <div class="text-left">
+                  <h2 class="text-lg font-medium leading-6 text-gray-900">Authentication</h2>
+                  <p class="mt-1 text-sm text-gray-600">
+                    Include your Authentication server URL here, see our quickstart example
+                    <a
+                      href="https://github.com/railz-ai/railz-visualizations/tree/master/examples/nodejs"
+                      target="_blank"
+                      class="underline"
+                      rel="noopener noreferrer"
+                      >here</a
+                    >.
+                  </p>
+                  <p class="mt-1 text-sm text-gray-600 font-bold">
+                    This is not implemented by the SDK.
+                  </p>
                 </div>
-              </div>
-            </div>
-          </div>
-          <div class="mx-auto">
-            <div class="flex flex-col mt-6">
-              <div class="px-4 sm:px-0">
-                <h3 class="text-lg font-medium leading-6 text-gray-900">Filters</h3>
-                <p class="mt-1 text-sm text-gray-600">
-                  Some fields are disabled based on criteria
-                  <a
-                    href="https://docs.railz.ai/docs/visualization-sdk-components"
-                    target="_blank"
-                    class="underline"
-                    rel="noopener noreferrer"
-                    >here</a
-                  >.
-                </p>
-              </div>
-              <div class="mt-5 md:mt-0">
-                <div class="overflow-hidden sm:rounded-md">
-                  <div class="py-5 bg-white">
+                <div class="mt-4 md:mt-3 text-left items-end">
+                  <div class="overflow-hidden sm:rounded-md">
                     <div class="grid grid-cols-6 gap-6 items-end">
-                      <div class="col-span-6 lg:col-span-6">
-                        <label for="business-name" class="block text-sm font-medium text-gray-700"
-                          >Business Name</label
+                      <div class="col-span-6 sm:col-span-6">
+                        <label for="auth-url" class="block text-sm font-medium text-gray-700"
+                          >Auth Url</label
                         >
                         <input
                           type="text"
-                          name="business-name"
-                          id="business-name"
+                          name="auth-url"
+                          id="auth-url"
                           class="mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                          placeholder="BIZ-1223S"
+                          placeholder="http://localhost:4000/authenticate"
                         />
-                      </div>
-                      <div class="col-span-6 lg:col-span-3">
-                        <label for="service-name" class="block text-sm font-medium text-gray-700"
-                          >Service Name</label
-                        >
-                        <select
-                          id="service-name"
-                          name="service-name"
-                          required
-                          class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm"
-                        >
-                          <option value="dynamicsBusinessCentral">dynamicsBusinessCentral</option>
-                          <option value="freshbooks">freshbooks</option>
-                          <option value="quickbooks">quickbooks</option>
-                          <option value="quickbooksDesktop">quickbooksDesktop</option>
-                          <option value="oracleNetsuite">oracleNetsuite</option>
-                          <option value="sageBusinessCloud">sageBusinessCloud</option>
-                          <option value="sageIntacct">sageIntacct</option>
-                          <option value="xero">xero</option>
-                          <option value="plaid">Plaid</option>
-                          <option value="wave">wave</option>
-                        </select>
-                      </div>
-                      <div class="col-span-6 lg:col-span-3">
-                        <label for="report-type" class="block text-sm font-medium text-gray-700"
-                          >Report Type</label
-                        >
-                        <select
-                          id="report-type"
-                          name="report-type"
-                          class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm"
-                        >
-                          <option value="balanceSheets">balanceSheets</option>
-                          <option value="bankAccounts">bankAccounts</option>
-                          <option value="bills">bills</option>
-                          <option value="cashflowStatements">cashflowStatements</option>
-                          <option value="creditScores">creditScores</option>
-                          <option value="expenses">expenses</option>
-                          <option value="financialRatios">financialRatios</option>
-                          <option value="incomeStatements">incomeStatements</option>
-                          <option value="invoices">invoices</option>
-                          <option value="revenue">revenue</option>
-                          <option value="railzScore">railzScore</option>
-                        </select>
-                      </div>
-                      <div class="col-span-6 lg:col-span-3">
-                        <label for="start-date" class="block text-sm font-medium text-gray-700"
-                          >Start Date</label
-                        >
-                        <input
-                          type="date"
-                          name="start-date"
-                          id="start-date"
-                          class="mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                          placeholder="2020-01-01"
-                        />
-                      </div>
-                      <div class="col-span-6 lg:col-span-3">
-                        <label for="end-date" class="block text-sm font-medium text-gray-700"
-                          >End Date</label
-                        >
-                        <input
-                          type="date"
-                          name="end-date"
-                          id="end-date"
-                          class="mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                          placeholder="2020-12-01"
-                        />
-                      </div>
-                      <div class="col-span-6 lg:col-span-3">
-                        <label
-                          for="report-frequency"
-                          class="block text-sm font-medium text-gray-700"
-                          >Report Frequency</label
-                        >
-                        <select
-                          id="report-frequency"
-                          name="report-frequency"
-                          class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm"
-                        >
-                          <option value="month">month</option>
-                          <option value="quarter">quarter</option>
-                          <option value="year">year</option>
-                        </select>
                       </div>
                     </div>
                   </div>
-                  <div class="col-span-6 lg:col-span-6 items-end">
-                    <button
-                      type="submit"
-                      class="inline-flex justify-center w-full place-items-end py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-800"
-                      onclick="main()"
-                    >
-                      Submit
-                    </button>
+                </div>
+              </div>
+            </div>
+            <div class="mx-auto">
+              <div class="flex flex-col mt-6">
+                <div class="px-4 sm:px-0">
+                  <h3 class="text-lg font-medium leading-6 text-gray-900">Filters</h3>
+                  <p class="mt-1 text-sm text-gray-600">
+                    Some fields are disabled based on criteria
+                    <a
+                      href="https://docs.railz.ai/docs/visualization-sdk-components"
+                      target="_blank"
+                      class="underline"
+                      rel="noopener noreferrer"
+                      >here</a
+                    >.
+                  </p>
+                </div>
+                <div class="mt-5 md:mt-0">
+                  <div class="overflow-hidden sm:rounded-md">
+                    <div class="py-5 bg-white">
+                      <div class="grid grid-cols-6 gap-6 items-end">
+                        <div class="col-span-6 lg:col-span-6">
+                          <label for="business-name" class="block text-sm font-medium text-gray-700"
+                            >Business Name</label
+                          >
+                          <input
+                            type="text"
+                            name="business-name"
+                            id="business-name"
+                            class="mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                            placeholder="BIZ-1223S"
+                          />
+                        </div>
+                        <div class="col-span-6 lg:col-span-3">
+                          <label for="service-name" class="block text-sm font-medium text-gray-700"
+                            >Service Name</label
+                          >
+                          <select
+                            id="service-name"
+                            name="service-name"
+                            required
+                            class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm"
+                          >
+                            <option value="dynamicsBusinessCentral">dynamicsBusinessCentral</option>
+                            <option value="freshbooks">freshbooks</option>
+                            <option value="quickbooks">quickbooks</option>
+                            <option value="quickbooksDesktop">quickbooksDesktop</option>
+                            <option value="oracleNetsuite">oracleNetsuite</option>
+                            <option value="sageBusinessCloud">sageBusinessCloud</option>
+                            <option value="sageIntacct">sageIntacct</option>
+                            <option value="xero">xero</option>
+                            <option value="plaid">Plaid</option>
+                            <option value="wave">wave</option>
+                          </select>
+                        </div>
+                        <div class="col-span-6 lg:col-span-3">
+                          <label for="report-type" class="block text-sm font-medium text-gray-700"
+                            >Report Type</label
+                          >
+                          <select
+                            id="report-type"
+                            name="report-type"
+                            class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm"
+                          >
+                            <option value="balanceSheets">balanceSheets</option>
+                            <option value="bankAccounts">bankAccounts</option>
+                            <option value="bills">bills</option>
+                            <option value="cashflowStatements">cashflowStatements</option>
+                            <option value="creditScores">creditScores</option>
+                            <option value="expenses">expenses</option>
+                            <option value="financialRatios">financialRatios</option>
+                            <option value="incomeStatements">incomeStatements</option>
+                            <option value="invoices">invoices</option>
+                            <option value="revenue">revenue</option>
+                            <option value="railzScore">railzScore</option>
+                          </select>
+                        </div>
+                        <div class="col-span-6 lg:col-span-3">
+                          <label for="start-date" class="block text-sm font-medium text-gray-700"
+                            >Start Date</label
+                          >
+                          <input
+                            type="date"
+                            name="start-date"
+                            id="start-date"
+                            class="mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                            placeholder="2020-01-01"
+                          />
+                        </div>
+                        <div class="col-span-6 lg:col-span-3">
+                          <label for="end-date" class="block text-sm font-medium text-gray-700"
+                            >End Date</label
+                          >
+                          <input
+                            type="date"
+                            name="end-date"
+                            id="end-date"
+                            class="mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                            placeholder="2020-12-01"
+                          />
+                        </div>
+                        <div class="col-span-6 lg:col-span-3">
+                          <label
+                            for="report-frequency"
+                            class="block text-sm font-medium text-gray-700"
+                            >Report Frequency</label
+                          >
+                          <select
+                            id="report-frequency"
+                            name="report-frequency"
+                            class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm"
+                          >
+                            <option value="month">month</option>
+                            <option value="quarter">quarter</option>
+                            <option value="year">year</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-span-6 lg:col-span-6 items-end">
+                      <button
+                        type="submit"
+                        class="inline-flex justify-center w-full place-items-end py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-800"
+                      >
+                        Submit
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        </form>
         <div>
           <div id="chart-content" class="m-4"></div>
 
@@ -273,7 +274,11 @@
     </div>
 
     <script>
-      async function main(params) {
+      const formElem = document.querySelector('form');
+      formElem.addEventListener('submit', async (e) => {
+        // on form submission, prevent default
+        e.preventDefault();
+
         const response = await fetch(
           document.getElementById('auth-url').value || 'http://localhost:4000/authenticate',
           {
@@ -285,16 +290,27 @@
         const configuration = {
           token: result.access_token,
           debug: true,
+          endpoint: 'https://api.qa2.railz.ai',
         };
+
         let rv = document.createElement('railz-visualizations');
         rv.configuration = configuration;
+
+        const formData = new FormData(formElem);
+        const businessName = formData.get('business-name');
+        const startDate = formData.get('start-date');
+        const endDate = formData.get('end-date');
+        const reportFrequency = formData.get('report-frequency');
+        const serviceName = formData.get('service-name');
+        const reportType = formData.get('report-type');
+
         rv.filter = {
-          businessName: document.getElementById('business-name').value,
-          startDate: document.getElementById('start-date').value,
-          endDate: document.getElementById('end-date').value,
-          reportFrequency: document.getElementById('report-frequency').value,
-          serviceName: document.getElementById('service-name').value,
-          reportType: document.getElementById('report-type').value,
+          businessName,
+          startDate,
+          endDate,
+          reportFrequency,
+          serviceName,
+          reportType,
         };
         document.getElementById('chart-content').replaceChildren(rv);
 
@@ -303,18 +319,16 @@ let rv = document
           .createElement('railz-visualizations');
 rv.configuration = configuration;
 rv.filter = {
-  businessName: '${document.getElementById('business-name').value}',
-  startDate: '${document.getElementById('start-date').value}',
-  endDate: '${document.getElementById('end-date').value}',
-  reportFrequency: '${document.getElementById('report-frequency').value}',
-  serviceName: '${document.getElementById('service-name').value}',
-  reportType: '${document.getElementById('report-type').value}',
+  businessName: '${businessName}',
+  startDate: '${startDate}',
+  endDate: '${endDate}',
+  reportFrequency: '${reportFrequency}',
+  serviceName: '${serviceName}',
+  reportType: '${reportType}',
 };
-document.getElementById('chart-content')
-          .replaceChildren(rv);
 `;
         document.getElementById('code').textContent = sourceCode;
-      }
+      });
     </script>
   </body>
 </html>
