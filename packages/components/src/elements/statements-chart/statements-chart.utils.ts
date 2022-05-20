@@ -18,7 +18,7 @@ import {
   RVFormattedStatementResponse,
   RVReportRequestParameter,
 } from '../../types';
-import { RVReportTypes } from '../../types/enum/report-type';
+import { RVReportTypes, RVReportTypesUrlMapping } from '../../types/enum/report-type';
 import { RequestServiceInstance } from '../../services/request';
 import { errorLog } from '../../services/logger';
 import { RAILZ_DATE_FORMAT } from '../../types/constants/date';
@@ -302,7 +302,8 @@ export const getReportData = async ({
     }
 
     reportData = await RequestServiceInstance.getReportData({
-      filter: { ...allParameters, reportType: filter.reportType },
+      path: RVReportTypesUrlMapping[filter.reportType],
+      filter: allParameters,
     });
   } catch (error) {
     errorLog(Translations.NOT_ABLE_TO_RETRIEVE_REPORT_DATA, error);

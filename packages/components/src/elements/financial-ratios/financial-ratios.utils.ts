@@ -2,7 +2,12 @@ import { pick } from 'lodash-es';
 import { format, parseISO } from 'date-fns';
 
 import Translations from '../../config/translations/en.json';
-import { RVFormattedFinancialRatioResponse, RVParams, RVReportRequestParameter } from '../../types';
+import {
+  RVFormattedFinancialRatioResponse,
+  RVParams,
+  RVReportRequestParameter,
+  RVReportTypesUrlMapping,
+} from '../../types';
 import { RequestServiceInstance } from '../../services/request';
 import { errorLog } from '../../services/logger';
 import { RAILZ_DATE_FORMAT } from '../../types/constants/date';
@@ -31,7 +36,8 @@ export const getReportData = async ({
     );
 
     reportData = await RequestServiceInstance.getReportData({
-      filter: { ...allParameters, reportType: filter.reportType },
+      path: RVReportTypesUrlMapping[filter.reportType],
+      filter: allParameters,
     });
   } catch (error) {
     errorLog(Translations.NOT_ABLE_TO_RETRIEVE_REPORT_DATA, error);

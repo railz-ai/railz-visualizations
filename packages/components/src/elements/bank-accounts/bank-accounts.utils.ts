@@ -1,7 +1,7 @@
 import { pick } from 'lodash-es';
 
 import Translations from '../../config/translations/en.json';
-import { RVFormattedBankAccountsResponse, RVParams } from '../../types';
+import { RVFormattedBankAccountsResponse, RVParams, RVReportTypesUrlMapping } from '../../types';
 import { RequestServiceInstance } from '../../services/request';
 import { errorLog } from '../../services/logger';
 
@@ -16,6 +16,7 @@ export const getReportData = async ({
   let reportData;
   try {
     reportData = await RequestServiceInstance.getReportData({
+      path: RVReportTypesUrlMapping[filter.reportType],
       filter: pick(filter, [RVParams.SERVICE_NAME, RVParams.BUSINESS_NAME, RVParams.REPORT_TYPE]),
     });
   } catch (error) {

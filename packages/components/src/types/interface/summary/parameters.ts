@@ -36,6 +36,7 @@ export interface RVChartOptionsParameter extends RVFormattedStatementData {
 }
 
 export interface RVReportRequestParameter {
+  path?: string;
   filter: RVFilterAll;
 }
 

@@ -9,6 +9,7 @@ import {
   RVParams,
   RVPieChartSummary,
   RVReportRequestParameter,
+  RVReportTypesUrlMapping,
 } from '../../types';
 import { RequestServiceInstance } from '../../services/request';
 import { errorLog } from '../../services/logger';
@@ -119,7 +120,8 @@ export const getReportData = async ({
     );
 
     reportData = await RequestServiceInstance.getReportData({
-      filter: { ...allParameters, reportType: filter.reportType },
+      path: RVReportTypesUrlMapping[filter.reportType],
+      filter: allParameters,
     });
   } catch (error) {
     errorLog(Translations.NOT_ABLE_TO_RETRIEVE_REPORT_DATA, error);
