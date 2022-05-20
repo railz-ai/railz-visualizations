@@ -17,7 +17,7 @@ export const getReportData = async ({
   try {
     reportData = await RequestServiceInstance.getReportData({
       path: RVReportTypesUrlMapping[filter.reportType],
-      filter: pick(filter, [RVParams.SERVICE_NAME, RVParams.BUSINESS_NAME, RVParams.REPORT_TYPE]),
+      filter: pick(filter, [RVParams.SERVICE_NAME, RVParams.BUSINESS_NAME]),
     });
   } catch (error) {
     errorLog(Translations.NOT_ABLE_TO_RETRIEVE_REPORT_DATA, error);

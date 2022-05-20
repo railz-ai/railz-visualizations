@@ -44,7 +44,7 @@ export const getConfiguration = (configuration: RVConfiguration | string): RVCon
       errorLog(Translations.RV_ERROR_PARSING_CONFIGURATION, error);
     }
   } else {
-    errorLog(Translations.RV_CONFIGURATION_NOT_PRESENT);
+    console.error(Translations.RV_CONFIGURATION_NOT_PRESENT);
   }
   return formattedConfiguration;
 };
@@ -59,12 +59,11 @@ export const getFilter = (filter: RVFilterAll | string): RVFilterAll => {
     try {
       if (typeof filter === 'string') {
         formattedFilter = JSON.parse(filter);
-
-        if (!validateRequiredParams(formattedFilter)) {
-          formattedFilter = undefined;
-        }
       } else {
         formattedFilter = filter;
+      }
+      if (!validateRequiredParams(formattedFilter)) {
+        formattedFilter = undefined;
       }
     } catch (error) {
       errorLog(Translations.RV_ERROR_PARSING_CONFIGURATION + ' ' + JSON.stringify(error));
@@ -101,7 +100,7 @@ export const validateBusinessServiceNameParams = (filter: RVFilterAll): boolean 
     return false;
   }
   if (!hasServiceName) {
-    warnLog(Translations.RV_ERROR_NO_SERVICE_NAME);
+    errorLog(Translations.RV_ERROR_NO_SERVICE_NAME);
     if (hasBusinessName && filter.reportType !== RVReportTypes.BANK_ACCOUNT) {
       return false;
     }
@@ -159,33 +158,6 @@ export const validateReportTypeParams = (filter: RVFilterAll): boolean => {
   }
   return true;
 };
-
-// /**
-//  * @function getDateFilter: Compare start and end date passed and ensure
-//  * end date is greater than start date
-//  * @param filter: Filter query
-//  */
-// export const getDateFilter = (filter: RVFilterDate | string): RVFilterDate => {
-//   let formattedFilter = getFilter(filter as RVFilterAll) as RVFilterDate;
-//   if (formattedFilter) {
-//     if (formattedFilter.startDate && formattedFilter.endDate) {
-//       try {
-//         const compare = compareAsc(
-//           parseISO(formattedFilter.startDate),
-//           parseISO(formattedFilter.endDate),
-//         );
-//         if (compare >= 0) {
-//           formattedFilter = undefined;
-//           errorLog(Translations.RV_END_DATE_BEFORE_START_DATE);
-//         }
-//       } catch (error) {
-//         errorLog(Translations.RV_DATE_DIFF_ERROR);
-//         throw new Error(Translations.ERROR_500_TITLE);
-//       }
-//     }
-//   }
-//   return formattedFilter;
-// };
 
 /**
  * @function checkAccessibilityFromOptions:

@@ -5,22 +5,16 @@ import { isEmpty, isEqual } from 'lodash-es';
 import Translations from '../../config/translations/en.json';
 import { errorLog } from '../../services/logger';
 import { ConfigurationInstance } from '../../services/configuration';
-import {
-  getOptions,
-  getConfiguration,
-  validateRequiredParams,
-  getFilter,
-} from '../../helpers/chart.utils';
+import { getOptions, getConfiguration, getFilter } from '../../helpers/chart.utils';
 import {
   RVBankAccounts,
-  RVBankingProviders,
   RVConfiguration,
   RVFilterAll,
   RVFilterBankAccount,
   RVFormattedBankAccountsResponse,
   RVOptions,
 } from '../../types';
-import { formatNumber } from '../../helpers/utils';
+import { formatNumber, isBankAccounts } from '../../helpers/utils';
 
 import { getReportData } from './bank-accounts.utils';
 
@@ -97,19 +91,16 @@ export class BanksAccounts {
     if (this._configuration) {
       ConfigurationInstance.configuration = this._configuration;
       try {
-        this._filter = {
-          ...(getFilter(filter as RVFilterAll) as RVFilterBankAccount),
-          serviceName: RVBankingProviders.PLAID,
-        };
+        this._filter = getFilter(filter as RVFilterAll) as RVFilterBankAccount;
         if (this._filter) {
-          this._options = getOptions(options, filter as RVFilterAll);
-          const valid = validateRequiredParams(filter as RVFilterAll);
-          if (valid) {
+          if (isBankAccounts(this._filter.reportType)) {
+            this._options = getOptions(options, filter as RVFilterAll);
             if (triggerRequest) {
               await this.requestReportData();
             }
           } else {
-            this.errorStatusCode = 204;
+            this.errorStatusCode = 500;
+            errorLog(Translations.RV_ERROR_INVALID_REPORT_TYPE);
           }
         } else {
           this.errorStatusCode = 204;

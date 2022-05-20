@@ -14,14 +14,11 @@ import {
   RVFormattedTransactionResponse,
   RVOptions,
 } from '../../types';
-import {
-  getConfiguration,
-  getFilter,
-  getOptions,
-  validateRequiredParams,
-} from '../../helpers/chart.utils';
+import { getConfiguration, getFilter, getOptions } from '../../helpers/chart.utils';
 
 import { ConfigurationInstance } from '../../services/configuration';
+
+import { isTransactions } from '../../helpers/utils';
 
 import { getTransactionsData } from './transactions-control.utils';
 
@@ -69,14 +66,14 @@ export class TransactionsControl {
       try {
         this._filter = getFilter(filter as RVFilterAll) as RVFilterTransactions;
         if (this._filter) {
-          this._options = getOptions(this.options, this._filter as RVFilterAll);
-          const valid = validateRequiredParams(this._filter as RVFilterAll);
-          if (valid) {
+          if (isTransactions(this._filter.reportType)) {
+            this._options = getOptions(this.options, this._filter as RVFilterAll);
             if (triggerRequest) {
               await this.requestReportData();
             }
           } else {
-            this.errorStatusCode = 204;
+            this.errorStatusCode = 500;
+            errorLog(Translations.RV_ERROR_INVALID_REPORT_TYPE);
           }
         } else {
           this.errorStatusCode = 204;

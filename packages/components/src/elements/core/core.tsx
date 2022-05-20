@@ -21,6 +21,7 @@ import { ConfigurationInstance } from '../../services/configuration';
 
 @Component({
   tag: 'railz-visualizations',
+  styleUrl: 'core.scss',
   shadow: true,
 })
 export class Core {
@@ -81,17 +82,17 @@ export class Core {
     }
   }
 
-  componentWillLoad(): void {
-    this.propsUpdated && this.propsUpdated();
-  }
-
   componentDidLoad(): void {
     this.propsUpdated && this.propsUpdated();
   }
 
   render(): HTMLElement {
     if (this.errorStatusCode !== undefined) {
-      return <railz-error-image statusCode={this.errorStatusCode || 500} />;
+      return (
+        <div class="rv-container">
+          <railz-error-image statusCode={this.errorStatusCode || 500} />
+        </div>
+      );
     }
 
     const reportType = (this._filter as RVFilterAll)?.reportType;

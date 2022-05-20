@@ -5,12 +5,7 @@ import Highcharts from 'highcharts';
 import variablePie from 'highcharts/modules/variable-pie.js';
 import highchartsAccessibility from 'highcharts/modules/accessibility';
 
-import {
-  getConfiguration,
-  validateRequiredParams,
-  getOptions,
-  getFilter,
-} from '../../helpers/chart.utils';
+import { getConfiguration, getOptions, getFilter } from '../../helpers/chart.utils';
 import { ConfigurationInstance } from '../../services/configuration';
 import Translations from '../../config/translations/en.json';
 import {
@@ -25,7 +20,7 @@ import {
 } from '../../types';
 import { errorLog } from '../../services/logger';
 
-import { roundNumber } from '../../helpers/utils';
+import { isPie, roundNumber } from '../../helpers/utils';
 
 import { getOptionsPie, getReportData } from './pie-chart.utils';
 
@@ -85,14 +80,14 @@ export class PieChart {
       try {
         this._filter = getFilter(filter as RVFilterAll) as RVFilterPie;
         if (this._filter) {
-          this._options = getOptions(options, filter as RVFilterAll);
-          const valid = validateRequiredParams(filter as RVFilterAll);
-          if (valid) {
+          if (isPie(this._filter.reportType)) {
+            this._options = getOptions(options, filter as RVFilterAll);
             if (triggerRequest) {
               await this.requestReportData();
             }
           } else {
-            this.errorStatusCode = 204;
+            this.errorStatusCode = 500;
+            errorLog(Translations.RV_ERROR_INVALID_REPORT_TYPE);
           }
         } else {
           this.errorStatusCode = 204;

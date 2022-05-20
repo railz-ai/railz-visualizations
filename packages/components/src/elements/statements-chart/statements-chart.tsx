@@ -9,7 +9,6 @@ import { isEmpty, isEqual } from 'lodash-es';
 
 import Translations from '../../config/translations/en.json';
 import { errorLog } from '../../services/logger';
-
 import {
   RVConfiguration,
   RVFilterAll,
@@ -18,17 +17,15 @@ import {
   RVFormattedStatementResponse,
   RVOptions,
 } from '../../types';
-
 import { RVFinancialStatementsTypes } from '../../types/enum/report-type';
 import {
   getConfiguration,
   getFilter,
   getHighchartsParams,
   getOptions,
-  validateRequiredParams,
 } from '../../helpers/chart.utils';
-
 import { ConfigurationInstance } from '../../services/configuration';
+import { isStatements } from '../../helpers/utils';
 
 import { formatData, getReportData } from './statements-chart.utils';
 
@@ -84,14 +81,14 @@ export class StatementsChart {
       try {
         this._filter = getFilter(filter as RVFilterAll) as RVFilterStatements;
         if (this._filter) {
-          this._options = getOptions(this.options, this._filter as RVFilterAll);
-          const valid = validateRequiredParams(this._filter as RVFilterAll);
-          if (valid) {
+          if (isStatements(this._filter.reportType)) {
+            this._options = getOptions(this.options, this._filter as RVFilterAll);
             if (triggerRequest) {
               await this.requestReportData();
             }
           } else {
-            this.errorStatusCode = 204;
+            this.errorStatusCode = 500;
+            errorLog(Translations.RV_ERROR_INVALID_REPORT_TYPE);
           }
         } else {
           this.errorStatusCode = 204;

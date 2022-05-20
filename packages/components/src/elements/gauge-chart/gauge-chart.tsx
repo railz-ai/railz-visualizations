@@ -7,12 +7,7 @@ import highchartsMore from 'highcharts/highcharts-more.js';
 import solidGauge from 'highcharts/modules/solid-gauge.js';
 import highchartsAccessibility from 'highcharts/modules/accessibility';
 
-import {
-  getConfiguration,
-  validateRequiredParams,
-  getOptions,
-  getFilter,
-} from '../../helpers/chart.utils';
+import { getConfiguration, getOptions, getFilter } from '../../helpers/chart.utils';
 import { ConfigurationInstance } from '../../services/configuration';
 import Translations from '../../config/translations/en.json';
 import {
@@ -24,6 +19,7 @@ import {
   RVOptions,
 } from '../../types';
 import { errorLog } from '../../services/logger';
+import { isGauge } from '../../helpers/utils';
 
 import { getOptionsGauge, getReportData } from './gauge-chart.utils';
 
@@ -79,14 +75,14 @@ export class GaugeChart {
       try {
         this._filter = getFilter(filter as RVFilterAll) as RVFilterGauge;
         if (this._filter) {
-          this._options = getOptions(options, filter as RVFilterAll);
-          const valid = validateRequiredParams(filter as RVFilterAll);
-          if (valid) {
+          if (isGauge(this._filter.reportType)) {
+            this._options = getOptions(options, filter as RVFilterAll);
             if (triggerRequest) {
               await this.requestReportData();
             }
           } else {
-            this.errorStatusCode = 204;
+            this.errorStatusCode = 500;
+            errorLog(Translations.RV_ERROR_INVALID_REPORT_TYPE);
           }
         } else {
           this.errorStatusCode = 204;
