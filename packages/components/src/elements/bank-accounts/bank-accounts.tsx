@@ -109,7 +109,7 @@ export class BanksAccounts {
           }
         } else {
           this.errorStatusCode = 204;
-          this.error = Translations.ERROR_204_TITLE;
+          this.error = Translations.RV_ERROR_204_TITLE;
         }
       } catch (e) {
         this.errorStatusCode = 500;
@@ -127,7 +127,7 @@ export class BanksAccounts {
    */
   private requestReportData = async (): Promise<void> => {
     this.error = '';
-    this.loading = Translations.LOADING_REPORT;
+    this.loading = Translations.RV_LOADING_REPORT;
     try {
       const reportData = (await getReportData({
         filter: this._filter as RVFilterDate,
@@ -135,7 +135,7 @@ export class BanksAccounts {
       this._summary = reportData.data as RVBankAccounts[];
       if (isEmpty(this._summary)) {
         this.errorStatusCode = 204;
-        this.error = Translations.ERROR_204_TITLE;
+        this.error = Translations.RV_ERROR_204_TITLE;
       }
     } catch (error) {
       errorLog(Translations.RV_NOT_ABLE_TO_PARSE_REPORT_DATA, error);

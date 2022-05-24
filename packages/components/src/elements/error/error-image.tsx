@@ -48,7 +48,7 @@ export class ErrorImage {
           <div>
             <Error202 fillColor={this.fillColor} width={this.width} height={this.height} />
             <p class="railz-error-title" style={this.textStyle}>
-              {isNil(this.text) ? Translations.ERROR_202_TITLE : this.text}
+              {isNil(this.text) ? Translations.RV_ERROR_202_TITLE : this.text}
             </p>
           </div>
         );
@@ -58,7 +58,7 @@ export class ErrorImage {
           <div>
             <Error204 fillColor={this.fillColor} width={this.width} height={this.height} />
             <p class="railz-error-title" style={this.textStyle}>
-              {isNil(this.text) ? Translations.ERROR_204_TITLE : this.text}
+              {isNil(this.text) ? Translations.RV_ERROR_204_TITLE : this.text}
             </p>
           </div>
         );
@@ -67,7 +67,7 @@ export class ErrorImage {
           <div>
             <Error500 fillColor={this.fillColor} width={this.width} height={this.height} />
             <p class="railz-error-title" style={this.textStyle}>
-              {isNil(this.text) ? Translations.ERROR_500_TITLE : this.text}
+              {isNil(this.text) ? Translations.RV_ERROR_500_TITLE : this.text}
             </p>
           </div>
         );
