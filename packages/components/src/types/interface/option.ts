@@ -3,6 +3,14 @@ export interface RVOptionsContainer {
    * style: CSS object based on HTML stylings for the container
    */
   style?: { [key: string]: any };
+  /**
+   * To determine whether to show the tooltip for the container
+   */
+  tooltip?: boolean;
+  /**
+   * To determine whether to show the date for the container
+   */
+  date?: boolean;
 }
 
 export interface RVOptionsTitle {

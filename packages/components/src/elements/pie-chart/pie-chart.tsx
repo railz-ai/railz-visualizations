@@ -221,11 +221,13 @@ export class PieChart {
           <div>
             <p class="rv-title" style={this._options?.title?.style}>
               {this._options?.title?.text || ''}{' '}
-              <railz-tooltip
-                tooltipText={
-                  Translations[`RV_TOOLTIP_${TranslationMapping[this._filter?.reportType]}`]
-                }
-              />
+              {this._options?.container?.tooltip ? (
+                <railz-tooltip
+                  tooltipText={
+                    Translations[`RV_TOOLTIP_${TranslationMapping[this._filter?.reportType]}`]
+                  }
+                />
+              ) : null}
             </p>
           </div>
         ) : null}

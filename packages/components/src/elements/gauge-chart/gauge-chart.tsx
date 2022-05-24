@@ -212,7 +212,7 @@ export class GaugeChart {
           </p>
         ) : null}
         {this.renderMain()}
-        {this.lastUpdated && (
+        {this._options?.container?.date && this.lastUpdated && (
           <p class="railz-gauge-last-updated">
             {Translations.RV_AS_OF} {format(parseISO(this.lastUpdated), 'dd MMM yyyy')}
           </p>
