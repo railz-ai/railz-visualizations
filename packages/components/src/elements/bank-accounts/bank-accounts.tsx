@@ -157,6 +157,18 @@ export class BanksAccounts {
       return <railz-loading loadingText={this.loading} {...this._options?.loadingIndicator} />;
     }
 
+    console.log('this._summary', this._summary);
+
+    // const institutionNames = bankAccounts.map(({ institutionName }) => institutionName);
+    // const uniqueBankAccounts = new Set(institutionNames);
+    // const diffAccounts = {};
+    // uniqueBankAccounts.forEach((institutionName) => {
+    //   diffAccounts[institutionName] = bankAccounts.filter(
+    //     ({ institutionName: internalInstitutionName }) =>
+    //       internalInstitutionName === institutionName,
+    //   );
+    // });
+
     return (
       !isEmpty(this._summary) && (
         <div>
