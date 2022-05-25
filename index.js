@@ -132,6 +132,6 @@ uniqueBankAccounts.forEach((institutionName) => {
     ({ institutionName: internalInstitutionName }) => internalInstitutionName === institutionName,
   );
 });
-// console.log('institutionNames', institutionNames);
-// console.log('uniqueBankAccounts', uniqueBankAccounts);
-// console.log('diffAccounts', diffAccounts);
+console.log('institutionNames', institutionNames);
+console.log('uniqueBankAccounts', uniqueBankAccounts);
+console.log('diffAccounts', diffAccounts);
