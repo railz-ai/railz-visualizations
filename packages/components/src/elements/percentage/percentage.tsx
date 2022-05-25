@@ -19,7 +19,9 @@ export class Percentage {
     }
     return (
       <div class="railz-percentage">
-        {this.percentage >= 0 ? (
+        {this.percentage === 0 ? (
+          <div>0%</div>
+        ) : this.percentage > 0 ? (
           <div class="positive">&#x25B2; {this.percentage}%</div>
         ) : (
           <div class="negative">&#x25BC; {this.percentage}%</div>
