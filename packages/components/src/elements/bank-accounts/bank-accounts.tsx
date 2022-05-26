@@ -137,6 +137,19 @@ export class BanksAccounts {
     }
   };
 
+  private getAllBanks(): { [key: string]: RVBankAccounts[] } {
+    const institutionNames = this._summary?.map(({ institutionName }) => institutionName);
+    const uniqueBankAccounts = new Set(institutionNames);
+    const diffBanks = {};
+    uniqueBankAccounts.forEach((institutionName) => {
+      diffBanks[institutionName] = this._summary?.filter(
+        ({ institutionName: internalInstitutionName }) =>
+          internalInstitutionName === institutionName,
+      );
+    });
+    return diffBanks;
+  }
+
   private renderMain = (): HTMLElement => {
     if (!isEmpty(this.error) || this.errorStatusCode !== undefined) {
       return (
@@ -150,21 +163,27 @@ export class BanksAccounts {
       return <railz-loading loadingText={this.loading} {...this._options?.loadingIndicator} />;
     }
 
+    const diffBanks = this.getAllBanks();
+
     return (
       !isEmpty(this._summary) && (
         <div>
           <ul class="railz-bank-accounts-ul">
-            <li class="railz-bank-accounts-ul-title">{this._summary[0].institutionName}</li>
-            {this._summary.map((bankAccount: RVBankAccounts) => (
-              <li>
-                <div class="railz-bank-accounts-item-container">
-                  <span class="railz-bank-accounts-item-name">{bankAccount.accountName}</span>
-                  <span class="railz-bank-accounts-item-dot"></span>
-                  <span class="railz-bank-accounts-item-value">
-                    ${formatNumber(bankAccount.currentBalance, 2, 2)}
-                  </span>
-                </div>
-              </li>
+            {Object.keys(diffBanks).map((bank) => (
+              <div>
+                <li class="railz-bank-accounts-ul-title">{bank}</li>
+                {diffBanks[bank].map((bankAccount: RVBankAccounts) => (
+                  <li>
+                    <div class="railz-bank-accounts-item-container">
+                      <span class="railz-bank-accounts-item-name">{bankAccount.accountName}</span>
+                      <span class="railz-bank-accounts-item-dot"></span>
+                      <span class="railz-bank-accounts-item-value">
+                        ${formatNumber(bankAccount.currentBalance, 2, 2)}
+                      </span>
+                    </div>
+                  </li>
+                ))}
+              </div>
             ))}
           </ul>
         </div>
