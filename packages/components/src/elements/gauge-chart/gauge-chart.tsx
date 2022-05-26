@@ -205,10 +205,12 @@ export class GaugeChart {
         {this._options?.title ? (
           <p class="rv-title" style={this._options?.title?.style}>
             {this._options?.title?.text || ''}{' '}
-            <railz-tooltip
-              tooltipStyle={{ position: 'bottom-center' }}
-              tooltipText={Translations.RV_TOOLTIP_RAILZ_SCORE}
-            />
+            {this._options?.container?.tooltip ? (
+              <railz-tooltip
+                tooltipStyle={{ position: 'bottom-center' }}
+                tooltipText={Translations.RV_TOOLTIP_RAILZ_SCORE}
+              />
+            ) : null}
           </p>
         ) : null}
         {this.renderMain()}

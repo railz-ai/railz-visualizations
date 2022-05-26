@@ -18,6 +18,10 @@ export interface RVOptionsTitle {
    * style: CSS object based on HTML stylings for the container title
    */
   style?: { [key: string]: any };
+
+  /**
+   * text: The text that should be on the title
+   */
   text?: string;
 }
 

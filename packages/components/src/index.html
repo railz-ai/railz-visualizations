@@ -39,17 +39,23 @@
 
         railzVisualizations.filter = {
           // Report Types
+          // Statements
           // reportType: 'balanceSheets',
-          // reportType: 'bankAccounts',
-          // reportType: 'bills',
-          // reportType: 'cashflowStatements',
-          // reportType: 'creditScores',
-          reportType: 'expenses',
-          // reportType: 'financialRatios',
           // reportType: 'incomeStatements',
+          // reportType: 'cashflowStatements',
+          // Bank Accounts
+          // reportType: 'bankAccounts',
+          // Financial Ratios
+          // reportType: 'financialRatios',
+          // Progress Bar
+          // reportType: 'bills',
           // reportType: 'invoices',
+          // Pie Chart
+          reportType: 'expenses',
           // reportType: 'revenue',
+          // Gauge Chart
           // reportType: 'railzScore',
+          // reportType: 'creditScores',
 
           // Report Types
           // serviceName: 'sandbox',
@@ -112,7 +118,7 @@
         };
 
         railzVisualizations.options = {
-          container: { tooltip: true },
+          container: { tooltip: true, date: true },
         };
 
         document.body.appendChild(railzVisualizations);
