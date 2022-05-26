@@ -6,6 +6,7 @@ import {
   ALL_FONTS,
   RAILZ_PIE_COLORS,
   RVFormattedPieResponse,
+  RVOptions,
   RVParams,
   RVPieChartSummary,
   RVReportRequestParameter,
@@ -21,7 +22,7 @@ interface Data {
   y: number;
 }
 
-export const getOptionsPie = (summary: RVPieChartSummary, id = 'id'): any => {
+export const getOptionsPie = (summary: RVPieChartSummary, options: RVOptions): any => {
   const data: Data[] = summary?.subSections
     .filter((item) => item.amount > 0)
     .map((item) => {
@@ -33,8 +34,9 @@ export const getOptionsPie = (summary: RVPieChartSummary, id = 'id'): any => {
   return {
     chart: {
       style: {
-        fontFamily: ALL_FONTS,
+        fontFamily: options?.chart?.fontFamily || ALL_FONTS,
       },
+      backgroundColor: options?.chart?.backgroundColor || '#ffffff',
       events: {
         load(): void {
           // eslint-disable-next-line @typescript-eslint/no-this-alias
@@ -67,7 +69,7 @@ export const getOptionsPie = (summary: RVPieChartSummary, id = 'id'): any => {
         type: 'variablepie',
         showInLegend: true,
         data,
-        id,
+        id: 'id',
         enableMouseTracking: false,
       },
     ],

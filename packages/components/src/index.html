@@ -51,10 +51,11 @@
           // reportType: 'bills',
           // reportType: 'invoices',
           // Pie Chart
-          reportType: 'expenses',
+          // reportType: 'expenses',
           // reportType: 'revenue',
           // Gauge Chart
-          // reportType: 'railzScore',
+          reportType: 'railzScore',
+          // Credit Scores Chart
           // reportType: 'creditScores',
 
           // Report Types
@@ -119,6 +120,13 @@
 
         railzVisualizations.options = {
           container: { tooltip: true, date: true },
+          chart: {
+            // fontFamily: 'Arial',
+            // backgroundColor: 'red',
+            label: {
+              fontSize: '20px',
+            },
+          },
         };
 
         document.body.appendChild(railzVisualizations);

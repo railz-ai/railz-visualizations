@@ -6,6 +6,7 @@ import {
   ALL_FONTS,
   RVFormattedGaugeResponse,
   RVGaugeChartSummary,
+  RVOptions,
   RVReportRequestParameter,
   RVReportTypesUrlMapping,
 } from '../../types';
@@ -66,13 +67,14 @@ const getColor = (score: number): string => {
 /**
  * Setup Highcharts options for gauge
  */
-export const getOptionsGauge = (gauge: RVGaugeChartSummary): any => ({
+export const getOptionsGauge = (gauge: RVGaugeChartSummary, options: RVOptions): any => ({
   chart: {
     type: 'solidgauge',
     margin: [0, 0, 0, 0],
     style: {
-      fontFamily: ALL_FONTS,
+      fontFamily: options?.chart?.fontFamily || ALL_FONTS,
     },
+    backgroundColor: options?.chart?.backgroundColor || '#ffffff',
     events: {
       load(): void {
         // eslint-disable-next-line @typescript-eslint/no-this-alias
@@ -130,6 +132,7 @@ export const getOptionsGauge = (gauge: RVGaugeChartSummary): any => ({
       distance: -5,
       y: 15,
       style: { color: '#757575' },
+      ...options?.chart?.label,
     },
     stops: [[0, getColor(gauge?.score)]],
     plotLines: [
@@ -177,13 +180,19 @@ export const getOptionsGauge = (gauge: RVGaugeChartSummary): any => ({
         shadow: false,
         style: {
           fontSize: '16px',
-          fontFamily: ALL_FONTS,
+          fontFamily: options?.chart?.fontFamily || ALL_FONTS,
         },
         formatter: function (): string {
           return `
-            <div style="width:100%;text-align:center;">
-              <span style="font-size:2.25rem;color: black;font-weight:600;">${gauge?.score}</span><br/>
-              <span style="font-size:1rem;font-weight: 400;">${gauge?.rating}</span>
+            <div style="width:100%;text-align:center;font-family: ${
+              options?.chart?.fontFamily || ALL_FONTS
+            }">
+              <span style="font-size:2.25rem;color: black;font-weight:600;font-family: ${
+                options?.chart?.fontFamily || ALL_FONTS
+              }">${gauge?.score}</span><br/>
+              <span style="font-size:1rem;font-weight: 400;font-family: ${
+                options?.chart?.fontFamily || ALL_FONTS
+              }">${gauge?.rating}</span>
             </div>`;
         },
       },

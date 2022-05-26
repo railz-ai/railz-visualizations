@@ -171,11 +171,11 @@ export class PieChart {
    * into one option for highcharts
    */
   private updateHighchartsParams = (summary: RVPieChartSummary): void => {
-    const options = getOptionsPie(summary);
-    if (options) {
+    const chartOptions = getOptionsPie(summary, this._options);
+    if (chartOptions) {
       this.error = '';
       this.loading = '';
-      this.chartOptions = options;
+      this.chartOptions = chartOptions;
     }
   };
 

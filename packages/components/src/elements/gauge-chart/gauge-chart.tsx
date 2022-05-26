@@ -11,6 +11,7 @@ import { getConfiguration, getOptions, getFilter } from '../../helpers/chart.uti
 import { ConfigurationInstance } from '../../services/configuration';
 import Translations from '../../config/translations/en.json';
 import {
+  ALL_FONTS,
   RVConfiguration,
   RVFilterAll,
   RVFilterGauge,
@@ -166,11 +167,11 @@ export class GaugeChart {
    * into one option for highcharts
    */
   private updateHighchartsParams = (gauge: RVGaugeChartSummary): void => {
-    const options = getOptionsGauge(gauge);
-    if (options) {
+    const chartOptions = getOptionsGauge(gauge, this._options);
+    if (chartOptions) {
       this.error = '';
       this.loading = '';
-      this.chartOptions = options;
+      this.chartOptions = chartOptions;
     }
   };
 
@@ -215,7 +216,10 @@ export class GaugeChart {
         ) : null}
         {this.renderMain()}
         {this._options?.container?.date && this.lastUpdated && (
-          <p class="railz-gauge-last-updated">
+          <p
+            class="railz-gauge-last-updated"
+            style={{ 'font-family': this._options?.chart?.fontFamily || ALL_FONTS }}
+          >
             {Translations.RV_AS_OF} {format(parseISO(this.lastUpdated), 'dd MMM yyyy')}
           </p>
         )}
