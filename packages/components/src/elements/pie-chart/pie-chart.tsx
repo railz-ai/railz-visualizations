@@ -197,7 +197,11 @@ export class PieChart {
     }
     return (
       <div class="railz-pie-chart-container">
-        <div id="railz-pie-chart" ref={(el): HTMLDivElement => (this.containerRef = el)} />
+        <div
+          id="railz-pie-chart"
+          ref={(el): HTMLDivElement => (this.containerRef = el)}
+          style={{ width: this._options?.chart?.width, height: this._options?.chart?.height }}
+        />
         <div class="railz-pie-chart-box">
           {!isNil(this._summary?.percentageChange) && (
             <div class="railz-pie-chart-percentage">

@@ -196,6 +196,7 @@ export class GaugeChart {
         class="railz-gauge-chart-container"
         id="railz-gauge-chart"
         ref={(el): HTMLDivElement => (this.containerRef = el)}
+        style={{ width: this._options?.chart?.width, height: this._options?.chart?.height }}
       />
     );
   };

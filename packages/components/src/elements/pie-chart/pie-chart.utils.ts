@@ -94,6 +94,7 @@ export const getOptionsPie = (summary: RVPieChartSummary, options: RVOptions): a
           <span class="legend-name">${this.name}</span>
         </div>`;
       },
+      ...options?.chart?.legend,
     },
   };
 };
