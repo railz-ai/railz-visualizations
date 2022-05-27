@@ -66,8 +66,8 @@ export const getOptionsBarChart = ({
     labels: {
       style: {
         color: '#55565B',
+        ...chart?.label,
       },
-      ...chart?.label,
     },
   },
   yAxis: {
@@ -77,8 +77,8 @@ export const getOptionsBarChart = ({
     labels: {
       style: {
         color: '#55565B',
+        ...chart?.label,
       },
-      ...chart?.label,
     },
   },
   credits: {

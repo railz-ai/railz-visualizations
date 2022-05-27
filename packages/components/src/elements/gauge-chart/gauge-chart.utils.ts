@@ -131,8 +131,7 @@ export const getOptionsGauge = (gauge: RVGaugeChartSummary, options: RVOptions):
     labels: {
       distance: -5,
       y: 15,
-      style: { color: '#757575' },
-      ...options?.chart?.label,
+      style: { color: '#757575', ...options?.chart?.label },
     },
     stops: [[0, getColor(gauge?.score)]],
     plotLines: [
