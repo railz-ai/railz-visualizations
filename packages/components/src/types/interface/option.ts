@@ -62,10 +62,6 @@ export interface RVOptionsChartStyle {
 
 export interface RVOptionsBarStyle {
   /**
-   * divStyle: CSS object based on HTML stylings for the complete div
-   */
-  divStyle?: { [key: string]: any };
-  /**
    * titleStyle: CSS object based on HTML stylings for the bar title (
    Total unpaid value)
    */

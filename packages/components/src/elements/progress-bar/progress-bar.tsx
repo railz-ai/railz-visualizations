@@ -53,7 +53,7 @@ export class ProgressBar {
       return <span></span>;
     }
     return (
-      <div class="railz-progress-bar-div" style={this.options?.divStyle}>
+      <div class="railz-progress-bar-div">
         <p
           class="railz-progress-bar-total-unpaid"
           style={this._options?.titleStyle}
