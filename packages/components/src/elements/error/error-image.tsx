@@ -18,10 +18,6 @@ export class ErrorImage {
    */
   @Prop() readonly statusCode?: number;
   /**
-   * Text to display at the bottom of the svg image
-   */
-  @Prop() readonly text?: string;
-  /**
    * Fill color of the svg image representing a status code
    */
   @Prop() readonly fillColor?: string = '#949494';

@@ -35,10 +35,6 @@ export namespace Components {
          */
         "statusCode"?: number;
         /**
-          * Text to display at the bottom of the svg image
-         */
-        "text"?: string;
-        /**
           * Color of the image text
          */
         "textStyle"?: { [key: string]: any };
@@ -167,7 +163,7 @@ export namespace Components {
         /**
           * For whitelabeling styling
          */
-        "options": RVOptions;
+        "options"?: RVOptions;
     }
     interface RailzTooltip {
         /**
@@ -192,7 +188,7 @@ export namespace Components {
         /**
           * For whitelabeling styling
          */
-        "options": RVOptions;
+        "options"?: RVOptions;
     }
     interface RailzVisualizations {
         /**
@@ -339,10 +335,6 @@ declare namespace LocalJSX {
           * Status code based on HTTP Response codes
          */
         "statusCode"?: number;
-        /**
-          * Text to display at the bottom of the svg image
-         */
-        "text"?: string;
         /**
           * Color of the image text
          */

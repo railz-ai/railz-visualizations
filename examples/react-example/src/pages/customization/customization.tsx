@@ -49,6 +49,7 @@ export default function Customization() {
               setError={setError}
               options={options}
               setOptions={submitOptions}
+              showContent={true}
             />
           </div>
           <div className="mt-5 md:mt-0 md:col-span-2 px-1">
@@ -58,6 +59,7 @@ export default function Customization() {
               <Visualizations
                 configuration={{
                   token,
+                  endpoint: 'https://api.qa.railz.ai',
                   debug: true,
                 }}
                 filter={filter as any}

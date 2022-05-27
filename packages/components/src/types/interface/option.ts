@@ -1,3 +1,5 @@
+import { RVContent } from './content';
+
 export interface RVOptionsContainer {
   /**
    * style: CSS object based on HTML stylings for the container
@@ -61,6 +63,10 @@ export interface RVOptionsChartStyle {
 }
 
 export interface RVOptionsBarStyle {
+  /**
+   * divStyle: CSS object based on HTML stylings for the complete div
+   */
+  divStyle?: { [key: string]: any };
   /**
    * titleStyle: CSS object based on HTML stylings for the bar title (
    Total unpaid value)
@@ -195,4 +201,8 @@ export interface RVOptions {
    * errorIndicator: Object to cover basic styling of the error indicator
    */
   errorIndicator?: RVErrorIndicatorStyle;
+  /**
+   * content: Content information that change text for i18n
+   */
+  content?: RVContent;
 }

@@ -56,7 +56,6 @@ export class PieChart {
   @State() private _filter: RVFilterPie;
   @State() private _options: RVOptions;
   @State() private _summary: RVRevenueExpensesSummary;
-  @State() private error: string;
   @State() private errorStatusCode: number;
   @State() private chartOptions: any;
   @State() private containerRef?: HTMLDivElement;
@@ -184,7 +183,7 @@ export class PieChart {
   }
 
   private renderMain = (): HTMLElement => {
-    if (!isEmpty(this.error) || this.errorStatusCode !== undefined) {
+    if (this.errorStatusCode !== undefined) {
       return (
         <railz-error-image
           statusCode={this.errorStatusCode || 500}

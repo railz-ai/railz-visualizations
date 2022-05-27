@@ -51,7 +51,6 @@ export class GaugeChart {
   @State() private _configuration: RVConfiguration;
   @State() private _filter: RVFilterGauge;
   @State() private _options: RVOptions;
-  @State() private error: string;
   @State() private errorStatusCode: number;
   @State() private lastUpdated: string;
   @State() private chartOptions: any;
@@ -95,7 +94,6 @@ export class GaugeChart {
       }
     } else {
       this.errorStatusCode = 500;
-      this.error = Translations.RV_CONFIGURATION_NOT_PRESENT;
     }
   };
 
@@ -137,7 +135,6 @@ export class GaugeChart {
    * Updated Highchart params using updateHighchartsParams
    */
   private requestReportData = async (): Promise<void> => {
-    this.error = '';
     this.loading = Translations.LOADING_REPORT;
     try {
       const reportData = (await getReportData({
@@ -148,10 +145,10 @@ export class GaugeChart {
         this.lastUpdated = reportData.data.lastUpdated;
         this.updateHighchartsParams(reportData.data);
       } else if (reportData?.error) {
-        this.error = Translations.NOT_ABLE_TO_RETRIEVE_REPORT_DATA;
+        errorLog(Translations.NOT_ABLE_TO_RETRIEVE_REPORT_DATA);
         this.errorStatusCode = reportData.error?.statusCode;
       } else {
-        this.error = Translations.ERROR_202_TITLE;
+        errorLog(Translations.ERROR_202_TITLE);
         this.errorStatusCode = reportData?.status;
       }
     } catch (error) {
@@ -169,7 +166,6 @@ export class GaugeChart {
   private updateHighchartsParams = (gauge: RVGaugeChartSummary): void => {
     const chartOptions = getOptionsGauge(gauge, this._options);
     if (chartOptions) {
-      this.error = '';
       this.loading = '';
       this.chartOptions = chartOptions;
     }
@@ -180,7 +176,7 @@ export class GaugeChart {
   }
 
   private renderMain = (): HTMLElement => {
-    if (!isEmpty(this.error) || this.errorStatusCode !== undefined) {
+    if (this.errorStatusCode !== undefined) {
       return (
         <railz-error-image
           statusCode={this.errorStatusCode || 500}

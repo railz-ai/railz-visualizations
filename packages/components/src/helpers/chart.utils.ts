@@ -274,6 +274,34 @@ export const getBarOptionsStyle = (
   return formattedOptionsStyle;
 };
 
+// /**
+//  * @function getContent: if configuration is a string, convert to an object
+//  * Validate that configuration is present, if not, return formatted configuration as undefined
+//  * @param content: Content text/info
+//  * @param filter: To retrieve reportType
+//  */
+// export const getContent = (
+//   content: RVContent | string,
+//   filter?: RVAllFilter,
+// ): RVContent | never => {
+//   let formattedContent: RVContent;
+//   if (content) {
+//     try {
+//       if (typeof content === 'string') {
+//         formattedContent = JSON.parse(content);
+//       } else {
+//         formattedContent = content;
+//       }
+//     } catch (error) {
+//       errorLog(Translations.RV_ERROR_PARSING_CONTENT + ' ' + error.message);
+//     }
+//   }
+//   if (filter) {
+//     formattedContent.title = formattedContent.title || getTitleByReportType(filter.reportType);
+//   }
+//   return formattedContent;
+// };
+
 /**
  * getHighchartsParams: Combine generic stacked bar line chart
  * options and formatted data based on a given report type
@@ -293,7 +321,6 @@ export const getHighchartsParams = ({
     });
   } catch (error) {
     errorLog(Translations.RV_NOT_ABLE_TO_PARSE_REPORT_DATA, error);
-    throw new Error(Translations.ERROR_500_TITLE);
   }
 
   return containerOptions;

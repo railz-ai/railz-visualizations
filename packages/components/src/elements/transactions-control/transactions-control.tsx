@@ -39,27 +39,29 @@ export class TransactionsControl {
   /**
    * For whitelabeling styling
    */
-  @Prop() readonly options: RVOptions;
+  @Prop() readonly options?: RVOptions;
 
   @State() private loading = '';
   @State() private _configuration: RVConfiguration;
   @State() private _filter: RVFilterTransactions;
   @State() private _options: RVOptions;
   @State() private _dataFormatted: RVBillInvoiceSummary;
-  @State() private error: string;
-  @State() private errorStatusCode: number;
+  @State() private errorStatusCode = 0;
 
   /**
    * Validates if configuration was passed correctly before setting filter
    * @param configuration - Config for authentication
    * @param filter - filter to decide chart type to show
+   * @param options: Whitelabeling options
    * @param triggerRequest - indicate if api request should be made
    */
   private validateParams = async (
     configuration: RVConfiguration,
     filter: RVFilterTransactions,
+    options: RVOptions,
     triggerRequest = true,
   ): Promise<void> => {
+    this.errorStatusCode = 0;
     this._configuration = getConfiguration(configuration);
     if (this._configuration) {
       ConfigurationInstance.configuration = this._configuration;
@@ -67,7 +69,7 @@ export class TransactionsControl {
         this._filter = getFilter(filter as RVFilterAll) as RVFilterTransactions;
         if (this._filter) {
           if (isTransactions(this._filter.reportType)) {
-            this._options = getOptions(this.options, this._filter as RVFilterAll);
+            this._options = getOptions(options, this._filter as RVFilterAll);
             if (triggerRequest) {
               await this.requestReportData();
             }
@@ -80,12 +82,10 @@ export class TransactionsControl {
         }
       } catch (e) {
         this.errorStatusCode = 500;
-        this.error = Translations.RV_ERROR_PARSING_OPTIONS;
-        errorLog(e);
+        errorLog(Translations.RV_ERROR_PARSING_OPTIONS, e);
       }
     } else {
       this.errorStatusCode = 500;
-      this.error = Translations.RV_CONFIGURATION_NOT_PRESENT;
       errorLog(Translations.RV_CONFIGURATION_NOT_PRESENT);
     }
   };
@@ -93,23 +93,33 @@ export class TransactionsControl {
   @Watch('filter')
   async watchFilter(newValue: RVFilterTransactions, oldValue: RVFilterTransactions): Promise<void> {
     if (newValue && oldValue && !isEqual(oldValue, newValue)) {
-      await this.validateParams(this.configuration, newValue);
+      await this.validateParams(this.configuration, newValue, this.options);
     }
   }
 
   @Watch('configuration')
   async watchConfiguration(newValue: RVConfiguration, oldValue: RVConfiguration): Promise<void> {
     if (newValue && oldValue && !isEqual(oldValue, newValue)) {
-      await this.validateParams(newValue, this.filter);
+      await this.validateParams(newValue, this.filter, this.options);
+    }
+  }
+
+  @Watch('options')
+  async watchOptions(newValue: RVOptions, oldValue: RVOptions): Promise<void> {
+    if (newValue && oldValue && !isEqual(oldValue, newValue)) {
+      await this.validateParams(this.configuration, this.filter, newValue);
     }
   }
 
   private propsUpdated = async (triggerRequest = true): Promise<void> => {
-    await this.validateParams(this.configuration, this.filter, triggerRequest);
+    await this.validateParams(this.configuration, this.filter, this.options, triggerRequest);
   };
 
+  /**
+   * Request report data based on filter and configuration param
+   */
   private requestReportData = async (): Promise<void> => {
-    this.error = '';
+    this.errorStatusCode = 0;
     this.loading = Translations.LOADING_REPORT;
     const reportData = (await getTransactionsData({
       filter: this._filter as RVFilterAll,
@@ -118,10 +128,8 @@ export class TransactionsControl {
       if (reportData?.data) {
         this._dataFormatted = reportData?.data;
       } else if (reportData?.error) {
-        this.error = Translations.ERROR_500_TITLE;
         this.errorStatusCode = reportData.error?.statusCode;
       } else {
-        this.error = Translations.ERROR_500_TITLE;
         this.errorStatusCode = reportData?.status;
       }
     } catch (error) {
@@ -136,7 +144,7 @@ export class TransactionsControl {
   }
 
   private renderMain(): HTMLElement {
-    if (!isEmpty(this.error) || this.errorStatusCode !== undefined) {
+    if (this.errorStatusCode !== undefined) {
       return (
         <railz-error-image
           statusCode={this.errorStatusCode || 500}

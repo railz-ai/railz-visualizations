@@ -47,7 +47,6 @@ export class FinancialRatios {
   @State() private _options: RVOptions;
   @State() private _summary: RVFinancialRatioSummary;
   @State() private _selected: RVFinancialRatioItem;
-  @State() private error: string;
   @State() private errorStatusCode: number;
 
   /**
@@ -164,7 +163,7 @@ export class FinancialRatios {
   }
 
   private renderMain = (): HTMLElement => {
-    if (!isEmpty(this.error) || this.errorStatusCode !== undefined) {
+    if (this.errorStatusCode !== undefined) {
       return (
         <railz-error-image
           statusCode={this.errorStatusCode || 500}

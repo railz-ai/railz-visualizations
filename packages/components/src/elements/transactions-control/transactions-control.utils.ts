@@ -19,9 +19,19 @@ export const getTransactionsData = async ({
   filter,
 }: RVReportRequestParameter): Promise<RVFormattedTransactionResponse> => {
   let reportData = {};
+  let startDate;
+  let endDate;
   try {
-    const startDate = format(parseISO(filter.startDate), RAILZ_DATE_FORMAT);
-    const endDate = format(parseISO(filter.endDate), RAILZ_DATE_FORMAT);
+    startDate = format(parseISO(filter.startDate), RAILZ_DATE_FORMAT);
+  } catch (error) {
+    errorLog(Translations.RV_ERROR_START_DATE);
+  }
+  try {
+    endDate = format(parseISO(filter.endDate), RAILZ_DATE_FORMAT);
+  } catch (error) {
+    errorLog(Translations.RV_ERROR_END_DATE);
+  }
+  try {
     let allParameters;
     if ('connectionId' in filter && filter?.connectionId) {
       allParameters = pick({ ...filter, startDate, endDate }, [
