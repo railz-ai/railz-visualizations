@@ -82,12 +82,10 @@ export class FinancialRatios {
         }
       } catch (e) {
         this.errorStatusCode = 500;
-        this.error = e;
         errorLog(e);
       }
     } else {
       this.errorStatusCode = 500;
-      this.error = Translations.RV_CONFIGURATION_NOT_PRESENT;
     }
   };
 
@@ -129,7 +127,6 @@ export class FinancialRatios {
    * Request report data based on filter and configuration param
    */
   private requestReportData = async (): Promise<void> => {
-    this.error = '';
     this.loading = Translations.LOADING_REPORT;
     try {
       const reportData = (await getReportData({
@@ -141,14 +138,11 @@ export class FinancialRatios {
         if (!isEmpty(this._summary)) {
           this.handleSelected(0);
         } else {
-          this.error = Translations.NOT_ABLE_TO_RETRIEVE_REPORT_DATA;
           this.errorStatusCode = reportData.error?.statusCode;
         }
       } else if (reportData?.error) {
-        this.error = Translations.NOT_ABLE_TO_RETRIEVE_REPORT_DATA;
         this.errorStatusCode = reportData.error?.statusCode;
       } else {
-        this.error = Translations.ERROR_202_TITLE;
         this.errorStatusCode = reportData?.status;
       }
     } catch (error) {

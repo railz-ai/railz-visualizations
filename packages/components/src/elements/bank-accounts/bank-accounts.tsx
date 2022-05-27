@@ -106,12 +106,10 @@ export class BanksAccounts {
         }
       } catch (e) {
         this.errorStatusCode = 500;
-        this.error = e;
         errorLog(e);
       }
     } else {
       this.errorStatusCode = 500;
-      this.error = Translations.RV_CONFIGURATION_NOT_PRESENT;
     }
   };
 
@@ -119,7 +117,6 @@ export class BanksAccounts {
    * Request report data based on filter and configuration param
    */
   private requestReportData = async (): Promise<void> => {
-    this.error = '';
     this.loading = Translations.LOADING_REPORT;
     try {
       const reportData = (await getReportData({

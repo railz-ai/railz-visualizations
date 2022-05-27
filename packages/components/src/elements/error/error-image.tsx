@@ -1,8 +1,6 @@
 /* eslint-disable max-len, @typescript-eslint/no-unused-vars */
 import { Component, h, Prop } from '@stencil/core';
 
-import { isNil } from 'lodash-es';
-
 import Translations from '../../config/translations/en.json';
 
 import { Error202, Error204, Error500 } from './images';
@@ -44,7 +42,7 @@ export class ErrorImage {
           <div>
             <Error202 fillColor={this.fillColor} width={this.width} height={this.height} />
             <p class="railz-error-title" style={this.textStyle}>
-              {isNil(this.text) ? Translations.ERROR_202_TITLE : this.text}
+              {Translations.ERROR_202_TITLE}
             </p>
           </div>
         );
@@ -54,7 +52,7 @@ export class ErrorImage {
           <div>
             <Error204 fillColor={this.fillColor} width={this.width} height={this.height} />
             <p class="railz-error-title" style={this.textStyle}>
-              {isNil(this.text) ? Translations.ERROR_204_TITLE : this.text}
+              {Translations.ERROR_204_TITLE}
             </p>
           </div>
         );
@@ -63,7 +61,7 @@ export class ErrorImage {
           <div>
             <Error500 fillColor={this.fillColor} width={this.width} height={this.height} />
             <p class="railz-error-title" style={this.textStyle}>
-              {isNil(this.text) ? Translations.ERROR_500_TITLE : this.text}
+              {Translations.ERROR_500_TITLE}
             </p>
           </div>
         );

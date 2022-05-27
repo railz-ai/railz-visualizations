@@ -93,12 +93,10 @@ export class PieChart {
         }
       } catch (e) {
         this.errorStatusCode = 500;
-        this.error = e;
         errorLog(e);
       }
     } else {
       this.errorStatusCode = 500;
-      this.error = Translations.RV_CONFIGURATION_NOT_PRESENT;
     }
   };
 
@@ -140,7 +138,6 @@ export class PieChart {
    * Updated Highchart params using updateHighchartsParams
    */
   private requestReportData = async (): Promise<void> => {
-    this.error = '';
     this.loading = Translations.LOADING_REPORT;
     try {
       const reportData = (await getReportData({
@@ -151,10 +148,8 @@ export class PieChart {
         this._summary = reportData?.data as RVRevenueExpensesSummary;
         this.updateHighchartsParams(reportData.data);
       } else if (reportData?.error) {
-        this.error = Translations.NOT_ABLE_TO_RETRIEVE_REPORT_DATA;
         this.errorStatusCode = reportData.error?.statusCode;
       } else {
-        this.error = Translations.ERROR_202_TITLE;
         this.errorStatusCode = reportData?.status;
       }
     } catch (error) {
@@ -172,7 +167,6 @@ export class PieChart {
   private updateHighchartsParams = (summary: RVPieChartSummary): void => {
     const chartOptions = getOptionsPie(summary, this._options);
     if (chartOptions) {
-      this.error = '';
       this.loading = '';
       this.chartOptions = chartOptions;
     }

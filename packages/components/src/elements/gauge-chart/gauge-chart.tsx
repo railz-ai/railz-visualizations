@@ -89,7 +89,6 @@ export class GaugeChart {
         }
       } catch (e) {
         this.errorStatusCode = 500;
-        this.error = e;
         errorLog(e);
       }
     } else {
