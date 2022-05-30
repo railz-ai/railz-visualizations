@@ -5,7 +5,7 @@ import numbro from 'numbro';
 
 import Translations from '../config/translations/en.json';
 import { RVReportTypes } from '../types/enum/report-type';
-import { RVReportFrequency, RVReportStatementSummary } from '../types';
+import { RVMonths, RVReportFrequency, RVReportStatementSummary } from '../types';
 
 /**
  * Format date that will be shown on charts and show short form
@@ -14,14 +14,18 @@ export const formatDate = (
   summary: RVReportStatementSummary,
   reportFrequency: RVReportFrequency,
   quarter = 'Q',
-  month = 'MMM yy',
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  month: RVMonths,
+  // month = 'MMM yy': RVMonths,
 ): string[] => {
   return summary?.map((data) => {
     const date = parseISO(data.period.date);
     if (reportFrequency === 'quarter')
       return `${quarter}${data.period.quarter} ${format(date, 'yyyy')}`;
     if (reportFrequency === 'year') return data.period.year.toString();
-    return format(date, month);
+    // return format(date, month);
+    // console.log('formatDate month', month);
+    return format(date, 'MMM yy');
   });
 };
 
@@ -34,7 +38,9 @@ export const formatSeries = (
   field: string,
 ): { name: string; data: RVReportStatementSummary } => ({
   name,
-  data: summary?.map((data) => data[field]).filter((data) => data != undefined),
+  data: summary
+    ?.map((data: { [x: string]: any }) => data[field])
+    .filter((data) => data != undefined),
 });
 
 /**

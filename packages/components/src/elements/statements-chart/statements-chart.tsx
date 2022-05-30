@@ -56,7 +56,7 @@ export class StatementsChart {
   @State() private _filter: RVFilterStatements;
   @State() private _options: RVOptions;
   @State() private _dataFormatted: RVFormattedStatementData;
-  @State() private errorStatusCode = 0;
+  @State() private errorStatusCode: number;
 
   @State() private chartOptions: any;
 
@@ -76,7 +76,9 @@ export class StatementsChart {
     options: RVOptions,
     triggerRequest = true,
   ): Promise<void> => {
-    this.errorStatusCode = 0;
+    console.log('configuration', configuration);
+    console.log('filter', filter);
+    console.log('options', options);
     this._configuration = getConfiguration(configuration);
     if (this._configuration) {
       ConfigurationInstance.configuration = this._configuration;
@@ -143,7 +145,6 @@ export class StatementsChart {
    * Updated Highchart params using updateHighchartsParams
    */
   private requestReportData = async (): Promise<void> => {
-    this.errorStatusCode = 0;
     this.loading = Translations.LOADING_REPORT;
     try {
       const reportData = (await getReportData({
@@ -155,7 +156,7 @@ export class StatementsChart {
           reportType: this._filter?.reportType as RVFinancialStatementsTypes,
           reportFrequency: this._filter?.reportFrequency,
           chart: this._options?.chart,
-          month: this._options?.content?.date.month,
+          // month: this._options?.content?.date.month,
           quarter: this._options?.content?.date.quarter,
         });
         this.updateHighchartsParams();
@@ -192,6 +193,7 @@ export class StatementsChart {
   }
 
   private renderMain = (): HTMLElement => {
+    console.log('this.errorStatusCode', this.errorStatusCode);
     if (this.errorStatusCode !== undefined) {
       return (
         <railz-error-image

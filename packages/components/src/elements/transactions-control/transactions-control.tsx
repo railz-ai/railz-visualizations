@@ -46,7 +46,7 @@ export class TransactionsControl {
   @State() private _filter: RVFilterTransactions;
   @State() private _options: RVOptions;
   @State() private _dataFormatted: RVBillInvoiceSummary;
-  @State() private errorStatusCode = 0;
+  @State() private errorStatusCode: number;
 
   /**
    * Validates if configuration was passed correctly before setting filter
@@ -61,7 +61,6 @@ export class TransactionsControl {
     options: RVOptions,
     triggerRequest = true,
   ): Promise<void> => {
-    this.errorStatusCode = 0;
     this._configuration = getConfiguration(configuration);
     if (this._configuration) {
       ConfigurationInstance.configuration = this._configuration;
@@ -119,7 +118,6 @@ export class TransactionsControl {
    * Request report data based on filter and configuration param
    */
   private requestReportData = async (): Promise<void> => {
-    this.errorStatusCode = 0;
     this.loading = Translations.LOADING_REPORT;
     const reportData = (await getTransactionsData({
       filter: this._filter as RVFilterAll,

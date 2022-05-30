@@ -1,4 +1,9 @@
 export interface RVContentDate {
+  month?: RVMonths;
+  quarter?: string;
+}
+
+export interface RVMonths {
   jan?: string;
   feb?: string;
   mar?: string;
@@ -11,8 +16,6 @@ export interface RVContentDate {
   oct?: string;
   nov?: string;
   dec?: string;
-  month?: string;
-  quarter?: string;
 }
 
 export interface RVContentLabel {
