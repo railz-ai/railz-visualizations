@@ -202,10 +202,13 @@ export class GaugeChart {
         {this._options?.title ? (
           <p class="rv-title" style={this._options?.title?.style}>
             {this._options?.title?.text || ''}{' '}
-            {this._options?.container?.tooltip ? (
+            {this._options?.container?.tooltip || this._options?.content?.tooltip?.description ? (
               <railz-tooltip
                 tooltipStyle={{ position: 'bottom-center' }}
-                tooltipText={Translations.RV_TOOLTIP_RAILZ_SCORE}
+                tooltipText={
+                  this._options?.content?.tooltip?.description ||
+                  Translations.RV_TOOLTIP_RAILZ_SCORE
+                }
               />
             ) : null}
           </p>
@@ -216,7 +219,8 @@ export class GaugeChart {
             class="railz-gauge-last-updated"
             style={{ 'font-family': this._options?.chart?.fontFamily || ALL_FONTS }}
           >
-            {Translations.RV_AS_OF} {format(parseISO(this.lastUpdated), 'dd MMM yyyy')}
+            {this._options?.content?.label?.date || Translations.RV_AS_OF}{' '}
+            {format(parseISO(this.lastUpdated), 'dd MMM yyyy')}
           </p>
         )}
       </div>

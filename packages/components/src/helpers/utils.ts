@@ -1,11 +1,12 @@
 import { isNil, invert } from 'lodash-es';
 import { parseISO, format } from 'date-fns';
+import * as locales from 'date-fns/locale';
 
 import numbro from 'numbro';
 
 import Translations from '../config/translations/en.json';
 import { RVReportTypes } from '../types/enum/report-type';
-import { RVMonths, RVReportFrequency, RVReportStatementSummary } from '../types';
+import { RVMonth, RVReportFrequency, RVReportStatementSummary } from '../types';
 
 /**
  * Format date that will be shown on charts and show short form
@@ -14,18 +15,15 @@ export const formatDate = (
   summary: RVReportStatementSummary,
   reportFrequency: RVReportFrequency,
   quarter = 'Q',
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  month: RVMonths,
-  // month = 'MMM yy': RVMonths,
+  month: RVMonth,
 ): string[] => {
   return summary?.map((data) => {
     const date = parseISO(data.period.date);
     if (reportFrequency === 'quarter')
       return `${quarter}${data.period.quarter} ${format(date, 'yyyy')}`;
     if (reportFrequency === 'year') return data.period.year.toString();
-    // return format(date, month);
-    // console.log('formatDate month', month);
-    return format(date, 'MMM yy');
+    // eslint-disable-next-line import/namespace
+    return format(date, month.format || 'MMM yy', { locale: locales[month.locale || 'us'] });
   });
 };
 

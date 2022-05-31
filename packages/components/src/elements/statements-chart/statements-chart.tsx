@@ -76,9 +76,6 @@ export class StatementsChart {
     options: RVOptions,
     triggerRequest = true,
   ): Promise<void> => {
-    console.log('configuration', configuration);
-    console.log('filter', filter);
-    console.log('options', options);
     this._configuration = getConfiguration(configuration);
     if (this._configuration) {
       ConfigurationInstance.configuration = this._configuration;
@@ -156,7 +153,7 @@ export class StatementsChart {
           reportType: this._filter?.reportType as RVFinancialStatementsTypes,
           reportFrequency: this._filter?.reportFrequency,
           chart: this._options?.chart,
-          // month: this._options?.content?.date.month,
+          month: this._options?.content?.date.month,
           quarter: this._options?.content?.date.quarter,
         });
         this.updateHighchartsParams();
@@ -193,7 +190,6 @@ export class StatementsChart {
   }
 
   private renderMain = (): HTMLElement => {
-    console.log('this.errorStatusCode', this.errorStatusCode);
     if (this.errorStatusCode !== undefined) {
       return (
         <railz-error-image
@@ -220,7 +216,13 @@ export class StatementsChart {
       <div class="rv-container" style={this._options?.container?.style}>
         {this._options?.title ? (
           <p class="rv-title" style={this._options?.title?.style}>
-            {this._options?.title?.text || ''}
+            {this._options?.title?.text || ''}{' '}
+            {this._options?.content?.tooltip?.description ? (
+              <railz-tooltip
+                tooltipStyle={{ position: 'bottom-center' }}
+                tooltipText={this._options?.content?.tooltip?.description}
+              />
+            ) : null}
           </p>
         ) : null}
         {this.renderMain()}

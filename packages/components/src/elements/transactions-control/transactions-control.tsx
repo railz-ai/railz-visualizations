@@ -171,7 +171,13 @@ export class TransactionsControl {
       <div class="rv-container" style={this._options?.container?.style}>
         {this._options?.title ? (
           <p class="rv-title" style={this._options?.title?.style}>
-            {this._options?.title?.text || ''}
+            {this._options?.title?.text || ''}{' '}
+            {this._options?.content?.tooltip?.description ? (
+              <railz-tooltip
+                tooltipStyle={{ position: 'bottom-center' }}
+                tooltipText={this._options?.content?.tooltip?.description}
+              />
+            ) : null}
           </p>
         ) : null}
         {this.renderMain()}

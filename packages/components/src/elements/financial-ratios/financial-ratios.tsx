@@ -174,11 +174,16 @@ export class FinancialRatios {
         const financialRatioKey = Object.keys(FinancialRatio).find(
           (ratio: string): boolean => FinancialRatio[ratio] === key,
         );
-        return (
-          (tooltip
-            ? Translations['RV_FINANCIAL_RATIO_TOOLTIP_' + financialRatioKey]
-            : Translations['RV_FINANCIAL_RATIO_' + financialRatioKey]) || ''
-        );
+        const financialRatio = FinancialRatio[financialRatioKey];
+        const contentTranslation = this._options?.content?.label?.[financialRatio];
+        const contentTooltipTranslation = this._options?.content?.tooltip?.[financialRatio];
+
+        if (tooltip) {
+          if (contentTooltipTranslation) return contentTooltipTranslation;
+          return Translations['RV_FINANCIAL_RATIO_TOOLTIP_' + financialRatioKey];
+        }
+        if (contentTranslation) return contentTranslation;
+        return Translations['RV_FINANCIAL_RATIO_' + financialRatioKey] || '';
       };
       const item: RVFinancialRatioItem = this._selected[key];
       const tooltipText = translation(key, true);
@@ -230,7 +235,13 @@ export class FinancialRatios {
   render(): HTMLElement {
     const TitleElement = (): HTMLElement => (
       <p class="rv-title" style={this._options?.title?.style}>
-        {this._options?.title?.text || ''}
+        {this._options?.title?.text || ''}{' '}
+        {this._options?.content?.tooltip?.description ? (
+          <railz-tooltip
+            tooltipStyle={{ position: 'bottom-center' }}
+            tooltipText={this._options?.content?.tooltip?.description}
+          />
+        ) : null}
       </p>
     );
 

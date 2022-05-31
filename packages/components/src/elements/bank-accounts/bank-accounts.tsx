@@ -190,7 +190,13 @@ export class BanksAccounts {
   render(): HTMLElement {
     const TitleElement = (): HTMLElement => (
       <p class="rv-title" style={this._options?.title?.style}>
-        {this._options?.title?.text || ''}
+        {this._options?.title?.text || ''}{' '}
+        {this._options?.content?.tooltip?.description ? (
+          <railz-tooltip
+            tooltipStyle={{ position: 'bottom-center' }}
+            tooltipText={this._options?.content?.tooltip?.description}
+          />
+        ) : null}
       </p>
     );
 

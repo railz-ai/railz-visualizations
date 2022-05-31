@@ -41,7 +41,7 @@
           // Report Types
 
           // Statements
-          reportType: 'balanceSheets',
+          // reportType: 'balanceSheets',
           // reportType: 'incomeStatements',
           // reportType: 'cashflowStatements',
 
@@ -60,7 +60,7 @@
           // reportType: 'revenue',
 
           // Gauge Chart
-          // reportType: 'railzScore',
+          reportType: 'railzScore',
 
           // Credit Scores Chart
           // reportType: 'creditScores',
@@ -109,6 +109,27 @@
           businessName: 'BIZ-8327bfe3-5822-47f5-bb4d-0869b50a7e3a',
           serviceName: 'quickbooks',
 
+          // QA1 - QA
+          businessName: 'Freshbooks',
+          serviceName: 'freshbooks',
+          startDate: '2021-04-01',
+          endDate: '2022-04-30',
+          reportType: 'railzScore',
+
+          // QA1 - QA
+          businessName: 'Freshbooks',
+          serviceName: 'freshbooks',
+          startDate: '2021-04-01',
+          endDate: '2022-04-30',
+          reportType: 'financialRatios',
+
+          // QA1 - QA
+          businessName: 'Freshbooks',
+          serviceName: 'freshbooks',
+          startDate: '2021-04-01',
+          endDate: '2022-04-30',
+          reportType: 'balanceSheets',
+
           // QA2 - QA
           // businessName: 'QuickTestQBO',
 
@@ -133,38 +154,35 @@
           // serviceName: 'quickbooks',
         };
 
-        // railzVisualizations.options = {
-        //   container: { tooltip: true, date: true },
-        //   chart: {
-        //     fontFamily: 'Arial',
-        //     // backgroundColor: 'red',
-        //     // label: {
-        //     //   fontSize: '50px',
-        //     // },
-        //     // width: '200px',
-        //   },
-        //   content: {
-        //     title: 'title',
-        //     date: {
-        //       quarter: 'QUARTER_',
-        //       month: {
-        //         jan: 'janeiro',
-        //         feb: 'fevereiro',
-        //         mar: 'março',
-        //         apr: 'abril',
-        //         may: 'maio',
-        //         jun: 'junho',
-        //         jul: 'julho',
-        //         aug: 'agosto',
-        //         sep: 'setembro',
-        //         oct: 'outubro',
-        //         nov: 'novembro',
-        //         dec: 'dezembro',
-        //       },
-        //     },
-        //     label: {},
-        //   },
-        // };
+        railzVisualizations.options = {
+          container: { tooltip: true, date: true },
+          chart: {
+            //   fontFamily: 'Arial',
+            //   backgroundColor: 'red',
+            //   label: {
+            //     fontSize: '50px',
+            //   },
+            //   width: '200px',
+          },
+          content: {
+            title: 'title',
+            date: {
+              quarter: 'QUARTER_',
+              month: {
+                format: 'MMMM yy',
+                locale: 'ptBR',
+              },
+            },
+            label: {
+              date: 'As of today release:',
+              grossBurnRate: 'Taxa de queima bruta',
+            },
+            tooltip: {
+              description: 'Tooltip Customized',
+              grossBurnRate: 'Tooltip => Taxa de queima bruta',
+            },
+          },
+        };
 
         document.body.appendChild(railzVisualizations);
       }
