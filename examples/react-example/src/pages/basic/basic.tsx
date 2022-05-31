@@ -47,7 +47,6 @@ export default function Basic() {
               <Visualizations
                 configuration={{
                   token,
-                  endpoint: "https://api.qa.railz.ai",
                   debug: true,
                 }}
                 filter={filter as any}

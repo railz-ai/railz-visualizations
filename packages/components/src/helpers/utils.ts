@@ -15,7 +15,7 @@ export const formatDate = (
   summary: RVReportStatementSummary,
   reportFrequency: RVReportFrequency,
   quarter = 'Q',
-  month: RVMonth,
+  month: RVMonth = { format: 'MMM yy', locale: 'us' },
 ): string[] => {
   return summary?.map((data) => {
     const date = parseISO(data.period.date);
@@ -23,7 +23,7 @@ export const formatDate = (
       return `${quarter}${data.period.quarter} ${format(date, 'yyyy')}`;
     if (reportFrequency === 'year') return data.period.year.toString();
     // eslint-disable-next-line import/namespace
-    return format(date, month.format || 'MMM yy', { locale: locales[month.locale || 'us'] });
+    return format(date, month.format, { locale: locales[month.locale] });
   });
 };
 

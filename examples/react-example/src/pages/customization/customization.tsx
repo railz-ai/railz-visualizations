@@ -59,7 +59,6 @@ export default function Customization() {
               <Visualizations
                 configuration={{
                   token,
-                  endpoint: 'https://api.qa.railz.ai',
                   debug: true,
                 }}
                 filter={filter as any}

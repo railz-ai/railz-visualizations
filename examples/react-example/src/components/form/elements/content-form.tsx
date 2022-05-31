@@ -1,12 +1,12 @@
-import React, { useState } from "react";
-import { ContentFormProps } from "../../../types/form";
+import React, { useState } from 'react';
+import { ContentFormProps } from '../../../types/form';
 
 export default function ContentForm({ setContent }: ContentFormProps) {
   const [formContent, setFormContent] = useState<any>({
-    title: "",
-    dateMonth: "MMM yyyy",
-    dateQuarter: "Q",
-    labelDate: "As of",
+    title: '',
+    dateMonth: 'MMM yyyy',
+    dateQuarter: 'Q',
+    labelDate: 'As of',
   });
 
   const submitContent = (event: any) => {
@@ -25,9 +25,7 @@ export default function ContentForm({ setContent }: ContentFormProps) {
     <div className="flex flex-col">
       <div className="md:col-span-1">
         <div className="text-left">
-          <h2 className="text-lg font-medium leading-6 text-gray-900">
-            Content
-          </h2>
+          <h2 className="text-lg font-medium leading-6 text-gray-900">Content</h2>
           <p className="mt-1 text-sm text-gray-600">
             Customize content for text/info that is send to the SDK.
           </p>
@@ -41,10 +39,7 @@ export default function ContentForm({ setContent }: ContentFormProps) {
                 <hr />
               </div>
               <div className="col-span-6 lg:col-span-3">
-                <label
-                  htmlFor="title"
-                  className="block text-sm font-medium text-gray-700"
-                >
+                <label htmlFor="title" className="block text-sm font-medium text-gray-700">
                   Title
                 </label>
                 <input
@@ -58,10 +53,7 @@ export default function ContentForm({ setContent }: ContentFormProps) {
                 />
               </div>
               <div className="col-span-6 lg:col-span-3">
-                <label
-                  htmlFor="date-month"
-                  className="block text-sm font-medium text-gray-700"
-                >
+                <label htmlFor="date-month" className="block text-sm font-medium text-gray-700">
                   Month Format
                 </label>
                 <input
@@ -75,10 +67,7 @@ export default function ContentForm({ setContent }: ContentFormProps) {
                 />
               </div>
               <div className="col-span-6 lg:col-span-3">
-                <label
-                  htmlFor="date-quarter"
-                  className="block text-sm font-medium text-gray-700"
-                >
+                <label htmlFor="date-quarter" className="block text-sm font-medium text-gray-700">
                   Quarter Text
                 </label>
                 <input
@@ -92,10 +81,7 @@ export default function ContentForm({ setContent }: ContentFormProps) {
                 />
               </div>
               <div className="col-span-6 lg:col-span-3">
-                <label
-                  htmlFor="label-date"
-                  className="block text-sm font-medium text-gray-700"
-                >
+                <label htmlFor="label-date" className="block text-sm font-medium text-gray-700">
                   Date
                 </label>
                 <input
