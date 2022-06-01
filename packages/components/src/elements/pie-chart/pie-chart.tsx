@@ -98,7 +98,7 @@ export class PieChart {
         errorLog(e);
       }
     } else {
-      this.errorStatusCode = 500;
+      this.errorStatusCode = 0;
       this.error = Translations.RV_CONFIGURATION_NOT_PRESENT;
     }
   };
@@ -215,6 +215,10 @@ export class PieChart {
   };
 
   render(): HTMLElement {
+    if (this.errorStatusCode === 0) {
+      return null;
+    }
+
     return (
       <div class="rv-container" style={this._options?.container?.style}>
         {this._options?.title ? (

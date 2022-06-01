@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.0.4-alpha.6 (2022-06-01)
+
+
+### Bug Fixes
+
+* fix bleeding top of statement chart ([#74](https://github.com/railz-ai/railz-visualizations/issues/74)) ([4806bd8](https://github.com/railz-ai/railz-visualizations/commit/4806bd8ea97f12d93ecbbfa7ccfaa9afa5c6e77b))
+
+
+
+
+
 ## 0.0.4-alpha.5 (2022-05-25)
 
 **Note:** Version bump only for package @railzai/railz-visualizations-react
