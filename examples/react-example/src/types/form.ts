@@ -6,12 +6,7 @@ export interface OptionFormProps {
   options?: RVOptions;
 }
 
-export interface ContentFormProps {
-  setContent?: (params: any) => void;
-  showContent?: boolean;
-}
-
-export interface FormProps extends OptionFormProps, ContentFormProps {
+export interface FormProps extends OptionFormProps {
   setFilter: (filter: any) => void;
   setAuthentication: (params: AuthenticationParameters) => Promise<void>;
   setError: (value: string) => void;
