@@ -8,7 +8,8 @@ import {
   RVFormattedPieResponse,
   RVParams,
   RVPieChartSummary,
-  RVReportRequestDateParameter,
+  RVReportRequestParameter,
+  RVReportTypesUrlMapping,
 } from '../../types';
 import { RequestServiceInstance } from '../../services/request';
 import { errorLog } from '../../services/logger';
@@ -100,7 +101,7 @@ export const getOptionsPie = (summary: RVPieChartSummary, id = 'id'): any => {
  */
 export const getReportData = async ({
   filter,
-}: RVReportRequestDateParameter): Promise<RVFormattedPieResponse> => {
+}: RVReportRequestParameter): Promise<RVFormattedPieResponse> => {
   let reportData;
   try {
     const startDate = format(parseISO(filter.startDate), RAILZ_DATE_FORMAT);
@@ -119,7 +120,7 @@ export const getReportData = async ({
     );
 
     reportData = await RequestServiceInstance.getReportData({
-      reportType: filter.reportType,
+      path: RVReportTypesUrlMapping[filter.reportType],
       filter: allParameters,
     });
   } catch (error) {

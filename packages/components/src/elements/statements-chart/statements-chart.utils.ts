@@ -10,15 +10,15 @@ import {
   RAILZ_CASHFLOW_COLORS,
   RAILZ_INCOME_STATEMENT_COLORS,
   RVAccountingProviders,
-  RVBaseFilterBusinessDateFrequencyType,
   RVChartOptionsParameter,
   RVChartStatementBaseParameter,
   RVChartStatementParameter,
+  RVFilterStatements,
   RVFormattedStatementData,
   RVFormattedStatementResponse,
   RVReportRequestParameter,
 } from '../../types';
-import { RVReportTypes } from '../../types/enum/report-type';
+import { RVReportTypes, RVReportTypesUrlMapping } from '../../types/enum/report-type';
 import { RequestServiceInstance } from '../../services/request';
 import { errorLog } from '../../services/logger';
 import { RAILZ_DATE_FORMAT } from '../../types/constants/date';
@@ -302,7 +302,7 @@ export const getReportData = async ({
     }
 
     reportData = await RequestServiceInstance.getReportData({
-      reportType: filter.reportType,
+      path: RVReportTypesUrlMapping[filter.reportType],
       filter: allParameters,
     });
   } catch (error) {
@@ -317,9 +317,7 @@ export const getReportData = async ({
  * @param {RVStatementsFilter} filter - Current filter
  * @returns {boolean}
  */
-export const shouldAddReconstructParam = (
-  filter: RVBaseFilterBusinessDateFrequencyType,
-): boolean => {
+export const shouldAddReconstructParam = (filter: RVFilterStatements): boolean => {
   const isFinancialStatement = isStatements(filter.reportType);
 
   return (

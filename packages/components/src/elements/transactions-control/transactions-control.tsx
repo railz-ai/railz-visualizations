@@ -9,18 +9,16 @@ import { errorLog } from '../../services/logger';
 import {
   RVBillInvoiceSummary,
   RVConfiguration,
-  RVFilterDate,
+  RVFilterAll,
+  RVFilterTransactions,
   RVFormattedTransactionResponse,
   RVOptions,
 } from '../../types';
-import {
-  getConfiguration,
-  getFilter,
-  getOptions,
-  validateRequiredParams,
-} from '../../helpers/chart.utils';
+import { getConfiguration, getFilter, getOptions } from '../../helpers/chart.utils';
 
 import { ConfigurationInstance } from '../../services/configuration';
+
+import { isTransactions } from '../../helpers/utils';
 
 import { getTransactionsData } from './transactions-control.utils';
 
@@ -37,7 +35,7 @@ export class TransactionsControl {
   /**
    * Filter information to query the backend APIs
    */
-  @Prop() readonly filter!: RVFilterDate;
+  @Prop() readonly filter!: RVFilterTransactions;
   /**
    * For whitelabeling styling
    */
@@ -45,7 +43,7 @@ export class TransactionsControl {
 
   @State() private loading = '';
   @State() private _configuration: RVConfiguration;
-  @State() private _filter: RVFilterDate;
+  @State() private _filter: RVFilterTransactions;
   @State() private _options: RVOptions;
   @State() private _dataFormatted: RVBillInvoiceSummary;
   @State() private error: string;
@@ -59,23 +57,26 @@ export class TransactionsControl {
    */
   private validateParams = async (
     configuration: RVConfiguration,
-    filter: RVFilterDate,
+    filter: RVFilterTransactions,
     triggerRequest = true,
   ): Promise<void> => {
     this._configuration = getConfiguration(configuration);
     if (this._configuration) {
       ConfigurationInstance.configuration = this._configuration;
       try {
-        this._filter = getFilter(filter) as RVFilterDate;
-        this._options = getOptions(this.options, this._filter);
-        const valid = validateRequiredParams(this._filter);
-        if (valid) {
-          if (triggerRequest) {
-            await this.requestReportData();
+        this._filter = getFilter(filter as RVFilterAll) as RVFilterTransactions;
+        if (this._filter) {
+          if (isTransactions(this._filter.reportType)) {
+            this._options = getOptions(this.options, this._filter as RVFilterAll);
+            if (triggerRequest) {
+              await this.requestReportData();
+            }
+          } else {
+            this.errorStatusCode = 500;
+            errorLog(Translations.RV_ERROR_INVALID_REPORT_TYPE);
           }
         } else {
           this.errorStatusCode = 204;
-          this.error = Translations.ERROR_204_TITLE;
         }
       } catch (e) {
         this.errorStatusCode = 500;
@@ -83,14 +84,14 @@ export class TransactionsControl {
         errorLog(e);
       }
     } else {
-      this.errorStatusCode = 500;
+      this.errorStatusCode = 0;
       this.error = Translations.RV_CONFIGURATION_NOT_PRESENT;
       errorLog(Translations.RV_CONFIGURATION_NOT_PRESENT);
     }
   };
 
   @Watch('filter')
-  async watchFilter(newValue: RVFilterDate, oldValue: RVFilterDate): Promise<void> {
+  async watchFilter(newValue: RVFilterTransactions, oldValue: RVFilterTransactions): Promise<void> {
     if (newValue && oldValue && !isEqual(oldValue, newValue)) {
       await this.validateParams(this.configuration, newValue);
     }
@@ -111,7 +112,7 @@ export class TransactionsControl {
     this.error = '';
     this.loading = Translations.LOADING_REPORT;
     const reportData = (await getTransactionsData({
-      filter: this._filter,
+      filter: this._filter as RVFilterAll,
     })) as RVFormattedTransactionResponse;
     try {
       if (reportData?.data) {
@@ -135,7 +136,7 @@ export class TransactionsControl {
   }
 
   private renderMain(): HTMLElement {
-    if (!isEmpty(this.error)) {
+    if (!isEmpty(this.error) || this.errorStatusCode !== undefined) {
       return (
         <railz-error-image
           statusCode={this.errorStatusCode || 500}
@@ -160,6 +161,10 @@ export class TransactionsControl {
   }
 
   render(): HTMLElement {
+    if (this.errorStatusCode === 0) {
+      return null;
+    }
+
     return (
       <div class="rv-container" style={this._options?.container?.style}>
         {this._options?.title ? (

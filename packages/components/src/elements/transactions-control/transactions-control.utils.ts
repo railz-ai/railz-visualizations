@@ -2,7 +2,11 @@ import { format, parseISO } from 'date-fns';
 
 import { pick } from 'lodash-es';
 
-import { RVFormattedTransactionResponse, RVReportRequestDateParameter } from '../../types';
+import {
+  RVFormattedTransactionResponse,
+  RVReportRequestParameter,
+  RVReportTypesUrlMapping,
+} from '../../types';
 import { RequestServiceInstance } from '../../services/request';
 import { errorLog } from '../../services/logger';
 import Translations from '../../config/translations/en.json';
@@ -13,7 +17,7 @@ import { RAILZ_DATE_FORMAT } from '../../types/constants/date';
  */
 export const getTransactionsData = async ({
   filter,
-}: RVReportRequestDateParameter): Promise<RVFormattedTransactionResponse> => {
+}: RVReportRequestParameter): Promise<RVFormattedTransactionResponse> => {
   let reportData = {};
   try {
     const startDate = format(parseISO(filter.startDate), RAILZ_DATE_FORMAT);
@@ -34,7 +38,7 @@ export const getTransactionsData = async ({
       ]);
     }
     reportData = await RequestServiceInstance.getReportData({
-      reportType: filter.reportType,
+      path: RVReportTypesUrlMapping[filter.reportType],
       filter: allParameters,
     });
   } catch (error) {

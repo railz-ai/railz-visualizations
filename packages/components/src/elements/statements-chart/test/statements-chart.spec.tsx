@@ -11,11 +11,7 @@ describe('statements-chart', () => {
       });
       expect(page.root).toEqualHtml(`
       <railz-statements-chart>
-        <mock:shadow-root>
-            <div class="rv-container">
-              <railz-error-image statuscode="500"></railz-error-image>
-            </div>
-        </mock:shadow-root>
+        <mock:shadow-root></mock:shadow-root>
       </railz-statements-chart>
     `);
     });
@@ -26,11 +22,7 @@ describe('statements-chart', () => {
       });
       expect(page.root).toEqualHtml(`
       <railz-statements-chart options='{title: "Cashflow Statements"}'>
-        <mock:shadow-root>
-            <div class="rv-container">
-                <railz-error-image statuscode="500"></railz-error-image>
-            </div>
-        </mock:shadow-root>
+        <mock:shadow-root></mock:shadow-root>
       </railz-statements-chart>
     `);
     });

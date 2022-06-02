@@ -6,7 +6,8 @@ import {
   ALL_FONTS,
   RVFormattedGaugeResponse,
   RVGaugeChartSummary,
-  RVReportRequestDateParameter,
+  RVReportRequestParameter,
+  RVReportTypesUrlMapping,
 } from '../../types';
 import { RequestServiceInstance } from '../../services/request';
 import { errorLog } from '../../services/logger';
@@ -212,7 +213,7 @@ export const getOptionsGauge = (gauge: RVGaugeChartSummary): any => ({
  */
 export const getReportData = async ({
   filter,
-}: RVReportRequestDateParameter): Promise<RVFormattedGaugeResponse> => {
+}: RVReportRequestParameter): Promise<RVFormattedGaugeResponse> => {
   let reportData;
   try {
     const startDate = format(parseISO(filter.startDate), RAILZ_DATE_FORMAT);
@@ -231,7 +232,7 @@ export const getReportData = async ({
     );
 
     reportData = await RequestServiceInstance.getReportData({
-      reportType: filter.reportType,
+      path: RVReportTypesUrlMapping[filter.reportType],
       filter: allParameters,
     });
   } catch (error) {
