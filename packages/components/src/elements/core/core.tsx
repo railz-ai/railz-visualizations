@@ -64,7 +64,7 @@ export class Core {
         this.errorStatusCode = 204;
       }
     } else {
-      this.errorStatusCode = 500;
+      this.errorStatusCode = 0;
     }
   };
 
@@ -87,6 +87,10 @@ export class Core {
   }
 
   render(): HTMLElement {
+    if (this.errorStatusCode === 0) {
+      return null;
+    }
+
     if (this.errorStatusCode !== undefined) {
       return (
         <div class="rv-container">

@@ -92,7 +92,7 @@ export class GaugeChart {
         errorLog(e);
       }
     } else {
-      this.errorStatusCode = 500;
+      this.errorStatusCode = 0;
     }
   };
 
@@ -197,6 +197,10 @@ export class GaugeChart {
   };
 
   render(): HTMLElement {
+    if (this.errorStatusCode === 0) {
+      return null;
+    }
+
     return (
       <div class="rv-container" style={this._options?.container?.style}>
         {this._options?.title ? (

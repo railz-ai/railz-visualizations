@@ -99,8 +99,7 @@ export class StatementsChart {
         errorLog(e);
       }
     } else {
-      this.errorStatusCode = 500;
-      errorLog(Translations.RV_CONFIGURATION_NOT_PRESENT);
+      this.errorStatusCode = 0;
     }
   };
 
@@ -212,6 +211,10 @@ export class StatementsChart {
   };
 
   render(): HTMLElement {
+    if (this.errorStatusCode === 0) {
+      return null;
+    }
+
     return (
       <div class="rv-container" style={this._options?.container?.style}>
         {this._options?.title ? (

@@ -85,7 +85,7 @@ export class FinancialRatios {
         errorLog(e);
       }
     } else {
-      this.errorStatusCode = 500;
+      this.errorStatusCode = 0;
     }
   };
 
@@ -233,6 +233,10 @@ export class FinancialRatios {
   };
 
   render(): HTMLElement {
+    if (this.errorStatusCode === 0) {
+      return null;
+    }
+
     const TitleElement = (): HTMLElement => (
       <p class="rv-title" style={this._options?.title?.style}>
         {this._options?.title?.text || ''}{' '}

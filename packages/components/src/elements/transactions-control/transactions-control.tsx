@@ -84,7 +84,7 @@ export class TransactionsControl {
         errorLog(Translations.RV_ERROR_PARSING_OPTIONS, e);
       }
     } else {
-      this.errorStatusCode = 500;
+      this.errorStatusCode = 0;
       errorLog(Translations.RV_CONFIGURATION_NOT_PRESENT);
     }
   };
@@ -167,6 +167,10 @@ export class TransactionsControl {
   }
 
   render(): HTMLElement {
+    if (this.errorStatusCode === 0) {
+      return null;
+    }
+
     return (
       <div class="rv-container" style={this._options?.container?.style}>
         {this._options?.title ? (
