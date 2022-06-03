@@ -62,9 +62,6 @@ export const getFilter = (filter: RVFilterAll | string): RVFilterAll => {
       } else {
         formattedFilter = filter;
       }
-      if (!validateRequiredParams(formattedFilter)) {
-        formattedFilter = undefined;
-      }
     } catch (error) {
       errorLog(Translations.RV_ERROR_PARSING_CONFIGURATION + ' ' + JSON.stringify(error));
     }

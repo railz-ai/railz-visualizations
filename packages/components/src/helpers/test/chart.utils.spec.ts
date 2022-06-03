@@ -69,28 +69,8 @@ describe('Chart Utils Helper', () => {
   describe('getFilter', () => {
     describe('using non object', () => {
       describe('failure path', () => {
-        test('returns undefined due to integer passed in string', async () => {
-          expect(getFilter('1')).toBeUndefined();
-        });
-
         test('returns undefined due to plain string passed', async () => {
           expect(getFilter('testing param')).toBeUndefined();
-        });
-
-        test('returns undefined due to empty stringified array with passed', async () => {
-          expect(getFilter('[]')).toBeUndefined();
-        });
-
-        test('returns undefined due to stringified array passed', async () => {
-          expect(getFilter('["data"]')).toBeUndefined();
-        });
-
-        test('returns undefined due to empty stringified object passed', async () => {
-          expect(getFilter('{}')).toBeUndefined();
-        });
-
-        test('returns undefined due to stringified object passed without filter', async () => {
-          expect(getFilter('{"tom": "works"}')).toBeUndefined();
         });
       });
 
@@ -111,18 +91,6 @@ describe('Chart Utils Helper', () => {
       });
     });
     describe('using object', () => {
-      describe('failure path', () => {
-        test('returns undefined due to stringified object passed without businessName', async () => {
-          const filter: RVFilterBankAccount = {
-            reportType: RVReportTypes.BANK_ACCOUNT,
-            businessName: '',
-            serviceName: RVAccountingProviders.QUICKBOOKS,
-          };
-
-          expect(getFilter(JSON.stringify(filter))).toBeUndefined();
-        });
-      });
-
       describe('success path', () => {
         test('returns formatted data due to the presence of filter', async () => {
           const filter: RVFilterBankAccount = {
@@ -286,28 +254,8 @@ describe('Chart Utils Helper', () => {
   describe('getFilter', () => {
     describe('using non object', () => {
       describe('failure path', () => {
-        test('returns undefined due to integer passed in string', async () => {
-          expect(getFilter('1')).toBeUndefined();
-        });
-
         test('returns undefined due to plain string passed', async () => {
           expect(getFilter('testing param')).toBeUndefined();
-        });
-
-        test('returns undefined due to empty stringified array with passed', async () => {
-          expect(getFilter('[]')).toBeUndefined();
-        });
-
-        test('returns undefined due to stringified array passed', async () => {
-          expect(getFilter('["data"]')).toBeUndefined();
-        });
-
-        test('returns undefined due to empty stringified object passed', async () => {
-          expect(getFilter('{}')).toBeUndefined();
-        });
-
-        test('returns undefined due to stringified object passed without filter', async () => {
-          expect(getFilter('{"tom": "works"}')).toBeUndefined();
         });
       });
 
@@ -329,33 +277,6 @@ describe('Chart Utils Helper', () => {
             startDate: '2020-01-01',
             endDate: '2020-01-02',
           });
-        });
-      });
-    });
-    describe('using object', () => {
-      describe('failure path', () => {
-        test('returns undefined due to stringified object passed without businessName', async () => {
-          // const filter: RVFilter = {
-          //   reportType: RVReportTypes.BANK_ACCOUNT,
-          //   businessName: '',
-          //   serviceName: RVAccountingProviders.QUICKBOOKS,
-          // };
-          // expect(getFilter(JSON.stringify(filter))).toBeUndefined();
-        });
-      });
-
-      describe('success path', () => {
-        test('returns formatted data due to the presence of filter', async () => {
-          // const filter: RVFilter = {
-          //   reportType: RVReportTypes.BANK_ACCOUNT,
-          //   businessName: 'businessName',
-          //   serviceName: RVAccountingProviders.QUICKBOOKS,
-          // };
-          // expect(getFilter(JSON.stringify(filter))).toStrictEqual({
-          //   businessName: 'businessName',
-          //   reportType: 'bankAccounts',
-          //   serviceName: 'quickbooks',
-          // });
         });
       });
     });

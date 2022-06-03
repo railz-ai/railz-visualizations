@@ -7,7 +7,12 @@ import highchartsMore from 'highcharts/highcharts-more.js';
 import solidGauge from 'highcharts/modules/solid-gauge.js';
 import highchartsAccessibility from 'highcharts/modules/accessibility';
 
-import { getConfiguration, getOptions, getFilter } from '../../helpers/chart.utils';
+import {
+  getConfiguration,
+  getOptions,
+  getFilter,
+  validateRequiredParams,
+} from '../../helpers/chart.utils';
 import { ConfigurationInstance } from '../../services/configuration';
 import Translations from '../../config/translations/en.json';
 import {
@@ -74,9 +79,9 @@ export class GaugeChart {
       ConfigurationInstance.configuration = this._configuration;
       try {
         this._filter = getFilter(filter as RVFilterAll) as RVFilterGauge;
-        if (this._filter) {
+        this._options = getOptions(options, filter as RVFilterAll);
+        if (validateRequiredParams(this._filter as RVFilterAll)) {
           if (isGauge(this._filter.reportType)) {
-            this._options = getOptions(options, filter as RVFilterAll);
             if (triggerRequest) {
               await this.requestReportData();
             }
@@ -201,22 +206,30 @@ export class GaugeChart {
       return null;
     }
 
+    const TitleElement = (): HTMLElement => (
+      <p class="rv-title" style={this._options?.title?.style}>
+        {this._options?.title?.text || ''}{' '}
+        {this._options?.container?.tooltip || this._options?.content?.tooltip?.description ? (
+          <div
+            style={{
+              marginTop: '1px ',
+              marginLeft: '3px ',
+            }}
+          >
+            <railz-tooltip
+              tooltipStyle={{ position: 'bottom-center' }}
+              tooltipText={this._options?.content?.tooltip?.description}
+            />
+          </div>
+        ) : null}
+      </p>
+    );
+
     return (
       <div class="rv-container" style={this._options?.container?.style}>
-        {this._options?.title ? (
-          <p class="rv-title" style={this._options?.title?.style}>
-            {this._options?.title?.text || ''}{' '}
-            {this._options?.container?.tooltip || this._options?.content?.tooltip?.description ? (
-              <railz-tooltip
-                tooltipStyle={{ position: 'bottom-center' }}
-                tooltipText={
-                  this._options?.content?.tooltip?.description ||
-                  Translations.RV_TOOLTIP_RAILZ_SCORE
-                }
-              />
-            ) : null}
-          </p>
-        ) : null}
+        <div class="rv-header-container">
+          <TitleElement />
+        </div>
         {this.renderMain()}
         {this._options?.container?.date && this.lastUpdated && (
           <p

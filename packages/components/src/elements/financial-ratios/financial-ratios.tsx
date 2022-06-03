@@ -4,7 +4,12 @@
 import { Component, h, Prop, State, Watch } from '@stencil/core';
 import { isEmpty, isEqual } from 'lodash-es';
 
-import { getConfiguration, getOptions, getFilter } from '../../helpers/chart.utils';
+import {
+  getConfiguration,
+  getOptions,
+  getFilter,
+  validateRequiredParams,
+} from '../../helpers/chart.utils';
 import { ConfigurationInstance } from '../../services/configuration';
 import Translations from '../../config/translations/en.json';
 import {
@@ -67,9 +72,9 @@ export class FinancialRatios {
       ConfigurationInstance.configuration = this._configuration;
       try {
         this._filter = getFilter(filter as RVFilterAll) as RVFilterFinancialRatio;
-        if (this._filter) {
+        this._options = getOptions(options, filter as RVFilterAll);
+        if (validateRequiredParams(this._filter as RVFilterAll)) {
           if (isFinancialRatios(this._filter.reportType)) {
-            this._options = getOptions(options, filter as RVFilterAll);
             if (triggerRequest) {
               await this.requestReportData();
             }
@@ -240,11 +245,18 @@ export class FinancialRatios {
     const TitleElement = (): HTMLElement => (
       <p class="rv-title" style={this._options?.title?.style}>
         {this._options?.title?.text || ''}{' '}
-        {this._options?.content?.tooltip?.description ? (
-          <railz-tooltip
-            tooltipStyle={{ position: 'bottom-center' }}
-            tooltipText={this._options?.content?.tooltip?.description}
-          />
+        {this._options?.container?.tooltip || this._options?.content?.tooltip?.description ? (
+          <div
+            style={{
+              marginTop: '1px ',
+              marginLeft: '3px ',
+            }}
+          >
+            <railz-tooltip
+              tooltipStyle={{ position: 'bottom-center' }}
+              tooltipText={this._options?.content?.tooltip?.description}
+            />
+          </div>
         ) : null}
       </p>
     );

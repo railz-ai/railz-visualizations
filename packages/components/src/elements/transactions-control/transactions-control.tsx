@@ -1,11 +1,9 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Component, Prop, h, State, Watch } from '@stencil/core';
-
 import { isEmpty, isEqual } from 'lodash-es';
 
 import Translations from '../../config/translations/en.json';
 import { errorLog } from '../../services/logger';
-
 import {
   RVBillInvoiceSummary,
   RVConfiguration,
@@ -14,10 +12,13 @@ import {
   RVFormattedTransactionResponse,
   RVOptions,
 } from '../../types';
-import { getConfiguration, getFilter, getOptions } from '../../helpers/chart.utils';
-
+import {
+  getConfiguration,
+  getFilter,
+  getOptions,
+  validateRequiredParams,
+} from '../../helpers/chart.utils';
 import { ConfigurationInstance } from '../../services/configuration';
-
 import { isTransactions } from '../../helpers/utils';
 
 import { getTransactionsData } from './transactions-control.utils';
@@ -66,9 +67,9 @@ export class TransactionsControl {
       ConfigurationInstance.configuration = this._configuration;
       try {
         this._filter = getFilter(filter as RVFilterAll) as RVFilterTransactions;
-        if (this._filter) {
+        this._options = getOptions(options, this._filter as RVFilterAll);
+        if (validateRequiredParams(this._filter as RVFilterAll)) {
           if (isTransactions(this._filter.reportType)) {
-            this._options = getOptions(options, this._filter as RVFilterAll);
             if (triggerRequest) {
               await this.requestReportData();
             }
@@ -171,19 +172,30 @@ export class TransactionsControl {
       return null;
     }
 
+    const TitleElement = (): HTMLElement => (
+      <p class="rv-title" style={this._options?.title?.style}>
+        {this._options?.title?.text || ''}{' '}
+        {this._options?.container?.tooltip || this._options?.content?.tooltip?.description ? (
+          <div
+            style={{
+              marginTop: '1px ',
+              marginLeft: '3px ',
+            }}
+          >
+            <railz-tooltip
+              tooltipStyle={{ position: 'bottom-center' }}
+              tooltipText={this._options?.content?.tooltip?.description}
+            />
+          </div>
+        ) : null}
+      </p>
+    );
+
     return (
       <div class="rv-container" style={this._options?.container?.style}>
-        {this._options?.title ? (
-          <p class="rv-title" style={this._options?.title?.style}>
-            {this._options?.title?.text || ''}{' '}
-            {this._options?.content?.tooltip?.description ? (
-              <railz-tooltip
-                tooltipStyle={{ position: 'bottom-center' }}
-                tooltipText={this._options?.content?.tooltip?.description}
-              />
-            ) : null}
-          </p>
-        ) : null}
+        <div class="rv-header-container">
+          <TitleElement />
+        </div>
         {this.renderMain()}
       </div>
     );

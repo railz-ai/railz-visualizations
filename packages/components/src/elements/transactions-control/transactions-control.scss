@@ -8,13 +8,25 @@
   justify-content: space-between;
   width: auto;
   height: 168px;
+
+  * {
+    font-family: Inter, Roboto, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue',
+      Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+  }
+}
+
+.rv-header-container {
+  display: flex;
 }
 
 .rv-title {
+  display: flex;
   color: #006037;
   font-size: 18px;
   font-weight: 600;
   margin: 0;
   padding: 0;
   text-align: left;
+  flex-grow: 1;
+  line-height: 1.235;
 }
