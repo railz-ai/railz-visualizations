@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
 import {
   RVConfiguration,
-  RVFilter,
-  RVFilterDate,
   RVOptions,
   RVReportFrequency,
   RVReportTypes,
   RVServiceProviders,
-  RVFilterFrequency,
+  RVFilterFinancialRatio,
+  RVFilterPie,
+  RVFilterStatements,
+  RVFilterTransactions,
+  RVFilterAll,
+  RVFilterBankAccount,
 } from '@railzai/railz-visualizations';
 import {
   RailzBankAccounts,
@@ -19,6 +22,7 @@ import {
   RailzVisualizations,
 } from '@railzai/railz-visualizations-react';
 import { cloneDeep, isEmpty, pick } from 'lodash';
+import { RVFilterGauge } from '@railzai/railz-visualizations/src';
 
 type AllTypes = 'all' & RVReportTypes;
 
@@ -101,7 +105,7 @@ const DefaultComponent = ({ configuration, filter, options, showCode }: ChartPro
     <div>
       <RailzVisualizations
         configuration={configuration}
-        filter={filter as RVFilter}
+        filter={filter as unknown as RVFilterAll}
         options={options}
       />
       <Code
@@ -149,7 +153,7 @@ const Components = ({ configuration, filter, options, showCode }: ChartProps) =>
           </p>
           <RailzGaugeChart
             configuration={configuration}
-            filter={filter as RVFilterDate}
+            filter={filter as RVFilterGauge}
             options={options}
           />
           <Code
@@ -161,7 +165,7 @@ const Components = ({ configuration, filter, options, showCode }: ChartProps) =>
           />
         </div>
       )}
-      {[RVReportTypes.EXPENSES, RVReportTypes.REVENUE].includes(filter.reportType) && (
+      {filter.reportType === RVReportTypes.EXPENSES && (
         <div>
           <h4 className="text-xl font-bold text-gray-900">Using Railz Pie Chart Component</h4>
           <p>
@@ -169,7 +173,7 @@ const Components = ({ configuration, filter, options, showCode }: ChartProps) =>
           </p>
           <RailzPieChart
             configuration={configuration}
-            filter={filter as RVFilterDate}
+            filter={filter as RVFilterPie}
             options={options}
           />
           <Code
@@ -192,7 +196,7 @@ const Components = ({ configuration, filter, options, showCode }: ChartProps) =>
           </p>
           <RailzStatementsChart
             configuration={configuration}
-            filter={filter as RVFilterFrequency}
+            filter={filter as RVFilterStatements}
             options={options}
           />
           <Code
@@ -214,7 +218,7 @@ const Components = ({ configuration, filter, options, showCode }: ChartProps) =>
           </p>
           <RailzTransactionsControl
             configuration={configuration}
-            filter={filter as RVFilterDate}
+            filter={filter as RVFilterTransactions}
             options={options}
           />
           <Code
@@ -234,7 +238,7 @@ const Components = ({ configuration, filter, options, showCode }: ChartProps) =>
           </p>
           <RailzFinancialRatios
             configuration={configuration}
-            filter={filter as RVFilterDate}
+            filter={filter as RVFilterFinancialRatio}
             options={options}
           />
           <Code
@@ -254,7 +258,7 @@ const Components = ({ configuration, filter, options, showCode }: ChartProps) =>
           </p>
           <RailzBankAccounts
             configuration={configuration}
-            filter={filter as RVFilterDate}
+            filter={filter as RVFilterBankAccount}
             options={options}
           />
           <Code
@@ -267,9 +271,8 @@ const Components = ({ configuration, filter, options, showCode }: ChartProps) =>
         </div>
       )}
       {![
-        RVReportTypes.EXPENSES,
-        RVReportTypes.REVENUE,
         RVReportTypes.RAILZ_SCORE,
+        RVReportTypes.EXPENSES,
         RVReportTypes.BALANCE_SHEET,
         RVReportTypes.BILLS,
         RVReportTypes.FINANCIAL_RATIO,

@@ -7,22 +7,19 @@ import highchartsMore from 'highcharts/highcharts-more.js';
 import solidGauge from 'highcharts/modules/solid-gauge.js';
 import highchartsAccessibility from 'highcharts/modules/accessibility';
 
-import {
-  getConfiguration,
-  getDateFilter,
-  validateRequiredParams,
-  getOptions,
-} from '../../helpers/chart.utils';
+import { getConfiguration, getOptions, getFilter } from '../../helpers/chart.utils';
 import { ConfigurationInstance } from '../../services/configuration';
 import Translations from '../../config/translations/en.json';
 import {
   RVConfiguration,
-  RVFilterDate,
+  RVFilterAll,
+  RVFilterGauge,
   RVFormattedGaugeResponse,
   RVGaugeChartSummary,
   RVOptions,
 } from '../../types';
 import { errorLog } from '../../services/logger';
+import { isGauge } from '../../helpers/utils';
 
 import { getOptionsGauge, getReportData } from './gauge-chart.utils';
 
@@ -43,7 +40,7 @@ export class GaugeChart {
   /**
    * Filter information to query the backend APIs
    */
-  @Prop() readonly filter!: RVFilterDate;
+  @Prop() readonly filter!: RVFilterGauge;
   /**
    * For whitelabeling styling
    */
@@ -51,7 +48,7 @@ export class GaugeChart {
 
   @State() private loading = '';
   @State() private _configuration: RVConfiguration;
-  @State() private _filter: RVFilterDate;
+  @State() private _filter: RVFilterGauge;
   @State() private _options: RVOptions;
   @State() private error: string;
   @State() private errorStatusCode: number;
@@ -68,7 +65,7 @@ export class GaugeChart {
    */
   private validateParams = async (
     configuration: RVConfiguration,
-    filter: RVFilterDate,
+    filter: RVFilterGauge,
     options: RVOptions,
     triggerRequest = true,
   ): Promise<void> => {
@@ -76,16 +73,19 @@ export class GaugeChart {
     if (this._configuration) {
       ConfigurationInstance.configuration = this._configuration;
       try {
-        this._filter = getDateFilter(filter) as RVFilterDate;
-        this._options = getOptions(options, filter);
-        const valid = validateRequiredParams(filter);
-        if (valid) {
-          if (triggerRequest) {
-            await this.requestReportData();
+        this._filter = getFilter(filter as RVFilterAll) as RVFilterGauge;
+        if (this._filter) {
+          if (isGauge(this._filter.reportType)) {
+            this._options = getOptions(options, filter as RVFilterAll);
+            if (triggerRequest) {
+              await this.requestReportData();
+            }
+          } else {
+            this.errorStatusCode = 500;
+            errorLog(Translations.RV_ERROR_INVALID_REPORT_TYPE);
           }
         } else {
           this.errorStatusCode = 204;
-          this.error = Translations.RV_ERROR_204_TITLE;
         }
       } catch (e) {
         this.errorStatusCode = 500;
@@ -93,7 +93,7 @@ export class GaugeChart {
         errorLog(e);
       }
     } else {
-      this.errorStatusCode = 500;
+      this.errorStatusCode = 0;
       this.error = Translations.RV_CONFIGURATION_NOT_PRESENT;
     }
   };
@@ -113,7 +113,7 @@ export class GaugeChart {
   }
 
   @Watch('filter')
-  async watchFilter(newValue: RVFilterDate, oldValue: RVFilterDate): Promise<void> {
+  async watchFilter(newValue: RVFilterGauge, oldValue: RVFilterGauge): Promise<void> {
     if (newValue && oldValue && !isEqual(oldValue, newValue)) {
       await this.validateParams(this.configuration, newValue, this.options);
     }
@@ -140,7 +140,7 @@ export class GaugeChart {
     this.loading = Translations.RV_LOADING_REPORT;
     try {
       const reportData = (await getReportData({
-        filter: this._filter,
+        filter: this._filter as RVFilterAll,
       })) as RVFormattedGaugeResponse;
 
       if (reportData?.data) {
@@ -179,7 +179,7 @@ export class GaugeChart {
   }
 
   private renderMain = (): HTMLElement => {
-    if (!isEmpty(this.error)) {
+    if (!isEmpty(this.error) || this.errorStatusCode !== undefined) {
       return (
         <railz-error-image
           statusCode={this.errorStatusCode || 500}
@@ -200,6 +200,10 @@ export class GaugeChart {
   };
 
   render(): HTMLElement {
+    if (this.errorStatusCode === 0) {
+      return null;
+    }
+
     return (
       <div class="rv-container" style={this._options?.container?.style}>
         {this._options?.title ? (
