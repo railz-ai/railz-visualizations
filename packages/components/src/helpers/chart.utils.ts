@@ -9,14 +9,13 @@ import {
   RAILZ_CHART_LABEL_COLOR,
   RAILZ_CHART_LEGEND_COLOR,
   RAILZ_TEXT_COLOR,
-  RVAccountingMethod,
   RVConfiguration,
   RVFilterAll,
-  RVFilterDate,
   RVOptions,
   RVOptionsBarStyle,
   RVReportFrequency,
   RVReportTypes,
+  RVAllProviders,
   RVUpdateChartParameter,
 } from '../types';
 
@@ -49,7 +48,7 @@ export const getConfiguration = (configuration: RVConfiguration | string): RVCon
       errorLog(Translations.RV_ERROR_PARSING_CONFIGURATION, error);
     }
   } else {
-    errorLog(Translations.RV_CONFIGURATION_NOT_PRESENT);
+    console.error(Translations.RV_CONFIGURATION_NOT_PRESENT);
   }
   return formattedConfiguration;
 };
@@ -64,12 +63,11 @@ export const getFilter = (filter: RVFilterAll | string): RVFilterAll => {
     try {
       if (typeof filter === 'string') {
         formattedFilter = JSON.parse(filter);
-
-        if (!validateBusinessParams(formattedFilter)) {
-          formattedFilter = undefined;
-        }
       } else {
         formattedFilter = filter;
+      }
+      if (!validateRequiredParams(formattedFilter)) {
+        formattedFilter = undefined;
       }
     } catch (error) {
       errorLog(Translations.RV_ERROR_PARSING_CONFIGURATION + ' ' + JSON.stringify(error));
@@ -82,22 +80,15 @@ export const getFilter = (filter: RVFilterAll | string): RVFilterAll => {
 
 export const validateRequiredParams = (filter: RVFilterAll): boolean => {
   return (
-    validateReportTypeParams(filter) &&
-    validateBusinessParams(filter) &&
+    validateBusinessServiceNameParams(filter) &&
+    validateDateParams(filter) &&
     validateReportFrequencyParams(filter) &&
-    validateReportFrequencyParams(filter)
+    // validateAccountingMethodParams(filter) &&
+    validateReportTypeParams(filter)
   );
 };
 
-export const validateReportTypeParams = (filter: RVFilterAll): boolean => {
-  if (!Object.values(RVReportTypes).includes(filter.reportType)) {
-    errorLog(Translations.RV_ERROR_INVALID_REPORT_TYPE);
-    return false;
-  }
-  return true;
-};
-
-export const validateBusinessParams = (filter: RVFilterAll): boolean => {
+export const validateBusinessServiceNameParams = (filter: RVFilterAll): boolean => {
   const filterPassed = filter as unknown as any;
   const hasConnectionId = !isEmpty(filterPassed?.connectionId);
   const hasBusinessName = !isEmpty(filterPassed?.businessName);
@@ -113,10 +104,31 @@ export const validateBusinessParams = (filter: RVFilterAll): boolean => {
     return false;
   }
   if (!hasServiceName) {
-    warnLog(Translations.RV_ERROR_NO_SERVICE_NAME);
+    errorLog(Translations.RV_ERROR_NO_SERVICE_NAME);
     if (hasBusinessName && filter.reportType !== RVReportTypes.BANK_ACCOUNT) {
       return false;
     }
+  } else if (!Object.values(RVAllProviders).includes(filter.serviceName)) {
+    errorLog(Translations.RV_ERROR_INVALID_SERVICE_NAME);
+    return false;
+  }
+  return true;
+};
+
+export const validateDateParams = (filter: RVFilterAll): boolean => {
+  const { startDate, endDate, reportType } = filter;
+  if (reportType === RVReportTypes.BANK_ACCOUNT) {
+    return true;
+  }
+  if (startDate && endDate) {
+    const compare = compareAsc(parseISO(startDate), parseISO(endDate));
+    if (compare >= 0) {
+      errorLog(Translations.RV_END_DATE_BEFORE_START_DATE);
+      return false;
+    }
+  } else {
+    errorLog(Translations.RV_DATE_REQUIRED);
+    return false;
   }
   return true;
 };
@@ -132,42 +144,23 @@ export const validateReportFrequencyParams = (filter: RVFilterAll): boolean => {
   return true;
 };
 
-export const validateAccountingMethodParams = (filter: RVFilterAll): boolean => {
-  if (
-    isRequiredAccountingMethod(filter?.reportType) &&
-    !Object.values(RVAccountingMethod).includes(filter?.accountingMethod)
-  ) {
-    errorLog(Translations.RV_ERROR_INVALID_ACCOUNTING_METHOD);
+// export const validateAccountingMethodParams = (filter: RVFilterAll): boolean => {
+//   if (
+//     isRequiredAccountingMethod(filter?.reportType) &&
+//     !Object.values(RVAccountingMethod).includes(filter?.accountingMethod)
+//   ) {
+//     errorLog(Translations.RV_ERROR_INVALID_ACCOUNTING_METHOD);
+//     return false;
+//   }
+//   return true;
+// };
+
+export const validateReportTypeParams = (filter: RVFilterAll): boolean => {
+  if (!Object.values(RVReportTypes).includes(filter.reportType)) {
+    errorLog(Translations.RV_ERROR_INVALID_REPORT_TYPE);
     return false;
   }
   return true;
-};
-
-/**
- * @function getDateFilter: Compare start and end date passed and ensure
- * end date is greater than start date
- * @param filter: Filter query
- */
-export const getDateFilter = (filter: RVFilterDate | string): RVFilterDate => {
-  let formattedFilter = getFilter(filter as RVFilterAll) as RVFilterDate;
-  if (formattedFilter) {
-    if (formattedFilter.startDate && formattedFilter.endDate) {
-      try {
-        const compare = compareAsc(
-          parseISO(formattedFilter.startDate),
-          parseISO(formattedFilter.endDate),
-        );
-        if (compare >= 0) {
-          formattedFilter = undefined;
-          errorLog(Translations.RV_END_DATE_BEFORE_START_DATE);
-        }
-      } catch (error) {
-        errorLog(Translations.RV_DATE_DIFF_ERROR);
-        throw new Error(Translations.ERROR_500_TITLE);
-      }
-    }
-  }
-  return formattedFilter;
 };
 
 /**

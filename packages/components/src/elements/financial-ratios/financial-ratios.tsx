@@ -4,12 +4,7 @@
 import { Component, h, Prop, State, Watch } from '@stencil/core';
 import { isEmpty, isEqual } from 'lodash-es';
 
-import {
-  getConfiguration,
-  getDateFilter,
-  validateRequiredParams,
-  getOptions,
-} from '../../helpers/chart.utils';
+import { getConfiguration, getOptions, getFilter } from '../../helpers/chart.utils';
 import { ConfigurationInstance } from '../../services/configuration';
 import Translations from '../../config/translations/en.json';
 import {
@@ -23,7 +18,7 @@ import {
   RVOptions,
 } from '../../types';
 import { errorLog } from '../../services/logger';
-import { roundNumber } from '../../helpers/utils';
+import { roundNumber, isFinancialRatios } from '../../helpers/utils';
 
 import { getReportData } from './financial-ratios.utils';
 
@@ -72,16 +67,19 @@ export class FinancialRatios {
     if (this._configuration) {
       ConfigurationInstance.configuration = this._configuration;
       try {
-        this._filter = getDateFilter(filter) as RVFilterFinancialRatio;
-        this._options = getOptions(options, filter as RVFilterAll);
-        const valid = validateRequiredParams(filter as RVFilterAll);
-        if (valid) {
-          if (triggerRequest) {
-            await this.requestReportData();
+        this._filter = getFilter(filter as RVFilterAll) as RVFilterFinancialRatio;
+        if (this._filter) {
+          if (isFinancialRatios(this._filter.reportType)) {
+            this._options = getOptions(options, filter as RVFilterAll);
+            if (triggerRequest) {
+              await this.requestReportData();
+            }
+          } else {
+            this.errorStatusCode = 500;
+            errorLog(Translations.RV_ERROR_INVALID_REPORT_TYPE);
           }
         } else {
           this.errorStatusCode = 204;
-          this.error = Translations.ERROR_204_TITLE;
         }
       } catch (e) {
         this.errorStatusCode = 500;
@@ -89,7 +87,7 @@ export class FinancialRatios {
         errorLog(e);
       }
     } else {
-      this.errorStatusCode = 500;
+      this.errorStatusCode = 0;
       this.error = Translations.RV_CONFIGURATION_NOT_PRESENT;
     }
   };
@@ -166,7 +164,7 @@ export class FinancialRatios {
   }
 
   private renderMain = (): HTMLElement => {
-    if (!isEmpty(this.error)) {
+    if (!isEmpty(this.error) || this.errorStatusCode !== undefined) {
       return (
         <railz-error-image
           statusCode={this.errorStatusCode || 500}
@@ -235,6 +233,10 @@ export class FinancialRatios {
   };
 
   render(): HTMLElement {
+    if (this.errorStatusCode === 0) {
+      return null;
+    }
+
     const TitleElement = (): HTMLElement => (
       <p class="rv-title" style={this._options?.title?.style}>
         {(this._options?.title && this._options?.title?.text) || ''}

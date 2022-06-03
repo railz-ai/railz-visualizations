@@ -10,6 +10,7 @@ import {
   RVFilterStatements,
   RVFilterTransactions,
   RVFilterAll,
+  RVFilterBankAccount,
 } from '@railzai/railz-visualizations';
 import {
   RailzBankAccounts,
@@ -164,7 +165,7 @@ const Components = ({ configuration, filter, options, showCode }: ChartProps) =>
           />
         </div>
       )}
-      {[RVReportTypes.EXPENSES, RVReportTypes.REVENUE].includes(filter.reportType) && (
+      {filter.reportType === RVReportTypes.EXPENSES && (
         <div>
           <h4 className="text-xl font-bold text-gray-900">Using Railz Pie Chart Component</h4>
           <p>
@@ -261,7 +262,7 @@ const Components = ({ configuration, filter, options, showCode }: ChartProps) =>
           </p>
           <RailzBankAccounts
             configuration={configuration}
-            filter={filter as RVFilterDate}
+            filter={filter as RVFilterBankAccount}
             options={options}
           />
           <Code
@@ -276,7 +277,6 @@ const Components = ({ configuration, filter, options, showCode }: ChartProps) =>
       {![
         RVReportTypes.RAILZ_SCORE,
         RVReportTypes.EXPENSES,
-        RVReportTypes.REVENUE,
         RVReportTypes.BALANCE_SHEET,
         RVReportTypes.CASHFLOW_STATEMENTS,
         RVReportTypes.INCOME_STATEMENTS,

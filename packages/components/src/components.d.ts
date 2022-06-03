@@ -8,7 +8,7 @@ import { HTMLStencilElement, JSXBase } from '@stencil/core/internal';
 import {
   RVConfiguration,
   RVFilterAllReportTypes,
-  RVFilterDate,
+  RVFilterBankAccount,
   RVFilterFinancialRatio,
   RVFilterGauge,
   RVFilterPie,
@@ -30,7 +30,7 @@ export namespace Components {
     /**
      * Filter information to query the backend APIs
      */
-    filter: RVFilterDate;
+    filter: RVFilterBankAccount;
     /**
      * For whitelabeling styling
      */
@@ -331,7 +331,7 @@ declare namespace LocalJSX {
     /**
      * Filter information to query the backend APIs
      */
-    filter: RVFilterDate;
+    filter: RVFilterBankAccount;
     /**
      * For whitelabeling styling
      */

@@ -2,7 +2,11 @@ import { format, parseISO } from 'date-fns';
 
 import { pick } from 'lodash-es';
 
-import { RVFormattedTransactionResponse, RVReportRequestParameter } from '../../types';
+import {
+  RVFormattedTransactionResponse,
+  RVReportRequestParameter,
+  RVReportTypesUrlMapping,
+} from '../../types';
 import { RequestServiceInstance } from '../../services/request';
 import { errorLog } from '../../services/logger';
 import Translations from '../../config/translations/en.json';
@@ -34,7 +38,8 @@ export const getTransactionsData = async ({
       ]);
     }
     reportData = await RequestServiceInstance.getReportData({
-      filter: { ...allParameters, reportType: filter.reportType },
+      path: RVReportTypesUrlMapping[filter.reportType],
+      filter: allParameters,
     });
   } catch (error) {
     errorLog(Translations.NOT_ABLE_TO_RETRIEVE_REPORT_DATA, error);

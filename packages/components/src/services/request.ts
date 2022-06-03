@@ -4,7 +4,6 @@ import {
   RVReportRequest,
   RVReportRequestParameter,
   RVReportSummaryApiResponse,
-  RVReportTypes,
 } from '../types';
 import { RAILZ_API_HOST } from '../types/constants/endpoints';
 
@@ -19,12 +18,12 @@ class RequestService {
   };
 
   async getReportData({
+    path,
     filter,
   }: RVReportRequestParameter): Promise<
     RVReportSummaryApiResponse | RVFormattedTransactionResponse | RVFormattedGaugeResponse
   > {
-    const prefixReports = filter.reportType === RVReportTypes.BANK_ACCOUNT ? '/' : '/reports/';
-    const url = `${prefixReports}${filter.reportType}?${new URLSearchParams(filter as any)}`;
+    const url = `${path}?${new URLSearchParams(filter as any)}`;
     return await this.getRequest({
       url,
     });
