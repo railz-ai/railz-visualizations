@@ -149,7 +149,7 @@ export class StatementsChart {
         });
         this.updateHighchartsParams();
       } else if (reportData?.error) {
-        this.error = Translations.NOT_ABLE_TO_RETRIEVE_REPORT_DATA;
+        this.error = Translations.RV_NOT_ABLE_TO_RETRIEVE_REPORT_DATA;
         this.errorStatusCode = reportData.error?.statusCode;
       } else {
         this.error = Translations.RV_ERROR_202_TITLE;
