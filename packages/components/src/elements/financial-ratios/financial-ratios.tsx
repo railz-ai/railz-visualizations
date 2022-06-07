@@ -4,25 +4,21 @@
 import { Component, h, Prop, State, Watch } from '@stencil/core';
 import { isEmpty, isEqual } from 'lodash-es';
 
-import {
-  getConfiguration,
-  getDateFilter,
-  validateRequiredParams,
-  getOptions,
-} from '../../helpers/chart.utils';
+import { getConfiguration, getOptions, getFilter } from '../../helpers/chart.utils';
 import { ConfigurationInstance } from '../../services/configuration';
 import Translations from '../../config/translations/en.json';
 import {
   FinancialRatio,
   RVConfiguration,
-  RVFilterDate,
+  RVFilterAll,
+  RVFilterFinancialRatio,
   RVFinancialRatioItem,
   RVFinancialRatioSummary,
   RVFormattedFinancialRatioResponse,
   RVOptions,
 } from '../../types';
 import { errorLog } from '../../services/logger';
-import { roundNumber } from '../../helpers/utils';
+import { roundNumber, isFinancialRatios } from '../../helpers/utils';
 
 import { getReportData } from './financial-ratios.utils';
 
@@ -39,7 +35,7 @@ export class FinancialRatios {
   /**
    * Filter information to query the backend APIs
    */
-  @Prop() readonly filter!: RVFilterDate;
+  @Prop() readonly filter!: RVFilterFinancialRatio;
   /**
    * For whitelabeling styling
    */
@@ -47,7 +43,7 @@ export class FinancialRatios {
 
   @State() private loading = '';
   @State() private _configuration: RVConfiguration;
-  @State() private _filter: RVFilterDate;
+  @State() private _filter: RVFilterFinancialRatio;
   @State() private _options: RVOptions;
   @State() private _summary: RVFinancialRatioSummary;
   @State() private _selected: RVFinancialRatioItem;
@@ -63,7 +59,7 @@ export class FinancialRatios {
    */
   private validateParams = async (
     configuration: RVConfiguration,
-    filter: RVFilterDate,
+    filter: RVFilterFinancialRatio,
     options: RVOptions,
     triggerRequest = true,
   ): Promise<void> => {
@@ -71,16 +67,19 @@ export class FinancialRatios {
     if (this._configuration) {
       ConfigurationInstance.configuration = this._configuration;
       try {
-        this._filter = getDateFilter(filter) as RVFilterDate;
-        this._options = getOptions(options, filter);
-        const valid = validateRequiredParams(filter);
-        if (valid) {
-          if (triggerRequest) {
-            await this.requestReportData();
+        this._filter = getFilter(filter as RVFilterAll) as RVFilterFinancialRatio;
+        if (this._filter) {
+          if (isFinancialRatios(this._filter.reportType)) {
+            this._options = getOptions(options, filter as RVFilterAll);
+            if (triggerRequest) {
+              await this.requestReportData();
+            }
+          } else {
+            this.errorStatusCode = 500;
+            errorLog(Translations.RV_ERROR_INVALID_REPORT_TYPE);
           }
         } else {
           this.errorStatusCode = 204;
-          this.error = Translations.RV_ERROR_204_TITLE;
         }
       } catch (e) {
         this.errorStatusCode = 500;
@@ -88,7 +87,7 @@ export class FinancialRatios {
         errorLog(e);
       }
     } else {
-      this.errorStatusCode = 500;
+      this.errorStatusCode = 0;
       this.error = Translations.RV_CONFIGURATION_NOT_PRESENT;
     }
   };
@@ -101,7 +100,10 @@ export class FinancialRatios {
   }
 
   @Watch('filter')
-  async watchFilter(newValue: RVFilterDate, oldValue: RVFilterDate): Promise<void> {
+  async watchFilter(
+    newValue: RVFilterFinancialRatio,
+    oldValue: RVFilterFinancialRatio,
+  ): Promise<void> {
     if (newValue && oldValue && !isEqual(oldValue, newValue)) {
       await this.validateParams(this.configuration, newValue, this.options);
     }
@@ -132,7 +134,7 @@ export class FinancialRatios {
     this.loading = Translations.RV_LOADING_REPORT;
     try {
       const reportData = (await getReportData({
-        filter: this._filter,
+        filter: this._filter as RVFilterAll,
       })) as RVFormattedFinancialRatioResponse;
 
       if (reportData?.data) {
@@ -162,7 +164,7 @@ export class FinancialRatios {
   }
 
   private renderMain = (): HTMLElement => {
-    if (!isEmpty(this.error)) {
+    if (!isEmpty(this.error) || this.errorStatusCode !== undefined) {
       return (
         <railz-error-image
           statusCode={this.errorStatusCode || 500}
@@ -231,6 +233,10 @@ export class FinancialRatios {
   };
 
   render(): HTMLElement {
+    if (this.errorStatusCode === 0) {
+      return null;
+    }
+
     const TitleElement = (): HTMLElement => (
       <p class="rv-title" style={this._options?.title?.style}>
         {(this._options?.title && this._options?.title?.text) || ''}

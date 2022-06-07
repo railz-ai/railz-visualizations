@@ -1,8 +1,6 @@
-import { RVFrequencyTypes, RVServiceProviders } from '../enum';
-import { RVReportFrequency } from '../enum/date';
-import { RVNoDateTypes, RVNoFrequencyTypes } from '../enum/report-type';
+import { RVServiceProviders, RVReportFrequency, RVReportTypes, RVAccountingMethod } from '../enum';
 
-export interface RVBaseFilterBusiness {
+export interface RVFilterBusiness {
   /**
    * businessName: Unique business name identifier.
    * required **if connectionId is not passed**
@@ -17,7 +15,11 @@ export interface RVBaseFilterBusiness {
   serviceName: RVServiceProviders;
 }
 
-export interface RVBaseFilterConnection {
+/**
+ * RVFilterConnection
+ * Not currently being used, since web-backend hasn't implemented this
+ */
+export interface RVFilterConnection {
   /**
    * connectionId: Unique Connection identifier.
    * required **if businessName and serviceName are not passed**
@@ -25,7 +27,7 @@ export interface RVBaseFilterConnection {
   connectionId: string;
 }
 
-export interface RVBaseFilterBusinessDate extends RVBaseFilterBusiness {
+export interface RVFilterDate {
   /**
    * startDate: Date from which the data begins
    * format: **yyyy-MM-dd**
@@ -38,87 +40,128 @@ export interface RVBaseFilterBusinessDate extends RVBaseFilterBusiness {
   endDate: string; // required based on report type,
 }
 
-export interface RVBaseFilterConnectionDate extends RVBaseFilterConnection {
-  /**
-   * startDate: Date from which the data begins
-   * format: **yyyy-MM-dd**
-   */
-  startDate: string;
-  /**
-   * endDate: Date which the data ends
-   * format: **yyyy-MM-dd**
-   */
-  endDate: string;
-}
-
-export interface RVBaseFilterConnectionDateFrequency extends RVBaseFilterConnectionDate {
+export interface RVFilterReportFrequency {
   /**
    * reportFrequency: The snapshot frequency (month, quarter, year)
    */
   reportFrequency: RVReportFrequency;
 }
 
-export interface RVBaseFilterBusinessDateFrequency extends RVBaseFilterBusinessDate {
+export interface RVFilterAccountingMethod {
   /**
-   * reportFrequency: The snapshot frequency (month, quarter, year)
+   * accountingMethod: the enum for accounting methods: accrual or cash
    */
-  reportFrequency: RVReportFrequency;
+  accountingMethod: RVAccountingMethod;
 }
 
-export interface RVBaseFilterConnectionType extends RVBaseFilterBusiness {
+export interface RVFilterReportType {
   /**
-   * reportType: Type of report, bankAccounts, creditScores
+   * reportType: the enum for to say the type of the report to be displayed
    */
-  reportType: RVNoDateTypes;
+  reportType: RVReportTypes;
 }
 
-export interface RVBaseFilterBusinessType extends RVBaseFilterConnection {
-  /**
-   * reportType: Type of report, bankAccounts, creditScores
-   */
-  reportType: RVNoDateTypes;
+export interface RVFilterBalanceSheet
+  extends RVFilterReportType,
+    RVFilterBusiness,
+    RVFilterDate,
+    RVFilterReportFrequency {
+  reportType: RVReportTypes.BALANCE_SHEET;
 }
 
-export interface RVBaseFilterConnectionDateFrequencyType
-  extends RVBaseFilterConnectionDateFrequency {
-  /**
-   * reportType: Type of report, cashflowStatements, balanceSheets, incomeStatements
-   */
-  reportType: RVFrequencyTypes;
+export interface RVFilterBankAccount extends RVFilterReportType, RVFilterBusiness {
+  reportType: RVReportTypes.BANK_ACCOUNT;
 }
 
-export interface RVBaseFilterBusinessDateFrequencyType extends RVBaseFilterBusinessDateFrequency {
-  /**
-   * reportType: Type of report, cashflowStatements, balanceSheets, incomeStatements
-   */
-  reportType: RVFrequencyTypes;
+export interface RVFilterBills extends RVFilterReportType, RVFilterBusiness, RVFilterDate {
+  reportType: RVReportTypes.BILLS;
 }
 
-export interface RVBaseFilterBusinessDateType extends RVBaseFilterBusinessDate {
-  /**
-   * reportType: Type of transaction, invoices, bills
-   */
-  reportType: RVNoFrequencyTypes;
+export interface RVFilterCashflowStatements
+  extends RVFilterReportType,
+    RVFilterBusiness,
+    RVFilterDate,
+    RVFilterReportFrequency {
+  reportType: RVReportTypes.CASHFLOW_STATEMENTS;
 }
 
-export interface RVBaseFilterConnectionDateType extends RVBaseFilterConnectionDate {
-  /**
-   * reportType: Type of transaction, invoices, bills
-   */
-  reportType: RVNoFrequencyTypes;
+export interface RVFilterCreditScore extends RVFilterReportType, RVFilterBusiness, RVFilterDate {
+  reportType: RVReportTypes.CREDIT_SCORE;
 }
 
-export type RVBaseFilter = RVBaseFilterBusiness | RVBaseFilterConnection;
-export type RVBaseFilterDate = RVBaseFilterConnectionDate | RVBaseFilterBusinessDate;
-export type RVBaseFilterDateFrequency =
-  | RVBaseFilterConnectionDateFrequency
-  | RVBaseFilterBusinessDateFrequency;
-export type RVBaseAllFilter = RVBaseFilter | RVBaseFilterDate | RVBaseFilterDateFrequency;
-export type RVFilterFrequency =
-  | RVBaseFilterConnectionDateFrequencyType
-  | RVBaseFilterBusinessDateFrequencyType;
-export type RVFilterDate = RVBaseFilterConnectionDateType | RVBaseFilterBusinessDateType;
-export type RVFilterType = RVBaseFilterConnectionType | RVBaseFilterBusinessType;
-export type RVFilter = RVFilterFrequency | RVFilterDate | RVFilterType;
-export type RVDateFilters = RVFilterDate | RVFilterFrequency;
-export type RVAllFilter = RVFilterDate | RVFilterFrequency;
+export interface RVFilterExpenses
+  extends RVFilterReportType,
+    RVFilterBusiness,
+    RVFilterDate,
+    RVFilterReportFrequency {
+  reportType: RVReportTypes.EXPENSES;
+}
+
+export interface RVFilterFinancialRatio
+  extends RVFilterReportType,
+    RVFilterBusiness,
+    RVFilterDate,
+    RVFilterReportFrequency {
+  reportType: RVReportTypes.FINANCIAL_RATIO;
+}
+
+export interface RVFilterIncomeStatements
+  extends RVFilterReportType,
+    RVFilterBusiness,
+    RVFilterDate,
+    RVFilterReportFrequency {
+  reportType: RVReportTypes.INCOME_STATEMENTS;
+}
+
+export interface RVFilterInvoices
+  extends RVFilterReportType,
+    RVFilterBusiness,
+    RVFilterDate,
+    RVFilterReportFrequency {
+  reportType: RVReportTypes.INVOICES;
+}
+
+export interface RVFilterRevenue
+  extends RVFilterReportType,
+    RVFilterBusiness,
+    RVFilterDate,
+    RVFilterReportFrequency {
+  reportType: RVReportTypes.REVENUE;
+}
+
+export interface RVFilterRailzScore
+  extends RVFilterReportType,
+    RVFilterBusiness,
+    RVFilterDate,
+    RVFilterReportFrequency {
+  reportType: RVReportTypes.RAILZ_SCORE;
+}
+
+export interface RVFilterAll
+  extends RVFilterBusiness,
+    RVFilterConnection,
+    RVFilterDate,
+    RVFilterReportFrequency,
+    RVFilterReportType {}
+
+export type RVFilterAllReportTypes =
+  | RVFilterBalanceSheet
+  | RVFilterBankAccount
+  | RVFilterBills
+  | RVFilterCashflowStatements
+  | RVFilterCreditScore
+  | RVFilterExpenses
+  | RVFilterFinancialRatio
+  | RVFilterFinancialRatio
+  | RVFilterIncomeStatements
+  | RVFilterInvoices
+  | RVFilterRevenue
+  | RVFilterDate;
+
+export type RVFilterTransactions = RVFilterInvoices | RVFilterBills;
+export type RVFilterStatements =
+  | RVFilterBalanceSheet
+  | RVFilterIncomeStatements
+  | RVFilterCashflowStatements;
+export type RVFilterGauge = RVFilterRailzScore;
+export type RVFilterPie = RVFilterExpenses | RVFilterRevenue;

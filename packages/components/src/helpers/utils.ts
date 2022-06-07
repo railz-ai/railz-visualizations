@@ -49,6 +49,19 @@ export const formatNumber = (number: number | string, decimals = 2, minimum = 0)
 };
 
 /**
+ * Determine if report type is bankAccounts
+ */
+export const isBankAccounts = (reportType: RVReportTypes): boolean => {
+  return reportType && [RVReportTypes.BANK_ACCOUNT].includes(reportType);
+};
+/**
+ * Determine if report type is financialRatios
+ */
+export const isFinancialRatios = (reportType: RVReportTypes): boolean => {
+  return reportType && [RVReportTypes.FINANCIAL_RATIO].includes(reportType);
+};
+
+/**
  * Determine if report type is gauge
  */
 export const isGauge = (reportType: RVReportTypes): boolean => {
@@ -106,6 +119,13 @@ export const isRequiredReportFrequency = (reportType: RVReportTypes): boolean =>
       RVReportTypes.FINANCIAL_RATIO,
     ].includes(reportType)
   );
+};
+
+/**
+ * Get information about reports with accounting method
+ */
+export const isRequiredAccountingMethod = (reportType: RVReportTypes): boolean => {
+  return reportType && [RVReportTypes.BALANCE_SHEET].includes(reportType);
 };
 
 /**
