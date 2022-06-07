@@ -22,7 +22,7 @@ export const getReportData = async ({
       filter: pick(filter, [RVParams.SERVICE_NAME, RVParams.BUSINESS_NAME]),
     });
   } catch (error) {
-    errorLog(Translations.NOT_ABLE_TO_RETRIEVE_REPORT_DATA, error);
+    errorLog(Translations.RV_NOT_ABLE_TO_RETRIEVE_REPORT_DATA, error);
     reportData = { error };
   }
   return reportData;
