@@ -293,7 +293,7 @@ export const getHighchartsParams = ({
     });
   } catch (error) {
     errorLog(Translations.RV_NOT_ABLE_TO_PARSE_REPORT_DATA, error);
-    throw new Error(Translations.ERROR_500_TITLE);
+    throw new Error(Translations.RV_ERROR_500_TITLE);
   }
 
   return containerOptions;
