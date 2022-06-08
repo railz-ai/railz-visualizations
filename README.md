@@ -263,5 +263,3 @@ the [guidelines](./CONTRIBUTING.md).
 [MIT License](./LICENSE)
 
 ---
-
----
