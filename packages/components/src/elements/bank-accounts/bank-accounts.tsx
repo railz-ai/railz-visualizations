@@ -5,22 +5,16 @@ import { isEmpty, isEqual } from 'lodash-es';
 import Translations from '../../config/translations/en.json';
 import { errorLog } from '../../services/logger';
 import { ConfigurationInstance } from '../../services/configuration';
+import { getOptions, getConfiguration, getFilter } from '../../helpers/chart.utils';
 import {
-  getOptions,
-  getConfiguration,
-  getDateFilter,
-  validateRequiredParams,
-} from '../../helpers/chart.utils';
-import {
-  RVAllFilter,
   RVBankAccounts,
-  RVBankingProviders,
   RVConfiguration,
-  RVFilterDate,
+  RVFilterAll,
+  RVFilterBankAccount,
   RVFormattedBankAccountsResponse,
   RVOptions,
 } from '../../types';
-import { formatNumber } from '../../helpers/utils';
+import { formatNumber, isBankAccounts } from '../../helpers/utils';
 
 import { getReportData } from './bank-accounts.utils';
 
@@ -37,7 +31,7 @@ export class BanksAccounts {
   /**
    * Filter information to query the backend APIs
    */
-  @Prop() readonly filter!: RVFilterDate;
+  @Prop() readonly filter!: RVFilterBankAccount;
   /**
    * For whitelabeling styling
    */
@@ -45,7 +39,7 @@ export class BanksAccounts {
 
   @State() private loading = '';
   @State() private _configuration: RVConfiguration;
-  @State() private _filter: RVAllFilter;
+  @State() private _filter: RVFilterBankAccount;
   @State() private _options: RVOptions;
   @State() private _summary: RVBankAccounts[];
   @State() private error: string;
@@ -59,7 +53,7 @@ export class BanksAccounts {
   }
 
   @Watch('filter')
-  async watchFilter(newValue: RVFilterDate, oldValue: RVFilterDate): Promise<void> {
+  async watchFilter(newValue: RVFilterBankAccount, oldValue: RVFilterBankAccount): Promise<void> {
     if (newValue && oldValue && !isEqual(oldValue, newValue)) {
       await this.validateParams(this.configuration, newValue, this.options);
     }
@@ -89,7 +83,7 @@ export class BanksAccounts {
    */
   private validateParams = async (
     configuration: RVConfiguration,
-    filter: RVFilterDate,
+    filter: RVFilterBankAccount,
     options: RVOptions,
     triggerRequest = true,
   ): Promise<void> => {
@@ -97,19 +91,19 @@ export class BanksAccounts {
     if (this._configuration) {
       ConfigurationInstance.configuration = this._configuration;
       try {
-        this._filter = {
-          ...getDateFilter(filter),
-          serviceName: RVBankingProviders.PLAID,
-        } as RVFilterDate;
-        this._options = getOptions(options, filter);
-        const valid = validateRequiredParams(filter);
-        if (valid) {
-          if (triggerRequest) {
-            await this.requestReportData();
+        this._filter = getFilter(filter as RVFilterAll) as RVFilterBankAccount;
+        if (this._filter) {
+          if (isBankAccounts(this._filter.reportType)) {
+            this._options = getOptions(options, filter as RVFilterAll);
+            if (triggerRequest) {
+              await this.requestReportData();
+            }
+          } else {
+            this.errorStatusCode = 500;
+            errorLog(Translations.RV_ERROR_INVALID_REPORT_TYPE);
           }
         } else {
           this.errorStatusCode = 204;
-          this.error = Translations.ERROR_204_TITLE;
         }
       } catch (e) {
         this.errorStatusCode = 500;
@@ -117,7 +111,7 @@ export class BanksAccounts {
         errorLog(e);
       }
     } else {
-      this.errorStatusCode = 500;
+      this.errorStatusCode = 0;
       this.error = Translations.RV_CONFIGURATION_NOT_PRESENT;
     }
   };
@@ -130,12 +124,11 @@ export class BanksAccounts {
     this.loading = Translations.LOADING_REPORT;
     try {
       const reportData = (await getReportData({
-        filter: this._filter as RVFilterDate,
+        filter: this._filter as RVFilterAll,
       })) as RVFormattedBankAccountsResponse;
       this._summary = reportData.data as RVBankAccounts[];
       if (isEmpty(this._summary)) {
         this.errorStatusCode = 204;
-        this.error = Translations.ERROR_204_TITLE;
       }
     } catch (error) {
       errorLog(Translations.RV_NOT_ABLE_TO_PARSE_REPORT_DATA, error);
@@ -144,8 +137,21 @@ export class BanksAccounts {
     }
   };
 
+  private getAllBanks(): { [key: string]: RVBankAccounts[] } {
+    const institutionNames = this._summary?.map(({ institutionName }) => institutionName);
+    const uniqueBankAccounts = new Set(institutionNames);
+    const diffBanks = {};
+    uniqueBankAccounts.forEach((institutionName) => {
+      diffBanks[institutionName] = this._summary?.filter(
+        ({ institutionName: internalInstitutionName }) =>
+          internalInstitutionName === institutionName,
+      );
+    });
+    return diffBanks;
+  }
+
   private renderMain = (): HTMLElement => {
-    if (!isEmpty(this.error)) {
+    if (!isEmpty(this.error) || this.errorStatusCode !== undefined) {
       return (
         <railz-error-image
           statusCode={this.errorStatusCode || 500}
@@ -157,21 +163,27 @@ export class BanksAccounts {
       return <railz-loading loadingText={this.loading} {...this._options?.loadingIndicator} />;
     }
 
+    const diffBanks = this.getAllBanks();
+
     return (
       !isEmpty(this._summary) && (
         <div>
           <ul class="railz-bank-accounts-ul">
-            <li class="railz-bank-accounts-ul-title">{this._summary[0].institutionName}</li>
-            {this._summary.map((bankAccount: RVBankAccounts) => (
-              <li>
-                <div class="railz-bank-accounts-item-container">
-                  <span class="railz-bank-accounts-item-name">{bankAccount.accountName}</span>
-                  <span class="railz-bank-accounts-item-dot"></span>
-                  <span class="railz-bank-accounts-item-value">
-                    ${formatNumber(bankAccount.currentBalance, 2, 2)}
-                  </span>
-                </div>
-              </li>
+            {Object.keys(diffBanks).map((bank) => (
+              <div>
+                <li class="railz-bank-accounts-ul-title">{bank}</li>
+                {diffBanks[bank].map((bankAccount: RVBankAccounts) => (
+                  <li>
+                    <div class="railz-bank-accounts-item-container">
+                      <span class="railz-bank-accounts-item-name">{bankAccount.accountName}</span>
+                      <span class="railz-bank-accounts-item-dot"></span>
+                      <span class="railz-bank-accounts-item-value">
+                        ${formatNumber(bankAccount.currentBalance, 2, 2)}
+                      </span>
+                    </div>
+                  </li>
+                ))}
+              </div>
             ))}
           </ul>
         </div>
@@ -180,6 +192,10 @@ export class BanksAccounts {
   };
 
   render(): HTMLElement {
+    if (this.errorStatusCode === 0) {
+      return null;
+    }
+
     const TitleElement = (): HTMLElement => (
       <p class="rv-title" style={this._options?.title?.style}>
         {(this._options?.title && this._options?.title?.text) || ''}

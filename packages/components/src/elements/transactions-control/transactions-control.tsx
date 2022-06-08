@@ -14,14 +14,11 @@ import {
   RVFormattedTransactionResponse,
   RVOptions,
 } from '../../types';
-import {
-  getConfiguration,
-  getFilter,
-  getOptions,
-  validateRequiredParams,
-} from '../../helpers/chart.utils';
+import { getConfiguration, getFilter, getOptions } from '../../helpers/chart.utils';
 
 import { ConfigurationInstance } from '../../services/configuration';
+
+import { isTransactions } from '../../helpers/utils';
 
 import { getTransactionsData } from './transactions-control.utils';
 
@@ -68,15 +65,18 @@ export class TransactionsControl {
       ConfigurationInstance.configuration = this._configuration;
       try {
         this._filter = getFilter(filter as RVFilterAll) as RVFilterTransactions;
-        this._options = getOptions(this.options, this._filter as RVFilterAll);
-        const valid = validateRequiredParams(this._filter as RVFilterAll);
-        if (valid) {
-          if (triggerRequest) {
-            await this.requestReportData();
+        if (this._filter) {
+          if (isTransactions(this._filter.reportType)) {
+            this._options = getOptions(this.options, this._filter as RVFilterAll);
+            if (triggerRequest) {
+              await this.requestReportData();
+            }
+          } else {
+            this.errorStatusCode = 500;
+            errorLog(Translations.RV_ERROR_INVALID_REPORT_TYPE);
           }
         } else {
           this.errorStatusCode = 204;
-          this.error = Translations.ERROR_204_TITLE;
         }
       } catch (e) {
         this.errorStatusCode = 500;
@@ -84,7 +84,7 @@ export class TransactionsControl {
         errorLog(e);
       }
     } else {
-      this.errorStatusCode = 500;
+      this.errorStatusCode = 0;
       this.error = Translations.RV_CONFIGURATION_NOT_PRESENT;
       errorLog(Translations.RV_CONFIGURATION_NOT_PRESENT);
     }
@@ -136,7 +136,7 @@ export class TransactionsControl {
   }
 
   private renderMain(): HTMLElement {
-    if (!isEmpty(this.error)) {
+    if (!isEmpty(this.error) || this.errorStatusCode !== undefined) {
       return (
         <railz-error-image
           statusCode={this.errorStatusCode || 500}
@@ -161,6 +161,10 @@ export class TransactionsControl {
   }
 
   render(): HTMLElement {
+    if (this.errorStatusCode === 0) {
+      return null;
+    }
+
     return (
       <div class="rv-container" style={this._options?.container?.style}>
         {this._options?.title ? (

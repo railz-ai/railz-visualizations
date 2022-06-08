@@ -65,8 +65,7 @@ export interface RVFilterBalanceSheet
   extends RVFilterReportType,
     RVFilterBusiness,
     RVFilterDate,
-    RVFilterReportFrequency,
-    RVFilterAccountingMethod {
+    RVFilterReportFrequency {
   reportType: RVReportTypes.BALANCE_SHEET;
 }
 
@@ -143,7 +142,6 @@ export interface RVFilterAll
     RVFilterConnection,
     RVFilterDate,
     RVFilterReportFrequency,
-    RVFilterAccountingMethod,
     RVFilterReportType {}
 
 export type RVFilterAllReportTypes =
@@ -158,10 +156,7 @@ export type RVFilterAllReportTypes =
   | RVFilterIncomeStatements
   | RVFilterInvoices
   | RVFilterRevenue
-  | RVFilterDate
-  | RVFilterDate
-  | RVFilterDate
-  | RVFilterAccountingMethod;
+  | RVFilterDate;
 
 export type RVFilterTransactions = RVFilterInvoices | RVFilterBills;
 export type RVFilterStatements =

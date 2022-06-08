@@ -9,7 +9,6 @@ import { isEmpty, isEqual } from 'lodash-es';
 
 import Translations from '../../config/translations/en.json';
 import { errorLog } from '../../services/logger';
-
 import {
   RVConfiguration,
   RVFilterAll,
@@ -18,17 +17,15 @@ import {
   RVFormattedStatementResponse,
   RVOptions,
 } from '../../types';
-
 import { RVFinancialStatementsTypes } from '../../types/enum/report-type';
 import {
   getConfiguration,
-  getDateFilter,
+  getFilter,
   getHighchartsParams,
   getOptions,
-  validateRequiredParams,
 } from '../../helpers/chart.utils';
-
 import { ConfigurationInstance } from '../../services/configuration';
+import { isStatements } from '../../helpers/utils';
 
 import { formatData, getReportData } from './statements-chart.utils';
 
@@ -82,16 +79,19 @@ export class StatementsChart {
     if (this._configuration) {
       ConfigurationInstance.configuration = this._configuration;
       try {
-        this._filter = getDateFilter(filter) as RVFilterStatements;
-        this._options = getOptions(this.options, this._filter as RVFilterAll);
-        const valid = validateRequiredParams(this._filter as RVFilterAll);
-        if (valid) {
-          if (triggerRequest) {
-            await this.requestReportData();
+        this._filter = getFilter(filter as RVFilterAll) as RVFilterStatements;
+        if (this._filter) {
+          if (isStatements(this._filter.reportType)) {
+            this._options = getOptions(this.options, this._filter as RVFilterAll);
+            if (triggerRequest) {
+              await this.requestReportData();
+            }
+          } else {
+            this.errorStatusCode = 500;
+            errorLog(Translations.RV_ERROR_INVALID_REPORT_TYPE);
           }
         } else {
           this.errorStatusCode = 204;
-          this.error = Translations.ERROR_204_TITLE;
         }
       } catch (e) {
         this.errorStatusCode = 500;
@@ -99,7 +99,7 @@ export class StatementsChart {
         errorLog(e);
       }
     } else {
-      this.errorStatusCode = 500;
+      this.errorStatusCode = 0;
       this.error = Translations.RV_CONFIGURATION_NOT_PRESENT;
     }
   };
@@ -185,7 +185,7 @@ export class StatementsChart {
   }
 
   private renderMain = (): HTMLElement => {
-    if (!isEmpty(this.error)) {
+    if (!isEmpty(this.error) || this.errorStatusCode !== undefined) {
       return (
         <railz-error-image
           statusCode={this.errorStatusCode || 500}
@@ -206,6 +206,10 @@ export class StatementsChart {
   };
 
   render(): HTMLElement {
+    if (this.errorStatusCode === 0) {
+      return null;
+    }
+
     return (
       <div class="rv-container" style={this._options?.container?.style}>
         {this._options?.title ? (

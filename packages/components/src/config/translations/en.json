@@ -1,6 +1,7 @@
 {
   "RV_NOT_ABLE_TO_PARSE_REPORT_DATA": "Not able to parse report data. ",
   "RV_END_DATE_BEFORE_START_DATE": "'endDate' should be greater than 'startDate'.",
+  "RV_DATE_REQUIRED": "'startDate' and 'endDate' required.",
   "RV_CONFIGURATION_NOT_PRESENT": "\"configuration\" not present.",
   "RV_FILTER_NOT_PRESENT": "\"filter\" not present.",
   "RV_TOKEN_NOT_PRESENT": "\"token\" not present.",
@@ -45,6 +46,7 @@
   "RV_ERROR_INVALID_REPORT_FREQUENCY": "Invalid Report Frequency",
   "RV_ERROR_INVALID_ACCOUNTING_METHOD": "Invalid Accounting Method",
   "RV_ERROR_INVALID_REPORT_TYPE": "Invalid Report Type",
+  "RV_ERROR_INVALID_SERVICE_NAME": "Invalid Service Name",
   "RV_FINANCIAL_RATIO_TOOLTIP_PROBABILITY_OF_DEFAULT": "Probability of default (PD) is the likelihood that a business will fail to pay back a debt over a specified period, usually one year. It can be applied to a variety of different risk management or credit analysis scenarios. ",
   "RV_FINANCIAL_RATIO_TOOLTIP_DISTANCE_TO_DEFAULT": "Distance to default determines the level of default risk. This key ratio compares the business' net worth to its volatility.",
   "RV_FINANCIAL_RATIO_TOOLTIP_LIQUIDATION_VALUE": "Liquidation value refers to the worth of a business when the assets of the business are sold. In other words, liquidation value refers to the estimated amounted of money received when its assets are sold and its debts paid. This value is often stated on a per share basis.",
@@ -166,5 +168,6 @@
   "RV_REVENUE": "Revenue",
   "RV_CREDIT_SCORE": "Credit Score",
   "RV_RAILZ_SCORE": "Railz Score",
-  "RV_BANK_ACCOUNT": "Bank Accounts"
+  "RV_BANK_ACCOUNT": "Bank Accounts",
+  "RV_BANK_ACCOUNT_MUST_BE_SERVICE_NAME_PLAID": "Bank Accounts works only with Plaid."
 }

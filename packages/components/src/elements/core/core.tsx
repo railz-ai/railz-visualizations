@@ -1,6 +1,6 @@
 /* eslint-disable max-len, @typescript-eslint/no-unused-vars */
 import { Component, Prop, h, State, Watch } from '@stencil/core';
-import { isEmpty, isEqual } from 'lodash-es';
+import { isEqual } from 'lodash-es';
 
 import { isGauge, isPie, isStatements, isTransactions } from '../../helpers/utils';
 import {
@@ -21,6 +21,7 @@ import { ConfigurationInstance } from '../../services/configuration';
 
 @Component({
   tag: 'railz-visualizations',
+  styleUrl: 'core.scss',
   shadow: true,
 })
 export class Core {
@@ -60,19 +61,12 @@ export class Core {
       ConfigurationInstance.configuration = this._configuration;
       this._filter = getFilter(filter as RVFilterAll);
       if (!this._filter) {
-        this.errorStatusCode = 500;
+        this.errorStatusCode = 204;
       }
     } else {
-      this.errorStatusCode = 500;
+      this.errorStatusCode = 0;
     }
   };
-
-  @Watch('filter')
-  watchFilter(newValue: RVFilterAllReportTypes, oldValue: RVFilterAllReportTypes): void {
-    if (newValue && oldValue && !isEqual(oldValue, newValue)) {
-      this.validateParams(this.configuration, newValue);
-    }
-  }
 
   @Watch('configuration')
   watchConfiguration(newValue: RVConfiguration, oldValue: RVConfiguration): void {
@@ -81,8 +75,11 @@ export class Core {
     }
   }
 
-  componentWillLoad(): void {
-    this.propsUpdated && this.propsUpdated();
+  @Watch('filter')
+  watchFilter(newValue: RVFilterAllReportTypes, oldValue: RVFilterAllReportTypes): void {
+    if (newValue && oldValue && !isEqual(oldValue, newValue)) {
+      this.validateParams(this.configuration, newValue);
+    }
   }
 
   componentDidLoad(): void {
@@ -90,8 +87,15 @@ export class Core {
   }
 
   render(): HTMLElement {
-    if (!isEmpty(this.errorStatusCode)) {
-      return <railz-error-image statusCode={this.errorStatusCode || 500} />;
+    if (this.errorStatusCode !== undefined) {
+      if (this.errorStatusCode === 0) {
+        return null;
+      }
+      return (
+        <div class="rv-container">
+          <railz-error-image statusCode={this.errorStatusCode || 500} />
+        </div>
+      );
     }
 
     const reportType = (this._filter as RVFilterAll)?.reportType;
