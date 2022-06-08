@@ -110,7 +110,7 @@ export class TransactionsControl {
 
   private requestReportData = async (): Promise<void> => {
     this.error = '';
-    this.loading = Translations.LOADING_REPORT;
+    this.loading = Translations.RV_LOADING_REPORT;
     const reportData = (await getTransactionsData({
       filter: this._filter as RVFilterAll,
     })) as RVFormattedTransactionResponse;
@@ -118,10 +118,10 @@ export class TransactionsControl {
       if (reportData?.data) {
         this._dataFormatted = reportData?.data;
       } else if (reportData?.error) {
-        this.error = Translations.ERROR_500_TITLE;
+        this.error = Translations.RV_ERROR_500_TITLE;
         this.errorStatusCode = reportData.error?.statusCode;
       } else {
-        this.error = Translations.ERROR_500_TITLE;
+        this.error = Translations.RV_ERROR_500_TITLE;
         this.errorStatusCode = reportData?.status;
       }
     } catch (error) {

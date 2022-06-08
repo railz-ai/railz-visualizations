@@ -30,7 +30,7 @@ export const getReportData = async ({
       filter: pickedFilter,
     });
   } catch (error) {
-    errorLog(Translations.NOT_ABLE_TO_RETRIEVE_REPORT_DATA, error);
+    errorLog(Translations.RV_NOT_ABLE_TO_RETRIEVE_REPORT_DATA, error);
     reportData = { error };
   }
   return reportData;

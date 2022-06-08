@@ -131,7 +131,7 @@ export class FinancialRatios {
    */
   private requestReportData = async (): Promise<void> => {
     this.error = '';
-    this.loading = Translations.LOADING_REPORT;
+    this.loading = Translations.RV_LOADING_REPORT;
     try {
       const reportData = (await getReportData({
         filter: this._filter as RVFilterAll,
@@ -142,14 +142,14 @@ export class FinancialRatios {
         if (!isEmpty(this._summary)) {
           this.handleSelected(0);
         } else {
-          this.error = Translations.NOT_ABLE_TO_RETRIEVE_REPORT_DATA;
+          this.error = Translations.RV_NOT_ABLE_TO_RETRIEVE_REPORT_DATA;
           this.errorStatusCode = reportData.error?.statusCode;
         }
       } else if (reportData?.error) {
-        this.error = Translations.NOT_ABLE_TO_RETRIEVE_REPORT_DATA;
+        this.error = Translations.RV_NOT_ABLE_TO_RETRIEVE_REPORT_DATA;
         this.errorStatusCode = reportData.error?.statusCode;
       } else {
-        this.error = Translations.ERROR_202_TITLE;
+        this.error = Translations.RV_ERROR_202_TITLE;
         this.errorStatusCode = reportData?.status;
       }
     } catch (error) {

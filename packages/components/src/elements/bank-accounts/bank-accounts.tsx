@@ -121,7 +121,7 @@ export class BanksAccounts {
    */
   private requestReportData = async (): Promise<void> => {
     this.error = '';
-    this.loading = Translations.LOADING_REPORT;
+    this.loading = Translations.RV_LOADING_REPORT;
     try {
       const reportData = (await getReportData({
         filter: this._filter as RVFilterAll,
