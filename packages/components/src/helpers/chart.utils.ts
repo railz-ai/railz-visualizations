@@ -19,11 +19,7 @@ import {
   RVUpdateChartParameter,
 } from '../types';
 
-import {
-  getTitleByReportType,
-  isRequiredAccountingMethod,
-  isRequiredReportFrequency,
-} from './utils';
+import { getTitleByReportType, isRequiredReportFrequency } from './utils';
 import { checkAccessibility } from './accessibility';
 
 /**
