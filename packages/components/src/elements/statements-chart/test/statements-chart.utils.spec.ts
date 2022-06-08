@@ -1,7 +1,6 @@
 import { mockMonth1, mockMonth2 } from '../../../helpers/test/mock-constants';
 import {
   RVAccountingProviders,
-  RVBaseFilterBusinessDateFrequencyType,
   RVChartStatementBaseParameter,
   RVChartStatementParameter,
   RVFilterBalanceSheet,
