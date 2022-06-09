@@ -139,7 +139,7 @@ export class GaugeChart {
    * Updated Highchart params using updateHighchartsParams
    */
   private requestReportData = async (): Promise<void> => {
-    this.loading = Translations.LOADING_REPORT;
+    this.loading = Translations.RV_LOADING_REPORT;
     try {
       const reportData = (await getReportData({
         filter: this._filter as RVFilterAll,
@@ -149,10 +149,10 @@ export class GaugeChart {
         this.lastUpdated = reportData.data.lastUpdated;
         this.updateHighchartsParams(reportData.data);
       } else if (reportData?.error) {
-        errorLog(Translations.NOT_ABLE_TO_RETRIEVE_REPORT_DATA);
+        errorLog(Translations.RV_NOT_ABLE_TO_RETRIEVE_REPORT_DATA);
         this.errorStatusCode = reportData.error?.statusCode;
       } else {
-        errorLog(Translations.ERROR_202_TITLE);
+        errorLog(Translations.RV_ERROR_202_TITLE);
         this.errorStatusCode = reportData?.status;
       }
     } catch (error) {

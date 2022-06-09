@@ -132,7 +132,7 @@ export class FinancialRatios {
    * Request report data based on filter and configuration param
    */
   private requestReportData = async (): Promise<void> => {
-    this.loading = Translations.LOADING_REPORT;
+    this.loading = Translations.RV_LOADING_REPORT;
     try {
       const reportData = (await getReportData({
         filter: this._filter as RVFilterAll,

@@ -116,17 +116,17 @@ export const formatCashflowData = ({
   const categories = formatDate(summary, reportFrequency, quarter, month);
   const financingActivities = formatSeries(
     summary,
-    Translations.FINANCING_ACTIVITIES,
+    Translations.RV_FINANCING_ACTIVITIES,
     'financingActivities',
   );
   const investingActivities = formatSeries(
     summary,
-    Translations.INVESTING_ACTIVITIES,
+    Translations.RV_INVESTING_ACTIVITIES,
     'investingActivities',
   );
   const operatingActivities = formatSeries(
     summary,
-    Translations.OPERATING_ACTIVITIES,
+    Translations.RV_OPERATING_ACTIVITIES,
     'operatingActivities',
   );
   const netCash = {
@@ -140,7 +140,7 @@ export const formatCashflowData = ({
       },
     },
     enableMouseTracking: false,
-    ...formatSeries(summary, Translations.NET_CASH, 'netCash'),
+    ...formatSeries(summary, Translations.RV_NET_CASH, 'netCash'),
   };
 
   const series = [financingActivities, investingActivities, netCash, operatingActivities].filter(
@@ -165,20 +165,20 @@ export const formatBalanceSheetData = ({
   month,
 }: RVChartStatementBaseParameter): RVFormattedStatementData => {
   const categories = formatDate(summary, reportFrequency, quarter, month);
-  const currentAssets = formatSeries(summary, Translations.CURRENT_ASSETS, 'currentAssets');
+  const currentAssets = formatSeries(summary, Translations.RV_CURRENT_ASSETS, 'currentAssets');
   const currentLiabilities = formatSeries(
     summary,
-    Translations.CURRENT_LIABILITIES,
+    Translations.RV_CURRENT_LIABILITIES,
     'currentLiabilities',
   );
   const nonCurrentAssets = formatSeries(
     summary,
-    Translations.NON_CURRENT_ASSETS,
+    Translations.RV_NON_CURRENT_ASSETS,
     'nonCurrentAssets',
   );
   const nonCurrentLiabilities = formatSeries(
     summary,
-    Translations.NON_CURRENT_LIABILITIES,
+    Translations.RV_NON_CURRENT_LIABILITIES,
     'nonCurrentLiabilities',
   );
 
@@ -193,7 +193,7 @@ export const formatBalanceSheetData = ({
       },
     },
     enableMouseTracking: false,
-    ...formatSeries(summary, Translations.EQUITY, 'equity'),
+    ...formatSeries(summary, Translations.RV_EQUITY, 'equity'),
   };
 
   const series = [
@@ -222,15 +222,23 @@ export const formatIncomeStatementData = ({
   month,
 }: RVChartStatementBaseParameter): RVFormattedStatementData => {
   const categories = formatDate(summary, reportFrequency, quarter, month);
-  const costOfGoodsSold = formatSeries(summary, Translations.COST_OF_GOODS_SOLD, 'costOfGoodsSold');
+  const costOfGoodsSold = formatSeries(
+    summary,
+    Translations.RV_COST_OF_GOODS_SOLD,
+    'costOfGoodsSold',
+  );
   const operatingExpenses = formatSeries(
     summary,
-    Translations.OPERATING_EXPENSES,
+    Translations.RV_OPERATING_EXPENSES,
     'operatingExpenses',
   );
-  const operatingIncome = formatSeries(summary, Translations.OPERATING_INCOME, 'operatingIncome');
-  const otherExpenses = formatSeries(summary, Translations.OTHER_EXPENSES, 'otherExpenses');
-  const otherIncome = formatSeries(summary, Translations.OTHER_INCOME, 'otherIncome');
+  const operatingIncome = formatSeries(
+    summary,
+    Translations.RV_OPERATING_INCOME,
+    'operatingIncome',
+  );
+  const otherExpenses = formatSeries(summary, Translations.RV_OTHER_EXPENSES, 'otherExpenses');
+  const otherIncome = formatSeries(summary, Translations.RV_OTHER_INCOME, 'otherIncome');
 
   const netIncome = {
     type: 'spline',
@@ -243,7 +251,7 @@ export const formatIncomeStatementData = ({
       },
     },
     enableMouseTracking: false,
-    ...formatSeries(summary, Translations.NET_INCOME, 'netIncome'),
+    ...formatSeries(summary, Translations.RV_NET_INCOME, 'netIncome'),
   };
 
   const series = [
@@ -312,7 +320,7 @@ export const getReportData = async ({
       filter: allParameters,
     });
   } catch (error) {
-    errorLog(Translations.NOT_ABLE_TO_RETRIEVE_REPORT_DATA, error);
+    errorLog(Translations.RV_NOT_ABLE_TO_RETRIEVE_REPORT_DATA, error);
     reportData = { error };
   }
   return reportData;

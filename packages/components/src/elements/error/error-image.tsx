@@ -42,7 +42,7 @@ export class ErrorImage {
           <div>
             <Error202 fillColor={this.fillColor} width={this.width} height={this.height} />
             <p class="railz-error-title" style={this.textStyle}>
-              {Translations.ERROR_202_TITLE}
+              {Translations.RV_ERROR_202_TITLE}
             </p>
           </div>
         );
@@ -52,7 +52,7 @@ export class ErrorImage {
           <div>
             <Error204 fillColor={this.fillColor} width={this.width} height={this.height} />
             <p class="railz-error-title" style={this.textStyle}>
-              {Translations.ERROR_204_TITLE}
+              {Translations.RV_ERROR_204_TITLE}
             </p>
           </div>
         );
@@ -61,7 +61,7 @@ export class ErrorImage {
           <div>
             <Error500 fillColor={this.fillColor} width={this.width} height={this.height} />
             <p class="railz-error-title" style={this.textStyle}>
-              {Translations.ERROR_500_TITLE}
+              {Translations.RV_ERROR_500_TITLE}
             </p>
           </div>
         );
