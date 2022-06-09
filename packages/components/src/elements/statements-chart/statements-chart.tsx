@@ -153,8 +153,8 @@ export class StatementsChart {
           reportType: this._filter?.reportType as RVFinancialStatementsTypes,
           reportFrequency: this._filter?.reportFrequency,
           chart: this._options?.chart,
-          month: this._options?.content?.date.month,
-          quarter: this._options?.content?.date.quarter,
+          month: this._options?.content?.date?.month,
+          quarter: this._options?.content?.date?.quarter,
         });
         this.updateHighchartsParams();
       } else if (reportData?.error) {
