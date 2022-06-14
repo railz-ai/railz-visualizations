@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.0.4-alpha.8 (2022-06-09)
+
+
+### Bug Fixes
+
+* change font and title colour across widgets ([#80](https://github.com/railz-ai/railz-visualizations/issues/80)) ([4553580](https://github.com/railz-ai/railz-visualizations/commit/455358004c0b935887dd0304fb5d78c5f41cb1fe))
+
+
+
+
+
 ## 0.0.4-alpha.7 (2022-06-08)
 
 **Note:** Version bump only for package @railzai/railz-visualizations-react
