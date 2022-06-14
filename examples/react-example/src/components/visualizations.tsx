@@ -185,11 +185,7 @@ const Components = ({ configuration, filter, options, showCode }: ChartProps) =>
           />
         </div>
       )}
-      {[
-        RVReportTypes.BALANCE_SHEET,
-        RVReportTypes.CASHFLOW_STATEMENTS,
-        RVReportTypes.INCOME_STATEMENTS,
-      ].includes(filter.reportType) && (
+      {filter.reportType === RVReportTypes.BALANCE_SHEET && (
         <div>
           <h4 className="text-xl font-bold text-gray-900">
             Using Railz Statements Chart Component
@@ -212,7 +208,7 @@ const Components = ({ configuration, filter, options, showCode }: ChartProps) =>
           />
         </div>
       )}
-      {[RVReportTypes.BILLS, RVReportTypes.INVOICES].includes(filter.reportType) && (
+      {filter.reportType === RVReportTypes.BILLS && (
         <div>
           <h4 className="text-xl font-bold text-gray-900">
             Using Railz Transactions Control Component

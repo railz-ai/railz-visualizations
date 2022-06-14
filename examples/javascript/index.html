@@ -10,11 +10,11 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script
       type="module"
-      src="https://cdn.jsdelivr.net/npm/@railzai/railz-visualizations@0.0.4-alpha.1/dist/railzvisualizations/railzvisualizations.esm.js"
+      src="https://cdn.jsdelivr.net/npm/@railzai/railz-visualizations@0.0.4-alpha.8/dist/railzvisualizations/railzvisualizations.esm.js"
     ></script>
     <script
       nomodule
-      src="https://cdn.jsdelivr.net/npm/@railzai/railz-visualizations@0.0.4-alpha.1/dist/railzvisualizations/railzvisualizations.js"
+      src="https://cdn.jsdelivr.net/npm/@railzai/railz-visualizations@0.0.4-alpha.8/dist/railzvisualizations/railzvisualizations.js"
     ></script>
   </head>
 
@@ -303,7 +303,7 @@
         const serviceName = formData.get('service-name');
         const reportType = formData.get('report-type');
 
-        rv.filter = {
+        const filter = {
           businessName,
           startDate,
           endDate,
@@ -311,21 +311,19 @@
           serviceName,
           reportType,
         };
+        rv.filter = filter;
         document.getElementById('chart-content').replaceChildren(rv);
 
         const sourceCode = `
-let rv = document
-          .createElement('railz-visualizations');
-rv.configuration = configuration;
-rv.filter = {
-  businessName: '${businessName}',
-  startDate: '${startDate}',
-  endDate: '${endDate}',
-  reportFrequency: '${reportFrequency}',
-  serviceName: '${serviceName}',
-  reportType: '${reportType}',
-};
-`;
+<railz-visualizations
+  configuration="${JSON.stringify(
+    { token: configuration.token.slice(0, 20) + '...', debug: configuration.debug },
+    null,
+    4,
+  )}"
+  filter="${JSON.stringify(filter, null, 4)}">
+</railz-visualizations>`;
+
         document.getElementById('code').textContent = sourceCode;
       });
     </script>

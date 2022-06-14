@@ -234,7 +234,6 @@ describe('Chart Utils Helper', () => {
           businessName: 'QBOmanyAttachments',
           serviceName: RVAccountingProviders.QUICKBOOKS,
           reportType: RVReportTypes.BALANCE_SHEET,
-          // accountingMethod: RVAccountingMethod.ACCRUALS,
         };
         expect(validateBusinessServiceNameParams(filter as RVFilterAll)).toEqual(true);
       });
