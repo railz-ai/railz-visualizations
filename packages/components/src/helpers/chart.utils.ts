@@ -44,6 +44,7 @@ export const getConfiguration = (configuration: RVConfiguration | string): RVCon
       errorLog(Translations.RV_ERROR_PARSING_CONFIGURATION, error);
     }
   } else {
+    console.log('configuration', configuration);
     console.error(Translations.RV_CONFIGURATION_NOT_PRESENT);
   }
   return formattedConfiguration;
