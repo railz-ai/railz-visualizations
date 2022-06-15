@@ -35,6 +35,7 @@ graph TD;
   railz-visualizations --> railz-transactions-control
   railz-bank-accounts --> railz-error-image
   railz-bank-accounts --> railz-loading
+  railz-bank-accounts --> railz-tooltip
   railz-financial-ratios --> railz-error-image
   railz-financial-ratios --> railz-loading
   railz-financial-ratios --> railz-tooltip
@@ -49,9 +50,11 @@ graph TD;
   railz-pie-chart --> railz-tooltip
   railz-statements-chart --> railz-error-image
   railz-statements-chart --> railz-loading
+  railz-statements-chart --> railz-tooltip
   railz-transactions-control --> railz-error-image
   railz-transactions-control --> railz-loading
   railz-transactions-control --> railz-progress-bar
+  railz-transactions-control --> railz-tooltip
   style railz-visualizations fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

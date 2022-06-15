@@ -7,6 +7,8 @@ export const INITIAL_OPTIONS: RVOptions = {
       backgroundColor: 'black',
       borderRadius: '0',
     },
+    tooltip: true,
+    date: true,
   },
   title: {
     style: {
@@ -19,11 +21,9 @@ export const INITIAL_OPTIONS: RVOptions = {
     fontFamily: 'Inter',
     backgroundColor: 'black',
     label: {
-      style: {
-        fontFamily: 'Inter',
-        fontSize: '12px',
-        color: '#ffffff',
-      },
+      fontFamily: 'Inter',
+      fontSize: '18px',
+      color: '#ffffff',
     },
     legend: {
       itemStyle: {
@@ -62,15 +62,35 @@ export const INITIAL_OPTIONS: RVOptions = {
     },
   },
   loadingIndicator: {
-    fillColor: '#2E6521FF',
+    fillColor: '#4DAE37',
     textStyle: {
-      color: '#2E6521FF',
+      color: '#4DAE37',
+      fontWeight: 'bold',
     },
   },
   errorIndicator: {
-    fillColor: '#ff4545',
+    fillColor: '#FF7575',
     textStyle: {
-      color: '#ff4545',
+      color: '#ffffff',
+      fontWeight: 'bold',
+    },
+  },
+  content: {
+    title: 'title',
+    date: {
+      quarter: 'QUARTER_',
+      month: {
+        format: 'MMMM yy',
+        locale: 'ptBR',
+      },
+    },
+    label: {
+      date: 'As of today release:',
+      grossBurnRate: 'Taxa de queima bruta',
+    },
+    tooltip: {
+      description: 'Tooltip Customized',
+      grossBurnRate: 'Tooltip => Taxa de queima bruta',
     },
   },
 };

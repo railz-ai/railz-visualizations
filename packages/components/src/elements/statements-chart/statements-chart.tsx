@@ -4,7 +4,6 @@ import Highcharts from 'highcharts';
 import indicators from 'highcharts/indicators/indicators';
 import trendline from 'highcharts/indicators/trendline';
 import highchartsAccessibility from 'highcharts/modules/accessibility';
-
 import { isEmpty, isEqual } from 'lodash-es';
 
 import Translations from '../../config/translations/en.json';
@@ -23,6 +22,7 @@ import {
   getFilter,
   getHighchartsParams,
   getOptions,
+  validateRequiredParams,
 } from '../../helpers/chart.utils';
 import { ConfigurationInstance } from '../../services/configuration';
 import { isStatements } from '../../helpers/utils';
@@ -50,14 +50,13 @@ export class StatementsChart {
   /**
    * For whitelabeling styling
    */
-  @Prop() readonly options: RVOptions;
+  @Prop() readonly options?: RVOptions;
 
   @State() private loading = '';
   @State() private _configuration: RVConfiguration;
   @State() private _filter: RVFilterStatements;
   @State() private _options: RVOptions;
   @State() private _dataFormatted: RVFormattedStatementData;
-  @State() private error: string;
   @State() private errorStatusCode: number;
 
   @State() private chartOptions: any;
@@ -68,11 +67,14 @@ export class StatementsChart {
    * Validates if configuration was passed correctly before setting filter
    * @param configuration - Config for authentication
    * @param filter - filter to decide chart type to show
+   * @param options: Whitelabeling options
+   * @param content - content to text that should display
    * @param triggerRequest - indicate if api request should be made
    */
   private validateParams = async (
     configuration: RVConfiguration,
     filter: RVFilterStatements,
+    options: RVOptions,
     triggerRequest = true,
   ): Promise<void> => {
     this._configuration = getConfiguration(configuration);
@@ -80,9 +82,9 @@ export class StatementsChart {
       ConfigurationInstance.configuration = this._configuration;
       try {
         this._filter = getFilter(filter as RVFilterAll) as RVFilterStatements;
-        if (this._filter) {
+        this._options = getOptions(options, this._filter as RVFilterAll);
+        if (validateRequiredParams(this._filter as RVFilterAll)) {
           if (isStatements(this._filter.reportType)) {
-            this._options = getOptions(this.options, this._filter as RVFilterAll);
             if (triggerRequest) {
               await this.requestReportData();
             }
@@ -95,12 +97,10 @@ export class StatementsChart {
         }
       } catch (e) {
         this.errorStatusCode = 500;
-        this.error = e;
         errorLog(e);
       }
     } else {
       this.errorStatusCode = 0;
-      this.error = Translations.RV_CONFIGURATION_NOT_PRESENT;
     }
   };
 
@@ -114,19 +114,26 @@ export class StatementsChart {
   @Watch('filter')
   async watchFilter(newValue: RVFilterStatements, oldValue: RVFilterStatements): Promise<void> {
     if (newValue && oldValue && !isEqual(oldValue, newValue)) {
-      await this.validateParams(this.configuration, newValue);
+      await this.validateParams(this.configuration, newValue, this.options);
     }
   }
 
   @Watch('configuration')
   async watchConfiguration(newValue: RVConfiguration, oldValue: RVConfiguration): Promise<void> {
     if (newValue && oldValue && !isEqual(oldValue, newValue)) {
-      await this.validateParams(newValue, this.filter);
+      await this.validateParams(newValue, this.filter, this.options);
+    }
+  }
+
+  @Watch('options')
+  async watchOptions(newValue: RVOptions, oldValue: RVOptions): Promise<void> {
+    if (newValue && oldValue && !isEqual(oldValue, newValue)) {
+      await this.validateParams(this.configuration, this.filter, newValue);
     }
   }
 
   private propsUpdated = async (triggerRequest = true): Promise<void> => {
-    await this.validateParams(this.configuration, this.filter, triggerRequest);
+    await this.validateParams(this.configuration, this.filter, this.options, triggerRequest);
   };
 
   /**
@@ -135,7 +142,6 @@ export class StatementsChart {
    * Updated Highchart params using updateHighchartsParams
    */
   private requestReportData = async (): Promise<void> => {
-    this.error = '';
     this.loading = Translations.RV_LOADING_REPORT;
     try {
       const reportData = (await getReportData({
@@ -147,13 +153,13 @@ export class StatementsChart {
           reportType: this._filter?.reportType as RVFinancialStatementsTypes,
           reportFrequency: this._filter?.reportFrequency,
           chart: this._options?.chart,
+          month: this._options?.content?.date?.month,
+          quarter: this._options?.content?.date?.quarter,
         });
         this.updateHighchartsParams();
       } else if (reportData?.error) {
-        this.error = Translations.RV_NOT_ABLE_TO_RETRIEVE_REPORT_DATA;
         this.errorStatusCode = reportData.error?.statusCode;
       } else {
-        this.error = Translations.RV_ERROR_202_TITLE;
         this.errorStatusCode = reportData?.status;
       }
     } catch (error) {
@@ -174,7 +180,6 @@ export class StatementsChart {
       options: this._options,
     });
     if (options) {
-      this.error = '';
       this.loading = '';
       this.chartOptions = options;
     }
@@ -185,7 +190,7 @@ export class StatementsChart {
   }
 
   private renderMain = (): HTMLElement => {
-    if (!isEmpty(this.error) || this.errorStatusCode !== undefined) {
+    if (this.errorStatusCode !== undefined) {
       return (
         <railz-error-image
           statusCode={this.errorStatusCode || 500}
@@ -201,6 +206,7 @@ export class StatementsChart {
         class="railz-statement-chart-container"
         id="railz-chart"
         ref={(el): HTMLDivElement => (this.containerRef = el)}
+        style={{ width: this._options?.chart?.width, height: this._options?.chart?.height }}
       />
     );
   };
@@ -210,13 +216,30 @@ export class StatementsChart {
       return null;
     }
 
+    const TitleElement = (): HTMLElement => (
+      <p class="rv-title" style={this._options?.title?.style}>
+        {this._options?.title?.text || ''}{' '}
+        {this._options?.container?.tooltip || this._options?.content?.tooltip?.description ? (
+          <div
+            style={{
+              marginTop: '1px ',
+              marginLeft: '3px ',
+            }}
+          >
+            <railz-tooltip
+              tooltipStyle={{ position: 'bottom-center' }}
+              tooltipText={this._options?.content?.tooltip?.description}
+            />
+          </div>
+        ) : null}
+      </p>
+    );
+
     return (
       <div class="rv-container" style={this._options?.container?.style}>
-        {this._options?.title ? (
-          <p class="rv-title" style={this._options?.title?.style}>
-            {this._options?.title?.text || ''}
-          </p>
-        ) : null}
+        <div class="rv-header-container">
+          <TitleElement />
+        </div>
         {this.renderMain()}
       </div>
     );

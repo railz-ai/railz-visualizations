@@ -4,7 +4,12 @@
 import { Component, h, Prop, State, Watch } from '@stencil/core';
 import { isEmpty, isEqual } from 'lodash-es';
 
-import { getConfiguration, getOptions, getFilter } from '../../helpers/chart.utils';
+import {
+  getConfiguration,
+  getOptions,
+  getFilter,
+  validateRequiredParams,
+} from '../../helpers/chart.utils';
 import { ConfigurationInstance } from '../../services/configuration';
 import Translations from '../../config/translations/en.json';
 import {
@@ -47,7 +52,6 @@ export class FinancialRatios {
   @State() private _options: RVOptions;
   @State() private _summary: RVFinancialRatioSummary;
   @State() private _selected: RVFinancialRatioItem;
-  @State() private error: string;
   @State() private errorStatusCode: number;
 
   /**
@@ -70,9 +74,9 @@ export class FinancialRatios {
       ConfigurationInstance.configuration = this._configuration;
       try {
         this._filter = getFilter(filter as RVFilterAll) as RVFilterFinancialRatio;
-        if (this._filter) {
+        this._options = getOptions(options, filter as RVFilterAll);
+        if (validateRequiredParams(this._filter as RVFilterAll)) {
           if (isFinancialRatios(this._filter.reportType)) {
-            this._options = getOptions(options, filter as RVFilterAll);
             if (triggerRequest) {
               await this.requestReportData();
             }
@@ -85,12 +89,10 @@ export class FinancialRatios {
         }
       } catch (e) {
         this.errorStatusCode = 500;
-        this.error = e;
         errorLog(e);
       }
     } else {
       this.errorStatusCode = 0;
-      this.error = Translations.RV_CONFIGURATION_NOT_PRESENT;
     }
   };
 
@@ -132,7 +134,6 @@ export class FinancialRatios {
    * Request report data based on filter and configuration param
    */
   private requestReportData = async (): Promise<void> => {
-    this.error = '';
     this.loading = Translations.RV_LOADING_REPORT;
     try {
       const reportData = (await getReportData({
@@ -144,14 +145,11 @@ export class FinancialRatios {
         if (!isEmpty(this._summary)) {
           this.handleSelected(0);
         } else {
-          this.error = Translations.RV_NOT_ABLE_TO_RETRIEVE_REPORT_DATA;
           this.errorStatusCode = reportData.error?.statusCode;
         }
       } else if (reportData?.error) {
-        this.error = Translations.RV_NOT_ABLE_TO_RETRIEVE_REPORT_DATA;
         this.errorStatusCode = reportData.error?.statusCode;
       } else {
-        this.error = Translations.RV_ERROR_202_TITLE;
         this.errorStatusCode = reportData?.status;
       }
     } catch (error) {
@@ -166,7 +164,7 @@ export class FinancialRatios {
   }
 
   private renderMain = (): HTMLElement => {
-    if (!isEmpty(this.error) || this.errorStatusCode !== undefined) {
+    if (this.errorStatusCode !== undefined) {
       return (
         <railz-error-image
           statusCode={this.errorStatusCode || 500}
@@ -183,11 +181,16 @@ export class FinancialRatios {
         const financialRatioKey = Object.keys(FinancialRatio).find(
           (ratio: string): boolean => FinancialRatio[ratio] === key,
         );
-        return (
-          (tooltip
-            ? Translations['RV_FINANCIAL_RATIO_TOOLTIP_' + financialRatioKey]
-            : Translations['RV_FINANCIAL_RATIO_' + financialRatioKey]) || ''
-        );
+        const financialRatio = FinancialRatio[financialRatioKey];
+        const contentTranslation = this._options?.content?.label?.[financialRatio];
+        const contentTooltipTranslation = this._options?.content?.tooltip?.[financialRatio];
+
+        if (tooltip) {
+          if (contentTooltipTranslation) return contentTooltipTranslation;
+          return Translations['RV_FINANCIAL_RATIO_TOOLTIP_' + financialRatioKey];
+        }
+        if (contentTranslation) return contentTranslation;
+        return Translations['RV_FINANCIAL_RATIO_' + financialRatioKey] || '';
       };
       const item: RVFinancialRatioItem = this._selected[key];
       const tooltipText = translation(key, true);
@@ -198,10 +201,12 @@ export class FinancialRatios {
             <div class="rv-ratio-name">
               {!isEmpty(tooltipText) && (
                 <div class="rv-ratio-tooltip">
-                  <railz-tooltip
-                    tooltipText={tooltipText}
-                    tooltipStyle={{ position: 'bottom-right' }}
-                  />
+                  {this._options?.container?.tooltip ? (
+                    <railz-tooltip
+                      tooltipText={tooltipText}
+                      tooltipStyle={{ position: 'bottom-right' }}
+                    />
+                  ) : null}
                 </div>
               )}
               <div class="rv-ratio-name-text">{translation(key)}</div>
@@ -241,7 +246,20 @@ export class FinancialRatios {
 
     const TitleElement = (): HTMLElement => (
       <p class="rv-title" style={this._options?.title?.style}>
-        {(this._options?.title && this._options?.title?.text) || ''}
+        {this._options?.title?.text || ''}{' '}
+        {this._options?.container?.tooltip || this._options?.content?.tooltip?.description ? (
+          <div
+            style={{
+              marginTop: '1px ',
+              marginLeft: '3px ',
+            }}
+          >
+            <railz-tooltip
+              tooltipStyle={{ position: 'bottom-center' }}
+              tooltipText={this._options?.content?.tooltip?.description}
+            />
+          </div>
+        ) : null}
       </p>
     );
 

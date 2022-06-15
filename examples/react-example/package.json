@@ -13,7 +13,7 @@
   "dependencies": {
     "@headlessui/react": "~1.4.3",
     "@heroicons/react": "~1.0.5",
-    "@railzai/railz-visualizations-react": "0.0.1",
+    "@railzai/railz-visualizations-react": "latest",
     "@tailwindcss/forms": "~0.4.0",
     "@testing-library/jest-dom": "~5.16.2",
     "@testing-library/react": "~12.1.2",

@@ -9,7 +9,6 @@
 | `fillColor`  | `fill-color`  | Fill color of the svg image representing a status code | `string`                  | `'#949494'` |
 | `height`     | `height`      | Height of the SVG Error Indicator                      | `string`                  | `undefined` |
 | `statusCode` | `status-code` | Status code based on HTTP Response codes               | `number`                  | `undefined` |
-| `text`       | `text`        | Text to display at the bottom of the svg image         | `string`                  | `undefined` |
 | `textStyle`  | --            | Color of the image text                                | `{ [key: string]: any; }` | `undefined` |
 | `width`      | `width`       | Width of the SVG Error Indicator                       | `string`                  | `undefined` |
 

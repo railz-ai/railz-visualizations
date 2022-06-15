@@ -5,7 +5,12 @@ import { isEmpty, isEqual } from 'lodash-es';
 import Translations from '../../config/translations/en.json';
 import { errorLog } from '../../services/logger';
 import { ConfigurationInstance } from '../../services/configuration';
-import { getOptions, getConfiguration, getFilter } from '../../helpers/chart.utils';
+import {
+  getOptions,
+  getConfiguration,
+  getFilter,
+  validateRequiredParams,
+} from '../../helpers/chart.utils';
 import {
   RVBankAccounts,
   RVConfiguration,
@@ -42,7 +47,6 @@ export class BanksAccounts {
   @State() private _filter: RVFilterBankAccount;
   @State() private _options: RVOptions;
   @State() private _summary: RVBankAccounts[];
-  @State() private error: string;
   @State() private errorStatusCode: number;
 
   @Watch('configuration')
@@ -92,9 +96,9 @@ export class BanksAccounts {
       ConfigurationInstance.configuration = this._configuration;
       try {
         this._filter = getFilter(filter as RVFilterAll) as RVFilterBankAccount;
-        if (this._filter) {
+        this._options = getOptions(options, filter as RVFilterAll);
+        if (validateRequiredParams(this._filter as RVFilterAll)) {
           if (isBankAccounts(this._filter.reportType)) {
-            this._options = getOptions(options, filter as RVFilterAll);
             if (triggerRequest) {
               await this.requestReportData();
             }
@@ -107,12 +111,10 @@ export class BanksAccounts {
         }
       } catch (e) {
         this.errorStatusCode = 500;
-        this.error = e;
         errorLog(e);
       }
     } else {
       this.errorStatusCode = 0;
-      this.error = Translations.RV_CONFIGURATION_NOT_PRESENT;
     }
   };
 
@@ -120,7 +122,6 @@ export class BanksAccounts {
    * Request report data based on filter and configuration param
    */
   private requestReportData = async (): Promise<void> => {
-    this.error = '';
     this.loading = Translations.RV_LOADING_REPORT;
     try {
       const reportData = (await getReportData({
@@ -151,7 +152,7 @@ export class BanksAccounts {
   }
 
   private renderMain = (): HTMLElement => {
-    if (!isEmpty(this.error) || this.errorStatusCode !== undefined) {
+    if (this.errorStatusCode !== undefined) {
       return (
         <railz-error-image
           statusCode={this.errorStatusCode || 500}
@@ -198,7 +199,20 @@ export class BanksAccounts {
 
     const TitleElement = (): HTMLElement => (
       <p class="rv-title" style={this._options?.title?.style}>
-        {(this._options?.title && this._options?.title?.text) || ''}
+        {this._options?.title?.text || ''}{' '}
+        {this._options?.container?.tooltip || this._options?.content?.tooltip?.description ? (
+          <div
+            style={{
+              marginTop: '1px ',
+              marginLeft: '3px ',
+            }}
+          >
+            <railz-tooltip
+              tooltipStyle={{ position: 'bottom-center' }}
+              tooltipText={this._options?.content?.tooltip?.description}
+            />
+          </div>
+        ) : null}
       </p>
     );
 

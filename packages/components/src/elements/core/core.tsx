@@ -68,17 +68,17 @@ export class Core {
     }
   };
 
-  @Watch('configuration')
-  watchConfiguration(newValue: RVConfiguration, oldValue: RVConfiguration): void {
-    if (newValue && oldValue && !isEqual(oldValue, newValue)) {
-      this.validateParams(newValue, this.filter);
-    }
-  }
-
   @Watch('filter')
   watchFilter(newValue: RVFilterAllReportTypes, oldValue: RVFilterAllReportTypes): void {
     if (newValue && oldValue && !isEqual(oldValue, newValue)) {
       this.validateParams(this.configuration, newValue);
+    }
+  }
+
+  @Watch('configuration')
+  watchConfiguration(newValue: RVConfiguration, oldValue: RVConfiguration): void {
+    if (newValue && oldValue && !isEqual(oldValue, newValue)) {
+      this.validateParams(newValue, this.filter);
     }
   }
 
@@ -87,10 +87,11 @@ export class Core {
   }
 
   render(): HTMLElement {
+    if (this.errorStatusCode === 0) {
+      return null;
+    }
+
     if (this.errorStatusCode !== undefined) {
-      if (this.errorStatusCode === 0) {
-        return null;
-      }
       return (
         <div class="rv-container">
           <railz-error-image statusCode={this.errorStatusCode || 500} />

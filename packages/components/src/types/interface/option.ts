@@ -1,8 +1,18 @@
+import { RVContent } from './content';
+
 export interface RVOptionsContainer {
   /**
    * style: CSS object based on HTML stylings for the container
    */
   style?: { [key: string]: any };
+  /**
+   * To determine whether to show the tooltip for the container
+   */
+  tooltip?: boolean;
+  /**
+   * To determine whether to show the date for the container
+   */
+  date?: boolean;
 }
 
 export interface RVOptionsTitle {
@@ -10,6 +20,10 @@ export interface RVOptionsTitle {
    * style: CSS object based on HTML stylings for the container title
    */
   style?: { [key: string]: any };
+
+  /**
+   * text: The text that should be on the title
+   */
   text?: string;
 }
 
@@ -187,4 +201,8 @@ export interface RVOptions {
    * errorIndicator: Object to cover basic styling of the error indicator
    */
   errorIndicator?: RVErrorIndicatorStyle;
+  /**
+   * content: Content information that change text for i18n
+   */
+  content?: RVContent;
 }

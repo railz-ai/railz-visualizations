@@ -66,8 +66,8 @@ export const getOptionsBarChart = ({
     labels: {
       style: {
         color: '#55565B',
+        ...chart?.label,
       },
-      ...chart?.label,
     },
   },
   yAxis: {
@@ -77,8 +77,8 @@ export const getOptionsBarChart = ({
     labels: {
       style: {
         color: '#55565B',
+        ...chart?.label,
       },
-      ...chart?.label,
     },
   },
   credits: {
@@ -110,8 +110,10 @@ export const formatCashflowData = ({
   summary,
   reportFrequency,
   chart,
+  quarter,
+  month,
 }: RVChartStatementBaseParameter): RVFormattedStatementData => {
-  const categories = formatDate(summary, reportFrequency);
+  const categories = formatDate(summary, reportFrequency, quarter, month);
   const financingActivities = formatSeries(
     summary,
     Translations.RV_FINANCING_ACTIVITIES,
@@ -159,8 +161,10 @@ export const formatBalanceSheetData = ({
   summary,
   reportFrequency,
   chart,
+  quarter,
+  month,
 }: RVChartStatementBaseParameter): RVFormattedStatementData => {
-  const categories = formatDate(summary, reportFrequency);
+  const categories = formatDate(summary, reportFrequency, quarter, month);
   const currentAssets = formatSeries(summary, Translations.RV_CURRENT_ASSETS, 'currentAssets');
   const currentLiabilities = formatSeries(
     summary,
@@ -214,8 +218,10 @@ export const formatIncomeStatementData = ({
   summary,
   reportFrequency,
   chart,
+  quarter,
+  month,
 }: RVChartStatementBaseParameter): RVFormattedStatementData => {
-  const categories = formatDate(summary, reportFrequency);
+  const categories = formatDate(summary, reportFrequency, quarter, month);
   const costOfGoodsSold = formatSeries(
     summary,
     Translations.RV_COST_OF_GOODS_SOLD,

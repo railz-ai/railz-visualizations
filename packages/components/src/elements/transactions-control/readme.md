@@ -21,6 +21,7 @@
 - [railz-error-image](../error)
 - [railz-loading](../loading)
 - [railz-progress-bar](../progress-bar)
+- [railz-tooltip](../tooltip)
 
 ### Graph
 
@@ -29,6 +30,7 @@ graph TD;
   railz-transactions-control --> railz-error-image
   railz-transactions-control --> railz-loading
   railz-transactions-control --> railz-progress-bar
+  railz-transactions-control --> railz-tooltip
   railz-visualizations --> railz-transactions-control
   style railz-transactions-control fill:#f9f,stroke:#333,stroke-width:4px
 ```

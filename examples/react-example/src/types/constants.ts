@@ -7,6 +7,8 @@ export const INITIAL_OPTIONS: RVOptions = {
       backgroundColor: 'black',
       borderRadius: '0',
     },
+    tooltip: true,
+    date: true,
   },
   title: {
     style: {
@@ -19,11 +21,9 @@ export const INITIAL_OPTIONS: RVOptions = {
     fontFamily: 'Inter',
     backgroundColor: 'black',
     label: {
-      style: {
-        fontFamily: 'Inter',
-        fontSize: '12px',
-        color: '#ffffff',
-      },
+      fontFamily: 'Inter',
+      fontSize: '18px',
+      color: '#ffffff',
     },
     legend: {
       itemStyle: {
@@ -73,6 +73,24 @@ export const INITIAL_OPTIONS: RVOptions = {
     textStyle: {
       color: '#ffffff',
       fontWeight: 'bold',
+    },
+  },
+  content: {
+    title: 'title',
+    date: {
+      quarter: 'QUARTER_',
+      month: {
+        format: 'MMMM yy',
+        locale: 'ptBR',
+      },
+    },
+    label: {
+      date: 'As of today release:',
+      grossBurnRate: 'Taxa de queima bruta',
+    },
+    tooltip: {
+      description: 'Tooltip Customized',
+      grossBurnRate: 'Tooltip => Taxa de queima bruta',
     },
   },
 };
