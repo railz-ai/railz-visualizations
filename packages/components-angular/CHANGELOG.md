@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.0.4 (2022-06-15)
+
+
+### Features
+
+* unsupported frameworks ([#67](https://github.com/railz-ai/railz-visualizations/issues/67)) ([383b1e6](https://github.com/railz-ai/railz-visualizations/commit/383b1e6569034fb2aab23a2302cbcaa8d98f06dc))
+
+
+
+
+
 ## 0.0.4-alpha.8 (2022-06-09)
 
 
