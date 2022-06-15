@@ -6,6 +6,7 @@ export interface RVConfiguration {
 
   /**
    * endpoint:
+   * @internal
    */
   endpoint?: string;
 
