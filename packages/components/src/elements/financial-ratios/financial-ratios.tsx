@@ -67,9 +67,7 @@ export class FinancialRatios {
     options: RVOptions,
     triggerRequest = true,
   ): Promise<void> => {
-    console.log('validateParams configuration', configuration);
     this._configuration = getConfiguration(configuration);
-    console.log('validateParams this._configuration', this._configuration);
     if (this._configuration) {
       ConfigurationInstance.configuration = this._configuration;
       try {
@@ -139,6 +137,7 @@ export class FinancialRatios {
       const reportData = (await getReportData({
         filter: this._filter as RVFilterAll,
       })) as RVFormattedFinancialRatioResponse;
+      console.log('requestReportData reportData', reportData);
 
       if (reportData?.data) {
         this._summary = reportData?.data as RVFinancialRatioSummary;
