@@ -16,7 +16,6 @@ on:
         default: 'ci:publish:prerelease'
         options:
           - ci:publish:prerelease
-          - ci:publish:prepatch
           - ci:publish:patch
           - ci:publish:minor
           - ci:publish:major
@@ -68,5 +67,5 @@ jobs:
           if [ "${{ github.event.inputs.yarnCommand }}" != ''  ]; then
             yarn run "${{ github.event.inputs.yarnCommand }}"
           else
-            yarn run ci:publish:prerelease
+            yarn run ci:publish:patch
           fi
