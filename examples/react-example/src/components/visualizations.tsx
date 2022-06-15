@@ -145,7 +145,7 @@ const Components = ({ configuration, filter, options, showCode }: ChartProps) =>
             />
           </div>
         ))}
-      {filter.reportType === RVReportTypes.RAILZ_SCORE && (
+      {[RVReportTypes.RAILZ_SCORE].includes(filter.reportType) && (
         <div>
           <h4 className="text-xl font-bold text-gray-900">Using Railz Gauge Chart Component</h4>
           <p>
@@ -230,7 +230,7 @@ const Components = ({ configuration, filter, options, showCode }: ChartProps) =>
           />
         </div>
       )}
-      {filter.reportType === RVReportTypes.FINANCIAL_RATIO && (
+      {[RVReportTypes.FINANCIAL_RATIO].includes(filter.reportType) && (
         <div>
           <h4 className="text-xl font-bold text-gray-900">Using Railz FinancialRatios Component</h4>
           <p>
@@ -274,7 +274,10 @@ const Components = ({ configuration, filter, options, showCode }: ChartProps) =>
         RVReportTypes.RAILZ_SCORE,
         RVReportTypes.EXPENSES,
         RVReportTypes.BALANCE_SHEET,
+        RVReportTypes.CASHFLOW_STATEMENTS,
+        RVReportTypes.INCOME_STATEMENTS,
         RVReportTypes.BILLS,
+        RVReportTypes.INVOICES,
         RVReportTypes.FINANCIAL_RATIO,
         RVReportTypes.BANK_ACCOUNT,
         'all',

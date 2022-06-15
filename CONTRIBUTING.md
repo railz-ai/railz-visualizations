@@ -1,6 +1,6 @@
 # Contributing
 
-The Railz Visualization library and documentation are open to contributions. See our [Guidelines](./GUIDELINES.md) for more details.
+The Railz Visualization library and documentation are open to contributions.
 
 You can watch the series below on how to get started with contributing to open source projects.
 [How to Contribute to an Open Source Project on GitHub](https://egghead.io/courses/how-to-contribute-to-an-open-source-project-on-github)
@@ -46,18 +46,8 @@ Your commits should also be linked to an issue to allow us track progress of iss
 
 ### Pull requests
 
-We have [Semantic Pull Request](https://github.com/probot/semantic-pull-requests) application installed on GitHub to ensure your commits follow the semantic [syntax](https://www.conventionalcommits.org/en/v1.0.0/#commit-message-with-description-and-breaking-change-footer).
+We have [Semantic Pull Request](https://github.com/marketplace/semantic-prs) application installed on GitHub to ensure your commits follow the semantic [syntax](https://www.conventionalcommits.org/en/v1.0.0/#commit-message-with-description-and-breaking-change-footer).
 This makes it easy to manage our changelog during a release.
-
-##### How it works
-
-Your commit message needs to have a semantic message.
-
-| Scenario                       | Status | Message                               |
-| ------------------------------ | ------ | ------------------------------------- |
-| PR title is semantic           | 💚     | **ready to be squashed**              |
-| One or more commit is semantic | 💚     | **ready to be merged or rebased**     |
-| Nothing is semantic            | 💛     | **add a semantic commit or PR title** |
 
 #### How to write your commits
 
