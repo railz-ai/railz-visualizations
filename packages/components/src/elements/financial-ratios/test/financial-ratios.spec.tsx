@@ -23,16 +23,14 @@ describe('railz-financial-ratios', () => {
     `);
   });
 
-  it('renders without no data', async () => {
+  it('renders without data', async () => {
     const page = await newSpecPage({
       components: [FinancialRatios],
       template: () => (
         <railz-financial-ratios
           configuration={{
-            token:
-              'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjdXN0b21lcklkIjoxMCwiY3VzdG9tZXJTZWNyZXRJZGVudGlmaWVyIjoiSURfUUEyX0ZCNDgyQzFFQjZDQjQ3NzBCRDdGNjU2RTNFOTYwRjYwIiwic2FuZGJveCI6ZmFsc2UsIm5hbWUiOiJhY2Nlc3MiLCJiZXRhIjp0cnVlLCJpYXQiOjE2NTUzMTgxMDgsImV4cCI6MTY1NTMyMTcwOCwiYXVkIjoiYXBpIn0.QoiX6X-WmMfvu_azJnBLkS9OpXQ6r2NGdEZFEwRyOn0',
+            token: 'eyJhbG',
             debug: true,
-            endpoint: 'https://api.qa2.railz.ai',
           }}
           filter={{
             startDate: '2021-05-01',
@@ -61,7 +59,7 @@ describe('railz-financial-ratios', () => {
     `);
   });
 
-  it('renders without props', async () => {
+  it('renders with data', async () => {
     jest
       .spyOn(FinancialRatiosUtils, 'getReportData')
       .mockImplementation(() => Promise.resolve(FinancialRatioData));
@@ -71,10 +69,8 @@ describe('railz-financial-ratios', () => {
       template: () => (
         <railz-financial-ratios
           configuration={{
-            token:
-              'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjdXN0b21lcklkIjoxMCwiY3VzdG9tZXJTZWNyZXRJZGVudGlmaWVyIjoiSURfUUEyX0ZCNDgyQzFFQjZDQjQ3NzBCRDdGNjU2RTNFOTYwRjYwIiwic2FuZGJveCI6ZmFsc2UsIm5hbWUiOiJhY2Nlc3MiLCJiZXRhIjp0cnVlLCJpYXQiOjE2NTUzMTgxMDgsImV4cCI6MTY1NTMyMTcwOCwiYXVkIjoiYXBpIn0.QoiX6X-WmMfvu_azJnBLkS9OpXQ6r2NGdEZFEwRyOn0',
+            token: 'eyJhbG',
             debug: true,
-            endpoint: 'https://api.qa2.railz.ai',
           }}
           filter={{
             startDate: '2021-05-01',
