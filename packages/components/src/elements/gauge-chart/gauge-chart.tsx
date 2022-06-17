@@ -7,10 +7,16 @@ import highchartsMore from 'highcharts/highcharts-more.js';
 import solidGauge from 'highcharts/modules/solid-gauge.js';
 import highchartsAccessibility from 'highcharts/modules/accessibility';
 
-import { getConfiguration, getOptions, getFilter } from '../../helpers/chart.utils';
+import {
+  getConfiguration,
+  getOptions,
+  getFilter,
+  validateRequiredParams,
+} from '../../helpers/chart.utils';
 import { ConfigurationInstance } from '../../services/configuration';
 import Translations from '../../config/translations/en.json';
 import {
+  ALL_FONTS,
   RVConfiguration,
   RVFilterAll,
   RVFilterGauge,
@@ -50,7 +56,6 @@ export class GaugeChart {
   @State() private _configuration: RVConfiguration;
   @State() private _filter: RVFilterGauge;
   @State() private _options: RVOptions;
-  @State() private error: string;
   @State() private errorStatusCode: number;
   @State() private lastUpdated: string;
   @State() private chartOptions: any;
@@ -74,9 +79,9 @@ export class GaugeChart {
       ConfigurationInstance.configuration = this._configuration;
       try {
         this._filter = getFilter(filter as RVFilterAll) as RVFilterGauge;
-        if (this._filter) {
+        this._options = getOptions(options, filter as RVFilterAll);
+        if (validateRequiredParams(this._filter as RVFilterAll)) {
           if (isGauge(this._filter.reportType)) {
-            this._options = getOptions(options, filter as RVFilterAll);
             if (triggerRequest) {
               await this.requestReportData();
             }
@@ -89,12 +94,10 @@ export class GaugeChart {
         }
       } catch (e) {
         this.errorStatusCode = 500;
-        this.error = e;
         errorLog(e);
       }
     } else {
       this.errorStatusCode = 0;
-      this.error = Translations.RV_CONFIGURATION_NOT_PRESENT;
     }
   };
 
@@ -136,7 +139,6 @@ export class GaugeChart {
    * Updated Highchart params using updateHighchartsParams
    */
   private requestReportData = async (): Promise<void> => {
-    this.error = '';
     this.loading = Translations.RV_LOADING_REPORT;
     try {
       const reportData = (await getReportData({
@@ -147,10 +149,10 @@ export class GaugeChart {
         this.lastUpdated = reportData.data.lastUpdated;
         this.updateHighchartsParams(reportData.data);
       } else if (reportData?.error) {
-        this.error = Translations.RV_NOT_ABLE_TO_RETRIEVE_REPORT_DATA;
+        errorLog(Translations.RV_NOT_ABLE_TO_RETRIEVE_REPORT_DATA);
         this.errorStatusCode = reportData.error?.statusCode;
       } else {
-        this.error = Translations.RV_ERROR_202_TITLE;
+        errorLog(Translations.RV_ERROR_202_TITLE);
         this.errorStatusCode = reportData?.status;
       }
     } catch (error) {
@@ -166,11 +168,10 @@ export class GaugeChart {
    * into one option for highcharts
    */
   private updateHighchartsParams = (gauge: RVGaugeChartSummary): void => {
-    const options = getOptionsGauge(gauge);
-    if (options) {
-      this.error = '';
+    const chartOptions = getOptionsGauge(gauge, this._options);
+    if (chartOptions) {
       this.loading = '';
-      this.chartOptions = options;
+      this.chartOptions = chartOptions;
     }
   };
 
@@ -179,7 +180,7 @@ export class GaugeChart {
   }
 
   private renderMain = (): HTMLElement => {
-    if (!isEmpty(this.error) || this.errorStatusCode !== undefined) {
+    if (this.errorStatusCode !== undefined) {
       return (
         <railz-error-image
           statusCode={this.errorStatusCode || 500}
@@ -195,6 +196,7 @@ export class GaugeChart {
         class="railz-gauge-chart-container"
         id="railz-gauge-chart"
         ref={(el): HTMLDivElement => (this.containerRef = el)}
+        style={{ width: this._options?.chart?.width, height: this._options?.chart?.height }}
       />
     );
   };
@@ -204,21 +206,38 @@ export class GaugeChart {
       return null;
     }
 
-    return (
-      <div class="rv-container" style={this._options?.container?.style}>
-        {this._options?.title ? (
-          <p class="rv-title" style={this._options?.title?.style}>
-            {this._options?.title?.text || ''}{' '}
+    const TitleElement = (): HTMLElement => (
+      <p class="rv-title" style={this._options?.title?.style}>
+        {this._options?.title?.text || ''}{' '}
+        {this._options?.container?.tooltip || this._options?.content?.tooltip?.description ? (
+          <div
+            style={{
+              marginTop: '1px ',
+              marginLeft: '3px ',
+            }}
+          >
             <railz-tooltip
               tooltipStyle={{ position: 'bottom-center' }}
-              tooltipText={Translations.RV_TOOLTIP_RAILZ_SCORE}
+              tooltipText={this._options?.content?.tooltip?.description}
             />
-          </p>
+          </div>
         ) : null}
+      </p>
+    );
+
+    return (
+      <div class="rv-container" style={this._options?.container?.style}>
+        <div class="rv-header-container">
+          <TitleElement />
+        </div>
         {this.renderMain()}
-        {this.lastUpdated && (
-          <p class="railz-gauge-last-updated">
-            {Translations.RV_AS_OF} {format(parseISO(this.lastUpdated), 'dd MMM yyyy')}
+        {this._options?.container?.date && this.lastUpdated && (
+          <p
+            class="railz-gauge-last-updated"
+            style={{ 'font-family': this._options?.chart?.fontFamily || ALL_FONTS }}
+          >
+            {this._options?.content?.label?.date || Translations.RV_AS_OF}{' '}
+            {format(parseISO(this.lastUpdated), 'dd MMM yyyy')}
           </p>
         )}
       </div>

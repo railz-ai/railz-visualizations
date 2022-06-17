@@ -1,11 +1,12 @@
 import { isNil, invert } from 'lodash-es';
 import { parseISO, format } from 'date-fns';
+import * as locales from 'date-fns/locale';
 
 import numbro from 'numbro';
 
 import Translations from '../config/translations/en.json';
 import { RVReportTypes } from '../types/enum/report-type';
-import { RVReportFrequency, RVReportStatementSummary } from '../types';
+import { RVMonth, RVReportFrequency, RVReportStatementSummary } from '../types';
 
 /**
  * Format date that will be shown on charts and show short form
@@ -13,12 +14,16 @@ import { RVReportFrequency, RVReportStatementSummary } from '../types';
 export const formatDate = (
   summary: RVReportStatementSummary,
   reportFrequency: RVReportFrequency,
+  quarter = 'Q',
+  month: RVMonth = { format: 'MMM yy', locale: 'us' },
 ): string[] => {
   return summary?.map((data) => {
     const date = parseISO(data.period.date);
-    if (reportFrequency === 'quarter') return `Q${data.period.quarter} ${format(date, 'yyyy')}`;
+    if (reportFrequency === 'quarter')
+      return `${quarter}${data.period.quarter} ${format(date, 'yyyy')}`;
     if (reportFrequency === 'year') return data.period.year.toString();
-    return format(date, 'MMM yy');
+    // eslint-disable-next-line import/namespace
+    return format(date, month.format, { locale: locales[month.locale] });
   });
 };
 
@@ -31,7 +36,9 @@ export const formatSeries = (
   field: string,
 ): { name: string; data: RVReportStatementSummary } => ({
   name,
-  data: summary?.map((data) => data[field]).filter((data) => data != undefined),
+  data: summary
+    ?.map((data: { [x: string]: any }) => data[field])
+    .filter((data) => data != undefined),
 });
 
 /**

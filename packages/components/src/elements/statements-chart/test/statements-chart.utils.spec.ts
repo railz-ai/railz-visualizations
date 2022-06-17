@@ -27,7 +27,7 @@ describe('Statements Chart Utils', () => {
         };
         expect(formatCashflowData(chartStatementBaseParameter)).toStrictEqual({
           categories: ['Jan 16', 'Feb 16'],
-          colors: ['#389BFF', '#FFD738', '#1D7043', '#003032'],
+          colors: ['#009BBD', '#F06C3A', '#003032', '#000000'],
           series: [],
         });
       });
@@ -40,7 +40,7 @@ describe('Statements Chart Utils', () => {
         };
         expect(formatCashflowData(chartStatementBaseParameter)).toStrictEqual({
           categories: ['2022', '2022'],
-          colors: ['#389BFF', '#FFD738', '#1D7043', '#003032'],
+          colors: ['#009BBD', '#F06C3A', '#003032', '#000000'],
           series: [],
         });
       });
@@ -57,7 +57,7 @@ describe('Statements Chart Utils', () => {
         };
         expect(formatBalanceSheetData(chartStatementBaseParameter)).toStrictEqual({
           categories: ['Jan 16', 'Feb 16'],
-          colors: ['#1D7043', '#30A665', '#F06C3A', '#B30000', '#003032'],
+          colors: ['#1D7043', '#F06C3A', '#30A665', '#B30000', '#000000'],
           series: [
             {
               data: [456, 456],
@@ -79,7 +79,7 @@ describe('Statements Chart Utils', () => {
         };
         expect(formatBalanceSheetData(chartStatementBaseParameter)).toStrictEqual({
           categories: ['2022', '2022'],
-          colors: ['#1D7043', '#30A665', '#F06C3A', '#B30000', '#003032'],
+          colors: ['#1D7043', '#F06C3A', '#30A665', '#B30000', '#000000'],
           series: [
             {
               data: [456, 456],
@@ -105,7 +105,7 @@ describe('Statements Chart Utils', () => {
         };
         expect(formatIncomeStatementData(chartStatementBaseParameter)).toStrictEqual({
           categories: ['Jan 16', 'Feb 16'],
-          colors: ['#1D7043', '#FF804F', '#009BBD', '#BCEDD2', '#38C076', '#003032'],
+          colors: ['#006037', '#F06C3A', '#B30000', '#003032', '#38C076', '#000000'],
           series: [],
         });
       });
@@ -118,7 +118,7 @@ describe('Statements Chart Utils', () => {
         };
         expect(formatIncomeStatementData(chartStatementBaseParameter)).toStrictEqual({
           categories: ['2022', '2022'],
-          colors: ['#1D7043', '#FF804F', '#009BBD', '#BCEDD2', '#38C076', '#003032'],
+          colors: ['#006037', '#F06C3A', '#B30000', '#003032', '#38C076', '#000000'],
           series: [],
         });
       });
@@ -136,7 +136,7 @@ describe('Statements Chart Utils', () => {
         };
         expect(formatData(chartStatementParameter)).toStrictEqual({
           categories: ['Jan 16', 'Feb 16'],
-          colors: ['#1D7043', '#30A665', '#F06C3A', '#B30000', '#003032'],
+          colors: ['#1D7043', '#F06C3A', '#30A665', '#B30000', '#000000'],
           series: [
             {
               data: [456, 456],
@@ -159,7 +159,7 @@ describe('Statements Chart Utils', () => {
         };
         expect(formatData(chartStatementParameter)).toStrictEqual({
           categories: ['2022', '2022'],
-          colors: ['#1D7043', '#30A665', '#F06C3A', '#B30000', '#003032'],
+          colors: ['#1D7043', '#F06C3A', '#30A665', '#B30000', '#000000'],
           series: [
             {
               data: [456, 456],
@@ -202,3 +202,6 @@ describe('Statements Chart Utils', () => {
     });
   });
 });
+
+// C:\Users\Allan\Documents\railz\railz-visualizations\packages\components\src\elements\statements-chart\test\statements-chart.utils.spec.ts
+// yarn test src/elements/statements-chart/test/statements-chart.utils.spec.ts

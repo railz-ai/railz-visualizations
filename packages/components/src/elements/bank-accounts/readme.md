@@ -20,6 +20,7 @@
 
 - [railz-error-image](../error)
 - [railz-loading](../loading)
+- [railz-tooltip](../tooltip)
 
 ### Graph
 
@@ -27,6 +28,7 @@
 graph TD;
   railz-bank-accounts --> railz-error-image
   railz-bank-accounts --> railz-loading
+  railz-bank-accounts --> railz-tooltip
   railz-visualizations --> railz-bank-accounts
   style railz-bank-accounts fill:#f9f,stroke:#333,stroke-width:4px
 ```

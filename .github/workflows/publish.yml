@@ -67,5 +67,5 @@ jobs:
           if [ "${{ github.event.inputs.yarnCommand }}" != ''  ]; then
             yarn run "${{ github.event.inputs.yarnCommand }}"
           else
-            yarn run ci:publish:patch
+            yarn run ci:publish:prerelease
           fi

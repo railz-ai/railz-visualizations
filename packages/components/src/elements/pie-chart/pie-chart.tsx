@@ -5,7 +5,12 @@ import Highcharts from 'highcharts';
 import variablePie from 'highcharts/modules/variable-pie.js';
 import highchartsAccessibility from 'highcharts/modules/accessibility';
 
-import { getConfiguration, getOptions, getFilter } from '../../helpers/chart.utils';
+import {
+  getConfiguration,
+  getOptions,
+  getFilter,
+  validateRequiredParams,
+} from '../../helpers/chart.utils';
 import { ConfigurationInstance } from '../../services/configuration';
 import Translations from '../../config/translations/en.json';
 import {
@@ -19,7 +24,6 @@ import {
   RVFilterAll,
 } from '../../types';
 import { errorLog } from '../../services/logger';
-
 import { isPie, roundNumber } from '../../helpers/utils';
 
 import { getOptionsPie, getReportData } from './pie-chart.utils';
@@ -56,7 +60,6 @@ export class PieChart {
   @State() private _filter: RVFilterPie;
   @State() private _options: RVOptions;
   @State() private _summary: RVRevenueExpensesSummary;
-  @State() private error: string;
   @State() private errorStatusCode: number;
   @State() private chartOptions: any;
   @State() private containerRef?: HTMLDivElement;
@@ -79,9 +82,9 @@ export class PieChart {
       ConfigurationInstance.configuration = this._configuration;
       try {
         this._filter = getFilter(filter as RVFilterAll) as RVFilterPie;
-        if (this._filter) {
+        this._options = getOptions(options, filter as RVFilterAll);
+        if (validateRequiredParams(this._filter as RVFilterAll)) {
           if (isPie(this._filter.reportType)) {
-            this._options = getOptions(options, filter as RVFilterAll);
             if (triggerRequest) {
               await this.requestReportData();
             }
@@ -94,12 +97,10 @@ export class PieChart {
         }
       } catch (e) {
         this.errorStatusCode = 500;
-        this.error = e;
         errorLog(e);
       }
     } else {
       this.errorStatusCode = 0;
-      this.error = Translations.RV_CONFIGURATION_NOT_PRESENT;
     }
   };
 
@@ -141,7 +142,6 @@ export class PieChart {
    * Updated Highchart params using updateHighchartsParams
    */
   private requestReportData = async (): Promise<void> => {
-    this.error = '';
     this.loading = Translations.RV_LOADING_REPORT;
     try {
       const reportData = (await getReportData({
@@ -152,10 +152,8 @@ export class PieChart {
         this._summary = reportData?.data as RVRevenueExpensesSummary;
         this.updateHighchartsParams(reportData.data);
       } else if (reportData?.error) {
-        this.error = Translations.RV_NOT_ABLE_TO_RETRIEVE_REPORT_DATA;
         this.errorStatusCode = reportData.error?.statusCode;
       } else {
-        this.error = Translations.RV_ERROR_202_TITLE;
         this.errorStatusCode = reportData?.status;
       }
     } catch (error) {
@@ -171,11 +169,10 @@ export class PieChart {
    * into one option for highcharts
    */
   private updateHighchartsParams = (summary: RVPieChartSummary): void => {
-    const options = getOptionsPie(summary);
-    if (options) {
-      this.error = '';
+    const chartOptions = getOptionsPie(summary, this._options);
+    if (chartOptions) {
       this.loading = '';
-      this.chartOptions = options;
+      this.chartOptions = chartOptions;
     }
   };
 
@@ -184,7 +181,7 @@ export class PieChart {
   }
 
   private renderMain = (): HTMLElement => {
-    if (!isEmpty(this.error) || this.errorStatusCode !== undefined) {
+    if (this.errorStatusCode !== undefined) {
       return (
         <railz-error-image
           statusCode={this.errorStatusCode || 500}
@@ -197,7 +194,11 @@ export class PieChart {
     }
     return (
       <div class="railz-pie-chart-container">
-        <div id="railz-pie-chart" ref={(el): HTMLDivElement => (this.containerRef = el)} />
+        <div
+          id="railz-pie-chart"
+          ref={(el): HTMLDivElement => (this.containerRef = el)}
+          style={{ width: this._options?.chart?.width, height: this._options?.chart?.height }}
+        />
         <div class="railz-pie-chart-box">
           {!isNil(this._summary?.percentageChange) && (
             <div class="railz-pie-chart-percentage">
@@ -219,20 +220,33 @@ export class PieChart {
       return null;
     }
 
-    return (
-      <div class="rv-container" style={this._options?.container?.style}>
-        {this._options?.title ? (
-          <div>
-            <p class="rv-title" style={this._options?.title?.style}>
-              {this._options?.title?.text || ''}{' '}
-              <railz-tooltip
-                tooltipText={
-                  Translations[`RV_TOOLTIP_${TranslationMapping[this._filter?.reportType]}`]
-                }
-              />
-            </p>
+    const TitleElement = (): HTMLElement => (
+      <p class="rv-title" style={this._options?.title?.style}>
+        {this._options?.title?.text || ''}{' '}
+        {this._options?.container?.tooltip || this._options?.content?.tooltip?.description ? (
+          <div
+            style={{
+              marginTop: '1px ',
+              marginLeft: '3px ',
+            }}
+          >
+            <railz-tooltip
+              tooltipStyle={{ position: 'bottom-center' }}
+              tooltipText={
+                this._options?.content?.tooltip?.description ||
+                Translations[`RV_TOOLTIP_${TranslationMapping[this._filter?.reportType]}`]
+              }
+            />
           </div>
         ) : null}
+      </p>
+    );
+
+    return (
+      <div class="rv-container" style={this._options?.container?.style}>
+        <div class="rv-header-container">
+          <TitleElement />
+        </div>
         {this.renderMain()}
       </div>
     );
