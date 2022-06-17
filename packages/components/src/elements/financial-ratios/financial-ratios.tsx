@@ -137,7 +137,7 @@ export class FinancialRatios {
       const reportData = (await getReportData({
         filter: this._filter as RVFilterAll,
       })) as RVFormattedFinancialRatioResponse;
-      console.log('requestReportData reportData', reportData);
+      // console.log('requestReportData reportData', reportData);
 
       if (reportData?.data) {
         this._summary = reportData?.data as RVFinancialRatioSummary;

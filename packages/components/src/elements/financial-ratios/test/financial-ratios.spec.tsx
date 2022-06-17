@@ -2,13 +2,13 @@
 /* eslint-disable max-len */
 import { newSpecPage } from '@stencil/core/testing';
 import { h } from '@stencil/core';
-import { rest } from 'msw';
-import { setupServer } from 'msw/node';
 
 import { FinancialRatios } from '../financial-ratios';
 import { RVReportFrequency, RVReportTypes } from '../../../types';
 import { RVAllProviders } from '../../../types/enum/service-providers';
 import * as FinancialRatiosUtils from '../financial-ratios.utils';
+
+import FinancialRatioData from './financialRatioData.json';
 
 describe('railz-financial-ratios', () => {
   it('renders without props', async () => {
@@ -23,7 +23,7 @@ describe('railz-financial-ratios', () => {
     `);
   });
 
-  it('renders simple data', async () => {
+  it('renders without no data', async () => {
     const page = await newSpecPage({
       components: [FinancialRatios],
       template: () => (
@@ -62,24 +62,9 @@ describe('railz-financial-ratios', () => {
   });
 
   it('renders without props', async () => {
-    const mockResponse = {
-      uuid: '123',
-      kind: 'auth',
-      url: 'https://asd.com',
-      secret: '123',
-    };
-    const baseUrl = `localhost:8080/webhooks`;
-    const server = setupServer(
-      rest.get(baseUrl, (_req, res, ctx) => res(ctx.json([mockResponse]))),
-      rest.put(`localhost:8080/webhooks/123`, (_req, res, ctx) => res(ctx.json(mockResponse))),
-      rest.post(`localhost:8080/webhooks`, (_req, res, ctx) => res(ctx.json(mockResponse))),
-      rest.delete(`localhost:8080/webhooks/123`, (_req, res, _ctx) =>
-        res.networkError('Connection error'),
-      ),
-    );
-    server.listen();
-
-    jest.spyOn(FinancialRatiosUtils, 'getReportData').mockImplementation(() => Promise.resolve({}));
+    jest
+      .spyOn(FinancialRatiosUtils, 'getReportData')
+      .mockImplementation(() => Promise.resolve(FinancialRatioData));
 
     const page = await newSpecPage({
       components: [FinancialRatios],
@@ -103,21 +88,90 @@ describe('railz-financial-ratios', () => {
       ),
     });
     expect(page.root).toEqualHtml(`
-      <railz-financial-ratios>
-         <mock:shadow-root>
-           <div class="rv-container">
-             <div class="rv-header-container">
-               <p class="rv-title">
-                 Financial Ratios
-               </p>
-             </div>
-             <railz-error-image statuscode="404"></railz-error-image>
-           </div>
-         </mock:shadow-root>
-      </railz-financial-ratios>
+    <railz-financial-ratios>
+    <mock:shadow-root>
+      <div class="rv-container">
+        <div class="rv-header-container">
+          <p class="rv-title">
+            Financial Ratios
+          </p>
+          <railz-select></railz-select>
+        </div>
+        <div class="rv-financial-ratios">
+          <div class="rv-financial-ratio-container-item">
+            <div class="rv-financial-ratio-info">
+              <div class="rv-ratio-name">
+                <div class="rv-ratio-tooltip"></div>
+                <div class="rv-ratio-name-text">
+                  Distance To Default
+                </div>
+              </div>
+              <div class="rv-ratio-values">
+                <div class="rv-ratio-summary">
+                  -1.22
+                </div>
+                <div class="rv-ratio-percentage">
+                  <railz-percentage percentage="-0.01"></railz-percentage>
+                </div>
+              </div>
+            </div>
+            <div class="rv-financial-ratio-ratios">
+              <div class="rv-sparkline">
+                <railz-sparkline-chart></railz-sparkline-chart>
+              </div>
+            </div>
+          </div>
+          <div class="rv-financial-ratio-container-item">
+            <div class="rv-financial-ratio-info">
+              <div class="rv-ratio-name">
+                <div class="rv-ratio-tooltip"></div>
+                <div class="rv-ratio-name-text">
+                  Probability Of Default
+                </div>
+              </div>
+              <div class="rv-ratio-values">
+                <div class="rv-ratio-summary">
+                  0.89
+                </div>
+                <div class="rv-ratio-percentage">
+                  <railz-percentage percentage="0.14"></railz-percentage>
+                </div>
+              </div>
+            </div>
+            <div class="rv-financial-ratio-ratios">
+              <div class="rv-sparkline">
+                <railz-sparkline-chart></railz-sparkline-chart>
+              </div>
+            </div>
+          </div>
+          <div class="rv-financial-ratio-container-item">
+            <div class="rv-financial-ratio-info">
+              <div class="rv-ratio-name">
+                <div class="rv-ratio-tooltip"></div>
+                <div class="rv-ratio-name-text">
+                  Average Collection Period
+                </div>
+              </div>
+              <div class="rv-ratio-values">
+                <div class="rv-ratio-summary">
+                  30
+                </div>
+                <div class="rv-ratio-percentage">
+                  <railz-percentage percentage="0"></railz-percentage>
+                </div>
+              </div>
+            </div>
+            <div class="rv-financial-ratio-ratios">
+              <div class="rv-sparkline">
+                <railz-sparkline-chart></railz-sparkline-chart>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mock:shadow-root>
+  </railz-financial-ratios>
     `);
-
-    server.resetHandlers();
   });
 });
 
