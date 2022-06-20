@@ -1,17 +1,28 @@
-import { RVAccountingProviders, RVReportRequestParameter, RVReportTypes } from '../../../types';
-import { getTransactionsData } from '../transactions-control.utils';
+import { RequestServiceInstance } from '../../../services/request';
+import {
+  RVAccountingProviders,
+  RVReportFrequency,
+  RVReportRequestParameter,
+  RVReportTypes,
+} from '../../../types';
+import { getReportData } from '../transactions-control.utils';
 
-const mockFetchResult = { data: [1, 2, 3] };
-global.fetch = jest.fn(() =>
-  Promise.resolve({
-    json: () => Promise.resolve(mockFetchResult),
-  }),
-);
+const mockFetchResult = {
+  data: {
+    unpaidAmount: 34342.5,
+    paidAmount: 1318,
+    overdueAmount: 34342.5,
+  },
+};
 
-describe('Statements Chart Utils', () => {
+describe('Transactions Chart Utils', () => {
   describe('getTransactionsData', () => {
     describe('success path', () => {
       test('returns transaction data when sending correct params', async () => {
+        jest
+          .spyOn(RequestServiceInstance, 'getReportData')
+          .mockImplementation(() => Promise.resolve(mockFetchResult));
+
         const reportRequestDateParameter: RVReportRequestParameter = {
           filter: {
             reportType: RVReportTypes.INVOICES,
@@ -19,12 +30,14 @@ describe('Statements Chart Utils', () => {
             endDate: '2021-01-01',
             serviceName: RVAccountingProviders.QUICKBOOKS,
             businessName: 'businessName',
+            connectionId: '',
+            reportFrequency: RVReportFrequency.MONTH,
           },
         };
-        expect(getTransactionsData(reportRequestDateParameter)).resolves.toEqual(mockFetchResult);
+        expect(getReportData(reportRequestDateParameter)).resolves.toEqual(mockFetchResult);
       });
     });
   });
 });
 
-// yarn test src/elements/transactions-control/test/transactions-control.utils.spec.ts
+// yarn test packages/components/src/elements/transactions-control/test/transactions-control.utils.spec.ts

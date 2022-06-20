@@ -203,5 +203,4 @@ describe('Statements Chart Utils', () => {
   });
 });
 
-// C:\Users\Allan\Documents\railz\railz-visualizations\packages\components\src\elements\statements-chart\test\statements-chart.utils.spec.ts
-// yarn test src/elements/statements-chart/test/statements-chart.utils.spec.ts
+// yarn test packages/components/src/elements/statements-chart/test/statements-chart.utils.spec.ts

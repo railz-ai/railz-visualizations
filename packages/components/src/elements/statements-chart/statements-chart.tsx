@@ -147,6 +147,7 @@ export class StatementsChart {
       const reportData = (await getReportData({
         filter: this._filter as RVFilterAll,
       })) as RVFormattedStatementResponse;
+      console.log('reportData ', reportData);
       if (reportData?.data) {
         this._dataFormatted = formatData({
           summary: reportData.data,

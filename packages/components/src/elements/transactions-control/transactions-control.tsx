@@ -21,7 +21,7 @@ import {
 import { ConfigurationInstance } from '../../services/configuration';
 import { isTransactions } from '../../helpers/utils';
 
-import { getTransactionsData } from './transactions-control.utils';
+import { getReportData } from './transactions-control.utils';
 
 @Component({
   tag: 'railz-transactions-control',
@@ -120,9 +120,10 @@ export class TransactionsControl {
    */
   private requestReportData = async (): Promise<void> => {
     this.loading = Translations.RV_LOADING_REPORT;
-    const reportData = (await getTransactionsData({
+    const reportData = (await getReportData({
       filter: this._filter as RVFilterAll,
     })) as RVFormattedTransactionResponse;
+    console.log('reportData', reportData);
     try {
       if (reportData?.data) {
         this._dataFormatted = reportData?.data;
