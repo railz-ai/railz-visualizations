@@ -1,23 +1,3 @@
-// import { newSpecPage } from '@stencil/core/testing';
-
-// import { PieChart } from '../pie-chart';
-
-// describe.skip('railz-pie-chart', () => {
-//   it('renders', async () => {
-//     const page = await newSpecPage({
-//       components: [PieChart],
-//       html: `<railz-pie-chart></railz-pie-chart>`,
-//     });
-//     expect(page.root).toEqualHtml(`
-//       <railz-pie-chart>
-//         <mock:shadow-root>
-//           <slot></slot>
-//         </mock:shadow-root>
-//       </railz-pie-chart>
-//     `);
-//   });
-// });
-
 import { newSpecPage } from '@stencil/core/testing';
 import { h } from '@stencil/core';
 
@@ -25,8 +5,6 @@ import { PieChart } from '../pie-chart';
 import { RVReportFrequency, RVReportTypes } from '../../../types';
 import { RVAllProviders } from '../../../types/enum/service-providers';
 import * as PieChartUtils from '../pie-chart.utils';
-
-import PieChartData from './PieChartData.json';
 
 describe('railz-pie-chart', () => {
   it('renders without props', async () => {
@@ -67,7 +45,7 @@ describe('railz-pie-chart', () => {
            <div class="rv-container">
              <div class="rv-header-container">
                <p class="rv-title">
-                 Railz Score
+                 Expenses
                </p>
              </div>
              <railz-error-image statuscode="404"></railz-error-image>
@@ -77,10 +55,8 @@ describe('railz-pie-chart', () => {
     `);
   });
 
-  it.skip('renders with data', async () => {
-    jest
-      .spyOn(PieChartUtils, 'getReportData')
-      .mockImplementation(() => Promise.resolve(PieChartData));
+  it('renders with data', async () => {
+    jest.spyOn(PieChartUtils, 'getReportData').mockImplementation(() => Promise.resolve({}));
 
     const page = await newSpecPage({
       components: [PieChart],
@@ -107,10 +83,17 @@ describe('railz-pie-chart', () => {
         <div class="rv-container">
           <div class="rv-header-container">
             <p class="rv-title">
-              Railz Score
+              Revenue
             </p>
           </div>
-          <div class="railz-pie-chart-container" id="railz-pie-chart"></div>
+          <div class="railz-pie-chart-container">
+            <div id="railz-pie-chart"></div>
+            <div class="railz-pie-chart-box">
+              <p class="railz-pie-chart-text">
+                $
+              </p>
+            </div>
+          </div>
         </div>
       </mock:shadow-root>
     </railz-pie-chart>
