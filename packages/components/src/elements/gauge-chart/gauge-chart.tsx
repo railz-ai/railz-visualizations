@@ -75,7 +75,6 @@ export class GaugeChart {
     options: RVOptions,
     triggerRequest = true,
   ): Promise<void> => {
-    console.log('gauge-chart validateParams configuration', configuration);
     this._configuration = getConfiguration(configuration);
     if (this._configuration) {
       ConfigurationInstance.configuration = this._configuration;
@@ -132,7 +131,6 @@ export class GaugeChart {
   }
 
   private propsUpdated = async (triggerRequest = true): Promise<void> => {
-    console.log('gauge-chart propsUpdated this.configuration', this.configuration);
     await this.validateParams(this.configuration, this.filter, this.options, triggerRequest);
   };
 
@@ -146,8 +144,6 @@ export class GaugeChart {
       const reportData = (await getReportData({
         filter: this._filter as RVFilterAll,
       })) as RVFormattedGaugeResponse;
-      // console.log('requestReportData reportData', reportData);
-
       if (reportData?.data) {
         this.lastUpdated = reportData.data.lastUpdated;
         this._data = reportData.data;

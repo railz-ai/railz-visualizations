@@ -123,7 +123,6 @@ export class TransactionsControl {
     const reportData = (await getReportData({
       filter: this._filter as RVFilterAll,
     })) as RVFormattedTransactionResponse;
-    console.log('reportData', reportData);
     try {
       if (reportData?.data) {
         this._dataFormatted = reportData?.data;
