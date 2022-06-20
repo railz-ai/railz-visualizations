@@ -14,6 +14,7 @@ import {
   RVFilterPie,
   RVFilterStatements,
   RVFilterTransactions,
+  RVGaugeChartSummary,
   RVOptions,
   RVOptionsBarStyle,
   RVPeriodData,
@@ -83,6 +84,16 @@ export namespace Components {
     filter: RVFilterGauge;
     /**
      * For whitelabeling styling
+     */
+    options: RVOptions;
+  }
+  interface RailzGaugeChartComponent {
+    /**
+     * Data to display for gauge chart
+     */
+    data: RVGaugeChartSummary;
+    /**
+     * Options for gauge chart
      */
     options: RVOptions;
   }
@@ -243,6 +254,13 @@ declare global {
     prototype: HTMLRailzGaugeChartElement;
     new (): HTMLRailzGaugeChartElement;
   };
+  interface HTMLRailzGaugeChartComponentElement
+    extends Components.RailzGaugeChartComponent,
+      HTMLStencilElement {}
+  var HTMLRailzGaugeChartComponentElement: {
+    prototype: HTMLRailzGaugeChartComponentElement;
+    new (): HTMLRailzGaugeChartComponentElement;
+  };
   interface HTMLRailzLoadingElement extends Components.RailzLoading, HTMLStencilElement {}
   var HTMLRailzLoadingElement: {
     prototype: HTMLRailzLoadingElement;
@@ -306,6 +324,7 @@ declare global {
     'railz-error-image': HTMLRailzErrorImageElement;
     'railz-financial-ratios': HTMLRailzFinancialRatiosElement;
     'railz-gauge-chart': HTMLRailzGaugeChartElement;
+    'railz-gauge-chart-component': HTMLRailzGaugeChartComponentElement;
     'railz-loading': HTMLRailzLoadingElement;
     'railz-percentage': HTMLRailzPercentageElement;
     'railz-pie-chart': HTMLRailzPieChartElement;
@@ -382,6 +401,16 @@ declare namespace LocalJSX {
      * For whitelabeling styling
      */
     options?: RVOptions;
+  }
+  interface RailzGaugeChartComponent {
+    /**
+     * Data to display for gauge chart
+     */
+    data: RVGaugeChartSummary;
+    /**
+     * Options for gauge chart
+     */
+    options: RVOptions;
   }
   interface RailzLoading {
     /**
@@ -522,6 +551,7 @@ declare namespace LocalJSX {
     'railz-error-image': RailzErrorImage;
     'railz-financial-ratios': RailzFinancialRatios;
     'railz-gauge-chart': RailzGaugeChart;
+    'railz-gauge-chart-component': RailzGaugeChartComponent;
     'railz-loading': RailzLoading;
     'railz-percentage': RailzPercentage;
     'railz-pie-chart': RailzPieChart;
@@ -546,6 +576,8 @@ declare module '@stencil/core' {
         JSXBase.HTMLAttributes<HTMLRailzFinancialRatiosElement>;
       'railz-gauge-chart': LocalJSX.RailzGaugeChart &
         JSXBase.HTMLAttributes<HTMLRailzGaugeChartElement>;
+      'railz-gauge-chart-component': LocalJSX.RailzGaugeChartComponent &
+        JSXBase.HTMLAttributes<HTMLRailzGaugeChartComponentElement>;
       'railz-loading': LocalJSX.RailzLoading & JSXBase.HTMLAttributes<HTMLRailzLoadingElement>;
       'railz-percentage': LocalJSX.RailzPercentage &
         JSXBase.HTMLAttributes<HTMLRailzPercentageElement>;

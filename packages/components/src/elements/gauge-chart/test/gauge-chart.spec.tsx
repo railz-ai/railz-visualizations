@@ -90,7 +90,7 @@ describe('railz-gauge-chart', () => {
               Railz Score
             </p>
           </div>
-          <div class="railz-gauge-chart-container" id="railz-gauge-chart"></div>
+          <railz-gauge-chart-component></railz-gauge-chart-component>
         </div>
       </mock:shadow-root>
     </railz-gauge-chart>
