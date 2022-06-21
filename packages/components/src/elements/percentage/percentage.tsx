@@ -11,7 +11,7 @@ export class Percentage {
   /**
    * Percentage to show
    */
-  @Prop() readonly percentage!: number;
+  @Prop() readonly percentage: number = 0;
 
   render(): HTMLElement {
     if (isNull(this.percentage) || this.percentage === 0) {
