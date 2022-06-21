@@ -195,7 +195,7 @@ export namespace Components {
     /**
      * Question mark with a tooltip text
      */
-    text: string;
+    text?: string;
     /**
      * Position of the Tooltip text when hovered
      */
