@@ -438,7 +438,7 @@ declare namespace LocalJSX {
     /**
      * Percentage to show
      */
-    percentage: number;
+    percentage?: number;
   }
   interface RailzPieChart {
     /**

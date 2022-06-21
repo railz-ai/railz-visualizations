@@ -36,9 +36,9 @@ describe('railz-visualizations', () => {
     </railz-visualizations>`,
     });
     expect(page.root)
-      .toEqualHtml(`<railz-visualizations \"2021-05-01\",=\"\" \"2022-05-31\",=\"\" \"balancesheets\"=\"\" \"businessname\":=\"\" \"debug\":=\"\" \"enddate\":=\"\" \"eyjhbgcioijiuzi1niis...\",=\"\" \"month\",=\"\" \"quickbooks\",=\"\" \"reportfrequency\":=\"\" \"reporttype\":=\"\" \"servicename\":=\"\" \"testbusinessautomationplaidqbo\",=\"\" configuration=\"{
-        \" filter=\"{
-        \" startdate\":=\"\" token\":=\"\" true=\"\" }\"=\"\">
+      .toEqualHtml(`<railz-visualizations "2021-05-01",="" "2022-05-31",="" "balancesheets"="" "businessname":="" "debug":="" "enddate":="" "eyjhbgcioijiuzi1niis...",="" "month",="" "quickbooks",="" "reportfrequency":="" "reporttype":="" "servicename":="" "testbusinessautomationplaidqbo",="" configuration="{
+        " filter="{
+        " startdate":="" token":="" true="" }"="">
   <mock:shadow-root></mock:shadow-root>
 </railz-visualizations>`);
   });
