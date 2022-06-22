@@ -4,9 +4,9 @@
 
 ## Properties
 
-| Property                  | Attribute    | Description        | Type     | Default     |
-| ------------------------- | ------------ | ------------------ | -------- | ----------- |
-| `percentage` _(required)_ | `percentage` | Percentage to show | `number` | `undefined` |
+| Property     | Attribute    | Description        | Type     | Default |
+| ------------ | ------------ | ------------------ | -------- | ------- |
+| `percentage` | `percentage` | Percentage to show | `number` | `0`     |
 
 ## Dependencies
 

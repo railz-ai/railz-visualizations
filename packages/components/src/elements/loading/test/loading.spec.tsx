@@ -1,5 +1,6 @@
 /* eslint-disable max-len */
 import { newSpecPage } from '@stencil/core/testing';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { h } from '@stencil/core';
 
 import { Loading } from '../loading';
