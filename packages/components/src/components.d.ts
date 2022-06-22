@@ -17,6 +17,7 @@ import {
   RVGaugeChartSummary,
   RVOptions,
   RVOptionsBarStyle,
+  RVOptionsPercentageStyle,
   RVPeriodData,
   RVReportTypes,
   RVSelectStyle,
@@ -439,6 +440,11 @@ declare namespace LocalJSX {
      * Percentage to show
      */
     percentage?: number;
+
+    /**
+     * PercentageStyle styling of percentage
+     */
+    percentageStyle?: RVOptionsPercentageStyle;
   }
   interface RailzPieChart {
     /**

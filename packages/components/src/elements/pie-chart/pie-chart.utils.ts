@@ -15,7 +15,7 @@ import {
 import { RequestServiceInstance } from '../../services/request';
 import { errorLog } from '../../services/logger';
 import { RAILZ_DATE_FORMAT } from '../../types/constants/date';
-import { roundNumber } from '../../helpers/utils';
+import { fromCssObjectToInline, roundNumber } from '../../helpers/utils';
 
 interface Data {
   name: string;
@@ -54,7 +54,7 @@ export const getOptionsPie = (summary: RVPieChartSummary, options: RVOptions): a
     credits: {
       enabled: false,
     },
-    colors: RAILZ_PIE_COLORS,
+    colors: options?.chart?.colors || RAILZ_PIE_COLORS,
     title: null,
     series: [
       {
@@ -88,10 +88,12 @@ export const getOptionsPie = (summary: RVPieChartSummary, options: RVOptions): a
       useHTML: true,
       itemMarginBottom: 48,
       labelFormatter: function (): any {
+        const valueStyle = fromCssObjectToInline(options?.chart?.pie?.legendValue);
+        const nameStyle = fromCssObjectToInline(options?.chart?.pie?.legendName);
         return `
         <div class="legend">
-          <span class="legend-value">$${roundNumber(this.y)}</span>
-          <span class="legend-name">${this.name}</span>
+          <span class="legend-value" style="${valueStyle}">$${roundNumber(this.y)}</span>
+          <span class="legend-name" style="${nameStyle}">${this.name}</span>
         </div>`;
       },
       ...options?.chart?.legend,

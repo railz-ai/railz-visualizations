@@ -39,7 +39,11 @@ export class GaugeChartComponent {
         class="railz-gauge-chart-container"
         id="railz-gauge-chart"
         ref={(el): HTMLDivElement => (this.containerRef = el)}
-        style={{ width: this.options?.chart?.width, height: this.options?.chart?.height }}
+        style={{
+          width: this.options?.chart?.width,
+          height: this.options?.chart?.height,
+          ...this.options?.gauge?.chartContainer,
+        }}
       />
     );
   }
