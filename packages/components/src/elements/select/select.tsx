@@ -12,7 +12,7 @@ import { Arrow } from './arrow';
   styleUrl: 'select.scss',
   shadow: true,
 })
-export class select {
+export class Select {
   /**
    * The items to be listed
    */

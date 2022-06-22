@@ -47,7 +47,6 @@ export class Loading {
           height={this.height || '48px'}
           viewBox={'0 0 50 50'}
           style={{ 'enable-background': 'new 0 0 50 50' }}
-          xmlSpace="preserve"
         >
           <path
             fill={this.fillColor || RAILZ_PRIMARY_COLOR}

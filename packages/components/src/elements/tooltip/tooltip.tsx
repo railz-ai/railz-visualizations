@@ -15,7 +15,7 @@ export class Tooltip {
   /**
    * Question mark with a tooltip text
    */
-  @Prop() readonly text: string = '';
+  @Prop() readonly text?: string = '';
   @Prop() readonly tooltipText!: string;
   /**
    * Position of the Tooltip text when hovered

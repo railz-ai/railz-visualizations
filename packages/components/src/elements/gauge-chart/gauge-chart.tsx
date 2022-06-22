@@ -27,7 +27,7 @@ import {
 import { errorLog } from '../../services/logger';
 import { isGauge } from '../../helpers/utils';
 
-import { getOptionsGauge, getReportData } from './gauge-chart.utils';
+import { getReportData } from './gauge-chart.utils';
 
 highchartsMore(Highcharts);
 solidGauge(Highcharts);
@@ -56,6 +56,7 @@ export class GaugeChart {
   @State() private _configuration: RVConfiguration;
   @State() private _filter: RVFilterGauge;
   @State() private _options: RVOptions;
+  @State() private _data: RVGaugeChartSummary;
   @State() private errorStatusCode: number;
   @State() private lastUpdated: string;
   @State() private chartOptions: any;
@@ -136,7 +137,6 @@ export class GaugeChart {
   /**
    * Request report data based on filter and configuration param
    * Formats retrieved data into Highcharts format using formatData
-   * Updated Highchart params using updateHighchartsParams
    */
   private requestReportData = async (): Promise<void> => {
     this.loading = Translations.RV_LOADING_REPORT;
@@ -144,10 +144,9 @@ export class GaugeChart {
       const reportData = (await getReportData({
         filter: this._filter as RVFilterAll,
       })) as RVFormattedGaugeResponse;
-
       if (reportData?.data) {
         this.lastUpdated = reportData.data.lastUpdated;
-        this.updateHighchartsParams(reportData.data);
+        this._data = reportData.data;
       } else if (reportData?.error) {
         errorLog(Translations.RV_NOT_ABLE_TO_RETRIEVE_REPORT_DATA);
         this.errorStatusCode = reportData.error?.statusCode;
@@ -159,19 +158,6 @@ export class GaugeChart {
       errorLog(Translations.RV_NOT_ABLE_TO_PARSE_REPORT_DATA, error);
     } finally {
       this.loading = '';
-    }
-  };
-
-  /**
-   * Using getHighchartsParams,Combine generic stacked bar line
-   * chart options and formatted data based on the report type
-   * into one option for highcharts
-   */
-  private updateHighchartsParams = (gauge: RVGaugeChartSummary): void => {
-    const chartOptions = getOptionsGauge(gauge, this._options);
-    if (chartOptions) {
-      this.loading = '';
-      this.chartOptions = chartOptions;
     }
   };
 
@@ -191,14 +177,8 @@ export class GaugeChart {
     if (!isEmpty(this.loading)) {
       return <railz-loading loadingText={this.loading} {...this._options?.loadingIndicator} />;
     }
-    return (
-      <div
-        class="railz-gauge-chart-container"
-        id="railz-gauge-chart"
-        ref={(el): HTMLDivElement => (this.containerRef = el)}
-        style={{ width: this._options?.chart?.width, height: this._options?.chart?.height }}
-      />
-    );
+
+    return this._data && <railz-gauge-chart-component data={this._data} options={this._options} />;
   };
 
   render(): HTMLElement {
