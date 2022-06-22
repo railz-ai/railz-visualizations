@@ -12,7 +12,7 @@ export class Percentage {
   /**
    * Percentage to show
    */
-  @Prop() readonly percentage!: number;
+  @Prop() readonly percentage: number = 0;
 
   @Prop() readonly percentagestyle?: RVOptionsPercentageStyle;
 

@@ -44,6 +44,7 @@ graph TD;
   railz-financial-ratios --> railz-select
   railz-gauge-chart --> railz-error-image
   railz-gauge-chart --> railz-loading
+  railz-gauge-chart --> railz-gauge-chart-component
   railz-gauge-chart --> railz-tooltip
   railz-pie-chart --> railz-error-image
   railz-pie-chart --> railz-loading

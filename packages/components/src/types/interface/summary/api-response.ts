@@ -100,15 +100,15 @@ export interface RVBankAccounts {
   institutionName: string;
   accountId: string;
   currentBalance: number;
-  availableBalance: number;
-  limit: number;
+  availableBalance?: number;
+  limit?: number;
   currency: string;
   maskedAccountNumber: string;
   accountName: string;
   officialAccountName: string;
   accountType: string;
   accountSubType: string;
-  sourceModifiedDate: string;
+  sourceModifiedDate?: string;
 }
 
 export interface RVBankAccount {

@@ -15,7 +15,7 @@ import { RAILZ_DATE_FORMAT } from '../../types/constants/date';
 /**
  * Make API call based on expected parameters for invoices and bills data type
  */
-export const getTransactionsData = async ({
+export const getReportData = async ({
   filter,
 }: RVReportRequestParameter): Promise<RVFormattedTransactionResponse> => {
   let reportData = {};

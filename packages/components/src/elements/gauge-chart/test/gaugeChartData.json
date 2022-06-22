@@ -1,0 +1,15 @@
+{
+  "meta": {
+    "reportId": ["62aa20234e5371525b89c3ba"],
+    "startDate": "2021-05-01T00:00:00Z",
+    "endDate": "2022-05-31T00:00:00Z",
+    "serviceName": "quickbooks",
+    "businessName": "QboFrdTest",
+    "currency": []
+  },
+  "data": {
+    "score": 573,
+    "rating": "Poor",
+    "lastUpdated": "2022-06-15"
+  }
+}

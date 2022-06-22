@@ -1,0 +1,5614 @@
+{
+  "meta": {
+    "reportId": [
+      "62a4d03ae733004b168710b6",
+      "62a4d0550d96366cf43f4195",
+      "62a4d04abb11977e6f217a13",
+      "62a4d04af75252448b2e2ac1",
+      "62a4d049ff67325af0530720",
+      "62a4d05dafecf84d4988d8e7",
+      "62a4d070ba9415549d3bc4f5",
+      "62a4d07f0d96366cf43f43fc",
+      "62a4d07f27d40907773301c7",
+      "62a4d07f9bdf327a53575600",
+      "62a4d07fe733004b16871464",
+      "62a4d08f0d96366cf43f4401",
+      "62a4d0a8c5108714c03d0a2b"
+    ],
+    "startDate": "2021-05-01T00:00:00Z",
+    "endDate": "2022-05-31T00:00:00Z",
+    "serviceName": "quickbooks",
+    "businessName": "QboFrdTest",
+    "currency": []
+  },
+  "data": {
+    "credit": {
+      "distanceToDefault": {
+        "currentValue": -1.22,
+        "percentageChange": -0.01,
+        "timePeriodData": [
+          {
+            "period": {
+              "year": 2021,
+              "month": 5,
+              "date": "2021-05-31T00:00:00Z",
+              "day": 31,
+              "quarter": 2
+            },
+            "value": -1.22008271
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 6,
+              "date": "2021-06-30T00:00:00Z",
+              "day": 30,
+              "quarter": 2
+            },
+            "value": -1.22008271
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 7,
+              "date": "2021-07-31T00:00:00Z",
+              "day": 31,
+              "quarter": 3
+            },
+            "value": -1.22008271
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 8,
+              "date": "2021-08-31T00:00:00Z",
+              "day": 31,
+              "quarter": 3
+            },
+            "value": -1.22008271
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 9,
+              "date": "2021-09-30T00:00:00Z",
+              "day": 30,
+              "quarter": 3
+            },
+            "value": -1.22008271
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 10,
+              "date": "2021-10-31T00:00:00Z",
+              "day": 31,
+              "quarter": 4
+            },
+            "value": -1.22008271
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 11,
+              "date": "2021-11-30T00:00:00Z",
+              "day": 30,
+              "quarter": 4
+            },
+            "value": -1.22008271
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 12,
+              "date": "2021-12-31T00:00:00Z",
+              "day": 31,
+              "quarter": 4
+            },
+            "value": -1.22008271
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 1,
+              "date": "2022-01-31T00:00:00Z",
+              "day": 31,
+              "quarter": 1
+            },
+            "value": -1.22008271
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 2,
+              "date": "2022-02-28T00:00:00Z",
+              "day": 28,
+              "quarter": 1
+            },
+            "value": -1.22008271
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 3,
+              "date": "2022-03-31T00:00:00Z",
+              "day": 31,
+              "quarter": 1
+            },
+            "value": -1.22008271
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 4,
+              "date": "2022-04-30T00:00:00Z",
+              "day": 30,
+              "quarter": 2
+            },
+            "value": -1.22008271
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 5,
+              "date": "2022-05-31T00:00:00Z",
+              "day": 31,
+              "quarter": 2
+            },
+            "value": -1.22008271
+          }
+        ]
+      },
+      "probabilityOfDefault": {
+        "currentValue": 0.89,
+        "percentageChange": 0.14,
+        "timePeriodData": [
+          {
+            "period": {
+              "year": 2021,
+              "month": 5,
+              "date": "2021-05-31T00:00:00Z",
+              "day": 31,
+              "quarter": 2
+            },
+            "value": 0.888783239
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 6,
+              "date": "2021-06-30T00:00:00Z",
+              "day": 30,
+              "quarter": 2
+            },
+            "value": 0.888783239
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 7,
+              "date": "2021-07-31T00:00:00Z",
+              "day": 31,
+              "quarter": 3
+            },
+            "value": 0.888783239
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 8,
+              "date": "2021-08-31T00:00:00Z",
+              "day": 31,
+              "quarter": 3
+            },
+            "value": 0.888783239
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 9,
+              "date": "2021-09-30T00:00:00Z",
+              "day": 30,
+              "quarter": 3
+            },
+            "value": 0.888783239
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 10,
+              "date": "2021-10-31T00:00:00Z",
+              "day": 31,
+              "quarter": 4
+            },
+            "value": 0.888783239
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 11,
+              "date": "2021-11-30T00:00:00Z",
+              "day": 30,
+              "quarter": 4
+            },
+            "value": 0.888783239
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 12,
+              "date": "2021-12-31T00:00:00Z",
+              "day": 31,
+              "quarter": 4
+            },
+            "value": 0.888783239
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 1,
+              "date": "2022-01-31T00:00:00Z",
+              "day": 31,
+              "quarter": 1
+            },
+            "value": 0.888783239
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 2,
+              "date": "2022-02-28T00:00:00Z",
+              "day": 28,
+              "quarter": 1
+            },
+            "value": 0.888783239
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 3,
+              "date": "2022-03-31T00:00:00Z",
+              "day": 31,
+              "quarter": 1
+            },
+            "value": 0.888783239
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 4,
+              "date": "2022-04-30T00:00:00Z",
+              "day": 30,
+              "quarter": 2
+            },
+            "value": 0.888783239
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 5,
+              "date": "2022-05-31T00:00:00Z",
+              "day": 31,
+              "quarter": 2
+            },
+            "value": 0.888783239
+          }
+        ]
+      },
+      "averageCollectionPeriod": {
+        "currentValue": 30,
+        "percentageChange": 0,
+        "timePeriodData": [
+          {
+            "period": {
+              "year": 2021,
+              "month": 5,
+              "date": "2021-05-31T00:00:00Z",
+              "day": 31,
+              "quarter": 2
+            },
+            "value": 30
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 6,
+              "date": "2021-06-30T00:00:00Z",
+              "day": 30,
+              "quarter": 2
+            },
+            "value": 30
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 7,
+              "date": "2021-07-31T00:00:00Z",
+              "day": 31,
+              "quarter": 3
+            },
+            "value": 30
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 8,
+              "date": "2021-08-31T00:00:00Z",
+              "day": 31,
+              "quarter": 3
+            },
+            "value": 30
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 9,
+              "date": "2021-09-30T00:00:00Z",
+              "day": 30,
+              "quarter": 3
+            },
+            "value": 30
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 10,
+              "date": "2021-10-31T00:00:00Z",
+              "day": 31,
+              "quarter": 4
+            },
+            "value": 30
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 11,
+              "date": "2021-11-30T00:00:00Z",
+              "day": 30,
+              "quarter": 4
+            },
+            "value": 30
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 12,
+              "date": "2021-12-31T00:00:00Z",
+              "day": 31,
+              "quarter": 4
+            },
+            "value": 30
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 1,
+              "date": "2022-01-31T00:00:00Z",
+              "day": 31,
+              "quarter": 1
+            },
+            "value": 30
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 2,
+              "date": "2022-02-28T00:00:00Z",
+              "day": 28,
+              "quarter": 1
+            },
+            "value": 30
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 3,
+              "date": "2022-03-31T00:00:00Z",
+              "day": 31,
+              "quarter": 1
+            },
+            "value": 30
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 4,
+              "date": "2022-04-30T00:00:00Z",
+              "day": 30,
+              "quarter": 2
+            },
+            "value": 30
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 5,
+              "date": "2022-05-31T00:00:00Z",
+              "day": 31,
+              "quarter": 2
+            },
+            "value": 30
+          }
+        ]
+      }
+    },
+    "efficiency": {
+      "grossBurnRate": {
+        "currentValue": 3708.41,
+        "percentageChange": 0,
+        "timePeriodData": [
+          {
+            "period": {
+              "year": 2021,
+              "month": 5,
+              "date": "2021-05-31T00:00:00Z",
+              "day": 31,
+              "quarter": 2
+            },
+            "value": 3708.41
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 6,
+              "date": "2021-06-30T00:00:00Z",
+              "day": 30,
+              "quarter": 2
+            },
+            "value": 3708.41
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 7,
+              "date": "2021-07-31T00:00:00Z",
+              "day": 31,
+              "quarter": 3
+            },
+            "value": 3708.41
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 8,
+              "date": "2021-08-31T00:00:00Z",
+              "day": 31,
+              "quarter": 3
+            },
+            "value": 3708.41
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 9,
+              "date": "2021-09-30T00:00:00Z",
+              "day": 30,
+              "quarter": 3
+            },
+            "value": 3708.41
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 10,
+              "date": "2021-10-31T00:00:00Z",
+              "day": 31,
+              "quarter": 4
+            },
+            "value": 3708.41
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 11,
+              "date": "2021-11-30T00:00:00Z",
+              "day": 30,
+              "quarter": 4
+            },
+            "value": 3708.41
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 12,
+              "date": "2021-12-31T00:00:00Z",
+              "day": 31,
+              "quarter": 4
+            },
+            "value": 3708.41
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 1,
+              "date": "2022-01-31T00:00:00Z",
+              "day": 31,
+              "quarter": 1
+            },
+            "value": 3708.41
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 2,
+              "date": "2022-02-28T00:00:00Z",
+              "day": 28,
+              "quarter": 1
+            },
+            "value": 3708.41
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 3,
+              "date": "2022-03-31T00:00:00Z",
+              "day": 31,
+              "quarter": 1
+            },
+            "value": 3708.41
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 4,
+              "date": "2022-04-30T00:00:00Z",
+              "day": 30,
+              "quarter": 2
+            },
+            "value": 3708.41
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 5,
+              "date": "2022-05-31T00:00:00Z",
+              "day": 31,
+              "quarter": 2
+            },
+            "value": 3708.41
+          }
+        ]
+      },
+      "inventoryTurnoverRatio": {
+        "currentValue": 0.25,
+        "percentageChange": -1.8,
+        "timePeriodData": [
+          {
+            "period": {
+              "year": 2021,
+              "month": 5,
+              "date": "2021-05-31T00:00:00Z",
+              "day": 31,
+              "quarter": 2
+            },
+            "value": 0.225825683
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 6,
+              "date": "2021-06-30T00:00:00Z",
+              "day": 30,
+              "quarter": 2
+            },
+            "value": 0.254569894
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 7,
+              "date": "2021-07-31T00:00:00Z",
+              "day": 31,
+              "quarter": 3
+            },
+            "value": 0.254569894
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 8,
+              "date": "2021-08-31T00:00:00Z",
+              "day": 31,
+              "quarter": 3
+            },
+            "value": 0.254569894
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 9,
+              "date": "2021-09-30T00:00:00Z",
+              "day": 30,
+              "quarter": 3
+            },
+            "value": 0.254569894
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 10,
+              "date": "2021-10-31T00:00:00Z",
+              "day": 31,
+              "quarter": 4
+            },
+            "value": 0.254569894
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 11,
+              "date": "2021-11-30T00:00:00Z",
+              "day": 30,
+              "quarter": 4
+            },
+            "value": 0.254569894
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 12,
+              "date": "2021-12-31T00:00:00Z",
+              "day": 31,
+              "quarter": 4
+            },
+            "value": 0.254569894
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 1,
+              "date": "2022-01-31T00:00:00Z",
+              "day": 31,
+              "quarter": 1
+            },
+            "value": 0.254569894
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 2,
+              "date": "2022-02-28T00:00:00Z",
+              "day": 28,
+              "quarter": 1
+            },
+            "value": 0.254569894
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 3,
+              "date": "2022-03-31T00:00:00Z",
+              "day": 31,
+              "quarter": 1
+            },
+            "value": 0.254569894
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 4,
+              "date": "2022-04-30T00:00:00Z",
+              "day": 30,
+              "quarter": 2
+            },
+            "value": 0.254569894
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 5,
+              "date": "2022-05-31T00:00:00Z",
+              "day": 31,
+              "quarter": 2
+            },
+            "value": 0.254569894
+          }
+        ]
+      },
+      "assetTurnoverRatio": {
+        "currentValue": 0.1,
+        "percentageChange": -2.62,
+        "timePeriodData": [
+          {
+            "period": {
+              "year": 2021,
+              "month": 5,
+              "date": "2021-05-31T00:00:00Z",
+              "day": 31,
+              "quarter": 2
+            },
+            "value": 0.103813804
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 6,
+              "date": "2021-06-30T00:00:00Z",
+              "day": 30,
+              "quarter": 2
+            },
+            "value": 0.102692373
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 7,
+              "date": "2021-07-31T00:00:00Z",
+              "day": 31,
+              "quarter": 3
+            },
+            "value": 0.102692373
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 8,
+              "date": "2021-08-31T00:00:00Z",
+              "day": 31,
+              "quarter": 3
+            },
+            "value": 0.102692373
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 9,
+              "date": "2021-09-30T00:00:00Z",
+              "day": 30,
+              "quarter": 3
+            },
+            "value": 0.102692373
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 10,
+              "date": "2021-10-31T00:00:00Z",
+              "day": 31,
+              "quarter": 4
+            },
+            "value": 0.102692373
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 11,
+              "date": "2021-11-30T00:00:00Z",
+              "day": 30,
+              "quarter": 4
+            },
+            "value": 0.102692373
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 12,
+              "date": "2021-12-31T00:00:00Z",
+              "day": 31,
+              "quarter": 4
+            },
+            "value": 0.102692373
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 1,
+              "date": "2022-01-31T00:00:00Z",
+              "day": 31,
+              "quarter": 1
+            },
+            "value": 0.102692373
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 2,
+              "date": "2022-02-28T00:00:00Z",
+              "day": 28,
+              "quarter": 1
+            },
+            "value": 0.102692373
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 3,
+              "date": "2022-03-31T00:00:00Z",
+              "day": 31,
+              "quarter": 1
+            },
+            "value": 0.102692373
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 4,
+              "date": "2022-04-30T00:00:00Z",
+              "day": 30,
+              "quarter": 2
+            },
+            "value": 0.102692373
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 5,
+              "date": "2022-05-31T00:00:00Z",
+              "day": 31,
+              "quarter": 2
+            },
+            "value": 0.102692373
+          }
+        ]
+      },
+      "payablesConversionPeriod": {
+        "currentValue": 214.97,
+        "percentageChange": 0,
+        "timePeriodData": [
+          {
+            "period": {
+              "year": 2021,
+              "month": 5,
+              "date": "2021-05-31T00:00:00Z",
+              "day": 31,
+              "quarter": 2
+            },
+            "value": 229.970025612
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 6,
+              "date": "2021-06-30T00:00:00Z",
+              "day": 30,
+              "quarter": 2
+            },
+            "value": 214.970025612
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 7,
+              "date": "2021-07-31T00:00:00Z",
+              "day": 31,
+              "quarter": 3
+            },
+            "value": 214.970025612
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 8,
+              "date": "2021-08-31T00:00:00Z",
+              "day": 31,
+              "quarter": 3
+            },
+            "value": 214.970025612
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 9,
+              "date": "2021-09-30T00:00:00Z",
+              "day": 30,
+              "quarter": 3
+            },
+            "value": 214.970025612
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 10,
+              "date": "2021-10-31T00:00:00Z",
+              "day": 31,
+              "quarter": 4
+            },
+            "value": 214.970025612
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 11,
+              "date": "2021-11-30T00:00:00Z",
+              "day": 30,
+              "quarter": 4
+            },
+            "value": 214.970025612
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 12,
+              "date": "2021-12-31T00:00:00Z",
+              "day": 31,
+              "quarter": 4
+            },
+            "value": 214.970025612
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 1,
+              "date": "2022-01-31T00:00:00Z",
+              "day": 31,
+              "quarter": 1
+            },
+            "value": 214.970025612
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 2,
+              "date": "2022-02-28T00:00:00Z",
+              "day": 28,
+              "quarter": 1
+            },
+            "value": 214.970025612
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 3,
+              "date": "2022-03-31T00:00:00Z",
+              "day": 31,
+              "quarter": 1
+            },
+            "value": 214.970025612
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 4,
+              "date": "2022-04-30T00:00:00Z",
+              "day": 30,
+              "quarter": 2
+            },
+            "value": 214.970025612
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 5,
+              "date": "2022-05-31T00:00:00Z",
+              "day": 31,
+              "quarter": 2
+            },
+            "value": 214.970025612
+          }
+        ]
+      },
+      "accountsReceivableTurnoverRatio": {
+        "currentValue": 0.28,
+        "percentageChange": 1.03,
+        "timePeriodData": [
+          {
+            "period": {
+              "year": 2021,
+              "month": 5,
+              "date": "2021-05-31T00:00:00Z",
+              "day": 31,
+              "quarter": 2
+            },
+            "value": 0.277143186
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 6,
+              "date": "2021-06-30T00:00:00Z",
+              "day": 30,
+              "quarter": 2
+            },
+            "value": 0.277143186
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 7,
+              "date": "2021-07-31T00:00:00Z",
+              "day": 31,
+              "quarter": 3
+            },
+            "value": 0.277143186
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 8,
+              "date": "2021-08-31T00:00:00Z",
+              "day": 31,
+              "quarter": 3
+            },
+            "value": 0.277143186
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 9,
+              "date": "2021-09-30T00:00:00Z",
+              "day": 30,
+              "quarter": 3
+            },
+            "value": 0.277143186
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 10,
+              "date": "2021-10-31T00:00:00Z",
+              "day": 31,
+              "quarter": 4
+            },
+            "value": 0.277143186
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 11,
+              "date": "2021-11-30T00:00:00Z",
+              "day": 30,
+              "quarter": 4
+            },
+            "value": 0.277143186
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 12,
+              "date": "2021-12-31T00:00:00Z",
+              "day": 31,
+              "quarter": 4
+            },
+            "value": 0.277143186
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 1,
+              "date": "2022-01-31T00:00:00Z",
+              "day": 31,
+              "quarter": 1
+            },
+            "value": 0.277143186
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 2,
+              "date": "2022-02-28T00:00:00Z",
+              "day": 28,
+              "quarter": 1
+            },
+            "value": 0.277143186
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 3,
+              "date": "2022-03-31T00:00:00Z",
+              "day": 31,
+              "quarter": 1
+            },
+            "value": 0.277143186
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 4,
+              "date": "2022-04-30T00:00:00Z",
+              "day": 30,
+              "quarter": 2
+            },
+            "value": 0.277143186
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 5,
+              "date": "2022-05-31T00:00:00Z",
+              "day": 31,
+              "quarter": 2
+            },
+            "value": 0.277143186
+          }
+        ]
+      },
+      "accountsPayableTurnoverRatio": {
+        "currentValue": 2.7,
+        "percentageChange": 0.11,
+        "timePeriodData": [
+          {
+            "period": {
+              "year": 2021,
+              "month": 5,
+              "date": "2021-05-31T00:00:00Z",
+              "day": 31,
+              "quarter": 2
+            },
+            "value": -1.238233246e-15
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 6,
+              "date": "2021-06-30T00:00:00Z",
+              "day": 30,
+              "quarter": 2
+            },
+            "value": 2.697090577
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 7,
+              "date": "2021-07-31T00:00:00Z",
+              "day": 31,
+              "quarter": 3
+            },
+            "value": 2.697090577
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 8,
+              "date": "2021-08-31T00:00:00Z",
+              "day": 31,
+              "quarter": 3
+            },
+            "value": 2.697090577
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 9,
+              "date": "2021-09-30T00:00:00Z",
+              "day": 30,
+              "quarter": 3
+            },
+            "value": 2.697090577
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 10,
+              "date": "2021-10-31T00:00:00Z",
+              "day": 31,
+              "quarter": 4
+            },
+            "value": 2.697090577
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 11,
+              "date": "2021-11-30T00:00:00Z",
+              "day": 30,
+              "quarter": 4
+            },
+            "value": 2.697090577
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 12,
+              "date": "2021-12-31T00:00:00Z",
+              "day": 31,
+              "quarter": 4
+            },
+            "value": 2.697090577
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 1,
+              "date": "2022-01-31T00:00:00Z",
+              "day": 31,
+              "quarter": 1
+            },
+            "value": 2.697090577
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 2,
+              "date": "2022-02-28T00:00:00Z",
+              "day": 28,
+              "quarter": 1
+            },
+            "value": 2.697090577
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 3,
+              "date": "2022-03-31T00:00:00Z",
+              "day": 31,
+              "quarter": 1
+            },
+            "value": 2.697090577
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 4,
+              "date": "2022-04-30T00:00:00Z",
+              "day": 30,
+              "quarter": 2
+            },
+            "value": 2.697090577
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 5,
+              "date": "2022-05-31T00:00:00Z",
+              "day": 31,
+              "quarter": 2
+            },
+            "value": 2.697090577
+          }
+        ]
+      },
+      "daysPayableOutstanding": {
+        "currentValue": 11.12,
+        "percentageChange": -0.03,
+        "timePeriodData": [
+          {
+            "period": {
+              "year": 2021,
+              "month": 5,
+              "date": "2021-05-31T00:00:00Z",
+              "day": 31,
+              "quarter": 2
+            },
+            "value": 11.123096959
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 6,
+              "date": "2021-06-30T00:00:00Z",
+              "day": 30,
+              "quarter": 2
+            },
+            "value": 11.123096959
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 7,
+              "date": "2021-07-31T00:00:00Z",
+              "day": 31,
+              "quarter": 3
+            },
+            "value": 11.123096959
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 8,
+              "date": "2021-08-31T00:00:00Z",
+              "day": 31,
+              "quarter": 3
+            },
+            "value": 11.123096959
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 9,
+              "date": "2021-09-30T00:00:00Z",
+              "day": 30,
+              "quarter": 3
+            },
+            "value": 11.123096959
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 10,
+              "date": "2021-10-31T00:00:00Z",
+              "day": 31,
+              "quarter": 4
+            },
+            "value": 11.123096959
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 11,
+              "date": "2021-11-30T00:00:00Z",
+              "day": 30,
+              "quarter": 4
+            },
+            "value": 11.123096959
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 12,
+              "date": "2021-12-31T00:00:00Z",
+              "day": 31,
+              "quarter": 4
+            },
+            "value": 11.123096959
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 1,
+              "date": "2022-01-31T00:00:00Z",
+              "day": 31,
+              "quarter": 1
+            },
+            "value": 11.123096959
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 2,
+              "date": "2022-02-28T00:00:00Z",
+              "day": 28,
+              "quarter": 1
+            },
+            "value": 11.123096959
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 3,
+              "date": "2022-03-31T00:00:00Z",
+              "day": 31,
+              "quarter": 1
+            },
+            "value": 11.123096959
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 4,
+              "date": "2022-04-30T00:00:00Z",
+              "day": 30,
+              "quarter": 2
+            },
+            "value": 11.123096959
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 5,
+              "date": "2022-05-31T00:00:00Z",
+              "day": 31,
+              "quarter": 2
+            },
+            "value": 11.123096959
+          }
+        ]
+      },
+      "daysSalesOutstanding": {
+        "currentValue": 4.32,
+        "percentageChange": -0.01,
+        "timePeriodData": [
+          {
+            "period": {
+              "year": 2021,
+              "month": 5,
+              "date": "2021-05-31T00:00:00Z",
+              "day": 31,
+              "quarter": 2
+            },
+            "value": 4.320647059
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 6,
+              "date": "2021-06-30T00:00:00Z",
+              "day": 30,
+              "quarter": 2
+            },
+            "value": 4.320647059
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 7,
+              "date": "2021-07-31T00:00:00Z",
+              "day": 31,
+              "quarter": 3
+            },
+            "value": 4.320647059
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 8,
+              "date": "2021-08-31T00:00:00Z",
+              "day": 31,
+              "quarter": 3
+            },
+            "value": 4.320647059
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 9,
+              "date": "2021-09-30T00:00:00Z",
+              "day": 30,
+              "quarter": 3
+            },
+            "value": 4.320647059
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 10,
+              "date": "2021-10-31T00:00:00Z",
+              "day": 31,
+              "quarter": 4
+            },
+            "value": 4.320647059
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 11,
+              "date": "2021-11-30T00:00:00Z",
+              "day": 30,
+              "quarter": 4
+            },
+            "value": 4.320647059
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 12,
+              "date": "2021-12-31T00:00:00Z",
+              "day": 31,
+              "quarter": 4
+            },
+            "value": 4.320647059
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 1,
+              "date": "2022-01-31T00:00:00Z",
+              "day": 31,
+              "quarter": 1
+            },
+            "value": 4.320647059
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 2,
+              "date": "2022-02-28T00:00:00Z",
+              "day": 28,
+              "quarter": 1
+            },
+            "value": 4.320647059
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 3,
+              "date": "2022-03-31T00:00:00Z",
+              "day": 31,
+              "quarter": 1
+            },
+            "value": 4.320647059
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 4,
+              "date": "2022-04-30T00:00:00Z",
+              "day": 30,
+              "quarter": 2
+            },
+            "value": 4.320647059
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 5,
+              "date": "2022-05-31T00:00:00Z",
+              "day": 31,
+              "quarter": 2
+            },
+            "value": 4.320647059
+          }
+        ]
+      },
+      "averageOutstandingPayablesBalance": {
+        "currentValue": 367.26,
+        "percentageChange": 0,
+        "timePeriodData": [
+          {
+            "period": {
+              "year": 2021,
+              "month": 5,
+              "date": "2021-05-31T00:00:00Z",
+              "day": 31,
+              "quarter": 2
+            },
+            "value": 367.255
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 6,
+              "date": "2021-06-30T00:00:00Z",
+              "day": 30,
+              "quarter": 2
+            },
+            "value": 367.255
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 7,
+              "date": "2021-07-31T00:00:00Z",
+              "day": 31,
+              "quarter": 3
+            },
+            "value": 367.255
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 8,
+              "date": "2021-08-31T00:00:00Z",
+              "day": 31,
+              "quarter": 3
+            },
+            "value": 367.255
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 9,
+              "date": "2021-09-30T00:00:00Z",
+              "day": 30,
+              "quarter": 3
+            },
+            "value": 367.255
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 10,
+              "date": "2021-10-31T00:00:00Z",
+              "day": 31,
+              "quarter": 4
+            },
+            "value": 367.255
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 11,
+              "date": "2021-11-30T00:00:00Z",
+              "day": 30,
+              "quarter": 4
+            },
+            "value": 367.255
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 12,
+              "date": "2021-12-31T00:00:00Z",
+              "day": 31,
+              "quarter": 4
+            },
+            "value": 367.255
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 1,
+              "date": "2022-01-31T00:00:00Z",
+              "day": 31,
+              "quarter": 1
+            },
+            "value": 367.255
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 2,
+              "date": "2022-02-28T00:00:00Z",
+              "day": 28,
+              "quarter": 1
+            },
+            "value": 367.255
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 3,
+              "date": "2022-03-31T00:00:00Z",
+              "day": 31,
+              "quarter": 1
+            },
+            "value": 367.255
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 4,
+              "date": "2022-04-30T00:00:00Z",
+              "day": 30,
+              "quarter": 2
+            },
+            "value": 367.255
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 5,
+              "date": "2022-05-31T00:00:00Z",
+              "day": 31,
+              "quarter": 2
+            },
+            "value": 367.255
+          }
+        ]
+      },
+      "averageOutstandingReceivablesBalance": {
+        "currentValue": 2628.86,
+        "percentageChange": 0,
+        "timePeriodData": [
+          {
+            "period": {
+              "year": 2021,
+              "month": 5,
+              "date": "2021-05-31T00:00:00Z",
+              "day": 31,
+              "quarter": 2
+            },
+            "value": 1805.577142857
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 6,
+              "date": "2021-06-30T00:00:00Z",
+              "day": 30,
+              "quarter": 2
+            },
+            "value": 2628.862857143
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 7,
+              "date": "2021-07-31T00:00:00Z",
+              "day": 31,
+              "quarter": 3
+            },
+            "value": 2628.862857143
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 8,
+              "date": "2021-08-31T00:00:00Z",
+              "day": 31,
+              "quarter": 3
+            },
+            "value": 2628.862857143
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 9,
+              "date": "2021-09-30T00:00:00Z",
+              "day": 30,
+              "quarter": 3
+            },
+            "value": 2628.862857143
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 10,
+              "date": "2021-10-31T00:00:00Z",
+              "day": 31,
+              "quarter": 4
+            },
+            "value": 2628.862857143
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 11,
+              "date": "2021-11-30T00:00:00Z",
+              "day": 30,
+              "quarter": 4
+            },
+            "value": 2628.862857143
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 12,
+              "date": "2021-12-31T00:00:00Z",
+              "day": 31,
+              "quarter": 4
+            },
+            "value": 2628.862857143
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 1,
+              "date": "2022-01-31T00:00:00Z",
+              "day": 31,
+              "quarter": 1
+            },
+            "value": 2628.862857143
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 2,
+              "date": "2022-02-28T00:00:00Z",
+              "day": 28,
+              "quarter": 1
+            },
+            "value": 2628.862857143
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 3,
+              "date": "2022-03-31T00:00:00Z",
+              "day": 31,
+              "quarter": 1
+            },
+            "value": 2628.862857143
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 4,
+              "date": "2022-04-30T00:00:00Z",
+              "day": 30,
+              "quarter": 2
+            },
+            "value": 2628.862857143
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 5,
+              "date": "2022-05-31T00:00:00Z",
+              "day": 31,
+              "quarter": 2
+            },
+            "value": 2628.862857143
+          }
+        ]
+      }
+    },
+    "leverage": {
+      "equityToLTAssets": {
+        "currentValue": 3.4,
+        "percentageChange": 0.1,
+        "timePeriodData": [
+          {
+            "period": {
+              "year": 2021,
+              "month": 5,
+              "date": "2021-05-31T00:00:00Z",
+              "day": 31,
+              "quarter": 2
+            },
+            "value": 3.396526046
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 6,
+              "date": "2021-06-30T00:00:00Z",
+              "day": 30,
+              "quarter": 2
+            },
+            "value": 3.396526046
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 7,
+              "date": "2021-07-31T00:00:00Z",
+              "day": 31,
+              "quarter": 3
+            },
+            "value": 3.396526046
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 8,
+              "date": "2021-08-31T00:00:00Z",
+              "day": 31,
+              "quarter": 3
+            },
+            "value": 3.396526046
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 9,
+              "date": "2021-09-30T00:00:00Z",
+              "day": 30,
+              "quarter": 3
+            },
+            "value": 3.396526046
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 10,
+              "date": "2021-10-31T00:00:00Z",
+              "day": 31,
+              "quarter": 4
+            },
+            "value": 3.396526046
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 11,
+              "date": "2021-11-30T00:00:00Z",
+              "day": 30,
+              "quarter": 4
+            },
+            "value": 3.396526046
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 12,
+              "date": "2021-12-31T00:00:00Z",
+              "day": 31,
+              "quarter": 4
+            },
+            "value": 3.396526046
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 1,
+              "date": "2022-01-31T00:00:00Z",
+              "day": 31,
+              "quarter": 1
+            },
+            "value": 3.396526046
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 2,
+              "date": "2022-02-28T00:00:00Z",
+              "day": 28,
+              "quarter": 1
+            },
+            "value": 3.396526046
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 3,
+              "date": "2022-03-31T00:00:00Z",
+              "day": 31,
+              "quarter": 1
+            },
+            "value": 3.396526046
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 4,
+              "date": "2022-04-30T00:00:00Z",
+              "day": 30,
+              "quarter": 2
+            },
+            "value": 3.396526046
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 5,
+              "date": "2022-05-31T00:00:00Z",
+              "day": 31,
+              "quarter": 2
+            },
+            "value": 3.396526046
+          }
+        ]
+      },
+      "shortDebtToEquityRatio": {
+        "currentValue": 0.12,
+        "percentageChange": 1.35,
+        "timePeriodData": [
+          {
+            "period": {
+              "year": 2021,
+              "month": 5,
+              "date": "2021-05-31T00:00:00Z",
+              "day": 31,
+              "quarter": 2
+            },
+            "value": 0.118403221
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 6,
+              "date": "2021-06-30T00:00:00Z",
+              "day": 30,
+              "quarter": 2
+            },
+            "value": 0.118403221
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 7,
+              "date": "2021-07-31T00:00:00Z",
+              "day": 31,
+              "quarter": 3
+            },
+            "value": 0.118403221
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 8,
+              "date": "2021-08-31T00:00:00Z",
+              "day": 31,
+              "quarter": 3
+            },
+            "value": 0.118403221
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 9,
+              "date": "2021-09-30T00:00:00Z",
+              "day": 30,
+              "quarter": 3
+            },
+            "value": 0.118403221
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 10,
+              "date": "2021-10-31T00:00:00Z",
+              "day": 31,
+              "quarter": 4
+            },
+            "value": 0.118403221
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 11,
+              "date": "2021-11-30T00:00:00Z",
+              "day": 30,
+              "quarter": 4
+            },
+            "value": 0.118403221
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 12,
+              "date": "2021-12-31T00:00:00Z",
+              "day": 31,
+              "quarter": 4
+            },
+            "value": 0.118403221
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 1,
+              "date": "2022-01-31T00:00:00Z",
+              "day": 31,
+              "quarter": 1
+            },
+            "value": 0.118403221
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 2,
+              "date": "2022-02-28T00:00:00Z",
+              "day": 28,
+              "quarter": 1
+            },
+            "value": 0.118403221
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 3,
+              "date": "2022-03-31T00:00:00Z",
+              "day": 31,
+              "quarter": 1
+            },
+            "value": 0.118403221
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 4,
+              "date": "2022-04-30T00:00:00Z",
+              "day": 30,
+              "quarter": 2
+            },
+            "value": 0.118403221
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 5,
+              "date": "2022-05-31T00:00:00Z",
+              "day": 31,
+              "quarter": 2
+            },
+            "value": 0.118403221
+          }
+        ]
+      },
+      "debtToEquityRatio": {
+        "currentValue": 0.88,
+        "percentageChange": 0.12,
+        "timePeriodData": [
+          {
+            "period": {
+              "year": 2021,
+              "month": 5,
+              "date": "2021-05-31T00:00:00Z",
+              "day": 31,
+              "quarter": 2
+            },
+            "value": 0.878931016
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 6,
+              "date": "2021-06-30T00:00:00Z",
+              "day": 30,
+              "quarter": 2
+            },
+            "value": 0.878931016
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 7,
+              "date": "2021-07-31T00:00:00Z",
+              "day": 31,
+              "quarter": 3
+            },
+            "value": 0.878931016
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 8,
+              "date": "2021-08-31T00:00:00Z",
+              "day": 31,
+              "quarter": 3
+            },
+            "value": 0.878931016
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 9,
+              "date": "2021-09-30T00:00:00Z",
+              "day": 30,
+              "quarter": 3
+            },
+            "value": 0.878931016
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 10,
+              "date": "2021-10-31T00:00:00Z",
+              "day": 31,
+              "quarter": 4
+            },
+            "value": 0.878931016
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 11,
+              "date": "2021-11-30T00:00:00Z",
+              "day": 30,
+              "quarter": 4
+            },
+            "value": 0.878931016
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 12,
+              "date": "2021-12-31T00:00:00Z",
+              "day": 31,
+              "quarter": 4
+            },
+            "value": 0.878931016
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 1,
+              "date": "2022-01-31T00:00:00Z",
+              "day": 31,
+              "quarter": 1
+            },
+            "value": 0.878931016
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 2,
+              "date": "2022-02-28T00:00:00Z",
+              "day": 28,
+              "quarter": 1
+            },
+            "value": 0.878931016
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 3,
+              "date": "2022-03-31T00:00:00Z",
+              "day": 31,
+              "quarter": 1
+            },
+            "value": 0.878931016
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 4,
+              "date": "2022-04-30T00:00:00Z",
+              "day": 30,
+              "quarter": 2
+            },
+            "value": 0.878931016
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 5,
+              "date": "2022-05-31T00:00:00Z",
+              "day": 31,
+              "quarter": 2
+            },
+            "value": 0.878931016
+          }
+        ]
+      },
+      "debtToAssetsRatio": {
+        "currentValue": 0.47,
+        "percentageChange": 0.47,
+        "timePeriodData": [
+          {
+            "period": {
+              "year": 2021,
+              "month": 5,
+              "date": "2021-05-31T00:00:00Z",
+              "day": 31,
+              "quarter": 2
+            },
+            "value": 0.467782483
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 6,
+              "date": "2021-06-30T00:00:00Z",
+              "day": 30,
+              "quarter": 2
+            },
+            "value": 0.467782483
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 7,
+              "date": "2021-07-31T00:00:00Z",
+              "day": 31,
+              "quarter": 3
+            },
+            "value": 0.467782483
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 8,
+              "date": "2021-08-31T00:00:00Z",
+              "day": 31,
+              "quarter": 3
+            },
+            "value": 0.467782483
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 9,
+              "date": "2021-09-30T00:00:00Z",
+              "day": 30,
+              "quarter": 3
+            },
+            "value": 0.467782483
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 10,
+              "date": "2021-10-31T00:00:00Z",
+              "day": 31,
+              "quarter": 4
+            },
+            "value": 0.467782483
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 11,
+              "date": "2021-11-30T00:00:00Z",
+              "day": 30,
+              "quarter": 4
+            },
+            "value": 0.467782483
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 12,
+              "date": "2021-12-31T00:00:00Z",
+              "day": 31,
+              "quarter": 4
+            },
+            "value": 0.467782483
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 1,
+              "date": "2022-01-31T00:00:00Z",
+              "day": 31,
+              "quarter": 1
+            },
+            "value": 0.467782483
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 2,
+              "date": "2022-02-28T00:00:00Z",
+              "day": 28,
+              "quarter": 1
+            },
+            "value": 0.467782483
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 3,
+              "date": "2022-03-31T00:00:00Z",
+              "day": 31,
+              "quarter": 1
+            },
+            "value": 0.467782483
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 4,
+              "date": "2022-04-30T00:00:00Z",
+              "day": 30,
+              "quarter": 2
+            },
+            "value": 0.467782483
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 5,
+              "date": "2022-05-31T00:00:00Z",
+              "day": 31,
+              "quarter": 2
+            },
+            "value": 0.467782483
+          }
+        ]
+      },
+      "leverageIndex": {
+        "currentValue": 1,
+        "percentageChange": 0,
+        "timePeriodData": [
+          {
+            "period": {
+              "year": 2021,
+              "month": 5,
+              "date": "2021-05-31T00:00:00Z",
+              "day": 31,
+              "quarter": 2
+            },
+            "value": 0.982045973
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 6,
+              "date": "2021-06-30T00:00:00Z",
+              "day": 30,
+              "quarter": 2
+            },
+            "value": 1
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 7,
+              "date": "2021-07-31T00:00:00Z",
+              "day": 31,
+              "quarter": 3
+            },
+            "value": 1
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 8,
+              "date": "2021-08-31T00:00:00Z",
+              "day": 31,
+              "quarter": 3
+            },
+            "value": 1
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 9,
+              "date": "2021-09-30T00:00:00Z",
+              "day": 30,
+              "quarter": 3
+            },
+            "value": 1
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 10,
+              "date": "2021-10-31T00:00:00Z",
+              "day": 31,
+              "quarter": 4
+            },
+            "value": 1
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 11,
+              "date": "2021-11-30T00:00:00Z",
+              "day": 30,
+              "quarter": 4
+            },
+            "value": 1
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 12,
+              "date": "2021-12-31T00:00:00Z",
+              "day": 31,
+              "quarter": 4
+            },
+            "value": 1
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 1,
+              "date": "2022-01-31T00:00:00Z",
+              "day": 31,
+              "quarter": 1
+            },
+            "value": 1
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 2,
+              "date": "2022-02-28T00:00:00Z",
+              "day": 28,
+              "quarter": 1
+            },
+            "value": 1
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 3,
+              "date": "2022-03-31T00:00:00Z",
+              "day": 31,
+              "quarter": 1
+            },
+            "value": 1
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 4,
+              "date": "2022-04-30T00:00:00Z",
+              "day": 30,
+              "quarter": 2
+            },
+            "value": 1
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 5,
+              "date": "2022-05-31T00:00:00Z",
+              "day": 31,
+              "quarter": 2
+            },
+            "value": 1
+          }
+        ]
+      }
+    },
+    "liquidity": {
+      "quickRatio": {
+        "currentValue": 12.62,
+        "percentageChange": -0.01,
+        "timePeriodData": [
+          {
+            "period": {
+              "year": 2021,
+              "month": 5,
+              "date": "2021-05-31T00:00:00Z",
+              "day": 31,
+              "quarter": 2
+            },
+            "value": 12.620778573
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 6,
+              "date": "2021-06-30T00:00:00Z",
+              "day": 30,
+              "quarter": 2
+            },
+            "value": 12.620778573
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 7,
+              "date": "2021-07-31T00:00:00Z",
+              "day": 31,
+              "quarter": 3
+            },
+            "value": 12.620778573
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 8,
+              "date": "2021-08-31T00:00:00Z",
+              "day": 31,
+              "quarter": 3
+            },
+            "value": 12.620778573
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 9,
+              "date": "2021-09-30T00:00:00Z",
+              "day": 30,
+              "quarter": 3
+            },
+            "value": 12.620778573
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 10,
+              "date": "2021-10-31T00:00:00Z",
+              "day": 31,
+              "quarter": 4
+            },
+            "value": 12.620778573
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 11,
+              "date": "2021-11-30T00:00:00Z",
+              "day": 30,
+              "quarter": 4
+            },
+            "value": 12.620778573
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 12,
+              "date": "2021-12-31T00:00:00Z",
+              "day": 31,
+              "quarter": 4
+            },
+            "value": 12.620778573
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 1,
+              "date": "2022-01-31T00:00:00Z",
+              "day": 31,
+              "quarter": 1
+            },
+            "value": 12.620778573
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 2,
+              "date": "2022-02-28T00:00:00Z",
+              "day": 28,
+              "quarter": 1
+            },
+            "value": 12.620778573
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 3,
+              "date": "2022-03-31T00:00:00Z",
+              "day": 31,
+              "quarter": 1
+            },
+            "value": 12.620778573
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 4,
+              "date": "2022-04-30T00:00:00Z",
+              "day": 30,
+              "quarter": 2
+            },
+            "value": 12.620778573
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 5,
+              "date": "2022-05-31T00:00:00Z",
+              "day": 31,
+              "quarter": 2
+            },
+            "value": 12.620778573
+          }
+        ]
+      },
+      "absoluteLiquidity": {
+        "currentValue": 65681.56,
+        "percentageChange": 0,
+        "timePeriodData": [
+          {
+            "period": {
+              "year": 2021,
+              "month": 5,
+              "date": "2021-05-31T00:00:00Z",
+              "day": 31,
+              "quarter": 2
+            },
+            "value": 65681.56
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 6,
+              "date": "2021-06-30T00:00:00Z",
+              "day": 30,
+              "quarter": 2
+            },
+            "value": 65681.56
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 7,
+              "date": "2021-07-31T00:00:00Z",
+              "day": 31,
+              "quarter": 3
+            },
+            "value": 65681.56
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 8,
+              "date": "2021-08-31T00:00:00Z",
+              "day": 31,
+              "quarter": 3
+            },
+            "value": 65681.56
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 9,
+              "date": "2021-09-30T00:00:00Z",
+              "day": 30,
+              "quarter": 3
+            },
+            "value": 65681.56
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 10,
+              "date": "2021-10-31T00:00:00Z",
+              "day": 31,
+              "quarter": 4
+            },
+            "value": 65681.56
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 11,
+              "date": "2021-11-30T00:00:00Z",
+              "day": 30,
+              "quarter": 4
+            },
+            "value": 65681.56
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 12,
+              "date": "2021-12-31T00:00:00Z",
+              "day": 31,
+              "quarter": 4
+            },
+            "value": 65681.56
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 1,
+              "date": "2022-01-31T00:00:00Z",
+              "day": 31,
+              "quarter": 1
+            },
+            "value": 65681.56
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 2,
+              "date": "2022-02-28T00:00:00Z",
+              "day": 28,
+              "quarter": 1
+            },
+            "value": 65681.56
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 3,
+              "date": "2022-03-31T00:00:00Z",
+              "day": 31,
+              "quarter": 1
+            },
+            "value": 65681.56
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 4,
+              "date": "2022-04-30T00:00:00Z",
+              "day": 30,
+              "quarter": 2
+            },
+            "value": 65681.56
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 5,
+              "date": "2022-05-31T00:00:00Z",
+              "day": 31,
+              "quarter": 2
+            },
+            "value": 65681.56
+          }
+        ]
+      },
+      "currentRatio": {
+        "currentValue": 15.11,
+        "percentageChange": 0.02,
+        "timePeriodData": [
+          {
+            "period": {
+              "year": 2021,
+              "month": 5,
+              "date": "2021-05-31T00:00:00Z",
+              "day": 31,
+              "quarter": 2
+            },
+            "value": 15.107353406
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 6,
+              "date": "2021-06-30T00:00:00Z",
+              "day": 30,
+              "quarter": 2
+            },
+            "value": 15.107353406
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 7,
+              "date": "2021-07-31T00:00:00Z",
+              "day": 31,
+              "quarter": 3
+            },
+            "value": 15.107353406
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 8,
+              "date": "2021-08-31T00:00:00Z",
+              "day": 31,
+              "quarter": 3
+            },
+            "value": 15.107353406
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 9,
+              "date": "2021-09-30T00:00:00Z",
+              "day": 30,
+              "quarter": 3
+            },
+            "value": 15.107353406
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 10,
+              "date": "2021-10-31T00:00:00Z",
+              "day": 31,
+              "quarter": 4
+            },
+            "value": 15.107353406
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 11,
+              "date": "2021-11-30T00:00:00Z",
+              "day": 30,
+              "quarter": 4
+            },
+            "value": 15.107353406
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 12,
+              "date": "2021-12-31T00:00:00Z",
+              "day": 31,
+              "quarter": 4
+            },
+            "value": 15.107353406
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 1,
+              "date": "2022-01-31T00:00:00Z",
+              "day": 31,
+              "quarter": 1
+            },
+            "value": 15.107353406
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 2,
+              "date": "2022-02-28T00:00:00Z",
+              "day": 28,
+              "quarter": 1
+            },
+            "value": 15.107353406
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 3,
+              "date": "2022-03-31T00:00:00Z",
+              "day": 31,
+              "quarter": 1
+            },
+            "value": 15.107353406
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 4,
+              "date": "2022-04-30T00:00:00Z",
+              "day": 30,
+              "quarter": 2
+            },
+            "value": 15.107353406
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 5,
+              "date": "2022-05-31T00:00:00Z",
+              "day": 31,
+              "quarter": 2
+            },
+            "value": 15.107353406
+          }
+        ]
+      },
+      "grossBurn": {
+        "currentValue": 3613.41,
+        "percentageChange": 0,
+        "timePeriodData": [
+          {
+            "period": {
+              "year": 2021,
+              "month": 5,
+              "date": "2021-05-31T00:00:00Z",
+              "day": 31,
+              "quarter": 2
+            },
+            "value": 3613.41
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 6,
+              "date": "2021-06-30T00:00:00Z",
+              "day": 30,
+              "quarter": 2
+            },
+            "value": 3613.41
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 7,
+              "date": "2021-07-31T00:00:00Z",
+              "day": 31,
+              "quarter": 3
+            },
+            "value": 3613.41
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 8,
+              "date": "2021-08-31T00:00:00Z",
+              "day": 31,
+              "quarter": 3
+            },
+            "value": 3613.41
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 9,
+              "date": "2021-09-30T00:00:00Z",
+              "day": 30,
+              "quarter": 3
+            },
+            "value": 3613.41
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 10,
+              "date": "2021-10-31T00:00:00Z",
+              "day": 31,
+              "quarter": 4
+            },
+            "value": 3613.41
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 11,
+              "date": "2021-11-30T00:00:00Z",
+              "day": 30,
+              "quarter": 4
+            },
+            "value": 3613.41
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 12,
+              "date": "2021-12-31T00:00:00Z",
+              "day": 31,
+              "quarter": 4
+            },
+            "value": 3613.41
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 1,
+              "date": "2022-01-31T00:00:00Z",
+              "day": 31,
+              "quarter": 1
+            },
+            "value": 3613.41
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 2,
+              "date": "2022-02-28T00:00:00Z",
+              "day": 28,
+              "quarter": 1
+            },
+            "value": 3613.41
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 3,
+              "date": "2022-03-31T00:00:00Z",
+              "day": 31,
+              "quarter": 1
+            },
+            "value": 3613.41
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 4,
+              "date": "2022-04-30T00:00:00Z",
+              "day": 30,
+              "quarter": 2
+            },
+            "value": 3613.41
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 5,
+              "date": "2022-05-31T00:00:00Z",
+              "day": 31,
+              "quarter": 2
+            },
+            "value": 3613.41
+          }
+        ]
+      },
+      "runway": {
+        "currentValue": 5.69,
+        "percentageChange": 0.03,
+        "timePeriodData": [
+          {
+            "period": {
+              "year": 2021,
+              "month": 5,
+              "date": "2021-05-31T00:00:00Z",
+              "day": 31,
+              "quarter": 2
+            },
+            "value": 5.688575427
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 6,
+              "date": "2021-06-30T00:00:00Z",
+              "day": 30,
+              "quarter": 2
+            },
+            "value": 5.688575427
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 7,
+              "date": "2021-07-31T00:00:00Z",
+              "day": 31,
+              "quarter": 3
+            },
+            "value": 5.688575427
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 8,
+              "date": "2021-08-31T00:00:00Z",
+              "day": 31,
+              "quarter": 3
+            },
+            "value": 5.688575427
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 9,
+              "date": "2021-09-30T00:00:00Z",
+              "day": 30,
+              "quarter": 3
+            },
+            "value": 5.688575427
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 10,
+              "date": "2021-10-31T00:00:00Z",
+              "day": 31,
+              "quarter": 4
+            },
+            "value": 5.688575427
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 11,
+              "date": "2021-11-30T00:00:00Z",
+              "day": 30,
+              "quarter": 4
+            },
+            "value": 5.688575427
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 12,
+              "date": "2021-12-31T00:00:00Z",
+              "day": 31,
+              "quarter": 4
+            },
+            "value": 5.688575427
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 1,
+              "date": "2022-01-31T00:00:00Z",
+              "day": 31,
+              "quarter": 1
+            },
+            "value": 5.688575427
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 2,
+              "date": "2022-02-28T00:00:00Z",
+              "day": 28,
+              "quarter": 1
+            },
+            "value": 5.688575427
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 3,
+              "date": "2022-03-31T00:00:00Z",
+              "day": 31,
+              "quarter": 1
+            },
+            "value": 5.688575427
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 4,
+              "date": "2022-04-30T00:00:00Z",
+              "day": 30,
+              "quarter": 2
+            },
+            "value": 5.688575427
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 5,
+              "date": "2022-05-31T00:00:00Z",
+              "day": 31,
+              "quarter": 2
+            },
+            "value": 5.688575427
+          }
+        ]
+      },
+      "cashRatio": {
+        "currentValue": 6.74,
+        "percentageChange": -0.01,
+        "timePeriodData": [
+          {
+            "period": {
+              "year": 2021,
+              "month": 5,
+              "date": "2021-05-31T00:00:00Z",
+              "day": 31,
+              "quarter": 2
+            },
+            "value": 6.740724764
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 6,
+              "date": "2021-06-30T00:00:00Z",
+              "day": 30,
+              "quarter": 2
+            },
+            "value": 6.740724764
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 7,
+              "date": "2021-07-31T00:00:00Z",
+              "day": 31,
+              "quarter": 3
+            },
+            "value": 6.740724764
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 8,
+              "date": "2021-08-31T00:00:00Z",
+              "day": 31,
+              "quarter": 3
+            },
+            "value": 6.740724764
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 9,
+              "date": "2021-09-30T00:00:00Z",
+              "day": 30,
+              "quarter": 3
+            },
+            "value": 6.740724764
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 10,
+              "date": "2021-10-31T00:00:00Z",
+              "day": 31,
+              "quarter": 4
+            },
+            "value": 6.740724764
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 11,
+              "date": "2021-11-30T00:00:00Z",
+              "day": 30,
+              "quarter": 4
+            },
+            "value": 6.740724764
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 12,
+              "date": "2021-12-31T00:00:00Z",
+              "day": 31,
+              "quarter": 4
+            },
+            "value": 6.740724764
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 1,
+              "date": "2022-01-31T00:00:00Z",
+              "day": 31,
+              "quarter": 1
+            },
+            "value": 6.740724764
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 2,
+              "date": "2022-02-28T00:00:00Z",
+              "day": 28,
+              "quarter": 1
+            },
+            "value": 6.740724764
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 3,
+              "date": "2022-03-31T00:00:00Z",
+              "day": 31,
+              "quarter": 1
+            },
+            "value": 6.740724764
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 4,
+              "date": "2022-04-30T00:00:00Z",
+              "day": 30,
+              "quarter": 2
+            },
+            "value": 6.740724764
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 5,
+              "date": "2022-05-31T00:00:00Z",
+              "day": 31,
+              "quarter": 2
+            },
+            "value": 6.740724764
+          }
+        ]
+      },
+      "freeCashflowRatio": {
+        "currentValue": 0.02,
+        "percentageChange": 7.37,
+        "timePeriodData": [
+          {
+            "period": {
+              "year": 2021,
+              "month": 5,
+              "date": "2021-05-31T00:00:00Z",
+              "day": 31,
+              "quarter": 2
+            },
+            "value": 2.399794118
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 6,
+              "date": "2021-06-30T00:00:00Z",
+              "day": 30,
+              "quarter": 2
+            },
+            "value": 0.018627451
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 7,
+              "date": "2021-07-31T00:00:00Z",
+              "day": 31,
+              "quarter": 3
+            },
+            "value": 0.018627451
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 8,
+              "date": "2021-08-31T00:00:00Z",
+              "day": 31,
+              "quarter": 3
+            },
+            "value": 0.018627451
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 9,
+              "date": "2021-09-30T00:00:00Z",
+              "day": 30,
+              "quarter": 3
+            },
+            "value": 0.018627451
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 10,
+              "date": "2021-10-31T00:00:00Z",
+              "day": 31,
+              "quarter": 4
+            },
+            "value": 0.018627451
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 11,
+              "date": "2021-11-30T00:00:00Z",
+              "day": 30,
+              "quarter": 4
+            },
+            "value": 0.018627451
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 12,
+              "date": "2021-12-31T00:00:00Z",
+              "day": 31,
+              "quarter": 4
+            },
+            "value": 0.018627451
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 1,
+              "date": "2022-01-31T00:00:00Z",
+              "day": 31,
+              "quarter": 1
+            },
+            "value": 0.018627451
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 2,
+              "date": "2022-02-28T00:00:00Z",
+              "day": 28,
+              "quarter": 1
+            },
+            "value": 0.018627451
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 3,
+              "date": "2022-03-31T00:00:00Z",
+              "day": 31,
+              "quarter": 1
+            },
+            "value": 0.018627451
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 4,
+              "date": "2022-04-30T00:00:00Z",
+              "day": 30,
+              "quarter": 2
+            },
+            "value": 0.018627451
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 5,
+              "date": "2022-05-31T00:00:00Z",
+              "day": 31,
+              "quarter": 2
+            },
+            "value": 0.018627451
+          }
+        ]
+      }
+    },
+    "profitability": {
+      "returnOnAssets": {
+        "currentValue": 0.03,
+        "percentageChange": -5.8,
+        "timePeriodData": [
+          {
+            "period": {
+              "year": 2021,
+              "month": 5,
+              "date": "2021-05-31T00:00:00Z",
+              "day": 31,
+              "quarter": 2
+            },
+            "value": 0.031846516
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 6,
+              "date": "2021-06-30T00:00:00Z",
+              "day": 30,
+              "quarter": 2
+            },
+            "value": 0.031846516
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 7,
+              "date": "2021-07-31T00:00:00Z",
+              "day": 31,
+              "quarter": 3
+            },
+            "value": 0.031846516
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 8,
+              "date": "2021-08-31T00:00:00Z",
+              "day": 31,
+              "quarter": 3
+            },
+            "value": 0.031846516
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 9,
+              "date": "2021-09-30T00:00:00Z",
+              "day": 30,
+              "quarter": 3
+            },
+            "value": 0.031846516
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 10,
+              "date": "2021-10-31T00:00:00Z",
+              "day": 31,
+              "quarter": 4
+            },
+            "value": 0.031846516
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 11,
+              "date": "2021-11-30T00:00:00Z",
+              "day": 30,
+              "quarter": 4
+            },
+            "value": 0.031846516
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 12,
+              "date": "2021-12-31T00:00:00Z",
+              "day": 31,
+              "quarter": 4
+            },
+            "value": 0.031846516
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 1,
+              "date": "2022-01-31T00:00:00Z",
+              "day": 31,
+              "quarter": 1
+            },
+            "value": 0.031846516
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 2,
+              "date": "2022-02-28T00:00:00Z",
+              "day": 28,
+              "quarter": 1
+            },
+            "value": 0.031846516
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 3,
+              "date": "2022-03-31T00:00:00Z",
+              "day": 31,
+              "quarter": 1
+            },
+            "value": 0.031846516
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 4,
+              "date": "2022-04-30T00:00:00Z",
+              "day": 30,
+              "quarter": 2
+            },
+            "value": 0.031846516
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 5,
+              "date": "2022-05-31T00:00:00Z",
+              "day": 31,
+              "quarter": 2
+            },
+            "value": 0.031846516
+          }
+        ]
+      },
+      "ebitda": {
+        "currentValue": 1581.59,
+        "percentageChange": 0,
+        "timePeriodData": [
+          {
+            "period": {
+              "year": 2021,
+              "month": 5,
+              "date": "2021-05-31T00:00:00Z",
+              "day": 31,
+              "quarter": 2
+            },
+            "value": 1581.59
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 6,
+              "date": "2021-06-30T00:00:00Z",
+              "day": 30,
+              "quarter": 2
+            },
+            "value": 1581.59
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 7,
+              "date": "2021-07-31T00:00:00Z",
+              "day": 31,
+              "quarter": 3
+            },
+            "value": 1581.59
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 8,
+              "date": "2021-08-31T00:00:00Z",
+              "day": 31,
+              "quarter": 3
+            },
+            "value": 1581.59
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 9,
+              "date": "2021-09-30T00:00:00Z",
+              "day": 30,
+              "quarter": 3
+            },
+            "value": 1581.59
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 10,
+              "date": "2021-10-31T00:00:00Z",
+              "day": 31,
+              "quarter": 4
+            },
+            "value": 1581.59
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 11,
+              "date": "2021-11-30T00:00:00Z",
+              "day": 30,
+              "quarter": 4
+            },
+            "value": 1581.59
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 12,
+              "date": "2021-12-31T00:00:00Z",
+              "day": 31,
+              "quarter": 4
+            },
+            "value": 1581.59
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 1,
+              "date": "2022-01-31T00:00:00Z",
+              "day": 31,
+              "quarter": 1
+            },
+            "value": 1581.59
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 2,
+              "date": "2022-02-28T00:00:00Z",
+              "day": 28,
+              "quarter": 1
+            },
+            "value": 1581.59
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 3,
+              "date": "2022-03-31T00:00:00Z",
+              "day": 31,
+              "quarter": 1
+            },
+            "value": 1581.59
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 4,
+              "date": "2022-04-30T00:00:00Z",
+              "day": 30,
+              "quarter": 2
+            },
+            "value": 1581.59
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 5,
+              "date": "2022-05-31T00:00:00Z",
+              "day": 31,
+              "quarter": 2
+            },
+            "value": 1581.59
+          }
+        ]
+      },
+      "ebitdaMargin": {
+        "currentValue": 0.31,
+        "percentageChange": -0.04,
+        "timePeriodData": [
+          {
+            "period": {
+              "year": 2021,
+              "month": 5,
+              "date": "2021-05-31T00:00:00Z",
+              "day": 31,
+              "quarter": 2
+            },
+            "value": 0.310115686
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 6,
+              "date": "2021-06-30T00:00:00Z",
+              "day": 30,
+              "quarter": 2
+            },
+            "value": 0.310115686
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 7,
+              "date": "2021-07-31T00:00:00Z",
+              "day": 31,
+              "quarter": 3
+            },
+            "value": 0.310115686
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 8,
+              "date": "2021-08-31T00:00:00Z",
+              "day": 31,
+              "quarter": 3
+            },
+            "value": 0.310115686
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 9,
+              "date": "2021-09-30T00:00:00Z",
+              "day": 30,
+              "quarter": 3
+            },
+            "value": 0.310115686
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 10,
+              "date": "2021-10-31T00:00:00Z",
+              "day": 31,
+              "quarter": 4
+            },
+            "value": 0.310115686
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 11,
+              "date": "2021-11-30T00:00:00Z",
+              "day": 30,
+              "quarter": 4
+            },
+            "value": 0.310115686
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 12,
+              "date": "2021-12-31T00:00:00Z",
+              "day": 31,
+              "quarter": 4
+            },
+            "value": 0.310115686
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 1,
+              "date": "2022-01-31T00:00:00Z",
+              "day": 31,
+              "quarter": 1
+            },
+            "value": 0.310115686
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 2,
+              "date": "2022-02-28T00:00:00Z",
+              "day": 28,
+              "quarter": 1
+            },
+            "value": 0.310115686
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 3,
+              "date": "2022-03-31T00:00:00Z",
+              "day": 31,
+              "quarter": 1
+            },
+            "value": 0.310115686
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 4,
+              "date": "2022-04-30T00:00:00Z",
+              "day": 30,
+              "quarter": 2
+            },
+            "value": 0.310115686
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 5,
+              "date": "2022-05-31T00:00:00Z",
+              "day": 31,
+              "quarter": 2
+            },
+            "value": 0.310115686
+          }
+        ]
+      },
+      "workingCapital": {
+        "currentValue": 44149.95,
+        "percentageChange": 0,
+        "timePeriodData": [
+          {
+            "period": {
+              "year": 2021,
+              "month": 5,
+              "date": "2021-05-31T00:00:00Z",
+              "day": 31,
+              "quarter": 2
+            },
+            "value": 44149.95
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 6,
+              "date": "2021-06-30T00:00:00Z",
+              "day": 30,
+              "quarter": 2
+            },
+            "value": 44149.95
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 7,
+              "date": "2021-07-31T00:00:00Z",
+              "day": 31,
+              "quarter": 3
+            },
+            "value": 44149.95
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 8,
+              "date": "2021-08-31T00:00:00Z",
+              "day": 31,
+              "quarter": 3
+            },
+            "value": 44149.95
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 9,
+              "date": "2021-09-30T00:00:00Z",
+              "day": 30,
+              "quarter": 3
+            },
+            "value": 44149.95
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 10,
+              "date": "2021-10-31T00:00:00Z",
+              "day": 31,
+              "quarter": 4
+            },
+            "value": 44149.95
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 11,
+              "date": "2021-11-30T00:00:00Z",
+              "day": 30,
+              "quarter": 4
+            },
+            "value": 44149.95
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 12,
+              "date": "2021-12-31T00:00:00Z",
+              "day": 31,
+              "quarter": 4
+            },
+            "value": 44149.95
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 1,
+              "date": "2022-01-31T00:00:00Z",
+              "day": 31,
+              "quarter": 1
+            },
+            "value": 44149.95
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 2,
+              "date": "2022-02-28T00:00:00Z",
+              "day": 28,
+              "quarter": 1
+            },
+            "value": 44149.95
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 3,
+              "date": "2022-03-31T00:00:00Z",
+              "day": 31,
+              "quarter": 1
+            },
+            "value": 44149.95
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 4,
+              "date": "2022-04-30T00:00:00Z",
+              "day": 30,
+              "quarter": 2
+            },
+            "value": 44149.95
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 5,
+              "date": "2022-05-31T00:00:00Z",
+              "day": 31,
+              "quarter": 2
+            },
+            "value": 44149.95
+          }
+        ]
+      },
+      "freeCashFlow": {
+        "currentValue": 95,
+        "percentageChange": 0,
+        "timePeriodData": [
+          {
+            "period": {
+              "year": 2021,
+              "month": 5,
+              "date": "2021-05-31T00:00:00Z",
+              "day": 31,
+              "quarter": 2
+            },
+            "value": 12238.95
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 6,
+              "date": "2021-06-30T00:00:00Z",
+              "day": 30,
+              "quarter": 2
+            },
+            "value": 95
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 7,
+              "date": "2021-07-31T00:00:00Z",
+              "day": 31,
+              "quarter": 3
+            },
+            "value": 95
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 8,
+              "date": "2021-08-31T00:00:00Z",
+              "day": 31,
+              "quarter": 3
+            },
+            "value": 95
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 9,
+              "date": "2021-09-30T00:00:00Z",
+              "day": 30,
+              "quarter": 3
+            },
+            "value": 95
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 10,
+              "date": "2021-10-31T00:00:00Z",
+              "day": 31,
+              "quarter": 4
+            },
+            "value": 95
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 11,
+              "date": "2021-11-30T00:00:00Z",
+              "day": 30,
+              "quarter": 4
+            },
+            "value": 95
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 12,
+              "date": "2021-12-31T00:00:00Z",
+              "day": 31,
+              "quarter": 4
+            },
+            "value": 95
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 1,
+              "date": "2022-01-31T00:00:00Z",
+              "day": 31,
+              "quarter": 1
+            },
+            "value": 95
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 2,
+              "date": "2022-02-28T00:00:00Z",
+              "day": 28,
+              "quarter": 1
+            },
+            "value": 95
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 3,
+              "date": "2022-03-31T00:00:00Z",
+              "day": 31,
+              "quarter": 1
+            },
+            "value": 95
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 4,
+              "date": "2022-04-30T00:00:00Z",
+              "day": 30,
+              "quarter": 2
+            },
+            "value": 95
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 5,
+              "date": "2022-05-31T00:00:00Z",
+              "day": 31,
+              "quarter": 2
+            },
+            "value": 95
+          }
+        ]
+      },
+      "grossMargin": {
+        "currentValue": 0.61,
+        "percentageChange": -0.26,
+        "timePeriodData": [
+          {
+            "period": {
+              "year": 2021,
+              "month": 5,
+              "date": "2021-05-31T00:00:00Z",
+              "day": 31,
+              "quarter": 2
+            },
+            "value": 0.611560784
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 6,
+              "date": "2021-06-30T00:00:00Z",
+              "day": 30,
+              "quarter": 2
+            },
+            "value": 0.611560784
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 7,
+              "date": "2021-07-31T00:00:00Z",
+              "day": 31,
+              "quarter": 3
+            },
+            "value": 0.611560784
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 8,
+              "date": "2021-08-31T00:00:00Z",
+              "day": 31,
+              "quarter": 3
+            },
+            "value": 0.611560784
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 9,
+              "date": "2021-09-30T00:00:00Z",
+              "day": 30,
+              "quarter": 3
+            },
+            "value": 0.611560784
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 10,
+              "date": "2021-10-31T00:00:00Z",
+              "day": 31,
+              "quarter": 4
+            },
+            "value": 0.611560784
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 11,
+              "date": "2021-11-30T00:00:00Z",
+              "day": 30,
+              "quarter": 4
+            },
+            "value": 0.611560784
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 12,
+              "date": "2021-12-31T00:00:00Z",
+              "day": 31,
+              "quarter": 4
+            },
+            "value": 0.611560784
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 1,
+              "date": "2022-01-31T00:00:00Z",
+              "day": 31,
+              "quarter": 1
+            },
+            "value": 0.611560784
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 2,
+              "date": "2022-02-28T00:00:00Z",
+              "day": 28,
+              "quarter": 1
+            },
+            "value": 0.611560784
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 3,
+              "date": "2022-03-31T00:00:00Z",
+              "day": 31,
+              "quarter": 1
+            },
+            "value": 0.611560784
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 4,
+              "date": "2022-04-30T00:00:00Z",
+              "day": 30,
+              "quarter": 2
+            },
+            "value": 0.611560784
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 5,
+              "date": "2022-05-31T00:00:00Z",
+              "day": 31,
+              "quarter": 2
+            },
+            "value": 0.611560784
+          }
+        ]
+      },
+      "netProfitMargin": {
+        "currentValue": -0.1,
+        "percentageChange": 3.14,
+        "timePeriodData": [
+          {
+            "period": {
+              "year": 2021,
+              "month": 5,
+              "date": "2021-05-31T00:00:00Z",
+              "day": 31,
+              "quarter": 2
+            },
+            "value": -0.09695098
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 6,
+              "date": "2021-06-30T00:00:00Z",
+              "day": 30,
+              "quarter": 2
+            },
+            "value": -0.09695098
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 7,
+              "date": "2021-07-31T00:00:00Z",
+              "day": 31,
+              "quarter": 3
+            },
+            "value": -0.09695098
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 8,
+              "date": "2021-08-31T00:00:00Z",
+              "day": 31,
+              "quarter": 3
+            },
+            "value": -0.09695098
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 9,
+              "date": "2021-09-30T00:00:00Z",
+              "day": 30,
+              "quarter": 3
+            },
+            "value": -0.09695098
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 10,
+              "date": "2021-10-31T00:00:00Z",
+              "day": 31,
+              "quarter": 4
+            },
+            "value": -0.09695098
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 11,
+              "date": "2021-11-30T00:00:00Z",
+              "day": 30,
+              "quarter": 4
+            },
+            "value": -0.09695098
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 12,
+              "date": "2021-12-31T00:00:00Z",
+              "day": 31,
+              "quarter": 4
+            },
+            "value": -0.09695098
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 1,
+              "date": "2022-01-31T00:00:00Z",
+              "day": 31,
+              "quarter": 1
+            },
+            "value": -0.09695098
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 2,
+              "date": "2022-02-28T00:00:00Z",
+              "day": 28,
+              "quarter": 1
+            },
+            "value": -0.09695098
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 3,
+              "date": "2022-03-31T00:00:00Z",
+              "day": 31,
+              "quarter": 1
+            },
+            "value": -0.09695098
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 4,
+              "date": "2022-04-30T00:00:00Z",
+              "day": 30,
+              "quarter": 2
+            },
+            "value": -0.09695098
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 5,
+              "date": "2022-05-31T00:00:00Z",
+              "day": 31,
+              "quarter": 2
+            },
+            "value": -0.09695098
+          }
+        ]
+      },
+      "operatingMargin": {
+        "currentValue": 0.61,
+        "percentageChange": -0.26,
+        "timePeriodData": [
+          {
+            "period": {
+              "year": 2021,
+              "month": 5,
+              "date": "2021-05-31T00:00:00Z",
+              "day": 31,
+              "quarter": 2
+            },
+            "value": 0.611560784
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 6,
+              "date": "2021-06-30T00:00:00Z",
+              "day": 30,
+              "quarter": 2
+            },
+            "value": 0.611560784
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 7,
+              "date": "2021-07-31T00:00:00Z",
+              "day": 31,
+              "quarter": 3
+            },
+            "value": 0.611560784
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 8,
+              "date": "2021-08-31T00:00:00Z",
+              "day": 31,
+              "quarter": 3
+            },
+            "value": 0.611560784
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 9,
+              "date": "2021-09-30T00:00:00Z",
+              "day": 30,
+              "quarter": 3
+            },
+            "value": 0.611560784
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 10,
+              "date": "2021-10-31T00:00:00Z",
+              "day": 31,
+              "quarter": 4
+            },
+            "value": 0.611560784
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 11,
+              "date": "2021-11-30T00:00:00Z",
+              "day": 30,
+              "quarter": 4
+            },
+            "value": 0.611560784
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 12,
+              "date": "2021-12-31T00:00:00Z",
+              "day": 31,
+              "quarter": 4
+            },
+            "value": 0.611560784
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 1,
+              "date": "2022-01-31T00:00:00Z",
+              "day": 31,
+              "quarter": 1
+            },
+            "value": 0.611560784
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 2,
+              "date": "2022-02-28T00:00:00Z",
+              "day": 28,
+              "quarter": 1
+            },
+            "value": 0.611560784
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 3,
+              "date": "2022-03-31T00:00:00Z",
+              "day": 31,
+              "quarter": 1
+            },
+            "value": 0.611560784
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 4,
+              "date": "2022-04-30T00:00:00Z",
+              "day": 30,
+              "quarter": 2
+            },
+            "value": 0.611560784
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 5,
+              "date": "2022-05-31T00:00:00Z",
+              "day": 31,
+              "quarter": 2
+            },
+            "value": 0.611560784
+          }
+        ]
+      },
+      "returnOnEquity": {
+        "currentValue": -0.02,
+        "percentageChange": 6.91,
+        "timePeriodData": [
+          {
+            "period": {
+              "year": 2021,
+              "month": 5,
+              "date": "2021-05-31T00:00:00Z",
+              "day": 31,
+              "quarter": 2
+            },
+            "value": -0.018706874
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 6,
+              "date": "2021-06-30T00:00:00Z",
+              "day": 30,
+              "quarter": 2
+            },
+            "value": -0.018706874
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 7,
+              "date": "2021-07-31T00:00:00Z",
+              "day": 31,
+              "quarter": 3
+            },
+            "value": -0.018706874
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 8,
+              "date": "2021-08-31T00:00:00Z",
+              "day": 31,
+              "quarter": 3
+            },
+            "value": -0.018706874
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 9,
+              "date": "2021-09-30T00:00:00Z",
+              "day": 30,
+              "quarter": 3
+            },
+            "value": -0.018706874
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 10,
+              "date": "2021-10-31T00:00:00Z",
+              "day": 31,
+              "quarter": 4
+            },
+            "value": -0.018706874
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 11,
+              "date": "2021-11-30T00:00:00Z",
+              "day": 30,
+              "quarter": 4
+            },
+            "value": -0.018706874
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 12,
+              "date": "2021-12-31T00:00:00Z",
+              "day": 31,
+              "quarter": 4
+            },
+            "value": -0.018706874
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 1,
+              "date": "2022-01-31T00:00:00Z",
+              "day": 31,
+              "quarter": 1
+            },
+            "value": -0.018706874
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 2,
+              "date": "2022-02-28T00:00:00Z",
+              "day": 28,
+              "quarter": 1
+            },
+            "value": -0.018706874
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 3,
+              "date": "2022-03-31T00:00:00Z",
+              "day": 31,
+              "quarter": 1
+            },
+            "value": -0.018706874
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 4,
+              "date": "2022-04-30T00:00:00Z",
+              "day": 30,
+              "quarter": 2
+            },
+            "value": -0.018706874
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 5,
+              "date": "2022-05-31T00:00:00Z",
+              "day": 31,
+              "quarter": 2
+            },
+            "value": -0.018706874
+          }
+        ]
+      },
+      "revenueConcentrationIndex": {
+        "currentValue": 2.98,
+        "percentageChange": 0.16,
+        "timePeriodData": [
+          {
+            "period": {
+              "year": 2021,
+              "month": 5,
+              "date": "2021-05-31T00:00:00Z",
+              "day": 31,
+              "quarter": 2
+            },
+            "value": 2.975105729
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 6,
+              "date": "2021-06-30T00:00:00Z",
+              "day": 30,
+              "quarter": 2
+            },
+            "value": 2.975105729
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 7,
+              "date": "2021-07-31T00:00:00Z",
+              "day": 31,
+              "quarter": 3
+            },
+            "value": 2.975105729
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 8,
+              "date": "2021-08-31T00:00:00Z",
+              "day": 31,
+              "quarter": 3
+            },
+            "value": 2.975105729
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 9,
+              "date": "2021-09-30T00:00:00Z",
+              "day": 30,
+              "quarter": 3
+            },
+            "value": 2.975105729
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 10,
+              "date": "2021-10-31T00:00:00Z",
+              "day": 31,
+              "quarter": 4
+            },
+            "value": 2.975105729
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 11,
+              "date": "2021-11-30T00:00:00Z",
+              "day": 30,
+              "quarter": 4
+            },
+            "value": 2.975105729
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 12,
+              "date": "2021-12-31T00:00:00Z",
+              "day": 31,
+              "quarter": 4
+            },
+            "value": 2.975105729
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 1,
+              "date": "2022-01-31T00:00:00Z",
+              "day": 31,
+              "quarter": 1
+            },
+            "value": 2.975105729
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 2,
+              "date": "2022-02-28T00:00:00Z",
+              "day": 28,
+              "quarter": 1
+            },
+            "value": 2.975105729
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 3,
+              "date": "2022-03-31T00:00:00Z",
+              "day": 31,
+              "quarter": 1
+            },
+            "value": 2.975105729
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 4,
+              "date": "2022-04-30T00:00:00Z",
+              "day": 30,
+              "quarter": 2
+            },
+            "value": 2.975105729
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 5,
+              "date": "2022-05-31T00:00:00Z",
+              "day": 31,
+              "quarter": 2
+            },
+            "value": 2.975105729
+          }
+        ]
+      },
+      "totalAccrualsTotalAssets": {
+        "currentValue": 0.03,
+        "percentageChange": 0.22,
+        "timePeriodData": [
+          {
+            "period": {
+              "year": 2021,
+              "month": 5,
+              "date": "2021-05-31T00:00:00Z",
+              "day": 31,
+              "quarter": 2
+            },
+            "value": -0.123077413
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 6,
+              "date": "2021-06-30T00:00:00Z",
+              "day": 30,
+              "quarter": 2
+            },
+            "value": 0.029933618
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 7,
+              "date": "2021-07-31T00:00:00Z",
+              "day": 31,
+              "quarter": 3
+            },
+            "value": 0.029933618
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 8,
+              "date": "2021-08-31T00:00:00Z",
+              "day": 31,
+              "quarter": 3
+            },
+            "value": 0.029933618
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 9,
+              "date": "2021-09-30T00:00:00Z",
+              "day": 30,
+              "quarter": 3
+            },
+            "value": 0.029933618
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 10,
+              "date": "2021-10-31T00:00:00Z",
+              "day": 31,
+              "quarter": 4
+            },
+            "value": 0.029933618
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 11,
+              "date": "2021-11-30T00:00:00Z",
+              "day": 30,
+              "quarter": 4
+            },
+            "value": 0.029933618
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 12,
+              "date": "2021-12-31T00:00:00Z",
+              "day": 31,
+              "quarter": 4
+            },
+            "value": 0.029933618
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 1,
+              "date": "2022-01-31T00:00:00Z",
+              "day": 31,
+              "quarter": 1
+            },
+            "value": 0.029933618
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 2,
+              "date": "2022-02-28T00:00:00Z",
+              "day": 28,
+              "quarter": 1
+            },
+            "value": 0.029933618
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 3,
+              "date": "2022-03-31T00:00:00Z",
+              "day": 31,
+              "quarter": 1
+            },
+            "value": 0.029933618
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 4,
+              "date": "2022-04-30T00:00:00Z",
+              "day": 30,
+              "quarter": 2
+            },
+            "value": 0.029933618
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 5,
+              "date": "2022-05-31T00:00:00Z",
+              "day": 31,
+              "quarter": 2
+            },
+            "value": 0.029933618
+          }
+        ]
+      },
+      "sgaExpensesIndex": {
+        "currentValue": 1.36,
+        "percentageChange": 0.22,
+        "timePeriodData": [
+          {
+            "period": {
+              "year": 2021,
+              "month": 5,
+              "date": "2021-05-31T00:00:00Z",
+              "day": 31,
+              "quarter": 2
+            },
+            "value": 1.356972255
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 6,
+              "date": "2021-06-30T00:00:00Z",
+              "day": 30,
+              "quarter": 2
+            },
+            "value": 1.356972255
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 7,
+              "date": "2021-07-31T00:00:00Z",
+              "day": 31,
+              "quarter": 3
+            },
+            "value": 1.356972255
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 8,
+              "date": "2021-08-31T00:00:00Z",
+              "day": 31,
+              "quarter": 3
+            },
+            "value": 1.356972255
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 9,
+              "date": "2021-09-30T00:00:00Z",
+              "day": 30,
+              "quarter": 3
+            },
+            "value": 1.356972255
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 10,
+              "date": "2021-10-31T00:00:00Z",
+              "day": 31,
+              "quarter": 4
+            },
+            "value": 1.356972255
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 11,
+              "date": "2021-11-30T00:00:00Z",
+              "day": 30,
+              "quarter": 4
+            },
+            "value": 1.356972255
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 12,
+              "date": "2021-12-31T00:00:00Z",
+              "day": 31,
+              "quarter": 4
+            },
+            "value": 1.356972255
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 1,
+              "date": "2022-01-31T00:00:00Z",
+              "day": 31,
+              "quarter": 1
+            },
+            "value": 1.356972255
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 2,
+              "date": "2022-02-28T00:00:00Z",
+              "day": 28,
+              "quarter": 1
+            },
+            "value": 1.356972255
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 3,
+              "date": "2022-03-31T00:00:00Z",
+              "day": 31,
+              "quarter": 1
+            },
+            "value": 1.356972255
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 4,
+              "date": "2022-04-30T00:00:00Z",
+              "day": 30,
+              "quarter": 2
+            },
+            "value": 1.356972255
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 5,
+              "date": "2022-05-31T00:00:00Z",
+              "day": 31,
+              "quarter": 2
+            },
+            "value": 1.356972255
+          }
+        ]
+      },
+      "salesGrowthIndex": {
+        "currentValue": 0.5,
+        "percentageChange": 0.49,
+        "timePeriodData": [
+          {
+            "period": {
+              "year": 2021,
+              "month": 5,
+              "date": "2021-05-31T00:00:00Z",
+              "day": 31,
+              "quarter": 2
+            },
+            "value": 0.497560976
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 6,
+              "date": "2021-06-30T00:00:00Z",
+              "day": 30,
+              "quarter": 2
+            },
+            "value": 0.497560976
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 7,
+              "date": "2021-07-31T00:00:00Z",
+              "day": 31,
+              "quarter": 3
+            },
+            "value": 0.497560976
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 8,
+              "date": "2021-08-31T00:00:00Z",
+              "day": 31,
+              "quarter": 3
+            },
+            "value": 0.497560976
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 9,
+              "date": "2021-09-30T00:00:00Z",
+              "day": 30,
+              "quarter": 3
+            },
+            "value": 0.497560976
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 10,
+              "date": "2021-10-31T00:00:00Z",
+              "day": 31,
+              "quarter": 4
+            },
+            "value": 0.497560976
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 11,
+              "date": "2021-11-30T00:00:00Z",
+              "day": 30,
+              "quarter": 4
+            },
+            "value": 0.497560976
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 12,
+              "date": "2021-12-31T00:00:00Z",
+              "day": 31,
+              "quarter": 4
+            },
+            "value": 0.497560976
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 1,
+              "date": "2022-01-31T00:00:00Z",
+              "day": 31,
+              "quarter": 1
+            },
+            "value": 0.497560976
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 2,
+              "date": "2022-02-28T00:00:00Z",
+              "day": 28,
+              "quarter": 1
+            },
+            "value": 0.497560976
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 3,
+              "date": "2022-03-31T00:00:00Z",
+              "day": 31,
+              "quarter": 1
+            },
+            "value": 0.497560976
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 4,
+              "date": "2022-04-30T00:00:00Z",
+              "day": 30,
+              "quarter": 2
+            },
+            "value": 0.497560976
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 5,
+              "date": "2022-05-31T00:00:00Z",
+              "day": 31,
+              "quarter": 2
+            },
+            "value": 0.497560976
+          }
+        ]
+      },
+      "grossMarginIndex": {
+        "currentValue": -1.58,
+        "percentageChange": 0.23,
+        "timePeriodData": [
+          {
+            "period": {
+              "year": 2021,
+              "month": 5,
+              "date": "2021-05-31T00:00:00Z",
+              "day": 31,
+              "quarter": 2
+            },
+            "value": -1.576438237
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 6,
+              "date": "2021-06-30T00:00:00Z",
+              "day": 30,
+              "quarter": 2
+            },
+            "value": -1.576438237
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 7,
+              "date": "2021-07-31T00:00:00Z",
+              "day": 31,
+              "quarter": 3
+            },
+            "value": -1.576438237
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 8,
+              "date": "2021-08-31T00:00:00Z",
+              "day": 31,
+              "quarter": 3
+            },
+            "value": -1.576438237
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 9,
+              "date": "2021-09-30T00:00:00Z",
+              "day": 30,
+              "quarter": 3
+            },
+            "value": -1.576438237
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 10,
+              "date": "2021-10-31T00:00:00Z",
+              "day": 31,
+              "quarter": 4
+            },
+            "value": -1.576438237
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 11,
+              "date": "2021-11-30T00:00:00Z",
+              "day": 30,
+              "quarter": 4
+            },
+            "value": -1.576438237
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 12,
+              "date": "2021-12-31T00:00:00Z",
+              "day": 31,
+              "quarter": 4
+            },
+            "value": -1.576438237
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 1,
+              "date": "2022-01-31T00:00:00Z",
+              "day": 31,
+              "quarter": 1
+            },
+            "value": -1.576438237
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 2,
+              "date": "2022-02-28T00:00:00Z",
+              "day": 28,
+              "quarter": 1
+            },
+            "value": -1.576438237
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 3,
+              "date": "2022-03-31T00:00:00Z",
+              "day": 31,
+              "quarter": 1
+            },
+            "value": -1.576438237
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 4,
+              "date": "2022-04-30T00:00:00Z",
+              "day": 30,
+              "quarter": 2
+            },
+            "value": -1.576438237
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 5,
+              "date": "2022-05-31T00:00:00Z",
+              "day": 31,
+              "quarter": 2
+            },
+            "value": -1.576438237
+          }
+        ]
+      }
+    },
+    "reliability": {
+      "assetQualityIndex": {
+        "currentValue": 1,
+        "percentageChange": 0,
+        "timePeriodData": [
+          {
+            "period": {
+              "year": 2021,
+              "month": 5,
+              "date": "2021-05-31T00:00:00Z",
+              "day": 31,
+              "quarter": 2
+            },
+            "value": 1
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 6,
+              "date": "2021-06-30T00:00:00Z",
+              "day": 30,
+              "quarter": 2
+            },
+            "value": 1
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 7,
+              "date": "2021-07-31T00:00:00Z",
+              "day": 31,
+              "quarter": 3
+            },
+            "value": 1
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 8,
+              "date": "2021-08-31T00:00:00Z",
+              "day": 31,
+              "quarter": 3
+            },
+            "value": 1
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 9,
+              "date": "2021-09-30T00:00:00Z",
+              "day": 30,
+              "quarter": 3
+            },
+            "value": 1
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 10,
+              "date": "2021-10-31T00:00:00Z",
+              "day": 31,
+              "quarter": 4
+            },
+            "value": 1
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 11,
+              "date": "2021-11-30T00:00:00Z",
+              "day": 30,
+              "quarter": 4
+            },
+            "value": 1
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 12,
+              "date": "2021-12-31T00:00:00Z",
+              "day": 31,
+              "quarter": 4
+            },
+            "value": 1
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 1,
+              "date": "2022-01-31T00:00:00Z",
+              "day": 31,
+              "quarter": 1
+            },
+            "value": 1
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 2,
+              "date": "2022-02-28T00:00:00Z",
+              "day": 28,
+              "quarter": 1
+            },
+            "value": 1
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 3,
+              "date": "2022-03-31T00:00:00Z",
+              "day": 31,
+              "quarter": 1
+            },
+            "value": 1
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 4,
+              "date": "2022-04-30T00:00:00Z",
+              "day": 30,
+              "quarter": 2
+            },
+            "value": 1
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 5,
+              "date": "2022-05-31T00:00:00Z",
+              "day": 31,
+              "quarter": 2
+            },
+            "value": 1
+          }
+        ]
+      },
+      "daysSalesReceivablesIndex": {
+        "currentValue": 2.01,
+        "percentageChange": 0.01,
+        "timePeriodData": [
+          {
+            "period": {
+              "year": 2021,
+              "month": 5,
+              "date": "2021-05-31T00:00:00Z",
+              "day": 31,
+              "quarter": 2
+            },
+            "value": 2.009803922
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 6,
+              "date": "2021-06-30T00:00:00Z",
+              "day": 30,
+              "quarter": 2
+            },
+            "value": 2.009803922
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 7,
+              "date": "2021-07-31T00:00:00Z",
+              "day": 31,
+              "quarter": 3
+            },
+            "value": 2.009803922
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 8,
+              "date": "2021-08-31T00:00:00Z",
+              "day": 31,
+              "quarter": 3
+            },
+            "value": 2.009803922
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 9,
+              "date": "2021-09-30T00:00:00Z",
+              "day": 30,
+              "quarter": 3
+            },
+            "value": 2.009803922
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 10,
+              "date": "2021-10-31T00:00:00Z",
+              "day": 31,
+              "quarter": 4
+            },
+            "value": 2.009803922
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 11,
+              "date": "2021-11-30T00:00:00Z",
+              "day": 30,
+              "quarter": 4
+            },
+            "value": 2.009803922
+          },
+          {
+            "period": {
+              "year": 2021,
+              "month": 12,
+              "date": "2021-12-31T00:00:00Z",
+              "day": 31,
+              "quarter": 4
+            },
+            "value": 2.009803922
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 1,
+              "date": "2022-01-31T00:00:00Z",
+              "day": 31,
+              "quarter": 1
+            },
+            "value": 2.009803922
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 2,
+              "date": "2022-02-28T00:00:00Z",
+              "day": 28,
+              "quarter": 1
+            },
+            "value": 2.009803922
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 3,
+              "date": "2022-03-31T00:00:00Z",
+              "day": 31,
+              "quarter": 1
+            },
+            "value": 2.009803922
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 4,
+              "date": "2022-04-30T00:00:00Z",
+              "day": 30,
+              "quarter": 2
+            },
+            "value": 2.009803922
+          },
+          {
+            "period": {
+              "year": 2022,
+              "month": 5,
+              "date": "2022-05-31T00:00:00Z",
+              "day": 31,
+              "quarter": 2
+            },
+            "value": 2.009803922
+          }
+        ]
+      }
+    }
+  }
+}
