@@ -24,6 +24,10 @@ export const RailzGaugeChart = /*@__PURE__*/ createReactComponent<
   JSX.RailzGaugeChart,
   HTMLRailzGaugeChartElement
 >('railz-gauge-chart');
+export const RailzGaugeChartComponent = /*@__PURE__*/ createReactComponent<
+  JSX.RailzGaugeChartComponent,
+  HTMLRailzGaugeChartComponentElement
+>('railz-gauge-chart-component');
 export const RailzLoading = /*@__PURE__*/ createReactComponent<
   JSX.RailzLoading,
   HTMLRailzLoadingElement
