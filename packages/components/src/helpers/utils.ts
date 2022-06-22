@@ -151,3 +151,15 @@ export const roundNumber = (number: number, mantissa = 2): string => {
   }
   return '';
 };
+
+/**
+ * return an inline styling string based on a css styling object,
+ *  taking in consideration only stirng or number styling values.
+ */
+export const fromCssObjectToInline = (cssObject?: { [key: string]: any }) => {
+  if (!cssObject) return '';
+  return Object.entries(cssObject)
+    .filter(([key, value]) => key && (typeof value === 'string' || typeof value === 'number'))
+    .map(([key, value]) => `${key.replace(/[A-Z]/g, (m) => '-' + m.toLowerCase())}: ${value}`)
+    .join(';');
+};

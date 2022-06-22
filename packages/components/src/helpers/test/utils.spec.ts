@@ -6,6 +6,7 @@ import {
   isStatements,
   isTransactions,
   isRequiredReportFrequency,
+  fromCssObjectToInline,
 } from '../utils';
 import Translations from '../../config/translations/en.json';
 import { RVBalanceSheetSummary, RVReportFrequency, RVReportTypes } from '../../types';
@@ -212,5 +213,10 @@ describe('Utils Helper Tests', () => {
         expect(isRequiredReportFrequency(RVReportTypes.INVOICES)).toEqual(false);
       });
     });
+  });
+  describe('camelCase to comma styling', () => {
+    const expected = 'color: red;background-color: blue';
+    const actual = fromCssObjectToInline({ color: 'red', backgroundColor: 'blue' });
+    expect(actual).toEqual(expected);
   });
 });

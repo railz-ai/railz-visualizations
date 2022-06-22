@@ -203,13 +203,25 @@ export class PieChart {
           {!isNil(this._summary?.percentageChange) && (
             <div class="railz-pie-chart-percentage">
               {this._summary?.percentageChange >= 0 ? (
-                <div class="positive">&#x25B2; {this._summary?.percentageChange}%</div>
+                <div
+                  class="positive"
+                  style={{ color: this._options?.chart?.pie?.positivePercentageChange }}
+                >
+                  &#x25B2; {this._summary?.percentageChange}%
+                </div>
               ) : (
-                <div class="negative">&#x25BC; {this._summary?.percentageChange}%</div>
+                <div
+                  class="negative"
+                  style={{ color: this._options?.chart?.pie?.negativePercentageChange }}
+                >
+                  &#x25BC; {this._summary?.percentageChange}%
+                </div>
               )}
             </div>
           )}
-          <p class="railz-pie-chart-text">${roundNumber(this._summary?.totalAmount)}</p>
+          <p class="railz-pie-chart-text" style={this._options?.chart?.pie?.total}>
+            ${roundNumber(this._summary?.totalAmount)}
+          </p>
         </div>
       </div>
     );
