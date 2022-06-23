@@ -11,6 +11,7 @@ import {
   RVFilterTransactions,
   RVFilterAll,
   RVFilterBankAccount,
+  RVFilterGauge,
 } from '@railzai/railz-visualizations';
 import {
   RailzBankAccounts,
@@ -22,7 +23,6 @@ import {
   RailzVisualizations,
 } from '@railzai/railz-visualizations-react';
 import { cloneDeep, isEmpty, pick } from 'lodash';
-import { RVFilterGauge } from '@railzai/railz-visualizations/src';
 
 type AllTypes = 'all' & RVReportTypes;
 
