@@ -1,5 +1,5 @@
 import { AuthenticationParameters } from './authentication';
-import { RVOptions } from '@railzai/railz-visualizations/src';
+import { RVOptions } from '@railzai/railz-visualizations';
 
 export interface OptionFormProps {
   setOptions?: (params: any) => void;
