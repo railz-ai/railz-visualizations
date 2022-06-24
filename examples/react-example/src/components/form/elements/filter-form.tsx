@@ -69,7 +69,9 @@ export default function FilterForm({ setFilter }: FormProps) {
             .
           </p>
           <p className="mt-1 text-sm text-gray-600 font-bold">
-            SDK current release only works with report types (balanceSheets, bankAccounts, bills, cashflowStatements, expenses, financialRatios, incomeStatements, invoices, revenue and railzScore).
+            SDK current release only works with report types (balanceSheets, bankAccounts, bills,
+            cashflowStatements, expenses, financialRatios, incomeStatements, invoices, revenue and
+            railzScore).
           </p>
         </div>
       </div>
