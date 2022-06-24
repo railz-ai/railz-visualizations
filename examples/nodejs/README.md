@@ -36,3 +36,9 @@ yarn start
 ```
 
 5. You should be able to access the Node.js server at `http://localhost:4000`. Authentication URL is `http://localhost:4000/authenticate`
+
+After the .env file is setup you can also start the server on the root folder of the project using:
+
+```bash
+yarn server
+```
