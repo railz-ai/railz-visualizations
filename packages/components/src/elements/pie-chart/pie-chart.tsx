@@ -223,7 +223,8 @@ export class PieChart {
     const TitleElement = (): HTMLElement => (
       <p class="rv-title" style={this._options?.title?.style}>
         {this._options?.title?.text || ''}{' '}
-        {this._options?.container?.tooltip || this._options?.content?.tooltip?.description ? (
+        {(this._options?.container?.tooltip === undefined || this._options?.container?.tooltip) &&
+        this._options?.content?.tooltip?.description ? (
           <div
             style={{
               marginTop: '1px ',
