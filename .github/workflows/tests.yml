@@ -4,8 +4,6 @@
 name: Tests
 
 on:
-  push:
-    branches: [master, feature/**, bugfix/**, hotfix/**, chore/**]
   pull_request:
     types: [opened, synchronize]
 
@@ -28,7 +26,7 @@ jobs:
           cmd: install
       - uses: borales/actions-yarn@v2.1.0
         with:
-          cmd: build:codesandbox
+          cmd: build
       - uses: borales/actions-yarn@v2.1.0
         with:
           cmd: test

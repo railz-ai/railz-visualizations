@@ -15,5 +15,15 @@ yarn install
 yarn start
 ```
 
+or
+
+```bash
+git clone https://github.com/railz-ai/railz-visualizations
+
+cd railz-visualizations
+
+yarn angular
+```
+
 <img src="../../assets/images/example-dashboard.png" alt="Example" width="100%" />
 <p align="center"><i>Railz Visualizations SDK Angular Usage Example.</i></p>

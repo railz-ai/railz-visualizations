@@ -199,7 +199,8 @@ export class FinancialRatios {
             <div class="rv-ratio-name" style={this._options?.ratio?.itemName}>
               {!isEmpty(tooltipText) && (
                 <div class="rv-ratio-tooltip" style={this._options?.ratio?.itemToolTip}>
-                  {this._options?.container?.tooltip ? (
+                  {this._options?.container?.tooltip === undefined ||
+                  this._options?.container?.tooltip ? (
                     <railz-tooltip
                       tooltipText={tooltipText}
                       tooltipStyle={{ position: 'bottom-right' }}
@@ -252,7 +253,8 @@ export class FinancialRatios {
     const TitleElement = (): HTMLElement => (
       <p class="rv-title" style={this._options?.title?.style}>
         {this._options?.title?.text || ''}{' '}
-        {this._options?.container?.tooltip || this._options?.content?.tooltip?.description ? (
+        {(this._options?.container?.tooltip === undefined || this._options?.container?.tooltip) &&
+        this._options?.content?.tooltip?.description ? (
           <div
             style={{
               marginTop: '1px ',
