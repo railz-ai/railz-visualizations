@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import { newSpecPage } from '@stencil/core/testing';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { h } from '@stencil/core';
@@ -96,7 +97,9 @@ describe('railz-financial-ratios', () => {
           <div class="rv-financial-ratio-container-item">
             <div class="rv-financial-ratio-info">
               <div class="rv-ratio-name">
-                <div class="rv-ratio-tooltip"></div>
+              <div class="rv-ratio-tooltip">
+                <railz-tooltip tooltiptext="Distance to default determines the level of default risk. This key ratio compares the business' net worth to its volatility."></railz-tooltip>
+              </div>
                 <div class="rv-ratio-name-text">
                   Distance To Default
                 </div>
@@ -119,7 +122,9 @@ describe('railz-financial-ratios', () => {
           <div class="rv-financial-ratio-container-item">
             <div class="rv-financial-ratio-info">
               <div class="rv-ratio-name">
-                <div class="rv-ratio-tooltip"></div>
+              <div class="rv-ratio-tooltip">
+                <railz-tooltip tooltiptext="Probability of default (PD) is the likelihood that a business will fail to pay back a debt over a specified period, usually one year. It can be applied to a variety of different risk management or credit analysis scenarios."></railz-tooltip>
+              </div>
                 <div class="rv-ratio-name-text">
                   Probability Of Default
                 </div>
@@ -142,7 +147,9 @@ describe('railz-financial-ratios', () => {
           <div class="rv-financial-ratio-container-item">
             <div class="rv-financial-ratio-info">
               <div class="rv-ratio-name">
-                <div class="rv-ratio-tooltip"></div>
+              <div class="rv-ratio-tooltip">
+                <railz-tooltip tooltiptext="Average collection period is the amount of time it takes for a business to receive payments owed by its customers in terms of accounts receivable (AR). Businesses use the average collection period to make sure they have enough cash on hand to meet their financial obligations."></railz-tooltip>
+              </div>
                 <div class="rv-ratio-name-text">
                   Average Collection Period
                 </div>

@@ -135,16 +135,22 @@ const Components = ({ configuration, filter, options, showCode }: ChartProps) =>
           RVReportTypes.RAILZ_SCORE,
           RVReportTypes.FINANCIAL_RATIO,
           RVReportTypes.BANK_ACCOUNT,
-        ].map((reportType) => (
-          <div className="col-span-1 mt-1" key={reportType}>
-            <DefaultComponent
-              configuration={configuration}
-              filter={cloneDeep({ ...filter, reportType }) as Filter}
-              options={cloneDeep(options)}
-              showCode={showCode}
-            />
-          </div>
-        ))}
+        ].map((reportType, index) => {
+          const cloneOptions = cloneDeep(options);
+          if (index !== 0) {
+            delete cloneOptions?.title?.text;
+          }
+          return (
+            <div className="col-span-1 mt-1" key={reportType}>
+              <DefaultComponent
+                configuration={configuration}
+                filter={cloneDeep({ ...filter, reportType }) as Filter}
+                options={cloneOptions}
+                showCode={showCode}
+              />
+            </div>
+          );
+        })}
       {[RVReportTypes.RAILZ_SCORE].includes(filter.reportType) && (
         <div>
           <h4 className="text-xl font-bold text-gray-900">Using Railz Gauge Chart Component</h4>

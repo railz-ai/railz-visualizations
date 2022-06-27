@@ -4,7 +4,7 @@ export const INITIAL_OPTIONS: RVOptions = {
   container: {
     style: {
       border: 0,
-      backgroundColor: 'black',
+      backgroundColor: '#00884F',
       borderRadius: '0',
     },
     tooltip: true,
@@ -19,7 +19,7 @@ export const INITIAL_OPTIONS: RVOptions = {
   chart: {
     colors: ['#ff0000', '#ff6900', '#d34000', '#ff4545', '#cccccc'],
     fontFamily: 'Inter',
-    backgroundColor: 'black',
+    backgroundColor: '#003032',
     label: {
       fontFamily: 'Inter',
       fontSize: '18px',
