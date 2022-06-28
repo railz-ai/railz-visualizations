@@ -136,13 +136,13 @@ export declare interface RailzPercentage extends Components.RailzPercentage {}
 
 @ProxyCmp({
   defineCustomElementFn: undefined,
-  inputs: ['percentage'],
+  inputs: ['percentage', 'percentageStyle'],
 })
 @Component({
   selector: 'railz-percentage',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
-  inputs: ['percentage'],
+  inputs: ['percentage', 'percentageStyle'],
 })
 export class RailzPercentage {
   protected el: HTMLElement;
@@ -222,13 +222,13 @@ export declare interface RailzSparklineChart extends Components.RailzSparklineCh
 
 @ProxyCmp({
   defineCustomElementFn: undefined,
-  inputs: ['data'],
+  inputs: ['data', 'sparkLineStyle'],
 })
 @Component({
   selector: 'railz-sparkline-chart',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
-  inputs: ['data'],
+  inputs: ['data', 'sparkLineStyle'],
 })
 export class RailzSparklineChart {
   protected el: HTMLElement;

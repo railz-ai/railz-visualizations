@@ -125,6 +125,7 @@ export namespace Components {
      * Percentage to show
      */
     percentage: number;
+    percentageStyle?: RVOptionsPercentageStyle;
   }
   interface RailzPieChart {
     /**
@@ -177,6 +178,7 @@ export namespace Components {
      * Data to display for sparkline
      */
     data: Array<RVPeriodData>;
+    sparkLineStyle?: { [key: string]: any };
   }
   interface RailzStatementsChart {
     /**
@@ -440,10 +442,6 @@ declare namespace LocalJSX {
      * Percentage to show
      */
     percentage?: number;
-
-    /**
-     * PercentageStyle styling of percentage
-     */
     percentageStyle?: RVOptionsPercentageStyle;
   }
   interface RailzPieChart {
@@ -498,6 +496,7 @@ declare namespace LocalJSX {
      * Data to display for sparkline
      */
     data: Array<RVPeriodData>;
+    sparkLineStyle?: { [key: string]: any };
   }
   interface RailzStatementsChart {
     /**

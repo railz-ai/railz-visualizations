@@ -1,6 +1,7 @@
 /* eslint-disable max-len, @typescript-eslint/no-unused-vars */
 import { Component, h, Prop } from '@stencil/core';
 import { isNull } from 'lodash-es';
+
 import { RVOptionsPercentageStyle } from '../../types';
 
 @Component({
