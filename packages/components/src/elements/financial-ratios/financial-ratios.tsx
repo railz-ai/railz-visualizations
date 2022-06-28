@@ -194,11 +194,11 @@ export class FinancialRatios {
       const tooltipText = translation(key, true);
 
       return (
-        <div class="rv-financial-ratio-container-item">
-          <div class="rv-financial-ratio-info">
-            <div class="rv-ratio-name">
+        <div class="rv-financial-ratio-container-item" style={this._options?.ratio?.itemContainer}>
+          <div class="rv-financial-ratio-info" style={this._options?.ratio?.itemInfo}>
+            <div class="rv-ratio-name" style={this._options?.ratio?.itemName}>
               {!isEmpty(tooltipText) && (
-                <div class="rv-ratio-tooltip">
+                <div class="rv-ratio-tooltip" style={this._options?.ratio?.itemToolTip}>
                   {this._options?.container?.tooltip === undefined ||
                   this._options?.container?.tooltip ? (
                     <railz-tooltip
@@ -208,18 +208,25 @@ export class FinancialRatios {
                   ) : null}
                 </div>
               )}
-              <div class="rv-ratio-name-text">{translation(key)}</div>
+              <div class="rv-ratio-name-text" style={this._options?.ratio?.itemNameText}>
+                {translation(key)}
+              </div>
             </div>
-            <div class="rv-ratio-values">
-              <div class="rv-ratio-summary">{roundNumber(item.currentValue)}</div>
+            <div class="rv-ratio-values" style={this._options?.ratio?.itemValues}>
+              <div class="rv-ratio-summary" style={this._options?.ratio?.itemSummary}>
+                {roundNumber(item.currentValue)}
+              </div>
               <div class="rv-ratio-percentage">
-                <railz-percentage percentage={item.percentageChange} />
+                <railz-percentage
+                  percentage={item.percentageChange}
+                  percentageStyle={this._options?.ratio?.itemPercentage}
+                />
               </div>
             </div>
           </div>
 
-          <div class="rv-financial-ratio-ratios">
-            <div class="rv-sparkline">
+          <div class="rv-financial-ratio-ratios" style={this._options?.ratio?.ratios}>
+            <div class="rv-sparkline" style={this._options?.ratio?.ratioSparkLine}>
               <railz-sparkline-chart data={item.timePeriodData} />
             </div>
           </div>
@@ -281,7 +288,7 @@ export class FinancialRatios {
 
     return (
       <div class="rv-container" style={this._options?.container?.style}>
-        <div class="rv-header-container">
+        <div class="rv-header-container" style={this._options?.ratio?.header}>
           <TitleElement />
           {!isEmpty(this._summary) && <SelectElement />}
         </div>

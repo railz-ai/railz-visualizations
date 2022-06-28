@@ -20,6 +20,8 @@ export class SparklineChart {
    */
   @Prop() readonly data!: Array<RVPeriodData>;
 
+  @Prop() readonly sparkLineStyle?: { [key: string]: any };
+
   @State() private containerRef?: HTMLDivElement;
 
   @Watch('containerRef')
@@ -34,6 +36,7 @@ export class SparklineChart {
     return (
       <div
         class="railz-sparkline-chart-container"
+        style={this.sparkLineStyle}
         id="railz-chart"
         ref={(el): HTMLDivElement => (this.containerRef = el)}
       />

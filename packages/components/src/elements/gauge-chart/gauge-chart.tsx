@@ -208,14 +208,17 @@ export class GaugeChart {
 
     return (
       <div class="rv-container" style={this._options?.container?.style}>
-        <div class="rv-header-container">
+        <div class="rv-header-container" style={this._options?.gauge?.header}>
           <TitleElement />
         </div>
         {this.renderMain()}
         {this._options?.container?.date && this.lastUpdated && (
           <p
             class="railz-gauge-last-updated"
-            style={{ 'font-family': this._options?.chart?.fontFamily || ALL_FONTS }}
+            style={{
+              fontFamily: this._options?.chart?.fontFamily || ALL_FONTS,
+              ...this._options?.gauge?.lastUpdated,
+            }}
           >
             {this._options?.content?.label?.date || Translations.RV_AS_OF}{' '}
             {format(parseISO(this.lastUpdated), 'dd MMM yyyy')}

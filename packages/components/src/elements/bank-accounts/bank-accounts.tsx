@@ -169,16 +169,32 @@ export class BanksAccounts {
     return (
       !isEmpty(this._summary) && (
         <div>
-          <ul class="railz-bank-accounts-ul">
+          <ul class="railz-bank-accounts-ul" style={this._options?.bank?.ul}>
             {Object.keys(diffBanks).map((bank) => (
               <div>
-                <li class="railz-bank-accounts-ul-title">{bank}</li>
+                <li class="railz-bank-accounts-ul-title" style={this._options?.bank?.li}>
+                  {bank}
+                </li>
                 {diffBanks[bank].map((bankAccount: RVBankAccounts) => (
                   <li>
-                    <div class="railz-bank-accounts-item-container">
-                      <span class="railz-bank-accounts-item-name">{bankAccount.accountName}</span>
-                      <span class="railz-bank-accounts-item-dot"></span>
-                      <span class="railz-bank-accounts-item-value">
+                    <div
+                      class="railz-bank-accounts-item-container"
+                      style={this._options?.bank?.itemContainer}
+                    >
+                      <span
+                        class="railz-bank-accounts-item-name"
+                        style={this._options?.bank?.itemName}
+                      >
+                        {bankAccount.accountName}
+                      </span>
+                      <span
+                        class="railz-bank-accounts-item-dot"
+                        style={this._options?.bank?.itemDot}
+                      ></span>
+                      <span
+                        class="railz-bank-accounts-item-value"
+                        style={this._options?.bank?.itemValue}
+                      >
                         ${formatNumber(bankAccount.currentBalance, 2, 2)}
                       </span>
                     </div>
@@ -219,8 +235,8 @@ export class BanksAccounts {
 
     return (
       <div class="rv-container" style={this._options?.container?.style}>
-        <div class="rv-header-container">
-          <TitleElement />
+        <div class="rv-header-container" style={this._options?.bank?.header}>
+          <TitleElement style={this._options?.bank?.header} />
         </div>
         {this.renderMain()}
       </div>

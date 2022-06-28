@@ -60,6 +60,35 @@ export interface RVOptionsChartStyle {
    * height: height of the chart
    */
   height?: string;
+  /**
+   * pie: javascript object to cover the styling of additional pie chart properties
+   */
+  pie?: RVOptionsChartPieStyle;
+}
+
+interface RVOptionsChartPieStyle {
+  /**
+   * total: CSS Object to cover the styling of the pie chart total
+   */
+  total?: { [key: string]: any };
+  /**
+   * legendValue: CSS Object to cover the styling of the pie chart legend value
+   */
+  legendValue?: { [key: string]: any };
+  /**
+   * legendName: CSS Object to cover the styling of the the pie chart legend name
+   */
+  legendName?: { [key: string]: any };
+
+  /**
+   * positivePercentageChange: string color for the pie chart positive percentage change
+   */
+  positivePercentageChange?: string;
+
+  /**
+   * negativePercentageChange: string color for the pie chart positive percentage change
+   */
+  negativePercentageChange?: string;
 }
 
 export interface RVOptionsBarStyle {
@@ -100,6 +129,108 @@ export interface RVOptionsBarStyle {
    * progressStyle: CSS object based on HTML stylings for the bar’s progress indicator
    */
   progressStyle?: { [key: string]: any };
+}
+
+export interface RVOptionsGaugeStyle {
+  /**
+   * itemContainer: CSS object based on HTML stylings for the guage chart last updated section
+   */
+  lastUpdated?: { [key: string]: any };
+  /**
+   * header: CSS object based on HTML stylings for the guage chart header
+   */
+  header?: { [key: string]: any };
+  /**
+   * itemContainer: CSS object based on HTML stylings for the guage chart inner container
+   */
+  chartContainer?: { [key: string]: any };
+}
+export interface RVOptionsBankStyle {
+  /**
+   * ul: CSS object based on HTML stylings for the whole banking info list section
+   */
+  ul?: { [key: string]: any };
+  /**
+   * header: CSS object based on HTML stylings for the whole banking info header section
+   */
+  header?: { [key: string]: any };
+  /**
+   * li: CSS object based on HTML stylings for the banking info bank items
+   */
+  li?: { [key: string]: any };
+  /**
+   * itemContainer: CSS object based on HTML stylings for the  banking info accounts container
+   */
+  itemContainer?: { [key: string]: any };
+  /**
+   * itemName: CSS object based on HTML stylings for the banking info accounts name
+   */
+  itemName?: { [key: string]: any };
+  /**
+   * itemValue: CSS object based on HTML stylings for the banking info accounts value
+   */
+  itemValue?: { [key: string]: any };
+  /**
+   * itemDot: CSS object based on HTML stylings for the banking info seperation line between account and value
+   */
+  itemDot?: { [key: string]: any };
+}
+export interface RVOptionsRatioStyle {
+  /**
+   * itemContainer: CSS object based on HTML stylings for the whole ratio chart container
+   */
+  itemContainer?: { [key: string]: any };
+  /**
+   * header: CSS object based on HTML stylings for the ratio chart header
+   */
+  header?: { [key: string]: any };
+  /**
+   * itemInfo: CSS object based on HTML stylings for ratio chart item info section
+   */
+  itemInfo?: { [key: string]: any };
+  /**
+   * itemName: CSS object based on HTML stylings for the ratio chart item name section
+   */
+  itemName?: { [key: string]: any };
+  /**
+   * itemNameText: CSS object based on HTML stylings for the ratio chart item name text
+   */
+  itemNameText?: { [key: string]: any };
+  /**
+   * itemToolTip: CSS object based on HTML stylings for the ratio chart item tool tip
+   */
+  itemToolTip?: { [key: string]: any };
+  /**
+   * itemValues: CSS object based on HTML stylings for the ratio chart item value
+   */
+  itemValues?: { [key: string]: any };
+  /**
+   * itemSummary: CSS object based on HTML stylings for the ratio chart item summary section
+   */
+  itemSummary?: { [key: string]: any };
+  /**
+   * itemPercentage: RVOptionsPercentageStyle object for the ratio chart item percentage
+   */
+  itemPercentage?: RVOptionsPercentageStyle;
+  /**
+   * ratios: CSS object based on HTML stylings for the ratio chart ratios section
+   */
+  ratios?: { [key: string]: any };
+  /**
+   * ratioSparkLine: CSS object based on HTML stylings for the ratio chart ratio spark line
+   */
+  ratioSparkLine?: { [key: string]: any };
+}
+
+export interface RVOptionsPercentageStyle {
+  /**
+   * positive: string representation of the color of a  positive percentage
+   */
+  positive?: string;
+  /**
+   * negative: string representation of the color of a  negative percentage
+   */
+  negative?: string;
 }
 
 export interface RVLoadingIndicatorStyle {
@@ -193,6 +324,14 @@ export interface RVOptions {
    * bar: Object to cover the styling options of the progress bar
    */
   bar?: RVOptionsBarStyle;
+  /**
+   * bar: Object to cover the styling options of the ratio diagram
+   */
+  ratio?: RVOptionsRatioStyle;
+
+  gauge?: RVOptionsGaugeStyle;
+
+  bank?: RVOptionsBankStyle;
   /**
    * loadingIndicator: Object to cover basic styling of the loading indicator
    */
