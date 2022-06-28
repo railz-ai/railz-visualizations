@@ -1389,6 +1389,21 @@
     lodash-es "4.17.21"
     numbro "2.3.6"
 
+"@railzai/railz-visualizations@latest":
+  version "0.0.5-alpha.6"
+  resolved "https://registry.yarnpkg.com/@railzai/railz-visualizations/-/railz-visualizations-0.0.5-alpha.6.tgz#b3f3d848e3c22e951ef64265953e097a09bf3bd6"
+  integrity sha512-keJfueDlwKR0cJce5Og3Ru1HEjMNgP8uWcMcKoTYVXI2/v4ELsqe/wRTgId1Rovqrv4bjfbNuQwo5rrnh/bf1g==
+  dependencies:
+    "@stencil/angular-output-target" "0.4.0"
+    "@stencil/core" "2.15.2"
+    "@stencil/react-output-target" "0.3.1"
+    "@stencil/sass" "1.5.2"
+    date-fns "2.11.1"
+    get-contrast "^3.0.0"
+    highcharts "9.3.3"
+    lodash-es "4.17.21"
+    numbro "2.3.6"
+
 "@schematics/angular@13.0.4":
   version "13.0.4"
   resolved "https://registry.yarnpkg.com/@schematics/angular/-/angular-13.0.4.tgz#e7efd26bf24abc359c902c4576451f988cc8582a"
@@ -1407,6 +1422,11 @@
   version "2.14.2"
   resolved "https://registry.yarnpkg.com/@stencil/core/-/core-2.14.2.tgz#c221d18bbfd9b637d755d43631598695c7526ff2"
   integrity sha512-NMC5Xi8sPFJxaO4rz6CbMHuD6PteE/RJWtjrbkusmpjKRtMXkfZJPIgOrleZ4xO+vXcNyL535Ru7vUADqEsTiQ==
+
+"@stencil/core@2.15.2":
+  version "2.15.2"
+  resolved "https://registry.yarnpkg.com/@stencil/core/-/core-2.15.2.tgz#73a18050714a9edc488e6a2ea3380f5a91a04690"
+  integrity sha512-D6dv2KAXlWt9mjC28q0s6anghQgXRn0k93suOf+4pqsv1Uq19zNJXpYL68N5GxMSiNZyMPTU4Tt2NCbut7DVGg==
 
 "@stencil/react-output-target@0.3.1":
   version "0.3.1"
