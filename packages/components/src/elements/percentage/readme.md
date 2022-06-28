@@ -4,9 +4,10 @@
 
 ## Properties
 
-| Property     | Attribute    | Description        | Type     | Default |
-| ------------ | ------------ | ------------------ | -------- | ------- |
-| `percentage` | `percentage` | Percentage to show | `number` | `0`     |
+| Property          | Attribute    | Description        | Type                       | Default     |
+| ----------------- | ------------ | ------------------ | -------------------------- | ----------- |
+| `percentage`      | `percentage` | Percentage to show | `number`                   | `0`         |
+| `percentageStyle` | --           |                    | `RVOptionsPercentageStyle` | `undefined` |
 
 ## Dependencies
 

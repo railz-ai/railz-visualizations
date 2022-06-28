@@ -4,9 +4,10 @@
 
 ## Properties
 
-| Property            | Attribute | Description                   | Type             | Default     |
-| ------------------- | --------- | ----------------------------- | ---------------- | ----------- |
-| `data` _(required)_ | --        | Data to display for sparkline | `RVPeriodData[]` | `undefined` |
+| Property            | Attribute | Description                   | Type                      | Default     |
+| ------------------- | --------- | ----------------------------- | ------------------------- | ----------- |
+| `data` _(required)_ | --        | Data to display for sparkline | `RVPeriodData[]`          | `undefined` |
+| `sparkLineStyle`    | --        |                               | `{ [key: string]: any; }` | `undefined` |
 
 ## Dependencies
 
