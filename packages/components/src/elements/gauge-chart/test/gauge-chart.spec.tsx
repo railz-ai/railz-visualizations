@@ -39,6 +39,11 @@ describe('railz-gauge-chart', () => {
             serviceName: RVAllProviders.QUICKBOOKS,
             reportType: RVReportTypes.RAILZ_SCORE,
           }}
+          options={{
+            container: {
+              tooltip: false,
+            },
+          }}
         ></railz-gauge-chart>
       ),
     });
@@ -78,6 +83,11 @@ describe('railz-gauge-chart', () => {
             businessName: 'QboFrdTest',
             serviceName: RVAllProviders.QUICKBOOKS,
             reportType: RVReportTypes.RAILZ_SCORE,
+          }}
+          options={{
+            container: {
+              tooltip: false,
+            },
           }}
         ></railz-gauge-chart>
       ),

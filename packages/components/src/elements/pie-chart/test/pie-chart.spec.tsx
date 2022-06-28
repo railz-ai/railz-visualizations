@@ -37,6 +37,11 @@ describe('railz-pie-chart', () => {
             serviceName: RVAllProviders.QUICKBOOKS,
             reportType: RVReportTypes.EXPENSES,
           }}
+          options={{
+            container: {
+              tooltip: false,
+            },
+          }}
         ></railz-pie-chart>
       ),
     });
@@ -74,6 +79,11 @@ describe('railz-pie-chart', () => {
             businessName: 'QboFrdTest',
             serviceName: RVAllProviders.QUICKBOOKS,
             reportType: RVReportTypes.REVENUE,
+          }}
+          options={{
+            container: {
+              tooltip: false,
+            },
           }}
         ></railz-pie-chart>
       ),
