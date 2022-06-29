@@ -183,7 +183,7 @@ export class GaugeChart {
         <div
           style={{
             maxHeight: '50%',
-            ...this.options?.gauge?.chartContainerOuter,
+            ...this._options?.gauge?.chartContainerOuter,
           }}
         >
           <railz-gauge-chart-component data={this._data} options={this._options} />
