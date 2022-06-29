@@ -178,7 +178,18 @@ export class GaugeChart {
       return <railz-loading loadingText={this.loading} {...this._options?.loadingIndicator} />;
     }
 
-    return this._data && <railz-gauge-chart-component data={this._data} options={this._options} />;
+    return (
+      this._data && (
+        <div
+          style={{
+            maxHeight: '50%',
+            ...this.options?.gauge?.chartContainerOuter,
+          }}
+        >
+          <railz-gauge-chart-component data={this._data} options={this._options} />
+        </div>
+      )
+    );
   };
 
   render(): HTMLElement {
@@ -213,7 +224,7 @@ export class GaugeChart {
           <TitleElement />
         </div>
         {this.renderMain()}
-        {this._options?.container?.date && this.lastUpdated && (
+        {this._options?.container?.date && !isEmpty(this.lastUpdated) ? (
           <p
             class="railz-gauge-last-updated"
             style={{
@@ -224,6 +235,8 @@ export class GaugeChart {
             {this._options?.content?.label?.date || Translations.RV_AS_OF}{' '}
             {format(parseISO(this.lastUpdated), 'dd MMM yyyy')}
           </p>
+        ) : (
+          <div></div>
         )}
       </div>
     );

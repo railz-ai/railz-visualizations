@@ -42,7 +42,7 @@ export class GaugeChartComponent {
         style={{
           width: this.options?.chart?.width,
           height: this.options?.chart?.height,
-          ...this.options?.gauge?.chartContainer,
+          ...this.options?.gauge?.chartContainerInner,
         }}
       />
     );

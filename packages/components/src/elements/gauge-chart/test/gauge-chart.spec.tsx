@@ -48,18 +48,19 @@ describe('railz-gauge-chart', () => {
       ),
     });
     expect(page.root).toEqualHtml(`
-      <railz-gauge-chart>
-         <mock:shadow-root>
-           <div class="rv-container">
-             <div class="rv-header-container">
-               <p class="rv-title">
-                 Railz Score
-               </p>
-             </div>
-             <railz-error-image statuscode="404"></railz-error-image>
-           </div>
-         </mock:shadow-root>
-      </railz-gauge-chart>
+    <railz-gauge-chart>
+      <mock:shadow-root>
+        <div class="rv-container">
+          <div class="rv-header-container">
+            <p class="rv-title">
+              Railz Score
+            </p>
+          </div>
+          <railz-error-image statuscode="404"></railz-error-image>
+          <div></div>
+        </div>
+      </mock:shadow-root>
+    </railz-gauge-chart>
     `);
   });
 
@@ -101,7 +102,10 @@ describe('railz-gauge-chart', () => {
               Railz Score
             </p>
           </div>
-          <railz-gauge-chart-component></railz-gauge-chart-component>
+          <div style="max-height: 50%;">
+            <railz-gauge-chart-component></railz-gauge-chart-component>
+          </div>
+          <div></div>
         </div>
       </mock:shadow-root>
     </railz-gauge-chart>
