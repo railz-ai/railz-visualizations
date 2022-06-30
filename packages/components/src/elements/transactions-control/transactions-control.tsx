@@ -119,6 +119,7 @@ export class TransactionsControl {
    * Request report data based on filter and configuration param
    */
   private requestReportData = async (): Promise<void> => {
+    this.errorStatusCode = undefined;
     this.loading = Translations.RV_LOADING_REPORT;
     const reportData = (await getReportData({
       filter: this._filter as RVFilterAll,

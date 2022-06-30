@@ -122,6 +122,7 @@ export class BanksAccounts {
    * Request report data based on filter and configuration param
    */
   private requestReportData = async (): Promise<void> => {
+    this.errorStatusCode = undefined;
     this.loading = Translations.RV_LOADING_REPORT;
     try {
       const reportData = (await getReportData({

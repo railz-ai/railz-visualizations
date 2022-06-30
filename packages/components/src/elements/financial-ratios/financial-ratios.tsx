@@ -132,6 +132,7 @@ export class FinancialRatios {
    * Request report data based on filter and configuration param
    */
   private requestReportData = async (): Promise<void> => {
+    this.errorStatusCode = undefined;
     this.loading = Translations.RV_LOADING_REPORT;
     try {
       const reportData = (await getReportData({
@@ -278,6 +279,8 @@ export class FinancialRatios {
       return (
         <railz-select
           items={items}
+          //reset the component per loading
+          key={this.loading}
           selectStyle={{ position: 'left' }}
           onSelectedItem={(event) => {
             this.handleSelected(event.detail);
