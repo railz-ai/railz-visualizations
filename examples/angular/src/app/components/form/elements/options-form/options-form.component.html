@@ -1,12 +1,12 @@
 <div class="flex flex-col">
   <div class="text-left">
-    <h2 class="text-lg font-medium leading-6 text-gray-900">Options</h2>
+    <h2 class="text-lg font-medium leading-6 text-gray-900">Options (read only)</h2>
     <p class="mt-1 text-sm text-gray-600">
-      Optional parameters for the SDK, they cannot be dynamically changed and should be set before
-      clicking on the filter submit button. They are for customization of content and styles
+      Optional parameters for the SDK example cannot be dynamically changed at this time. They are
+      for customization of content and styles. Download the SDK package to try.
     </p>
   </div>
   <div class="mt-4 md:mt-3 text-left items-end" *ngIf="options">
-    <ace-editor [text]="options" mode="json" style="height: 400px"></ace-editor>
+    <ace-editor [text]="options" [readOnly]="true" mode="json" style="height: 400px"></ace-editor>
   </div>
 </div>
