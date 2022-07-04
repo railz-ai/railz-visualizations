@@ -94,7 +94,7 @@ export const getOptionsGauge = (gauge: RVGaugeChartSummary, options: RVOptions):
   },
   title: null,
   style: {
-    height: '128px',
+    height: '100%',
     width: '128px',
   },
   pane: {

@@ -5,7 +5,6 @@ export const DIRECTIVES = [
   d.RailzErrorImage,
   d.RailzFinancialRatios,
   d.RailzGaugeChart,
-  d.RailzGaugeChartComponent,
   d.RailzLoading,
   d.RailzPercentage,
   d.RailzPieChart,
