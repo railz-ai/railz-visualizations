@@ -1,11 +1,12 @@
 import React from 'react';
-import Header from '../../components/header';
 import { RVReportTypes } from '@railzai/railz-visualizations';
 import {
   RailzErrorImage,
   RailzLoading,
   RailzProgressBar,
 } from '@railzai/railz-visualizations-react';
+
+import Header from '../../components/header';
 
 const AllComponents = () => {
   return (
