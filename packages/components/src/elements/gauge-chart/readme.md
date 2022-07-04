@@ -20,7 +20,6 @@
 
 - [railz-error-image](../error)
 - [railz-loading](../loading)
-- [railz-gauge-chart-component](gauge-chart-component)
 - [railz-tooltip](../tooltip)
 
 ### Graph
@@ -29,7 +28,6 @@
 graph TD;
   railz-gauge-chart --> railz-error-image
   railz-gauge-chart --> railz-loading
-  railz-gauge-chart --> railz-gauge-chart-component
   railz-gauge-chart --> railz-tooltip
   railz-visualizations --> railz-gauge-chart
   style railz-gauge-chart fill:#f9f,stroke:#333,stroke-width:4px

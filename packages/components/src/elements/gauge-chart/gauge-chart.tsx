@@ -27,7 +27,7 @@ import {
 import { errorLog } from '../../services/logger';
 import { isGauge } from '../../helpers/utils';
 
-import { getReportData } from './gauge-chart.utils';
+import { getReportData, getOptionsGauge } from './gauge-chart.utils';
 
 highchartsMore(Highcharts);
 solidGauge(Highcharts);
@@ -59,7 +59,6 @@ export class GaugeChart {
   @State() private _data: RVGaugeChartSummary;
   @State() private errorStatusCode: number;
   @State() private lastUpdated: string;
-  @State() private chartOptions: any;
   @State() private containerRef?: HTMLDivElement;
 
   /**
@@ -104,8 +103,9 @@ export class GaugeChart {
 
   @Watch('containerRef')
   watchContainerRef(newValue: HTMLDivElement, _: HTMLDivElement): void {
-    if (newValue && this.chartOptions) {
-      Highcharts.chart(this.containerRef, this.chartOptions);
+    const options = getOptionsGauge(this._data, this._options);
+    if (newValue && options) {
+      Highcharts.chart(this.containerRef, options);
     }
   }
 
@@ -181,13 +181,15 @@ export class GaugeChart {
     return (
       this._data && (
         <div
+          class="railz-gauge-chart-container"
+          id="railz-gauge-chart"
+          ref={(el): HTMLDivElement => (this.containerRef = el)}
           style={{
-            maxHeight: '50%',
-            ...this._options?.gauge?.chartContainerOuter,
+            width: this._options?.chart?.width,
+            height: this._options?.chart?.height,
+            ...this._options?.gauge?.chartContainer,
           }}
-        >
-          <railz-gauge-chart-component data={this._data} options={this._options} />
-        </div>
+        />
       )
     );
   };
@@ -224,7 +226,8 @@ export class GaugeChart {
           <TitleElement />
         </div>
         {this.renderMain()}
-        {this._options?.container?.date && !isEmpty(this.lastUpdated) ? (
+        {(this._options?.container?.date === undefined || this._options?.container?.date) &&
+        !isEmpty(this.lastUpdated) ? (
           <p
             class="railz-gauge-last-updated"
             style={{
@@ -236,7 +239,7 @@ export class GaugeChart {
             {format(parseISO(this.lastUpdated), 'dd MMM yyyy')}
           </p>
         ) : (
-          <div></div>
+          <p></p>
         )}
       </div>
     );

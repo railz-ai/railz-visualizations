@@ -37,3 +37,10 @@
   font-weight: 500;
   line-height: 28px;
 }
+
+.railz-gauge-chart-container {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  margin-left: -10;
+}

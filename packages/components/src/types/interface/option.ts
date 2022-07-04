@@ -141,13 +141,9 @@ export interface RVOptionsGaugeStyle {
    */
   header?: { [key: string]: any };
   /**
-   * chartContainerOuter: CSS object based on HTML stylings for the guage chart outer container
+   * chartContainer: CSS object based on HTML stylings for the guage chart container
    */
-  chartContainerOuter?: { [key: string]: any };
-  /**
-   * chartContainerInner: CSS object based on HTML stylings for the guage chart inner container
-   */
-  chartContainerInner?: { [key: string]: any };
+  chartContainer?: { [key: string]: any };
 }
 export interface RVOptionsBankStyle {
   /**
