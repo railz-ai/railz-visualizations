@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.0.5-alpha.12 (2022-07-05)
+
+
+### Bug Fixes
+
+* fix bugs that causes errorcode not been reset + FinancialRatios selector not been reset ([#99](https://github.com/railz-ai/railz-visualizations/issues/99)) ([ac492e0](https://github.com/railz-ai/railz-visualizations/commit/ac492e02f3ece61b93be3e69d0b3fa9d99241de1))
+
+
+
+
+
 ## 0.0.5-alpha.11 (2022-07-04)
 
 **Note:** Version bump only for package @railzai/railz-visualizations
