@@ -20,7 +20,6 @@
     "@angular/platform-browser": "~13.0.0",
     "@angular/platform-browser-dynamic": "~13.0.0",
     "@angular/router": "~13.0.0",
-    "@railzai/railz-visualizations": "latest",
     "@railzai/railz-visualizations-angular": "latest",
     "@tailwindcss/forms": "~0.4.0",
     "autoprefixer": "~10.4.2",

@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { RVConfiguration, RVReportTypes, RVOptions } from '@railzai/railz-visualizations';
+import { cloneDeep } from 'lodash';
 
 import { Filter } from '../../../types/form-submission';
 
@@ -20,4 +21,12 @@ export class VisualizationsComponent implements OnInit {
   ngOnInit(): void {}
 
   getNewFilter = (filter: Filter, reportType: any): Filter => <Filter>{ ...filter, reportType };
+
+  getNewOptions = (options: RVOptions, elementIndex: number): RVOptions => {
+    const cloneOptions = cloneDeep(options);
+    if (elementIndex !== 0) {
+      delete cloneOptions?.title?.text;
+    }
+    return cloneOptions;
+  };
 }

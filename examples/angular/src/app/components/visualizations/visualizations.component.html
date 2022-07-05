@@ -8,11 +8,14 @@
     class="md:grid md:grid-cols-1 md:gap-1"
     *ngIf="filter?.reportType === 'all'; else statements"
   >
-    <div class="col-span-1 mt-1" *ngFor="let reportType of allReportTypes">
+    <div
+      class="col-span-1 mt-1"
+      *ngFor="let reportType of allReportTypes; let elementIndex = index"
+    >
       <railz-visualizations
         [configuration]="configuration"
         [filter]="getNewFilter(filter, reportType)"
-        [options]="options"
+        [options]="getNewOptions(options, elementIndex)"
       >
       </railz-visualizations>
     </div>
