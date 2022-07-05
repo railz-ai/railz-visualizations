@@ -142,6 +142,7 @@ export class StatementsChart {
    * Updated Highchart params using updateHighchartsParams
    */
   private requestReportData = async (): Promise<void> => {
+    this.errorStatusCode = undefined;
     this.loading = Translations.RV_LOADING_REPORT;
     try {
       const reportData = (await getReportData({
