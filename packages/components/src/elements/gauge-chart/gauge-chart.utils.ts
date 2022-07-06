@@ -99,9 +99,9 @@ export const getOptionsGauge = (gauge: RVGaugeChartSummary, options: RVOptions):
   },
   pane: {
     center: ['50%', '50%'],
-    size: '80%',
-    startAngle: -90,
-    endAngle: 90,
+    size: options?.gauge?.size || '80%',
+    startAngle: options?.gauge?.startAngle || -90,
+    endAngle: options?.gauge?.endAngle || 90,
     background: [
       {
         backgroundColor: '#F5F5F5',
@@ -110,14 +110,16 @@ export const getOptionsGauge = (gauge: RVGaugeChartSummary, options: RVOptions):
         outerRadius: '90%',
         innerRadius: '100%',
       },
-      {
-        innerRadius: '83%',
-        outerRadius: '83%',
-        shape: 'arc',
-        borderWidth: 3,
-        borderColor: '#F5F5F5',
-        backgroundColor: 'transparent',
-      },
+      options?.gauge?.circle
+        ? undefined
+        : {
+            innerRadius: options?.gauge?.circle ? '80%' : '83%',
+            outerRadius: options?.gauge?.circle ? '95%' : '83%',
+            shape: 'arc',
+            borderWidth: 3,
+            borderColor: '#F5F5F5',
+            backgroundColor: 'transparent',
+          },
     ],
   },
   tooltip: {
@@ -125,41 +127,45 @@ export const getOptionsGauge = (gauge: RVGaugeChartSummary, options: RVOptions):
   },
   // the value axis
   yAxis: {
-    min: 300,
+    min: options?.gauge?.circle ? 0 : 300,
     max: 850,
-    tickPositions: [300, 850],
-    labels: {
-      distance: -5,
-      y: 15,
-      style: { color: '#757575', ...options?.chart?.label },
-    },
+    tickPositions: options?.gauge?.circle ? undefined : [300, 850],
+    labels: options?.gauge?.circle
+      ? { enabled: false }
+      : {
+          distance: -5,
+          y: 15,
+          style: { color: '#757575', ...options?.chart?.label },
+        },
     stops: [[0, getColor(gauge?.score)]],
-    plotLines: [
-      {
-        value: 525,
-        ...plotLine,
-      },
-      {
-        value: 575,
-        ...plotLine,
-      },
-      {
-        value: 625,
-        ...plotLine,
-      },
-      {
-        value: 675,
-        ...plotLine,
-      },
-      {
-        value: 750,
-        ...plotLine,
-      },
-      {
-        value: 850,
-        ...plotLine,
-      },
-    ],
+    plotLines: options?.gauge?.circle
+      ? undefined
+      : [
+          {
+            value: 525,
+            ...plotLine,
+          },
+          {
+            value: 575,
+            ...plotLine,
+          },
+          {
+            value: 625,
+            ...plotLine,
+          },
+          {
+            value: 675,
+            ...plotLine,
+          },
+          {
+            value: 750,
+            ...plotLine,
+          },
+          {
+            value: 850,
+            ...plotLine,
+          },
+        ],
     lineColor: '#F5F5F5',
     lineWidth: 0,
     minorTickInterval: null,

@@ -144,6 +144,23 @@ export interface RVOptionsGaugeStyle {
    * chartContainer: CSS object based on HTML stylings for the guage chart container
    */
   chartContainer?: { [key: string]: any };
+
+  /**
+   * The start angle of the pie slices in degrees where 0 is top and 90 right.
+   */
+  startAngle?: number;
+
+  /**
+   * The end angle of the pie in degrees where 0 is top and 90 is right. Defaults to startAngle plus 360.
+   */
+  endAngle?: number;
+
+  /**
+   * size: The diameter of the pie relative to the plot area: percentage string like '70%'
+   */
+  size?: string;
+
+  circle?: boolean;
 }
 export interface RVOptionsBankStyle {
   /**
