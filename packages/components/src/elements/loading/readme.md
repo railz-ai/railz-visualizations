@@ -17,9 +17,9 @@
 ### Used by
 
 - [railz-bank-accounts](../bank-accounts)
-- [railz-credit-score](../credit-score)
 - [railz-financial-ratios](../financial-ratios)
-- [railz-income-statements](../income-statements)
+- [railz-gauge-chart](../gauge-chart)
+- [railz-pie-chart](../pie-chart)
 - [railz-statements-chart](../statements-chart)
 - [railz-transactions-control](../transactions-control)
 
@@ -28,9 +28,9 @@
 ```mermaid
 graph TD;
   railz-bank-accounts --> railz-loading
-  railz-credit-score --> railz-loading
   railz-financial-ratios --> railz-loading
-  railz-income-statements --> railz-loading
+  railz-gauge-chart --> railz-loading
+  railz-pie-chart --> railz-loading
   railz-statements-chart --> railz-loading
   railz-transactions-control --> railz-loading
   style railz-loading fill:#f9f,stroke:#333,stroke-width:4px

@@ -4,17 +4,15 @@ import { format, parseISO } from 'date-fns';
 import Translations from '../../config/translations/en.json';
 import {
   ALL_FONTS,
-  RVFormattedScoreResponse,
-  RVCreditScoreSummary,
+  RVFormattedGaugeResponse,
+  RVGaugeChartSummary,
   RVOptions,
   RVReportRequestParameter,
   RVReportTypesUrlMapping,
-  RVColorRangesStyle,
 } from '../../types';
 import { RequestServiceInstance } from '../../services/request';
 import { errorLog } from '../../services/logger';
 import { RAILZ_DATE_FORMAT } from '../../types/constants/date';
-import { fromCssObjectToInline } from '../../helpers/utils';
 
 const plotLine = {
   width: 3,
@@ -47,35 +45,34 @@ const getData = (score: number): number[] => {
   return data;
 };
 
-const getColor = (score: number, colors?: RVColorRangesStyle): string => {
+const getColor = (score: number): string => {
   if (score > 750) {
-    return colors?.['750'] || '#00884F';
+    return '#00884F';
   }
   if (score > 675) {
-    return colors?.['675'] || '#15D283';
+    return '#15D283';
   }
   if (score > 625) {
-    return colors?.['625'] || '#6DE18D';
+    return '#6DE18D';
   }
   if (score > 575) {
-    return colors?.['575'] || '#A2DF61';
+    return '#A2DF61';
   }
   if (score > 525) {
-    return colors?.['525'] || '#E0E345';
+    return '#E0E345';
   }
-  return colors?.default || '#FFD839';
+  return ' #FFD839';
 };
 
 /**
  * Setup Highcharts options for gauge
  */
-export const getOptionsGauge = (gauge: RVCreditScoreSummary, options: RVOptions): any => ({
+export const getOptionsGauge = (gauge: RVGaugeChartSummary, options: RVOptions): any => ({
   chart: {
     type: 'solidgauge',
     margin: [0, 0, 0, 0],
     style: {
       fontFamily: options?.chart?.fontFamily || ALL_FONTS,
-      ...options?.chart?.style,
     },
     backgroundColor: options?.chart?.backgroundColor || '#ffffff',
     events: {
@@ -96,9 +93,13 @@ export const getOptionsGauge = (gauge: RVCreditScoreSummary, options: RVOptions)
     enabled: false,
   },
   title: null,
+  style: {
+    height: '100%',
+    width: '128px',
+  },
   pane: {
-    center: ['50%', '65%'],
-    size: '90%',
+    center: ['50%', '50%'],
+    size: '80%',
     startAngle: -90,
     endAngle: 90,
     background: [
@@ -132,7 +133,7 @@ export const getOptionsGauge = (gauge: RVCreditScoreSummary, options: RVOptions)
       y: 15,
       style: { color: '#757575', ...options?.chart?.label },
     },
-    stops: [[0, getColor(gauge?.score, options?.chart?.gauge?.colorRanges)]],
+    stops: [[0, getColor(gauge?.score)]],
     plotLines: [
       {
         value: 525,
@@ -164,7 +165,6 @@ export const getOptionsGauge = (gauge: RVCreditScoreSummary, options: RVOptions)
     minorTickInterval: null,
     tickPixelInterval: 400,
     tickWidth: 0,
-    ...options?.chart?.yAxisStyle,
   },
 
   plotOptions: {
@@ -186,12 +186,12 @@ export const getOptionsGauge = (gauge: RVCreditScoreSummary, options: RVOptions)
             <div style="width:100%;text-align:center;font-family: ${
               options?.chart?.fontFamily || ALL_FONTS
             }">
-              <span style="font-size: 36px;color: black;font-weight:600;${fromCssObjectToInline(
-                options?.chart?.gauge?.score,
-              )}">${gauge?.score}</span><br/>
-              <span style="font-size: 16px;font-weight: 400; ${fromCssObjectToInline(
-                options?.chart?.gauge?.rating,
-              )}">${gauge?.rating}</span>
+              <span style="font-size:2.25rem;color: black;font-weight:600;font-family: ${
+                options?.chart?.fontFamily || ALL_FONTS
+              }">${gauge?.score}</span><br/>
+              <span style="font-size:1rem;font-weight: 400;font-family: ${
+                options?.chart?.fontFamily || ALL_FONTS
+              }">${gauge?.rating}</span>
             </div>`;
         },
       },
@@ -221,7 +221,7 @@ export const getOptionsGauge = (gauge: RVCreditScoreSummary, options: RVOptions)
  */
 export const getReportData = async ({
   filter,
-}: RVReportRequestParameter): Promise<RVFormattedScoreResponse> => {
+}: RVReportRequestParameter): Promise<RVFormattedGaugeResponse> => {
   let reportData;
   try {
     const startDate = format(parseISO(filter.startDate), RAILZ_DATE_FORMAT);

@@ -2,7 +2,7 @@
 import { Component, h, Prop } from '@stencil/core';
 import { isEmpty } from 'lodash-es';
 
-import { RAILZ_TOOLTIP_COLOR, RVTooltipIndicatorStyle } from '../../types';
+import { RVTooltipStyle } from '../../types';
 
 import { TooltipImage } from './tooltip-image';
 
@@ -20,27 +20,14 @@ export class Tooltip {
   /**
    * Position of the Tooltip text when hovered
    */
-  @Prop() readonly tooltipStyle?: RVTooltipIndicatorStyle = { position: 'bottom-center' };
+  @Prop() readonly tooltipStyle?: RVTooltipStyle = { position: 'bottom-center' };
 
   render(): HTMLElement {
     return (
       !isEmpty(this.tooltipText) && (
-        <div
-          class="rv-tooltip"
-          style={{
-            color: this.tooltipStyle?.fillColor || RAILZ_TOOLTIP_COLOR,
-            ...this.tooltipStyle?.style,
-          }}
-        >
-          <div class="rv-tooltip-image" style={{ ...this.tooltipStyle?.textStyle }}>
-            {isEmpty(this.text) ? <TooltipImage {...this.tooltipStyle} /> : this.text}
-          </div>
-          <span
-            class={`rv-tooltiptext rv-${this.tooltipStyle?.position}`}
-            style={this.tooltipStyle?.tooltipTextStyle}
-          >
-            {this.tooltipText}
-          </span>
+        <div class="rv-tooltip">
+          <div class="rv-tooltip-image">{isEmpty(this.text) ? <TooltipImage /> : this.text}</div>
+          <span class={`rv-tooltiptext rv-${this.tooltipStyle?.position}`}>{this.tooltipText}</span>
         </div>
       )
     );

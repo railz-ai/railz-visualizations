@@ -12,10 +12,6 @@ export const RailzBankAccounts = /*@__PURE__*/ createReactComponent<
   JSX.RailzBankAccounts,
   HTMLRailzBankAccountsElement
 >('railz-bank-accounts');
-export const RailzCreditScore = /*@__PURE__*/ createReactComponent<
-  JSX.RailzCreditScore,
-  HTMLRailzCreditScoreElement
->('railz-credit-score');
 export const RailzErrorImage = /*@__PURE__*/ createReactComponent<
   JSX.RailzErrorImage,
   HTMLRailzErrorImageElement
@@ -24,10 +20,10 @@ export const RailzFinancialRatios = /*@__PURE__*/ createReactComponent<
   JSX.RailzFinancialRatios,
   HTMLRailzFinancialRatiosElement
 >('railz-financial-ratios');
-export const RailzIncomeStatements = /*@__PURE__*/ createReactComponent<
-  JSX.RailzIncomeStatements,
-  HTMLRailzIncomeStatementsElement
->('railz-income-statements');
+export const RailzGaugeChart = /*@__PURE__*/ createReactComponent<
+  JSX.RailzGaugeChart,
+  HTMLRailzGaugeChartElement
+>('railz-gauge-chart');
 export const RailzLoading = /*@__PURE__*/ createReactComponent<
   JSX.RailzLoading,
   HTMLRailzLoadingElement
@@ -36,6 +32,10 @@ export const RailzPercentage = /*@__PURE__*/ createReactComponent<
   JSX.RailzPercentage,
   HTMLRailzPercentageElement
 >('railz-percentage');
+export const RailzPieChart = /*@__PURE__*/ createReactComponent<
+  JSX.RailzPieChart,
+  HTMLRailzPieChartElement
+>('railz-pie-chart');
 export const RailzProgressBar = /*@__PURE__*/ createReactComponent<
   JSX.RailzProgressBar,
   HTMLRailzProgressBarElement

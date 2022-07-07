@@ -2,20 +2,15 @@
 import { Component, Prop, h, State, Watch } from '@stencil/core';
 import { isEqual } from 'lodash-es';
 
-import {
-  isCreditScore,
-  isIncomeStatements,
-  isStatements,
-  isTransactions,
-} from '../../helpers/utils';
+import { isGauge, isPie, isStatements, isTransactions } from '../../helpers/utils';
 import {
   RVConfiguration,
   RVFilterAll,
   RVFilterAllReportTypes,
   RVFilterBankAccount,
   RVFilterFinancialRatio,
-  RVFilterCreditScore,
-  RVFilterIncomeStatementsType,
+  RVFilterGauge,
+  RVFilterPie,
   RVFilterStatements,
   RVFilterTransactions,
   RVOptions,
@@ -126,21 +121,21 @@ export class Core {
       );
     }
 
-    if (isCreditScore(reportType)) {
+    if (isGauge(reportType)) {
       return (
-        <railz-credit-score
+        <railz-gauge-chart
           configuration={this.configuration}
-          filter={this.filter as RVFilterCreditScore}
+          filter={this.filter as RVFilterGauge}
           options={this.options}
         />
       );
     }
 
-    if (isIncomeStatements(reportType)) {
+    if (isPie(reportType)) {
       return (
-        <railz-income-statements
+        <railz-pie-chart
           configuration={this.configuration}
-          filter={this.filter as RVFilterIncomeStatementsType}
+          filter={this.filter as RVFilterPie}
           options={this.options}
         />
       );

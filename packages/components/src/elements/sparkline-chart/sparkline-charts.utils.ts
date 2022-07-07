@@ -1,11 +1,10 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-import { ALL_FONTS, RVOptionsBaseChartStyle } from '../../types';
+import { ALL_FONTS } from '../../types';
 
-export const getOptions = (data: any, options?: RVOptionsBaseChartStyle): any => ({
+export const getOptions = (data: any): any => ({
   chart: {
     type: 'line',
-    backgroundColor: options?.backgroundColor || '#ffffff',
-    height: options?.height || 60,
+    height: 60,
     reflow: true,
     marginTop: 0,
     spacingTop: 0,
@@ -13,7 +12,6 @@ export const getOptions = (data: any, options?: RVOptionsBaseChartStyle): any =>
     marginRight: 0,
     style: {
       fontFamily: ALL_FONTS,
-      ...options?.style,
     },
     events: {
       load(): void {
@@ -29,7 +27,7 @@ export const getOptions = (data: any, options?: RVOptionsBaseChartStyle): any =>
       },
     },
   },
-  colors: options?.colors || ['#009BBD'],
+  colors: ['#009BBD'],
 
   title: {
     text: undefined,
@@ -41,7 +39,6 @@ export const getOptions = (data: any, options?: RVOptionsBaseChartStyle): any =>
     },
     visible: false,
     tickLength: 0,
-    ...options?.xAxisStyle,
   },
   yAxis: {
     gridLineDashStyle: 'longdash',
@@ -61,10 +58,8 @@ export const getOptions = (data: any, options?: RVOptionsBaseChartStyle): any =>
     labels: {
       style: {
         color: '#424242',
-        ...options?.label,
       },
     },
-    ...options?.yAxisStyle,
   },
 
   tooltip: {

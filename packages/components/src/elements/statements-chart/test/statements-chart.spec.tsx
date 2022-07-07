@@ -87,7 +87,7 @@ describe('railz-statements-chart', () => {
               Balance Sheet
             </p>
           </div>
-          <div class="rv-statement-chart-container" id="railz-chart"></div>
+          <div class="railz-statement-chart-container" id="railz-chart"></div>
         </div>
       </mock:shadow-root>
     </railz-statements-chart>

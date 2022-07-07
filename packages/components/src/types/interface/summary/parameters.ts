@@ -2,7 +2,7 @@ import { RVReportFrequency } from '../../enum/date';
 import { RVFinancialStatementsTypes } from '../../enum/report-type';
 import { RVOptions, RVOptionsChartStyle } from '../option';
 import { RVFilterAll } from '../filter';
-import { RVFormat } from '../content';
+import { RVMonth } from '../content';
 
 import { RVFormattedStatementData } from './formatted-data';
 import { RVBillInvoiceSummary, RVReportStatementSummary } from './api-response';
@@ -11,7 +11,8 @@ export interface RVChartStatementBaseParameter {
   summary: RVReportStatementSummary;
   reportFrequency: RVReportFrequency;
   chart: RVOptionsChartStyle;
-  date?: RVFormat;
+  quarter?: string;
+  month?: RVMonth;
 }
 
 export interface RVChartStatementParameter extends RVChartStatementBaseParameter {

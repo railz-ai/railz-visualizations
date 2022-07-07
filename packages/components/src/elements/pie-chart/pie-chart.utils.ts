@@ -8,7 +8,7 @@ import {
   RVFormattedPieResponse,
   RVOptions,
   RVParams,
-  RVIncomeStatementsSummary,
+  RVPieChartSummary,
   RVReportRequestParameter,
   RVReportTypesUrlMapping,
 } from '../../types';
@@ -22,10 +22,7 @@ interface Data {
   y: number;
 }
 
-export const getOptionsIncomeStatements = (
-  summary: RVIncomeStatementsSummary,
-  options: RVOptions,
-): any => {
+export const getOptionsPie = (summary: RVPieChartSummary, options: RVOptions): any => {
   const data: Data[] = summary?.subSections
     .filter((item) => item.amount > 0)
     .map((item) => {
@@ -38,7 +35,6 @@ export const getOptionsIncomeStatements = (
     chart: {
       style: {
         fontFamily: options?.chart?.fontFamily || ALL_FONTS,
-        ...options?.chart?.style,
       },
       backgroundColor: options?.chart?.backgroundColor || '#ffffff',
       events: {
@@ -95,9 +91,9 @@ export const getOptionsIncomeStatements = (
         const valueStyle = fromCssObjectToInline(options?.chart?.pie?.legendValue);
         const nameStyle = fromCssObjectToInline(options?.chart?.pie?.legendName);
         return `
-        <div class="rv-legend">
-          <span class="rv-legend-value" style="${valueStyle}">$${roundNumber(this.y)}</span>
-          <span class="rv-legend-name" style="${nameStyle}">${this.name}</span>
+        <div class="legend">
+          <span class="legend-value" style="${valueStyle}">$${roundNumber(this.y)}</span>
+          <span class="legend-name" style="${nameStyle}">${this.name}</span>
         </div>`;
       },
       ...options?.chart?.legend,

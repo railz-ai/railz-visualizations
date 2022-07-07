@@ -38,7 +38,7 @@
 <ng-template #transactions>
   <div
     class="md:grid md:grid-cols-1 md:gap-1 text-left"
-    *ngIf="filter?.reportType === 'bills'; else financialRatios"
+    *ngIf="filter?.reportType === 'bills'; else financialratios"
   >
     <h4 class="text-xl font-bold text-gray-900">Using Railz Transactions Control Component</h4>
     <p>
@@ -53,10 +53,10 @@
     </railz-transactions-control>
   </div>
 </ng-template>
-<ng-template #financialRatios>
+<ng-template #financialratios>
   <div
     class="md:grid md:grid-cols-1 md:gap-1 text-left"
-    *ngIf="filter?.reportType === 'financialRatios'; else incomeStatements"
+    *ngIf="filter?.reportType === 'financialRatios'; else pie"
   >
     <h4 class="text-xl font-bold text-gray-900">Using Railz Financial Ratios Component</h4>
     <p>Railz Financial Ratios Component only accepts <b>financialRatios</b></p>
@@ -64,29 +64,29 @@
     </railz-financial-ratios>
   </div>
 </ng-template>
-<ng-template #incomeStatements>
+<ng-template #pie>
   <div
     class="md:grid md:grid-cols-1 md:gap-1 text-left"
-    *ngIf="['expenses', 'revenue'].includes('' + filter?.reportType); else creditScore"
+    *ngIf="['expenses', 'revenue'].includes('' + filter?.reportType); else gauge"
   >
     <h4 class="text-xl font-bold text-gray-900">Using Railz Pie Chart Component</h4>
-    <p>Railz Income Statements Component only accepts <b>expenses</b> and <b>revenue</b></p>
-    <railz-income-statements [configuration]="configuration" [filter]="filter" [options]="options">
-    </railz-income-statements>
+    <p>Railz Pie Chart Component only accepts <b>expenses</b> and <b>revenue</b></p>
+    <railz-pie-chart [configuration]="configuration" [filter]="filter" [options]="options">
+    </railz-pie-chart>
   </div>
 </ng-template>
-<ng-template #creditScore>
+<ng-template #gauge>
   <div
     class="md:grid md:grid-cols-1 md:gap-1 text-left"
-    *ngIf="['creditScore'].includes('' + filter?.reportType); else bankAccounts"
+    *ngIf="['railzScore'].includes('' + filter?.reportType); else bankaccounts"
   >
     <h4 class="text-xl font-bold text-gray-900">Using Railz Gauge Component</h4>
-    <p>Railz Credit Score Component only accepts <b>creditScore</b></p>
-    <railz-credit-score [configuration]="configuration" [filter]="filter" [options]="options">
-    </railz-credit-score>
+    <p>Railz Gauge Component only accepts <b>railzScore</b></p>
+    <railz-gauge-chart [configuration]="configuration" [filter]="filter" [options]="options">
+    </railz-gauge-chart>
   </div>
 </ng-template>
-<ng-template #bankAccounts>
+<ng-template #bankaccounts>
   <div
     class="md:grid md:grid-cols-1 md:gap-1 text-left"
     *ngIf="filter?.reportType === 'bankAccounts'; else visualizations"

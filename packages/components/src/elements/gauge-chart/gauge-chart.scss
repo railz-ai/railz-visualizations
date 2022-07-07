@@ -17,7 +17,6 @@
 
 .rv-header-container {
   display: flex;
-  flex-direction: column;
 }
 
 .rv-title {
@@ -32,16 +31,16 @@
   line-height: 1.235;
 }
 
-.rv-score-last-updated {
+.railz-gauge-last-updated {
   align-self: center;
-  text-align: center;
   font-size: 12px;
   font-weight: 500;
   line-height: 28px;
-  width: 100%;
 }
 
-.rv-score-chart-container {
+.railz-gauge-chart-container {
   display: flex;
   flex-direction: row;
+  height: 100%;
+  margin-left: -10;
 }

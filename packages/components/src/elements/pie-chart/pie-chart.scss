@@ -31,7 +31,7 @@
   line-height: 1.235;
 }
 
-.rv-income-statements-chart-container {
+.railz-pie-chart-container {
   visibility: inherit;
   -webkit-font-smoothing: antialiased;
   color: rgb(0 0 0 / 87%);
@@ -41,7 +41,7 @@
   flex-direction: row;
 }
 
-.rv-income-statements-chart-box {
+.railz-pie-chart-box {
   visibility: inherit;
   -webkit-font-smoothing: antialiased;
   color: rgb(0 0 0 / 87%);
@@ -51,46 +51,46 @@
   justify-content: center;
 }
 
-.rv-income-statements-chart-text {
+.railz-pie-chart-text {
   visibility: inherit;
   -webkit-font-smoothing: antialiased;
+  color: rgb(0 0 0 / 87%);
   margin: 0;
-  color: #000d;
   line-height: 1.5;
-  font-size: 20px;
+  font-size: 1.25em;
   font-weight: 700;
 }
 
-.rv-income-statements-chart-percentage {
+.railz-pie-chart-percentage {
   visibility: inherit;
   -webkit-font-smoothing: antialiased;
   margin: 0;
   line-height: 1.5;
   display: flex;
-  font-size: 14px;
+  font-size: 0.877em;
   font-weight: 500;
 
-  .rv-positive {
+  .positive {
     color: #003032;
   }
 
-  .rv-negative {
+  .negative {
     color: #7d0000;
   }
 }
 
-.rv-legend {
+.legend {
   display: flex;
   flex-direction: column;
   margin-top: -3px;
 }
 
-.rv-legend-value {
+.legend-value {
   font-size: 14px;
   color: #070a0e;
 }
 
-.rv-legend-name {
+.legend-name {
   font-size: 12px;
   font-weight: normal;
   color: #424242;

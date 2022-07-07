@@ -36,7 +36,7 @@ export class Loading {
 
   render(): HTMLElement {
     return (
-      <div class="rv-loading-container">
+      <div class="railz-loading-container">
         <svg
           aria-hidden="true"
           version="1.1"
@@ -65,7 +65,7 @@ export class Loading {
           </path>
         </svg>
         {this.loadingText && (
-          <p class="rv-loading-title" style={this.textStyle}>
+          <p class="railz-loading-title" style={this.textStyle}>
             {this.loadingText}
           </p>
         )}

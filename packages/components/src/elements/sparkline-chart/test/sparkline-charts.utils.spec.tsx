@@ -13,7 +13,6 @@ describe('SparklineChart', () => {
           JSON.stringify({
             chart: {
               type: 'line',
-              backgroundColor: '#ffffff',
               height: 60,
               reflow: true,
               marginTop: 0,
@@ -91,7 +90,6 @@ describe('SparklineChart', () => {
           JSON.stringify({
             chart: {
               type: 'line',
-              backgroundColor: '#ffffff',
               height: 60,
               reflow: true,
               marginTop: 0,

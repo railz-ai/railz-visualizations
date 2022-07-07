@@ -17,15 +17,16 @@ import {
   RVConfiguration,
   RVFormattedPieResponse,
   RVOptions,
-  RVIncomeStatementsSummary,
+  RVPieChartSummary,
+  RVRevenueExpensesSummary,
   RVReportTypes,
-  RVFilterIncomeStatementsType,
+  RVFilterPie,
   RVFilterAll,
 } from '../../types';
 import { errorLog } from '../../services/logger';
-import { getTitleByReportType, isIncomeStatements, roundNumber } from '../../helpers/utils';
+import { isPie, roundNumber } from '../../helpers/utils';
 
-import { getOptionsIncomeStatements, getReportData } from './income-statements.utils';
+import { getOptionsPie, getReportData } from './pie-chart.utils';
 
 variablePie(Highcharts);
 highchartsAccessibility(Highcharts);
@@ -36,11 +37,11 @@ const TranslationMapping = {
 };
 
 @Component({
-  tag: 'railz-income-statements',
-  styleUrl: 'income-statements.scss',
+  tag: 'railz-pie-chart',
+  styleUrl: 'pie-chart.scss',
   shadow: true,
 })
-export class IncomeStatements {
+export class PieChart {
   /**
    * Configuration information like authentication configuration
    */
@@ -48,7 +49,7 @@ export class IncomeStatements {
   /**
    * Filter information to query the backend APIs
    */
-  @Prop() readonly filter!: RVFilterIncomeStatementsType;
+  @Prop() readonly filter!: RVFilterPie;
   /**
    * For whitelabeling styling
    */
@@ -56,9 +57,9 @@ export class IncomeStatements {
 
   @State() private loading = '';
   @State() private _configuration: RVConfiguration;
-  @State() private _filter: RVFilterIncomeStatementsType;
+  @State() private _filter: RVFilterPie;
   @State() private _options: RVOptions;
-  @State() private _summary: RVIncomeStatementsSummary;
+  @State() private _summary: RVRevenueExpensesSummary;
   @State() private errorStatusCode: number;
   @State() private chartOptions: any;
   @State() private containerRef?: HTMLDivElement;
@@ -72,7 +73,7 @@ export class IncomeStatements {
    */
   private validateParams = async (
     configuration: RVConfiguration,
-    filter: RVFilterIncomeStatementsType,
+    filter: RVFilterPie,
     options: RVOptions,
     triggerRequest = true,
   ): Promise<void> => {
@@ -80,10 +81,10 @@ export class IncomeStatements {
     if (this._configuration) {
       ConfigurationInstance.configuration = this._configuration;
       try {
-        this._filter = getFilter(filter as RVFilterAll) as RVFilterIncomeStatementsType;
-        this._options = getOptions(options);
+        this._filter = getFilter(filter as RVFilterAll) as RVFilterPie;
+        this._options = getOptions(options, filter as RVFilterAll);
         if (validateRequiredParams(this._filter as RVFilterAll)) {
-          if (isIncomeStatements(this._filter.reportType)) {
+          if (isPie(this._filter.reportType)) {
             if (triggerRequest) {
               await this.requestReportData();
             }
@@ -118,10 +119,7 @@ export class IncomeStatements {
   }
 
   @Watch('filter')
-  async watchFilter(
-    newValue: RVFilterIncomeStatementsType,
-    oldValue: RVFilterIncomeStatementsType,
-  ): Promise<void> {
+  async watchFilter(newValue: RVFilterPie, oldValue: RVFilterPie): Promise<void> {
     if (newValue && oldValue && !isEqual(oldValue, newValue)) {
       await this.validateParams(this.configuration, newValue, this.options);
     }
@@ -152,7 +150,7 @@ export class IncomeStatements {
       })) as RVFormattedPieResponse;
 
       if (reportData?.data) {
-        this._summary = reportData?.data as RVIncomeStatementsSummary;
+        this._summary = reportData?.data as RVRevenueExpensesSummary;
         this.updateHighchartsParams(reportData.data);
       } else if (reportData?.error) {
         this.errorStatusCode = reportData.error?.statusCode;
@@ -171,8 +169,8 @@ export class IncomeStatements {
    * chart options and formatted data based on the report type
    * into one option for highcharts
    */
-  private updateHighchartsParams = (summary: RVIncomeStatementsSummary): void => {
-    const chartOptions = getOptionsIncomeStatements(summary, this._options);
+  private updateHighchartsParams = (summary: RVPieChartSummary): void => {
+    const chartOptions = getOptionsPie(summary, this._options);
     if (chartOptions) {
       this.loading = '';
       this.chartOptions = chartOptions;
@@ -196,27 +194,33 @@ export class IncomeStatements {
       return <railz-loading loadingText={this.loading} {...this._options?.loadingIndicator} />;
     }
     return (
-      <div class="rv-income-statements-chart-container">
+      <div class="railz-pie-chart-container">
         <div
-          id="rv-income-statements-chart"
+          id="railz-pie-chart"
           ref={(el): HTMLDivElement => (this.containerRef = el)}
           style={{ width: this._options?.chart?.width, height: this._options?.chart?.height }}
         />
-        <div class="rv-income-statements-chart-box">
+        <div class="railz-pie-chart-box">
           {!isNil(this._summary?.percentageChange) && (
-            <div class="rv-income-statements-chart-percentage">
+            <div class="railz-pie-chart-percentage">
               {this._summary?.percentageChange >= 0 ? (
-                <div class="rv-positive" style={this._options?.chart?.pie?.positive}>
+                <div
+                  class="positive"
+                  style={{ color: this._options?.chart?.pie?.positivePercentageChange }}
+                >
                   &#x25B2; {this._summary?.percentageChange}%
                 </div>
               ) : (
-                <div class="rv-negative" style={this._options?.chart?.pie?.negative}>
+                <div
+                  class="negative"
+                  style={{ color: this._options?.chart?.pie?.negativePercentageChange }}
+                >
                   &#x25BC; {this._summary?.percentageChange}%
                 </div>
               )}
             </div>
           )}
-          <p class="rv-income-statements-chart-text" style={this._options?.chart?.pie?.total}>
+          <p class="railz-pie-chart-text" style={this._options?.chart?.pie?.total}>
             ${roundNumber(this._summary?.totalAmount)}
           </p>
         </div>
@@ -231,34 +235,31 @@ export class IncomeStatements {
 
     const TitleElement = (): HTMLElement => (
       <p class="rv-title" style={this._options?.title?.style}>
-        {this._options?.content?.title || getTitleByReportType(this._filter?.reportType) || ''}{' '}
-        {this._options?.tooltipIndicator?.visible === false ? (
-          ''
-        ) : (
-          <railz-tooltip
-            tooltipStyle={{
-              position: 'bottom-center',
-              ...this._options?.tooltipIndicator,
-              style: { marginLeft: '5px', ...this._options?.tooltipIndicator?.style },
+        {this._options?.title?.text || ''}{' '}
+        {this._options?.container?.tooltip === undefined || this._options?.container?.tooltip ? (
+          <div
+            style={{
+              marginTop: '1px ',
+              marginLeft: '3px ',
             }}
-            tooltipText={
-              this._options?.content?.tooltip?.description ||
-              Translations[`RV_TOOLTIP_${TranslationMapping[this._filter?.reportType]}`]
-            }
-          />
-        )}
+          >
+            <railz-tooltip
+              tooltipStyle={{ position: 'bottom-center' }}
+              tooltipText={
+                this._options?.content?.tooltip?.description ||
+                Translations[`RV_TOOLTIP_${TranslationMapping[this._filter?.reportType]}`]
+              }
+            />
+          </div>
+        ) : null}
       </p>
     );
 
     return (
       <div class="rv-container" style={this._options?.container?.style}>
-        {this._options?.title?.visible === false ? (
-          ''
-        ) : (
-          <div class="rv-header-container">
-            <TitleElement />
-          </div>
-        )}
+        <div class="rv-header-container">
+          <TitleElement />
+        </div>
         {this.renderMain()}
       </div>
     );

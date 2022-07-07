@@ -2,12 +2,12 @@ import * as d from './components';
 
 export const DIRECTIVES = [
   d.RailzBankAccounts,
-  d.RailzCreditScore,
   d.RailzErrorImage,
   d.RailzFinancialRatios,
-  d.RailzIncomeStatements,
+  d.RailzGaugeChart,
   d.RailzLoading,
   d.RailzPercentage,
+  d.RailzPieChart,
   d.RailzProgressBar,
   d.RailzSelect,
   d.RailzSparklineChart,

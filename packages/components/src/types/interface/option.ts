@@ -5,6 +5,14 @@ export interface RVOptionsContainer {
    * style: CSS object based on HTML stylings for the container
    */
   style?: { [key: string]: any };
+  /**
+   * To determine whether to show the tooltip for the container
+   */
+  tooltip?: boolean;
+  /**
+   * To determine whether to show the date for the container
+   */
+  date?: boolean;
 }
 
 export interface RVOptionsTitle {
@@ -14,38 +22,16 @@ export interface RVOptionsTitle {
   style?: { [key: string]: any };
 
   /**
-   * visible: determine if to show title
+   * text: The text that should be on the title
    */
-  visible?: boolean;
-}
-
-export interface RVOptionsSubTitle {
-  /**
-   * style: CSS object based on HTML stylings for the container subtitle
-   */
-  style?: { [key: string]: any };
-
-  /**
-   * position: location of the text
-   */
-  position?: 'top' | 'bottom';
-
-  /**
-   * visible: determine if to show subtitle
-   */
-  visible?: boolean;
-
-  /**
-   * dateVisible: determine if to show date
-   */
-  dateVisible?: boolean;
+  text?: string;
 }
 
 export interface RVOptionsChartDate {
   quarter: string;
 }
 
-export interface RVOptionsBaseChartStyle {
+export interface RVOptionsChartStyle {
   /**
    * colors: list of colors to use for the chart bars
    */
@@ -59,10 +45,6 @@ export interface RVOptionsBaseChartStyle {
    */
   backgroundColor?: string;
   /**
-   * style:  Object to cover the styling of the chart container
-   */
-  style?: { [key: string]: any };
-  /**
    * label: CSS Object to cover the styling of the chart labels
    */
   label?: { [key: string]: any };
@@ -71,14 +53,6 @@ export interface RVOptionsBaseChartStyle {
    */
   legend?: { [key: string]: any };
   /**
-   * yAxisStyle: HighChart CSS Object to cover the styling of the chart yAxis
-   */
-  yAxisStyle?: { [key: string]: any };
-  /**
-   * xAxisStyle: HighChart CSS Object to cover the styling of the chart xAxis
-   */
-  xAxisStyle?: { [key: string]: any };
-  /**
    * width: width of the chart
    */
   width?: string;
@@ -86,21 +60,13 @@ export interface RVOptionsBaseChartStyle {
    * height: height of the chart
    */
   height?: string;
-}
-
-export interface RVOptionsChartStyle extends RVOptionsBaseChartStyle {
   /**
    * pie: javascript object to cover the styling of additional pie chart properties
    */
   pie?: RVOptionsChartPieStyle;
-
-  /**
-   * gauge: javascript object to cover the styling of additional gauge chart properties
-   */
-  gauge?: RVOptionsGaugeStyle;
 }
 
-interface RVOptionsChartPieStyle extends RVOptionsPercentageStyle {
+interface RVOptionsChartPieStyle {
   /**
    * total: CSS Object to cover the styling of the pie chart total
    */
@@ -110,9 +76,19 @@ interface RVOptionsChartPieStyle extends RVOptionsPercentageStyle {
    */
   legendValue?: { [key: string]: any };
   /**
-   * legendName: CSS Object to cover the styling of the pie chart legend name
+   * legendName: CSS Object to cover the styling of the the pie chart legend name
    */
   legendName?: { [key: string]: any };
+
+  /**
+   * positivePercentageChange: string color for the pie chart positive percentage change
+   */
+  positivePercentageChange?: string;
+
+  /**
+   * negativePercentageChange: string color for the pie chart positive percentage change
+   */
+  negativePercentageChange?: string;
 }
 
 export interface RVOptionsBarStyle {
@@ -155,63 +131,33 @@ export interface RVOptionsBarStyle {
   progressStyle?: { [key: string]: any };
 }
 
-export interface RVColorRangesStyle {
-  /**
-   * default: default color string
-   */
-  default?: string;
-
-  /**
-   * 525: color string for score 525
-   */
-  525?: string;
-
-  /**
-   * 575: color string for score 575
-   */
-  575?: string;
-
-  /**
-   * 625: color string for score 625
-   */
-  625?: string;
-
-  /**
-   * 675: color string for score 675
-   */
-  675?: string;
-
-  /**
-   * 750: color string for score 750
-   */
-  750?: string;
-}
-
 export interface RVOptionsGaugeStyle {
   /**
-   * score: CSS object based on HTML stylings for the score section
+   * itemContainer: CSS object based on HTML stylings for the guage chart last updated section
    */
-  score?: { [key: string]: any };
-
+  lastUpdated?: { [key: string]: any };
   /**
-   * rating: CSS object based on HTML stylings for the rating section
+   * header: CSS object based on HTML stylings for the guage chart header
    */
-  rating?: { [key: string]: any };
-
+  header?: { [key: string]: any };
   /**
-   * colorRanges: Object containing color by range
+   * chartContainer: CSS object based on HTML stylings for the guage chart container
    */
-  colorRanges?: RVColorRangesStyle;
+  chartContainer?: { [key: string]: any };
 }
-export interface RVOptionsTableStyle {
+export interface RVOptionsBankStyle {
   /**
-   * style: CSS object based on HTML stylings for the whole banking info list section
+   * ul: CSS object based on HTML stylings for the whole banking info list section
    */
-  style?: { [key: string]: any };
+  ul?: { [key: string]: any };
   /**
-   * title: CSS object based on HTML stylings for the banking info table items
+   * header: CSS object based on HTML stylings for the whole banking info header section
    */
-  title?: { [key: string]: any };
+  header?: { [key: string]: any };
+  /**
+   * li: CSS object based on HTML stylings for the banking info bank items
+   */
+  li?: { [key: string]: any };
   /**
    * itemContainer: CSS object based on HTML stylings for the  banking info accounts container
    */
@@ -225,9 +171,9 @@ export interface RVOptionsTableStyle {
    */
   itemValue?: { [key: string]: any };
   /**
-   * itemSeperator: CSS object based on HTML stylings for the banking info seperation line between account and value
+   * itemDot: CSS object based on HTML stylings for the banking info seperation line between account and value
    */
-  itemSeperator?: { [key: string]: any };
+  itemDot?: { [key: string]: any };
 }
 export interface RVOptionsRatioStyle {
   /**
@@ -238,10 +184,6 @@ export interface RVOptionsRatioStyle {
    * header: CSS object based on HTML stylings for the ratio chart header
    */
   header?: { [key: string]: any };
-  /**
-   * select: object for styling the select
-   */
-  select?: RVSelectStyle;
   /**
    * itemInfo: CSS object based on HTML stylings for ratio chart item info section
    */
@@ -255,13 +197,13 @@ export interface RVOptionsRatioStyle {
    */
   itemNameText?: { [key: string]: any };
   /**
-   * itemToolTip: object based on HTML stylings for the ratio chart item tool tip
+   * itemToolTip: CSS object based on HTML stylings for the ratio chart item tool tip
    */
-  itemToolTip?: RVTooltipIndicatorStyle;
+  itemToolTip?: { [key: string]: any };
   /**
-   * itemValue: CSS object based on HTML stylings for the ratio chart item value
+   * itemValues: CSS object based on HTML stylings for the ratio chart item value
    */
-  itemValue?: { [key: string]: any };
+  itemValues?: { [key: string]: any };
   /**
    * itemSummary: CSS object based on HTML stylings for the ratio chart item summary section
    */
@@ -275,31 +217,20 @@ export interface RVOptionsRatioStyle {
    */
   ratios?: { [key: string]: any };
   /**
-   * sparkLine: CSS object based on HTML stylings for the ratio chart ratio spark line
+   * ratioSparkLine: CSS object based on HTML stylings for the ratio chart ratio spark line
    */
-  sparkLine?: RVOptionsRatioSparkLineStyle;
-}
-
-export interface RVOptionsRatioSparkLineStyle {
-  /**
-   * container: CSS object based on HTML stylings for the container
-   */
-  container?: { [key: string]: any };
-  /**
-   * negative: CSS object based on HTML stylings for the chart
-   */
-  chart?: RVOptionsBaseChartStyle;
+  ratioSparkLine?: { [key: string]: any };
 }
 
 export interface RVOptionsPercentageStyle {
   /**
    * positive: string representation of the color of a  positive percentage
    */
-  positive?: { [key: string]: any };
+  positive?: string;
   /**
    * negative: string representation of the color of a  negative percentage
    */
-  negative?: { [key: string]: any };
+  negative?: string;
 }
 
 export interface RVLoadingIndicatorStyle {
@@ -323,44 +254,6 @@ export interface RVLoadingIndicatorStyle {
    * textStyle: CSS object based on HTML stylings for the loading indicator text
    */
   textStyle?: { [key: string]: any };
-}
-
-/**
- * RVTooltipIndicatorStyle: Object to cover basic styling of tooltip message
- */
-export interface RVTooltipIndicatorStyle {
-  /**
-   * fillColor: Color for the loading indicator
-   */
-  fillColor?: string;
-  /**
-   * width: Width of the SVG Loading Indicator
-   */
-  width?: string;
-  /**
-   * height: Height of the SVG Loading Indicator
-   */
-  height?: string;
-  /**
-   * style: CSS object based on HTML stylings for the tooltip
-   */
-  style?: { [key: string]: any };
-  /**
-   * text: CSS object based on HTML stylings for the text
-   */
-  textStyle?: { [key: string]: any };
-  /**
-   * tooltipTextStyle: CSS object based on HTML stylings for the text/image
-   */
-  tooltipTextStyle?: { [key: string]: any };
-  /**
-   * Position where the tooltip text will appear
-   */
-  position?: 'bottom-center' | 'bottom-left' | 'bottom-right' | 'center-left' | 'center-right';
-  /**
-   * visible: determine if to show tooltip
-   */
-  visible?: boolean;
 }
 
 export interface RVErrorIndicatorStyle {
@@ -391,6 +284,20 @@ export interface RVErrorIndicatorStyle {
 }
 
 /**
+ * tooltipStyle: Object to cover basic styling of tooltip message
+ */
+export interface RVTooltipStyle {
+  /**
+   * Position where the tooltip text will appear
+   */
+  position?: 'bottom-center' | 'bottom-left' | 'bottom-right' | 'center-left' | 'center-right';
+  /**
+   * style: CSS object based on HTML stylings for the container
+   */
+  style?: { [key: string]: any };
+}
+
+/**
  * RVSelectStyle: Object to cover basic styling of select
  */
 export interface RVSelectStyle {
@@ -398,26 +305,6 @@ export interface RVSelectStyle {
    * Position where the select options will appear
    */
   position?: 'center' | 'left' | 'right';
-  /**
-   * CSS object based on HTML stylings for each item in the dropdown
-   */
-  item?: { [key: string]: any };
-  /**
-   * CSS object based on HTML stylings for each selected item in the dropdown
-   */
-  selectedItem?: { [key: string]: any };
-  /**
-   * CSS object based on HTML stylings for the dropdown
-   */
-  container?: { [key: string]: any };
-  /**
-   * CSS object based on HTML stylings for the box
-   */
-  style?: { [key: string]: any };
-  /**
-   * Object for the arrow
-   */
-  arrow?: RVOptionsTitle;
 }
 
 export interface RVOptions {
@@ -430,10 +317,6 @@ export interface RVOptions {
    */
   title?: RVOptionsTitle;
   /**
-   * subTitle: object to cover the subTitle of the chart container
-   */
-  subTitle?: RVOptionsSubTitle;
-  /**
    * chart: Object to cover the styling options of the chart
    */
   chart?: RVOptionsChartStyle;
@@ -445,10 +328,10 @@ export interface RVOptions {
    * bar: Object to cover the styling options of the ratio diagram
    */
   ratio?: RVOptionsRatioStyle;
-  /**
-   * table: Object to cover the styling options of the table diagram
-   */
-  table?: RVOptionsTableStyle;
+
+  gauge?: RVOptionsGaugeStyle;
+
+  bank?: RVOptionsBankStyle;
   /**
    * loadingIndicator: Object to cover basic styling of the loading indicator
    */
@@ -457,10 +340,6 @@ export interface RVOptions {
    * errorIndicator: Object to cover basic styling of the error indicator
    */
   errorIndicator?: RVErrorIndicatorStyle;
-  /**
-   * tooltipIndicator: Object to cover basic styling of the error indicator
-   */
-  tooltipIndicator?: RVTooltipIndicatorStyle;
   /**
    * content: Content information that change text for i18n
    */

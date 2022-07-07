@@ -38,22 +38,12 @@ export class Select {
     }
 
     return (
-      <div
-        class="rv-select noselect"
-        style={this.selectStyle?.style}
-        onClick={(): any => (this.open = !this.open)}
-      >
-        <span>{this.items[this.selectedIndex]}</span>{' '}
-        {this.selectStyle?.arrow?.visible === false ? (
-          ''
-        ) : (
-          <Arrow up={this.open} style={this.selectStyle?.arrow?.style} />
-        )}
+      <div class="rv-select noselect" onClick={(): any => (this.open = !this.open)}>
+        <span>{this.items[this.selectedIndex]}</span> <Arrow up={this.open} />
         <span
           class={`rv-select-text rv-${this.selectStyle?.position} ${
             this.open && 'rv-select-text-open'
           }`}
-          style={this.selectStyle?.container}
         >
           {this.items.map((item, index) => {
             return (
@@ -62,10 +52,6 @@ export class Select {
                 onClick={(): any => {
                   this.selectedItemHandler(index);
                   this.selectedIndex = index;
-                }}
-                style={{
-                  ...this.selectStyle?.item,
-                  ...(this.selectedIndex === index && this.selectStyle?.selectedItem),
                 }}
               >
                 {item}

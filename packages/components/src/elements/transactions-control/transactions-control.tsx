@@ -19,7 +19,7 @@ import {
   validateRequiredParams,
 } from '../../helpers/chart.utils';
 import { ConfigurationInstance } from '../../services/configuration';
-import { getTitleByReportType, isTransactions } from '../../helpers/utils';
+import { isTransactions } from '../../helpers/utils';
 
 import { getReportData } from './transactions-control.utils';
 
@@ -67,7 +67,7 @@ export class TransactionsControl {
       ConfigurationInstance.configuration = this._configuration;
       try {
         this._filter = getFilter(filter as RVFilterAll) as RVFilterTransactions;
-        this._options = getOptions(options);
+        this._options = getOptions(options, this._filter as RVFilterAll);
         if (validateRequiredParams(this._filter as RVFilterAll)) {
           if (isTransactions(this._filter.reportType)) {
             if (triggerRequest) {
@@ -175,30 +175,29 @@ export class TransactionsControl {
 
     const TitleElement = (): HTMLElement => (
       <p class="rv-title" style={this._options?.title?.style}>
-        {this._options?.content?.title || getTitleByReportType(this._filter?.reportType) || ''}{' '}
-        {this._options?.tooltipIndicator?.visible &&
+        {this._options?.title?.text || ''}{' '}
+        {(this._options?.container?.tooltip === undefined || this._options?.container?.tooltip) &&
         this._options?.content?.tooltip?.description ? (
-          <railz-tooltip
-            tooltipStyle={{
-              position: 'bottom-center',
-              ...this._options?.tooltipIndicator,
-              style: { marginLeft: '5px', ...this._options?.tooltipIndicator?.style },
+          <div
+            style={{
+              marginTop: '1px ',
+              marginLeft: '3px ',
             }}
-            tooltipText={this._options?.content?.tooltip?.description}
-          />
+          >
+            <railz-tooltip
+              tooltipStyle={{ position: 'bottom-center' }}
+              tooltipText={this._options?.content?.tooltip?.description}
+            />
+          </div>
         ) : null}
       </p>
     );
 
     return (
       <div class="rv-container" style={this._options?.container?.style}>
-        {this._options?.title?.visible === false ? (
-          ''
-        ) : (
-          <div class="rv-header-container">
-            <TitleElement />
-          </div>
-        )}
+        <div class="rv-header-container">
+          <TitleElement />
+        </div>
         {this.renderMain()}
       </div>
     );

@@ -1,4 +1,4 @@
-# railz-income-statements
+# railz-progress-bar
 
 <!-- Auto Generated Below -->
 
@@ -26,11 +26,11 @@
 
 ```mermaid
 graph TD;
-  railz-income-statements --> railz-error-image
-  railz-income-statements --> railz-loading
-  railz-income-statements --> railz-tooltip
-  railz-visualizations --> railz-income-statements
-  style railz-income-statements fill:#f9f,stroke:#333,stroke-width:4px
+  railz-pie-chart --> railz-error-image
+  railz-pie-chart --> railz-loading
+  railz-pie-chart --> railz-tooltip
+  railz-visualizations --> railz-pie-chart
+  style railz-pie-chart fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
 ---

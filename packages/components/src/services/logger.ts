@@ -1,5 +1,5 @@
 /**
- * File for managing logs, checks if debug is passed
+ * File for managing logs
  */
 import { ConfigurationInstance } from './configuration';
 

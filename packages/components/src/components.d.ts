@@ -9,19 +9,18 @@ import {
   RVConfiguration,
   RVFilterAllReportTypes,
   RVFilterBankAccount,
-  RVFilterCreditScore,
   RVFilterFinancialRatio,
-  RVFilterIncomeStatementsType,
+  RVFilterGauge,
+  RVFilterPie,
   RVFilterStatements,
   RVFilterTransactions,
   RVOptions,
   RVOptionsBarStyle,
   RVOptionsPercentageStyle,
-  RVOptionsRatioSparkLineStyle,
   RVPeriodData,
   RVReportTypes,
   RVSelectStyle,
-  RVTooltipIndicatorStyle,
+  RVTooltipStyle,
 } from './types';
 export namespace Components {
   interface RailzBankAccounts {
@@ -33,20 +32,6 @@ export namespace Components {
      * Filter information to query the backend APIs
      */
     filter: RVFilterBankAccount;
-    /**
-     * For whitelabeling styling
-     */
-    options: RVOptions;
-  }
-  interface RailzCreditScore {
-    /**
-     * Configuration information like authentication configuration
-     */
-    configuration: RVConfiguration;
-    /**
-     * Filter information to query the backend APIs
-     */
-    filter: RVFilterCreditScore;
     /**
      * For whitelabeling styling
      */
@@ -66,7 +51,7 @@ export namespace Components {
      */
     statusCode?: number;
     /**
-     * Style of the image text
+     * Color of the image text
      */
     textStyle?: { [key: string]: any };
     /**
@@ -88,7 +73,7 @@ export namespace Components {
      */
     options: RVOptions;
   }
-  interface RailzIncomeStatements {
+  interface RailzGaugeChart {
     /**
      * Configuration information like authentication configuration
      */
@@ -96,7 +81,7 @@ export namespace Components {
     /**
      * Filter information to query the backend APIs
      */
-    filter: RVFilterIncomeStatementsType;
+    filter: RVFilterGauge;
     /**
      * For whitelabeling styling
      */
@@ -130,6 +115,20 @@ export namespace Components {
      */
     percentage: number;
     percentageStyle?: RVOptionsPercentageStyle;
+  }
+  interface RailzPieChart {
+    /**
+     * Configuration information like authentication configuration
+     */
+    configuration: RVConfiguration;
+    /**
+     * Filter information to query the backend APIs
+     */
+    filter: RVFilterPie;
+    /**
+     * For whitelabeling styling
+     */
+    options: RVOptions;
   }
   interface RailzProgressBar {
     /**
@@ -168,7 +167,7 @@ export namespace Components {
      * Data to display for sparkline
      */
     data: Array<RVPeriodData>;
-    sparkLineStyle?: RVOptionsRatioSparkLineStyle;
+    sparkLineStyle?: { [key: string]: any };
   }
   interface RailzStatementsChart {
     /**
@@ -192,7 +191,7 @@ export namespace Components {
     /**
      * Position of the Tooltip text when hovered
      */
-    tooltipStyle?: RVTooltipIndicatorStyle;
+    tooltipStyle?: RVTooltipStyle;
     tooltipText: string;
   }
   interface RailzTransactionsControl {
@@ -230,11 +229,6 @@ declare global {
     prototype: HTMLRailzBankAccountsElement;
     new (): HTMLRailzBankAccountsElement;
   };
-  interface HTMLRailzCreditScoreElement extends Components.RailzCreditScore, HTMLStencilElement {}
-  var HTMLRailzCreditScoreElement: {
-    prototype: HTMLRailzCreditScoreElement;
-    new (): HTMLRailzCreditScoreElement;
-  };
   interface HTMLRailzErrorImageElement extends Components.RailzErrorImage, HTMLStencilElement {}
   var HTMLRailzErrorImageElement: {
     prototype: HTMLRailzErrorImageElement;
@@ -247,12 +241,10 @@ declare global {
     prototype: HTMLRailzFinancialRatiosElement;
     new (): HTMLRailzFinancialRatiosElement;
   };
-  interface HTMLRailzIncomeStatementsElement
-    extends Components.RailzIncomeStatements,
-      HTMLStencilElement {}
-  var HTMLRailzIncomeStatementsElement: {
-    prototype: HTMLRailzIncomeStatementsElement;
-    new (): HTMLRailzIncomeStatementsElement;
+  interface HTMLRailzGaugeChartElement extends Components.RailzGaugeChart, HTMLStencilElement {}
+  var HTMLRailzGaugeChartElement: {
+    prototype: HTMLRailzGaugeChartElement;
+    new (): HTMLRailzGaugeChartElement;
   };
   interface HTMLRailzLoadingElement extends Components.RailzLoading, HTMLStencilElement {}
   var HTMLRailzLoadingElement: {
@@ -263,6 +255,11 @@ declare global {
   var HTMLRailzPercentageElement: {
     prototype: HTMLRailzPercentageElement;
     new (): HTMLRailzPercentageElement;
+  };
+  interface HTMLRailzPieChartElement extends Components.RailzPieChart, HTMLStencilElement {}
+  var HTMLRailzPieChartElement: {
+    prototype: HTMLRailzPieChartElement;
+    new (): HTMLRailzPieChartElement;
   };
   interface HTMLRailzProgressBarElement extends Components.RailzProgressBar, HTMLStencilElement {}
   var HTMLRailzProgressBarElement: {
@@ -309,12 +306,12 @@ declare global {
   };
   interface HTMLElementTagNameMap {
     'railz-bank-accounts': HTMLRailzBankAccountsElement;
-    'railz-credit-score': HTMLRailzCreditScoreElement;
     'railz-error-image': HTMLRailzErrorImageElement;
     'railz-financial-ratios': HTMLRailzFinancialRatiosElement;
-    'railz-income-statements': HTMLRailzIncomeStatementsElement;
+    'railz-gauge-chart': HTMLRailzGaugeChartElement;
     'railz-loading': HTMLRailzLoadingElement;
     'railz-percentage': HTMLRailzPercentageElement;
+    'railz-pie-chart': HTMLRailzPieChartElement;
     'railz-progress-bar': HTMLRailzProgressBarElement;
     'railz-select': HTMLRailzSelectElement;
     'railz-sparkline-chart': HTMLRailzSparklineChartElement;
@@ -339,20 +336,6 @@ declare namespace LocalJSX {
      */
     options?: RVOptions;
   }
-  interface RailzCreditScore {
-    /**
-     * Configuration information like authentication configuration
-     */
-    configuration: RVConfiguration;
-    /**
-     * Filter information to query the backend APIs
-     */
-    filter: RVFilterCreditScore;
-    /**
-     * For whitelabeling styling
-     */
-    options?: RVOptions;
-  }
   interface RailzErrorImage {
     /**
      * Fill color of the svg image representing a status code
@@ -367,7 +350,7 @@ declare namespace LocalJSX {
      */
     statusCode?: number;
     /**
-     * Style of the image text
+     * Color of the image text
      */
     textStyle?: { [key: string]: any };
     /**
@@ -389,7 +372,7 @@ declare namespace LocalJSX {
      */
     options?: RVOptions;
   }
-  interface RailzIncomeStatements {
+  interface RailzGaugeChart {
     /**
      * Configuration information like authentication configuration
      */
@@ -397,7 +380,7 @@ declare namespace LocalJSX {
     /**
      * Filter information to query the backend APIs
      */
-    filter: RVFilterIncomeStatementsType;
+    filter: RVFilterGauge;
     /**
      * For whitelabeling styling
      */
@@ -431,6 +414,20 @@ declare namespace LocalJSX {
      */
     percentage?: number;
     percentageStyle?: RVOptionsPercentageStyle;
+  }
+  interface RailzPieChart {
+    /**
+     * Configuration information like authentication configuration
+     */
+    configuration: RVConfiguration;
+    /**
+     * Filter information to query the backend APIs
+     */
+    filter: RVFilterPie;
+    /**
+     * For whitelabeling styling
+     */
+    options?: RVOptions;
   }
   interface RailzProgressBar {
     /**
@@ -470,7 +467,7 @@ declare namespace LocalJSX {
      * Data to display for sparkline
      */
     data: Array<RVPeriodData>;
-    sparkLineStyle?: RVOptionsRatioSparkLineStyle;
+    sparkLineStyle?: { [key: string]: any };
   }
   interface RailzStatementsChart {
     /**
@@ -494,7 +491,7 @@ declare namespace LocalJSX {
     /**
      * Position of the Tooltip text when hovered
      */
-    tooltipStyle?: RVTooltipIndicatorStyle;
+    tooltipStyle?: RVTooltipStyle;
     tooltipText: string;
   }
   interface RailzTransactionsControl {
@@ -527,12 +524,12 @@ declare namespace LocalJSX {
   }
   interface IntrinsicElements {
     'railz-bank-accounts': RailzBankAccounts;
-    'railz-credit-score': RailzCreditScore;
     'railz-error-image': RailzErrorImage;
     'railz-financial-ratios': RailzFinancialRatios;
-    'railz-income-statements': RailzIncomeStatements;
+    'railz-gauge-chart': RailzGaugeChart;
     'railz-loading': RailzLoading;
     'railz-percentage': RailzPercentage;
+    'railz-pie-chart': RailzPieChart;
     'railz-progress-bar': RailzProgressBar;
     'railz-select': RailzSelect;
     'railz-sparkline-chart': RailzSparklineChart;
@@ -548,17 +545,16 @@ declare module '@stencil/core' {
     interface IntrinsicElements {
       'railz-bank-accounts': LocalJSX.RailzBankAccounts &
         JSXBase.HTMLAttributes<HTMLRailzBankAccountsElement>;
-      'railz-credit-score': LocalJSX.RailzCreditScore &
-        JSXBase.HTMLAttributes<HTMLRailzCreditScoreElement>;
       'railz-error-image': LocalJSX.RailzErrorImage &
         JSXBase.HTMLAttributes<HTMLRailzErrorImageElement>;
       'railz-financial-ratios': LocalJSX.RailzFinancialRatios &
         JSXBase.HTMLAttributes<HTMLRailzFinancialRatiosElement>;
-      'railz-income-statements': LocalJSX.RailzIncomeStatements &
-        JSXBase.HTMLAttributes<HTMLRailzIncomeStatementsElement>;
+      'railz-gauge-chart': LocalJSX.RailzGaugeChart &
+        JSXBase.HTMLAttributes<HTMLRailzGaugeChartElement>;
       'railz-loading': LocalJSX.RailzLoading & JSXBase.HTMLAttributes<HTMLRailzLoadingElement>;
       'railz-percentage': LocalJSX.RailzPercentage &
         JSXBase.HTMLAttributes<HTMLRailzPercentageElement>;
+      'railz-pie-chart': LocalJSX.RailzPieChart & JSXBase.HTMLAttributes<HTMLRailzPieChartElement>;
       'railz-progress-bar': LocalJSX.RailzProgressBar &
         JSXBase.HTMLAttributes<HTMLRailzProgressBarElement>;
       'railz-select': LocalJSX.RailzSelect & JSXBase.HTMLAttributes<HTMLRailzSelectElement>;

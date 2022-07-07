@@ -2,28 +2,28 @@ import { newSpecPage } from '@stencil/core/testing';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { h } from '@stencil/core';
 
-import { CreditScore } from '../credit-score';
+import { GaugeChart } from '../gauge-chart';
 import { RVReportFrequency, RVReportTypes } from '../../../types';
 import { RVAllProviders } from '../../../types/enum/service-providers';
 
-describe('railz-credit-score', () => {
+describe('railz-gauge-chart', () => {
   it('renders without props', async () => {
     const page = await newSpecPage({
-      components: [CreditScore],
-      html: `<railz-credit-score></railz-credit-score>`,
+      components: [GaugeChart],
+      html: `<railz-gauge-chart></railz-gauge-chart>`,
     });
     expect(page.root).toEqualHtml(`
-      <railz-credit-score>
+      <railz-gauge-chart>
         <mock:shadow-root></mock:shadow-root>
-      </railz-credit-score>
+      </railz-gauge-chart>
     `);
   });
 
   it('renders without data', async () => {
     const page = await newSpecPage({
-      components: [CreditScore],
+      components: [GaugeChart],
       template: () => (
-        <railz-credit-score
+        <railz-gauge-chart
           configuration={{
             token: 'eyJhbG',
             debug: true,
@@ -34,18 +34,18 @@ describe('railz-credit-score', () => {
             reportFrequency: RVReportFrequency.MONTH,
             businessName: 'QboFrdTest',
             serviceName: RVAllProviders.QUICKBOOKS,
-            reportType: RVReportTypes.CREDIT_SCORE,
+            reportType: RVReportTypes.RAILZ_SCORE,
           }}
           options={{
-            tooltipIndicator: {
-              visible: false,
+            container: {
+              tooltip: false,
             },
           }}
-        ></railz-credit-score>
+        ></railz-gauge-chart>
       ),
     });
     expect(page.root).toEqualHtml(`
-    <railz-credit-score>
+    <railz-gauge-chart>
       <mock:shadow-root>
         <div class="rv-container">
           <div class="rv-header-container">
@@ -54,12 +54,12 @@ describe('railz-credit-score', () => {
             </p>
           </div>
           <railz-error-image statuscode="404"></railz-error-image>
-          <span></span>
+          <p></p>
         </div>
       </mock:shadow-root>
-    </railz-credit-score>
+    </railz-gauge-chart>
     `);
   });
 });
 
-// yarn test packages/components/src/elements/credit-score/test/credit-score.spec.tsx
+// yarn test packages/components/src/elements/gauge-chart/test/gauge-chart.spec.tsx

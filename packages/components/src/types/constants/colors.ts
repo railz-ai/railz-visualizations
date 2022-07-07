@@ -2,7 +2,6 @@ export const RAILZ_PRIMARY_COLOR = '#00884f';
 export const RAILZ_TEXT_COLOR = '#003032';
 export const RAILZ_CHART_LEGEND_COLOR = '#424242';
 export const RAILZ_CHART_LABEL_COLOR = '#424242';
-export const RAILZ_TOOLTIP_COLOR = '#9E9E9E';
 
 export const RAILZ_BALANCE_SHEET_COLORS = ['#1D7043', '#F06C3A', '#30A665', '#B30000', '#000000'];
 export const RAILZ_INCOME_STATEMENT_COLORS = [

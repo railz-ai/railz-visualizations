@@ -9,7 +9,7 @@ import { RVReportRequestParameter } from './../../types/interface/summary/parame
 import { RVAllProviders } from './../../types/enum/service-providers';
 
 /**
- * Make API call based on expected parameters for table account data type
+ * Make API call based on expected parameters for bank account data type
  */
 export const getReportData = async ({
   filter,

@@ -2,29 +2,29 @@ import { newSpecPage } from '@stencil/core/testing';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { h } from '@stencil/core';
 
-import { IncomeStatements } from '../income-statements';
+import { PieChart } from '../pie-chart';
 import { RVReportFrequency, RVReportTypes } from '../../../types';
 import { RVAllProviders } from '../../../types/enum/service-providers';
-import * as PieChartUtils from '../income-statements.utils';
+import * as PieChartUtils from '../pie-chart.utils';
 
-describe('railz-income-statements', () => {
+describe('railz-pie-chart', () => {
   it('renders without props', async () => {
     const page = await newSpecPage({
-      components: [IncomeStatements],
-      html: `<railz-income-statements></railz-income-statements>`,
+      components: [PieChart],
+      html: `<railz-pie-chart></railz-pie-chart>`,
     });
     expect(page.root).toEqualHtml(`
-      <railz-income-statements>
+      <railz-pie-chart>
         <mock:shadow-root></mock:shadow-root>
-      </railz-income-statements>
+      </railz-pie-chart>
     `);
   });
 
   it('renders without data', async () => {
     const page = await newSpecPage({
-      components: [IncomeStatements],
+      components: [PieChart],
       template: () => (
-        <railz-income-statements
+        <railz-pie-chart
           configuration={{
             token: 'eyJhbG',
             debug: true,
@@ -38,15 +38,15 @@ describe('railz-income-statements', () => {
             reportType: RVReportTypes.EXPENSES,
           }}
           options={{
-            tooltipIndicator: {
-              visible: false,
+            container: {
+              tooltip: false,
             },
           }}
-        ></railz-income-statements>
+        ></railz-pie-chart>
       ),
     });
     expect(page.root).toEqualHtml(`
-      <railz-income-statements>
+      <railz-pie-chart>
          <mock:shadow-root>
            <div class="rv-container">
              <div class="rv-header-container">
@@ -57,7 +57,7 @@ describe('railz-income-statements', () => {
              <railz-error-image statuscode="404"></railz-error-image>
            </div>
          </mock:shadow-root>
-      </railz-income-statements>
+      </railz-pie-chart>
     `);
   });
 
@@ -65,9 +65,9 @@ describe('railz-income-statements', () => {
     jest.spyOn(PieChartUtils, 'getReportData').mockImplementation(() => Promise.resolve({}));
 
     const page = await newSpecPage({
-      components: [IncomeStatements],
+      components: [PieChart],
       template: () => (
-        <railz-income-statements
+        <railz-pie-chart
           configuration={{
             token: 'eyJhbG',
             debug: true,
@@ -81,15 +81,15 @@ describe('railz-income-statements', () => {
             reportType: RVReportTypes.REVENUE,
           }}
           options={{
-            tooltipIndicator: {
-              visible: false,
+            container: {
+              tooltip: false,
             },
           }}
-        ></railz-income-statements>
+        ></railz-pie-chart>
       ),
     });
     expect(page.root).toEqualHtml(`
-    <railz-income-statements>
+    <railz-pie-chart>
       <mock:shadow-root>
         <div class="rv-container">
           <div class="rv-header-container">
@@ -97,19 +97,19 @@ describe('railz-income-statements', () => {
               Revenue
             </p>
           </div>
-          <div class="rv-income-statements-chart-container">
-            <div id="rv-income-statements-chart"></div>
-            <div class="rv-income-statements-chart-box">
-              <p class="rv-income-statements-chart-text">
+          <div class="railz-pie-chart-container">
+            <div id="railz-pie-chart"></div>
+            <div class="railz-pie-chart-box">
+              <p class="railz-pie-chart-text">
                 $
               </p>
             </div>
           </div>
         </div>
       </mock:shadow-root>
-    </railz-income-statements>
+    </railz-pie-chart>
     `);
   });
 });
 
-// yarn test packages/components/src/elements/income-statements/test/income-statements.spec.tsx
+// yarn test packages/components/src/elements/pie-chart/test/pie-chart.spec.tsx

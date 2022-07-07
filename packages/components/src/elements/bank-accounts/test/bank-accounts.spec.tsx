@@ -86,133 +86,133 @@ describe('railz-bank-accounts', () => {
           </p>
         </div>
         <div>
-      <ul class="rv-bank-accounts-ul">
+      <ul class="railz-bank-accounts-ul">
         <div>
-          <li class="rv-bank-accounts-ul-title">
+          <li class="railz-bank-accounts-ul-title">
             TD Bank
           </li>
           <li>
-            <div class="rv-bank-accounts-item-container">
-              <span class="rv-bank-accounts-item-name">
+            <div class="railz-bank-accounts-item-container">
+              <span class="railz-bank-accounts-item-name">
                 Plaid Checking
               </span>
-              <span class="rv-bank-accounts-item-dot"></span>
-              <span class="rv-bank-accounts-item-value">
+              <span class="railz-bank-accounts-item-dot"></span>
+              <span class="railz-bank-accounts-item-value">
                 $110.00
               </span>
             </div>
           </li>
           <li>
-            <div class="rv-bank-accounts-item-container">
-              <span class="rv-bank-accounts-item-name">
+            <div class="railz-bank-accounts-item-container">
+              <span class="railz-bank-accounts-item-name">
                 Plaid Saving
               </span>
-              <span class="rv-bank-accounts-item-dot"></span>
-              <span class="rv-bank-accounts-item-value">
+              <span class="railz-bank-accounts-item-dot"></span>
+              <span class="railz-bank-accounts-item-value">
                 $210.00
               </span>
             </div>
           </li>
           <li>
-            <div class="rv-bank-accounts-item-container">
-              <span class="rv-bank-accounts-item-name">
+            <div class="railz-bank-accounts-item-container">
+              <span class="railz-bank-accounts-item-name">
                 Plaid CD
               </span>
-              <span class="rv-bank-accounts-item-dot"></span>
-              <span class="rv-bank-accounts-item-value">
+              <span class="railz-bank-accounts-item-dot"></span>
+              <span class="railz-bank-accounts-item-value">
                 $1,000.00
               </span>
             </div>
           </li>
           <li>
-            <div class="rv-bank-accounts-item-container">
-              <span class="rv-bank-accounts-item-name">
+            <div class="railz-bank-accounts-item-container">
+              <span class="railz-bank-accounts-item-name">
                 Plaid Credit Card
               </span>
-              <span class="rv-bank-accounts-item-dot"></span>
-              <span class="rv-bank-accounts-item-value">
+              <span class="railz-bank-accounts-item-dot"></span>
+              <span class="railz-bank-accounts-item-value">
                 $410.00
               </span>
             </div>
           </li>
           <li>
-            <div class="rv-bank-accounts-item-container">
-              <span class="rv-bank-accounts-item-name">
+            <div class="railz-bank-accounts-item-container">
+              <span class="railz-bank-accounts-item-name">
                 Plaid Money Market
               </span>
-              <span class="rv-bank-accounts-item-dot"></span>
-              <span class="rv-bank-accounts-item-value">
+              <span class="railz-bank-accounts-item-dot"></span>
+              <span class="railz-bank-accounts-item-value">
                 $43,200.00
               </span>
             </div>
           </li>
           <li>
-            <div class="rv-bank-accounts-item-container">
-              <span class="rv-bank-accounts-item-name">
+            <div class="railz-bank-accounts-item-container">
+              <span class="railz-bank-accounts-item-name">
                 Plaid IRA
               </span>
-              <span class="rv-bank-accounts-item-dot"></span>
-              <span class="rv-bank-accounts-item-value">
+              <span class="railz-bank-accounts-item-dot"></span>
+              <span class="railz-bank-accounts-item-value">
                 $320.76
               </span>
             </div>
           </li>
           <li>
-            <div class="rv-bank-accounts-item-container">
-              <span class="rv-bank-accounts-item-name">
+            <div class="railz-bank-accounts-item-container">
+              <span class="railz-bank-accounts-item-name">
                 Plaid 401k
               </span>
-              <span class="rv-bank-accounts-item-dot"></span>
-              <span class="rv-bank-accounts-item-value">
+              <span class="railz-bank-accounts-item-dot"></span>
+              <span class="railz-bank-accounts-item-value">
                 $23,631.98
               </span>
             </div>
           </li>
           <li>
-            <div class="rv-bank-accounts-item-container">
-              <span class="rv-bank-accounts-item-name">
+            <div class="railz-bank-accounts-item-container">
+              <span class="railz-bank-accounts-item-name">
                 Plaid Student Loan
               </span>
-              <span class="rv-bank-accounts-item-dot"></span>
-              <span class="rv-bank-accounts-item-value">
+              <span class="railz-bank-accounts-item-dot"></span>
+              <span class="railz-bank-accounts-item-value">
                 $65,262.00
               </span>
             </div>
           </li>
           <li>
-            <div class="rv-bank-accounts-item-container">
-              <span class="rv-bank-accounts-item-name">
+            <div class="railz-bank-accounts-item-container">
+              <span class="railz-bank-accounts-item-name">
                 Plaid Mortgage
               </span>
-              <span class="rv-bank-accounts-item-dot"></span>
-              <span class="rv-bank-accounts-item-value">
+              <span class="railz-bank-accounts-item-dot"></span>
+              <span class="railz-bank-accounts-item-value">
                 $56,302.06
               </span>
             </div>
           </li>
         </div>
         <div>
-          <li class="rv-bank-accounts-ul-title">
+          <li class="railz-bank-accounts-ul-title">
             RBC Royal Bank
           </li>
           <li>
-            <div class="rv-bank-accounts-item-container">
-              <span class="rv-bank-accounts-item-name">
+            <div class="railz-bank-accounts-item-container">
+              <span class="railz-bank-accounts-item-name">
                 Plaid Checking
               </span>
-              <span class="rv-bank-accounts-item-dot"></span>
-              <span class="rv-bank-accounts-item-value">
+              <span class="railz-bank-accounts-item-dot"></span>
+              <span class="railz-bank-accounts-item-value">
                 $110.00
               </span>
             </div>
           </li>
           <li>
-            <div class="rv-bank-accounts-item-container">
-              <span class="rv-bank-accounts-item-name">
+            <div class="railz-bank-accounts-item-container">
+              <span class="railz-bank-accounts-item-name">
                 Plaid Saving
               </span>
-              <span class="rv-bank-accounts-item-dot"></span>
-              <span class="rv-bank-accounts-item-value">
+              <span class="railz-bank-accounts-item-dot"></span>
+              <span class="railz-bank-accounts-item-value">
                 $210.00
               </span>
             </div>
@@ -227,4 +227,4 @@ describe('railz-bank-accounts', () => {
   });
 });
 
-// yarn test packages/components/src/elements/table-accounts/test/table-accounts.spec.tsx
+// yarn test packages/components/src/elements/bank-accounts/test/bank-accounts.spec.tsx

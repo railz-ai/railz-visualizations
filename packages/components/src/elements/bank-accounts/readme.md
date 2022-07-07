@@ -1,4 +1,4 @@
-# railz-bank-accounts
+# railz-progress-bar
 
 <!-- Auto Generated Below -->
 

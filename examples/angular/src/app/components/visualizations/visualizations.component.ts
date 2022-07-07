@@ -25,7 +25,7 @@ export class VisualizationsComponent implements OnInit {
   getNewOptions = (options: RVOptions, elementIndex: number): RVOptions => {
     const cloneOptions = cloneDeep(options);
     if (elementIndex !== 0) {
-      delete cloneOptions?.content?.title;
+      delete cloneOptions?.title?.text;
     }
     return cloneOptions;
   };
