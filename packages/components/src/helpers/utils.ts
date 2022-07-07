@@ -24,12 +24,12 @@ export const formatDate = (
         dateFormat?.format || 'yyyy',
       )}`;
     if (reportFrequency === 'year')
-      // eslint-disable-next-line import/namespace
       return format(new Date(data.period.year, 1, 1), dateFormat?.format || 'yyyy', {
+        // eslint-disable-next-line import/namespace
         locale: locales[dateFormat?.locale || 'us'],
       });
-    // eslint-disable-next-line import/namespace
     return format(date, dateFormat?.format || 'MMM yy', {
+      // eslint-disable-next-line import/namespace
       locale: locales[dateFormat?.locale || 'us'],
     });
   });
