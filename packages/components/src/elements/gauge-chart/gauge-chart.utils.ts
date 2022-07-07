@@ -113,8 +113,8 @@ export const getOptionsGauge = (gauge: RVGaugeChartSummary, options: RVOptions):
       options?.gauge?.circle
         ? undefined
         : {
-            innerRadius: options?.gauge?.circle ? '80%' : '83%',
-            outerRadius: options?.gauge?.circle ? '95%' : '83%',
+            innerRadius: '83%',
+            outerRadius: '83%',
             shape: 'arc',
             borderWidth: 3,
             borderColor: '#F5F5F5',
@@ -175,7 +175,7 @@ export const getOptionsGauge = (gauge: RVGaugeChartSummary, options: RVOptions):
 
   plotOptions: {
     solidgauge: {
-      innerRadius: '90%',
+      innerRadius: options?.gauge?.innerRadius ? options?.gauge?.innerRadius : '90%',
       dataLabels: {
         enabled: true,
         y: -40,

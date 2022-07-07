@@ -160,6 +160,8 @@ export interface RVOptionsGaugeStyle {
    */
   size?: string;
 
+  innerRadius?: string;
+
   circle?: boolean;
 }
 export interface RVOptionsBankStyle {
