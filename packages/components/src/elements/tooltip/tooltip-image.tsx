@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable max-len */
 import { h } from '@stencil/core';
+
 import { RAILZ_TOOLTIP_COLOR, RVTooltipIndicatorStyle } from '../../types';
 
 export function TooltipImage({

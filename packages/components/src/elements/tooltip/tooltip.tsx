@@ -2,8 +2,9 @@
 import { Component, h, Prop } from '@stencil/core';
 import { isEmpty } from 'lodash-es';
 
-import { TooltipImage } from './tooltip-image';
 import { RAILZ_TOOLTIP_COLOR, RVTooltipIndicatorStyle } from '../../types';
+
+import { TooltipImage } from './tooltip-image';
 
 @Component({
   tag: 'railz-tooltip',
