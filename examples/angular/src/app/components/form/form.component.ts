@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 import {
   RVAccountingProviders,
+  RVOptions,
   RVReportFrequency,
   RVReportTypes,
 } from '@railzai/railz-visualizations';
@@ -21,7 +22,8 @@ import { Filter } from '../../../types/form-submission';
 export class FormComponent implements OnInit {
   @Output() filterEvent = new EventEmitter<Filter>();
   @Output() authEvent = new EventEmitter<string>();
-  @Input() options?: string;
+  @Output() optionEvent = new EventEmitter<RVOptions>();
+  @Input() options?: RVOptions;
 
   authForm = new FormGroup({
     authUrl: new FormControl('', Validators.required),
@@ -139,6 +141,12 @@ export class FormComponent implements OnInit {
   onFilterSubmit() {
     if (this.filterForm && this.filterForm.valid) {
       this.filterEvent.emit(this.filterForm.value);
+    }
+  }
+
+  onOptionsSubmit(options: RVOptions) {
+    if (options) {
+      this.optionEvent.emit(options);
     }
   }
 

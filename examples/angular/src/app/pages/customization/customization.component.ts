@@ -30,16 +30,12 @@ export class CustomizationComponent implements OnInit {
     this.filter = filter;
   };
 
-  get jsonOptions() {
-    return JSON.stringify(this.options, null, 2);
-  }
+  onOptionsChange = (options: RVOptions) => {
+    this.options = options;
+  };
 
-  set jsonOptions(value) {
-    try {
-      this.options = JSON.parse(value);
-    } catch (e) {
-      console.log('could not convert to json');
-    }
+  get jsonOptions() {
+    return INITIAL_OPTIONS;
   }
 
   ngOnInit(): void {}
