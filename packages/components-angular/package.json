@@ -21,6 +21,8 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
+  "main": "dist/index.d.ts",
+  "module": "dist/esm2020/index.mjs",
   "types": "dist/index.d.ts",
   "files": [
     "dist/"
