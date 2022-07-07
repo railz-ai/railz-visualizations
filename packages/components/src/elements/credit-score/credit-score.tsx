@@ -25,7 +25,7 @@ import {
   RVOptions,
 } from '../../types';
 import { errorLog } from '../../services/logger';
-import { getTitleByReportType, isRailzScore } from '../../helpers/utils';
+import { getTitleByReportType, isCreditScore } from '../../helpers/utils';
 
 import { getOptionsGauge, getReportData } from './credit-score.utils';
 
@@ -81,7 +81,7 @@ export class CreditScore {
         this._filter = getFilter(filter as RVFilterAll) as RVFilterCreditScore;
         this._options = getOptions(options);
         if (validateRequiredParams(this._filter as RVFilterAll)) {
-          if (isRailzScore(this._filter.reportType)) {
+          if (isCreditScore(this._filter.reportType)) {
             if (triggerRequest) {
               await this.requestReportData();
             }

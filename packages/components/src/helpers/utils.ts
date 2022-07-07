@@ -79,7 +79,7 @@ export const isFinancialRatios = (reportType: RVReportTypes): boolean => {
 /**
  * Determine if report type is gauge
  */
-export const isRailzScore = (reportType: RVReportTypes): boolean => {
+export const isCreditScore = (reportType: RVReportTypes): boolean => {
   return reportType && [RVReportTypes.CREDIT_SCORE].includes(reportType);
 };
 

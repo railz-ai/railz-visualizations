@@ -3,7 +3,7 @@ import { Component, Prop, h, State, Watch } from '@stencil/core';
 import { isEqual } from 'lodash-es';
 
 import {
-  isRailzScore,
+  isCreditScore,
   isIncomeStatements,
   isStatements,
   isTransactions,
@@ -126,7 +126,7 @@ export class Core {
       );
     }
 
-    if (isRailzScore(reportType)) {
+    if (isCreditScore(reportType)) {
       return (
         <railz-credit-score
           configuration={this.configuration}
