@@ -89,10 +89,10 @@
 <ng-template #bankAccounts>
   <div
     class="md:grid md:grid-cols-1 md:gap-1 text-left"
-    *ngIf="filter?.reportType === 'table'; else visualizations"
+    *ngIf="filter?.reportType === 'bankAccounts'; else visualizations"
   >
     <h4 class="text-xl font-bold text-gray-900">Using Railz Bank Accounts Component</h4>
-    <p>Railz Bank Accounts Component only accepts <b>table</b></p>
+    <p>Railz Bank Accounts Component only accepts <b>bankAccounts</b></p>
     <railz-bank-accounts [configuration]="configuration" [filter]="filter" [options]="options">
     </railz-bank-accounts>
   </div>

@@ -97,8 +97,8 @@ export const getOptionsGauge = (gauge: RVCreditScoreSummary, options: RVOptions)
   },
   title: null,
   pane: {
-    center: ['50%', '50%'],
-    size: '80%',
+    center: ['50%', '65%'],
+    size: '90%',
     startAngle: -90,
     endAngle: 90,
     background: [
