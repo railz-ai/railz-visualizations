@@ -2,13 +2,20 @@
 /* eslint-disable max-len */
 import { h } from '@stencil/core';
 
-export function Arrow({ up = false }: { up?: boolean }): HTMLOrSVGElement {
+export function Arrow({
+  style,
+  up = false,
+}: {
+  up?: boolean;
+  style?: { [key: string]: any };
+}): HTMLOrSVGElement {
   return (
     <div
       style={{
         transform: up ? 'rotate(180deg)' : 'rotate(0deg)',
         width: '24px',
         height: '24px',
+        ...style,
       }}
     >
       <svg focusable="false" viewBox="0 0 24 24" aria-hidden="true">

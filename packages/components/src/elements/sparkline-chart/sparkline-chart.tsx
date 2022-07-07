@@ -3,7 +3,7 @@ import { Component, h, Prop, Watch, State } from '@stencil/core';
 import Highcharts from 'highcharts';
 import highchartsAccessibility from 'highcharts/modules/accessibility';
 
-import { RVPeriodData } from '../../types';
+import { RVOptionsRatioSparkLineStyle, RVPeriodData } from '../../types';
 
 import { getOptions } from './sparkline-charts.utils';
 
@@ -20,13 +20,16 @@ export class SparklineChart {
    */
   @Prop() readonly data!: Array<RVPeriodData>;
 
-  @Prop() readonly sparkLineStyle?: { [key: string]: any };
+  @Prop() readonly sparkLineStyle?: RVOptionsRatioSparkLineStyle;
 
   @State() private containerRef?: HTMLDivElement;
 
   @Watch('containerRef')
   watchContainerRef(newValue: HTMLDivElement, _: HTMLDivElement): void {
-    const options = getOptions(this.data.map((periodValue) => periodValue.value));
+    const options = getOptions(
+      this.data.map((periodValue) => periodValue.value),
+      this.sparkLineStyle?.chart,
+    );
     if (newValue && options) {
       Highcharts.chart(this.containerRef, options);
     }
@@ -35,8 +38,8 @@ export class SparklineChart {
   render(): HTMLElement {
     return (
       <div
-        class="railz-sparkline-chart-container"
-        style={this.sparkLineStyle}
+        class="rv-sparkline-chart-container"
+        style={this.sparkLineStyle?.container}
         id="railz-chart"
         ref={(el): HTMLDivElement => (this.containerRef = el)}
       />

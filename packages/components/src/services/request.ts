@@ -1,5 +1,5 @@
 import {
-  RVFormattedGaugeResponse,
+  RVFormattedScoreResponse,
   RVFormattedTransactionResponse,
   RVReportRequest,
   RVReportRequestParameter,
@@ -21,7 +21,7 @@ class RequestService {
     path,
     filter,
   }: RVReportRequestParameter): Promise<
-    RVReportSummaryApiResponse | RVFormattedTransactionResponse | RVFormattedGaugeResponse
+    RVReportSummaryApiResponse | RVFormattedTransactionResponse | RVFormattedScoreResponse
   > {
     const url = `${path}?${new URLSearchParams(filter as any)}`;
     return await this.getRequest({

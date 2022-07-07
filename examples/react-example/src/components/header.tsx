@@ -116,7 +116,7 @@ export default function Header({ children, description }: HeaderProps) {
                   className="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400"
                   aria-hidden="true"
                 />
-                Version 0.0.1
+                Version 0.0.5
               </div>
             </div>
           </div>

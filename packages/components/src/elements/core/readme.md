@@ -17,8 +17,8 @@
 - [railz-error-image](../error)
 - [railz-bank-accounts](../bank-accounts)
 - [railz-financial-ratios](../financial-ratios)
-- [railz-gauge-chart](../gauge-chart)
-- [railz-pie-chart](../pie-chart)
+- [railz-credit-score](../credit-score)
+- [railz-income-statements](../income-statements)
 - [railz-statements-chart](../statements-chart)
 - [railz-transactions-control](../transactions-control)
 
@@ -29,8 +29,8 @@ graph TD;
   railz-visualizations --> railz-error-image
   railz-visualizations --> railz-bank-accounts
   railz-visualizations --> railz-financial-ratios
-  railz-visualizations --> railz-gauge-chart
-  railz-visualizations --> railz-pie-chart
+  railz-visualizations --> railz-credit-score
+  railz-visualizations --> railz-income-statements
   railz-visualizations --> railz-statements-chart
   railz-visualizations --> railz-transactions-control
   railz-bank-accounts --> railz-error-image
@@ -42,12 +42,12 @@ graph TD;
   railz-financial-ratios --> railz-percentage
   railz-financial-ratios --> railz-sparkline-chart
   railz-financial-ratios --> railz-select
-  railz-gauge-chart --> railz-error-image
-  railz-gauge-chart --> railz-loading
-  railz-gauge-chart --> railz-tooltip
-  railz-pie-chart --> railz-error-image
-  railz-pie-chart --> railz-loading
-  railz-pie-chart --> railz-tooltip
+  railz-credit-score --> railz-error-image
+  railz-credit-score --> railz-loading
+  railz-credit-score --> railz-tooltip
+  railz-income-statements --> railz-error-image
+  railz-income-statements --> railz-loading
+  railz-income-statements --> railz-tooltip
   railz-statements-chart --> railz-error-image
   railz-statements-chart --> railz-loading
   railz-statements-chart --> railz-tooltip

@@ -1,4 +1,4 @@
-# railz-progress-bar
+# railz-percentage
 
 <!-- Auto Generated Below -->
 

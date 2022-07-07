@@ -38,7 +38,7 @@ describe('railz-error-image', () => {
               </clipPath>
             </defs>
           </svg>
-          <p class="railz-error-title">
+          <p class="rv-error-title">
             Oops, something went wrong
           </p>
         </div>
@@ -70,7 +70,7 @@ describe('railz-error-image', () => {
             <ellipse cx="38.5522" cy="41.745" fill="#949494" rx="1.14892" ry="1.14544"></ellipse>
             <ellipse cx="30.8931" cy="41.745" fill="#949494" rx="1.14892" ry="1.14544"></ellipse>
           </svg>
-          <p class="railz-error-title">
+          <p class="rv-error-title">
             Data currently unavailable
           </p>
         </div>
@@ -100,7 +100,7 @@ describe('railz-error-image', () => {
              <path d="M10.5957 33.4902C10.0434 33.4902 9.5957 33.9379 9.5957 34.4902C9.5957 35.0425 10.0434 35.4902 10.5957 35.4902V33.4902ZM24.766 35.4902C25.3183 35.4902 25.766 35.0425 25.766 34.4902C25.766 33.9379 25.3183 33.4902 24.766 33.4902V35.4902ZM10.5957 35.4902H24.766V33.4902H10.5957V35.4902Z" fill="#949494"></path>
              <path d="M10.5957 38.8359C10.0434 38.8359 9.5957 39.2837 9.5957 39.8359C9.5957 40.3882 10.0434 40.8359 10.5957 40.8359V38.8359ZM24.766 40.8359C25.3183 40.8359 25.766 40.3882 25.766 39.8359C25.766 39.2837 25.3183 38.8359 24.766 38.8359V40.8359ZM10.5957 40.8359H24.766V38.8359H10.5957V40.8359Z" fill="#949494"></path>
            </svg>
-           <p class="railz-error-title">
+           <p class="rv-error-title">
              No data available
            </p>
          </div>
@@ -130,7 +130,7 @@ describe('railz-error-image', () => {
           <path d="M10.5957 33.4902C10.0434 33.4902 9.5957 33.9379 9.5957 34.4902C9.5957 35.0425 10.0434 35.4902 10.5957 35.4902V33.4902ZM24.766 35.4902C25.3183 35.4902 25.766 35.0425 25.766 34.4902C25.766 33.9379 25.3183 33.4902 24.766 33.4902V35.4902ZM10.5957 35.4902H24.766V33.4902H10.5957V35.4902Z" fill="#949494"></path>
           <path d="M10.5957 38.8359C10.0434 38.8359 9.5957 39.2837 9.5957 39.8359C9.5957 40.3882 10.0434 40.8359 10.5957 40.8359V38.8359ZM24.766 40.8359C25.3183 40.8359 25.766 40.3882 25.766 39.8359C25.766 39.2837 25.3183 38.8359 24.766 38.8359V40.8359ZM10.5957 40.8359H24.766V38.8359H10.5957V40.8359Z" fill="#949494"></path>
         </svg>
-        <p class="railz-error-title">
+        <p class="rv-error-title">
           No data available
         </p>
       </div>
@@ -171,7 +171,7 @@ describe('railz-error-image', () => {
               </clipPath>
             </defs>
           </svg>
-          <p class="railz-error-title">
+          <p class="rv-error-title">
             Oops, something went wrong
           </p>
         </div>
@@ -212,7 +212,7 @@ describe('railz-error-image', () => {
               </clipPath>
             </defs>
           </svg>
-          <p class="railz-error-title">
+          <p class="rv-error-title">
             Oops, something went wrong
           </p>
         </div>
@@ -253,7 +253,7 @@ describe('railz-error-image', () => {
               </clipPath>
             </defs>
           </svg>
-          <p class="railz-error-title">
+          <p class="rv-error-title">
             Oops, something went wrong
           </p>
         </div>
@@ -294,7 +294,7 @@ describe('railz-error-image', () => {
               </clipPath>
             </defs>
           </svg>
-          <p class="railz-error-title" style="font-size: 50px;">
+          <p class="rv-error-title" style="font-size: 50px;">
             Oops, something went wrong
           </p>
         </div>

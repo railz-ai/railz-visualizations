@@ -26,8 +26,8 @@ describe('railz-percentage', () => {
     expect(page.root).toEqualHtml(`
     <railz-percentage>
       <mock:shadow-root>
-        <div class="railz-percentage">
-          <div class="positive">
+        <div class="rv-percentage">
+          <div class="rv-positive">
             ▲ 10%
           </div>
         </div>
@@ -44,8 +44,8 @@ describe('railz-percentage', () => {
     expect(page.root).toEqualHtml(`
     <railz-percentage>
       <mock:shadow-root>
-        <div class="railz-percentage">
-          <div class="negative">
+        <div class="rv-percentage">
+          <div class="rv-negative">
             ▼ -22%
           </div>
         </div>

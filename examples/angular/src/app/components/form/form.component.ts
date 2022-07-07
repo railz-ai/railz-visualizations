@@ -44,8 +44,7 @@ export class FormComponent implements OnInit {
       RVReportTypes.BANK_ACCOUNT,
       RVReportTypes.CREDIT_SCORE,
     ].includes(type as RVReportTypes);
-  requiresNoDate = (type: string) =>
-    [RVReportTypes.BANK_ACCOUNT, RVReportTypes.CREDIT_SCORE].includes(type as RVReportTypes);
+  requiresNoDate = (type: string) => [RVReportTypes.BANK_ACCOUNT].includes(type as RVReportTypes);
 
   token = '';
 

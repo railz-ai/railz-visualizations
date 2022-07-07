@@ -1,47 +1,44 @@
 /* eslint-disable max-len, @typescript-eslint/no-unused-vars */
 import { Component, h, Prop, State, Watch } from '@stencil/core';
-import { isEmpty, isEqual, isNil } from 'lodash-es';
+import { isEmpty, isEqual } from 'lodash-es';
+import { format, parseISO } from 'date-fns';
 import Highcharts from 'highcharts';
-import variablePie from 'highcharts/modules/variable-pie.js';
+import highchartsMore from 'highcharts/highcharts-more.js';
+import solidGauge from 'highcharts/modules/solid-gauge.js';
 import highchartsAccessibility from 'highcharts/modules/accessibility';
 
 import {
   getConfiguration,
-  getOptions,
   getFilter,
+  getOptions,
   validateRequiredParams,
 } from '../../helpers/chart.utils';
 import { ConfigurationInstance } from '../../services/configuration';
 import Translations from '../../config/translations/en.json';
 import {
+  ALL_FONTS,
   RVConfiguration,
-  RVFormattedPieResponse,
-  RVOptions,
-  RVPieChartSummary,
-  RVRevenueExpensesSummary,
-  RVReportTypes,
-  RVFilterPie,
+  RVCreditScoreSummary,
   RVFilterAll,
+  RVFilterCreditScore,
+  RVFormattedScoreResponse,
+  RVOptions,
 } from '../../types';
 import { errorLog } from '../../services/logger';
-import { isPie, roundNumber } from '../../helpers/utils';
+import { getTitleByReportType, isRailzScore } from '../../helpers/utils';
 
-import { getOptionsPie, getReportData } from './pie-chart.utils';
+import { getOptionsGauge, getReportData } from './credit-score.utils';
 
-variablePie(Highcharts);
+highchartsMore(Highcharts);
+solidGauge(Highcharts);
 highchartsAccessibility(Highcharts);
 
-const TranslationMapping = {
-  [RVReportTypes.EXPENSES]: 'EXPENSES',
-  [RVReportTypes.REVENUE]: 'REVENUES',
-};
-
 @Component({
-  tag: 'railz-pie-chart',
-  styleUrl: 'pie-chart.scss',
+  tag: 'railz-credit-score',
+  styleUrl: 'credit-score.scss',
   shadow: true,
 })
-export class PieChart {
+export class CreditScore {
   /**
    * Configuration information like authentication configuration
    */
@@ -49,7 +46,7 @@ export class PieChart {
   /**
    * Filter information to query the backend APIs
    */
-  @Prop() readonly filter!: RVFilterPie;
+  @Prop() readonly filter!: RVFilterCreditScore;
   /**
    * For whitelabeling styling
    */
@@ -57,11 +54,11 @@ export class PieChart {
 
   @State() private loading = '';
   @State() private _configuration: RVConfiguration;
-  @State() private _filter: RVFilterPie;
+  @State() private _filter: RVFilterCreditScore;
   @State() private _options: RVOptions;
-  @State() private _summary: RVRevenueExpensesSummary;
+  @State() private _data: RVCreditScoreSummary;
   @State() private errorStatusCode: number;
-  @State() private chartOptions: any;
+  @State() private lastUpdated: string;
   @State() private containerRef?: HTMLDivElement;
 
   /**
@@ -73,7 +70,7 @@ export class PieChart {
    */
   private validateParams = async (
     configuration: RVConfiguration,
-    filter: RVFilterPie,
+    filter: RVFilterCreditScore,
     options: RVOptions,
     triggerRequest = true,
   ): Promise<void> => {
@@ -81,10 +78,10 @@ export class PieChart {
     if (this._configuration) {
       ConfigurationInstance.configuration = this._configuration;
       try {
-        this._filter = getFilter(filter as RVFilterAll) as RVFilterPie;
-        this._options = getOptions(options, filter as RVFilterAll);
+        this._filter = getFilter(filter as RVFilterAll) as RVFilterCreditScore;
+        this._options = getOptions(options);
         if (validateRequiredParams(this._filter as RVFilterAll)) {
-          if (isPie(this._filter.reportType)) {
+          if (isRailzScore(this._filter.reportType)) {
             if (triggerRequest) {
               await this.requestReportData();
             }
@@ -106,8 +103,9 @@ export class PieChart {
 
   @Watch('containerRef')
   watchContainerRef(newValue: HTMLDivElement, _: HTMLDivElement): void {
-    if (newValue && this.chartOptions) {
-      Highcharts.chart(this.containerRef, this.chartOptions);
+    const options = getOptionsGauge(this._data, this._options);
+    if (newValue && options) {
+      Highcharts.chart(this.containerRef, options);
     }
   }
 
@@ -119,7 +117,7 @@ export class PieChart {
   }
 
   @Watch('filter')
-  async watchFilter(newValue: RVFilterPie, oldValue: RVFilterPie): Promise<void> {
+  async watchFilter(newValue: RVFilterCreditScore, oldValue: RVFilterCreditScore): Promise<void> {
     if (newValue && oldValue && !isEqual(oldValue, newValue)) {
       await this.validateParams(this.configuration, newValue, this.options);
     }
@@ -139,7 +137,6 @@ export class PieChart {
   /**
    * Request report data based on filter and configuration param
    * Formats retrieved data into Highcharts format using formatData
-   * Updated Highchart params using updateHighchartsParams
    */
   private requestReportData = async (): Promise<void> => {
     this.errorStatusCode = undefined;
@@ -147,33 +144,21 @@ export class PieChart {
     try {
       const reportData = (await getReportData({
         filter: this._filter as RVFilterAll,
-      })) as RVFormattedPieResponse;
-
+      })) as RVFormattedScoreResponse;
       if (reportData?.data) {
-        this._summary = reportData?.data as RVRevenueExpensesSummary;
-        this.updateHighchartsParams(reportData.data);
+        this.lastUpdated = reportData.data.lastUpdated;
+        this._data = reportData.data;
       } else if (reportData?.error) {
+        errorLog(Translations.RV_NOT_ABLE_TO_RETRIEVE_REPORT_DATA);
         this.errorStatusCode = reportData.error?.statusCode;
       } else {
+        errorLog(Translations.RV_ERROR_202_TITLE);
         this.errorStatusCode = reportData?.status;
       }
     } catch (error) {
       errorLog(Translations.RV_NOT_ABLE_TO_PARSE_REPORT_DATA, error);
     } finally {
       this.loading = '';
-    }
-  };
-
-  /**
-   * Using getHighchartsParams,Combine generic stacked bar line
-   * chart options and formatted data based on the report type
-   * into one option for highcharts
-   */
-  private updateHighchartsParams = (summary: RVPieChartSummary): void => {
-    const chartOptions = getOptionsPie(summary, this._options);
-    if (chartOptions) {
-      this.loading = '';
-      this.chartOptions = chartOptions;
     }
   };
 
@@ -193,38 +178,19 @@ export class PieChart {
     if (!isEmpty(this.loading)) {
       return <railz-loading loadingText={this.loading} {...this._options?.loadingIndicator} />;
     }
+
     return (
-      <div class="railz-pie-chart-container">
+      this._data && (
         <div
-          id="railz-pie-chart"
+          class="rv-score-chart-container"
+          id="railz-creditScore-chart"
           ref={(el): HTMLDivElement => (this.containerRef = el)}
-          style={{ width: this._options?.chart?.width, height: this._options?.chart?.height }}
+          style={{
+            width: this._options?.chart?.width,
+            height: this._options?.chart?.height,
+          }}
         />
-        <div class="railz-pie-chart-box">
-          {!isNil(this._summary?.percentageChange) && (
-            <div class="railz-pie-chart-percentage">
-              {this._summary?.percentageChange >= 0 ? (
-                <div
-                  class="positive"
-                  style={{ color: this._options?.chart?.pie?.positivePercentageChange }}
-                >
-                  &#x25B2; {this._summary?.percentageChange}%
-                </div>
-              ) : (
-                <div
-                  class="negative"
-                  style={{ color: this._options?.chart?.pie?.negativePercentageChange }}
-                >
-                  &#x25BC; {this._summary?.percentageChange}%
-                </div>
-              )}
-            </div>
-          )}
-          <p class="railz-pie-chart-text" style={this._options?.chart?.pie?.total}>
-            ${roundNumber(this._summary?.totalAmount)}
-          </p>
-        </div>
-      </div>
+      )
     );
   };
 
@@ -235,32 +201,56 @@ export class PieChart {
 
     const TitleElement = (): HTMLElement => (
       <p class="rv-title" style={this._options?.title?.style}>
-        {this._options?.title?.text || ''}{' '}
-        {this._options?.container?.tooltip === undefined || this._options?.container?.tooltip ? (
-          <div
-            style={{
-              marginTop: '1px ',
-              marginLeft: '3px ',
+        {this._options?.content?.title || getTitleByReportType(this._filter?.reportType) || ''}{' '}
+        {this._options?.tooltipIndicator?.visible === false ? (
+          ''
+        ) : (
+          <railz-tooltip
+            tooltipStyle={{
+              position: 'bottom-center',
+              ...this._options?.tooltipIndicator,
+              style: { marginLeft: '5px', ...this._options?.tooltipIndicator?.style },
             }}
-          >
-            <railz-tooltip
-              tooltipStyle={{ position: 'bottom-center' }}
-              tooltipText={
-                this._options?.content?.tooltip?.description ||
-                Translations[`RV_TOOLTIP_${TranslationMapping[this._filter?.reportType]}`]
-              }
-            />
-          </div>
-        ) : null}
+            tooltipText={
+              this._options?.content?.tooltip?.description || Translations.RV_TOOLTIP_CREDIT_SCORE
+            }
+          />
+        )}
       </p>
     );
+
+    const SubTitleElement = (): HTMLElement => {
+      return isEmpty(this.lastUpdated) || this._options?.subTitle?.visible === false ? (
+        <span></span>
+      ) : (
+        ((
+          <p
+            class="rv-score-last-updated"
+            style={{
+              fontFamily: this._options?.chart?.fontFamily || ALL_FONTS,
+              ...this._options?.subTitle?.style,
+            }}
+          >
+            {this._options?.content?.subTitle || Translations.RV_AS_OF}{' '}
+            {this._options?.subTitle?.dateVisible === false
+              ? ''
+              : format(
+                  parseISO(this.lastUpdated),
+                  this.options?.content?.date?.format || 'dd MMM yyyy',
+                )}
+          </p>
+        ) as HTMLElement)
+      );
+    };
 
     return (
       <div class="rv-container" style={this._options?.container?.style}>
         <div class="rv-header-container">
-          <TitleElement />
+          {this._options?.title?.visible === false ? '' : <TitleElement />}
+          {this._options?.subTitle?.position === 'top' && <SubTitleElement />}
         </div>
         {this.renderMain()}
+        {this._options?.subTitle?.position !== 'top' && <SubTitleElement />}
       </div>
     );
   }

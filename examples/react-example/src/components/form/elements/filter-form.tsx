@@ -26,7 +26,7 @@ const requiresNoFrequency = (type: string) =>
     RVReportTypes.CREDIT_SCORE,
   ].includes(type as RVReportTypes);
 const requiresNoDate = (type: string) =>
-  [RVReportTypes.BANK_ACCOUNT, RVReportTypes.CREDIT_SCORE].includes(type as RVReportTypes);
+  [RVReportTypes.BANK_ACCOUNT].includes(type as RVReportTypes);
 
 export default function FilterForm({ setFilter }: FormProps) {
   const [formFilter, setFormFilter] = useState({
@@ -71,7 +71,7 @@ export default function FilterForm({ setFilter }: FormProps) {
           <p className="mt-1 text-sm text-gray-600 font-bold">
             SDK current release only works with report types (balanceSheets, bankAccounts, bills,
             cashflowStatements, expenses, financialRatios, incomeStatements, invoices, revenue and
-            railzScore).
+            creditScore).
           </p>
         </div>
       </div>

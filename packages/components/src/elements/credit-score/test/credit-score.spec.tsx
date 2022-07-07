@@ -2,28 +2,28 @@ import { newSpecPage } from '@stencil/core/testing';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { h } from '@stencil/core';
 
-import { GaugeChart } from '../gauge-chart';
+import { CreditScore } from '../credit-score';
 import { RVReportFrequency, RVReportTypes } from '../../../types';
 import { RVAllProviders } from '../../../types/enum/service-providers';
 
-describe('railz-gauge-chart', () => {
+describe('railz-credit-score', () => {
   it('renders without props', async () => {
     const page = await newSpecPage({
-      components: [GaugeChart],
-      html: `<railz-gauge-chart></railz-gauge-chart>`,
+      components: [CreditScore],
+      html: `<railz-credit-score></railz-credit-score>`,
     });
     expect(page.root).toEqualHtml(`
-      <railz-gauge-chart>
+      <railz-credit-score>
         <mock:shadow-root></mock:shadow-root>
-      </railz-gauge-chart>
+      </railz-credit-score>
     `);
   });
 
   it('renders without data', async () => {
     const page = await newSpecPage({
-      components: [GaugeChart],
+      components: [CreditScore],
       template: () => (
-        <railz-gauge-chart
+        <railz-credit-score
           configuration={{
             token: 'eyJhbG',
             debug: true,
@@ -34,18 +34,18 @@ describe('railz-gauge-chart', () => {
             reportFrequency: RVReportFrequency.MONTH,
             businessName: 'QboFrdTest',
             serviceName: RVAllProviders.QUICKBOOKS,
-            reportType: RVReportTypes.RAILZ_SCORE,
+            reportType: RVReportTypes.CREDIT_SCORE,
           }}
           options={{
-            container: {
-              tooltip: false,
+            tooltipIndicator: {
+              visible: false,
             },
           }}
-        ></railz-gauge-chart>
+        ></railz-credit-score>
       ),
     });
     expect(page.root).toEqualHtml(`
-    <railz-gauge-chart>
+    <railz-credit-score>
       <mock:shadow-root>
         <div class="rv-container">
           <div class="rv-header-container">
@@ -54,12 +54,12 @@ describe('railz-gauge-chart', () => {
             </p>
           </div>
           <railz-error-image statuscode="404"></railz-error-image>
-          <p></p>
+          <span></span>
         </div>
       </mock:shadow-root>
-    </railz-gauge-chart>
+    </railz-credit-score>
     `);
   });
 });
 
-// yarn test packages/components/src/elements/gauge-chart/test/gauge-chart.spec.tsx
+// yarn test packages/components/src/elements/credit-score/test/credit-score.spec.tsx

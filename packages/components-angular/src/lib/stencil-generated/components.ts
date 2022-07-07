@@ -32,6 +32,26 @@ export class RailzBankAccounts {
   }
 }
 
+export declare interface RailzCreditScore extends Components.RailzCreditScore {}
+
+@ProxyCmp({
+  defineCustomElementFn: undefined,
+  inputs: ['configuration', 'filter', 'options'],
+})
+@Component({
+  selector: 'railz-credit-score',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  inputs: ['configuration', 'filter', 'options'],
+})
+export class RailzCreditScore {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
 export declare interface RailzErrorImage extends Components.RailzErrorImage {}
 
 @ProxyCmp({
@@ -72,19 +92,19 @@ export class RailzFinancialRatios {
   }
 }
 
-export declare interface RailzGaugeChart extends Components.RailzGaugeChart {}
+export declare interface RailzIncomeStatements extends Components.RailzIncomeStatements {}
 
 @ProxyCmp({
   defineCustomElementFn: undefined,
   inputs: ['configuration', 'filter', 'options'],
 })
 @Component({
-  selector: 'railz-gauge-chart',
+  selector: 'railz-income-statements',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   inputs: ['configuration', 'filter', 'options'],
 })
-export class RailzGaugeChart {
+export class RailzIncomeStatements {
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
@@ -125,26 +145,6 @@ export declare interface RailzPercentage extends Components.RailzPercentage {}
   inputs: ['percentage', 'percentageStyle'],
 })
 export class RailzPercentage {
-  protected el: HTMLElement;
-  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
-    c.detach();
-    this.el = r.nativeElement;
-  }
-}
-
-export declare interface RailzPieChart extends Components.RailzPieChart {}
-
-@ProxyCmp({
-  defineCustomElementFn: undefined,
-  inputs: ['configuration', 'filter', 'options'],
-})
-@Component({
-  selector: 'railz-pie-chart',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  template: '<ng-content></ng-content>',
-  inputs: ['configuration', 'filter', 'options'],
-})
-export class RailzPieChart {
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();

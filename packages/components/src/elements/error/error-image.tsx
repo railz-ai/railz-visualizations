@@ -31,7 +31,7 @@ export class ErrorImage {
   @Prop() readonly height?: string;
 
   /**
-   * Color of the image text
+   * Style of the image text
    */
   @Prop() readonly textStyle?: { [key: string]: any };
 
@@ -41,7 +41,7 @@ export class ErrorImage {
         return (
           <div>
             <Error202 fillColor={this.fillColor} width={this.width} height={this.height} />
-            <p class="railz-error-title" style={this.textStyle}>
+            <p class="rv-error-title" style={this.textStyle}>
               {Translations.RV_ERROR_202_TITLE}
             </p>
           </div>
@@ -51,7 +51,7 @@ export class ErrorImage {
         return (
           <div>
             <Error204 fillColor={this.fillColor} width={this.width} height={this.height} />
-            <p class="railz-error-title" style={this.textStyle}>
+            <p class="rv-error-title" style={this.textStyle}>
               {Translations.RV_ERROR_204_TITLE}
             </p>
           </div>
@@ -60,7 +60,7 @@ export class ErrorImage {
         return (
           <div>
             <Error500 fillColor={this.fillColor} width={this.width} height={this.height} />
-            <p class="railz-error-title" style={this.textStyle}>
+            <p class="rv-error-title" style={this.textStyle}>
               {Translations.RV_ERROR_500_TITLE}
             </p>
           </div>

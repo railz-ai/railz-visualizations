@@ -25,7 +25,7 @@ export interface RVRevenueExpensesSubSection {
   name: string;
 }
 
-export interface RVRevenueExpensesSummary {
+export interface RVIncomeStatementsSummary {
   percentageChange: number;
   totalAmount: number;
   subSections: RVRevenueExpensesSubSection[];
@@ -65,7 +65,7 @@ export interface RVBillInvoiceReportSummary extends RVLoadingErrorState {
 }
 
 export interface RVRevenueExpensesReportSummary extends RVLoadingErrorState {
-  summary: RVRevenueExpensesSummary;
+  summary: RVIncomeStatementsSummary;
 }
 
 export interface RVCashflowReportSummary extends RVLoadingErrorState {
@@ -143,7 +143,7 @@ export type RVReportSummary =
   | RVIncomeStatementSummary[]
   | RVBalanceSheetSummary[]
   | RVCashflowSummary[]
-  | RVRevenueExpensesSummary
+  | RVIncomeStatementsSummary
   | RVBillInvoiceSummary
   | RVCreditScore;
 
@@ -175,25 +175,21 @@ export interface RVReportSummaryApiResponse {
   status?: number;
 }
 
-export interface RVGaugeChartSummary {
+export interface RVCreditScoreSummary {
   score: number;
   rating: string;
   lastUpdated: string;
 }
 
-export interface RVPieChartSummary {
-  subSections: any[];
-}
-
-export interface RVFormattedGaugeResponse {
+export interface RVFormattedScoreResponse {
   error?: RVErrorResponse;
-  data?: RVGaugeChartSummary;
+  data?: RVCreditScoreSummary;
   status?: number;
 }
 
 export interface RVFormattedPieResponse {
   error?: RVErrorResponse;
-  data?: RVPieChartSummary;
+  data?: RVIncomeStatementsSummary;
   status?: number;
 }
 

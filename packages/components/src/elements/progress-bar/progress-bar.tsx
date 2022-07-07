@@ -53,15 +53,15 @@ export class ProgressBar {
       return <span></span>;
     }
     return (
-      <div class="railz-progress-bar-div" style={this.options?.divStyle}>
+      <div class="rv-progress-bar-div" style={this.options?.divStyle}>
         <p
-          class="railz-progress-bar-total-unpaid"
+          class="rv-progress-bar-total-unpaid"
           style={this._options?.titleStyle}
           aria-label={`${Translations.RV_TOTAL_UNPAID} ${formatNumber(this.unpaidAmount)}`}
         >
           {Translations.RV_TOTAL_UNPAID} {this.titleMapping[this.reportType] || ''}{' '}
           <span
-            class="railz-progress-bar-total-unpaid-value"
+            class="rv-progress-bar-total-unpaid-value"
             style={this._options?.titleValueStyle}
             aria-hidden={true}
           >
@@ -70,17 +70,17 @@ export class ProgressBar {
         </p>
 
         <div class="railz-progress-bar-values">
-          <div class="railz-progress-bar-values-div">
+          <div class="rv-progress-bar-values-div">
             <div>
               <p
-                class="railz-progress-bar-label"
+                class="rv-progress-bar-label"
                 style={this._options?.subTitle1Style}
                 aria-label={`${Translations.RV_PAID} ${formatNumber(this.paidAmount)}`}
               >
                 {Translations.RV_PAID}
               </p>
               <p
-                class="railz-progress-bar-value"
+                class="rv-progress-bar-value"
                 style={this._options?.subTitleValue1Style}
                 aria-hidden={true}
               >
@@ -89,14 +89,14 @@ export class ProgressBar {
             </div>
             <div>
               <p
-                class="railz-progress-bar-label railz-progress-bar-overdue"
+                class="rv-progress-bar-label rv-progress-bar-overdue"
                 style={this._options?.subTitle2Style}
                 aria-label={`${Translations.RV_OVERDUE} ${formatNumber(this.overdueAmount) || 0}`}
               >
                 {Translations.RV_OVERDUE}
               </p>
               <p
-                class="railz-progress-bar-value railz-progress-bar-overdue"
+                class="rv-progress-bar-value rv-progress-bar-overdue"
                 style={this._options?.subTitleValue2Style}
                 aria-hidden={true}
               >
@@ -104,7 +104,7 @@ export class ProgressBar {
               </p>
             </div>
           </div>
-          <div class="railz-progress-bar" style={this._options?.barStyle}>
+          <div class="rv-progress-bar" style={this._options?.barStyle}>
             <span
               style={{
                 width: `${this.normalize(this.paidAmount, this.unpaidAmount + this.paidAmount)}%`,

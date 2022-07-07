@@ -9,7 +9,7 @@
 | `fillColor`  | `fill-color`  | Fill color of the svg image representing a status code | `string`                  | `'#949494'` |
 | `height`     | `height`      | Height of the SVG Error Indicator                      | `string`                  | `undefined` |
 | `statusCode` | `status-code` | Status code based on HTTP Response codes               | `number`                  | `undefined` |
-| `textStyle`  | --            | Color of the image text                                | `{ [key: string]: any; }` | `undefined` |
+| `textStyle`  | --            | Style of the image text                                | `{ [key: string]: any; }` | `undefined` |
 | `width`      | `width`       | Width of the SVG Error Indicator                       | `string`                  | `undefined` |
 
 ## Dependencies
@@ -17,9 +17,9 @@
 ### Used by
 
 - [railz-bank-accounts](../bank-accounts)
+- [railz-credit-score](../credit-score)
 - [railz-financial-ratios](../financial-ratios)
-- [railz-gauge-chart](../gauge-chart)
-- [railz-pie-chart](../pie-chart)
+- [railz-income-statements](../income-statements)
 - [railz-statements-chart](../statements-chart)
 - [railz-transactions-control](../transactions-control)
 - [railz-visualizations](../core)
@@ -29,9 +29,9 @@
 ```mermaid
 graph TD;
   railz-bank-accounts --> railz-error-image
+  railz-credit-score --> railz-error-image
   railz-financial-ratios --> railz-error-image
-  railz-gauge-chart --> railz-error-image
-  railz-pie-chart --> railz-error-image
+  railz-income-statements --> railz-error-image
   railz-statements-chart --> railz-error-image
   railz-transactions-control --> railz-error-image
   railz-visualizations --> railz-error-image
