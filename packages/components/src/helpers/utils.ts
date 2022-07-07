@@ -46,7 +46,7 @@ export const formatSeries = (
   name,
   data: summary
     ?.map((data: { [x: string]: any }) => data[field])
-    .filter((data) => data != undefined),
+    .filter((data) => data !== undefined),
 });
 
 /**
