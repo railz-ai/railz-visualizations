@@ -6,18 +6,18 @@ import {
   RVReportTypes,
   RVServiceProviders,
   RVFilterFinancialRatio,
-  RVFilterPie,
+  RVFilterIncomeStatementsType,
   RVFilterStatements,
   RVFilterTransactions,
   RVFilterAll,
   RVFilterBankAccount,
-  RVFilterGauge,
+  RVFilterCreditScore,
 } from '@railzai/railz-visualizations';
 import {
   RailzBankAccounts,
   RailzFinancialRatios,
-  RailzGaugeChart,
-  RailzPieChart,
+  RailzCreditScore,
+  RailzIncomeStatements,
   RailzStatementsChart,
   RailzTransactionsControl,
   RailzVisualizations,
@@ -132,13 +132,13 @@ const Components = ({ configuration, filter, options, showCode }: ChartProps) =>
           RVReportTypes.CASHFLOW_STATEMENTS,
           RVReportTypes.EXPENSES,
           RVReportTypes.REVENUE,
-          RVReportTypes.RAILZ_SCORE,
+          RVReportTypes.CREDIT_SCORE,
           RVReportTypes.FINANCIAL_RATIO,
           RVReportTypes.BANK_ACCOUNT,
         ].map((reportType, index) => {
           const cloneOptions = cloneDeep(options);
           if (index !== 0) {
-            delete cloneOptions?.title?.text;
+            delete cloneOptions?.content?.title;
           }
           return (
             <div className="col-span-1 mt-1" key={reportType}>
@@ -151,15 +151,15 @@ const Components = ({ configuration, filter, options, showCode }: ChartProps) =>
             </div>
           );
         })}
-      {[RVReportTypes.RAILZ_SCORE].includes(filter.reportType) && (
+      {[RVReportTypes.CREDIT_SCORE].includes(filter.reportType) && (
         <div>
-          <h4 className="text-xl font-bold text-gray-900">Using Railz Gauge Chart Component</h4>
+          <h4 className="text-xl font-bold text-gray-900">Using Railz Credit Score Component</h4>
           <p>
-            Railz Gauge Chart Component only accepts <b>railzScore</b>
+            Railz Credit Score Component only accepts <b>creditScore</b>
           </p>
-          <RailzGaugeChart
+          <RailzCreditScore
             configuration={configuration}
-            filter={filter as RVFilterGauge}
+            filter={filter as RVFilterCreditScore}
             options={options}
           />
           <Code
@@ -167,7 +167,7 @@ const Components = ({ configuration, filter, options, showCode }: ChartProps) =>
             filter={filter}
             options={options}
             showCode={showCode}
-            displayValue="RailzGaugeChart"
+            displayValue="RailzCreditScore"
           />
         </div>
       )}
@@ -177,9 +177,9 @@ const Components = ({ configuration, filter, options, showCode }: ChartProps) =>
           <p>
             Railz Pie Chart Component only accepts <b>expenses</b> and <b>revenues</b>
           </p>
-          <RailzPieChart
+          <RailzIncomeStatements
             configuration={configuration}
-            filter={filter as RVFilterPie}
+            filter={filter as RVFilterIncomeStatementsType}
             options={options}
           />
           <Code
@@ -187,7 +187,7 @@ const Components = ({ configuration, filter, options, showCode }: ChartProps) =>
             filter={filter}
             options={options}
             showCode={showCode}
-            displayValue="RailzPieChart"
+            displayValue="RailzIncomeStatements"
           />
         </div>
       )}
@@ -277,7 +277,7 @@ const Components = ({ configuration, filter, options, showCode }: ChartProps) =>
         </div>
       )}
       {![
-        RVReportTypes.RAILZ_SCORE,
+        RVReportTypes.CREDIT_SCORE,
         RVReportTypes.EXPENSES,
         RVReportTypes.BALANCE_SHEET,
         RVReportTypes.BILLS,

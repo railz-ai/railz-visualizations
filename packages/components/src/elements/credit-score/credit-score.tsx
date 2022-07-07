@@ -9,8 +9,8 @@ import highchartsAccessibility from 'highcharts/modules/accessibility';
 
 import {
   getConfiguration,
-  getOptions,
   getFilter,
+  getOptions,
   validateRequiredParams,
 } from '../../helpers/chart.utils';
 import { ConfigurationInstance } from '../../services/configuration';
@@ -18,27 +18,27 @@ import Translations from '../../config/translations/en.json';
 import {
   ALL_FONTS,
   RVConfiguration,
+  RVCreditScoreSummary,
   RVFilterAll,
-  RVFilterGauge,
-  RVFormattedGaugeResponse,
-  RVGaugeChartSummary,
+  RVFilterCreditScore,
+  RVFormattedScoreResponse,
   RVOptions,
 } from '../../types';
 import { errorLog } from '../../services/logger';
-import { isGauge } from '../../helpers/utils';
+import { getTitleByReportType, isCreditScore } from '../../helpers/utils';
 
-import { getReportData, getOptionsGauge } from './gauge-chart.utils';
+import { getOptionsGauge, getReportData } from './credit-score.utils';
 
 highchartsMore(Highcharts);
 solidGauge(Highcharts);
 highchartsAccessibility(Highcharts);
 
 @Component({
-  tag: 'railz-gauge-chart',
-  styleUrl: 'gauge-chart.scss',
+  tag: 'railz-credit-score',
+  styleUrl: 'credit-score.scss',
   shadow: true,
 })
-export class GaugeChart {
+export class CreditScore {
   /**
    * Configuration information like authentication configuration
    */
@@ -46,7 +46,7 @@ export class GaugeChart {
   /**
    * Filter information to query the backend APIs
    */
-  @Prop() readonly filter!: RVFilterGauge;
+  @Prop() readonly filter!: RVFilterCreditScore;
   /**
    * For whitelabeling styling
    */
@@ -54,9 +54,9 @@ export class GaugeChart {
 
   @State() private loading = '';
   @State() private _configuration: RVConfiguration;
-  @State() private _filter: RVFilterGauge;
+  @State() private _filter: RVFilterCreditScore;
   @State() private _options: RVOptions;
-  @State() private _data: RVGaugeChartSummary;
+  @State() private _data: RVCreditScoreSummary;
   @State() private errorStatusCode: number;
   @State() private lastUpdated: string;
   @State() private containerRef?: HTMLDivElement;
@@ -70,7 +70,7 @@ export class GaugeChart {
    */
   private validateParams = async (
     configuration: RVConfiguration,
-    filter: RVFilterGauge,
+    filter: RVFilterCreditScore,
     options: RVOptions,
     triggerRequest = true,
   ): Promise<void> => {
@@ -78,10 +78,10 @@ export class GaugeChart {
     if (this._configuration) {
       ConfigurationInstance.configuration = this._configuration;
       try {
-        this._filter = getFilter(filter as RVFilterAll) as RVFilterGauge;
-        this._options = getOptions(options, filter as RVFilterAll);
+        this._filter = getFilter(filter as RVFilterAll) as RVFilterCreditScore;
+        this._options = getOptions(options);
         if (validateRequiredParams(this._filter as RVFilterAll)) {
-          if (isGauge(this._filter.reportType)) {
+          if (isCreditScore(this._filter.reportType)) {
             if (triggerRequest) {
               await this.requestReportData();
             }
@@ -117,7 +117,7 @@ export class GaugeChart {
   }
 
   @Watch('filter')
-  async watchFilter(newValue: RVFilterGauge, oldValue: RVFilterGauge): Promise<void> {
+  async watchFilter(newValue: RVFilterCreditScore, oldValue: RVFilterCreditScore): Promise<void> {
     if (newValue && oldValue && !isEqual(oldValue, newValue)) {
       await this.validateParams(this.configuration, newValue, this.options);
     }
@@ -144,7 +144,7 @@ export class GaugeChart {
     try {
       const reportData = (await getReportData({
         filter: this._filter as RVFilterAll,
-      })) as RVFormattedGaugeResponse;
+      })) as RVFormattedScoreResponse;
       if (reportData?.data) {
         this.lastUpdated = reportData.data.lastUpdated;
         this._data = reportData.data;
@@ -182,13 +182,12 @@ export class GaugeChart {
     return (
       this._data && (
         <div
-          class="railz-gauge-chart-container"
-          id="railz-gauge-chart"
+          class="rv-score-chart-container"
+          id="railz-creditScore-chart"
           ref={(el): HTMLDivElement => (this.containerRef = el)}
           style={{
             width: this._options?.chart?.width,
             height: this._options?.chart?.height,
-            ...this._options?.gauge?.chartContainer,
           }}
         />
       )
@@ -202,46 +201,56 @@ export class GaugeChart {
 
     const TitleElement = (): HTMLElement => (
       <p class="rv-title" style={this._options?.title?.style}>
-        {this._options?.title?.text || ''}{' '}
-        {this._options?.container?.tooltip === undefined || this._options?.container?.tooltip ? (
-          <div
-            style={{
-              marginTop: '1px ',
-              marginLeft: '3px ',
+        {this._options?.content?.title || getTitleByReportType(this._filter?.reportType) || ''}{' '}
+        {this._options?.tooltipIndicator?.visible === false ? (
+          ''
+        ) : (
+          <railz-tooltip
+            tooltipStyle={{
+              position: 'bottom-center',
+              ...this._options?.tooltipIndicator,
+              style: { marginLeft: '5px', ...this._options?.tooltipIndicator?.style },
             }}
-          >
-            <railz-tooltip
-              tooltipStyle={{ position: 'bottom-center' }}
-              tooltipText={
-                this._options?.content?.tooltip?.description || Translations.RV_TOOLTIP_RAILZ_SCORE
-              }
-            />
-          </div>
-        ) : null}
+            tooltipText={
+              this._options?.content?.tooltip?.description || Translations.RV_TOOLTIP_CREDIT_SCORE
+            }
+          />
+        )}
       </p>
     );
 
-    return (
-      <div class="rv-container" style={this._options?.container?.style}>
-        <div class="rv-header-container" style={this._options?.gauge?.header}>
-          <TitleElement />
-        </div>
-        {this.renderMain()}
-        {(this._options?.container?.date === undefined || this._options?.container?.date) &&
-        !isEmpty(this.lastUpdated) ? (
+    const SubTitleElement = (): HTMLElement => {
+      return isEmpty(this.lastUpdated) || this._options?.subTitle?.visible === false ? (
+        <span></span>
+      ) : (
+        ((
           <p
-            class="railz-gauge-last-updated"
+            class="rv-score-last-updated"
             style={{
               fontFamily: this._options?.chart?.fontFamily || ALL_FONTS,
-              ...this._options?.gauge?.lastUpdated,
+              ...this._options?.subTitle?.style,
             }}
           >
-            {this._options?.content?.label?.date || Translations.RV_AS_OF}{' '}
-            {format(parseISO(this.lastUpdated), 'dd MMM yyyy')}
+            {this._options?.content?.subTitle || Translations.RV_AS_OF}{' '}
+            {this._options?.subTitle?.dateVisible === false
+              ? ''
+              : format(
+                  parseISO(this.lastUpdated),
+                  this.options?.content?.date?.format || 'dd MMM yyyy',
+                )}
           </p>
-        ) : (
-          <p></p>
-        )}
+        ) as HTMLElement)
+      );
+    };
+
+    return (
+      <div class="rv-container" style={this._options?.container?.style}>
+        <div class="rv-header-container">
+          {this._options?.title?.visible === false ? '' : <TitleElement />}
+          {this._options?.subTitle?.position === 'top' && <SubTitleElement />}
+        </div>
+        {this.renderMain()}
+        {this._options?.subTitle?.position !== 'top' && <SubTitleElement />}
       </div>
     );
   }

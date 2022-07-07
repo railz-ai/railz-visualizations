@@ -159,7 +159,7 @@
   "RV_AS_OF": "As of",
   "RV_TOOLTIP_EXPENSES": "The top 3 cumulative expenses incurred by the business based on the selected start date and end date. Percent change measures the expense change between the end date period and start date period.",
   "RV_TOOLTIP_REVENUES": "The top 3 cumulative revenue sources based on the selected start date and end date. Percent change measures the revenue change between the end date period and start date period.",
-  "RV_TOOLTIP_RAILZ_SCORE": "The Railz credit score is based on proprietary models that rely on a business's financial statements to calculate the probability of default at a point in time.",
+  "RV_TOOLTIP_CREDIT_SCORE": "The Railz credit score is based on proprietary models that rely on a business's financial statements to calculate the probability of default at a point in time.",
   "RV_WARN_CONNECTION_ID_NOT_RELEASED": "Connection ID feature is not released.",
   "RV_FINANCIAL_RATIO": "Financial Ratios",
   "RV_INVOICES": "Invoices",
@@ -169,8 +169,7 @@
   "RV_CASHFLOW_STATEMENTS": "Cashflow Statements",
   "RV_EXPENSES": "Expenses",
   "RV_REVENUE": "Revenue",
-  "RV_CREDIT_SCORE": "Credit Score",
-  "RV_RAILZ_SCORE": "Railz Score",
+  "RV_CREDIT_SCORE": "Railz Score",
   "RV_BANK_ACCOUNT": "Bank Accounts",
   "RV_BANK_ACCOUNT_MUST_BE_SERVICE_NAME_PLAID": "Bank Accounts works only with Plaid."
 }

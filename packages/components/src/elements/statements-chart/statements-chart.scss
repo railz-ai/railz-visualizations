@@ -31,7 +31,7 @@
   line-height: 1.235;
 }
 
-.railz-statement-chart-container {
+.rv-statement-chart-container {
   display: flex;
   flex-direction: row;
   height: 100%;
@@ -39,6 +39,6 @@
   margin-top: 20px;
 }
 
-.railz-statement-chart-container .highcharts-root {
+.rv-statement-chart-container .highcharts-root {
   min-height: 328px !important;
 }

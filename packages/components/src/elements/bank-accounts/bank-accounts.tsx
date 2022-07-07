@@ -19,7 +19,7 @@ import {
   RVFormattedBankAccountsResponse,
   RVOptions,
 } from '../../types';
-import { formatNumber, isBankAccounts } from '../../helpers/utils';
+import { formatNumber, getTitleByReportType, isBankAccounts } from '../../helpers/utils';
 
 import { getReportData } from './bank-accounts.utils';
 
@@ -96,7 +96,7 @@ export class BanksAccounts {
       ConfigurationInstance.configuration = this._configuration;
       try {
         this._filter = getFilter(filter as RVFilterAll) as RVFilterBankAccount;
-        this._options = getOptions(options, filter as RVFilterAll);
+        this._options = getOptions(options);
         if (validateRequiredParams(this._filter as RVFilterAll)) {
           if (isBankAccounts(this._filter.reportType)) {
             if (triggerRequest) {
@@ -170,31 +170,31 @@ export class BanksAccounts {
     return (
       !isEmpty(this._summary) && (
         <div>
-          <ul class="railz-bank-accounts-ul" style={this._options?.bank?.ul}>
+          <ul class="rv-bank-accounts-ul" style={this._options?.table?.style}>
             {Object.keys(diffBanks).map((bank) => (
               <div>
-                <li class="railz-bank-accounts-ul-title" style={this._options?.bank?.li}>
+                <li class="rv-bank-accounts-ul-title" style={this._options?.table?.title}>
                   {bank}
                 </li>
                 {diffBanks[bank].map((bankAccount: RVBankAccounts) => (
                   <li>
                     <div
-                      class="railz-bank-accounts-item-container"
-                      style={this._options?.bank?.itemContainer}
+                      class="rv-bank-accounts-item-container"
+                      style={this._options?.table?.itemContainer}
                     >
                       <span
-                        class="railz-bank-accounts-item-name"
-                        style={this._options?.bank?.itemName}
+                        class="rv-bank-accounts-item-name"
+                        style={this._options?.table?.itemName}
                       >
                         {bankAccount.accountName}
                       </span>
                       <span
-                        class="railz-bank-accounts-item-dot"
-                        style={this._options?.bank?.itemDot}
+                        class="rv-bank-accounts-item-dot"
+                        style={this._options?.table?.itemSeperator}
                       ></span>
                       <span
-                        class="railz-bank-accounts-item-value"
-                        style={this._options?.bank?.itemValue}
+                        class="rv-bank-accounts-item-value"
+                        style={this._options?.table?.itemValue}
                       >
                         ${formatNumber(bankAccount.currentBalance, 2, 2)}
                       </span>
@@ -216,28 +216,25 @@ export class BanksAccounts {
 
     const TitleElement = (): HTMLElement => (
       <p class="rv-title" style={this._options?.title?.style}>
-        {this._options?.title?.text || ''}{' '}
-        {(this._options?.container?.tooltip === undefined || this._options?.container?.tooltip) &&
+        {this._options?.content?.title || getTitleByReportType(this._filter?.reportType) || ''}{' '}
+        {this._options?.tooltipIndicator?.visible &&
         this._options?.content?.tooltip?.description ? (
-          <div
-            style={{
-              marginTop: '1px ',
-              marginLeft: '3px ',
+          <railz-tooltip
+            tooltipStyle={{
+              position: 'bottom-center',
+              ...this._options?.tooltipIndicator,
+              style: { marginLeft: '5px', ...this._options?.tooltipIndicator?.style },
             }}
-          >
-            <railz-tooltip
-              tooltipStyle={{ position: 'bottom-center' }}
-              tooltipText={this._options?.content?.tooltip?.description}
-            />
-          </div>
+            tooltipText={this._options?.content?.tooltip?.description}
+          />
         ) : null}
       </p>
     );
 
     return (
       <div class="rv-container" style={this._options?.container?.style}>
-        <div class="rv-header-container" style={this._options?.bank?.header}>
-          <TitleElement style={this._options?.bank?.header} />
+        <div class="rv-header-container">
+          {this._options?.title?.visible === false ? '' : <TitleElement />}
         </div>
         {this.renderMain()}
       </div>

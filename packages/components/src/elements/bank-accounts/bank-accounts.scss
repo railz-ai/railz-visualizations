@@ -8,7 +8,6 @@
   height: 202px;
   overflow: auto;
   line-height: 21px;
-  box-sizing: border-box;
 
   * {
     font-family: Inter, Roboto, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue',
@@ -32,43 +31,42 @@
   line-height: 1.235;
 }
 
-.railz-bank-accounts-ul {
+.rv-bank-accounts-ul {
   list-style-type: none;
   font-weight: 400;
-  padding: 0;
   margin: 0;
-  padding-top: 8px;
-  padding-bottom: 8px;
+  padding: 8px 0;
 }
 
-.railz-bank-accounts-ul-title {
+.rv-bank-accounts-ul-title {
   padding-top: 8px;
   color: black;
   line-height: 28px;
   font-size: 14px;
   font-weight: 500;
+  text-align: left;
 }
 
-.railz-bank-accounts-item-container {
+.rv-bank-accounts-item-container {
   display: flex;
   justify-content: space-between;
   padding: 4px 0;
 }
 
-.railz-bank-accounts-item-name {
+.rv-bank-accounts-item-name {
   color: #424242;
   font-size: 14px;
   font-weight: 500;
 }
 
-.railz-bank-accounts-item-dot {
+.rv-bank-accounts-item-dot {
   margin: 0 16px 8px;
   display: flex;
   flex-grow: 1;
   border-bottom: 1px dashed #9e9e9e;
 }
 
-.railz-bank-accounts-item-value {
+.rv-bank-accounts-item-value {
   text-align: end;
   color: #212121;
   font-size: 14px;

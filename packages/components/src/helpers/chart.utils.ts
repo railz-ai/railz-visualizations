@@ -19,7 +19,7 @@ import {
   RVUpdateChartParameter,
 } from '../types';
 
-import { getTitleByReportType, isRequiredReportFrequency } from './utils';
+import { isRequiredReportFrequency } from './utils';
 import { checkAccessibility } from './accessibility';
 
 /**
@@ -44,7 +44,7 @@ export const getConfiguration = (configuration: RVConfiguration | string): RVCon
       errorLog(Translations.RV_ERROR_PARSING_CONFIGURATION, error);
     }
   } else {
-    console.error(Translations.RV_CONFIGURATION_NOT_PRESENT);
+    errorLog(Translations.RV_CONFIGURATION_NOT_PRESENT);
   }
   return formattedConfiguration;
 };
@@ -209,7 +209,7 @@ export const checkAccessibilityFromOptions = (options: RVOptions): void => {
  * @param options: Whitelabeling options
  * @param filter: Filter query
  */
-export const getOptions = (options: RVOptions | string, filter?: RVFilterAll): RVOptions => {
+export const getOptions = (options: RVOptions | string): RVOptions => {
   let formattedOptions: RVOptions;
   try {
     if (options) {
@@ -221,22 +221,6 @@ export const getOptions = (options: RVOptions | string, filter?: RVFilterAll): R
         }
       } catch (error) {
         errorLog(Translations.RV_ERROR_PARSING_OPTIONS + ' ' + JSON.stringify(error));
-      }
-    } else {
-      formattedOptions = { title: { text: '' } };
-    }
-    if (filter) {
-      if (formattedOptions?.title) {
-        if (!formattedOptions.title.text) {
-          formattedOptions.title.text = getTitleByReportType(filter.reportType);
-        }
-      } else if (formattedOptions) {
-        formattedOptions = {
-          ...formattedOptions,
-          title: { text: getTitleByReportType(filter.reportType) },
-        };
-      } else {
-        formattedOptions = { title: { text: getTitleByReportType(filter.reportType) } };
       }
     }
     checkAccessibilityFromOptions(formattedOptions);

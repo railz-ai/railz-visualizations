@@ -1,4 +1,4 @@
-# railz-progress-bar
+# railz-financial-ratios
 
 <!-- Auto Generated Below -->
 

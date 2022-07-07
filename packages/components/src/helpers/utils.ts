@@ -6,7 +6,7 @@ import numbro from 'numbro';
 
 import Translations from '../config/translations/en.json';
 import { RVReportTypes } from '../types/enum/report-type';
-import { RVMonth, RVReportFrequency, RVReportStatementSummary } from '../types';
+import { RVFormat, RVReportFrequency, RVReportStatementSummary } from '../types';
 
 /**
  * Format date that will be shown on charts and show short form
@@ -14,16 +14,24 @@ import { RVMonth, RVReportFrequency, RVReportStatementSummary } from '../types';
 export const formatDate = (
   summary: RVReportStatementSummary,
   reportFrequency: RVReportFrequency,
-  quarter = 'Q',
-  month: RVMonth = { format: 'MMM yy', locale: 'us' },
+  dateFormat?: RVFormat,
 ): string[] => {
   return summary?.map((data) => {
     const date = parseISO(data.period.date);
     if (reportFrequency === 'quarter')
-      return `${quarter}${data.period.quarter} ${format(date, 'yyyy')}`;
-    if (reportFrequency === 'year') return data.period.year.toString();
-    // eslint-disable-next-line import/namespace
-    return format(date, month.format, { locale: locales[month.locale] });
+      return `${dateFormat?.prefix || 'Q'}${data.period.quarter} ${format(
+        date,
+        dateFormat?.format || 'yyyy',
+      )}`;
+    if (reportFrequency === 'year')
+      return format(new Date(data.period.year, 1, 1), dateFormat?.format || 'yyyy', {
+        // eslint-disable-next-line import/namespace
+        locale: locales[dateFormat?.locale || 'us'],
+      });
+    return format(date, dateFormat?.format || 'MMM yy', {
+      // eslint-disable-next-line import/namespace
+      locale: locales[dateFormat?.locale || 'us'],
+    });
   });
 };
 
@@ -38,7 +46,7 @@ export const formatSeries = (
   name,
   data: summary
     ?.map((data: { [x: string]: any }) => data[field])
-    .filter((data) => data != undefined),
+    .filter((data) => data !== undefined),
 });
 
 /**
@@ -56,7 +64,7 @@ export const formatNumber = (number: number | string, decimals = 2, minimum = 0)
 };
 
 /**
- * Determine if report type is bankAccounts
+ * Determine if report type is table
  */
 export const isBankAccounts = (reportType: RVReportTypes): boolean => {
   return reportType && [RVReportTypes.BANK_ACCOUNT].includes(reportType);
@@ -71,14 +79,14 @@ export const isFinancialRatios = (reportType: RVReportTypes): boolean => {
 /**
  * Determine if report type is gauge
  */
-export const isGauge = (reportType: RVReportTypes): boolean => {
-  return reportType && [RVReportTypes.RAILZ_SCORE].includes(reportType);
+export const isCreditScore = (reportType: RVReportTypes): boolean => {
+  return reportType && [RVReportTypes.CREDIT_SCORE].includes(reportType);
 };
 
 /**
  * Determine if report type is pie
  */
-export const isPie = (reportType: RVReportTypes): boolean => {
+export const isIncomeStatements = (reportType: RVReportTypes): boolean => {
   return reportType && [RVReportTypes.EXPENSES, RVReportTypes.REVENUE].includes(reportType);
 };
 

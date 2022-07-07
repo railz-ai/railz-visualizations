@@ -25,7 +25,7 @@ import {
   validateRequiredParams,
 } from '../../helpers/chart.utils';
 import { ConfigurationInstance } from '../../services/configuration';
-import { isStatements } from '../../helpers/utils';
+import { getTitleByReportType, isStatements } from '../../helpers/utils';
 
 import { formatData, getReportData } from './statements-chart.utils';
 
@@ -82,7 +82,7 @@ export class StatementsChart {
       ConfigurationInstance.configuration = this._configuration;
       try {
         this._filter = getFilter(filter as RVFilterAll) as RVFilterStatements;
-        this._options = getOptions(options, this._filter as RVFilterAll);
+        this._options = getOptions(options);
         if (validateRequiredParams(this._filter as RVFilterAll)) {
           if (isStatements(this._filter.reportType)) {
             if (triggerRequest) {
@@ -154,8 +154,7 @@ export class StatementsChart {
           reportType: this._filter?.reportType as RVFinancialStatementsTypes,
           reportFrequency: this._filter?.reportFrequency,
           chart: this._options?.chart,
-          month: this._options?.content?.date?.month,
-          quarter: this._options?.content?.date?.quarter,
+          date: this._options?.content?.date,
         });
         this.updateHighchartsParams();
       } else if (reportData?.error) {
@@ -204,7 +203,7 @@ export class StatementsChart {
     }
     return (
       <div
-        class="railz-statement-chart-container"
+        class="rv-statement-chart-container"
         id="railz-chart"
         ref={(el): HTMLDivElement => (this.containerRef = el)}
         style={{ width: this._options?.chart?.width, height: this._options?.chart?.height }}
@@ -219,29 +218,30 @@ export class StatementsChart {
 
     const TitleElement = (): HTMLElement => (
       <p class="rv-title" style={this._options?.title?.style}>
-        {this._options?.title?.text || ''}{' '}
-        {(this._options?.container?.tooltip === undefined || this._options?.container?.tooltip) &&
+        {this._options?.content?.title || getTitleByReportType(this._filter?.reportType) || ''}{' '}
+        {this._options?.tooltipIndicator?.visible &&
         this._options?.content?.tooltip?.description ? (
-          <div
-            style={{
-              marginTop: '1px ',
-              marginLeft: '3px ',
+          <railz-tooltip
+            tooltipStyle={{
+              position: 'bottom-center',
+              ...this._options?.tooltipIndicator,
+              style: { marginLeft: '5px', ...this._options?.tooltipIndicator?.style },
             }}
-          >
-            <railz-tooltip
-              tooltipStyle={{ position: 'bottom-center' }}
-              tooltipText={this._options?.content?.tooltip?.description}
-            />
-          </div>
+            tooltipText={this._options?.content?.tooltip?.description}
+          />
         ) : null}
       </p>
     );
 
     return (
       <div class="rv-container" style={this._options?.container?.style}>
-        <div class="rv-header-container">
-          <TitleElement />
-        </div>
+        {this._options?.title?.visible === false ? (
+          ''
+        ) : (
+          <div class="rv-header-container">
+            <TitleElement />
+          </div>
+        )}
         {this.renderMain()}
       </div>
     );

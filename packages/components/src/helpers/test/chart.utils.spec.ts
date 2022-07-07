@@ -231,7 +231,6 @@ describe('Chart Utils Helper', () => {
             style: {},
           },
           title: {
-            text: 'title',
             style: {},
           },
           chart: {},
@@ -245,7 +244,7 @@ describe('Chart Utils Helper', () => {
           container: { style: {} },
           errorIndicator: {},
           loadingIndicator: {},
-          title: { style: {}, text: 'title' },
+          title: { style: {} },
         });
       });
     });

@@ -2,7 +2,7 @@ import {
   RVBankAccounts,
   RVBillInvoiceSummary,
   RVCreditScore,
-  RVRevenueExpensesSummary,
+  RVIncomeStatementsSummary,
 } from './api-response';
 
 export interface RVFormattedStatementSeriesOptional {
@@ -31,7 +31,7 @@ export interface RVFormattedStatementData {
 
 export type RVFormattedData =
   | RVFormattedStatementData
-  | RVRevenueExpensesSummary
+  | RVIncomeStatementsSummary
   | RVBillInvoiceSummary
   | RVBankAccounts[]
   | RVCreditScore;
