@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.0.6 (2022-07-07)
+
+
+### Features
+
+*  Include more customization options for components ([60b8d33](https://github.com/railz-ai/railz-visualizations/commit/60b8d3387b06007dd5f0ebeece8a9e9cc79c7864))
+
+
+
+
+
 ## 0.0.5 (2022-07-07)
 
 
