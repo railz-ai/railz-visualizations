@@ -13,6 +13,7 @@
     "angular": "(cd examples/angular/ && yarn && yarn start)",
     "cp:env": "cd packages/components && cp .env.template .env && cd ../../",
     "build": "yarn cp:env && yarn && yarn add:angular && yarn add:react && yarn bootstrap && yarn run:build && yarn lint",
+    "build:local": "yarn && yarn add:angular && yarn add:react && yarn bootstrap && yarn run:build && yarn lint",
     "build:codesandbox": "yarn cp:env && yarn bootstrap && yarn run:build",
     "prepare": "husky install",
     "test": "yarn workspace @railzai/railz-visualizations run test",
