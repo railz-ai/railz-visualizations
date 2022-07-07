@@ -37,7 +37,7 @@
     "dist/"
   ],
   "scripts": {
-    "build": "stencil build --prod",
+    "build": "cp .env.template .env && stencil build --prod",
     "start": "stencil build --dev --watch --serve",
     "test:stencil": "stencil test --spec",
     "test:e2e": "stencil test --spec --e2e",
