@@ -24,6 +24,7 @@ export const formatDate = (
         dateFormat?.format || 'yyyy',
       )}`;
     if (reportFrequency === 'year')
+      // eslint-disable-next-line import/namespace
       return format(new Date(data.period.year, 1, 1), dateFormat?.format || 'yyyy', {
         locale: locales[dateFormat?.locale || 'us'],
       });
