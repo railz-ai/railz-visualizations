@@ -227,8 +227,19 @@ export class GaugeChart {
           <TitleElement />
         </div>
         {this.renderMain()}
+        {this._options?.gauge?.circle ? (
+          <p
+            class="railz-gauge-last-updated"
+            style={{
+              fontFamily: ALL_FONTS,
+            }}
+          >
+            Reconciled transactions
+          </p>
+        ) : null}
         {(this._options?.container?.date === undefined || this._options?.container?.date) &&
-        !isEmpty(this.lastUpdated) ? (
+        !isEmpty(this.lastUpdated) &&
+        !this._options?.gauge?.circle ? (
           <p
             class="railz-gauge-last-updated"
             style={{

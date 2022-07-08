@@ -129,6 +129,9 @@ export interface RVOptionsBarStyle {
    * progressStyle: CSS object based on HTML stylings for the bar’s progress indicator
    */
   progressStyle?: { [key: string]: any };
+
+  noTitle?: boolean;
+  customWidth?: string;
 }
 
 export interface RVOptionsGaugeStyle {

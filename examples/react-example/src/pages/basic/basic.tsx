@@ -47,9 +47,29 @@ export default function Basic() {
               <Visualizations
                 configuration={{
                   token,
+                  endpoint: 'https://api.qa2.railz.ai',
                   debug: true,
                 }}
                 filter={filter as any}
+                options={{
+                  chart: {
+                    height: '100%',
+                    width: '64px',
+                  },
+                  container: {
+                    style: {
+                      display: 'flex',
+                      flexDirection: 'row',
+                    },
+                  },
+                  gauge: {
+                    startAngle: 180,
+                    endAngle: 540,
+                    size: '100%',
+                    innerRadius: '85%',
+                    circle: true,
+                  },
+                }}
               />
             )}
 

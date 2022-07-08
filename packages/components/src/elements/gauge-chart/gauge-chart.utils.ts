@@ -178,7 +178,7 @@ export const getOptionsGauge = (gauge: RVGaugeChartSummary, options: RVOptions):
       innerRadius: options?.gauge?.innerRadius ? options?.gauge?.innerRadius : '90%',
       dataLabels: {
         enabled: true,
-        y: -40,
+        y: options?.gauge?.circle ? -14 : -40,
         borderWidth: 0,
         backgroundColor: 'none',
         useHTML: true,
@@ -188,7 +188,16 @@ export const getOptionsGauge = (gauge: RVGaugeChartSummary, options: RVOptions):
           fontFamily: options?.chart?.fontFamily || ALL_FONTS,
         },
         formatter: function (): string {
-          return `
+          return options?.gauge?.circle
+            ? `
+          <div style="width:100%;text-align:center;font-family: ${
+            options?.chart?.fontFamily || ALL_FONTS
+          }">
+            <span style="font-size:1rem;font-weight: 600;font-family: ${
+              options?.chart?.fontFamily || ALL_FONTS
+            }">${'80%'}</span>
+          </div>`
+            : `
             <div style="width:100%;text-align:center;font-family: ${
               options?.chart?.fontFamily || ALL_FONTS
             }">
