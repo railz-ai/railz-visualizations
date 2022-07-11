@@ -7,6 +7,7 @@
   "RV_TOKEN_NOT_PRESENT": "\"token\" not present.",
   "RV_ERROR_PARSING_CONFIGURATION": "Error while parsing configuration.",
   "RV_ERROR_PARSING_OPTIONS": "Error while parsing options.",
+  "RV_ERROR_PARSING_DATA": "Error while parsing data.",
   "RV_ERROR_PARSING_CONTENT": "Error while parsing content.",
   "RV_PAID": "Paid",
   "RV_OVERDUE": "Overdue",

@@ -179,6 +179,7 @@ export interface RVCreditScoreSummary {
   score: number;
   rating: string;
   lastUpdated: string;
+  percentage?: boolean;
 }
 
 export interface RVFormattedScoreResponse {

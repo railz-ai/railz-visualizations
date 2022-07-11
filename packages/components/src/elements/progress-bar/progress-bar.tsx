@@ -54,7 +54,7 @@ export class ProgressBar {
     }
     return (
       <div class="rv-progress-bar-div" style={this.options?.divStyle}>
-        {this._options.hideLabels ? null : (
+        {this._options?.hideLabels ? null : (
           <p
             class="rv-progress-bar-total-unpaid"
             style={this._options?.titleStyle}
@@ -72,7 +72,7 @@ export class ProgressBar {
         )}
 
         <div class="rv-progress-bar-values">
-          {this._options.hideLabels ? null : (
+          {this._options?.hideLabels ? null : (
             <div class="rv-progress-bar-values-div">
               <div>
                 <p
