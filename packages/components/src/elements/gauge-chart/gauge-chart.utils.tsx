@@ -1,10 +1,6 @@
 import { isNil } from 'lodash-es';
-import {
-  ALL_FONTS,
-  RVCreditScoreSummary,
-  RVOptions,
-  RVColorRangesStyle,
-} from '../../types';
+
+import { ALL_FONTS, RVCreditScoreSummary, RVOptions, RVColorRangesStyle } from '../../types';
 import { fromCssObjectToInline } from '../../helpers/utils';
 
 const plotLine = {
@@ -103,13 +99,13 @@ export const getOptionsGauge = (gauge: RVCreditScoreSummary, options: RVOptions)
       options?.chart?.type === 'circle'
         ? undefined
         : {
-          innerRadius: '83%',
-          outerRadius: '83%',
-          shape: 'arc',
-          borderWidth: 3,
-          borderColor: '#F5F5F5',
-          backgroundColor: 'transparent',
-        },
+            innerRadius: '83%',
+            outerRadius: '83%',
+            shape: 'arc',
+            borderWidth: 3,
+            borderColor: '#F5F5F5',
+            backgroundColor: 'transparent',
+          },
     ],
   },
   tooltip: {
@@ -120,42 +116,44 @@ export const getOptionsGauge = (gauge: RVCreditScoreSummary, options: RVOptions)
     min: options?.chart?.type === 'circle' ? 0 : 300,
     max: 850,
     tickPositions: options?.chart?.type === 'circle' ? undefined : [300, 850],
-    labels: options?.chart?.type === 'circle'
-      ? { enabled: false }
-      : {
-        distance: -5,
-        y: 15,
-        style: { color: '#757575', ...options?.chart?.label },
-      },
+    labels:
+      options?.chart?.type === 'circle'
+        ? { enabled: false }
+        : {
+            distance: -5,
+            y: 15,
+            style: { color: '#757575', ...options?.chart?.label },
+          },
     stops: [[0, getColor(gauge?.score, options?.chart?.gauge?.colorRanges)]],
-    plotLines: options?.chart?.type === 'circle'
-      ? undefined
-      : [
-        {
-          value: 525,
-          ...plotLine,
-        },
-        {
-          value: 575,
-          ...plotLine,
-        },
-        {
-          value: 625,
-          ...plotLine,
-        },
-        {
-          value: 675,
-          ...plotLine,
-        },
-        {
-          value: 750,
-          ...plotLine,
-        },
-        {
-          value: 850,
-          ...plotLine,
-        },
-      ],
+    plotLines:
+      options?.chart?.type === 'circle'
+        ? undefined
+        : [
+            {
+              value: 525,
+              ...plotLine,
+            },
+            {
+              value: 575,
+              ...plotLine,
+            },
+            {
+              value: 625,
+              ...plotLine,
+            },
+            {
+              value: 675,
+              ...plotLine,
+            },
+            {
+              value: 750,
+              ...plotLine,
+            },
+            {
+              value: 850,
+              ...plotLine,
+            },
+          ],
     lineColor: '#F5F5F5',
     lineWidth: 0,
     minorTickInterval: null,

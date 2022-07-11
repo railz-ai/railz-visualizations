@@ -1,13 +1,16 @@
-import { Component, h, Prop, Watch, State } from "@stencil/core";
-import { RVCreditScoreSummary, RVOptions } from "../../types";
-import { getOptionsGauge } from "./gauge-chart.utils";
-import Highcharts from "highcharts";
+/* eslint-disable max-len, @typescript-eslint/no-unused-vars */
+import { Component, Prop, Watch, State, h } from '@stencil/core';
+
+import Highcharts from 'highcharts';
 import highchartsMore from 'highcharts/highcharts-more.js';
 import solidGauge from 'highcharts/modules/solid-gauge.js';
 import highchartsAccessibility from 'highcharts/modules/accessibility';
 import { isEqual } from 'lodash-es';
-import { getData, getOptions } from "../../helpers/chart.utils";
 
+import { RVCreditScoreSummary, RVOptions } from '../../types';
+import { getData, getOptions } from '../../helpers/chart.utils';
+
+import { getOptionsGauge } from './gauge-chart.utils';
 
 highchartsMore(Highcharts);
 solidGauge(Highcharts);
@@ -27,9 +30,8 @@ export class RailzGaugeChart {
   @State() private _options: RVOptions;
   @State() private _data: RVCreditScoreSummary;
 
-
   @Watch('containerRef')
-  watchContainerRef(newValue: HTMLDivElement, _: HTMLDivElement): void {
+  watchContainerRef(newValue: HTMLDivElement): void {
     const options = getOptionsGauge(this._data, this._options);
     if (newValue && options) {
       Highcharts.chart(this.containerRef, options);
@@ -59,7 +61,7 @@ export class RailzGaugeChart {
     this.propsUpdated && this.propsUpdated();
   }
 
-  render() {
+  render(): HTMLElement {
     return (
       this.data && (
         <div
@@ -74,5 +76,4 @@ export class RailzGaugeChart {
       )
     );
   }
-
 }

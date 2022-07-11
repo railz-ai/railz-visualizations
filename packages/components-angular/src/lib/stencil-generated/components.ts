@@ -92,6 +92,26 @@ export class RailzFinancialRatios {
   }
 }
 
+export declare interface RailzGaugeChart extends Components.RailzGaugeChart {}
+
+@ProxyCmp({
+  defineCustomElementFn: undefined,
+  inputs: ['data', 'options'],
+})
+@Component({
+  selector: 'railz-gauge-chart',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  inputs: ['data', 'options'],
+})
+export class RailzGaugeChart {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
 export declare interface RailzIncomeStatements extends Components.RailzIncomeStatements {}
 
 @ProxyCmp({

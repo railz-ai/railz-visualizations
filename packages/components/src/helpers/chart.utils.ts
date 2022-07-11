@@ -16,8 +16,9 @@ import {
   RVReportFrequency,
   RVReportTypes,
   RVAllProviders,
-  RVUpdateChartParameter, RVCreditScoreSummary
-} from "../types";
+  RVUpdateChartParameter,
+  RVCreditScoreSummary,
+} from '../types';
 
 import { isRequiredReportFrequency } from './utils';
 import { checkAccessibility } from './accessibility';

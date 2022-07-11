@@ -103,7 +103,6 @@ export interface RVOptionsChartStyle extends RVOptionsBaseChartStyle {
    * type: chart type
    */
   type?: string;
-
 }
 
 interface RVOptionsChartPieStyle extends RVOptionsPercentageStyle {

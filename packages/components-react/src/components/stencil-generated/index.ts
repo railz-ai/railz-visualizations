@@ -24,6 +24,10 @@ export const RailzFinancialRatios = /*@__PURE__*/ createReactComponent<
   JSX.RailzFinancialRatios,
   HTMLRailzFinancialRatiosElement
 >('railz-financial-ratios');
+export const RailzGaugeChart = /*@__PURE__*/ createReactComponent<
+  JSX.RailzGaugeChart,
+  HTMLRailzGaugeChartElement
+>('railz-gauge-chart');
 export const RailzIncomeStatements = /*@__PURE__*/ createReactComponent<
   JSX.RailzIncomeStatements,
   HTMLRailzIncomeStatementsElement
