@@ -3,4 +3,4 @@
  */
 export * from './lib/stencil-generated/components';
 
-export { RailzVisualizationsModule } from './lib/railz-visualizations.module';
+export * from './lib';

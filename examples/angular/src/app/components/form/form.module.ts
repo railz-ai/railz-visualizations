@@ -5,8 +5,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { HttpClientModule } from '@angular/common/http';
 
-import { AceEditorModule } from 'ng2-ace-editor';
-
 import { ApiService } from '../../../services/api';
 
 import { FormComponent } from './form.component';
@@ -14,10 +12,11 @@ import { FilterFormComponent } from './elements/filter-form/filter-form.componen
 import { AuthFormComponent } from './elements/auth-form/auth-form.component';
 
 import { OptionsFormComponent } from './elements/options-form/options-form.component';
+import { AngJsoneditorModule } from '@maaxgr/ang-jsoneditor';
 
 @NgModule({
   declarations: [FormComponent, FilterFormComponent, AuthFormComponent, OptionsFormComponent],
-  imports: [BrowserModule, ReactiveFormsModule, HttpClientModule, AceEditorModule],
+  imports: [BrowserModule, ReactiveFormsModule, HttpClientModule, AngJsoneditorModule],
   exports: [FormComponent],
   providers: [ApiService],
 })

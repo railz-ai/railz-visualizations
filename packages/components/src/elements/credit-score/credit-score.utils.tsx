@@ -4,15 +4,17 @@ import { format, parseISO } from 'date-fns';
 import Translations from '../../config/translations/en.json';
 import {
   ALL_FONTS,
-  RVFormattedGaugeResponse,
-  RVGaugeChartSummary,
+  RVFormattedScoreResponse,
+  RVCreditScoreSummary,
   RVOptions,
   RVReportRequestParameter,
   RVReportTypesUrlMapping,
+  RVColorRangesStyle,
 } from '../../types';
 import { RequestServiceInstance } from '../../services/request';
 import { errorLog } from '../../services/logger';
 import { RAILZ_DATE_FORMAT } from '../../types/constants/date';
+import { fromCssObjectToInline } from '../../helpers/utils';
 
 const plotLine = {
   width: 3,
@@ -45,34 +47,35 @@ const getData = (score: number): number[] => {
   return data;
 };
 
-const getColor = (score: number): string => {
+const getColor = (score: number, colors?: RVColorRangesStyle): string => {
   if (score > 750) {
-    return '#00884F';
+    return colors?.['750'] || '#00884F';
   }
   if (score > 675) {
-    return '#15D283';
+    return colors?.['675'] || '#15D283';
   }
   if (score > 625) {
-    return '#6DE18D';
+    return colors?.['625'] || '#6DE18D';
   }
   if (score > 575) {
-    return '#A2DF61';
+    return colors?.['575'] || '#A2DF61';
   }
   if (score > 525) {
-    return '#E0E345';
+    return colors?.['525'] || '#E0E345';
   }
-  return ' #FFD839';
+  return colors?.default || '#FFD839';
 };
 
 /**
  * Setup Highcharts options for gauge
  */
-export const getOptionsGauge = (gauge: RVGaugeChartSummary, options: RVOptions): any => ({
+export const getOptionsGauge = (gauge: RVCreditScoreSummary, options: RVOptions): any => ({
   chart: {
     type: 'solidgauge',
     margin: [0, 0, 0, 0],
     style: {
       fontFamily: options?.chart?.fontFamily || ALL_FONTS,
+      ...options?.chart?.style,
     },
     backgroundColor: options?.chart?.backgroundColor || '#ffffff',
     events: {
@@ -93,15 +96,11 @@ export const getOptionsGauge = (gauge: RVGaugeChartSummary, options: RVOptions):
     enabled: false,
   },
   title: null,
-  style: {
-    height: '100%',
-    width: '128px',
-  },
   pane: {
-    center: ['50%', '50%'],
-    size: options?.gauge?.size || '80%',
-    startAngle: options?.gauge?.startAngle || -90,
-    endAngle: options?.gauge?.endAngle || 90,
+    center: ['50%', '65%'],
+    size: '90%',
+    startAngle: -90,
+    endAngle: 90,
     background: [
       {
         backgroundColor: '#F5F5F5',
@@ -110,16 +109,14 @@ export const getOptionsGauge = (gauge: RVGaugeChartSummary, options: RVOptions):
         outerRadius: '90%',
         innerRadius: '100%',
       },
-      options?.gauge?.circle
-        ? undefined
-        : {
-            innerRadius: '83%',
-            outerRadius: '83%',
-            shape: 'arc',
-            borderWidth: 3,
-            borderColor: '#F5F5F5',
-            backgroundColor: 'transparent',
-          },
+      {
+        innerRadius: '83%',
+        outerRadius: '83%',
+        shape: 'arc',
+        borderWidth: 3,
+        borderColor: '#F5F5F5',
+        backgroundColor: 'transparent',
+      },
     ],
   },
   tooltip: {
@@ -127,58 +124,55 @@ export const getOptionsGauge = (gauge: RVGaugeChartSummary, options: RVOptions):
   },
   // the value axis
   yAxis: {
-    min: options?.gauge?.circle ? 0 : 300,
+    min: 300,
     max: 850,
-    tickPositions: options?.gauge?.circle ? undefined : [300, 850],
-    labels: options?.gauge?.circle
-      ? { enabled: false }
-      : {
-          distance: -5,
-          y: 15,
-          style: { color: '#757575', ...options?.chart?.label },
-        },
-    stops: [[0, getColor(gauge?.score)]],
-    plotLines: options?.gauge?.circle
-      ? undefined
-      : [
-          {
-            value: 525,
-            ...plotLine,
-          },
-          {
-            value: 575,
-            ...plotLine,
-          },
-          {
-            value: 625,
-            ...plotLine,
-          },
-          {
-            value: 675,
-            ...plotLine,
-          },
-          {
-            value: 750,
-            ...plotLine,
-          },
-          {
-            value: 850,
-            ...plotLine,
-          },
-        ],
+    tickPositions: [300, 850],
+    labels: {
+      distance: -5,
+      y: 15,
+      style: { color: '#757575', ...options?.chart?.label },
+    },
+    stops: [[0, getColor(gauge?.score, options?.chart?.gauge?.colorRanges)]],
+    plotLines: [
+      {
+        value: 525,
+        ...plotLine,
+      },
+      {
+        value: 575,
+        ...plotLine,
+      },
+      {
+        value: 625,
+        ...plotLine,
+      },
+      {
+        value: 675,
+        ...plotLine,
+      },
+      {
+        value: 750,
+        ...plotLine,
+      },
+      {
+        value: 850,
+        ...plotLine,
+      },
+    ],
     lineColor: '#F5F5F5',
     lineWidth: 0,
     minorTickInterval: null,
     tickPixelInterval: 400,
     tickWidth: 0,
+    ...options?.chart?.yAxisStyle,
   },
 
   plotOptions: {
     solidgauge: {
-      innerRadius: options?.gauge?.innerRadius ? options?.gauge?.innerRadius : '90%',
+      innerRadius: '90%',
       dataLabels: {
         enabled: true,
-        y: options?.gauge?.circle ? -14 : -40,
+        y: -40,
         borderWidth: 0,
         backgroundColor: 'none',
         useHTML: true,
@@ -188,25 +182,16 @@ export const getOptionsGauge = (gauge: RVGaugeChartSummary, options: RVOptions):
           fontFamily: options?.chart?.fontFamily || ALL_FONTS,
         },
         formatter: function (): string {
-          return options?.gauge?.circle
-            ? `
-          <div style="width:100%;text-align:center;font-family: ${
-            options?.chart?.fontFamily || ALL_FONTS
-          }">
-            <span style="font-size:1rem;font-weight: 600;font-family: ${
-              options?.chart?.fontFamily || ALL_FONTS
-            }">${'80%'}</span>
-          </div>`
-            : `
+          return `
             <div style="width:100%;text-align:center;font-family: ${
               options?.chart?.fontFamily || ALL_FONTS
             }">
-              <span style="font-size:2.25rem;color: black;font-weight:600;font-family: ${
-                options?.chart?.fontFamily || ALL_FONTS
-              }">${gauge?.score}</span><br/>
-              <span style="font-size:1rem;font-weight: 400;font-family: ${
-                options?.chart?.fontFamily || ALL_FONTS
-              }">${gauge?.rating}</span>
+              <span style="font-size: 36px;color: black;font-weight:600;${fromCssObjectToInline(
+                options?.chart?.gauge?.score,
+              )}">${gauge?.score}</span><br/>
+              <span style="font-size: 16px;font-weight: 400; ${fromCssObjectToInline(
+                options?.chart?.gauge?.rating,
+              )}">${gauge?.rating}</span>
             </div>`;
         },
       },
@@ -236,7 +221,7 @@ export const getOptionsGauge = (gauge: RVGaugeChartSummary, options: RVOptions):
  */
 export const getReportData = async ({
   filter,
-}: RVReportRequestParameter): Promise<RVFormattedGaugeResponse> => {
+}: RVReportRequestParameter): Promise<RVFormattedScoreResponse> => {
   let reportData;
   try {
     const startDate = format(parseISO(filter.startDate), RAILZ_DATE_FORMAT);

@@ -1,13 +1,13 @@
-# railz-statements-chart
+# railz-sparkline-chart
 
 <!-- Auto Generated Below -->
 
 ## Properties
 
-| Property            | Attribute | Description                   | Type                      | Default     |
-| ------------------- | --------- | ----------------------------- | ------------------------- | ----------- |
-| `data` _(required)_ | --        | Data to display for sparkline | `RVPeriodData[]`          | `undefined` |
-| `sparkLineStyle`    | --        |                               | `{ [key: string]: any; }` | `undefined` |
+| Property            | Attribute | Description                   | Type                           | Default     |
+| ------------------- | --------- | ----------------------------- | ------------------------------ | ----------- |
+| `data` _(required)_ | --        | Data to display for sparkline | `RVPeriodData[]`               | `undefined` |
+| `sparkLineStyle`    | --        |                               | `RVOptionsRatioSparkLineStyle` | `undefined` |
 
 ## Dependencies
 

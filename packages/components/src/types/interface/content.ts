@@ -1,13 +1,9 @@
 import { FinancialRatio } from './summary';
 
-export interface RVContentDate {
-  month?: RVMonth;
-  quarter?: string;
-}
-
-export interface RVMonth {
+export interface RVFormat {
   locale?: string;
   format?: string;
+  prefix?: string;
 }
 
 export interface RVFinancialRatioContent {
@@ -61,16 +57,14 @@ export interface RVFinancialRatioContent {
   [FinancialRatio.AVERAGE_OUTSTANDING_RECEIVABLES_BALANCE]?: string;
 }
 
-export interface RVContentLabel extends RVFinancialRatioContent {
-  date?: string;
-}
 export interface RVContentTooltip extends RVFinancialRatioContent {
   description?: string;
 }
 
 export interface RVContent {
   title?: string;
-  date?: RVContentDate;
-  label?: RVContentLabel;
+  subTitle?: string;
+  date?: RVFormat;
+  label?: RVFinancialRatioContent;
   tooltip?: RVContentTooltip;
 }

@@ -35,33 +35,33 @@ describe('railz-progress-bar', () => {
     expect(page.root).toEqualHtml(`
     <railz-progress-bar>
       <mock:shadow-root>
-        <div class="railz-progress-bar-div">
-          <p aria-label="Total Unpaid 34,342.5" class="railz-progress-bar-total-unpaid">
+        <div class="rv-progress-bar-div">
+          <p aria-label="Total Unpaid 34,342.5" class="rv-progress-bar-total-unpaid">
             Total Unpaid Bills
-            <span aria-hidden="" class="railz-progress-bar-total-unpaid-value">
+            <span aria-hidden="" class="rv-progress-bar-total-unpaid-value">
               $34,342.5
             </span>
           </p>
-          <div class="railz-progress-bar-values">
-            <div class="railz-progress-bar-values-div">
+          <div class="rv-progress-bar-values">
+            <div class="rv-progress-bar-values-div">
               <div>
-                <p aria-label="Paid 1,318" class="railz-progress-bar-label">
+                <p aria-label="Paid 1,318" class="rv-progress-bar-label">
                   Paid
                 </p>
-                <p aria-hidden="" class="railz-progress-bar-value">
+                <p aria-hidden="" class="rv-progress-bar-value">
                   $1,318
                 </p>
               </div>
               <div>
-                <p aria-label="Overdue 34,342.5" class="railz-progress-bar-label railz-progress-bar-overdue">
+                <p aria-label="Overdue 34,342.5" class="rv-progress-bar-label rv-progress-bar-overdue">
                   Overdue
                 </p>
-                <p aria-hidden="" class="railz-progress-bar-overdue railz-progress-bar-value">
+                <p aria-hidden="" class="rv-progress-bar-overdue rv-progress-bar-value">
                   $34,342.5
                 </p>
               </div>
             </div>
-            <div class="railz-progress-bar">
+            <div class="rv-progress-bar">
               <span style="width: 3.6959661249842264%;"></span>
             </div>
           </div>

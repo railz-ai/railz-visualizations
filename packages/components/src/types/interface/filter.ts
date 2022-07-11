@@ -85,10 +85,6 @@ export interface RVFilterCashflowStatements
   reportType: RVReportTypes.CASHFLOW_STATEMENTS;
 }
 
-export interface RVFilterCreditScore extends RVFilterReportType, RVFilterBusiness, RVFilterDate {
-  reportType: RVReportTypes.CREDIT_SCORE;
-}
-
 export interface RVFilterExpenses
   extends RVFilterReportType,
     RVFilterBusiness,
@@ -129,12 +125,12 @@ export interface RVFilterRevenue
   reportType: RVReportTypes.REVENUE;
 }
 
-export interface RVFilterRailzScore
+export interface RVFilterCreditScore
   extends RVFilterReportType,
     RVFilterBusiness,
     RVFilterDate,
     RVFilterReportFrequency {
-  reportType: RVReportTypes.RAILZ_SCORE;
+  reportType: RVReportTypes.CREDIT_SCORE;
 }
 
 export interface RVFilterAll
@@ -149,13 +145,12 @@ export type RVFilterAllReportTypes =
   | RVFilterBankAccount
   | RVFilterBills
   | RVFilterCashflowStatements
-  | RVFilterCreditScore
   | RVFilterExpenses
-  | RVFilterFinancialRatio
   | RVFilterFinancialRatio
   | RVFilterIncomeStatements
   | RVFilterInvoices
   | RVFilterRevenue
+  | RVFilterCreditScore
   | RVFilterDate;
 
 export type RVFilterTransactions = RVFilterInvoices | RVFilterBills;
@@ -163,5 +158,4 @@ export type RVFilterStatements =
   | RVFilterBalanceSheet
   | RVFilterIncomeStatements
   | RVFilterCashflowStatements;
-export type RVFilterGauge = RVFilterRailzScore;
-export type RVFilterPie = RVFilterExpenses | RVFilterRevenue;
+export type RVFilterIncomeStatementsType = RVFilterExpenses | RVFilterRevenue;

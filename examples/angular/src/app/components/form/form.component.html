@@ -19,7 +19,7 @@
 </div>
 
 <div class="mt-4 sm:mt-4" *ngIf="options">
-  <app-options-form [options]="options"></app-options-form>
+  <app-options-form [options]="options" (optionEvent)="onOptionsSubmit($event)"></app-options-form>
 </div>
 
 <div class="mt-4 sm:mt-4">

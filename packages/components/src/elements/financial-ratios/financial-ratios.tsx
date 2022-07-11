@@ -23,7 +23,7 @@ import {
   RVOptions,
 } from '../../types';
 import { errorLog } from '../../services/logger';
-import { roundNumber, isFinancialRatios } from '../../helpers/utils';
+import { roundNumber, isFinancialRatios, getTitleByReportType } from '../../helpers/utils';
 
 import { getReportData } from './financial-ratios.utils';
 
@@ -72,7 +72,7 @@ export class FinancialRatios {
       ConfigurationInstance.configuration = this._configuration;
       try {
         this._filter = getFilter(filter as RVFilterAll) as RVFilterFinancialRatio;
-        this._options = getOptions(options, filter as RVFilterAll);
+        this._options = getOptions(options);
         if (validateRequiredParams(this._filter as RVFilterAll)) {
           if (isFinancialRatios(this._filter.reportType)) {
             if (triggerRequest) {
@@ -198,23 +198,24 @@ export class FinancialRatios {
         <div class="rv-financial-ratio-container-item" style={this._options?.ratio?.itemContainer}>
           <div class="rv-financial-ratio-info" style={this._options?.ratio?.itemInfo}>
             <div class="rv-ratio-name" style={this._options?.ratio?.itemName}>
-              {!isEmpty(tooltipText) && (
-                <div class="rv-ratio-tooltip" style={this._options?.ratio?.itemToolTip}>
-                  {this._options?.container?.tooltip === undefined ||
-                  this._options?.container?.tooltip ? (
-                    <railz-tooltip
-                      tooltipText={tooltipText}
-                      tooltipStyle={{ position: 'bottom-right' }}
-                    />
-                  ) : null}
-                </div>
-              )}
+              {!isEmpty(tooltipText) &&
+                (this._options?.ratio?.itemToolTip?.visible === false ? (
+                  ''
+                ) : (
+                  <railz-tooltip
+                    tooltipText={tooltipText}
+                    tooltipStyle={{
+                      position: 'bottom-right',
+                      ...this._options?.ratio?.itemToolTip,
+                    }}
+                  />
+                ))}
               <div class="rv-ratio-name-text" style={this._options?.ratio?.itemNameText}>
                 {translation(key)}
               </div>
             </div>
-            <div class="rv-ratio-values" style={this._options?.ratio?.itemValues}>
-              <div class="rv-ratio-summary" style={this._options?.ratio?.itemSummary}>
+            <div class="rv-ratio-values" style={this._options?.ratio?.itemSummary}>
+              <div class="rv-ratio-summary" style={this._options?.ratio?.itemValue}>
                 {roundNumber(item.currentValue)}
               </div>
               <div class="rv-ratio-percentage">
@@ -226,11 +227,10 @@ export class FinancialRatios {
             </div>
           </div>
 
-          <div class="rv-financial-ratio-ratios" style={this._options?.ratio?.ratios}>
-            <div class="rv-sparkline" style={this._options?.ratio?.ratioSparkLine}>
-              <railz-sparkline-chart data={item.timePeriodData} />
-            </div>
-          </div>
+          <railz-sparkline-chart
+            data={item.timePeriodData}
+            sparkLineStyle={this._options?.ratio?.sparkLine}
+          />
         </div>
       );
     };
@@ -253,20 +253,17 @@ export class FinancialRatios {
 
     const TitleElement = (): HTMLElement => (
       <p class="rv-title" style={this._options?.title?.style}>
-        {this._options?.title?.text || ''}{' '}
-        {(this._options?.container?.tooltip === undefined || this._options?.container?.tooltip) &&
+        {this._options?.content?.title || getTitleByReportType(this._filter?.reportType) || ''}{' '}
+        {this._options?.tooltipIndicator?.visible &&
         this._options?.content?.tooltip?.description ? (
-          <div
-            style={{
-              marginTop: '1px ',
-              marginLeft: '3px ',
+          <railz-tooltip
+            tooltipStyle={{
+              position: 'bottom-center',
+              ...this._options?.tooltipIndicator,
+              style: { marginLeft: '5px', ...this._options?.tooltipIndicator?.style },
             }}
-          >
-            <railz-tooltip
-              tooltipStyle={{ position: 'bottom-center' }}
-              tooltipText={this._options?.content?.tooltip?.description}
-            />
-          </div>
+            tooltipText={this._options?.content?.tooltip?.description}
+          />
         ) : null}
       </p>
     );
@@ -281,7 +278,7 @@ export class FinancialRatios {
           items={items}
           //reset the component per loading
           key={this.loading}
-          selectStyle={{ position: 'left' }}
+          selectStyle={this._options?.ratio?.select}
           onSelectedItem={(event) => {
             this.handleSelected(event.detail);
           }}
@@ -292,7 +289,7 @@ export class FinancialRatios {
     return (
       <div class="rv-container" style={this._options?.container?.style}>
         <div class="rv-header-container" style={this._options?.ratio?.header}>
-          <TitleElement />
+          {this._options?.title?.visible === false ? '' : <TitleElement />}
           {!isEmpty(this._summary) && <SelectElement />}
         </div>
         {this.renderMain()}

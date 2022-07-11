@@ -109,14 +109,14 @@ export default function Header({ children, description }: HeaderProps) {
                   className="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400"
                   aria-hidden="true"
                 />
-                Updated on February 11, 2022
+                Updated on July 07, 2022
               </div>
               <div className="mt-2 flex items-center text-sm text-gray-500">
                 <TagIcon
                   className="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400"
                   aria-hidden="true"
                 />
-                Version 0.0.1
+                Version 0.0.7
               </div>
             </div>
           </div>

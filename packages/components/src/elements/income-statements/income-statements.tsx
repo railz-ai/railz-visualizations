@@ -1,10 +1,8 @@
 /* eslint-disable max-len, @typescript-eslint/no-unused-vars */
 import { Component, h, Prop, State, Watch } from '@stencil/core';
-import { isEmpty, isEqual } from 'lodash-es';
-import { format, parseISO } from 'date-fns';
+import { isEmpty, isEqual, isNil } from 'lodash-es';
 import Highcharts from 'highcharts';
-import highchartsMore from 'highcharts/highcharts-more.js';
-import solidGauge from 'highcharts/modules/solid-gauge.js';
+import variablePie from 'highcharts/modules/variable-pie.js';
 import highchartsAccessibility from 'highcharts/modules/accessibility';
 
 import {
@@ -16,29 +14,33 @@ import {
 import { ConfigurationInstance } from '../../services/configuration';
 import Translations from '../../config/translations/en.json';
 import {
-  ALL_FONTS,
   RVConfiguration,
-  RVFilterAll,
-  RVFilterGauge,
-  RVFormattedGaugeResponse,
-  RVGaugeChartSummary,
+  RVFormattedPieResponse,
   RVOptions,
+  RVIncomeStatementsSummary,
+  RVReportTypes,
+  RVFilterIncomeStatementsType,
+  RVFilterAll,
 } from '../../types';
 import { errorLog } from '../../services/logger';
-import { isGauge } from '../../helpers/utils';
+import { getTitleByReportType, isIncomeStatements, roundNumber } from '../../helpers/utils';
 
-import { getReportData, getOptionsGauge } from './gauge-chart.utils';
+import { getOptionsIncomeStatements, getReportData } from './income-statements.utils';
 
-highchartsMore(Highcharts);
-solidGauge(Highcharts);
+variablePie(Highcharts);
 highchartsAccessibility(Highcharts);
 
+const TranslationMapping = {
+  [RVReportTypes.EXPENSES]: 'EXPENSES',
+  [RVReportTypes.REVENUE]: 'REVENUES',
+};
+
 @Component({
-  tag: 'railz-gauge-chart',
-  styleUrl: 'gauge-chart.scss',
+  tag: 'railz-income-statements',
+  styleUrl: 'income-statements.scss',
   shadow: true,
 })
-export class GaugeChart {
+export class IncomeStatements {
   /**
    * Configuration information like authentication configuration
    */
@@ -46,7 +48,7 @@ export class GaugeChart {
   /**
    * Filter information to query the backend APIs
    */
-  @Prop() readonly filter!: RVFilterGauge;
+  @Prop() readonly filter!: RVFilterIncomeStatementsType;
   /**
    * For whitelabeling styling
    */
@@ -54,11 +56,11 @@ export class GaugeChart {
 
   @State() private loading = '';
   @State() private _configuration: RVConfiguration;
-  @State() private _filter: RVFilterGauge;
+  @State() private _filter: RVFilterIncomeStatementsType;
   @State() private _options: RVOptions;
-  @State() private _data: RVGaugeChartSummary;
+  @State() private _summary: RVIncomeStatementsSummary;
   @State() private errorStatusCode: number;
-  @State() private lastUpdated: string;
+  @State() private chartOptions: any;
   @State() private containerRef?: HTMLDivElement;
 
   /**
@@ -70,7 +72,7 @@ export class GaugeChart {
    */
   private validateParams = async (
     configuration: RVConfiguration,
-    filter: RVFilterGauge,
+    filter: RVFilterIncomeStatementsType,
     options: RVOptions,
     triggerRequest = true,
   ): Promise<void> => {
@@ -78,10 +80,10 @@ export class GaugeChart {
     if (this._configuration) {
       ConfigurationInstance.configuration = this._configuration;
       try {
-        this._filter = getFilter(filter as RVFilterAll) as RVFilterGauge;
-        this._options = getOptions(options, filter as RVFilterAll);
+        this._filter = getFilter(filter as RVFilterAll) as RVFilterIncomeStatementsType;
+        this._options = getOptions(options);
         if (validateRequiredParams(this._filter as RVFilterAll)) {
-          if (isGauge(this._filter.reportType)) {
+          if (isIncomeStatements(this._filter.reportType)) {
             if (triggerRequest) {
               await this.requestReportData();
             }
@@ -103,9 +105,8 @@ export class GaugeChart {
 
   @Watch('containerRef')
   watchContainerRef(newValue: HTMLDivElement, _: HTMLDivElement): void {
-    const options = getOptionsGauge(this._data, this._options);
-    if (newValue && options) {
-      Highcharts.chart(this.containerRef, options);
+    if (newValue && this.chartOptions) {
+      Highcharts.chart(this.containerRef, this.chartOptions);
     }
   }
 
@@ -117,7 +118,10 @@ export class GaugeChart {
   }
 
   @Watch('filter')
-  async watchFilter(newValue: RVFilterGauge, oldValue: RVFilterGauge): Promise<void> {
+  async watchFilter(
+    newValue: RVFilterIncomeStatementsType,
+    oldValue: RVFilterIncomeStatementsType,
+  ): Promise<void> {
     if (newValue && oldValue && !isEqual(oldValue, newValue)) {
       await this.validateParams(this.configuration, newValue, this.options);
     }
@@ -137,6 +141,7 @@ export class GaugeChart {
   /**
    * Request report data based on filter and configuration param
    * Formats retrieved data into Highcharts format using formatData
+   * Updated Highchart params using updateHighchartsParams
    */
   private requestReportData = async (): Promise<void> => {
     this.errorStatusCode = undefined;
@@ -144,21 +149,33 @@ export class GaugeChart {
     try {
       const reportData = (await getReportData({
         filter: this._filter as RVFilterAll,
-      })) as RVFormattedGaugeResponse;
+      })) as RVFormattedPieResponse;
+
       if (reportData?.data) {
-        this.lastUpdated = reportData.data.lastUpdated;
-        this._data = reportData.data;
+        this._summary = reportData?.data as RVIncomeStatementsSummary;
+        this.updateHighchartsParams(reportData.data);
       } else if (reportData?.error) {
-        errorLog(Translations.RV_NOT_ABLE_TO_RETRIEVE_REPORT_DATA);
         this.errorStatusCode = reportData.error?.statusCode;
       } else {
-        errorLog(Translations.RV_ERROR_202_TITLE);
         this.errorStatusCode = reportData?.status;
       }
     } catch (error) {
       errorLog(Translations.RV_NOT_ABLE_TO_PARSE_REPORT_DATA, error);
     } finally {
       this.loading = '';
+    }
+  };
+
+  /**
+   * Using getHighchartsParams,Combine generic stacked bar line
+   * chart options and formatted data based on the report type
+   * into one option for highcharts
+   */
+  private updateHighchartsParams = (summary: RVIncomeStatementsSummary): void => {
+    const chartOptions = getOptionsIncomeStatements(summary, this._options);
+    if (chartOptions) {
+      this.loading = '';
+      this.chartOptions = chartOptions;
     }
   };
 
@@ -178,20 +195,32 @@ export class GaugeChart {
     if (!isEmpty(this.loading)) {
       return <railz-loading loadingText={this.loading} {...this._options?.loadingIndicator} />;
     }
-
     return (
-      this._data && (
+      <div class="rv-income-statements-chart-container">
         <div
-          class="railz-gauge-chart-container"
-          id="railz-gauge-chart"
+          id="rv-income-statements-chart"
           ref={(el): HTMLDivElement => (this.containerRef = el)}
-          style={{
-            width: this._options?.chart?.width,
-            height: this._options?.chart?.height,
-            ...this._options?.gauge?.chartContainer,
-          }}
+          style={{ width: this._options?.chart?.width, height: this._options?.chart?.height }}
         />
-      )
+        <div class="rv-income-statements-chart-box">
+          {!isNil(this._summary?.percentageChange) && (
+            <div class="rv-income-statements-chart-percentage">
+              {this._summary?.percentageChange >= 0 ? (
+                <div class="rv-positive" style={this._options?.chart?.pie?.positive}>
+                  &#x25B2; {this._summary?.percentageChange}%
+                </div>
+              ) : (
+                <div class="rv-negative" style={this._options?.chart?.pie?.negative}>
+                  &#x25BC; {this._summary?.percentageChange}%
+                </div>
+              )}
+            </div>
+          )}
+          <p class="rv-income-statements-chart-text" style={this._options?.chart?.pie?.total}>
+            ${roundNumber(this._summary?.totalAmount)}
+          </p>
+        </div>
+      </div>
     );
   };
 
@@ -202,57 +231,35 @@ export class GaugeChart {
 
     const TitleElement = (): HTMLElement => (
       <p class="rv-title" style={this._options?.title?.style}>
-        {this._options?.title?.text || ''}{' '}
-        {this._options?.container?.tooltip === undefined || this._options?.container?.tooltip ? (
-          <div
-            style={{
-              marginTop: '1px ',
-              marginLeft: '3px ',
+        {this._options?.content?.title || getTitleByReportType(this._filter?.reportType) || ''}{' '}
+        {this._options?.tooltipIndicator?.visible === false ? (
+          ''
+        ) : (
+          <railz-tooltip
+            tooltipStyle={{
+              position: 'bottom-center',
+              ...this._options?.tooltipIndicator,
+              style: { marginLeft: '5px', ...this._options?.tooltipIndicator?.style },
             }}
-          >
-            <railz-tooltip
-              tooltipStyle={{ position: 'bottom-center' }}
-              tooltipText={
-                this._options?.content?.tooltip?.description || Translations.RV_TOOLTIP_RAILZ_SCORE
-              }
-            />
-          </div>
-        ) : null}
+            tooltipText={
+              this._options?.content?.tooltip?.description ||
+              Translations[`RV_TOOLTIP_${TranslationMapping[this._filter?.reportType]}`]
+            }
+          />
+        )}
       </p>
     );
 
     return (
       <div class="rv-container" style={this._options?.container?.style}>
-        <div class="rv-header-container" style={this._options?.gauge?.header}>
-          <TitleElement />
-        </div>
-        {this.renderMain()}
-        {this._options?.gauge?.circle ? (
-          <p
-            class="railz-gauge-last-updated"
-            style={{
-              fontFamily: ALL_FONTS,
-            }}
-          >
-            Reconciled transactions
-          </p>
-        ) : null}
-        {(this._options?.container?.date === undefined || this._options?.container?.date) &&
-        !isEmpty(this.lastUpdated) &&
-        !this._options?.gauge?.circle ? (
-          <p
-            class="railz-gauge-last-updated"
-            style={{
-              fontFamily: this._options?.chart?.fontFamily || ALL_FONTS,
-              ...this._options?.gauge?.lastUpdated,
-            }}
-          >
-            {this._options?.content?.label?.date || Translations.RV_AS_OF}{' '}
-            {format(parseISO(this.lastUpdated), 'dd MMM yyyy')}
-          </p>
+        {this._options?.title?.visible === false ? (
+          ''
         ) : (
-          <p></p>
+          <div class="rv-header-container">
+            <TitleElement />
+          </div>
         )}
+        {this.renderMain()}
       </div>
     );
   }

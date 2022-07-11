@@ -22,13 +22,13 @@ export class Percentage {
       return null;
     }
     return (
-      <div class="railz-percentage">
+      <div class="rv-percentage">
         {this.percentage > 0 ? (
-          <div class="positive" style={{ color: this.percentageStyle?.positive }}>
+          <div class="rv-positive" style={this.percentageStyle?.positive}>
             &#x25B2; {this.percentage}%
           </div>
         ) : (
-          <div class="negative" style={{ color: this.percentageStyle?.negative }}>
+          <div class="rv-negative" style={this.percentageStyle?.negative}>
             &#x25BC; {this.percentage}%
           </div>
         )}
