@@ -84,7 +84,7 @@ export const getOptionsGauge = (gauge: RVCreditScoreSummary, options: RVOptions)
   },
   title: null,
   pane: {
-    center: ['50%', '65%'],
+    center: options?.chart?.type === 'circle' ? ['50%', '50%'] : ['50%', '65%'],
     size: options?.chart?.gauge?.size || '90%',
     startAngle: options?.chart?.gauge?.startAngle || -90,
     endAngle: options?.chart?.gauge?.endAngle || 90,
@@ -177,13 +177,22 @@ export const getOptionsGauge = (gauge: RVCreditScoreSummary, options: RVOptions)
           fontFamily: options?.chart?.fontFamily || ALL_FONTS,
         },
         formatter: function (): string {
-          return `
+          return gauge?.percentage
+            ? `
+            <div style="width:100%;text-align:center;font-family: ${
+              options?.chart?.fontFamily || ALL_FONTS
+            }">
+              <span style="font-size:1rem;font-weight: 600;font-family: ${
+                options?.chart?.fontFamily || ALL_FONTS
+              }">${gauge?.score}%</span>
+            </div>`
+            : `
             <div style="width:100%;text-align:center;font-family: ${
               options?.chart?.fontFamily || ALL_FONTS
             }">
               <span style="font-size: 36px;color: black;font-weight:600;${fromCssObjectToInline(
                 options?.chart?.gauge?.score,
-              )}">${gauge?.score}${gauge?.percentage ? '%' : ''}%</span><br/>
+              )}">${gauge?.score}</span><br/>
               <span style="font-size: 16px;font-weight: 400; ${fromCssObjectToInline(
                 options?.chart?.gauge?.rating,
               )}">${gauge?.rating}</span>
