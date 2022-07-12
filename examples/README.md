@@ -5,8 +5,8 @@ A Node.js starter application is included in the examples [folder](examples/node
 
 ## Frameworks
 
-- [Angular](examples/angular);
-- [React](examples/react-example);
-- [Javascript](examples/javascript);
+- [Angular](./angular);
+- [React](./react-example);
+- [Javascript](./javascript);
 
 Follow the instructions in the specific directories to begin using.
