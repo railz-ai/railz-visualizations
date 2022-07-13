@@ -86,8 +86,9 @@ export const getOptionsGauge = (gauge: RVCreditScoreSummary, options: RVOptions)
   pane: {
     center: options?.chart?.type === 'circle' ? ['50%', '50%'] : ['50%', '65%'],
     size: options?.chart?.gauge?.size || '90%',
-    startAngle: options?.chart?.gauge?.startAngle || -90,
-    endAngle: options?.chart?.gauge?.endAngle || 90,
+    startAngle:
+      options?.chart?.gauge?.startAngle === undefined ? -90 : options?.chart?.gauge?.startAngle,
+    endAngle: options?.chart?.gauge?.endAngle === undefined ? 90 : options?.chart?.gauge?.endAngle,
     background: [
       {
         backgroundColor: '#F5F5F5',
