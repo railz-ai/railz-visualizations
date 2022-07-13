@@ -1,5 +1,5 @@
 /* eslint-disable max-len, @typescript-eslint/no-unused-vars */
-import { Component, Prop, Watch, State, h } from '@stencil/core';
+import { Component, Prop, Watch, State, h, setMode } from '@stencil/core';
 
 import Highcharts from 'highcharts';
 import highchartsMore from 'highcharts/highcharts-more.js';
@@ -12,12 +12,18 @@ import { getData, getOptions } from '../../helpers/chart.utils';
 
 import { getOptionsGauge } from './gauge-chart.utils';
 
+setMode((elm) => {
+  return (elm as any).mode || elm.getAttribute('mode') || 'default';
+});
 highchartsMore(Highcharts);
 solidGauge(Highcharts);
 highchartsAccessibility(Highcharts);
 @Component({
   tag: 'railz-gauge-chart',
-  styleUrl: 'gauge-chart.scss',
+  styleUrls: {
+    default: 'gauge-chart.default.scss',
+    inherit: 'gauge-chart.inherit.scss',
+  },
   shadow: true,
 })
 export class RailzGaugeChart {
@@ -62,6 +68,7 @@ export class RailzGaugeChart {
   }
 
   render(): HTMLElement {
+    console.log('this._options in gauge-chart', this._options);
     return (
       this.data && (
         <div

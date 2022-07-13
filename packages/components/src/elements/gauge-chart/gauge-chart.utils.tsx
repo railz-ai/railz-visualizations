@@ -114,7 +114,7 @@ export const getOptionsGauge = (gauge: RVCreditScoreSummary, options: RVOptions)
   // the value axis
   yAxis: {
     min: options?.chart?.type === 'circle' ? 0 : 300,
-    max: 850,
+    max: options?.chart?.gauge?.maxScore ? options?.chart?.gauge?.maxScore : 850,
     tickPositions: options?.chart?.type === 'circle' ? undefined : [300, 850],
     labels:
       options?.chart?.type === 'circle'
@@ -124,7 +124,14 @@ export const getOptionsGauge = (gauge: RVCreditScoreSummary, options: RVOptions)
             y: 15,
             style: { color: '#757575', ...options?.chart?.label },
           },
-    stops: [[0, getColor(gauge?.score, options?.chart?.gauge?.colorRanges)]],
+    stops: [
+      [
+        0,
+        options?.chart?.gauge?.getColor
+          ? options?.chart?.gauge?.getColor(gauge?.score)
+          : getColor(gauge?.score, options?.chart?.gauge?.colorRanges),
+      ],
+    ],
     plotLines:
       options?.chart?.type === 'circle'
         ? undefined
@@ -206,7 +213,9 @@ export const getOptionsGauge = (gauge: RVCreditScoreSummary, options: RVOptions)
   },
   series: [
     {
-      data: getData(gauge?.score),
+      data: options?.chart?.gauge?.getData
+        ? options?.chart?.gauge?.getData(gauge?.score)
+        : getData(gauge?.score),
       animation: {
         duration: 1000,
       },

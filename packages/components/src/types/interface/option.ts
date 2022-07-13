@@ -229,6 +229,12 @@ export interface RVOptionsGaugeStyle {
   size?: string;
 
   innerRadius?: string;
+
+  getColor?(score: number): string;
+
+  getData?(score: number): number[];
+
+  maxScore?: number;
 }
 export interface RVOptionsTableStyle {
   /**

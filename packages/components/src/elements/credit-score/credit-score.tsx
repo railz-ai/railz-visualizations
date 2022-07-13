@@ -2,10 +2,6 @@
 import { Component, h, Prop, State, Watch } from '@stencil/core';
 import { isEmpty, isEqual } from 'lodash-es';
 import { format, parseISO } from 'date-fns';
-import Highcharts from 'highcharts';
-import highchartsMore from 'highcharts/highcharts-more.js';
-import solidGauge from 'highcharts/modules/solid-gauge.js';
-import highchartsAccessibility from 'highcharts/modules/accessibility';
 
 import {
   getConfiguration,
@@ -27,11 +23,7 @@ import {
 import { errorLog } from '../../services/logger';
 import { getTitleByReportType, isCreditScore } from '../../helpers/utils';
 
-import { getOptionsGauge, getReportData } from './credit-score.utils';
-
-highchartsMore(Highcharts);
-solidGauge(Highcharts);
-highchartsAccessibility(Highcharts);
+import { getReportData } from './credit-score.utils';
 
 @Component({
   tag: 'railz-credit-score',
@@ -59,7 +51,6 @@ export class CreditScore {
   @State() private _data: RVCreditScoreSummary;
   @State() private errorStatusCode: number;
   @State() private lastUpdated: string;
-  @State() private containerRef?: HTMLDivElement;
 
   /**
    * Validates if configuration was passed correctly before setting filter
@@ -100,14 +91,6 @@ export class CreditScore {
       this.errorStatusCode = 0;
     }
   };
-
-  @Watch('containerRef')
-  watchContainerRef(newValue: HTMLDivElement, _: HTMLDivElement): void {
-    const options = getOptionsGauge(this._data, this._options);
-    if (newValue && options) {
-      Highcharts.chart(this.containerRef, options);
-    }
-  }
 
   @Watch('configuration')
   async watchConfiguration(newValue: RVConfiguration, oldValue: RVConfiguration): Promise<void> {
@@ -179,19 +162,7 @@ export class CreditScore {
       return <railz-loading loadingText={this.loading} {...this._options?.loadingIndicator} />;
     }
 
-    return (
-      this._data && (
-        <div
-          class="rv-score-chart-container"
-          id="railz-creditScore-chart"
-          ref={(el): HTMLDivElement => (this.containerRef = el)}
-          style={{
-            width: this._options?.chart?.width,
-            height: this._options?.chart?.height,
-          }}
-        />
-      )
-    );
+    return <railz-gauge-chart mode={'inherit'} options={this._options} data={this._data} />;
   };
 
   render(): HTMLElement {
@@ -242,6 +213,8 @@ export class CreditScore {
         ) as HTMLElement)
       );
     };
+
+    console.log('this._options in credit score', this._options);
 
     return (
       <div class="rv-container" style={this._options?.container?.style}>
