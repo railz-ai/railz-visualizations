@@ -228,12 +228,24 @@ export interface RVOptionsGaugeStyle {
    */
   size?: string;
 
+  /**
+   * innerRadius: inner radius percentage of the pie chart
+   */
   innerRadius?: string;
 
+  /**
+   * getColor: the function return gauge color
+   */
   getColor?(score: number): string;
 
+  /**
+   * getData: the function return gauge score array
+   */
   getData?(score: number): number[];
 
+  /**
+   * maxScore: the maximum score for the pie chart score section
+   */
   maxScore?: number;
 }
 export interface RVOptionsTableStyle {
