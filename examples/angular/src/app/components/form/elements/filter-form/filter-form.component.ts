@@ -4,7 +4,6 @@ import {
   RVBankingProviders,
   RVReportFrequency,
   RVReportTypes,
-  RVSandboxProviders,
 } from '@railzai/railz-visualizations';
 import { FormGroup } from '@angular/forms';
 
@@ -14,7 +13,6 @@ import { FormGroup } from '@angular/forms';
 })
 export class FilterFormComponent implements OnInit {
   arrayServiceProviders = [
-    ...Object.values(RVSandboxProviders),
     ...Object.values(RVBankingProviders),
     ...Object.values(RVAccountingProviders),
   ];
