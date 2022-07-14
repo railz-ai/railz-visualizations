@@ -4,7 +4,6 @@ import {
   RVBankingProviders,
   RVReportFrequency,
   RVReportTypes,
-  RVSandboxProviders,
 } from '@railzai/railz-visualizations';
 
 import { FormProps } from '../../../types/form';
@@ -12,7 +11,6 @@ import { FormProps } from '../../../types/form';
 // TODO: this can be helper functions and objects the SDK provides
 // This is still not possible: https://github.com/ionic-team/stencil/issues/2865
 const arrayServiceProviders = [
-  ...Object.values(RVSandboxProviders),
   ...Object.values(RVBankingProviders),
   ...Object.values(RVAccountingProviders),
 ];
