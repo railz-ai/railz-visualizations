@@ -162,7 +162,11 @@ export class CreditScore {
       return <railz-loading loadingText={this.loading} {...this._options?.loadingIndicator} />;
     }
 
-    return <railz-gauge-chart mode={'inherit'} options={this._options} data={this._data} />;
+    return (
+      <div style={{ height: '225px' }}>
+        <railz-gauge-chart mode={'inherit'} options={this._options} data={this._data} />
+      </div>
+    );
   };
 
   render(): HTMLElement {
