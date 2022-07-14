@@ -4,7 +4,6 @@ import {
   RVBankingProviders,
   RVReportFrequency,
   RVReportTypes,
-  RVSandboxProviders,
 } from '@railzai/railz-visualizations';
 
 import { FormProps } from '../../../types/form';
