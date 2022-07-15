@@ -190,9 +190,9 @@ export const getOptionsGauge = (gauge: RVCreditScoreSummary, options: RVOptions)
             <div style="width:100%;text-align:center;font-family: ${
               options?.chart?.fontFamily || ALL_FONTS
             }">
-              <span style="font-size:1rem;font-weight: 600;font-family: ${
-                options?.chart?.fontFamily || ALL_FONTS
-              }">${gauge?.score}%</span>
+              <span style="font-size:1rem;font-weight: 600;${fromCssObjectToInline(
+                options?.chart?.gauge?.score,
+              )}">${gauge?.score}</span>
             </div>`
             : `
             <div style="width:100%;text-align:center;font-family: ${

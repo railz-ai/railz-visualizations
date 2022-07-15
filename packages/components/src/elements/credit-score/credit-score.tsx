@@ -218,8 +218,6 @@ export class CreditScore {
       );
     };
 
-    console.log('this._options in credit score', this._options);
-
     return (
       <div class="rv-container" style={this._options?.container?.style}>
         <div class="rv-header-container">
