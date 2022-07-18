@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.0.8-alpha.0 (2022-07-18)
+
+
+### Features
+
+* rlz-1988: bank reconcilliation summary report ([#105](https://github.com/railz-ai/railz-visualizations/issues/105)) ([17457a7](https://github.com/railz-ai/railz-visualizations/commit/17457a7512db68ef39b5de41c529e4993f34379c))
+
+
+
+
+
 ## 0.0.7 (2022-07-07)
 
 **Note:** Version bump only for package @railzai/railz-visualizations-angular
