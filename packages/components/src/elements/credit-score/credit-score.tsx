@@ -163,7 +163,7 @@ export class CreditScore {
     }
 
     return (
-      <div style={{ height: '225px' }}>
+      <div class="rv-gauge-chart-container">
         <railz-gauge-chart mode={'inherit'} options={this._options} data={this._data} />
       </div>
     );
