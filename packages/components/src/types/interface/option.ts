@@ -98,6 +98,11 @@ export interface RVOptionsChartStyle extends RVOptionsBaseChartStyle {
    * gauge: javascript object to cover the styling of additional gauge chart properties
    */
   gauge?: RVOptionsGaugeStyle;
+
+  /**
+   * type: chart type
+   */
+  type?: string;
 }
 
 interface RVOptionsChartPieStyle extends RVOptionsPercentageStyle {
@@ -153,6 +158,11 @@ export interface RVOptionsBarStyle {
    * progressStyle: CSS object based on HTML stylings for the bar’s progress indicator
    */
   progressStyle?: { [key: string]: any };
+
+  /**
+   * hideLabels: Visibility of labels
+   */
+  hideLabels?: boolean;
 }
 
 export interface RVColorRangesStyle {
@@ -202,6 +212,41 @@ export interface RVOptionsGaugeStyle {
    * colorRanges: Object containing color by range
    */
   colorRanges?: RVColorRangesStyle;
+
+  /**
+   * The start angle of the pie slices in degrees where 0 is top and 90 right.
+   */
+  startAngle?: number;
+
+  /**
+   * The end angle of the pie in degrees where 0 is top and 90 is right. Defaults to startAngle plus 360.
+   */
+  endAngle?: number;
+
+  /**
+   * size: The diameter of the pie relative to the plot area: percentage string like '70%'
+   */
+  size?: string;
+
+  /**
+   * innerRadius: inner radius percentage of the pie chart
+   */
+  innerRadius?: string;
+
+  /**
+   * getColor: the function return gauge color
+   */
+  getColor?(score: number): string;
+
+  /**
+   * getData: the function return gauge score array
+   */
+  getData?(score: number): number[];
+
+  /**
+   * maxScore: the maximum score for the pie chart score section
+   */
+  maxScore?: number;
 }
 export interface RVOptionsTableStyle {
   /**

@@ -42,7 +42,7 @@ describe('railz-progress-bar', () => {
               $34,342.5
             </span>
           </p>
-          <div class="railz-progress-bar-values">
+          <div class="rv-progress-bar-values">
             <div class="rv-progress-bar-values-div">
               <div>
                 <p aria-label="Paid 1,318" class="rv-progress-bar-label">

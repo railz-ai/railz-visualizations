@@ -44,6 +44,7 @@ graph TD;
   railz-financial-ratios --> railz-select
   railz-credit-score --> railz-error-image
   railz-credit-score --> railz-loading
+  railz-credit-score --> railz-gauge-chart
   railz-credit-score --> railz-tooltip
   railz-income-statements --> railz-error-image
   railz-income-statements --> railz-loading

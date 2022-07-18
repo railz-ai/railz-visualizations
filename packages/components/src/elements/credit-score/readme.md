@@ -20,6 +20,7 @@
 
 - [railz-error-image](../error)
 - [railz-loading](../loading)
+- [railz-gauge-chart](../gauge-chart)
 - [railz-tooltip](../tooltip)
 
 ### Graph
@@ -28,6 +29,7 @@
 graph TD;
   railz-credit-score --> railz-error-image
   railz-credit-score --> railz-loading
+  railz-credit-score --> railz-gauge-chart
   railz-credit-score --> railz-tooltip
   railz-visualizations --> railz-credit-score
   style railz-credit-score fill:#f9f,stroke:#333,stroke-width:4px

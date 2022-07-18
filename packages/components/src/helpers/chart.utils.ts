@@ -17,6 +17,7 @@ import {
   RVReportTypes,
   RVAllProviders,
   RVUpdateChartParameter,
+  RVCreditScoreSummary,
 } from '../types';
 
 import { isRequiredReportFrequency } from './utils';
@@ -228,6 +229,29 @@ export const getOptions = (options: RVOptions | string): RVOptions => {
     errorLog(Translations.RV_ERROR_PARSING_OPTIONS + ' ' + JSON.stringify(error));
   }
   return formattedOptions;
+};
+
+/**
+ * getData: if data is a string, convert to an object
+ */
+export const getData = (options: RVCreditScoreSummary | string): RVCreditScoreSummary => {
+  let formattedData: RVCreditScoreSummary;
+  try {
+    if (options) {
+      try {
+        if (typeof options === 'string') {
+          formattedData = JSON.parse(options);
+        } else {
+          formattedData = options;
+        }
+      } catch (error) {
+        errorLog(Translations.RV_ERROR_PARSING_DATA + ' ' + JSON.stringify(error));
+      }
+    }
+  } catch (error) {
+    errorLog(Translations.RV_ERROR_PARSING_DATA + ' ' + JSON.stringify(error));
+  }
+  return formattedData;
 };
 
 /**

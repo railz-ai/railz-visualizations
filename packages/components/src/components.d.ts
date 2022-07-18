@@ -7,6 +7,7 @@
 import { HTMLStencilElement, JSXBase } from '@stencil/core/internal';
 import {
   RVConfiguration,
+  RVCreditScoreSummary,
   RVFilterAllReportTypes,
   RVFilterBankAccount,
   RVFilterCreditScore,
@@ -83,6 +84,13 @@ export namespace Components {
      * Filter information to query the backend APIs
      */
     filter: RVFilterFinancialRatio;
+    /**
+     * For whitelabeling styling
+     */
+    options: RVOptions;
+  }
+  interface RailzGaugeChart {
+    data: RVCreditScoreSummary;
     /**
      * For whitelabeling styling
      */
@@ -247,6 +255,11 @@ declare global {
     prototype: HTMLRailzFinancialRatiosElement;
     new (): HTMLRailzFinancialRatiosElement;
   };
+  interface HTMLRailzGaugeChartElement extends Components.RailzGaugeChart, HTMLStencilElement {}
+  var HTMLRailzGaugeChartElement: {
+    prototype: HTMLRailzGaugeChartElement;
+    new (): HTMLRailzGaugeChartElement;
+  };
   interface HTMLRailzIncomeStatementsElement
     extends Components.RailzIncomeStatements,
       HTMLStencilElement {}
@@ -312,6 +325,7 @@ declare global {
     'railz-credit-score': HTMLRailzCreditScoreElement;
     'railz-error-image': HTMLRailzErrorImageElement;
     'railz-financial-ratios': HTMLRailzFinancialRatiosElement;
+    'railz-gauge-chart': HTMLRailzGaugeChartElement;
     'railz-income-statements': HTMLRailzIncomeStatementsElement;
     'railz-loading': HTMLRailzLoadingElement;
     'railz-percentage': HTMLRailzPercentageElement;
@@ -384,6 +398,13 @@ declare namespace LocalJSX {
      * Filter information to query the backend APIs
      */
     filter: RVFilterFinancialRatio;
+    /**
+     * For whitelabeling styling
+     */
+    options?: RVOptions;
+  }
+  interface RailzGaugeChart {
+    data?: RVCreditScoreSummary;
     /**
      * For whitelabeling styling
      */
@@ -530,6 +551,7 @@ declare namespace LocalJSX {
     'railz-credit-score': RailzCreditScore;
     'railz-error-image': RailzErrorImage;
     'railz-financial-ratios': RailzFinancialRatios;
+    'railz-gauge-chart': RailzGaugeChart;
     'railz-income-statements': RailzIncomeStatements;
     'railz-loading': RailzLoading;
     'railz-percentage': RailzPercentage;
@@ -554,6 +576,8 @@ declare module '@stencil/core' {
         JSXBase.HTMLAttributes<HTMLRailzErrorImageElement>;
       'railz-financial-ratios': LocalJSX.RailzFinancialRatios &
         JSXBase.HTMLAttributes<HTMLRailzFinancialRatiosElement>;
+      'railz-gauge-chart': LocalJSX.RailzGaugeChart &
+        JSXBase.HTMLAttributes<HTMLRailzGaugeChartElement>;
       'railz-income-statements': LocalJSX.RailzIncomeStatements &
         JSXBase.HTMLAttributes<HTMLRailzIncomeStatementsElement>;
       'railz-loading': LocalJSX.RailzLoading & JSXBase.HTMLAttributes<HTMLRailzLoadingElement>;
