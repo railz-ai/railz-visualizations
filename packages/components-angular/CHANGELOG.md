@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.0.8-alpha.1 (2022-07-22)
+
+
+### Features
+
+* added percentage to percentage gaugechart ([#107](https://github.com/railz-ai/railz-visualizations/issues/107)) ([618f123](https://github.com/railz-ai/railz-visualizations/commit/618f123319a98be4fdd8bc8ff86e6b2401625f8f))
+
+
+
+
+
 ## 0.0.8-alpha.0 (2022-07-18)
 
 
