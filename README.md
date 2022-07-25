@@ -64,6 +64,8 @@ Stencil components are just Web Components, so they work in any major framework 
 
 ## Overview
 
+Accounting Data as a Service™
+
 The Railz Visualization components helps to build your dashboard easily with data from the Railz Reports API.
 <br>
 
