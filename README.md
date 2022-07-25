@@ -1,7 +1,10 @@
 <p align="center">
   <a href="https://railz.ai/" rel="noopener" target="_blank"><img width="200" src="./assets/images/railz-logo.svg" alt="Railz logo"></a>
+</p>
+<p align="center">
   <small>Accounting Data as a Service</small>
 </p>
+
 
 <h1 align="center">
   <a href="https://docs.railz.ai/docs/visualization-sdk-overview">
