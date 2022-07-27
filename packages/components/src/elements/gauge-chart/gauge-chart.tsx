@@ -68,7 +68,6 @@ export class RailzGaugeChart {
   }
 
   render(): HTMLElement {
-    console.log('this._options in gauge-chart', this._options);
     return (
       this.data && (
         <div
