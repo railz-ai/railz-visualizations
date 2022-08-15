@@ -2,6 +2,8 @@
   <a href="https://railz.ai/" rel="noopener" target="_blank"><img width="200" src="./assets/images/railz-logo.svg" alt="Railz logo"></a>
 </p>
 
+Railz is the Accounting Data-as-a-Service™ solution that makes sense of your business customers' financial data.
+
 <h1 align="center">
   <a href="https://docs.railz.ai/docs/visualization-sdk-overview">
     Railz Visualizations
