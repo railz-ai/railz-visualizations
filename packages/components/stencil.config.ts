@@ -8,6 +8,8 @@ export const config: Config = {
   namespace: 'RailzVisualizations',
   globalStyle: 'src/global/global.scss',
   sourceMap: true,
+  preamble:
+    "Railz is the Accounting Data-as-a-Service™ solution that makes sense of your business customers' financial data.\nBuilt with Stencil\nCopyright (c) Railz Financial Technologies.",
   outputTargets: [
     angular({
       componentCorePackage: `@railzai/railz-visualizations`,
