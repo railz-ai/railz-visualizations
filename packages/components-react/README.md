@@ -1,3 +1,5 @@
+Railz is the Accounting Data-as-a-Service™ solution that makes sense of your business customers' financial data.
+
 # components-react
 
 This is a react wrapper for `@railzai/railz-visualization`, it is based of stencil sample template
