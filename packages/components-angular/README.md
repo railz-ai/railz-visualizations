@@ -1,3 +1,5 @@
+Railz is the Accounting Data-as-a-Service™ solution that makes sense of your business customers' financial data.
+
 # Railz Visualizations Angular
 
 <p align="center">
