@@ -22,7 +22,7 @@
     "@angular/router": "~13.3.11",
     "@maaxgr/ang-jsoneditor": "13",
     "@railzai/railz-visualizations-angular": "latest",
-    "@tailwindcss/forms": "~0.4.0",
+    "@tailwindcss/forms": "~0.5.2",
     "autoprefixer": "~10.4.2",
     "base-64": "~1.0.0",
     "dotenv": "~16.0.0",
