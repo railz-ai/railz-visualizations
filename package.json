@@ -2,7 +2,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "install:codesandbox": "yarn install",
+    "install:codesandbox": "npm cache clean --force && yarn cache clean && yarn install",
     "bootstrap": "lerna bootstrap",
     "add:angular": "lerna add @railzai/railz-visualizations --scope=@railzai/railz-visualizations-angular",
     "add:react": "lerna add @railzai/railz-visualizations --scope=@railzai/railz-visualizations-react",
@@ -46,7 +46,7 @@
     "packages/*"
   ],
   "lint-staged": {
-    "**/*": "prettier . --write --ignore-unknown --allow-empty"
+    "**/*": "prettier --write --ignore-unknown --allow-empty"
   },
   "packageManager": "yarn@1.22.17",
   "dependencies": {
