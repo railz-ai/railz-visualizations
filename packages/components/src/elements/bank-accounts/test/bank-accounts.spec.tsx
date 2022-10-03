@@ -55,6 +55,41 @@ describe('railz-bank-accounts', () => {
     `);
   });
 
+  it('renders without data and failed', async () => {
+    jest.spyOn(BanksAccountsUtils, 'getReportData').mockImplementation((): any => {
+      throw new Error('Failed to get result');
+    });
+
+    const page = await newSpecPage({
+      components: [BanksAccounts],
+      template: () => (
+        <railz-bank-accounts
+          configuration={{
+            token: 'eyJhbG',
+            debug: true,
+          }}
+          filter={{
+            businessName: 'QboFrdTest',
+            serviceName: RVAllProviders.PLAID,
+            reportType: RVReportTypes.BANK_ACCOUNT,
+          }}
+        ></railz-bank-accounts>
+      ),
+    });
+    expect(page.root).toEqualHtml(`
+    <railz-bank-accounts>
+    <mock:shadow-root>
+      <div class="rv-container">
+        <div class="rv-header-container">
+          <p class="rv-title">
+            Bank Accounts
+          </p>
+        </div>
+      </div>
+    </mock:shadow-root>
+  </railz-bank-accounts>
+    `);
+  });
   it('renders with data', async () => {
     jest
       .spyOn(BanksAccountsUtils, 'getReportData')
