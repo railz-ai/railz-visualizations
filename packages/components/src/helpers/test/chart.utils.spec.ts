@@ -7,6 +7,7 @@ import {
   getFilter,
   validateBusinessServiceNameParams,
   validateDateParams,
+  validateReportTypeParams,
 } from '../chart.utils';
 import {
   RVFilterBalanceSheet,
@@ -71,6 +72,9 @@ describe('Chart Utils Helper', () => {
       describe('failure path', () => {
         test('returns undefined due to plain string passed', async () => {
           expect(getFilter('testing param')).toBeUndefined();
+        });
+        test('returns undefined due to no data', async () => {
+          expect(getFilter(null)).toBeUndefined();
         });
       });
 
@@ -145,6 +149,47 @@ describe('Chart Utils Helper', () => {
         expect(validateReportFrequencyParams(filter as RVFilterAll)).toEqual(true);
       });
     });
+    describe('failure path', () => {
+      test('returns false for no report frequency for required report type', async () => {
+        const filter: RVFilterBalanceSheet = {
+          reportType: RVReportTypes.BALANCE_SHEET,
+          businessName: '',
+          serviceName: RVAccountingProviders.QUICKBOOKS,
+          reportFrequency: null,
+          startDate: '2020-01-01',
+          endDate: '2020-01-01',
+        };
+        expect(validateReportFrequencyParams(filter as RVFilterAll)).toEqual(false);
+      });
+    });
+  });
+  describe('validateReportTypeParams', () => {
+    describe('success path', () => {
+      test('returns true for correct params', async () => {
+        const filter: RVFilterBalanceSheet = {
+          reportType: RVReportTypes.BALANCE_SHEET,
+          businessName: '',
+          serviceName: RVAccountingProviders.QUICKBOOKS,
+          reportFrequency: RVReportFrequency.MONTH,
+          startDate: '2020-01-01',
+          endDate: '2020-01-01',
+        };
+        expect(validateReportTypeParams(filter as RVFilterAll)).toEqual(true);
+      });
+    });
+    describe('failure path', () => {
+      test('returns false for wrong report type', async () => {
+        const filter: RVFilterAll = {
+          reportType: 'wrongReportType',
+          businessName: '',
+          serviceName: RVAccountingProviders.QUICKBOOKS,
+          reportFrequency: null,
+          startDate: '2020-01-01',
+          endDate: '2020-01-01',
+        } as unknown as RVFilterAll;
+        expect(validateReportTypeParams(filter)).toEqual(false);
+      });
+    });
   });
 
   describe('validateBusinessServiceNameParams', () => {
@@ -165,14 +210,35 @@ describe('Chart Utils Helper', () => {
         };
         expect(validateBusinessServiceNameParams(filter as RVFilterAll)).toEqual(false);
       });
-      // TODO: When connection is ready on web-backend
-      // test('returns false if there is not businessName', async () => {
-      //   const filter: RVFilterBankAccount = {
-      //     reportType: RVReportTypes.BANK_ACCOUNT,
-      //     connectionId: '',
-      //   };
-      //   expect(validateBusinessServiceNameParams(filter)).toEqual(false);
-      // });
+      test('returns false if there is not businessName', async () => {
+        const filter: RVFilterAll = {
+          reportType: RVReportTypes.BANK_ACCOUNT,
+          connectionId: '',
+        } as unknown as RVFilterAll;
+        expect(validateBusinessServiceNameParams(filter)).toEqual(false);
+      });
+      test('returns false if there is connectionId', async () => {
+        const filter: RVFilterAll = {
+          reportType: RVReportTypes.BANK_ACCOUNT,
+          connectionId: 'connectionId',
+        } as unknown as RVFilterAll;
+        expect(validateBusinessServiceNameParams(filter)).toEqual(false);
+      });
+      test('returns false if there is no service name with business name and its not bank account', async () => {
+        const filter: RVFilterAll = {
+          reportType: RVReportTypes.INVOICES,
+          businessName: 'businessName',
+        } as unknown as RVFilterAll;
+        expect(validateBusinessServiceNameParams(filter)).toEqual(false);
+      });
+      test('returns false if service name is invalid', async () => {
+        const filter: RVFilterAll = {
+          reportType: RVReportTypes.INVOICES,
+          businessName: 'businessName',
+          serviceName: 'zohoBooks',
+        } as unknown as RVFilterAll;
+        expect(validateBusinessServiceNameParams(filter)).toEqual(false);
+      });
     });
 
     describe('success path', () => {
@@ -329,6 +395,17 @@ describe('Chart Utils Helper', () => {
           reportFrequency: RVReportFrequency.MONTH,
           startDate: '2020-01-02',
           endDate: '2020-01-01',
+        };
+        expect(validateDateParams(filter as RVFilterAll)).toEqual(false);
+      });
+      test('returns false if no startDate and endDate', async () => {
+        const filter: RVFilterBalanceSheet = {
+          reportType: RVReportTypes.BALANCE_SHEET,
+          businessName: 'businessName',
+          serviceName: RVAccountingProviders.QUICKBOOKS,
+          reportFrequency: RVReportFrequency.MONTH,
+          startDate: null,
+          endDate: null,
         };
         expect(validateDateParams(filter as RVFilterAll)).toEqual(false);
       });
