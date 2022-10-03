@@ -169,7 +169,7 @@ export class BanksAccounts {
 
     return (
       !isEmpty(this._summary) && (
-        <div>
+        <div class="rv-bank-list">
           <ul class="rv-bank-accounts-ul" style={this._options?.table?.style}>
             {Object.keys(diffBanks).map((bank) => (
               <div>

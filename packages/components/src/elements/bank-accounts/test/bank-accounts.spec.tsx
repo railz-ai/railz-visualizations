@@ -85,7 +85,7 @@ describe('railz-bank-accounts', () => {
             Bank Accounts
           </p>
         </div>
-        <div>
+        <div class="rv-bank-list">
       <ul class="rv-bank-accounts-ul">
         <div>
           <li class="rv-bank-accounts-ul-title">

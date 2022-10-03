@@ -46,6 +46,7 @@ export const config: Config = {
     moduleNameMapper: {
       'lodash-es': 'lodash',
     },
+    collectCoverage: true,
     transformIgnorePatterns: ['./node_modules/(?!lodash-es)'],
   },
 };

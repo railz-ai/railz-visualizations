@@ -166,7 +166,7 @@ export class CreditScore {
       <div class="rv-gauge-chart-container">
         <railz-gauge-chart mode={'inherit'} options={this._options} data={this._data} />
       </div>
-    );
+    ) as HTMLElement;
   };
 
   render(): HTMLElement {

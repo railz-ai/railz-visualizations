@@ -7,6 +7,7 @@
 | Property  | Attribute | Description               | Type                   | Default     |
 | --------- | --------- | ------------------------- | ---------------------- | ----------- |
 | `data`    | --        |                           | `RVCreditScoreSummary` | `undefined` |
+| `mode`    | `mode`    |                           | `string`               | `undefined` |
 | `options` | --        | For whitelabeling styling | `RVOptions`            | `undefined` |
 
 ## Dependencies
