@@ -91,6 +91,7 @@ export namespace Components {
   }
   interface RailzGaugeChart {
     data: RVCreditScoreSummary;
+    mode: string;
     /**
      * For whitelabeling styling
      */
@@ -405,6 +406,7 @@ declare namespace LocalJSX {
   }
   interface RailzGaugeChart {
     data?: RVCreditScoreSummary;
+    mode?: string;
     /**
      * For whitelabeling styling
      */

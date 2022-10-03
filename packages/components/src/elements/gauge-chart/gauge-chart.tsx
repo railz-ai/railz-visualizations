@@ -32,6 +32,7 @@ export class RailzGaugeChart {
    */
   @Prop() readonly options: RVOptions;
   @Prop() readonly data: RVCreditScoreSummary;
+  @Prop() mode: string;
   @State() private containerRef?: HTMLDivElement;
   @State() private _options: RVOptions;
   @State() private _data: RVCreditScoreSummary;

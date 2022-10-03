@@ -96,13 +96,13 @@ export declare interface RailzGaugeChart extends Components.RailzGaugeChart {}
 
 @ProxyCmp({
   defineCustomElementFn: undefined,
-  inputs: ['data', 'options'],
+  inputs: ['data', 'mode', 'options'],
 })
 @Component({
   selector: 'railz-gauge-chart',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
-  inputs: ['data', 'options'],
+  inputs: ['data', 'mode', 'options'],
 })
 export class RailzGaugeChart {
   protected el: HTMLElement;
