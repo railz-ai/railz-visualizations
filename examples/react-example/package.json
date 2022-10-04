@@ -20,7 +20,7 @@
     "@testing-library/user-event": "~13.5.0",
     "@types/jest": "~27.4.0",
     "@types/node": "~18.7.3",
-    "@types/react": "~17.0.20",
+    "@types/react": "~18.0.19",
     "@types/react-dom": "~17.0.9",
     "autoprefixer": "~10.4.2",
     "base-64": "~1.0.0",
