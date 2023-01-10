@@ -217,7 +217,12 @@ export class IncomeStatements {
             </div>
           )}
           <p class="rv-income-statements-chart-text" style={this._options?.chart?.pie?.total}>
-            ${roundNumber(this._summary?.totalAmount)}
+            {this._summary?.totalAmount < 0 ? '-' : ''}$
+            {roundNumber(
+              this._summary?.totalAmount < 0
+                ? Math.abs(this._summary?.totalAmount)
+                : this._summary?.totalAmount,
+            )}
           </p>
         </div>
       </div>
