@@ -16,6 +16,7 @@ import {
   RVFilterStatements,
   RVFilterTransactions,
   RVOptions,
+  RVOptionsBankReconciliationStyle,
   RVOptionsBarStyle,
   RVOptionsPercentageStyle,
   RVOptionsRatioSparkLineStyle,
@@ -38,6 +39,32 @@ export namespace Components {
      * For whitelabeling styling
      */
     options: RVOptions;
+  }
+  interface RailzBankReconciliation {
+    /**
+     * Accounting Balance
+     */
+    accountingBalance: number;
+    /**
+     * The Accuracy Score is the precision level of reconciliation by taking into account the number of matched transactions and the value of those transactions.
+     */
+    accuracyScore: number;
+    /**
+     * Banking Balance
+     */
+    bankBalance: number;
+    /**
+     * Matched Number of Transactions (exclude unmatched ones)
+     */
+    matchedTransactions: number;
+    /**
+     * For whitelabeling styling
+     */
+    options?: RVOptionsBankReconciliationStyle;
+    /**
+     * Total Number of Transactions
+     */
+    totalTransations: number;
   }
   interface RailzCreditScore {
     /**
@@ -239,6 +266,13 @@ declare global {
     prototype: HTMLRailzBankAccountsElement;
     new (): HTMLRailzBankAccountsElement;
   };
+  interface HTMLRailzBankReconciliationElement
+    extends Components.RailzBankReconciliation,
+      HTMLStencilElement {}
+  var HTMLRailzBankReconciliationElement: {
+    prototype: HTMLRailzBankReconciliationElement;
+    new (): HTMLRailzBankReconciliationElement;
+  };
   interface HTMLRailzCreditScoreElement extends Components.RailzCreditScore, HTMLStencilElement {}
   var HTMLRailzCreditScoreElement: {
     prototype: HTMLRailzCreditScoreElement;
@@ -323,6 +357,7 @@ declare global {
   };
   interface HTMLElementTagNameMap {
     'railz-bank-accounts': HTMLRailzBankAccountsElement;
+    'railz-bank-reconciliation': HTMLRailzBankReconciliationElement;
     'railz-credit-score': HTMLRailzCreditScoreElement;
     'railz-error-image': HTMLRailzErrorImageElement;
     'railz-financial-ratios': HTMLRailzFinancialRatiosElement;
@@ -353,6 +388,32 @@ declare namespace LocalJSX {
      * For whitelabeling styling
      */
     options?: RVOptions;
+  }
+  interface RailzBankReconciliation {
+    /**
+     * Accounting Balance
+     */
+    accountingBalance?: number;
+    /**
+     * The Accuracy Score is the precision level of reconciliation by taking into account the number of matched transactions and the value of those transactions.
+     */
+    accuracyScore?: number;
+    /**
+     * Banking Balance
+     */
+    bankBalance?: number;
+    /**
+     * Matched Number of Transactions (exclude unmatched ones)
+     */
+    matchedTransactions?: number;
+    /**
+     * For whitelabeling styling
+     */
+    options?: RVOptionsBankReconciliationStyle;
+    /**
+     * Total Number of Transactions
+     */
+    totalTransations?: number;
   }
   interface RailzCreditScore {
     /**
@@ -550,6 +611,7 @@ declare namespace LocalJSX {
   }
   interface IntrinsicElements {
     'railz-bank-accounts': RailzBankAccounts;
+    'railz-bank-reconciliation': RailzBankReconciliation;
     'railz-credit-score': RailzCreditScore;
     'railz-error-image': RailzErrorImage;
     'railz-financial-ratios': RailzFinancialRatios;
@@ -572,6 +634,8 @@ declare module '@stencil/core' {
     interface IntrinsicElements {
       'railz-bank-accounts': LocalJSX.RailzBankAccounts &
         JSXBase.HTMLAttributes<HTMLRailzBankAccountsElement>;
+      'railz-bank-reconciliation': LocalJSX.RailzBankReconciliation &
+        JSXBase.HTMLAttributes<HTMLRailzBankReconciliationElement>;
       'railz-credit-score': LocalJSX.RailzCreditScore &
         JSXBase.HTMLAttributes<HTMLRailzCreditScoreElement>;
       'railz-error-image': LocalJSX.RailzErrorImage &

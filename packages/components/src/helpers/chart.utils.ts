@@ -18,6 +18,7 @@ import {
   RVAllProviders,
   RVUpdateChartParameter,
   RVCreditScoreSummary,
+  RVOptionsBankReconciliationStyle,
 } from '../types';
 
 import { isRequiredReportFrequency } from './utils';
@@ -263,6 +264,31 @@ export const getBarOptionsStyle = (
   options: RVOptionsBarStyle | string,
 ): RVOptionsBarStyle | never => {
   let formattedOptionsStyle: RVOptionsBarStyle;
+  if (options) {
+    try {
+      if (typeof options === 'string') {
+        formattedOptionsStyle = JSON.parse(options);
+      } else {
+        formattedOptionsStyle = options;
+      }
+    } catch (error) {
+      errorLog(Translations.RV_ERROR_PARSING_CONFIGURATION + ' ' + JSON.stringify(error));
+    }
+  } else {
+    formattedOptionsStyle = {};
+  }
+  return formattedOptionsStyle;
+};
+
+/**
+ * getBankReconciliationOptionsStyle: if option is a string, convert to an object
+ * this is used if railz-bank-reconciliation is used directly
+ * @param options: Whitelabeling options
+ */
+export const getBankReconciliationOptionsStyle = (
+  options: RVOptionsBankReconciliationStyle | string,
+): RVOptionsBankReconciliationStyle | never => {
+  let formattedOptionsStyle: RVOptionsBankReconciliationStyle;
   if (options) {
     try {
       if (typeof options === 'string') {

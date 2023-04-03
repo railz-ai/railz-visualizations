@@ -15,6 +15,7 @@
 ### Used by
 
 - [railz-bank-accounts](../bank-accounts)
+- [railz-bank-reconciliation](../bank-reconciliation)
 - [railz-credit-score](../credit-score)
 - [railz-financial-ratios](../financial-ratios)
 - [railz-income-statements](../income-statements)
@@ -26,6 +27,7 @@
 ```mermaid
 graph TD;
   railz-bank-accounts --> railz-tooltip
+  railz-bank-reconciliation --> railz-tooltip
   railz-credit-score --> railz-tooltip
   railz-financial-ratios --> railz-tooltip
   railz-income-statements --> railz-tooltip

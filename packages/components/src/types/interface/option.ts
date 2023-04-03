@@ -325,6 +325,61 @@ export interface RVOptionsRatioStyle {
   sparkLine?: RVOptionsRatioSparkLineStyle;
 }
 
+export interface RVOptionsBankReconciliationStyle {
+  /**
+   * container: CSS object based on HTML stylings for the container
+   */
+  container?: { [key: string]: any };
+  /**
+   * grid: CSS object based on HTML stylings for the grid
+   */
+  grid?: { [key: string]: any };
+  /**
+   * grid: CSS object based on HTML stylings for the grid of accuracyScore
+   */
+  gridAccuracyScore?: { [key: string]: any };
+  /**
+   * grid: CSS object based on HTML stylings for the title
+   */
+  title?: { [key: string]: any };
+  /**
+   * grid: CSS object based on HTML stylings for the subtitle
+   */
+  subtitle?: { [key: string]: any };
+  /**
+   * grid: CSS object based on HTML stylings for the section numbers
+   */
+  sectionNumber?: { [key: string]: any };
+  /**
+   * grid: CSS object based on HTML stylings for the AccuracyScore section container
+   */
+  sectionContainer?: { [key: string]: any };
+  /**
+   * grid: CSS object based on HTML stylings for the parent container of matched insights
+   */
+  sectionParentContainer?: { [key: string]: any };
+  /**
+   * grid: CSS object based on HTML stylings for the child container of matched insights
+   */
+  sectionChildContainer?: { [key: string]: any };
+  /**
+   * grid: CSS object based on HTML stylings for the accuracyScore
+   */
+  accuracyScore?: { [key: string]: any };
+  /**
+   * grid: CSS object based on HTML stylings for the matchedInsight
+   */
+  matchedInsight?: { [key: string]: any };
+  /**
+   * tooltipIndicator: Object to cover basic styling of the error indicator
+   */
+  tooltipIndicator?: RVTooltipIndicatorStyle;
+  /**
+   * accuracyScoreContent: Content information that change text for i18n
+   */
+  accuracyScoreContent?: RVContent;
+}
+
 export interface RVOptionsRatioSparkLineStyle {
   /**
    * container: CSS object based on HTML stylings for the container
@@ -487,9 +542,13 @@ export interface RVOptions {
    */
   bar?: RVOptionsBarStyle;
   /**
-   * bar: Object to cover the styling options of the ratio diagram
+   * ratio: Object to cover the styling options of the ratio diagram
    */
   ratio?: RVOptionsRatioStyle;
+  /**
+   * recon: Object to cover the styling options of the ratio diagram
+   */
+  reconciliation?: RVOptionsRatioStyle;
   /**
    * table: Object to cover the styling options of the table diagram
    */
