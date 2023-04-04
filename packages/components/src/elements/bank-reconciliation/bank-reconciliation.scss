@@ -17,8 +17,8 @@
 .rv-grid {
   padding: 16px;
   min-height: 102px;
-  box-shadow: 0 5px 5px -3px rgb(0 0 0 / 20%), 0 8px 10px 1px rgb(0 0 0 / 14%),
-    0 3px 14px 2px rgb(0 0 0 / 12%);
+  box-shadow: 0 2px 1px -1px rgb(0 0 0 / 20%), 0 1px 1px 0 rgb(0 0 0 / 14%),
+    0 1px 3px 0 rgb(0 0 0 / 12%);
   border-radius: 4px;
   display: flex;
   flex-direction: column;
@@ -29,8 +29,8 @@
 .rv-grid-accuracy-score {
   padding: 16px;
   min-height: 102px;
-  box-shadow: 0 5px 5px -3px rgb(0 0 0 / 20%), 0 8px 10px 1px rgb(0 0 0 / 14%),
-    0 3px 14px 2px rgb(0 0 0 / 12%);
+  box-shadow: 0 2px 1px -1px rgb(0 0 0 / 20%), 0 1px 1px 0 rgb(0 0 0 / 14%),
+    0 1px 3px 0 rgb(0 0 0 / 12%);
   border-radius: 4px;
   display: flex;
   flex-direction: column;
@@ -61,11 +61,15 @@
   gap: 16px;
 }
 
+.rv-matched-insight-section-container {
+  align-items: unset;
+}
+
 .rv-section-child-container {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: center;
+  text-align: center;
   gap: 8px;
   width: calc(100% + 8px);
   margin: -4px;
@@ -91,7 +95,8 @@
 }
 
 .rv-section-equals {
-  margin-top: 8px;
+  margin-top: -8px;
+  align-self: center;
 }
 
 .rv-section-number-icon {
@@ -113,6 +118,7 @@
 }
 
 .rv-matched-insight-subtitle {
+  font-weight: 600;
   letter-spacing: 0.06em;
   color: #616161;
   text-transform: uppercase;

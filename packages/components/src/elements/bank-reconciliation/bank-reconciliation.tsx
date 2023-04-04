@@ -128,7 +128,10 @@ export class BankReconciliation {
         <p class="rv-title" style={this.options?.title}>
           {Translations.RV_BANK_RECONCILIATION_MATCHED_INSIGHTS}
         </p>
-        <div class="rv-section-container" style={this.options?.sectionParentContainer}>
+        <div
+          class="rv-section-container rv-matched-insight-section-container"
+          style={this.options?.sectionParentContainer}
+        >
           <div class="rv-section-child-container" style={this.options?.sectionChildContainer}>
             <p class="rv-subtitle rv-matched-insight-subtitle" style={this.options?.subtitle}>
               {Translations.RV_BANK_RECONCILIATION_MATCHED_INSIGHTS_SUBHEADING}

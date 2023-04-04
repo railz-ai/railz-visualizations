@@ -54,7 +54,7 @@ describe('railz-bank-reconciliation', () => {
           <p class="rv-title">
             Matched Insights
           </p>
-          <div class="rv-section-container">
+          <div class="rv-matched-insight-section-container rv-section-container">
             <div class="rv-section-child-container">
               <p class="rv-matched-insight-subtitle rv-subtitle">
                 Transactions Matched
