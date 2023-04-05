@@ -88,8 +88,8 @@ export class BankReconciliation {
     };
 
     const AccuracyScore = (): HTMLElement => (
-      <div class="rv-grid-accuracy-score" style={this.options?.gridAccuracyScore}>
-        <div class="rv-section-container" style={this.options?.sectionContainer}>
+      <div class="rv-grid-accuracy-score" style={this._options?.gridAccuracyScore}>
+        <div class="rv-section-container" style={this._options?.sectionContainer}>
           <p class="rv-title" style={this.options?.title}>
             {Translations.RV_BANK_RECONCILIATION_ACCURACY_SCORE}
           </p>
@@ -105,7 +105,7 @@ export class BankReconciliation {
             }
           />
         </div>
-        <div class="rv-section-container" style={this.options?.sectionContainer}>
+        <div class="rv-section-container" style={this._options?.sectionContainer}>
           <railz-gauge-chart
             options={accuracyScoreChartOptions}
             data={{
@@ -115,7 +115,7 @@ export class BankReconciliation {
               percentage: true,
             }}
           />
-          <p class="rv-subtitle" style={this.options?.subtitle}>
+          <p class="rv-subtitle" style={this._options?.subtitle}>
             {Translations.RV_BANK_RECONCILIATION_ACCURACY_SCORE_TRANSACTIONS}
           </p>
         </div>
@@ -124,15 +124,15 @@ export class BankReconciliation {
 
     const diff = Math.abs(this.accountingBalance - this.bankBalance);
     const MatchedInsight = (): HTMLElement => (
-      <div class="rv-grid" style={this.options?.grid}>
-        <p class="rv-title" style={this.options?.title}>
+      <div class="rv-grid" style={this._options?.grid}>
+        <p class="rv-title" style={this._options?.title}>
           {Translations.RV_BANK_RECONCILIATION_MATCHED_INSIGHTS}
         </p>
         <div
           class="rv-section-container rv-matched-insight-section-container"
-          style={this.options?.sectionParentContainer}
+          style={this._options?.sectionParentContainer}
         >
-          <div class="rv-section-child-container" style={this.options?.sectionChildContainer}>
+          <div class="rv-section-child-container" style={this._options?.sectionChildContainer}>
             <p class="rv-subtitle rv-matched-insight-subtitle" style={this.options?.subtitle}>
               {Translations.RV_BANK_RECONCILIATION_MATCHED_INSIGHTS_SUBHEADING}
             </p>
@@ -152,7 +152,7 @@ export class BankReconciliation {
             ${this.totalTransations?.toString()}`}
             </p>
           </div>
-          <div class="rv-section-child-container" style={this.options?.sectionChildContainer}>
+          <div class="rv-section-child-container" style={this._options?.sectionChildContainer}>
             <p class="rv-subtitle rv-matched-insight-subtitle" style={this.options?.subtitle}>
               {Translations.RV_BANK_RECONCILIATION_MATCHED_INSIGHTS_ACCOUNTING_BALANCE}
             </p>
@@ -160,7 +160,7 @@ export class BankReconciliation {
               {formatCurrencyValue(this.accountingBalance)}
             </p>
           </div>
-          <div class="rv-section-child-container" style={this.options?.sectionChildContainer}>
+          <div class="rv-section-child-container" style={this._options?.sectionChildContainer}>
             <p class="rv-subtitle rv-matched-insight-subtitle" style={this.options?.subtitle}>
               {Translations.RV_BANK_RECONCILIATION_MATCHED_INSIGHTS_BANK_BALANCE}
             </p>
@@ -168,18 +168,18 @@ export class BankReconciliation {
               {formatCurrencyValue(this.bankBalance)}
             </p>
           </div>
-          <p class="rv-section-number rv-section-equals" style={this.options?.sectionNumber}>
+          <p class="rv-section-number rv-section-equals" style={this._options?.sectionNumber}>
             {'='}
           </p>
-          <div class="rv-section-child-container" style={this.options?.sectionChildContainer}>
-            <p class="rv-subtitle rv-matched-insight-subtitle" style={this.options?.subtitle}>
+          <div class="rv-section-child-container" style={this._options?.sectionChildContainer}>
+            <p class="rv-subtitle rv-matched-insight-subtitle" style={this._options?.subtitle}>
               {Translations.RV_BANK_RECONCILIATION_MATCHED_INSIGHTS_CALCULATION}
             </p>
             <div class="rv-section-icon">
               <div class="rv-icon">{diff !== 0 ? <ErrorIcon /> : <CheckCircleIcon />}</div>
               <p
                 class="rv-section-number rv-section-number-icon"
-                style={this.options?.sectionNumber}
+                style={this._options?.sectionNumber}
               >
                 {formatCurrencyValue(diff)}
               </p>
