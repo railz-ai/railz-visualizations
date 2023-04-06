@@ -143,7 +143,7 @@ const AllComponents = () => {
       </div>
       <div className="row">
         <p>Bank Reconciliation</p>
-        <div className="p-4">
+        <div className="pt-4 pb-4">
           <RailzBankReconciliation
             accuracyScore={90}
             bankBalance={2000}
