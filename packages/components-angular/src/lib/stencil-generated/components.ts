@@ -32,6 +32,40 @@ export class RailzBankAccounts {
   }
 }
 
+export declare interface RailzBankReconciliation extends Components.RailzBankReconciliation {}
+
+@ProxyCmp({
+  defineCustomElementFn: undefined,
+  inputs: [
+    'accountingBalance',
+    'accuracyScore',
+    'bankBalance',
+    'matchedTransactions',
+    'options',
+    'totalTransations',
+  ],
+})
+@Component({
+  selector: 'railz-bank-reconciliation',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  inputs: [
+    'accountingBalance',
+    'accuracyScore',
+    'bankBalance',
+    'matchedTransactions',
+    'options',
+    'totalTransations',
+  ],
+})
+export class RailzBankReconciliation {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
 export declare interface RailzCreditScore extends Components.RailzCreditScore {}
 
 @ProxyCmp({

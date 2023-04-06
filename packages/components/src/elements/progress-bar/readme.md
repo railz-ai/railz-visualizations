@@ -16,12 +16,14 @@
 
 ### Used by
 
+- [railz-bank-reconciliation](../bank-reconciliation)
 - [railz-transactions-control](../transactions-control)
 
 ### Graph
 
 ```mermaid
 graph TD;
+  railz-bank-reconciliation --> railz-progress-bar
   railz-transactions-control --> railz-progress-bar
   style railz-progress-bar fill:#f9f,stroke:#333,stroke-width:4px
 ```

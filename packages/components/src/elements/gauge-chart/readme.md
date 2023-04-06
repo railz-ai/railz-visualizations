@@ -14,12 +14,14 @@
 
 ### Used by
 
+- [railz-bank-reconciliation](../bank-reconciliation)
 - [railz-credit-score](../credit-score)
 
 ### Graph
 
 ```mermaid
 graph TD;
+  railz-bank-reconciliation --> railz-gauge-chart
   railz-credit-score --> railz-gauge-chart
   style railz-gauge-chart fill:#f9f,stroke:#333,stroke-width:4px
 ```

@@ -63,6 +63,18 @@ export const formatNumber = (number: number | string, decimals = 2, minimum = 0)
   return '';
 };
 
+export const formatCurrencyValue = (value: number): string => {
+  const formatCurrencyNumber = (number: number, decimals = 2): string => {
+    if (!isNil(number)) {
+      return numbro(Number(number)).format(`0,000.${'0'.repeat(decimals)}`);
+    }
+    return '';
+  };
+  return formatCurrencyNumber(value as number) === ''
+    ? '-'
+    : '$' + formatCurrencyNumber(value as number);
+};
+
 /**
  * Determine if report type is table
  */
