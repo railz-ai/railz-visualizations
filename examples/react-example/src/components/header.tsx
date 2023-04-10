@@ -27,7 +27,7 @@ export default function Header({ children, description }: HeaderProps) {
         <Disclosure as="nav" className="bg-gray-800">
           {({ open }) => (
             <>
-              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex items-center justify-between h-16">
                   <div className="flex items-center">
                     <div className="flex-shrink-0">
@@ -97,7 +97,7 @@ export default function Header({ children, description }: HeaderProps) {
         </Disclosure>
 
         <header className="bg-white shadow">
-          <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 text-left">
+          <div className="max-w-full mx-auto py-6 px-4 sm:px-6 lg:px-8 text-left">
             <h1 className="text-3xl font-bold text-gray-900">Sample Dashboard</h1>
             <p className="mt-1 text-md text-gray-600">
               This is a quickstart example of a React application that consumes the Railz
@@ -122,7 +122,7 @@ export default function Header({ children, description }: HeaderProps) {
           </div>
         </header>
         <main>
-          <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">{children}</div>
+          <div className="max-w-full mx-auto py-6 sm:px-6 lg:px-8">{children}</div>
         </main>
       </div>
     </>

@@ -378,6 +378,10 @@ export interface RVOptionsBankReconciliationStyle {
    * accuracyScoreContent: Content information that change text for i18n
    */
   accuracyScoreContent?: RVContent;
+  /**
+   * errorIndicator: Object to cover basic styling of the error indicator
+   */
+  errorIndicator?: RVErrorIndicatorStyle;
 }
 
 export interface RVOptionsRatioSparkLineStyle {

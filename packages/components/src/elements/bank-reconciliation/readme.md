@@ -4,19 +4,17 @@
 
 ## Properties
 
-| Property              | Attribute              | Description                                                                                                                                                | Type                               | Default     |
-| --------------------- | ---------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------- | ----------- |
-| `accountingBalance`   | `accounting-balance`   | Accounting Balance                                                                                                                                         | `number`                           | `undefined` |
-| `accuracyScore`       | `accuracy-score`       | The Accuracy Score is the precision level of reconciliation by taking into account the number of matched transactions and the value of those transactions. | `number`                           | `undefined` |
-| `bankBalance`         | `bank-balance`         | Banking Balance                                                                                                                                            | `number`                           | `undefined` |
-| `matchedTransactions` | `matched-transactions` | Matched Number of Transactions (exclude unmatched ones)                                                                                                    | `number`                           | `undefined` |
-| `options`             | --                     | For whitelabeling styling                                                                                                                                  | `RVOptionsBankReconciliationStyle` | `undefined` |
-| `totalTransations`    | `total-transations`    | Total Number of Transactions                                                                                                                               | `number`                           | `undefined` |
+| Property                     | Attribute | Description                                                 | Type                               | Default     |
+| ---------------------------- | --------- | ----------------------------------------------------------- | ---------------------------------- | ----------- |
+| `configuration` _(required)_ | --        | Configuration information like authentication configuration | `RVConfiguration`                  | `undefined` |
+| `filter` _(required)_        | --        | Filter information to query the backend APIs                | `RVFilterBankReconciliation`       | `undefined` |
+| `options`                    | --        | For whitelabeling styling                                   | `RVOptionsBankReconciliationStyle` | `undefined` |
 
 ## Dependencies
 
 ### Depends on
 
+- [railz-error-image](../error)
 - [railz-tooltip](../tooltip)
 - [railz-gauge-chart](../gauge-chart)
 - [railz-progress-bar](../progress-bar)
@@ -25,6 +23,7 @@
 
 ```mermaid
 graph TD;
+  railz-bank-reconciliation --> railz-error-image
   railz-bank-reconciliation --> railz-tooltip
   railz-bank-reconciliation --> railz-gauge-chart
   railz-bank-reconciliation --> railz-progress-bar

@@ -96,6 +96,13 @@ export const isCreditScore = (reportType: RVReportTypes): boolean => {
 };
 
 /**
+ * Determine if report type is bank reconciliation
+ */
+export const isBankReconciliation = (reportType: RVReportTypes): boolean => {
+  return reportType && [RVReportTypes.BANK_RECONCILIATION].includes(reportType);
+};
+
+/**
  * Determine if report type is pie
  */
 export const isIncomeStatements = (reportType: RVReportTypes): boolean => {

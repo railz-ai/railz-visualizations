@@ -10,6 +10,7 @@ import {
   RVCreditScoreSummary,
   RVFilterAllReportTypes,
   RVFilterBankAccount,
+  RVFilterBankReconciliation,
   RVFilterCreditScore,
   RVFilterFinancialRatio,
   RVFilterIncomeStatementsType,
@@ -42,29 +43,17 @@ export namespace Components {
   }
   interface RailzBankReconciliation {
     /**
-     * Accounting Balance
+     * Configuration information like authentication configuration
      */
-    accountingBalance: number;
+    configuration: RVConfiguration;
     /**
-     * The Accuracy Score is the precision level of reconciliation by taking into account the number of matched transactions and the value of those transactions.
+     * Filter information to query the backend APIs
      */
-    accuracyScore: number;
-    /**
-     * Banking Balance
-     */
-    bankBalance: number;
-    /**
-     * Matched Number of Transactions (exclude unmatched ones)
-     */
-    matchedTransactions: number;
+    filter: RVFilterBankReconciliation;
     /**
      * For whitelabeling styling
      */
     options?: RVOptionsBankReconciliationStyle;
-    /**
-     * Total Number of Transactions
-     */
-    totalTransations: number;
   }
   interface RailzCreditScore {
     /**
@@ -391,29 +380,17 @@ declare namespace LocalJSX {
   }
   interface RailzBankReconciliation {
     /**
-     * Accounting Balance
+     * Configuration information like authentication configuration
      */
-    accountingBalance?: number;
+    configuration: RVConfiguration;
     /**
-     * The Accuracy Score is the precision level of reconciliation by taking into account the number of matched transactions and the value of those transactions.
+     * Filter information to query the backend APIs
      */
-    accuracyScore?: number;
-    /**
-     * Banking Balance
-     */
-    bankBalance?: number;
-    /**
-     * Matched Number of Transactions (exclude unmatched ones)
-     */
-    matchedTransactions?: number;
+    filter: RVFilterBankReconciliation;
     /**
      * For whitelabeling styling
      */
     options?: RVOptionsBankReconciliationStyle;
-    /**
-     * Total Number of Transactions
-     */
-    totalTransations?: number;
   }
   interface RailzCreditScore {
     /**
