@@ -141,18 +141,6 @@ const AllComponents = () => {
           </div>
         </div>
       </div>
-      <div className="row">
-        <p>Bank Reconciliation</p>
-        <div className="pt-4 pb-4">
-          <RailzBankReconciliation
-            accuracyScore={90}
-            bankBalance={2000}
-            accountingBalance={2100}
-            matchedTransactions={20}
-            totalTransations={23}
-          />
-        </div>
-      </div>
     </div>
   );
 };

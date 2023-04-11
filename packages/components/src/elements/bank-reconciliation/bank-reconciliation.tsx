@@ -1,14 +1,32 @@
 /* eslint-disable max-len, @typescript-eslint/no-unused-vars */
-import { Component, Prop, h, State } from '@stencil/core';
+import { Component, Prop, h, State, Watch } from '@stencil/core';
 
-import { isNil } from 'lodash-es';
+import { isNil, isEqual, isEmpty } from 'lodash-es';
 
 import Translations from '../../config/translations/en.json';
-import { RVOptionsBankReconciliationStyle } from '../../types';
-import { getBankReconciliationOptionsStyle } from '../../helpers/chart.utils';
-import { formatCurrencyValue } from '../../helpers/utils';
+import {
+  RVBankReconciliation,
+  RVConfiguration,
+  RVFilterAll,
+  RVFilterBankReconciliation,
+  RVOptions,
+  RVOptionsBankReconciliationStyle,
+} from '../../types';
+import {
+  getBankReconciliationOptionsStyle,
+  getConfiguration,
+  getFilter,
+  getOptions,
+  validateRequiredParams,
+} from '../../helpers/chart.utils';
+import { formatCurrencyValue, isBankReconciliation } from '../../helpers/utils';
+
+import { ConfigurationInstance } from '../../services/configuration';
+
+import { errorLog } from '../../services/logger';
 
 import { CheckCircleIcon, ErrorIcon } from './bank-reconciliation-icons';
+import { formatReconciliatedData, getReportData } from './bank-reconciliation.utils';
 
 @Component({
   tag: 'railz-bank-reconciliation',
@@ -17,43 +35,155 @@ import { CheckCircleIcon, ErrorIcon } from './bank-reconciliation-icons';
 })
 export class BankReconciliation {
   /**
-   * The Accuracy Score is the precision level of reconciliation by taking into account the number of matched transactions and the value of those transactions.
+   * Configuration information like authentication configuration
    */
-  @Prop() readonly accuracyScore: number;
+  @Prop() readonly configuration!: RVConfiguration;
   /**
-   * Banking Balance
+   * Filter information to query the backend APIs
    */
-  @Prop() readonly bankBalance: number;
-  /**
-   * Accounting Balance
-   */
-  @Prop() readonly accountingBalance: number;
-  /**
-   * Matched Number of Transactions (exclude unmatched ones)
-   */
-  @Prop() readonly matchedTransactions: number;
-  /**
-   * Total Number of Transactions
-   */
-  @Prop() readonly totalTransations: number;
+  @Prop() readonly filter!: RVFilterBankReconciliation;
   /**
    * For whitelabeling styling
    */
   @Prop() readonly options?: RVOptionsBankReconciliationStyle;
 
   @State() private _options: RVOptionsBankReconciliationStyle;
+  @State() private loading = '';
+  @State() private _configuration: RVConfiguration;
+  @State() private _filter: RVFilterBankReconciliation;
+  @State() private errorStatusCode: number;
+
+  @State() private accuracyScore: number;
+  @State() private bankBalance: number;
+  @State() private accountingBalance: number;
+  @State() private matchedTransactions: number;
+  @State() private totalTransations: number;
+
+  private updateBankReconciliationParams = (summary: RVBankReconciliation): void => {
+    const params = formatReconciliatedData(summary);
+    if (params) {
+      this.loading = '';
+      this.accuracyScore = params.accuracyScore;
+      this.bankBalance = params.bankBalance;
+      this.accountingBalance = params.accountingBalance;
+      this.matchedTransactions = params.matchedTransactions;
+      this.totalTransations = params.totalTransations;
+    }
+  };
+
+  /**
+   * Validates if configuration was passed correctly before setting filter
+   * @param configuration - Config for authentication
+   * @param filter - filter to decide chart type to show
+   * @param options: Whitelabeling options
+   * @param triggerRequest - indicate if api request should be made
+   */
+  private validateParams = async (
+    configuration: RVConfiguration,
+    filter: RVFilterBankReconciliation,
+    options: RVOptions,
+    triggerRequest = true,
+  ): Promise<void> => {
+    this._configuration = getConfiguration(configuration);
+    if (this._configuration) {
+      ConfigurationInstance.configuration = this._configuration;
+      try {
+        this._filter = getFilter(filter as RVFilterAll) as RVFilterBankReconciliation;
+        this._options = getOptions(options);
+        if (validateRequiredParams(this._filter as RVFilterAll)) {
+          if (isBankReconciliation(this._filter.reportType)) {
+            if (triggerRequest) {
+              await this.requestReportData();
+            }
+          } else {
+            this.errorStatusCode = 500;
+            errorLog(Translations.RV_ERROR_INVALID_REPORT_TYPE);
+          }
+        } else {
+          this.errorStatusCode = 204;
+        }
+      } catch (e) {
+        this.errorStatusCode = 500;
+        errorLog(e);
+      }
+    } else {
+      this.errorStatusCode = 0;
+    }
+  };
+
+  @Watch('configuration')
+  async watchConfiguration(newValue: RVConfiguration, oldValue: RVConfiguration): Promise<void> {
+    if (newValue && oldValue && !isEqual(oldValue, newValue)) {
+      await this.validateParams(newValue, this.filter, this.options);
+    }
+  }
+
+  @Watch('filter')
+  async watchFilter(
+    newValue: RVFilterBankReconciliation,
+    oldValue: RVFilterBankReconciliation,
+  ): Promise<void> {
+    if (newValue && oldValue && !isEqual(oldValue, newValue)) {
+      await this.validateParams(this.configuration, newValue, this.options);
+    }
+  }
+
+  @Watch('options')
+  async watchOptions(newValue: RVOptions, oldValue: RVOptions): Promise<void> {
+    if (newValue && oldValue && !isEqual(oldValue, newValue)) {
+      await this.validateParams(this.configuration, this.filter, newValue);
+    }
+  }
+
+  private propsUpdated = async (triggerRequest = true): Promise<void> => {
+    await this.validateParams(this.configuration, this.filter, this.options, triggerRequest);
+  };
+
+  /**
+   * Request report data based on filter and configuration param
+   * Formats retrieved data into Highcharts format using formatData
+   */
+  private requestReportData = async (): Promise<void> => {
+    this.errorStatusCode = undefined;
+    this.loading = Translations.RV_LOADING_REPORT;
+    try {
+      const reportData = (await getReportData({
+        filter: this._filter as RVFilterAll,
+      })) as RVBankReconciliation;
+      if (reportData?.reports) {
+        this.updateBankReconciliationParams(reportData);
+      } else {
+        errorLog(Translations.RV_ERROR_202_TITLE);
+        this.errorStatusCode = 202;
+      }
+    } catch (error) {
+      errorLog(Translations.RV_NOT_ABLE_TO_PARSE_REPORT_DATA, error);
+    } finally {
+      this.loading = '';
+    }
+  };
 
   componentWillLoad(): void {
     this._options = getBankReconciliationOptionsStyle(this.options);
+    this.propsUpdated && this.propsUpdated();
   }
 
   render(): HTMLElement {
+    if (this.errorStatusCode !== undefined) {
+      return (
+        <railz-error-image
+          statusCode={this.errorStatusCode || 500}
+          {...this._options?.errorIndicator}
+        />
+      );
+    }
     if (
       isNil(this.accuracyScore) ||
       isNil(this.bankBalance) ||
       isNil(this.accountingBalance) ||
       isNil(this.matchedTransactions) ||
-      isNil(this.totalTransations)
+      isNil(this.totalTransations) ||
+      !isEmpty(this.loading)
     ) {
       return <span></span>;
     }

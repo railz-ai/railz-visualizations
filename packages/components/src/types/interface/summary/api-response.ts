@@ -188,6 +188,12 @@ export interface RVFormattedScoreResponse {
   status?: number;
 }
 
+export interface RVBankReconciliation {
+  count: number;
+  pagination: any;
+  reports?: Array<any>;
+}
+
 export interface RVFormattedPieResponse {
   error?: RVErrorResponse;
   data?: RVIncomeStatementsSummary;

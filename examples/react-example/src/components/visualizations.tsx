@@ -12,6 +12,7 @@ import {
   RVFilterAll,
   RVFilterBankAccount,
   RVFilterCreditScore,
+  RVFilterBankReconciliation,
 } from '@railzai/railz-visualizations';
 import {
   RailzBankAccounts,
@@ -23,6 +24,7 @@ import {
   RailzVisualizations,
 } from '@railzai/railz-visualizations-react';
 import { cloneDeep, isEmpty, pick } from 'lodash';
+import { RailzBankReconciliation } from '@railzai/railz-visualizations-react';
 
 type AllTypes = 'all' & RVReportTypes;
 
@@ -135,6 +137,7 @@ const Components = ({ configuration, filter, options, showCode }: ChartProps) =>
           RVReportTypes.CREDIT_SCORE,
           RVReportTypes.FINANCIAL_RATIO,
           RVReportTypes.BANK_ACCOUNT,
+          RVReportTypes.BANK_RECONCILIATION,
         ].map((reportType, index) => {
           const cloneOptions = cloneDeep(options);
           if (index !== 0) {
@@ -276,6 +279,28 @@ const Components = ({ configuration, filter, options, showCode }: ChartProps) =>
           />
         </div>
       )}
+      {filter.reportType === RVReportTypes.BANK_RECONCILIATION && (
+        <div>
+          <h4 className="text-xl font-bold text-gray-900">
+            Using Railz Bank Reconciliation Component
+          </h4>
+          <p>
+            Railz Bank Reconciliation Component only accepts <b>bankReconciliation</b>
+          </p>
+          <RailzBankReconciliation
+            configuration={configuration}
+            filter={filter as RVFilterBankReconciliation}
+            options={options}
+          />
+          <Code
+            configuration={configuration}
+            filter={filter}
+            options={options}
+            showCode={showCode}
+            displayValue="RailzReconciliation"
+          />
+        </div>
+      )}
       {![
         RVReportTypes.CREDIT_SCORE,
         RVReportTypes.EXPENSES,
@@ -283,6 +308,7 @@ const Components = ({ configuration, filter, options, showCode }: ChartProps) =>
         RVReportTypes.BILLS,
         RVReportTypes.FINANCIAL_RATIO,
         RVReportTypes.BANK_ACCOUNT,
+        RVReportTypes.BANK_RECONCILIATION,
         'all',
       ].includes(filter.reportType) && (
         <DefaultComponent

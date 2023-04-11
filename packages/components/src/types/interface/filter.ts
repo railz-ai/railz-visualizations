@@ -133,6 +133,14 @@ export interface RVFilterCreditScore
   reportType: RVReportTypes.CREDIT_SCORE;
 }
 
+export interface RVFilterBankReconciliation
+  extends RVFilterReportType,
+    RVFilterBusiness,
+    RVFilterDate,
+    RVFilterReportFrequency {
+  reportType: RVReportTypes.BANK_RECONCILIATION;
+}
+
 export interface RVFilterAll
   extends RVFilterBusiness,
     RVFilterConnection,
@@ -151,6 +159,7 @@ export type RVFilterAllReportTypes =
   | RVFilterInvoices
   | RVFilterRevenue
   | RVFilterCreditScore
+  | RVFilterBankReconciliation
   | RVFilterDate;
 
 export type RVFilterTransactions = RVFilterInvoices | RVFilterBills;

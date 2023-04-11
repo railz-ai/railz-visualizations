@@ -36,27 +36,13 @@ export declare interface RailzBankReconciliation extends Components.RailzBankRec
 
 @ProxyCmp({
   defineCustomElementFn: undefined,
-  inputs: [
-    'accountingBalance',
-    'accuracyScore',
-    'bankBalance',
-    'matchedTransactions',
-    'options',
-    'totalTransations',
-  ],
+  inputs: ['configuration', 'filter', 'options'],
 })
 @Component({
   selector: 'railz-bank-reconciliation',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
-  inputs: [
-    'accountingBalance',
-    'accuracyScore',
-    'bankBalance',
-    'matchedTransactions',
-    'options',
-    'totalTransations',
-  ],
+  inputs: ['configuration', 'filter', 'options'],
 })
 export class RailzBankReconciliation {
   protected el: HTMLElement;
