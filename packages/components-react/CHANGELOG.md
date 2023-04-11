@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.0.8-alpha.9 (2023-04-11)
+
+**Note:** Version bump only for package @railzai/railz-visualizations-react
+
+
+
+
+
 ## 0.0.8-alpha.8 (2023-04-06)
 
 **Note:** Version bump only for package @railzai/railz-visualizations-react
