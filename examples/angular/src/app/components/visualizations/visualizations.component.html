@@ -89,12 +89,27 @@
 <ng-template #bankAccounts>
   <div
     class="md:grid md:grid-cols-1 md:gap-1 text-left"
-    *ngIf="filter?.reportType === 'bankAccounts'; else visualizations"
+    *ngIf="filter?.reportType === 'bankAccounts'; else bankReconciliation"
   >
     <h4 class="text-xl font-bold text-gray-900">Using Railz Bank Accounts Component</h4>
     <p>Railz Bank Accounts Component only accepts <b>bankAccounts</b></p>
     <railz-bank-accounts [configuration]="configuration" [filter]="filter" [options]="options">
     </railz-bank-accounts>
+  </div>
+</ng-template>
+<ng-template #bankReconciliation>
+  <div
+    class="md:grid md:grid-cols-1 md:gap-1 text-left"
+    *ngIf="filter?.reportType === 'bankReconciliation'; else visualizations"
+  >
+    <h4 class="text-xl font-bold text-gray-900">Using Railz Bank Accounts Component</h4>
+    <p>Railz Bank Accounts Component only accepts <b>bankReconciliation</b></p>
+    <railz-bank-reconciliation
+      [configuration]="configuration"
+      [filter]="filter"
+      [options]="options"
+    >
+    </railz-bank-reconciliation>
   </div>
 </ng-template>
 <ng-template #visualizations>
