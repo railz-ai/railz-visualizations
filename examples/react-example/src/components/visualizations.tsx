@@ -13,6 +13,7 @@ import {
   RVFilterBankAccount,
   RVFilterCreditScore,
   RVFilterBankReconciliation,
+  RVFilterBusinessValuations,
 } from '@railzai/railz-visualizations';
 import {
   RailzBankAccounts,
@@ -22,6 +23,7 @@ import {
   RailzStatementsChart,
   RailzTransactionsControl,
   RailzVisualizations,
+  RailzBusinessValuations,
 } from '@railzai/railz-visualizations-react';
 import { cloneDeep, isEmpty, pick } from 'lodash';
 import { RailzBankReconciliation } from '@railzai/railz-visualizations-react';
@@ -301,6 +303,28 @@ const Components = ({ configuration, filter, options, showCode }: ChartProps) =>
           />
         </div>
       )}
+      {filter.reportType === RVReportTypes.BUSINESS_VALUATIONS && (
+        <div>
+          <h4 className="text-xl font-bold text-gray-900">
+            Using Railz Business Valuations Component
+          </h4>
+          <p>
+            Railz Bank Reconciliation Component only accepts <b>businessValuations</b>
+          </p>
+          <RailzBusinessValuations
+            configuration={configuration}
+            filter={filter as RVFilterBusinessValuations}
+            options={options}
+          />
+          <Code
+            configuration={configuration}
+            filter={filter}
+            options={options}
+            showCode={showCode}
+            displayValue="RailzBusinessValuations"
+          />
+        </div>
+      )}
       {![
         RVReportTypes.CREDIT_SCORE,
         RVReportTypes.EXPENSES,
@@ -309,6 +333,7 @@ const Components = ({ configuration, filter, options, showCode }: ChartProps) =>
         RVReportTypes.FINANCIAL_RATIO,
         RVReportTypes.BANK_ACCOUNT,
         RVReportTypes.BANK_RECONCILIATION,
+        RVReportTypes.BUSINESS_VALUATIONS,
         'all',
       ].includes(filter.reportType) && (
         <DefaultComponent
