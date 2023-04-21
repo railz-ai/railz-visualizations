@@ -36,7 +36,7 @@ import { getBusinessValuationsParams, getReportData } from './business-valuation
   styleUrl: './business-valuations.scss',
   shadow: true,
 })
-export class BussinessValuations {
+export class BusinessValuations {
   /**
    * Configuration information like authentication configuration
    */
