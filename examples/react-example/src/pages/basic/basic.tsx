@@ -48,7 +48,6 @@ export default function Basic() {
                 configuration={{
                   token,
                   debug: true,
-                  endpoint: 'https://api.qa2.railz.ai',
                 }}
                 filter={filter as any}
               />
