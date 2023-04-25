@@ -34,11 +34,11 @@
 .rv-valuation-section {
   display: flex;
   flex-direction: column;
-  max-width: 225px;
   justify-content: space-between;
   align-items: flex-start;
   padding-bottom: 8px;
   overflow: visible;
+  flex-basis: 25%;
 
   .rv-valuation-title {
     padding-left: 24px;
@@ -61,7 +61,6 @@
   }
 
   @media screen and (max-width: 900px) {
-    padding-right: 50px;
     flex-grow: 1;
     flex-basis: 50%;
     max-width: 225px;
@@ -76,11 +75,6 @@
         border-left: none;
       }
     }
-  }
-
-  @media screen and (max-width: 600px) {
-    flex-grow: 1;
-    padding-right: 0;
   }
 }
 

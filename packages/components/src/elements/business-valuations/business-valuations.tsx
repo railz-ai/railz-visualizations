@@ -192,10 +192,13 @@ export class BusinessValuations {
       isNil(this.liquidationValue) ||
       isNil(this.discountedCashflowValue) ||
       isNil(this.multipleToRevenueValue) ||
-      isNil(this.firstChicagoValue) ||
-      !isEmpty(this.loading)
+      isNil(this.firstChicagoValue)
     ) {
       return <span></span>;
+    }
+
+    if (!isEmpty(this.loading)) {
+      return <railz-loading loadingText={this.loading} {...this._options?.loadingIndicator} />;
     }
 
     const TitleElement = (): HTMLElement => (
