@@ -14,17 +14,17 @@
 
 ### Depends on
 
+- [railz-tooltip](../tooltip)
 - [railz-error-image](../error)
 - [railz-loading](../loading)
-- [railz-tooltip](../tooltip)
 
 ### Graph
 
 ```mermaid
 graph TD;
+  railz-business-valuations --> railz-tooltip
   railz-business-valuations --> railz-error-image
   railz-business-valuations --> railz-loading
-  railz-business-valuations --> railz-tooltip
   style railz-business-valuations fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

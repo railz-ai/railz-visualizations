@@ -180,27 +180,6 @@ export class BusinessValuations {
   }
 
   render(): HTMLElement {
-    if (this.errorStatusCode !== undefined) {
-      return (
-        <railz-error-image
-          statusCode={this.errorStatusCode || 500}
-          {...this._options?.errorIndicator}
-        />
-      );
-    }
-    if (
-      isNil(this.liquidationValue) ||
-      isNil(this.discountedCashflowValue) ||
-      isNil(this.multipleToRevenueValue) ||
-      isNil(this.firstChicagoValue)
-    ) {
-      return <span></span>;
-    }
-
-    if (!isEmpty(this.loading)) {
-      return <railz-loading loadingText={this.loading} {...this._options?.loadingIndicator} />;
-    }
-
     const TitleElement = (): HTMLElement => (
       <p class="rv-title" style={this._options?.title?.style}>
         {this._options?.content?.title || getTitleByReportType(this._filter?.reportType) || ''}{' '}
@@ -223,7 +202,9 @@ export class BusinessValuations {
     );
 
     const SubTitleElement = (): HTMLElement => {
-      return isEmpty(this.latestEndDate) || this._options?.subTitle?.visible === false ? (
+      return isEmpty(this.latestEndDate) ||
+        this.errorStatusCode !== undefined ||
+        this._options?.subTitle?.visible === false ? (
         <span></span>
       ) : (
         ((
@@ -239,37 +220,59 @@ export class BusinessValuations {
               ? ''
               : format(
                   parseISO(this.latestEndDate),
-                  this.options?.content?.date?.format || 'dd MMM yyyy',
+                  this.options?.content?.date?.format || 'MMM dd yyyy',
                 )}
           </p>
         ) as HTMLElement)
       );
     };
 
-    const renderMain = (): HTMLElement => (
-      <div class="rv-valuation-container">
-        {ValuationSection(
-          Translations.RV_BUSINESS_VALUATIONS_LIQUIDATION_VALUE,
-          this.liquidationValue,
-          this.liquidationPercentageChange,
-        )}
-        {ValuationSection(
-          Translations.RV_BUSINESS_VALUATIONS_DISCOUNTED_CASH_FLOW,
-          this.discountedCashflowValue,
-          this.discountedCashflowPercentageChange,
-        )}
-        {ValuationSection(
-          Translations.RV_BUSINESS_VALUATIONS_MULTIPLE_TO_REVENUE,
-          this.multipleToRevenueValue,
-          this.multipleToRevenuePercentageChange,
-        )}
-        {ValuationSection(
-          Translations.RV_BUSINESS_VALUATIONS_FIRST_TO_CHICAGO,
-          this.firstChicagoValue,
-          this.firstChicagoPercentageChange,
-        )}
-      </div>
-    );
+    const renderMain = (): HTMLElement => {
+      if (this.errorStatusCode !== undefined) {
+        return (
+          <railz-error-image
+            statusCode={this.errorStatusCode || 500}
+            {...this._options?.errorIndicator}
+          />
+        );
+      }
+      if (
+        isNil(this.liquidationValue) ||
+        isNil(this.discountedCashflowValue) ||
+        isNil(this.multipleToRevenueValue) ||
+        isNil(this.firstChicagoValue)
+      ) {
+        return <span></span>;
+      }
+
+      if (!isEmpty(this.loading)) {
+        return <railz-loading loadingText={this.loading} {...this._options?.loadingIndicator} />;
+      }
+      return (
+        <div class="rv-valuation-container">
+          {ValuationSection(
+            Translations.RV_BUSINESS_VALUATIONS_LIQUIDATION_VALUE,
+            this.liquidationValue,
+            this.liquidationPercentageChange,
+          )}
+          {ValuationSection(
+            Translations.RV_BUSINESS_VALUATIONS_DISCOUNTED_CASH_FLOW,
+            this.discountedCashflowValue,
+            this.discountedCashflowPercentageChange,
+          )}
+          {ValuationSection(
+            Translations.RV_BUSINESS_VALUATIONS_MULTIPLE_TO_REVENUE,
+            this.multipleToRevenueValue,
+            this.multipleToRevenuePercentageChange,
+          )}
+          {ValuationSection(
+            Translations.RV_BUSINESS_VALUATIONS_FIRST_TO_CHICAGO,
+            this.firstChicagoValue,
+            this.firstChicagoPercentageChange,
+          )}
+        </div>
+      );
+    };
 
     const ValuationSection = (title, value, percentage): HTMLElement => (
       <div class="rv-valuation-section">
