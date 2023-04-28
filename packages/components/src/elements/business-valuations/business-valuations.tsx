@@ -250,26 +250,30 @@ export class BusinessValuations {
       }
       return (
         <div class="rv-valuation-container">
-          {ValuationSection(
-            Translations.RV_BUSINESS_VALUATIONS_LIQUIDATION_VALUE,
-            this.liquidationValue,
-            this.liquidationPercentageChange,
-          )}
-          {ValuationSection(
-            Translations.RV_BUSINESS_VALUATIONS_DISCOUNTED_CASH_FLOW,
-            this.discountedCashflowValue,
-            this.discountedCashflowPercentageChange,
-          )}
-          {ValuationSection(
-            Translations.RV_BUSINESS_VALUATIONS_MULTIPLE_TO_REVENUE,
-            this.multipleToRevenueValue,
-            this.multipleToRevenuePercentageChange,
-          )}
-          {ValuationSection(
-            Translations.RV_BUSINESS_VALUATIONS_FIRST_CHICAGO,
-            this.firstChicagoValue,
-            this.firstChicagoPercentageChange,
-          )}
+          <div class="rv-valuation-group">
+            {ValuationSection(
+              Translations.RV_BUSINESS_VALUATIONS_LIQUIDATION_VALUE,
+              this.liquidationValue,
+              this.liquidationPercentageChange,
+            )}
+            {ValuationSection(
+              Translations.RV_BUSINESS_VALUATIONS_DISCOUNTED_CASH_FLOW,
+              this.discountedCashflowValue,
+              this.discountedCashflowPercentageChange,
+            )}
+          </div>
+          <div class="rv-valuation-group">
+            {ValuationSection(
+              Translations.RV_BUSINESS_VALUATIONS_MULTIPLE_TO_REVENUE,
+              this.multipleToRevenueValue,
+              this.multipleToRevenuePercentageChange,
+            )}
+            {ValuationSection(
+              Translations.RV_BUSINESS_VALUATIONS_FIRST_CHICAGO,
+              this.firstChicagoValue,
+              this.firstChicagoPercentageChange,
+            )}
+          </div>
         </div>
       );
     };
@@ -286,7 +290,11 @@ export class BusinessValuations {
               </div>
             ) : (
               <div class="rv-positive" style={this._options?.chart?.pie?.positive}>
-                &#x25B2; {isNil(percentage) || isNaN(percentage) ? 0 : Math.abs(percentage)}%
+                &#x25B2;{' '}
+                {isNil(percentage) || isNaN(percentage) || Math.abs(percentage) === Infinity
+                  ? 0
+                  : Math.abs(percentage)}
+                %
               </div>
             )}
           </div>
