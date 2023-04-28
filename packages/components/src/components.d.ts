@@ -11,6 +11,7 @@ import {
   RVFilterAllReportTypes,
   RVFilterBankAccount,
   RVFilterBankReconciliation,
+  RVFilterBusinessValuations,
   RVFilterCreditScore,
   RVFilterFinancialRatio,
   RVFilterIncomeStatementsType,
@@ -54,6 +55,20 @@ export namespace Components {
      * For whitelabeling styling
      */
     options?: RVOptionsBankReconciliationStyle;
+  }
+  interface RailzBusinessValuations {
+    /**
+     * Configuration information like authentication configuration
+     */
+    configuration: RVConfiguration;
+    /**
+     * Filter information to query the backend APIs
+     */
+    filter: RVFilterBusinessValuations;
+    /**
+     * For whitelabeling styling
+     */
+    options?: RVOptions;
   }
   interface RailzCreditScore {
     /**
@@ -262,6 +277,13 @@ declare global {
     prototype: HTMLRailzBankReconciliationElement;
     new (): HTMLRailzBankReconciliationElement;
   };
+  interface HTMLRailzBusinessValuationsElement
+    extends Components.RailzBusinessValuations,
+      HTMLStencilElement {}
+  var HTMLRailzBusinessValuationsElement: {
+    prototype: HTMLRailzBusinessValuationsElement;
+    new (): HTMLRailzBusinessValuationsElement;
+  };
   interface HTMLRailzCreditScoreElement extends Components.RailzCreditScore, HTMLStencilElement {}
   var HTMLRailzCreditScoreElement: {
     prototype: HTMLRailzCreditScoreElement;
@@ -347,6 +369,7 @@ declare global {
   interface HTMLElementTagNameMap {
     'railz-bank-accounts': HTMLRailzBankAccountsElement;
     'railz-bank-reconciliation': HTMLRailzBankReconciliationElement;
+    'railz-business-valuations': HTMLRailzBusinessValuationsElement;
     'railz-credit-score': HTMLRailzCreditScoreElement;
     'railz-error-image': HTMLRailzErrorImageElement;
     'railz-financial-ratios': HTMLRailzFinancialRatiosElement;
@@ -391,6 +414,20 @@ declare namespace LocalJSX {
      * For whitelabeling styling
      */
     options?: RVOptionsBankReconciliationStyle;
+  }
+  interface RailzBusinessValuations {
+    /**
+     * Configuration information like authentication configuration
+     */
+    configuration: RVConfiguration;
+    /**
+     * Filter information to query the backend APIs
+     */
+    filter: RVFilterBusinessValuations;
+    /**
+     * For whitelabeling styling
+     */
+    options?: RVOptions;
   }
   interface RailzCreditScore {
     /**
@@ -589,6 +626,7 @@ declare namespace LocalJSX {
   interface IntrinsicElements {
     'railz-bank-accounts': RailzBankAccounts;
     'railz-bank-reconciliation': RailzBankReconciliation;
+    'railz-business-valuations': RailzBusinessValuations;
     'railz-credit-score': RailzCreditScore;
     'railz-error-image': RailzErrorImage;
     'railz-financial-ratios': RailzFinancialRatios;
@@ -613,6 +651,8 @@ declare module '@stencil/core' {
         JSXBase.HTMLAttributes<HTMLRailzBankAccountsElement>;
       'railz-bank-reconciliation': LocalJSX.RailzBankReconciliation &
         JSXBase.HTMLAttributes<HTMLRailzBankReconciliationElement>;
+      'railz-business-valuations': LocalJSX.RailzBusinessValuations &
+        JSXBase.HTMLAttributes<HTMLRailzBusinessValuationsElement>;
       'railz-credit-score': LocalJSX.RailzCreditScore &
         JSXBase.HTMLAttributes<HTMLRailzCreditScoreElement>;
       'railz-error-image': LocalJSX.RailzErrorImage &

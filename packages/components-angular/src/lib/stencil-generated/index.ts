@@ -3,6 +3,7 @@ import * as d from './components';
 export const DIRECTIVES = [
   d.RailzBankAccounts,
   d.RailzBankReconciliation,
+  d.RailzBusinessValuations,
   d.RailzCreditScore,
   d.RailzErrorImage,
   d.RailzFinancialRatios,

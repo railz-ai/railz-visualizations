@@ -63,16 +63,16 @@ export const formatNumber = (number: number | string, decimals = 2, minimum = 0)
   return '';
 };
 
-export const formatCurrencyValue = (value: number): string => {
+export const formatCurrencyValue = (value: number, decimals = 2): string => {
   const formatCurrencyNumber = (number: number, decimals = 2): string => {
     if (!isNil(number)) {
       return numbro(Number(number)).format(`0,000.${'0'.repeat(decimals)}`);
     }
     return '';
   };
-  return formatCurrencyNumber(value as number) === ''
+  return formatCurrencyNumber(value as number, decimals) === ''
     ? '-'
-    : '$' + formatCurrencyNumber(value as number);
+    : '$' + formatCurrencyNumber(value as number, decimals);
 };
 
 /**
@@ -100,6 +100,13 @@ export const isCreditScore = (reportType: RVReportTypes): boolean => {
  */
 export const isBankReconciliation = (reportType: RVReportTypes): boolean => {
   return reportType && [RVReportTypes.BANK_RECONCILIATION].includes(reportType);
+};
+
+/**
+ * Determine if report type is business valuations
+ */
+export const isBusinessValuations = (reportType: RVReportTypes): boolean => {
+  return reportType && [RVReportTypes.BUSINESS_VALUATIONS].includes(reportType);
 };
 
 /**

@@ -194,6 +194,11 @@ export interface RVBankReconciliation {
   reports?: Array<any>;
 }
 
+export interface RVBusinessValuations {
+  count: number;
+  reports?: Array<any>;
+}
+
 export interface RVFormattedPieResponse {
   error?: RVErrorResponse;
   data?: RVIncomeStatementsSummary;
