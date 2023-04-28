@@ -266,7 +266,7 @@ export class BusinessValuations {
             this.multipleToRevenuePercentageChange,
           )}
           {ValuationSection(
-            Translations.RV_BUSINESS_VALUATIONS_FIRST_TO_CHICAGO,
+            Translations.RV_BUSINESS_VALUATIONS_FIRST_CHICAGO,
             this.firstChicagoValue,
             this.firstChicagoPercentageChange,
           )}
