@@ -27,7 +27,7 @@ export const getBusinessValuationsParams = (data: RVBusinessValuations): any => 
   let multipleToRevenue = null;
   let firstChicago = null;
   let liquidationPercentageChange = null;
-  let discountPercentageChange = null;
+  let discountedCashflowPercentageChange = null;
   let multipleToRevenuePercentageChange = null;
   let firstChicagoPercentageChange = null;
   let latestEndDate = null;
@@ -43,7 +43,10 @@ export const getBusinessValuationsParams = (data: RVBusinessValuations): any => 
     // discountedCashflow percentage change over two reports
     discountedCashflow = reports[0].data.discountedCashflowValue;
     const discountedCashflow2 = reports[1].data.discountedCashflowValue;
-    discountPercentageChange = getPercentageChange(discountedCashflow, discountedCashflow2);
+    discountedCashflowPercentageChange = getPercentageChange(
+      discountedCashflow,
+      discountedCashflow2,
+    );
 
     // multipleToRevenue percentage change over two reports
     multipleToRevenue = reports[0].data.multipleToRevenueValue;
@@ -61,7 +64,7 @@ export const getBusinessValuationsParams = (data: RVBusinessValuations): any => 
     multipleToRevenue,
     firstChicago,
     liquidationPercentageChange,
-    discountPercentageChange,
+    discountedCashflowPercentageChange,
     multipleToRevenuePercentageChange,
     firstChicagoPercentageChange,
     latestEndDate,
