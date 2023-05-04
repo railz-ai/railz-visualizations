@@ -7,6 +7,6 @@
     "@railzai/railz-visualizations-angular": "packages/components-angular",
     "@railzai/railz-visualizations-react": "packages/components-react"
   },
-  "sandboxes": ["/examples/react-example", "/examples/angular", "/examples/nodejs"],
+  "sandboxes": ["/examples/react", "/examples/angular"],
   "node": "14"
 }
