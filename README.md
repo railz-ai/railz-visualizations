@@ -283,8 +283,8 @@ Import the `RailzVisualizationsModule` into your component module or app.module.
 import { NgModule } from '@angular/core'; import { BrowserModule } from '@angular/platform-browser';
 import { RailzVisualizationsModule } from "@railzai/railz-visualizations-angular/dist"; import {
 AppComponent } from './app.component'; @NgModule({ declarations: [AppComponent], imports: [
-BrowserModule, RailzVisualizationsModule ], providers: [], bootstrap: [AppComponent], }) export
-class AppModule {}
+BrowserModule, RailzVisualizationsModule ], providers: [], bootstrap: [AppComponent] }) export class
+AppModule {}
 ```
 
 ## Contributing
