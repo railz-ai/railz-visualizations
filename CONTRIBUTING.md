@@ -5,11 +5,7 @@ The Railz Visualization library and documentation are open to contributions.
 You can watch the series below on how to get started with contributing to open source projects.
 [How to Contribute to an Open Source Project on GitHub](https://egghead.io/courses/how-to-contribute-to-an-open-source-project-on-github)
 
-<br>
-
 ## Local Development
-
-<br>
 
 ### Build Your Packages
 
@@ -181,8 +177,6 @@ import { RVReportTypes } from '@railzai/railz-visualizations';
 <br>
 
 ## Conventions
-
-<br>
 
 ### Formatting
 
