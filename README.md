@@ -107,20 +107,20 @@ yarn add @railzai/railz-visualizations
 
 ## Visualizations Usage
 
-All you have to do just to import the core component on the page and pass its parameters to access it properties as an
+To use the SDK, import the core component on the page and pass its parameters to access its properties as an
 element.
 
 <br>
 
 There are `3` ways to implement the Visualizations SDK
 
-- Use a generic railz-visualizations container & specify the report type/filters/business info
-- Pick a specific report component & pass filter/business info
-- Use a non data fetching component to help your site interactivity
+- Use a generic railz-visualizations container & specify the report type, filters, and business info
+- Use a specific report component & pass filters and business info
+- Use a non data fetching component to help boost your site's interactivity
 
 <br>
 
-Generic React Example
+Generic Container Example (React)
 
 ```
 <RailzVisualizations
@@ -136,7 +136,7 @@ Generic React Example
 />
 ```
 
-Specific React Report Component
+Specific Report Component (React)
 
 ```
 <RailzBankReconciliation
@@ -146,7 +146,7 @@ Specific React Report Component
 />
 ```
 
-Other Supplementary Components
+Other Supplementary Components (React)
 
 ```
 <RailzLoading
@@ -161,8 +161,6 @@ Other Supplementary Components
 <br>
 
 ## Prerequisites
-
-<br>
 
 ### `Authentication`
 
@@ -227,8 +225,6 @@ export default App;
 
 ## Framework usage `Angular` example
 
-<br>
-
 #### `app.component.html`
 
 <br>
@@ -285,7 +281,7 @@ Import the `RailzVisualizationsModule` into your component module or app.module.
 
 ```angular
 import { NgModule } from '@angular/core'; import { BrowserModule } from '@angular/platform-browser';
-import {RailzVisualizationsModule} from "@railzai/railz-visualizations-angular/dist"; import {
+import { RailzVisualizationsModule } from "@railzai/railz-visualizations-angular/dist"; import {
 AppComponent } from './app.component'; @NgModule({ declarations: [AppComponent], imports: [
 BrowserModule, RailzVisualizationsModule ], providers: [], bootstrap: [AppComponent], }) export
 class AppModule {}
