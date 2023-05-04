@@ -280,11 +280,20 @@ Use a specific railz-visualization component
 Import the `RailzVisualizationsModule` into your component module or app.module.ts file
 
 ```angular
-import { NgModule } from '@angular/core'; import { BrowserModule } from '@angular/platform-browser';
-import { RailzVisualizationsModule } from "@railzai/railz-visualizations-angular/dist"; import {
-AppComponent } from './app.component'; @NgModule({ declarations: [AppComponent], imports: [
-BrowserModule, RailzVisualizationsModule ], providers: [], bootstrap: [AppComponent] }) export class
-AppModule {}
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { RailzVisualizationsModule } from "@railzai/railz-visualizations-angular/dist";
+
+import { AppComponent } from './app.component';
+
+@NgModule({
+  declarations: [AppComponent],
+  imports: [ BrowserModule, RailzVisualizationsModule ],
+  providers: [],
+  bootstrap: [AppComponent]
+}) 
+
+export class AppModule {}
 ```
 
 ## Contributing
