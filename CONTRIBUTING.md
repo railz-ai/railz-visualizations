@@ -39,7 +39,7 @@ From the main folder:
    yarn link
    ```
 
-### For `React`
+### For React
 
 Lerna already linked the stencil component library to the React library during the build process so we only need to
 create the symlink for the React component library. Go to `packages/components-react` folder and run the below:
@@ -64,7 +64,7 @@ library in the file where you want to use them.
 import { RailzVisualizations } from '@railzai/railz-visualizations-react';
 ```
 
-### For `Angular`
+### For Angular
 
 Lerna already linked the stencil component library to the Angular library during the build process so we only need to
 create the symlink for the Angular component library. Go to `packages/components-angular` folder and run the below:

@@ -227,8 +227,6 @@ export default App;
 
 #### `app.component.html`
 
-<br>
-
 ## Exampe 1:
 
 Use generic railz-visualizations component & specify reportType & respective filters/values
