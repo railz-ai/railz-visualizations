@@ -97,7 +97,7 @@ import { RailzVisualizationsModule } from '@railzai/railz-visualizations-angular
 
 <br>
 
-If you do not think your changes are reflected in the components, rebuild the root visualizations directory.
+If you do not think your changes are reflected in the components, rebuild the root visualizations directory using `yarn build`.
 
 - As long as you have properly executed `yarn link` in the `packages/components` it should update after the build is complete.
 - Do not forget that after you link `railz-visualizations` in the `packages/components`, you need to link the components to your example project.
