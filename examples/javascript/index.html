@@ -314,14 +314,14 @@
         document.getElementById('chart-content').replaceChildren(rv);
 
         const sourceCode = `
-<railz-visualizations
-  configuration="${JSON.stringify(
-    { token: configuration.token.slice(0, 20) + '...', debug: configuration.debug },
-    null,
-    4,
-  )}"
-  filter="${JSON.stringify(filter, null, 4)}">
-</railz-visualizations>`;
+          <railz-visualizations
+            configuration="${JSON.stringify(
+              { token: configuration.token.slice(0, 20) + '...', debug: configuration.debug },
+              null,
+              4,
+            )}"
+            filter="${JSON.stringify(filter, null, 4)}">
+          </railz-visualizations>`;
 
         document.getElementById('code').textContent = sourceCode;
       });
