@@ -110,7 +110,7 @@ If you do not think your changes are reflected in the components, rebuild the ro
 
 <br>
 
-For other debugging needs you can pass `debug=true` into the visualizations config object
+Optionally, you can set `debug=true` in the visualizations configuration object
 
 ```
 <RailzVisualizations

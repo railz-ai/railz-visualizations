@@ -4,6 +4,9 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 It demonstrates how to setup railz visualizations with React via the `@railzai/railz-visualizations-react` package
 
 ## Usage
+- If your backend authentication server is setup, you can run the following commands to get your React project up and running.
+- You will need to enter the backend authentication API url in the Auth Url input so you can request your access token.
+- Once you have your token you can enter in your business and other filter info to load your visualizations.
 
 ```bash
 git clone https://github.com/railz-ai/railz-visualizations

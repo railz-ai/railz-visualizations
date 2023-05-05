@@ -182,7 +182,7 @@ Check below Usage React/Angular examples for reference.
 
 <br>
 
-### Framework usage `React` example
+## Framework usage React example
 
 ```react
 import React, { useEffect, useState } from 'react';
@@ -223,7 +223,7 @@ export default App;
 
 ```
 
-## Framework usage `Angular` example
+## Framework usage Angular example
 
 #### `app.component.html`
 
@@ -292,6 +292,69 @@ import { AppComponent } from './app.component';
 }) 
 
 export class AppModule {}
+```
+
+## Vanilla JS Web Components
+```
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+  <head>
+    <script
+      type="module"
+      src="https://cdn.jsdelivr.net/npm/@railzai/railz-visualizations@0.0.8-alpha.5/dist/railzvisualizations/railzvisualizations.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://cdn.jsdelivr.net/npm/@railzai/railz-visualizations@0.0.8-alpha.5/dist/railzvisualizations/railzvisualizations.js"
+    ></script>
+  </head>
+  <body>
+    <div id="code" />
+    <script>
+      const setupSDK = async () => {
+        const response = await fetch(
+          'http://localhost:4000/authenticate',
+          {
+            method: 'GET',
+          },
+        );
+
+        const result = await response.json();
+
+        const configuration = {
+          token: result.access_token,
+          debug: true,
+        };
+
+        let rv = document.createElement('railz-visualizations');
+        rv.configuration = configuration;
+
+        const filter = {
+          startDate: "2022-04-06",
+          endDate: "2023-04-12",
+          reportFrequency: "month",
+          reportType: "creditScore",
+          businessName: "TestBusinessXero",
+          serviceName: "xero"
+        };
+
+        const sourceCode = `
+          <railz-visualizations
+            configuration="${JSON.stringify(
+              { token: configuration.token.slice(0, 20) + '...', debug: configuration.debug },
+              null,
+              4,
+            )}"
+            filter="${JSON.stringify(filter, null, 4)}">
+          </railz-visualizations>`;
+
+        document.getElementById('code').textContent = sourceCode;
+      }
+
+      setupSDK()
+    </script>
+  </body>
+</html>
 ```
 
 ## Contributing
