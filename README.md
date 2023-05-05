@@ -46,6 +46,8 @@ Components that run in any browser supporting the Custom Elements v1 spec.
 
 Stencil components are just Web Components, so they work in any major framework or with no framework at all.
 
+<br>
+
 ## Key Features of Railz Visualizations
 
 - Charting components built for financial data and reports.
@@ -60,6 +62,8 @@ Stencil components are just Web Components, so they work in any major framework 
   - Loading Indicator Component
   - Error/Status Image component
 
+<br>
+
 ## Overview
 
 Accounting Data as a Service™
@@ -71,12 +75,16 @@ The Railz Visualization components helps to build your dashboard easily with dat
 | ---------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
 | Latest ✔                                                                                 | Latest ✔                                                                                    | Latest ✔                                                                                 | Latest ✔                                                                              | Latest ✔                                                                           |
 
+<br>
+
 ## Installation
 
 The library is published as a [scoped NPM package](https://docs.npmjs.com/misc/scope) in
 the [NPMJS Railz account](https://www.npmjs.com/org/railzai).
 
 [Check our docs on detailed instruction guide](https://docs.railz.ai/docs/visualization-sdk-quickstart).
+
+<br>
 
 With NPM:
 
@@ -95,17 +103,78 @@ yarn add @railzai/railz-visualizations
 - Angular
 - React
 
+<br>
+
 ## Visualizations Usage
 
 All you have to do just to import the core component on the page and pass its parameters to access it properties as an
 element.
 
-### Prerequisites
+<br>
 
-#### Authentication
+There are `3` ways to implement the Visualizations SDK
 
-Setup the process of receiving an access_token from the Railz Authentication API, see
-details [here](https://docs.railz.ai/reference/authentication)
+- Use a generic railz-visualizations container & specify the report type/filters/business info
+- Pick a specific report component & pass filter/business info
+- Use a non data fetching component to help your site interactivity
+
+<br>
+
+Generic React Example
+
+```
+<RailzVisualizations
+  configuration={config}
+  filter={{
+    businessName: 'testFreshbooks',
+    serviceName: RVAccountingProviders.FRESHBOOKS,
+    reportType: RVReportTypes.BALANCE_SHEET,
+    startDate: '2021-01-01',
+    endDate: '2022-01-28',
+    reportFrequency: RVReportFrequency.MONTH,
+  }}
+/>
+```
+
+Specific React Report Component
+
+```
+<RailzBankReconciliation
+  configuration={configuration}
+  filter={filter as RVFilterBankReconciliation}
+  options={options}
+/>
+```
+
+Other Supplementary Components
+
+```
+<RailzLoading
+  loadingText="Loading Data"
+  fillColor={'#000000'}
+  textStyle={{ color: '#00884f', fontSize: '18px', fontWeight: 400 }}
+  width="150px"
+  height="150px"
+/>
+```
+
+<br>
+
+## Prerequisites
+
+<br>
+
+### `Authentication`
+
+<br>
+
+Setup the quick-start guide to get the access token [here](https://docs.railz.ai/reference/authentication)
+
+Once you have the token, make sure you set the token in the railz-visualization configuration object.
+
+Check below Usage React/Angular examples for reference.
+
+<br>
 
 #### Framework Specific Installation
 
@@ -113,153 +182,113 @@ details [here](https://docs.railz.ai/reference/authentication)
 - [Angular](https://www.npmjs.com/package/@railzai/railz-visualizations-angular);
 - [React](https://www.npmjs.com/package/@railzai/railz-visualizations-react);
 
-### Framework usage React example
+<br>
+
+### Framework usage `React` example
 
 ```react
-import React, {useEffect, useState} from 'react';
-import './App.css';
-import {RailzVisualizations} from "@railzai/railz-visualizations-react";
-import {RVAccountingProviders, RVReportFrequency, RVReportTypes} from "@railzai/railz-visualizations";
+import React, { useEffect, useState } from 'react';
+import { RailzVisualizations } from '@railzai/railz-visualizations-react';
+import {
+  RVAccountingProviders,
+  RVReportFrequency,
+  RVReportTypes,
+  RVConfiguration,
+} from '@railzai/railz-visualizations';
 
-function App() {
-  const [configuration, setToken] = useState('');
+function App(): JSX.Element {
+  const [config, setConfig] = useState({} as RVConfiguration);
 
-  useEffect( () => {
-    const { configuration }: { configuration: string } = {configuration: '12222'};
-    setToken(configuration);
+  useEffect(() => {
+    const configuration = { token: 'token_1234', debug: false };
+    setConfig(configuration);
   }, []);
+
   return (
-    <div className="App">
-      <RailzVisualizations configuration={{configuration: 'token_1233'}} filter={{
-        businessName: "testFreshbooks",
-        serviceName: RVAccountingProviders.FRESHBOOKS,
-        reportType: RVReportTypes.BALANCE_SHEET,
-        startDate: "2021-01-01",
-        endDate: "2022-01-28",
-        reportFrequency: RVReportFrequency.MONTH,
-      }}/>
+    <div>
+      <RailzVisualizations
+        configuration={config}
+        filter={{
+          businessName: 'testFreshbooks',
+          serviceName: RVAccountingProviders.FRESHBOOKS,
+          reportType: RVReportTypes.BALANCE_SHEET,
+          startDate: '2021-01-01',
+          endDate: '2022-01-28',
+          reportFrequency: RVReportFrequency.MONTH,
+        }}
+      />
     </div>
   );
 }
 
 export default App;
+
 ```
 
-### Framework usage Angular example
+## Framework usage `Angular` example
 
-#### app.component.html
+<br>
+
+#### `app.component.html`
+
+<br>
+
+## Exampe 1:
+
+Use generic railz-visualizations component & specify reportType & respective filters/values
 
 ```angular
 <railz-visualizations
-  [configuration]='{configuration: 'token_1233'}'
+  [configuration]="{
+    token: 'your token...'
+  }"
   [filter]='{
-        businessName: "testFreshbooks",
-        serviceName: RVAccountingProviders.FRESHBOOKS,
-        reportType: RVReportTypes.BALANCE_SHEET,
-        startDate: "2021-01-01",
-        endDate: "2022-01-28",
-        reportFrequency: RVReportFrequency.MONTH,
-      }'
+    businessName: "testFreshbooks",
+    serviceName: RVAccountingProviders.FRESHBOOKS,
+    reportType: RVReportTypes.BALANCE_SHEET,
+    startDate: "2021-01-01",
+    endDate: "2022-01-28",
+    reportFrequency: RVReportFrequency.MONTH,
+  }'
 >
 </railz-visualizations>
 ```
 
-#### app.module.ts
+## Example 2:
+
+Use a specific railz-visualization component
+
+```
+<railz-bank-reconciliation
+  [configuration]='{
+    "token": "your token..."
+  }'
+  [filter]='{
+    "startDate": "2022-04-06",
+    "endDate": "2023-04-12",
+    "reportFrequency": "month",
+    "reportType": "bankReconciliation",
+    "businessName": "TestBusinessXero",
+    "serviceName": "xero"
+  }'
+>
+</railz-bank-reconciliation>
+```
+
+<br>
+
+#### `app.module.ts`
+
+<br>
 
 Import the `RailzVisualizationsModule` into your component module or app.module.ts file
 
 ```angular
 import { NgModule } from '@angular/core'; import { BrowserModule } from '@angular/platform-browser';
-import { AppComponent } from './app.component'; import {RailzVisualizationsModule} from
-"@railzai/railz-visualizations-angular/dist"; @NgModule({ declarations: [AppComponent], imports:
-[BrowserModule, RailzVisualizationsModule], providers: [], bootstrap: [AppComponent], }) export
+import {RailzVisualizationsModule} from "@railzai/railz-visualizations-angular/dist"; import {
+AppComponent } from './app.component'; @NgModule({ declarations: [AppComponent], imports: [
+BrowserModule, RailzVisualizationsModule ], providers: [], bootstrap: [AppComponent], }) export
 class AppModule {}
-```
-
-## Local Development
-
-### Build Your Packages
-
-To build and test your components locally, you will need to link the packages together. This is a replacement for
-publishing packages to npm that allows you to develop and test locally. We are
-using [lerna](https://github.com/lerna/lerna) to do this for us
-
-From the main folder:
-
-1. Clone this [repository](https://github.com/railz-ai/railz-visualizations.git)
-2. Install the dependency needed to setup the packages from the main folder.
-   ```bash
-   yarn
-   ```
-3. Install lerna using yarn
-   ```bash
-   yarn global add lerna
-   ```
-4. Run the bootstrap command to install all the dependencies for the packages, lerna will handle the linking between the
-   packages
-   ```bash
-   yarn install:codesandbox
-   ```
-5. Build the packages to begin using
-   ```bash
-   yarn build
-   ```
-6. Create a symlink to the built **packages/components** library
-   ```bash
-   cd packages/components
-   yarn link
-   ```
-
-#### For React
-
-Lerna already linked the stencil component library to the React library during the build process so we only need to
-create the symlink for the React component library. Go to `packages/components-react` folder and run the below:
-
-```bash
-yarn link
-```
-
-#### Usage
-
-In your own React Application, you can run the below to link both libraries
-
-```bash
-yarn link @railzai/railz-visualizations
-yarn link @railzai/railz-visualizations-react
-```
-
-To make use of the React component library in your React application, import the components from the React component
-library in the file where you want to use them.
-
-```typescript jsx
-import { RailzVisualizations } from '@railzai/railz-visualizations-react';
-```
-
-#### For Angular
-
-Lerna already linked the stencil component library to the Angular library during the build process so we only need to
-create the symlink for the Angular component library. Go to `packages/components-angular` folder and run the below:
-
-In your angular component library, you need to create a symlink.
-
-```bash
-yarn link
-```
-
-#### Usage
-
-In your own Angular Application, you can run the below to link both libraries
-
-```bash
-yarn link @railzai/railz-visualizations
-yarn link @railzai/railz-visualizations-angular
-```
-
-To make use of the Angular component library in your Angular application, set up your module file to import the
-visualizations module.
-
-```typescript
-import { RailzVisualizationsModule } from '@railzai/railz-visualizations-angular/dist';
 ```
 
 ## Contributing
