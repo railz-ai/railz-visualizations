@@ -191,6 +191,7 @@ When you submit a Pull Request, our continuous integration pipeline will test fo
 ## GitHub
 
 <br>
+
 ### Issues
 
 For uniformity, we've prepared [templates](https://github.com/railz-ai/railz-visualizations/issues/new/choose) for new issues that everyone can use. When submitting new issues, please be specific and comprehensive! Consider user stories, acceptance criteria, design, and any other details that developers and designers would find useful.
