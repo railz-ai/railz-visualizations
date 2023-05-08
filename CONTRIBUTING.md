@@ -112,17 +112,17 @@ If you do not think your changes are reflected in the components, rebuild the ro
 
 Optionally, you can set `debug=true` in the visualizations configuration object
 
-```
+```javascript
 <RailzVisualizations
-   configuration={{ token: 'valid_token', debug: true  }}
-   filter={{
-      businessName: 'testFreshbooks',
-      serviceName: RVAccountingProviders.FRESHBOOKS,
-      reportType: RVReportTypes.BALANCE_SHEET,
-      startDate: '2021-01-01',
-      endDate: '2022-01-28',
-      reportFrequency: RVReportFrequency.MONTH,
-   }}
+  configuration={{ token: 'valid_token', debug: true }}
+  filter={{
+    businessName: 'testFreshbooks',
+    serviceName: RVAccountingProviders.FRESHBOOKS,
+    reportType: RVReportTypes.BALANCE_SHEET,
+    startDate: '2021-01-01',
+    endDate: '2022-01-28',
+    reportFrequency: RVReportFrequency.MONTH,
+  }}
 />
 ```
 
@@ -132,7 +132,7 @@ Optionally, you can set `debug=true` in the visualizations configuration object
 
 You will be using `production` accounts/data by default, to test locally/with QA environment you will need to modify the API endpoint, in the railz-visualization `config` object
 
-```
+```javascript
 <Visualizations
   configuration={{
     token,
@@ -160,7 +160,7 @@ You can find this in
 
 ### Example:
 
-```
+```javascript
 import { RVReportTypes } from '@railzai/railz-visualizations';
 
 <RailzLoading

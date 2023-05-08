@@ -122,7 +122,7 @@ There are `3` ways to implement the Visualizations SDK
 
 Generic Container Example (React)
 
-```
+```javascript
 <RailzVisualizations
   configuration={config}
   filter={{
@@ -138,7 +138,7 @@ Generic Container Example (React)
 
 Specific Report Component (React)
 
-```
+```javascript
 <RailzBankReconciliation
   configuration={configuration}
   filter={filter as RVFilterBankReconciliation}
@@ -148,7 +148,7 @@ Specific Report Component (React)
 
 Other Supplementary Components (React)
 
-```
+```javascript
 <RailzLoading
   loadingText="Loading Data"
   fillColor={'#000000'}
@@ -166,9 +166,9 @@ Other Supplementary Components (React)
 
 <br>
 
-Setup the quick-start guide to get the access token [here](https://docs.railz.ai/reference/authentication)
+Setup the quick-start guide to get the access token [here](https://docs.railz.ai/reference/authentication).
 
-Once you have the token, make sure you set the token in the railz-visualization configuration object.
+Once you have the token, make sure you set the token in the railz-visualization `configuration` object.
 
 Check below Usage React/Angular examples for reference.
 
@@ -184,7 +184,7 @@ Check below Usage React/Angular examples for reference.
 
 ## Framework usage React example
 
-```react
+```javascript
 import React, { useEffect, useState } from 'react';
 import { RailzVisualizations } from '@railzai/railz-visualizations-react';
 import {
@@ -227,11 +227,11 @@ export default App;
 
 #### `app.component.html`
 
-## Exampe 1:
+## Example 1:
 
 Use generic railz-visualizations component & specify reportType & respective filters/values
 
-```angular
+```javascript
 <railz-visualizations
   [configuration]="{
     token: 'your token...'
@@ -252,7 +252,7 @@ Use generic railz-visualizations component & specify reportType & respective fil
 
 Use a specific railz-visualization component
 
-```
+```javascript
 <railz-bank-reconciliation
   [configuration]='{
     "token": "your token..."
@@ -277,7 +277,7 @@ Use a specific railz-visualization component
 
 Import the `RailzVisualizationsModule` into your component module or app.module.ts file
 
-```angular
+```javascript
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RailzVisualizationsModule } from "@railzai/railz-visualizations-angular/dist";
@@ -295,7 +295,7 @@ export class AppModule {}
 ```
 
 ## Vanilla JS Web Components
-```
+```javascript
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
   <head>
@@ -312,19 +312,7 @@ export class AppModule {}
     <div id="code" />
     <script>
       const setupSDK = async () => {
-        const response = await fetch(
-          'http://localhost:4000/authenticate',
-          {
-            method: 'GET',
-          },
-        );
-
-        const result = await response.json();
-
-        const configuration = {
-          token: result.access_token,
-          debug: true,
-        };
+        const configuration = { token: 'token_1234', debug: false };
 
         let rv = document.createElement('railz-visualizations');
         rv.configuration = configuration;
@@ -341,7 +329,7 @@ export class AppModule {}
         const sourceCode = `
           <railz-visualizations
             configuration="${JSON.stringify(
-              { token: configuration.token.slice(0, 20) + '...', debug: configuration.debug },
+              { token: configuration.token, debug: configuration.debug },
               null,
               4,
             )}"
