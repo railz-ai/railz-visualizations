@@ -15,11 +15,7 @@ import { RAILZ_DATE_FORMAT } from '../../types/constants/date';
  * Percentage change calculation, 2 decimal places
  */
 const getPercentageChange = (value1: number, value2: number): number => {
-  if (isNil(value1) || isNil(value2)) {
-    return null;
-  }
-
-  if ((value1 === 0 && value2 === 0) || value2 === 0) {
+  if (isNil(value1) || isNil(value2) || value2 === 0) {
     return null;
   }
 
