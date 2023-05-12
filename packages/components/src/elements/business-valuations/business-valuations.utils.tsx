@@ -32,32 +32,38 @@ export const getBusinessValuationsParams = (data: RVBusinessValuations): any => 
   let multipleToRevenuePercentageChange = null;
   let firstChicagoPercentageChange = null;
   let latestEndDate = null;
-  if (data?.reports && data?.reports.length >= 2) {
+  if (data?.reports) {
     const reports = data.reports;
-    latestEndDate = reports[0].meta.updatedAt;
 
-    // liquidation percentage change over two reports
-    liquidation = reports[0].data.liquidationValue;
-    const liquidation2 = reports[1].data.liquidationValue;
-    liquidationPercentageChange = getPercentageChange(liquidation, liquidation2);
+    if (data?.reports.length >= 1) {
+      // get latest report data
+      latestEndDate = reports[0].meta.updatedAt;
+      liquidation = reports[0].data.liquidationValue;
+      discountedCashflow = reports[0].data.discountedCashflowValue;
+      multipleToRevenue = reports[0].data.multipleToRevenueValue;
+      firstChicago = reports[0].data.firstChicagoValue;
+    }
 
-    // discountedCashflow percentage change over two reports
-    discountedCashflow = reports[0].data.discountedCashflowValue;
-    const discountedCashflow2 = reports[1].data.discountedCashflowValue;
-    discountedCashflowPercentageChange = getPercentageChange(
-      discountedCashflow,
-      discountedCashflow2,
-    );
-
-    // multipleToRevenue percentage change over two reports
-    multipleToRevenue = reports[0].data.multipleToRevenueValue;
-    const multipleToRevenue2 = reports[1].data.multipleToRevenueValue;
-    multipleToRevenuePercentageChange = getPercentageChange(multipleToRevenue, multipleToRevenue2);
-
-    // firstChicago percentage change over two reports
-    firstChicago = reports[0].data.firstChicagoValue;
-    const firstChicago2 = reports[1].data.firstChicagoValue;
-    firstChicagoPercentageChange = getPercentageChange(firstChicago, firstChicago2);
+    if (data?.reports.length >= 2) {
+      // liquidation percentage change over two reports
+      const liquidation2 = reports[1]?.data.liquidationValue;
+      liquidationPercentageChange = getPercentageChange(liquidation, liquidation2);
+      // discountedCashflow percentage change over two reports
+      const discountedCashflow2 = reports[1].data.discountedCashflowValue;
+      discountedCashflowPercentageChange = getPercentageChange(
+        discountedCashflow,
+        discountedCashflow2,
+      );
+      // multipleToRevenue percentage change over two reports
+      const multipleToRevenue2 = reports[1].data.multipleToRevenueValue;
+      multipleToRevenuePercentageChange = getPercentageChange(
+        multipleToRevenue,
+        multipleToRevenue2,
+      );
+      // firstChicago percentage change over two reports
+      const firstChicago2 = reports[1].data.firstChicagoValue;
+      firstChicagoPercentageChange = getPercentageChange(firstChicago, firstChicago2);
+    }
   }
   return {
     liquidation,
