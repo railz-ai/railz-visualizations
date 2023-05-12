@@ -18,6 +18,11 @@ const getPercentageChange = (value1: number, value2: number): number => {
   if (isNil(value1) || isNil(value2)) {
     return null;
   }
+
+  if ((value1 === 0 && value2 === 0) || value2 === 0) {
+    return null;
+  }
+
   return Math.round(((value1 - value2) / value2) * 10000) / 100;
 };
 

@@ -236,6 +236,7 @@ export class BusinessValuations {
           />
         );
       }
+
       if (
         isNil(this.liquidationValue) ||
         isNil(this.discountedCashflowValue) ||
@@ -248,6 +249,7 @@ export class BusinessValuations {
       if (!isEmpty(this.loading)) {
         return <railz-loading loadingText={this.loading} {...this._options?.loadingIndicator} />;
       }
+
       return (
         <div class="rv-valuation-container">
           <div class="rv-valuation-group">
@@ -278,25 +280,35 @@ export class BusinessValuations {
       );
     };
 
+    const renderPercentageChange = (percentage): HTMLElement => {
+      if (percentage < 0) {
+        return (
+          <div class="rv-negative" style={this._options?.chart?.pie?.negative}>
+            &#x25BC; {Math.abs(percentage)}%
+          </div>
+        );
+      } else {
+        return (
+          <div class="rv-positive" style={this._options?.chart?.pie?.positive}>
+            &#x25B2;{' '}
+            {isNil(percentage) || isNaN(percentage) || Math.abs(percentage) === Infinity
+              ? 0
+              : Math.abs(percentage)}
+            %
+          </div>
+        );
+      }
+    };
+
     const ValuationSection = (title, value, percentage): HTMLElement => (
       <div class="rv-valuation-section">
         <p class="rv-valuation-title">{title}</p>
         <div class="rv-valuation-value-row">
           <p class="rv-valuation-value">{formatCurrencyValue(Math.round(value), 0)}</p>
           <div class="rv-income-statements-chart-percentage">
-            {percentage < 0 ? (
-              <div class="rv-negative" style={this._options?.chart?.pie?.negative}>
-                &#x25BC; {Math.abs(percentage)}%
-              </div>
-            ) : (
-              <div class="rv-positive" style={this._options?.chart?.pie?.positive}>
-                &#x25B2;{' '}
-                {isNil(percentage) || isNaN(percentage) || Math.abs(percentage) === Infinity
-                  ? 0
-                  : Math.abs(percentage)}
-                %
-              </div>
-            )}
+            {isNil(percentage) || isNaN(percentage) || Math.abs(percentage) === Infinity
+              ? null
+              : renderPercentageChange(percentage)}
           </div>
         </div>
       </div>
