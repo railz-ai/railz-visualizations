@@ -161,6 +161,7 @@ export class BankReconciliation {
         errorLog(Translations.RV_ERROR_202_TITLE);
         this.errorStatusCode = 202;
       } else {
+        // generic error response
         errorLog(Translations.RV_ERROR_204_TITLE);
         this.errorStatusCode = 204;
       }
