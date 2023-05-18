@@ -188,6 +188,20 @@ export interface RVFormattedScoreResponse {
   status?: number;
 }
 
+export interface RVBankReconciliationApiResponse {
+  error?: {
+    error: string;
+    message: Array<string>;
+    statusCode: number;
+  };
+  payload?: any;
+  data?: RVReportSummaryResponse;
+  status?: number;
+  count: number;
+  pagination: any;
+  reports?: Array<any>;
+}
+
 export interface RVBankReconciliation {
   count: number;
   pagination: any;

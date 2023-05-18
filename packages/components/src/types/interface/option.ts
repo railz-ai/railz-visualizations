@@ -552,7 +552,7 @@ export interface RVOptions {
   /**
    * recon: Object to cover the styling options of the ratio diagram
    */
-  reconciliation?: RVOptionsRatioStyle;
+  reconciliation?: RVOptionsBankReconciliationStyle;
   /**
    * table: Object to cover the styling options of the table diagram
    */
