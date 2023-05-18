@@ -18,7 +18,6 @@ import {
   RVFilterStatements,
   RVFilterTransactions,
   RVOptions,
-  RVOptionsBankReconciliationStyle,
   RVOptionsBarStyle,
   RVOptionsPercentageStyle,
   RVOptionsRatioSparkLineStyle,
@@ -54,7 +53,7 @@ export namespace Components {
     /**
      * For whitelabeling styling
      */
-    options?: RVOptionsBankReconciliationStyle;
+    options?: RVOptions;
   }
   interface RailzBusinessValuations {
     /**
@@ -413,7 +412,7 @@ declare namespace LocalJSX {
     /**
      * For whitelabeling styling
      */
-    options?: RVOptionsBankReconciliationStyle;
+    options?: RVOptions;
   }
   interface RailzBusinessValuations {
     /**

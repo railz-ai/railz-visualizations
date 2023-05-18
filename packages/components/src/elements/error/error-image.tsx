@@ -56,6 +56,15 @@ export class ErrorImage {
             </p>
           </div>
         );
+      case 422:
+        return (
+          <div>
+            <Error204 fillColor={this.fillColor} width={this.width} height={this.height} />
+            <p class="rv-error-title" style={this.textStyle}>
+              {Translations.RV_ERROR_422_TITLE}
+            </p>
+          </div>
+        );
       default:
         return (
           <div>

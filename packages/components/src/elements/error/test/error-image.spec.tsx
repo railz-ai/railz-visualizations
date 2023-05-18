@@ -71,7 +71,7 @@ describe('railz-error-image', () => {
             <ellipse cx="30.8931" cy="41.745" fill="#949494" rx="1.14892" ry="1.14544"></ellipse>
           </svg>
           <p class="rv-error-title">
-            Data currently unavailable
+            No data found! A data synchronization for this report is currently in progress. Please wait a bit and try again later.
           </p>
         </div>
       </mock:shadow-root>
@@ -101,7 +101,7 @@ describe('railz-error-image', () => {
              <path d="M10.5957 38.8359C10.0434 38.8359 9.5957 39.2837 9.5957 39.8359C9.5957 40.3882 10.0434 40.8359 10.5957 40.8359V38.8359ZM24.766 40.8359C25.3183 40.8359 25.766 40.3882 25.766 39.8359C25.766 39.2837 25.3183 38.8359 24.766 38.8359V40.8359ZM10.5957 40.8359H24.766V38.8359H10.5957V40.8359Z" fill="#949494"></path>
            </svg>
            <p class="rv-error-title">
-             No data available
+            No data found
            </p>
          </div>
        </mock:shadow-root>
@@ -131,7 +131,7 @@ describe('railz-error-image', () => {
           <path d="M10.5957 38.8359C10.0434 38.8359 9.5957 39.2837 9.5957 39.8359C9.5957 40.3882 10.0434 40.8359 10.5957 40.8359V38.8359ZM24.766 40.8359C25.3183 40.8359 25.766 40.3882 25.766 39.8359C25.766 39.2837 25.3183 38.8359 24.766 38.8359V40.8359ZM10.5957 40.8359H24.766V38.8359H10.5957V40.8359Z" fill="#949494"></path>
         </svg>
         <p class="rv-error-title">
-          No data available
+          No data found
         </p>
       </div>
     </mock:shadow-root>
