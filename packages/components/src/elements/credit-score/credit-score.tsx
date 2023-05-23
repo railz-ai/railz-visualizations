@@ -70,6 +70,8 @@ export class CreditScore {
       ConfigurationInstance.configuration = this._configuration;
       try {
         this._filter = getFilter(filter as RVFilterAll) as RVFilterCreditScore;
+        delete this._filter['startDate'];
+        delete this._filter['endDate'];
         this._options = getOptions(options);
         if (validateRequiredParams(this._filter as RVFilterAll)) {
           if (isCreditScore(this._filter.reportType)) {

@@ -128,7 +128,6 @@ export interface RVFilterRevenue
 export interface RVFilterCreditScore
   extends RVFilterReportType,
     RVFilterBusiness,
-    RVFilterDate,
     RVFilterReportFrequency {
   reportType: RVReportTypes.CREDIT_SCORE;
 }
