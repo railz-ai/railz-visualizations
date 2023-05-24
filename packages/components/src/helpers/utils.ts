@@ -35,6 +35,13 @@ export const formatDate = (
   });
 };
 
+export const formatNegativeValues = (name: string, value: number): any => {
+  if (['currentLiabilities', 'nonCurrentLiabilities'].includes(name)) {
+    return value > 0 ? value * -1 : value;
+  }
+  return value;
+};
+
 /**
  * Filter data to ensure there is no undefined field result
  */
@@ -46,7 +53,8 @@ export const formatSeries = (
   name,
   data: summary
     ?.map((data: { [x: string]: any }) => data[field])
-    .filter((data) => data !== undefined),
+    .filter((data) => data !== undefined)
+    ?.map((item: any) => formatNegativeValues(field, item)),
 });
 
 /**
