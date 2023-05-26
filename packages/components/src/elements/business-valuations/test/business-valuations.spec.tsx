@@ -17,7 +17,6 @@ describe('railz-business-valuations', () => {
           <p class="rv-title">
 		        <railz-tooltip tooltiptext="Business Valuations are created for the monthly timeframe and are used to determine the estimated worth or financial value of your business. The percent change measures the valuation difference from the previous month."></railz-tooltip>
 		      </p>
-		      <span></span>
 		    </div>
 		    <railz-error-image statuscode="500"></railz-error-image>
 		  </div>
