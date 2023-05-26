@@ -318,7 +318,7 @@ export class BusinessValuations {
       <div class="rv-container" style={this._options?.container?.style}>
         <div class="rv-header-container">
           {this._options?.title?.visible === false ? '' : <TitleElement />}
-          <SubTitleElement />
+          {/* <SubTitleElement /> */}
         </div>
         {renderMain()}
       </div>
