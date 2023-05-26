@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.0.8-alpha.16 (2023-05-24)
+
+
+### Bug Fixes
+
+* wrong currentLiabilities and nonCurrentLiabilities values ([#144](https://github.com/railz-ai/railz-visualizations/issues/144)) ([0ebb619](https://github.com/railz-ai/railz-visualizations/commit/0ebb619a8037a3cb2b1493fce64a71e225126fdf))
+
+
+
+
+
+## 0.0.8-alpha.15 (2023-05-18)
+
+**Note:** Version bump only for package @railzai/railz-visualizations
+
+
+
+
+
+## 0.0.8-alpha.14 (2023-05-12)
+
+**Note:** Version bump only for package @railzai/railz-visualizations
+
+
+
+
+
 ## 0.0.8-alpha.13 (2023-05-11)
 
 **Note:** Version bump only for package @railzai/railz-visualizations

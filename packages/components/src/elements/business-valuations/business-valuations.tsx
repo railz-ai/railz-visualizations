@@ -165,8 +165,8 @@ export class BusinessValuations {
       if (reportData?.reports) {
         this.updateBusinessValuationsParams(reportData);
       } else {
-        errorLog(Translations.RV_ERROR_202_TITLE);
-        this.errorStatusCode = 202;
+        errorLog(Translations.RV_ERROR_204_TITLE);
+        this.errorStatusCode = 204;
       }
     } catch (error) {
       errorLog(Translations.RV_NOT_ABLE_TO_PARSE_REPORT_DATA, error);
