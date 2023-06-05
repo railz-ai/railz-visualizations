@@ -2,11 +2,9 @@
 import { Component, Prop, h, State, Watch } from '@stencil/core';
 
 import { isNil, isEqual, isEmpty } from 'lodash-es';
-import { format, parseISO } from 'date-fns';
 
 import Translations from '../../config/translations/en.json';
 import {
-  ALL_FONTS,
   RVBusinessValuations,
   RVConfiguration,
   RVFilterAll,
@@ -30,6 +28,48 @@ import { ConfigurationInstance } from '../../services/configuration';
 import { errorLog } from '../../services/logger';
 
 import { getBusinessValuationsParams, getReportData } from './business-valuations.utils';
+
+const renderPercentageChange = (percentage: number, options: RVOptions): HTMLElement => {
+  if (percentage < 0) {
+    return (
+      <div class="rv-negative" style={options?.chart?.pie?.negative}>
+        &#x25BC; {Math.abs(percentage)}%
+      </div>
+    );
+  } else {
+    return (
+      <div class="rv-positive" style={options?.chart?.pie?.positive}>
+        &#x25B2;{' '}
+        {isNil(percentage) || isNaN(percentage) || Math.abs(percentage) === Infinity
+          ? 0
+          : Math.abs(percentage)}
+        %
+      </div>
+    );
+  }
+};
+
+const ValuationSection = (
+  title: string,
+  value: number,
+  percentage: number,
+  options: RVOptions,
+): HTMLElement => {
+  const parsedValue = isNil(percentage) ? 'N/A' : formatCurrencyValue(Math.round(value), 0);
+  const parsedPercentage =
+    isNil(percentage) || isNaN(percentage) || Math.abs(percentage) === Infinity
+      ? null
+      : renderPercentageChange(percentage, options);
+  return (
+    <div class="rv-valuation-section">
+      <p class="rv-valuation-title">{title}</p>
+      <div class="rv-valuation-value-row">
+        <p class="rv-valuation-value">{parsedValue}</p>
+        <div class="rv-income-statements-chart-percentage">{parsedPercentage}</div>
+      </div>
+    </div>
+  );
+};
 
 @Component({
   tag: 'railz-business-valuations',
@@ -65,7 +105,6 @@ export class BusinessValuations {
   @State() private discountedCashflowPercentageChange: number;
   @State() private multipleToRevenuePercentageChange: number;
   @State() private firstChicagoPercentageChange: number;
-  @State() private latestEndDate: string;
 
   private updateBusinessValuationsParams = (summary: RVBusinessValuations): void => {
     const params = getBusinessValuationsParams(summary);
@@ -79,7 +118,6 @@ export class BusinessValuations {
       this.discountedCashflowPercentageChange = params.discountedCashflowPercentageChange;
       this.multipleToRevenuePercentageChange = params.multipleToRevenuePercentageChange;
       this.firstChicagoPercentageChange = params.firstChicagoPercentageChange;
-      this.latestEndDate = params.latestEndDate;
     }
   };
 
@@ -201,33 +239,19 @@ export class BusinessValuations {
       </p>
     );
 
-    const SubTitleElement = (): HTMLElement => {
-      return isEmpty(this.latestEndDate) ||
-        this.errorStatusCode !== undefined ||
-        this._options?.subTitle?.visible === false ? (
-        <span></span>
-      ) : (
-        ((
-          <p
-            class="rv-score-last-updated"
-            style={{
-              fontFamily: this._options?.chart?.fontFamily || ALL_FONTS,
-              ...this._options?.subTitle?.style,
-            }}
-          >
-            {this._options?.content?.subTitle || Translations.RV_AS_OF}{' '}
-            {this._options?.subTitle?.dateVisible === false
-              ? ''
-              : format(
-                  parseISO(this.latestEndDate),
-                  this.options?.content?.date?.format || 'MMM dd yyyy',
-                )}
-          </p>
-        ) as HTMLElement)
-      );
-    };
-
     const renderMain = (): HTMLElement => {
+      if (
+        isEmpty(this.loading) &&
+        this.errorStatusCode === undefined &&
+        isNil(this.liquidationValue) &&
+        isNil(this.discountedCashflowValue) &&
+        isNil(this.multipleToRevenueValue) &&
+        isNil(this.firstChicagoValue)
+      ) {
+        // if it's not loading and all are empty, show no data error
+        this.errorStatusCode = 204;
+      }
+
       if (this.errorStatusCode !== undefined) {
         return (
           <railz-error-image
@@ -235,15 +259,6 @@ export class BusinessValuations {
             {...this._options?.errorIndicator}
           />
         );
-      }
-
-      if (
-        isNil(this.liquidationValue) ||
-        isNil(this.discountedCashflowValue) ||
-        isNil(this.multipleToRevenueValue) ||
-        isNil(this.firstChicagoValue)
-      ) {
-        return <span></span>;
       }
 
       if (!isEmpty(this.loading)) {
@@ -257,11 +272,13 @@ export class BusinessValuations {
               Translations.RV_BUSINESS_VALUATIONS_LIQUIDATION_VALUE,
               this.liquidationValue,
               this.liquidationPercentageChange,
+              this._options,
             )}
             {ValuationSection(
               Translations.RV_BUSINESS_VALUATIONS_DISCOUNTED_CASH_FLOW,
               this.discountedCashflowValue,
               this.discountedCashflowPercentageChange,
+              this._options,
             )}
           </div>
           <div class="rv-valuation-group">
@@ -269,56 +286,23 @@ export class BusinessValuations {
               Translations.RV_BUSINESS_VALUATIONS_MULTIPLE_TO_REVENUE,
               this.multipleToRevenueValue,
               this.multipleToRevenuePercentageChange,
+              this._options,
             )}
             {ValuationSection(
               Translations.RV_BUSINESS_VALUATIONS_FIRST_CHICAGO,
               this.firstChicagoValue,
               this.firstChicagoPercentageChange,
+              this._options,
             )}
           </div>
         </div>
       );
     };
 
-    const renderPercentageChange = (percentage): HTMLElement => {
-      if (percentage < 0) {
-        return (
-          <div class="rv-negative" style={this._options?.chart?.pie?.negative}>
-            &#x25BC; {Math.abs(percentage)}%
-          </div>
-        );
-      } else {
-        return (
-          <div class="rv-positive" style={this._options?.chart?.pie?.positive}>
-            &#x25B2;{' '}
-            {isNil(percentage) || isNaN(percentage) || Math.abs(percentage) === Infinity
-              ? 0
-              : Math.abs(percentage)}
-            %
-          </div>
-        );
-      }
-    };
-
-    const ValuationSection = (title, value, percentage): HTMLElement => (
-      <div class="rv-valuation-section">
-        <p class="rv-valuation-title">{title}</p>
-        <div class="rv-valuation-value-row">
-          <p class="rv-valuation-value">{formatCurrencyValue(Math.round(value), 0)}</p>
-          <div class="rv-income-statements-chart-percentage">
-            {isNil(percentage) || isNaN(percentage) || Math.abs(percentage) === Infinity
-              ? null
-              : renderPercentageChange(percentage)}
-          </div>
-        </div>
-      </div>
-    );
-
     return (
       <div class="rv-container" style={this._options?.container?.style}>
         <div class="rv-header-container">
           {this._options?.title?.visible === false ? '' : <TitleElement />}
-          {/* <SubTitleElement /> */}
         </div>
         {renderMain()}
       </div>
