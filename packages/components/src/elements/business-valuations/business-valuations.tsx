@@ -202,6 +202,9 @@ export class BusinessValuations {
       })) as RVBusinessValuations;
       if (reportData?.reports) {
         this.updateBusinessValuationsParams(reportData);
+      } else if (reportData?.status === 202) {
+        errorLog(Translations.RV_ERROR_202_TITLE);
+        this.errorStatusCode = 202;
       } else {
         errorLog(Translations.RV_ERROR_204_TITLE);
         this.errorStatusCode = 204;

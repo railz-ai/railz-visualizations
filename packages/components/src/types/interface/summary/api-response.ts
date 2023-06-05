@@ -211,6 +211,7 @@ export interface RVBankReconciliation {
 export interface RVBusinessValuations {
   count: number;
   reports?: Array<any>;
+  status?: number;
 }
 
 export interface RVFormattedPieResponse {

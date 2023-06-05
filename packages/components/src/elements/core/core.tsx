@@ -117,6 +117,16 @@ export class Core {
       );
     }
 
+    if (RVReportTypes.BUSINESS_VALUATIONS === reportType) {
+      return (
+        <railz-business-valuations
+          configuration={this.configuration}
+          filter={this.filter as any}
+          options={this.options}
+        />
+      );
+    }
+
     if (RVReportTypes.BANK_ACCOUNT === reportType) {
       return (
         <railz-bank-accounts
