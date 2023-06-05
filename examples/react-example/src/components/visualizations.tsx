@@ -140,6 +140,7 @@ const Components = ({ configuration, filter, options, showCode }: ChartProps) =>
           RVReportTypes.FINANCIAL_RATIO,
           RVReportTypes.BANK_ACCOUNT,
           RVReportTypes.BANK_RECONCILIATION,
+          RVReportTypes.BUSINESS_VALUATIONS,
         ].map((reportType, index) => {
           const cloneOptions = cloneDeep(options);
           if (index !== 0) {

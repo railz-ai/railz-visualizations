@@ -16,6 +16,7 @@
 
 - [railz-error-image](../error)
 - [railz-bank-reconciliation](../bank-reconciliation)
+- [railz-business-valuations](../business-valuations)
 - [railz-bank-accounts](../bank-accounts)
 - [railz-financial-ratios](../financial-ratios)
 - [railz-credit-score](../credit-score)
@@ -29,6 +30,7 @@
 graph TD;
   railz-visualizations --> railz-error-image
   railz-visualizations --> railz-bank-reconciliation
+  railz-visualizations --> railz-business-valuations
   railz-visualizations --> railz-bank-accounts
   railz-visualizations --> railz-financial-ratios
   railz-visualizations --> railz-credit-score
@@ -39,6 +41,9 @@ graph TD;
   railz-bank-reconciliation --> railz-tooltip
   railz-bank-reconciliation --> railz-gauge-chart
   railz-bank-reconciliation --> railz-progress-bar
+  railz-business-valuations --> railz-tooltip
+  railz-business-valuations --> railz-error-image
+  railz-business-valuations --> railz-loading
   railz-bank-accounts --> railz-error-image
   railz-bank-accounts --> railz-loading
   railz-bank-accounts --> railz-tooltip
