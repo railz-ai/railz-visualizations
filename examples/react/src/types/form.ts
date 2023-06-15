@@ -1,4 +1,3 @@
-import { AuthenticationParameters } from './authentication';
 import { RVOptions } from '@railzai/railz-visualizations';
 
 export interface OptionFormProps {
@@ -6,8 +5,13 @@ export interface OptionFormProps {
   options?: RVOptions;
 }
 
-export interface FormProps extends OptionFormProps {
-  setFilter: (filter: any) => void;
-  setAuthentication: (params: AuthenticationParameters) => Promise<void>;
-  setError: (value: string) => void;
+export interface AuthFormProps {
+  setError: ((value: string) => void) | undefined;
+  setToken: (accessToken: string) => void;
 }
+
+export interface FilterFormProps {
+  setFilter: ((filter: any) => void) | undefined;
+}
+
+export interface FormProps extends OptionFormProps, AuthFormProps, FilterFormProps {}

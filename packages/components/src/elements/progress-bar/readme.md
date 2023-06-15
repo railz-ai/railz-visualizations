@@ -2,6 +2,7 @@
 
 <!-- Auto Generated Below -->
 
+
 ## Properties
 
 | Property        | Attribute        | Description                              | Type                                            | Default     |
@@ -12,15 +13,15 @@
 | `reportType`    | `report-type`    | To indicate if its an invoice or bill    | `RVReportTypes.BILLS \| RVReportTypes.INVOICES` | `undefined` |
 | `unpaidAmount`  | `unpaid-amount`  | For unpaid amount of an invoice or bill  | `number`                                        | `undefined` |
 
+
 ## Dependencies
 
 ### Used by
 
-- [railz-bank-reconciliation](../bank-reconciliation)
-- [railz-transactions-control](../transactions-control)
+ - [railz-bank-reconciliation](../bank-reconciliation)
+ - [railz-transactions-control](../transactions-control)
 
 ### Graph
-
 ```mermaid
 graph TD;
   railz-bank-reconciliation --> railz-progress-bar
@@ -28,6 +29,6 @@ graph TD;
   style railz-progress-bar fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
----
+----------------------------------------------
 
-_Built with [StencilJS](https://stenciljs.com/)_
+*Built with [StencilJS](https://stenciljs.com/)*

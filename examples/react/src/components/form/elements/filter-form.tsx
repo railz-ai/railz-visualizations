@@ -6,7 +6,7 @@ import {
   RVReportTypes,
 } from '@railzai/railz-visualizations';
 
-import { FormProps } from '../../../types/form';
+import { FilterFormProps } from '../../../types/form';
 
 // TODO: this can be helper functions and objects the SDK provides
 // This is still not possible: https://github.com/ionic-team/stencil/issues/2865
@@ -26,7 +26,7 @@ const requiresNoFrequency = (type: string) =>
 const requiresNoDate = (type: string) =>
   [RVReportTypes.BANK_ACCOUNT].includes(type as RVReportTypes);
 
-export default function FilterForm({ setFilter }: FormProps) {
+export default function FilterForm({ setFilter }: FilterFormProps) {
   const [formFilter, setFormFilter] = useState({
     businessName: '',
     serviceName: arrayServiceProviders[0],
@@ -39,7 +39,10 @@ export default function FilterForm({ setFilter }: FormProps) {
 
   const submitFilter = (event: any) => {
     event.preventDefault();
-    setFilter(formFilter);
+
+    if (formFilter && setFilter) {
+      setFilter(formFilter);
+    }
   };
 
   const handleFilterChange = (event: any) => {

@@ -1,28 +1,17 @@
 import React, { useState } from 'react';
+import { RVFilterAll } from '@railzai/railz-visualizations';
+import { isEmpty } from 'lodash';
+
 import Header from '../../components/header';
 import Form from '../../components/form/form';
 import Visualizations from '../../components/visualizations';
-import { AuthenticationParameters } from '../../types/authentication';
-import { isEmpty } from 'lodash';
 import { INITIAL_OPTIONS } from '../../types/constants';
-import { RVFilterAll } from '@railzai/railz-visualizations';
 
 export default function Customization() {
   const [token, setToken] = useState('');
   const [filter, setFilter] = useState({});
   const [options, setOptions] = useState(INITIAL_OPTIONS);
   const [error, setError] = useState('');
-
-  const submitAuthentication = async (params: AuthenticationParameters): Promise<void> => {
-    setError('');
-    const response = await fetch(params.authUrl, { method: 'GET' });
-    if (!response.ok) {
-      setError('Could not retrieve auth configuration');
-      return;
-    }
-    const result = await response.json();
-    setToken(result.access_token);
-  };
 
   const submitFilter = (filter: RVFilterAll) => {
     setFilter(filter);
@@ -45,10 +34,10 @@ export default function Customization() {
           <div className="md:col-span-1 shadow p-4">
             <Form
               setFilter={submitFilter}
-              setAuthentication={submitAuthentication}
               setError={setError}
               options={options}
               setOptions={submitOptions}
+              setToken={setToken}
             />
           </div>
           <div className="mt-5 md:mt-0 md:col-span-2 px-1">

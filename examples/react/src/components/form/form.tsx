@@ -4,17 +4,11 @@ import AuthForm from './elements/auth-form';
 import FilterForm from './elements/filter-form';
 import OptionsForm from './elements/options-form';
 
-export default function Form({
-  setFilter,
-  setAuthentication,
-  setError,
-  options,
-  setOptions,
-}: FormProps) {
+export default function Form({ setFilter, setError, options, setOptions, setToken }: FormProps) {
   return (
     <>
       <div className="mt-0">
-        <AuthForm setFilter={setFilter} setAuthentication={setAuthentication} setError={setError} />
+        <AuthForm setError={setError} setToken={setToken} />
       </div>
       {options && (
         <div className="mt-4 sm:mt-4">
@@ -22,11 +16,7 @@ export default function Form({
         </div>
       )}
       <div className="mt-4 sm:mt-4">
-        <FilterForm
-          setFilter={setFilter}
-          setAuthentication={setAuthentication}
-          setError={setError}
-        />
+        <FilterForm setFilter={setFilter} />
       </div>
     </>
   );

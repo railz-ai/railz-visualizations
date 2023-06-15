@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
-import { OptionFormProps } from '../../../types/form';
 import ReactJson from 'react-json-view';
+
+import { OptionFormProps } from '../../../types/form';
+
 export default function OptionsForm({ options, setOptions }: OptionFormProps) {
   const [formOptions, setFormOptions] = useState(options || {});
 

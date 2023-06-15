@@ -2,6 +2,7 @@
 
 <!-- Auto Generated Below -->
 
+
 ## Usage
 
 ### Angular
@@ -21,6 +22,7 @@
 }'
 ></railz-statements-chart>
 ```
+
 
 ### React
 
@@ -42,6 +44,8 @@ import { RailzStatementsChart } from '@railzai/railz-visualizations-react';
 />;
 ```
 
+
+
 ## Properties
 
 | Property                     | Attribute | Description                                                 | Type                                                                             | Default     |
@@ -50,11 +54,12 @@ import { RailzStatementsChart } from '@railzai/railz-visualizations-react';
 | `filter` _(required)_        | --        | Filter information to query the backend APIs                | `RVFilterBalanceSheet \| RVFilterCashflowStatements \| RVFilterIncomeStatements` | `undefined` |
 | `options`                    | --        | For whitelabeling styling                                   | `RVOptions`                                                                      | `undefined` |
 
+
 ## Dependencies
 
 ### Used by
 
-- [railz-visualizations](../core)
+ - [railz-visualizations](../core)
 
 ### Depends on
 
@@ -63,7 +68,6 @@ import { RailzStatementsChart } from '@railzai/railz-visualizations-react';
 - [railz-tooltip](../tooltip)
 
 ### Graph
-
 ```mermaid
 graph TD;
   railz-statements-chart --> railz-error-image
@@ -73,6 +77,6 @@ graph TD;
   style railz-statements-chart fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
----
+----------------------------------------------
 
-_Built with [StencilJS](https://stenciljs.com/)_
+*Built with [StencilJS](https://stenciljs.com/)*
