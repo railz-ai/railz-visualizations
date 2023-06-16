@@ -4,7 +4,7 @@ import { FormProps } from '../../../types/form';
 
 export default function AuthForm({ setAuthentication, setError }: FormProps) {
   const [formAuth, setFormAuth] = useState<AuthenticationParameters>({
-    authUrl: '',
+    authUrl: 'http://localhost:4000/authenticate',
   });
 
   const submitAuth = async (event: any) => {
