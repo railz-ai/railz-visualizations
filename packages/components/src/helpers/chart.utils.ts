@@ -112,7 +112,7 @@ export const validateBusinessServiceNameParams = (filter: RVFilterAll): boolean 
 
 export const validateDateParams = (filter: RVFilterAll): boolean => {
   const { startDate, endDate, reportType } = filter;
-  if (reportType === RVReportTypes.BANK_ACCOUNT) {
+  if ([RVReportTypes.BANK_ACCOUNT, RVReportTypes.CREDIT_SCORE].includes(reportType)) {
     return true;
   }
   if (startDate && endDate) {

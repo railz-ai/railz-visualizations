@@ -186,6 +186,7 @@ export interface RVFormattedScoreResponse {
   error?: RVErrorResponse;
   data?: RVCreditScoreSummary;
   status?: number;
+  meta?: RVReportMetaResponse;
 }
 
 export interface RVBankReconciliationApiResponse {
