@@ -50,7 +50,7 @@ export class CreditScore {
   @State() private _options: RVOptions;
   @State() private _data: RVCreditScoreSummary;
   @State() private errorStatusCode: number;
-  @State() private lastUpdated: string;
+  @State() private asOfDate: string;
 
   /**
    * Validates if configuration was passed correctly before setting filter
@@ -128,8 +128,9 @@ export class CreditScore {
       const reportData = (await getReportData({
         filter: this._filter as RVFilterAll,
       })) as RVFormattedScoreResponse;
+
       if (reportData?.data) {
-        this.lastUpdated = reportData.data.lastUpdated;
+        this.asOfDate = reportData.meta.endDate;
         this._data = reportData.data;
       } else if (reportData?.error) {
         errorLog(Translations.RV_NOT_ABLE_TO_RETRIEVE_REPORT_DATA);
@@ -195,7 +196,9 @@ export class CreditScore {
     );
 
     const SubTitleElement = (): HTMLElement => {
-      return isEmpty(this.lastUpdated) || this._options?.subTitle?.visible === false ? (
+      return this.errorStatusCode ||
+        isEmpty(this.asOfDate) ||
+        this._options?.subTitle?.visible === false ? (
         <span></span>
       ) : (
         ((
@@ -210,7 +213,7 @@ export class CreditScore {
             {this._options?.subTitle?.dateVisible === false
               ? ''
               : format(
-                  parseISO(this.lastUpdated),
+                  parseISO(this.asOfDate),
                   this.options?.content?.date?.format || 'dd MMM yyyy',
                 )}
           </p>

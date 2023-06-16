@@ -40,6 +40,14 @@ export interface RVFilterDate {
   endDate: string; // required based on report type,
 }
 
+export interface RVFilterEndOptionalDate {
+  /**
+   * endDate: Date which the data ends
+   * format: **yyyy-MM-dd**
+   */
+  endDate?: string; // optional based on report type,
+}
+
 export interface RVFilterReportFrequency {
   /**
    * reportFrequency: The snapshot frequency (month, quarter, year)
@@ -128,7 +136,7 @@ export interface RVFilterRevenue
 export interface RVFilterCreditScore
   extends RVFilterReportType,
     RVFilterBusiness,
-    RVFilterDate,
+    RVFilterEndOptionalDate,
     RVFilterReportFrequency {
   reportType: RVReportTypes.CREDIT_SCORE;
 }
