@@ -1,0 +1,91 @@
+{
+  "name": "@railzai/railz-visualizations",
+  "version": "0.0.8-alpha.19",
+  "description": "Railz.ai Visualizations",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/railz-ai/railz-visualizations"
+  },
+  "author": "Railz.ai",
+  "homepage": "https://docs.railz.ai/docs/visualization-sdk-overview",
+  "bugs": {
+    "url": "https://github.com/railz-ai/railz-visualizations/issues"
+  },
+  "keywords": [
+    "railz",
+    "railz.ai",
+    "css",
+    "stencil",
+    "stenciljs",
+    "storybook",
+    "angular",
+    "react",
+    "ui-framework",
+    "custom-elements",
+    "webcomponents",
+    "web-components"
+  ],
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.js",
+  "es2015": "dist/esm/index.mjs",
+  "es2017": "dist/esm/index.mjs",
+  "types": "dist/types/index.d.ts",
+  "collection": "dist/collection/collection-manifest.json",
+  "collection:main": "dist/collection/index.js",
+  "unpkg": "dist/railzvisualizations/railzvisualizations.esm.js",
+  "files": [
+    "dist/"
+  ],
+  "scripts": {
+    "build": "stencil build --prod",
+    "start": "stencil build --dev --watch --serve",
+    "test:stencil": "stencil test --spec",
+    "test:e2e": "stencil test --spec --e2e",
+    "test.watch": "stencil test --spec --e2e --watchAll",
+    "lint": "eslint src/**/*{.ts,.tsx} --fix",
+    "stylelint": "stylelint 'src/**/*.scss' --fix",
+    "test:lint:ts": "eslint --ext .ts,.tsx --ignore-path .gitignore",
+    "test:lint:scss": "stylelint 'src/**/*.scss'",
+    "test": "yarn run test:lint:ts && yarn run test:lint:scss && yarn run test:stencil",
+    "generate": "stencil generate"
+  },
+  "dependencies": {
+    "@stencil/angular-output-target": "0.4.0",
+    "@stencil/core": "2.15.2",
+    "@stencil/react-output-target": "0.3.1",
+    "@stencil/sass": "1.5.2",
+    "date-fns": "2.11.1",
+    "get-contrast": "^3.0.0",
+    "highcharts": "9.3.3",
+    "lodash-es": "4.17.21",
+    "numbro": "2.3.6"
+  },
+  "devDependencies": {
+    "@stencil/eslint-plugin": "0.4.0",
+    "@types/jest": "27.4.1",
+    "@types/node": "17.0.17",
+    "@typescript-eslint/eslint-plugin": "4.33.0",
+    "@typescript-eslint/parser": "4.33.0",
+    "eslint": "7.29.0",
+    "eslint-config-prettier": "8.3.0",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-prettier": "4.0.0",
+    "eslint-plugin-react": "7.28.0",
+    "jest": "27.5.1",
+    "jest-cli": "27.5.1",
+    "prettier": "2.5.1",
+    "puppeteer": "13.5.2",
+    "rollup-plugin-dotenv": "0.3.0",
+    "stylelint": "14.5.3",
+    "stylelint-a11y": "1.2.3",
+    "stylelint-config-prettier": "9.0.3",
+    "stylelint-config-recommended": "7.0.0",
+    "stylelint-config-standard-scss": "3.0.0",
+    "stylelint-prettier": "2.0.0",
+    "stylelint-scss": "4.1.0",
+    "typescript": "4.4.4"
+  },
+  "license": "MIT",
+  "packageManager": "yarn@1.22.17",
+  "gitHead": "d1eb2a21152a77ce22d686b197b82d1851d4b8f5"
+}

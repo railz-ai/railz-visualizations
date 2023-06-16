@@ -1,0 +1,337 @@
+:host {
+  flex: 1;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.rv-loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  svg {
+    @media screen and (prefers-reduced-motion: reduce) {
+      &.spinner-android {
+        animation: none;
+        @media screen and (prefers-reduced-motion: reduce) {
+          & .path {
+            stroke-linecap: round;
+            animation: none;
+          }
+        }
+
+        & .path {
+          stroke-linecap: round;
+          animation: dash 1.5s ease-in-out infinite;
+        }
+      }
+    }
+
+    &.spinner-android {
+      animation: rotate 2s linear infinite;
+      @media screen and (prefers-reduced-motion: reduce) {
+        & .path {
+          stroke-linecap: round;
+          animation: none;
+        }
+      }
+
+      & .path {
+        stroke-linecap: round;
+        animation: dash 1.5s ease-in-out infinite;
+      }
+    }
+
+    @media screen and (prefers-reduced-motion: reduce) {
+      &.spinner-ios {
+        animation: none;
+        @media screen and (prefers-reduced-motion: reduce) {
+          path:nth-of-type(1) {
+            animation: none;
+          }
+        }
+
+        path:nth-of-type(1) {
+          animation: pulse 1s infinite linear;
+        }
+        @media screen and (prefers-reduced-motion: reduce) {
+          path:nth-of-type(2) {
+            animation: none;
+          }
+        }
+
+        path:nth-of-type(2) {
+          animation: pulse 1s -0.083s infinite linear;
+        }
+        @media screen and (prefers-reduced-motion: reduce) {
+          path:nth-of-type(3) {
+            animation: none;
+          }
+        }
+
+        path:nth-of-type(3) {
+          animation: pulse 1s -0.166s infinite linear;
+        }
+        @media screen and (prefers-reduced-motion: reduce) {
+          path:nth-of-type(4) {
+            animation: none;
+          }
+        }
+
+        path:nth-of-type(4) {
+          animation: pulse 1s -0.249s infinite linear;
+        }
+        @media screen and (prefers-reduced-motion: reduce) {
+          path:nth-of-type(5) {
+            animation: none;
+          }
+        }
+
+        path:nth-of-type(5) {
+          animation: pulse 1s -0.332s infinite linear;
+        }
+        @media screen and (prefers-reduced-motion: reduce) {
+          path:nth-of-type(6) {
+            animation: none;
+          }
+        }
+
+        path:nth-of-type(6) {
+          animation: pulse 1s -0.415s infinite linear;
+        }
+        @media screen and (prefers-reduced-motion: reduce) {
+          path:nth-of-type(7) {
+            animation: none;
+          }
+        }
+
+        path:nth-of-type(7) {
+          animation: pulse 1s -0.498s infinite linear;
+        }
+        @media screen and (prefers-reduced-motion: reduce) {
+          path:nth-of-type(8) {
+            animation: none;
+          }
+        }
+
+        path:nth-of-type(8) {
+          animation: pulse 1s -0.581s infinite linear;
+        }
+        @media screen and (prefers-reduced-motion: reduce) {
+          path:nth-of-type(9) {
+            animation: none;
+          }
+        }
+
+        path:nth-of-type(9) {
+          animation: pulse 1s -0.664s infinite linear;
+        }
+        @media screen and (prefers-reduced-motion: reduce) {
+          path:nth-of-type(10) {
+            animation: none;
+          }
+        }
+
+        path:nth-of-type(10) {
+          animation: pulse 1s -0.747s infinite linear;
+        }
+        @media screen and (prefers-reduced-motion: reduce) {
+          path:nth-of-type(11) {
+            animation: none;
+          }
+        }
+
+        path:nth-of-type(11) {
+          animation: pulse 1s -0.83s infinite linear;
+        }
+        @media screen and (prefers-reduced-motion: reduce) {
+          path:nth-of-type(12) {
+            animation: none;
+          }
+        }
+
+        path:nth-of-type(12) {
+          animation: pulse 1s -0.913s infinite linear;
+        }
+      }
+    }
+
+    &.spinner-ios {
+      animation: iosIntro 0.6s;
+      @media screen and (prefers-reduced-motion: reduce) {
+        path:nth-of-type(1) {
+          animation: none;
+        }
+      }
+
+      path:nth-of-type(1) {
+        animation: pulse 1s infinite linear;
+      }
+
+      @media screen and (prefers-reduced-motion: reduce) {
+        path:nth-of-type(2) {
+          animation: none;
+        }
+      }
+
+      path:nth-of-type(2) {
+        animation: pulse 1s -0.083s infinite linear;
+      }
+
+      @media screen and (prefers-reduced-motion: reduce) {
+        path:nth-of-type(3) {
+          animation: none;
+        }
+      }
+
+      path:nth-of-type(3) {
+        animation: pulse 1s -0.166s infinite linear;
+      }
+
+      @media screen and (prefers-reduced-motion: reduce) {
+        path:nth-of-type(4) {
+          animation: none;
+        }
+      }
+
+      path:nth-of-type(4) {
+        animation: pulse 1s -0.249s infinite linear;
+      }
+
+      @media screen and (prefers-reduced-motion: reduce) {
+        path:nth-of-type(5) {
+          animation: none;
+        }
+      }
+
+      path:nth-of-type(5) {
+        animation: pulse 1s -0.332s infinite linear;
+      }
+
+      @media screen and (prefers-reduced-motion: reduce) {
+        path:nth-of-type(6) {
+          animation: none;
+        }
+      }
+
+      path:nth-of-type(6) {
+        animation: pulse 1s -0.415s infinite linear;
+      }
+
+      @media screen and (prefers-reduced-motion: reduce) {
+        path:nth-of-type(7) {
+          animation: none;
+        }
+      }
+
+      path:nth-of-type(7) {
+        animation: pulse 1s -0.498s infinite linear;
+      }
+
+      @media screen and (prefers-reduced-motion: reduce) {
+        path:nth-of-type(8) {
+          animation: none;
+        }
+      }
+
+      path:nth-of-type(8) {
+        animation: pulse 1s -0.581s infinite linear;
+      }
+
+      @media screen and (prefers-reduced-motion: reduce) {
+        path:nth-of-type(9) {
+          animation: none;
+        }
+      }
+
+      path:nth-of-type(9) {
+        animation: pulse 1s -0.664s infinite linear;
+      }
+
+      @media screen and (prefers-reduced-motion: reduce) {
+        path:nth-of-type(10) {
+          animation: none;
+        }
+      }
+
+      path:nth-of-type(10) {
+        animation: pulse 1s -0.747s infinite linear;
+      }
+
+      @media screen and (prefers-reduced-motion: reduce) {
+        path:nth-of-type(11) {
+          animation: none;
+        }
+      }
+
+      path:nth-of-type(11) {
+        animation: pulse 1s -0.83s infinite linear;
+      }
+
+      @media screen and (prefers-reduced-motion: reduce) {
+        path:nth-of-type(12) {
+          animation: none;
+        }
+      }
+
+      path:nth-of-type(12) {
+        animation: pulse 1s -0.913s infinite linear;
+      }
+    }
+  }
+
+  // Keyframes
+
+  @keyframes rotate {
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes dash {
+    0% {
+      stroke-dasharray: 1, 150;
+      stroke-dashoffset: 0;
+    }
+
+    50% {
+      stroke-dasharray: 90, 150;
+      stroke-dashoffset: -35;
+    }
+
+    100% {
+      stroke-dasharray: 90, 150;
+      stroke-dashoffset: -124;
+    }
+  }
+
+  @keyframes pulse {
+    50% {
+      fill-opacity: 0.2;
+    }
+
+    to {
+      fill-opacity: 1;
+    }
+  }
+
+  @keyframes ios-intro {
+    from {
+      transform: scale(0);
+      opacity: 0;
+    }
+
+    to {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  .rv-loading-title {
+    font-size: 12px;
+    color: #000;
+  }
+}

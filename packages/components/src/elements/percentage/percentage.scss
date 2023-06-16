@@ -1,0 +1,14 @@
+.rv-percentage {
+  line-height: 1.5;
+  display: flex;
+  font-size: 14px;
+  font-weight: 500;
+
+  .rv-positive {
+    color: #003032;
+  }
+
+  .rv-negative {
+    color: #7d0000;
+  }
+}

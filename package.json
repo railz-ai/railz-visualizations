@@ -1,0 +1,55 @@
+{
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "install:codesandbox": "yarn install",
+    "bootstrap": "lerna bootstrap",
+    "add:angular": "lerna add @railzai/railz-visualizations --scope=@railzai/railz-visualizations-angular",
+    "add:react": "lerna add @railzai/railz-visualizations --scope=@railzai/railz-visualizations-react",
+    "run:build": "lerna run --scope '{@railzai/railz-visualizations,@railzai/railz-visualizations-angular,@railzai/railz-visualizations-react}' build",
+    "server": "(cd examples/nodejs && yarn && yarn start)",
+    "dev": "(cd packages/components && yarn && yarn start)",
+    "react": "(cd examples/react-example/ && yarn && yarn start)",
+    "angular": "(cd examples/angular/ && yarn && yarn start)",
+    "cp:env": "cd packages/components && cp .env.template .env && cd ../../",
+    "build": "yarn cp:env && yarn && yarn add:angular && yarn add:react && yarn bootstrap && yarn run:build && yarn lint",
+    "build:local": "yarn && yarn add:angular && yarn add:react && yarn bootstrap && yarn run:build && yarn lint",
+    "build:codesandbox": "yarn cp:env && yarn bootstrap && yarn run:build",
+    "prepare": "husky install",
+    "test": "yarn workspace @railzai/railz-visualizations run test",
+    "patch:dev": "lerna version patch",
+    "prerelease:dev": "lerna version prerelease",
+    "publish:dev": "lerna publish from-package",
+    "release:dev": "yarn build && git commit -a -m 'chore: build new release' && yarn run prerelease && yarn run publish",
+    "release:dev:patch": "yarn build && git commit -a -m 'chore: build new release' && yarn run patch && yarn run publish",
+    "publish:beta": "lerna publish --canary --preid beta",
+    "eslint": "yarn workspace @railzai/railz-visualizations run lint",
+    "stylelint": "yarn workspace @railzai/railz-visualizations run stylelint",
+    "ci:publish:prerelease": "lerna publish prerelease --conventional-commits --create-release github --yes --no-verify-access --message 'chore(release): publish prerelease version'",
+    "ci:publish:prepatch": "lerna publish prepatch --conventional-commits --create-release github --yes --no-verify-access --message 'chore(release): publish prepatch version'",
+    "ci:publish:patch": "lerna publish patch --conventional-commits --create-release github --yes --no-verify-access --message 'chore(release): publish patch version'",
+    "ci:publish:minor": "lerna publish minor --conventional-commits --create-release github --yes --no-verify-access --message 'chore(release): publish minor version'",
+    "ci:publish:major": "lerna publish major --conventional-commits --create-release github --yes --no-verify-access --message 'chore(release): publish major version'",
+    "prettier:write": "prettier . --write --ignore-unknown --allow-empty",
+    "run:lint-staged": "lint-staged",
+    "lint": "yarn eslint && yarn stylelint && yarn prettier:write"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "16.2.1",
+    "@commitlint/config-conventional": "16.2.1",
+    "husky": "8.0.1",
+    "lerna": "5.1.8",
+    "lint-staged": "^12.3.5",
+    "prettier": "2.5.1"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "lint-staged": {
+    "**/*": "prettier . --write --ignore-unknown --allow-empty"
+  },
+  "packageManager": "yarn@1.22.17",
+  "dependencies": {
+    "@stencil/core": "^2.15.2"
+  }
+}

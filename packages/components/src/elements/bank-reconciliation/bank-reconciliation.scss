@@ -1,0 +1,145 @@
+.rv-container {
+  display: flex;
+  gap: 24px;
+  position: relative;
+  flex-direction: row;
+
+  @media screen and (max-width: 600px) {
+    flex-direction: column;
+  }
+
+  p {
+    margin-block: 0;
+  }
+
+  * {
+    font-family: Inter, Roboto, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue',
+      Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+  }
+}
+
+.rv-grid {
+  padding: 16px;
+  min-height: 102px;
+  box-shadow: 0 2px 1px -1px rgb(0 0 0 / 20%), 0 1px 1px 0 rgb(0 0 0 / 14%),
+    0 1px 3px 0 rgb(0 0 0 / 12%);
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+  @media screen and (max-width: 600px) {
+    width: 'auto';
+  }
+}
+
+.rv-grid-accuracy-score {
+  padding: 16px;
+  min-height: 102px;
+  box-shadow: 0 2px 1px -1px rgb(0 0 0 / 20%), 0 1px 1px 0 rgb(0 0 0 / 14%),
+    0 1px 3px 0 rgb(0 0 0 / 12%);
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+  max-width: 264px;
+  @media screen and (max-width: 600px) {
+    max-width: 100%;
+  }
+}
+
+.rv-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #616161;
+  line-height: 1.235;
+}
+
+.rv-subtitle {
+  font-size: 12px;
+  font-weight: 500;
+  overflow-wrap: break-word;
+  color: rgb(0 0 0 / 87%);
+  line-height: 1.235;
+}
+
+.rv-section-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+}
+
+.rv-matched-insight-section-container {
+  align-items: unset;
+  @media screen and (max-width: 600px) {
+    flex-direction: column;
+  }
+}
+
+.rv-section-child-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+  gap: 8px;
+  width: calc(100% + 8px);
+  margin: -4px;
+}
+
+.rv-bar-text {
+  font-size: 12px;
+  font-weight: 500;
+  color: rgb(0 0 0 / 87%);
+  text-align: center;
+}
+
+.rv-section-item {
+  padding: 4px;
+  width: 100%;
+  max-width: 100%;
+}
+
+.rv-section-number {
+  font-size: 18px;
+  font-weight: 600;
+  flex: 1;
+}
+
+.rv-section-equals {
+  margin-top: -8px;
+  align-self: center;
+}
+
+.rv-section-number-icon {
+  font-size: 18px;
+  font-weight: 600;
+  flex: 0;
+}
+
+.rv-section-icon {
+  flex: 1;
+  gap: 8px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.rv-icon {
+  margin-top: 4px;
+  @media screen and (max-width: 900px) {
+    display: none;
+  }
+}
+
+.rv-matched-insight-subtitle {
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: #616161;
+  text-transform: uppercase;
+  @media screen and (max-width: 600px) {
+    text-align: center;
+    margin-left: 0;
+  }
+}

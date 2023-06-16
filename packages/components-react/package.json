@@ -1,0 +1,63 @@
+{
+  "name": "@railzai/railz-visualizations-react",
+  "sideEffects": false,
+  "version": "0.0.8-alpha.19",
+  "description": "React specific wrapper for @railzai/railz-visualizations",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/railz-ai/railz-visualizations"
+  },
+  "author": "Railz.ai",
+  "homepage": "https://docs.railz.ai/reference/visualization-sdk",
+  "publishConfig": {
+    "access": "public"
+  },
+  "bugs": {
+    "url": "https://github.com/railz-ai/railz-visualizations/issues"
+  },
+  "scripts": {
+    "tsc": "tsc -p .",
+    "rollup": "rollup -c",
+    "build": "yarn clean && yarn compile",
+    "clean": "rimraf dist",
+    "compile": "yarn build:cjs && yarn build:esm",
+    "build:cjs": "tsc --module commonjs --outDir dist/cjs",
+    "build:esm": "tsc --module es6 --outDir dist/esm"
+  },
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/types/index.d.ts",
+  "files": [
+    "dist/"
+  ],
+  "devDependencies": {
+    "@types/jest": "23.3.9",
+    "@types/node": "^15.12.2",
+    "@types/react": "^17.0.34",
+    "@types/react-dom": "^17.0.11",
+    "jest": "^27.5.1",
+    "jest-dom": "^3.0.2",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "typescript": "^3.3.4000"
+  },
+  "dependencies": {
+    "@railzai/railz-visualizations": "^0.0.8-alpha.19",
+    "minimist": "1.2.6"
+  },
+  "peerDependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "setupTestFrameworkScriptFile": "<rootDir>/jest.setup.js",
+    "testPathIgnorePatterns": [
+      "node_modules",
+      "dist"
+    ]
+  },
+  "license": "MIT",
+  "packageManager": "yarn@1.22.17",
+  "gitHead": "d1eb2a21152a77ce22d686b197b82d1851d4b8f5"
+}

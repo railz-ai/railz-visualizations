@@ -1,0 +1,43 @@
+<div class="flex flex-col">
+  <div class="text-left">
+    <h2 class="text-lg font-medium leading-6 text-gray-900">Authentication</h2>
+    <p class="mt-1 text-sm text-gray-600">
+      Include your Authentication server URL here, see our quickstart example
+      <a
+        href="https://github.com/railz-ai/railz-visualizations/tree/master/examples/nodejs"
+        target="_blank"
+        class="underline"
+        rel="noopener noreferrer"
+        >here</a
+      >.
+    </p>
+    <p class="mt-1 text-sm text-gray-600 font-bold">This is not implemented by the SDK.</p>
+  </div>
+  <div class="mt-4 md:mt-3 text-left items-end">
+    <form [formGroup]="authForm" (ngSubmit)="onSubmit()">
+      <div class="overflow-hidden sm:rounded-md">
+        <div class="grid grid-cols-6 gap-6 items-end">
+          <div class="col-span-6 sm:col-span-6">
+            <label for="auth-url" class="block text-sm font-medium text-gray-700">Auth Url</label>
+            <input
+              formControlName="authUrl"
+              type="text"
+              name="auth-url"
+              id="auth-url"
+              class="mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+              placeholder="http://localhost:4000/authenticate"
+            />
+          </div>
+          <div class="col-span-6 lg:col-span-6 items-end">
+            <button
+              type="submit"
+              class="w-full inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+            >
+              Authenticate
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

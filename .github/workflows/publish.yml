@@ -1,0 +1,74 @@
+# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: Publish npm
+
+on:
+  pull_request:
+    types: [closed]
+    branches: [master]
+  workflow_dispatch:
+    inputs:
+      yarnCommand:
+        type: choice
+        description: 'Trigger which release command'
+        required: true
+        default: 'ci:publish:prerelease'
+        options:
+          - ci:publish:prerelease
+          - ci:publish:patch
+          - ci:publish:minor
+          - ci:publish:major
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [16.x]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+    steps:
+      - name: Copy repo code
+        uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.GH_TOKEN }}
+
+      - name: Use Node.js ${{ matrix.node-vQersion }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+          registry-url: 'https://registry.npmjs.org/'
+
+      - name: Setup yarn
+        run: npm install -g yarn
+
+      - name: Install testing dependencies
+        run: yarn install
+
+      - name: Run Tests
+        run: yarn test
+
+      - name: Run Build
+        run: yarn build
+
+      - name: Run Publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          HUSKY: 0
+        run: |
+          npm config set //registry.npmjs.org/:_authToken ${NPM_TOKEN}
+          git remote rm origin
+          git remote add origin "https://${{ github.actor }}:$GH_TOKEN@github.com/railz-ai/railz-visualizations.git"
+          git fetch origin
+
+          git config user.name "${{ github.actor }}"
+          git config user.email "${{ github.actor }}@users.noreply.github.com"
+
+          if [ "${{ github.event.inputs.yarnCommand }}" != ''  ]; then
+            yarn run "${{ github.event.inputs.yarnCommand }}"
+          else
+            yarn run ci:publish:prerelease
+          fi

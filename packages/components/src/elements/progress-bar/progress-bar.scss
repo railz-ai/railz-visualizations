@@ -1,0 +1,135 @@
+@keyframes progress {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  12.5% {
+    transform: rotate(180deg);
+    animation-timing-function: linear;
+  }
+
+  25% {
+    transform: rotate(630deg);
+  }
+
+  37.5% {
+    transform: rotate(810deg);
+    animation-timing-function: linear;
+  }
+
+  50% {
+    transform: rotate(1260deg);
+  }
+
+  62.5% {
+    transform: rotate(1440deg);
+    animation-timing-function: linear;
+  }
+
+  75% {
+    transform: rotate(1890deg);
+  }
+
+  87.5% {
+    transform: rotate(2070deg);
+    animation-timing-function: linear;
+  }
+
+  100% {
+    transform: rotate(2520deg);
+  }
+}
+
+@keyframes progress-pseudo {
+  0% {
+    transform: rotate(-30deg);
+  }
+
+  29.4% {
+    border-left-color: transparent;
+  }
+
+  29.41% {
+    border-left-color: currentcolor;
+  }
+
+  64.7% {
+    border-bottom-color: transparent;
+  }
+
+  64.71% {
+    border-bottom-color: currentcolor;
+  }
+
+  100% {
+    border-left-color: currentcolor;
+    border-bottom-color: currentcolor;
+    transform: rotate(225deg);
+  }
+}
+
+:host {
+  text-align: left;
+  flex: 1;
+  display: flex;
+}
+
+p {
+  margin: 0;
+}
+
+.rv-progress-bar-div {
+  flex: 1;
+  justify-content: space-around;
+  display: flex;
+  flex-direction: column;
+
+  .rv-progress-bar-total-unpaid {
+    color: #4f4f4f;
+    font-size: 14px;
+    font-weight: 500;
+
+    span {
+      font-weight: 600;
+    }
+  }
+
+  .rv-progress-bar-total-unpaid-value {
+    font-weight: 600;
+  }
+
+  .rv-progress-bar-values-div {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 16px;
+
+    .rv-progress-bar-overdue {
+      text-align: right;
+    }
+  }
+
+  .rv-progress-bar-label {
+    color: #4f4f4f;
+    font-size: 12px;
+    font-weight: 500;
+  }
+
+  .rv-progress-bar-value {
+    font-weight: 600;
+    font-size: 14px;
+    color: #000;
+  }
+}
+
+.rv-progress-bar {
+  height: 16px;
+  background: #f5f5f5;
+  border-radius: 3px;
+}
+
+.rv-progress-bar > span {
+  display: block;
+  height: 100%;
+  background: #ffd738;
+  border-radius: 3px 0 0 3px;
+}

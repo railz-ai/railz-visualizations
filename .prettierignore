@@ -1,0 +1,6 @@
+dist
+www
+node_modules
+build
+.angular
+CHANGELOG.md
