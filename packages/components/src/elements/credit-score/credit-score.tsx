@@ -196,7 +196,9 @@ export class CreditScore {
     );
 
     const SubTitleElement = (): HTMLElement => {
-      return isEmpty(this.asOfDate) || this._options?.subTitle?.visible === false ? (
+      return this.errorStatusCode ||
+        isEmpty(this.asOfDate) ||
+        this._options?.subTitle?.visible === false ? (
         <span></span>
       ) : (
         ((
