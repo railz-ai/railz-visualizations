@@ -142,5 +142,3 @@ import { RVReportTypes } from '@railzai/railz-visualizations';
 
 <RailzProgressBar reportType={RVReportTypes.INVOICES} />
 ```
-
-<br>
