@@ -350,6 +350,10 @@ export class AppModule {}
 The Railz Visualization library and documentation are open to contributions. For more information, check
 the [guidelines](./CONTRIBUTING.md).
 
+## Local Development & Debugging
+
+For more information on local development & debugging, check the [guidelines](./DEVELOPMENT.md).
+
 ## License
 
 [MIT License](./LICENSE)
