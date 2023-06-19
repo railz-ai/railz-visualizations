@@ -12,6 +12,7 @@ import { distinctUntilChanged } from 'rxjs';
 
 import { ApiService } from '../../../services/api';
 import { AuthenticationParameters } from '../../../types/authentication';
+
 import { Filter } from '../../../types/form-submission';
 
 @Component({
@@ -26,7 +27,7 @@ export class FormComponent implements OnInit {
   @Input() options?: RVOptions;
 
   authForm = new FormGroup({
-    authUrl: new FormControl('', Validators.required),
+    accessToken: new FormControl('', Validators.required),
   });
 
   filterForm = new FormGroup({
@@ -131,13 +132,6 @@ export class FormComponent implements OnInit {
       });
   }
 
-  authorize = (config: AuthenticationParameters) => {
-    this.apiService.getAccessToken(config).subscribe((data: any) => {
-      this.token = data.access_token;
-      this.authEvent.emit(this.token);
-    });
-  };
-
   onFilterSubmit() {
     if (this.filterForm && this.filterForm.valid) {
       this.filterEvent.emit(this.filterForm.value);
@@ -152,7 +146,8 @@ export class FormComponent implements OnInit {
 
   onAuthSubmit() {
     if (this.authForm && this.authForm.valid) {
-      this.authorize(this.authForm.value);
+      this.token = this.authForm.value.accessToken;
+      this.authEvent.emit(this.token);
     }
   }
 }

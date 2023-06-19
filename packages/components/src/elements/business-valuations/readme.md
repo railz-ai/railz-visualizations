@@ -16,7 +16,7 @@
 
 ### Used by
 
-- [railz-visualizations](../core)
+ - [railz-visualizations](../core)
 
 ### Depends on
 
