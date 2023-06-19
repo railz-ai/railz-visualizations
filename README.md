@@ -352,7 +352,7 @@ the [guidelines](./CONTRIBUTING.md).
 
 ## Local Development & Debugging
 
-For more information on local development & debugging, check the [guidelines](./DEVELOPMENT.md).
+For more information on local development & debugging, check the [guidelines](./LOCAL_DEVELOPMENT.md).
 
 ## License
 
