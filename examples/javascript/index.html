@@ -10,11 +10,11 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script
       type="module"
-      src="https://cdn.jsdelivr.net/npm/@railzai/railz-visualizations@0.0.8-alpha.5/dist/railzvisualizations/railzvisualizations.esm.js"
+      src="https://cdn.jsdelivr.net/npm/@railzai/railz-visualizations@0.0.8-alpha.19/dist/railzvisualizations/railzvisualizations.esm.js"
     ></script>
     <script
       nomodule
-      src="https://cdn.jsdelivr.net/npm/@railzai/railz-visualizations@0.0.8-alpha.5/dist/railzvisualizations/railzvisualizations.js"
+      src="https://cdn.jsdelivr.net/npm/@railzai/railz-visualizations@0.0.8-alpha.19/dist/railzvisualizations/railzvisualizations.js"
     ></script>
   </head>
 
@@ -69,7 +69,7 @@
                   clip-rule="evenodd"
                 />
               </svg>
-              Updated on May 13, 2022
+              Updated on June 19, 2023
             </div>
             <div class="mt-2 flex items-center text-sm text-gray-500">
               <!-- Heroicon name: solid/tag -->
@@ -85,7 +85,7 @@
                   clip-rule="evenodd"
                 />
               </svg>
-              Version 0.0.7
+              Version 0.0.8
             </div>
           </div>
         </div>
@@ -98,17 +98,7 @@
                 <div class="text-left">
                   <h2 class="text-lg font-medium leading-6 text-gray-900">Authentication</h2>
                   <p class="mt-1 text-sm text-gray-600">
-                    Include your Authentication server URL here, see our quickstart example
-                    <a
-                      href="https://github.com/railz-ai/quickstart/tree/master/server"
-                      target="_blank"
-                      class="underline"
-                      rel="noopener noreferrer"
-                      >here</a
-                    >.
-                  </p>
-                  <p class="mt-1 text-sm text-gray-600 font-bold">
-                    This is not implemented by the SDK.
+                    Set your access token here to load visualizations.
                   </p>
                 </div>
                 <div class="mt-4 md:mt-3 text-left items-end">
@@ -116,14 +106,14 @@
                     <div class="grid grid-cols-6 gap-6 items-end">
                       <div class="col-span-6 sm:col-span-6">
                         <label for="auth-url" class="block text-sm font-medium text-gray-700"
-                          >Auth Url</label
+                          >Access Token</label
                         >
                         <input
                           type="text"
-                          name="auth-url"
-                          id="auth-url"
+                          name="access-token"
+                          id="access-token"
                           class="mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                          placeholder="http://localhost:4000/authenticate"
+                          placeholder="example_access_token"
                         />
                       </div>
                     </div>
@@ -277,16 +267,8 @@
         // on form submission, prevent default
         e.preventDefault();
 
-        const response = await fetch(
-          document.getElementById('auth-url').value || 'http://localhost:4000/authenticate',
-          {
-            method: 'GET',
-          },
-        );
-        const result = await response.json();
-
         const configuration = {
-          token: result.access_token,
+          token: document.getElementById('access-token').value,
           debug: true,
         };
 
@@ -315,7 +297,7 @@
         const sourceCode = `
           <railz-visualizations
             configuration="${JSON.stringify(
-              { token: configuration.token.slice(0, 20) + '...', debug: configuration.debug },
+              { token: configuration.token, debug: configuration.debug },
               null,
               4,
             )}"
