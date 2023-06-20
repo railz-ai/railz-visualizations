@@ -166,7 +166,7 @@ Other Supplementary Components (React)
 
 <br>
 
-Setup the quick-start guide to get the access token [here](https://docs.railz.ai/reference/authentication).
+Setup the quick-start guide to get the access token [here](https://docs.railz.ai/docs/visualization-sdk-quickstart).
 
 Once you have the token, make sure you set the token in the railz-visualization `configuration` object.
 
