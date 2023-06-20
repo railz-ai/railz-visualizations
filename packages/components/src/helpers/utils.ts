@@ -71,16 +71,14 @@ export const formatNumber = (number: number | string, decimals = 2, minimum = 0)
   return '';
 };
 
-export const formatCurrencyValue = (value: number, decimals = 2): string => {
-  const formatCurrencyNumber = (number: number, decimals = 2): string => {
-    if (!isNil(number)) {
-      return numbro(Number(number)).format(`0,000.${'0'.repeat(decimals)}`);
-    }
-    return '';
-  };
-  return formatCurrencyNumber(value as number, decimals) === ''
-    ? '-'
-    : '$' + formatCurrencyNumber(value as number, decimals);
+const formatCurrencyNumber = (value: number, decimals = 2): string => {
+  if (isNil(value)) return '';
+  return numbro(Number(value)).format(`0,000.${'0'.repeat(decimals)}`);
+};
+
+export const formatCurrencyValue = (value: number, decimals = 2, fallbackValue = '-'): string => {
+  const formattedValue = formatCurrencyNumber(value, decimals);
+  return ['', 'NaN'].includes(formattedValue) ? fallbackValue : '$' + formattedValue;
 };
 
 /**
