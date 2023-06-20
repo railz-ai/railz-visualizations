@@ -2,6 +2,7 @@
 
 <!-- Auto Generated Below -->
 
+
 ## Properties
 
 | Property                     | Attribute | Description                                                 | Type                  | Default     |
@@ -10,11 +11,12 @@
 | `filter` _(required)_        | --        | Filter information to query the backend APIs                | `RVFilterCreditScore` | `undefined` |
 | `options`                    | --        | For whitelabeling styling                                   | `RVOptions`           | `undefined` |
 
+
 ## Dependencies
 
 ### Used by
 
-- [railz-visualizations](../core)
+ - [railz-visualizations](../core)
 
 ### Depends on
 
@@ -24,7 +26,6 @@
 - [railz-tooltip](../tooltip)
 
 ### Graph
-
 ```mermaid
 graph TD;
   railz-credit-score --> railz-error-image
@@ -35,6 +36,6 @@ graph TD;
   style railz-credit-score fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
----
+----------------------------------------------
 
-_Built with [StencilJS](https://stenciljs.com/)_
+*Built with [StencilJS](https://stenciljs.com/)*

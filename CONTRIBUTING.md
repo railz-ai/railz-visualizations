@@ -15,7 +15,11 @@ To format, run: `yarn lint`
 
 When you submit a Pull Request, our continuous integration pipeline will test for lint errors.
 
+<br>
+
 ## GitHub
+
+<br>
 
 ### Issues
 
@@ -70,6 +74,8 @@ BREAKING CHANGE: <details about the change and migration steps (multiple lines a
 
 When utilising tools on your local, make sure you use rebase. When merging in GitHub, ensure you use **Rebase and Merge.** to keep the **master** branch history clean.
 
+<br>
+
 ### Submitting a bug
 
 To keep track of defect, we use GitHub issues. Please use our issue [templates](https://github.com/railz-ai/railz-visualizations/issues/new/choose) to describe the problem so that we can understand and duplicate it.
@@ -82,6 +88,8 @@ Consider the following:
 - If possible, a code snippet example
 - Did the problem arise after a recent release, if this is known?
 
+<br>
+
 ## Typing
 
 Our code base is TypeScript-based, and we intend to keep it that way. We've set up the project to help you stick to specific standards and guidelines. Here are some more things to think about:
@@ -90,6 +98,8 @@ Our code base is TypeScript-based, and we intend to keep it that way. We've set 
 2. Always try to offer a type.
 3. Document all public APIs with JSDoc.
 4. Don't disregard linting errors; fix them.
+
+<br>
 
 ## Accessibility
 
@@ -101,19 +111,27 @@ Some resources:
 - [WAI-ARIA Authoring Practices](https://www.w3.org/TR/wai-aria-practices-1.1/)
 - [Axe Core tools](https://www.deque.com/axe/)
 
+<br>
+
 ## Components
 
 [Boilerplate Example](https://github.com/railz-ai/railz-visualizations/blob/master/BOILERPLATE_COMPONENT.md) contains details on how to create a new component
 
 New components should be associated with an [issue](https://github.com/railz-ai/railz-visualizations/issues/new/choose). Ensure you use the issue number when committing your git messages.
 
+<br>
+
 ## Documentation
 
 Submit a new [issue](https://github.com/railz-ai/railz-visualizations/issues/new?assignees=&labels=&template=documentation-update-request.md&title=) with details containing information about new documentation item and it will be updated on our general docs page.
 
+<br>
+
 ## Examples
 
 Details about any new component created should be added to the [examples](./examples) for the supported frameworks.
+
+<br>
 
 ## Best practices
 
@@ -122,13 +140,19 @@ The resources below show how we use best practises for our web components:
 - [Google Web Component Best Practices](https://developers.google.com/web/fundamentals/web-components/best-practices)
 - [Custom Element Conformance](https://html.spec.whatwg.org/multipage/custom-elements.html)
 
+<br>
+
 ## Structure
 
 The component structure provided by Stencil is followed. For further information, consult their [style guide](https://github.com/ionic-team/stencil/blob/master/STYLE_GUIDE.md#file-structure).
 
+<br>
+
 ## Styling
 
 To ensure that styles are encapsulated, set `shadow: true` in Stencil's `@Component` options. This aids in the consistency of our components across apps.
+
+<br>
 
 ## Testing
 
@@ -136,6 +160,8 @@ For any new functionality or problem fixes, components should include unit tests
 We encourage you to write test cases and code that expresses your objective.
 
 See Stencil's documentation on [unit testing](https://stenciljs.com/docs/unit-testing) testing. See one of our test examples [here](https://github.com/railz-ai/railz-visualizations/blob/master/packages/components/src/components/statements-chart/test/statements-chart.spec.tsx).
+
+<br>
 
 ## Browser support
 

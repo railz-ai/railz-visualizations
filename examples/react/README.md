@@ -5,6 +5,8 @@ It demonstrates how to setup railz visualizations with React via the `@railzai/r
 
 ## Usage
 
+- Once you have your token you can enter in your business and other filter info to load your visualizations.
+
 ```bash
 git clone https://github.com/railz-ai/railz-visualizations
 

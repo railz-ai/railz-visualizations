@@ -2,6 +2,7 @@
 
 <!-- Auto Generated Below -->
 
+
 ## Properties
 
 | Property     | Attribute     | Description                                            | Type                      | Default     |
@@ -12,22 +13,22 @@
 | `textStyle`  | --            | Style of the image text                                | `{ [key: string]: any; }` | `undefined` |
 | `width`      | `width`       | Width of the SVG Error Indicator                       | `string`                  | `undefined` |
 
+
 ## Dependencies
 
 ### Used by
 
-- [railz-bank-accounts](../bank-accounts)
-- [railz-bank-reconciliation](../bank-reconciliation)
-- [railz-business-valuations](../business-valuations)
-- [railz-credit-score](../credit-score)
-- [railz-financial-ratios](../financial-ratios)
-- [railz-income-statements](../income-statements)
-- [railz-statements-chart](../statements-chart)
-- [railz-transactions-control](../transactions-control)
-- [railz-visualizations](../core)
+ - [railz-bank-accounts](../bank-accounts)
+ - [railz-bank-reconciliation](../bank-reconciliation)
+ - [railz-business-valuations](../business-valuations)
+ - [railz-credit-score](../credit-score)
+ - [railz-financial-ratios](../financial-ratios)
+ - [railz-income-statements](../income-statements)
+ - [railz-statements-chart](../statements-chart)
+ - [railz-transactions-control](../transactions-control)
+ - [railz-visualizations](../core)
 
 ### Graph
-
 ```mermaid
 graph TD;
   railz-bank-accounts --> railz-error-image
@@ -42,6 +43,6 @@ graph TD;
   style railz-error-image fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
----
+----------------------------------------------
 
-_Built with [StencilJS](https://stenciljs.com/)_
+*Built with [StencilJS](https://stenciljs.com/)*
