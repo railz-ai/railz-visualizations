@@ -30,7 +30,7 @@ export default function AuthForm({ setAuthentication, setError }: FormProps) {
         <p className="mt-1 text-sm text-gray-600">
           Include your Authentication server URL here, see our quickstart example{' '}
           <a
-            href="https://github.com/railz-ai/quickstart/tree/master/server"
+            href="https://github.com/railz-ai/railz-visualizations/tree/master/examples/nodejs"
             target="_blank"
             className="underline"
             rel="noopener noreferrer"

@@ -56,7 +56,6 @@ app.get('/authenticate', (request, response) => {
 
   const encodedString = Buffer.from(`${CLIENT_ID}:${CLIENT_SECRET}`).toString('base64');
 
-  console.log({ encodedString });
   axios
     .get(AUTH_URL, { headers: { Authorization: `Basic ${encodedString}` } })
     .then((res) => {
