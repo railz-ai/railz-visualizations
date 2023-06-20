@@ -2,6 +2,7 @@
 
 <!-- Auto Generated Below -->
 
+
 ## Properties
 
 | Property        | Attribute | Description                                                 | Type                                                                                                                                                                                                                                                                                                             | Default     |
@@ -9,6 +10,7 @@
 | `configuration` | --        | Configuration information like authentication configuration | `RVConfiguration`                                                                                                                                                                                                                                                                                                | `undefined` |
 | `filter`        | --        | Filter information to query the backend APIs                | `RVFilterBalanceSheet \| RVFilterBankAccount \| RVFilterBankReconciliation \| RVFilterBills \| RVFilterBusinessValuations \| RVFilterCashflowStatements \| RVFilterCreditScore \| RVFilterDate \| RVFilterExpenses \| RVFilterFinancialRatio \| RVFilterIncomeStatements \| RVFilterInvoices \| RVFilterRevenue` | `undefined` |
 | `options`       | --        | For whitelabeling styling                                   | `RVOptions`                                                                                                                                                                                                                                                                                                      | `undefined` |
+
 
 ## Dependencies
 
@@ -23,7 +25,6 @@
 - [railz-transactions-control](../transactions-control)
 
 ### Graph
-
 ```mermaid
 graph TD;
   railz-visualizations --> railz-error-image
@@ -59,6 +60,6 @@ graph TD;
   style railz-visualizations fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
----
+----------------------------------------------
 
-_Built with [StencilJS](https://stenciljs.com/)_
+*Built with [StencilJS](https://stenciljs.com/)*
