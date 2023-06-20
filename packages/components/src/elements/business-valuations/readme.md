@@ -14,6 +14,10 @@
 
 ## Dependencies
 
+### Used by
+
+- [railz-visualizations](../core)
+
 ### Depends on
 
 - [railz-tooltip](../tooltip)
@@ -26,6 +30,7 @@ graph TD;
   railz-business-valuations --> railz-tooltip
   railz-business-valuations --> railz-error-image
   railz-business-valuations --> railz-loading
+  railz-visualizations --> railz-business-valuations
   style railz-business-valuations fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

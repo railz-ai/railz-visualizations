@@ -63,10 +63,15 @@ app.get('/authenticate', (request, response) => {
       response.status(200).json({ success: true, access_token: res.data.access_token });
     })
     .catch((error) => {
-      console.error(error);
-      response.status(401).json({
+      const message = Array.isArray(error?.response?.data?.error?.message)
+        ? error?.response?.data?.error?.message[0]
+        : error;
+      const status = error?.response?.status ? error.response.status : 401;
+      console.error(error?.response?.data, error?.response?.status);
+
+      response.status(status).json({
         success: false,
-        error: 'Authentication with Railz API Failed',
+        error: message || 'Authentication with Railz API Failed',
       });
     });
 });
