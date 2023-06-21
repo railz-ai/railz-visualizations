@@ -55,7 +55,7 @@ const ValuationSection = (
   percentage: number,
   options: RVOptions,
 ): HTMLElement => {
-  const parsedValue = isNil(percentage) ? 'N/A' : formatCurrencyValue(Math.round(value), 0);
+  const parsedValue = formatCurrencyValue(Math.round(value), 0, 'N/A');
   const parsedPercentage =
     isNil(percentage) || isNaN(percentage) || Math.abs(percentage) === Infinity
       ? null
