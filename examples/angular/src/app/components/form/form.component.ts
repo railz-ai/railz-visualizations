@@ -116,8 +116,6 @@ export class FormComponent implements OnInit {
               this.filterForm.controls['endDate'].clearValidators();
               this.filterForm.controls['endDate'].disable();
             } else {
-              console.log('its not optional', !this.optionalEndDate(reportTypeValue));
-
               this.filterForm.controls['endDate'].setValidators(
                 this.optionalEndDate(reportTypeValue) ? [] : [Validators.required],
               );
