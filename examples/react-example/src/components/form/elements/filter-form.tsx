@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { ChangeEventHandler, FormEventHandler, useState } from 'react';
 import {
   RVAccountingProviders,
   RVBankingProviders,
@@ -16,15 +16,21 @@ const arrayServiceProviders = [
 ];
 const arrayAllReportTypes = Object.values(RVReportTypes);
 const arrayReportFrequency = Object.values(RVReportFrequency);
-const requiresNoFrequency = (type: string) =>
+const requiresNoFrequency = (type: RVReportTypes) =>
   [
     RVReportTypes.INVOICES,
     RVReportTypes.BILLS,
     RVReportTypes.BANK_ACCOUNT,
     RVReportTypes.CREDIT_SCORE,
-  ].includes(type as RVReportTypes);
-const requiresNoDate = (type: string) =>
-  [RVReportTypes.BANK_ACCOUNT].includes(type as RVReportTypes);
+  ].includes(type);
+
+const requiresNoEndDate = (type: RVReportTypes) => [RVReportTypes.BANK_ACCOUNT].includes(type);
+
+const optionalEndDate = (type: RVReportTypes) =>
+  [RVReportTypes.BANK_ACCOUNT, RVReportTypes.CREDIT_SCORE].includes(type);
+
+const requiresNoStartDate = (type: RVReportTypes) =>
+  [RVReportTypes.BANK_ACCOUNT, RVReportTypes.CREDIT_SCORE].includes(type);
 
 export default function FilterForm({ setFilter }: FormProps) {
   const [formFilter, setFormFilter] = useState({
@@ -37,12 +43,12 @@ export default function FilterForm({ setFilter }: FormProps) {
     endDate: '',
   });
 
-  const submitFilter = (event: any) => {
+  const submitFilter: FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
     setFilter(formFilter);
   };
 
-  const handleFilterChange = (event: any) => {
+  const handleFilterChange: ChangeEventHandler<HTMLSelectElement | HTMLInputElement> = (event) => {
     const target = event.target;
     const value = target.value;
     const name = target.name;
@@ -161,8 +167,8 @@ export default function FilterForm({ setFilter }: FormProps) {
                   id="start-date"
                   onChange={handleFilterChange}
                   value={formFilter.startDate}
-                  required={!requiresNoDate(formFilter.reportType)}
-                  disabled={requiresNoDate(formFilter.reportType)}
+                  required={!requiresNoStartDate(formFilter.reportType)}
+                  disabled={requiresNoStartDate(formFilter.reportType)}
                   className="mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                   placeholder="id_32"
                 />
@@ -177,8 +183,8 @@ export default function FilterForm({ setFilter }: FormProps) {
                   id="end-date"
                   onChange={handleFilterChange}
                   value={formFilter.endDate}
-                  required={!requiresNoDate(formFilter.reportType)}
-                  disabled={requiresNoDate(formFilter.reportType)}
+                  required={!optionalEndDate(formFilter.reportType)}
+                  disabled={requiresNoEndDate(formFilter.reportType)}
                   className="mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                   placeholder="id_ww"
                 />

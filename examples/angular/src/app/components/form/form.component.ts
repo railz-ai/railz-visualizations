@@ -26,7 +26,7 @@ export class FormComponent implements OnInit {
   @Input() options?: RVOptions;
 
   authForm = new FormGroup({
-    authUrl: new FormControl('', Validators.required),
+    authUrl: new FormControl('http://localhost:4000/authenticate', Validators.required),
   });
 
   filterForm = new FormGroup({
@@ -46,7 +46,14 @@ export class FormComponent implements OnInit {
       RVReportTypes.BANK_ACCOUNT,
       RVReportTypes.CREDIT_SCORE,
     ].includes(type as RVReportTypes);
-  requiresNoDate = (type: string) => [RVReportTypes.BANK_ACCOUNT].includes(type as RVReportTypes);
+
+  requiresNoEndDate = (type: RVReportTypes) => [RVReportTypes.BANK_ACCOUNT].includes(type);
+
+  optionalEndDate = (type: RVReportTypes) =>
+    [RVReportTypes.BANK_ACCOUNT, RVReportTypes.CREDIT_SCORE].includes(type);
+
+  requiresNoStartDate = (type: RVReportTypes) =>
+    [RVReportTypes.BANK_ACCOUNT, RVReportTypes.CREDIT_SCORE].includes(type);
 
   token = '';
 
@@ -60,7 +67,7 @@ export class FormComponent implements OnInit {
     this.filterForm
       ?.get('businessName')
       ?.valueChanges.pipe(distinctUntilChanged())
-      .subscribe((val) => {
+      .subscribe((val: string) => {
         if (this.filterForm) {
           if (val) {
             this.filterForm.controls['connectionId'].clearValidators();
@@ -75,7 +82,7 @@ export class FormComponent implements OnInit {
     this.filterForm
       ?.get('connectionId')
       ?.valueChanges.pipe(distinctUntilChanged())
-      .subscribe((val) => {
+      .subscribe((val: string) => {
         if (this.filterForm) {
           if (val) {
             this.filterForm.controls['businessName'].clearValidators();
@@ -95,18 +102,23 @@ export class FormComponent implements OnInit {
     this.filterForm
       ?.get('reportType')
       ?.valueChanges.pipe(distinctUntilChanged())
-      .subscribe((reportTypeValue) => {
+      .subscribe((reportTypeValue: RVReportTypes) => {
         if (this.filterForm) {
           if (reportTypeValue) {
-            if (this.requiresNoDate(reportTypeValue)) {
+            if (this.requiresNoStartDate(reportTypeValue)) {
               this.filterForm.controls['startDate'].clearValidators();
               this.filterForm.controls['startDate'].disable();
-              this.filterForm.controls['endDate'].clearValidators();
-              this.filterForm.controls['endDate'].disable();
             } else {
               this.filterForm.controls['startDate'].setValidators([Validators.required]);
               this.filterForm.controls['startDate'].enable();
-              this.filterForm.controls['endDate'].setValidators([Validators.required]);
+            }
+            if (this.requiresNoEndDate(reportTypeValue)) {
+              this.filterForm.controls['endDate'].clearValidators();
+              this.filterForm.controls['endDate'].disable();
+            } else {
+              this.filterForm.controls['endDate'].setValidators(
+                this.optionalEndDate(reportTypeValue) ? [] : [Validators.required],
+              );
               this.filterForm.controls['endDate'].enable();
             }
             if (this.requiresNoFrequency(reportTypeValue)) {
