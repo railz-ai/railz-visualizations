@@ -32,21 +32,12 @@ export const getReportData = async ({
     errorLog(Translations.RV_ERROR_END_DATE);
   }
   try {
-    let allParameters;
-    if ('connectionId' in filter && filter?.connectionId) {
-      allParameters = pick({ ...filter, startDate, endDate }, [
-        'startDate',
-        'endDate',
-        'connectionId',
-      ]);
-    } else {
-      allParameters = pick({ ...filter, startDate, endDate }, [
-        'startDate',
-        'endDate',
-        'businessName',
-        'serviceName',
-      ]);
-    }
+    const allParameters = pick({ ...filter, startDate, endDate }, [
+      'startDate',
+      'endDate',
+      'connectionUuid',
+    ]);
+
     reportData = await RequestServiceInstance.getReportData({
       path: RVReportTypesUrlMapping[filter.reportType],
       filter: allParameters,

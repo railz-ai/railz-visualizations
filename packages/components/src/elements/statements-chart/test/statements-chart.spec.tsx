@@ -33,8 +33,7 @@ describe('railz-statements-chart', () => {
             startDate: '2021-05-01',
             endDate: '2022-05-31',
             reportFrequency: RVReportFrequency.MONTH,
-            businessName: 'QboFrdTest',
-            serviceName: RVAllProviders.QUICKBOOKS,
+            connectionUuid: 'CON-1234',
             reportType: RVReportTypes.BALANCE_SHEET,
           }}
         ></railz-statements-chart>
@@ -71,8 +70,7 @@ describe('railz-statements-chart', () => {
             startDate: '2021-05-01',
             endDate: '2022-05-31',
             reportFrequency: RVReportFrequency.MONTH,
-            businessName: 'QboFrdTest',
-            serviceName: RVAllProviders.QUICKBOOKS,
+            connectionUuid: 'CON-1234',
             reportType: RVReportTypes.BALANCE_SHEET,
           }}
         ></railz-statements-chart>

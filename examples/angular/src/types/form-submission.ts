@@ -8,7 +8,7 @@ type AllTypes = 'all' & RVReportTypes;
 export interface Filter {
   businessName?: string;
   serviceName?: RVServiceProviders;
-  connectionId?: string;
+  connectionUuid?: string;
   startDate?: string;
   endDate?: string;
   reportFrequency?: RVReportFrequency;

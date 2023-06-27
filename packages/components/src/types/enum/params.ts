@@ -4,6 +4,6 @@ export enum RVParams {
   REPORT_FREQUENCY = 'reportFrequency',
   BUSINESS_NAME = 'businessName',
   SERVICE_NAME = 'serviceName',
-  CONNECTION_ID = 'connectionId',
+  CONNECTION_UUID = 'connectionUuid',
   REPORT_TYPE = 'reportType',
 }

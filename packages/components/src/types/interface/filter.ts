@@ -3,12 +3,12 @@ import { RVServiceProviders, RVReportFrequency, RVReportTypes, RVAccountingMetho
 export interface RVFilterBusiness {
   /**
    * businessName: Unique business name identifier.
-   * required **if connectionId is not passed**
+   * required **if connectionUuid is not passed**
    */
   businessName: string;
   /**
    * serviceName: Name of accounting platform service.
-   * required **if connectionId is not passed**
+   * required **if connectionUuid is not passed**
    * (sandbox, quickBooks, quickBooksDesktop, freshBooks,
    * xero, oracleNetsuite, sageBusinessCloud, sageIntacct, dynamicsBusinessCentral)
    */
@@ -21,10 +21,10 @@ export interface RVFilterBusiness {
  */
 export interface RVFilterConnection {
   /**
-   * connectionId: Unique Connection identifier.
+   * connectionUuid: Unique Connection identifier.
    * required **if businessName and serviceName are not passed**
    */
-  connectionId: string;
+  connectionUuid: string;
 }
 
 export interface RVFilterDate {
@@ -71,23 +71,23 @@ export interface RVFilterReportType {
 
 export interface RVFilterBalanceSheet
   extends RVFilterReportType,
-    RVFilterBusiness,
+    RVFilterConnection,
     RVFilterDate,
     RVFilterReportFrequency {
   reportType: RVReportTypes.BALANCE_SHEET;
 }
 
-export interface RVFilterBankAccount extends RVFilterReportType, RVFilterBusiness {
+export interface RVFilterBankAccount extends RVFilterReportType, RVFilterConnection {
   reportType: RVReportTypes.BANK_ACCOUNT;
 }
 
-export interface RVFilterBills extends RVFilterReportType, RVFilterBusiness, RVFilterDate {
+export interface RVFilterBills extends RVFilterReportType, RVFilterConnection, RVFilterDate {
   reportType: RVReportTypes.BILLS;
 }
 
 export interface RVFilterCashflowStatements
   extends RVFilterReportType,
-    RVFilterBusiness,
+    RVFilterConnection,
     RVFilterDate,
     RVFilterReportFrequency {
   reportType: RVReportTypes.CASHFLOW_STATEMENTS;
@@ -95,7 +95,7 @@ export interface RVFilterCashflowStatements
 
 export interface RVFilterExpenses
   extends RVFilterReportType,
-    RVFilterBusiness,
+    RVFilterConnection,
     RVFilterDate,
     RVFilterReportFrequency {
   reportType: RVReportTypes.EXPENSES;
@@ -103,7 +103,7 @@ export interface RVFilterExpenses
 
 export interface RVFilterFinancialRatio
   extends RVFilterReportType,
-    RVFilterBusiness,
+    RVFilterConnection,
     RVFilterDate,
     RVFilterReportFrequency {
   reportType: RVReportTypes.FINANCIAL_RATIO;
@@ -111,7 +111,7 @@ export interface RVFilterFinancialRatio
 
 export interface RVFilterIncomeStatements
   extends RVFilterReportType,
-    RVFilterBusiness,
+    RVFilterConnection,
     RVFilterDate,
     RVFilterReportFrequency {
   reportType: RVReportTypes.INCOME_STATEMENTS;
@@ -119,7 +119,7 @@ export interface RVFilterIncomeStatements
 
 export interface RVFilterInvoices
   extends RVFilterReportType,
-    RVFilterBusiness,
+    RVFilterConnection,
     RVFilterDate,
     RVFilterReportFrequency {
   reportType: RVReportTypes.INVOICES;
@@ -127,7 +127,7 @@ export interface RVFilterInvoices
 
 export interface RVFilterRevenue
   extends RVFilterReportType,
-    RVFilterBusiness,
+    RVFilterConnection,
     RVFilterDate,
     RVFilterReportFrequency {
   reportType: RVReportTypes.REVENUE;
@@ -135,15 +135,15 @@ export interface RVFilterRevenue
 
 export interface RVFilterCreditScore
   extends RVFilterReportType,
-    RVFilterBusiness,
     RVFilterEndOptionalDate,
+    RVFilterConnection,
     RVFilterReportFrequency {
   reportType: RVReportTypes.CREDIT_SCORE;
 }
 
 export interface RVFilterBankReconciliation
   extends RVFilterReportType,
-    RVFilterBusiness,
+    RVFilterConnection,
     RVFilterDate,
     RVFilterReportFrequency {
   reportType: RVReportTypes.BANK_RECONCILIATION;
@@ -151,15 +151,14 @@ export interface RVFilterBankReconciliation
 
 export interface RVFilterBusinessValuations
   extends RVFilterReportType,
-    RVFilterBusiness,
+    RVFilterConnection,
     RVFilterDate,
     RVFilterReportFrequency {
   reportType: RVReportTypes.BUSINESS_VALUATIONS;
 }
 
 export interface RVFilterAll
-  extends RVFilterBusiness,
-    RVFilterConnection,
+  extends RVFilterConnection,
     RVFilterDate,
     RVFilterReportFrequency,
     RVFilterReportType {}

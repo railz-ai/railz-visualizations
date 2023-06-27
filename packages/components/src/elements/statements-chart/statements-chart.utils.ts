@@ -9,7 +9,6 @@ import {
   RAILZ_BALANCE_SHEET_COLORS,
   RAILZ_CASHFLOW_COLORS,
   RAILZ_INCOME_STATEMENT_COLORS,
-  RVAccountingProviders,
   RVChartOptionsParameter,
   RVChartStatementBaseParameter,
   RVChartStatementParameter,
@@ -294,26 +293,14 @@ export const getReportData = async ({
   try {
     const startDate = format(parseISO(filter.startDate), RAILZ_DATE_FORMAT);
     const endDate = format(parseISO(filter.endDate), RAILZ_DATE_FORMAT);
-    let allParameters;
-    if ('connectionId' in filter && filter?.connectionId) {
-      allParameters = pick(
-        {
-          ...filter,
-          startDate,
-          endDate,
-        },
-        ['startDate', 'endDate', 'reportFrequency', 'connectionId'],
-      );
-    } else {
-      allParameters = pick(
-        {
-          ...filter,
-          startDate,
-          endDate,
-        },
-        ['startDate', 'endDate', 'reportFrequency', 'businessName', 'serviceName'],
-      );
-    }
+    const allParameters = pick(
+      {
+        ...filter,
+        startDate,
+        endDate,
+      },
+      ['startDate', 'endDate', 'reportFrequency', 'connectionUuid'],
+    );
 
     reportData = await RequestServiceInstance.getReportData({
       path: RVReportTypesUrlMapping[filter.reportType],
@@ -332,12 +319,5 @@ export const getReportData = async ({
  * @returns {boolean}
  */
 export const shouldAddReconstructParam = (filter: RVFilterStatements): boolean => {
-  const isFinancialStatement = isStatements(filter.reportType);
-
-  return (
-    isFinancialStatement &&
-    ![RVAccountingProviders.ORACLE_NETSUITE, RVAccountingProviders.SAGE_INTACCT].includes(
-      filter.serviceName as RVAccountingProviders,
-    )
-  );
+  return isStatements(filter.reportType);
 };

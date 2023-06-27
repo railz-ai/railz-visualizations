@@ -32,8 +32,7 @@ describe('railz-credit-score', () => {
             startDate: '2021-05-01',
             endDate: '2022-05-31',
             reportFrequency: RVReportFrequency.MONTH,
-            businessName: 'QboFrdTest',
-            serviceName: RVAllProviders.QUICKBOOKS,
+            connectionUuid: 'CON-1234',
             reportType: RVReportTypes.CREDIT_SCORE,
           }}
           options={{

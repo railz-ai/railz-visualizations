@@ -32,8 +32,7 @@ describe('railz-bank-accounts', () => {
             debug: true,
           }}
           filter={{
-            businessName: 'QboFrdTest',
-            serviceName: RVAllProviders.PLAID,
+            connectionUuid: 'CON-1234',
             reportType: RVReportTypes.BANK_ACCOUNT,
           }}
         ></railz-bank-accounts>
@@ -69,8 +68,7 @@ describe('railz-bank-accounts', () => {
             debug: true,
           }}
           filter={{
-            businessName: 'QboFrdTest',
-            serviceName: RVAllProviders.PLAID,
+            connectionUuid: 'CON-1234',
             reportType: RVReportTypes.BANK_ACCOUNT,
           }}
         ></railz-bank-accounts>
@@ -104,8 +102,7 @@ describe('railz-bank-accounts', () => {
             debug: true,
           }}
           filter={{
-            businessName: 'QboFrdTest',
-            serviceName: RVAllProviders.PLAID,
+            connectionUuid: 'CON-1234',
             reportType: RVReportTypes.BANK_ACCOUNT,
           }}
         ></railz-bank-accounts>
