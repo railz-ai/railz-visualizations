@@ -4,7 +4,6 @@ import { h } from '@stencil/core';
 
 import { StatementsChart } from '../statements-chart';
 import { RVReportFrequency, RVReportTypes } from '../../../types';
-import { RVAllProviders } from '../../../types/enum/service-providers';
 import * as StatementsChartUtils from '../statements-chart.utils';
 
 describe('railz-statements-chart', () => {

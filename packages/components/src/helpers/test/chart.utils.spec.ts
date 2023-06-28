@@ -1,4 +1,4 @@
-import { RVAccountingProviders, RVOptions, RVReportFrequency, RVReportTypes } from '../../types';
+import { RVOptions, RVReportFrequency, RVReportTypes } from '../../types';
 import {
   getConfiguration,
   getOptions,

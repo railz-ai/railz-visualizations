@@ -5,7 +5,6 @@ import { h } from '@stencil/core';
 
 import { FinancialRatios } from '../financial-ratios';
 import { RVReportFrequency, RVReportTypes } from '../../../types';
-import { RVAllProviders } from '../../../types/enum/service-providers';
 import * as FinancialRatiosUtils from '../financial-ratios.utils';
 
 import FinancialRatioData from './financialRatioData.json';
