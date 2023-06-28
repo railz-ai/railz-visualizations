@@ -6,7 +6,6 @@ import { RequestServiceInstance } from '../../services/request';
 import { errorLog } from '../../services/logger';
 
 import { RVReportRequestParameter } from './../../types/interface/summary/parameters';
-import { RVAllProviders } from './../../types/enum/service-providers';
 
 /**
  * Make API call based on expected parameters for table account data type
@@ -16,8 +15,7 @@ export const getReportData = async ({
 }: RVReportRequestParameter): Promise<RVFormattedBankAccountsResponse> => {
   let reportData;
   const pickedFilter = {
-    ...pick(filter, [RVParams.BUSINESS_NAME]),
-    serviceName: RVAllProviders.PLAID,
+    ...pick(filter, [RVParams.CONNECTION_UUID]),
   };
   //TODO END
   try {
