@@ -4,7 +4,6 @@ import { h } from '@stencil/core';
 
 import { IncomeStatements } from '../income-statements';
 import { RVReportFrequency, RVReportTypes } from '../../../types';
-import { RVAllProviders } from '../../../types/enum/service-providers';
 import * as PieChartUtils from '../income-statements.utils';
 
 describe('railz-income-statements', () => {

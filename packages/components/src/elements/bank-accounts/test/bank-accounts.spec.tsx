@@ -4,7 +4,6 @@ import { h } from '@stencil/core';
 
 import { BanksAccounts } from '../bank-accounts';
 import { RVReportTypes } from '../../../types';
-import { RVAllProviders } from '../../../types/enum/service-providers';
 import * as BanksAccountsUtils from '../bank-accounts.utils';
 
 import BankAccountsData from './bankAccountsData.json';

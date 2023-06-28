@@ -4,7 +4,6 @@ import { h } from '@stencil/core';
 
 import { TransactionsControl } from '../transactions-control';
 import { RVReportTypes } from '../../../types';
-import { RVAllProviders } from '../../../types/enum/service-providers';
 import * as TransactionsControlUtils from '../transactions-control.utils';
 
 describe('railz-transactions-control', () => {
