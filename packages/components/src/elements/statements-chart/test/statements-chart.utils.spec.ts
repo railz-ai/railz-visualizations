@@ -179,25 +179,13 @@ describe('Statements Chart Utils', () => {
     describe('success path', () => {
       test('returns formatted data to correct sent data for month', async () => {
         const filterStatements: RVFilterStatements = {
-          businessName: 'businessName',
-          serviceName: RVAccountingProviders.QUICKBOOKS,
+          connectionUuid: 'connectionUuid',
           reportFrequency: RVReportFrequency.MONTH,
           reportType: RVReportTypes.BALANCE_SHEET,
           startDate: '2020-01-01',
           endDate: '2021-01-01',
         };
         expect(shouldAddReconstructParam(filterStatements)).toEqual(true);
-      });
-      test('returns formatted data to correct sent data for month', async () => {
-        const filterBalanceSheet: RVFilterBalanceSheet = {
-          businessName: 'businessName',
-          serviceName: RVAccountingProviders.ORACLE_NETSUITE,
-          reportFrequency: RVReportFrequency.MONTH,
-          reportType: RVReportTypes.BALANCE_SHEET,
-          startDate: '2020-01-01',
-          endDate: '2021-01-01',
-        };
-        expect(shouldAddReconstructParam(filterBalanceSheet)).toEqual(false);
       });
     });
   });

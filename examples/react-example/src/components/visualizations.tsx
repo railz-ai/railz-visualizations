@@ -33,7 +33,7 @@ type AllTypes = 'all' & RVReportTypes;
 interface Filter {
   businessName?: string;
   serviceName?: RVServiceProviders;
-  connectionId?: string;
+  connectionUuid?: string;
   startDate: string;
   endDate: string;
   reportFrequency: RVReportFrequency;
@@ -50,36 +50,15 @@ interface ChartProps {
 const formatCodeFilter = (filter: Filter) => {
   let allParameters;
   if ([RVReportTypes.BILLS, RVReportTypes.INVOICES].includes(filter.reportType)) {
-    if (!isEmpty(filter?.connectionId)) {
-      allParameters = pick(filter, ['startDate', 'endDate', 'reportType', 'connectionId']);
-    } else {
-      allParameters = pick(filter, [
-        'startDate',
-        'endDate',
-        'businessName',
-        'reportType',
-        'serviceName',
-      ]);
-    }
+    allParameters = pick(filter, ['startDate', 'endDate', 'reportType', 'connectionUuid']);
   } else {
-    if (!isEmpty(filter?.connectionId)) {
-      allParameters = pick(filter, [
-        'startDate',
-        'endDate',
-        'reportFrequency',
-        'reportType',
-        'connectionId',
-      ]);
-    } else {
-      allParameters = pick(filter, [
-        'startDate',
-        'endDate',
-        'reportFrequency',
-        'reportType',
-        'businessName',
-        'serviceName',
-      ]);
-    }
+    allParameters = pick(filter, [
+      'startDate',
+      'endDate',
+      'reportFrequency',
+      'reportType',
+      'connectionUuid',
+    ]);
   }
   return allParameters;
 };

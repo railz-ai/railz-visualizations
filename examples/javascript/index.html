@@ -10,11 +10,11 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script
       type="module"
-      src="https://cdn.jsdelivr.net/npm/@railzai/railz-visualizations@0.0.8-alpha.5/dist/railzvisualizations/railzvisualizations.esm.js"
+      src="https://cdn.jsdelivr.net/npm/@railzai/railz-visualizations@0.0.8-alpha.23/dist/railzvisualizations/railzvisualizations.esm.js"
     ></script>
     <script
       nomodule
-      src="https://cdn.jsdelivr.net/npm/@railzai/railz-visualizations@0.0.8-alpha.5/dist/railzvisualizations/railzvisualizations.js"
+      src="https://cdn.jsdelivr.net/npm/@railzai/railz-visualizations@0.0.8-alpha.23/dist/railzvisualizations/railzvisualizations.js"
     ></script>
   </head>
 
@@ -151,38 +151,16 @@
                     <div class="py-5 bg-white">
                       <div class="grid grid-cols-6 gap-6 items-end">
                         <div class="col-span-6 lg:col-span-6">
-                          <label for="business-name" class="block text-sm font-medium text-gray-700"
-                            >Business Name</label
+                          <label for="connection-id" class="block text-sm font-medium text-gray-700"
+                            >Connection Id</label
                           >
                           <input
                             type="text"
-                            name="business-name"
-                            id="business-name"
+                            name="connection-id"
+                            id="connection-id"
                             class="mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                            placeholder="BIZ-1223S"
+                            placeholder="Con-12344"
                           />
-                        </div>
-                        <div class="col-span-6 lg:col-span-3">
-                          <label for="service-name" class="block text-sm font-medium text-gray-700"
-                            >Service Name</label
-                          >
-                          <select
-                            id="service-name"
-                            name="service-name"
-                            required
-                            class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm"
-                          >
-                            <option value="dynamicsBusinessCentral">dynamicsBusinessCentral</option>
-                            <option value="freshbooks">freshbooks</option>
-                            <option value="quickbooks">quickbooks</option>
-                            <option value="quickbooksDesktop">quickbooksDesktop</option>
-                            <option value="oracleNetsuite">oracleNetsuite</option>
-                            <option value="sageBusinessCloud">sageBusinessCloud</option>
-                            <option value="sageIntacct">sageIntacct</option>
-                            <option value="xero">xero</option>
-                            <option value="plaid">plaid</option>
-                            <option value="wave">wave</option>
-                          </select>
                         </div>
                         <div class="col-span-6 lg:col-span-3">
                           <label for="report-type" class="block text-sm font-medium text-gray-700"
@@ -294,19 +272,17 @@
         rv.configuration = configuration;
 
         const formData = new FormData(formElem);
-        const businessName = formData.get('business-name');
+        const connectionUuid = formData.get('connection-id');
         const startDate = formData.get('start-date');
         const endDate = formData.get('end-date');
         const reportFrequency = formData.get('report-frequency');
-        const serviceName = formData.get('service-name');
         const reportType = formData.get('report-type');
 
         const filter = {
-          businessName,
+          connectionUuid,
           startDate,
           endDate,
           reportFrequency,
-          serviceName,
           reportType,
         };
         rv.filter = filter;

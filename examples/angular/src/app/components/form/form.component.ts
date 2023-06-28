@@ -30,9 +30,7 @@ export class FormComponent implements OnInit {
   });
 
   filterForm = new FormGroup({
-    serviceName: new FormControl(RVAccountingProviders.QUICKBOOKS, Validators.required),
-    businessName: new FormControl('', Validators.required),
-    connectionId: new FormControl('', Validators.required),
+    connectionUuid: new FormControl('', Validators.required),
     reportType: new FormControl(RVReportTypes.BALANCE_SHEET, Validators.required),
     reportFrequency: new FormControl(RVReportFrequency.MONTH, Validators.required),
     startDate: new FormControl('', Validators.required),
@@ -64,41 +62,9 @@ export class FormComponent implements OnInit {
   ngOnInit(): void {}
 
   checkValueChanges(): void {
-    this.filterForm
-      ?.get('businessName')
-      ?.valueChanges.pipe(distinctUntilChanged())
-      .subscribe((val: string) => {
-        if (this.filterForm) {
-          if (val) {
-            this.filterForm.controls['connectionId'].clearValidators();
-            this.filterForm.controls['connectionId'].disable();
-          } else {
-            this.filterForm.controls['connectionId'].setValidators([Validators.required]);
-            this.filterForm.controls['connectionId'].enable();
-          }
-          this.filterForm.controls['connectionId'].updateValueAndValidity();
-        }
-      });
-    this.filterForm
-      ?.get('connectionId')
-      ?.valueChanges.pipe(distinctUntilChanged())
-      .subscribe((val: string) => {
-        if (this.filterForm) {
-          if (val) {
-            this.filterForm.controls['businessName'].clearValidators();
-            this.filterForm.controls['businessName'].disable();
-            this.filterForm.controls['serviceName'].clearValidators();
-            this.filterForm.controls['serviceName'].disable();
-          } else {
-            this.filterForm.controls['businessName'].setValidators([Validators.required]);
-            this.filterForm.controls['businessName'].enable();
-            this.filterForm.controls['serviceName'].setValidators([Validators.required]);
-            this.filterForm.controls['serviceName'].enable();
-          }
-          this.filterForm.controls['businessName'].updateValueAndValidity();
-          this.filterForm.controls['serviceName'].updateValueAndValidity();
-        }
-      });
+    this.filterForm.controls['connectionUuid'].setValidators([Validators.required]);
+    this.filterForm.controls['connectionUuid'].enable();
+
     this.filterForm
       ?.get('reportType')
       ?.valueChanges.pipe(distinctUntilChanged())

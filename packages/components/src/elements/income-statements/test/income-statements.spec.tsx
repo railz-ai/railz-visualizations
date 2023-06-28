@@ -33,8 +33,7 @@ describe('railz-income-statements', () => {
             startDate: '2021-05-01',
             endDate: '2022-05-31',
             reportFrequency: RVReportFrequency.MONTH,
-            businessName: 'QboFrdTest',
-            serviceName: RVAllProviders.QUICKBOOKS,
+            connectionUuid: 'CON-1234',
             reportType: RVReportTypes.EXPENSES,
           }}
           options={{
@@ -76,8 +75,7 @@ describe('railz-income-statements', () => {
             startDate: '2021-05-01',
             endDate: '2022-05-31',
             reportFrequency: RVReportFrequency.MONTH,
-            businessName: 'QboFrdTest',
-            serviceName: RVAllProviders.QUICKBOOKS,
+            connectionUuid: 'CON-1234',
             reportType: RVReportTypes.REVENUE,
           }}
           options={{

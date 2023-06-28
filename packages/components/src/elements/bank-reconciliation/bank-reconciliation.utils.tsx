@@ -71,8 +71,7 @@ export const getReportData = async ({
     const allParameters = pick({ ...filter, startDate, endDate }, [
       'startDate',
       'endDate',
-      'businessName',
-      'serviceName',
+      'connectionUuid',
     ]);
     allParameters.offset = 0;
     allParameters.limit = 100;
