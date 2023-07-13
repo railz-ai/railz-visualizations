@@ -47,13 +47,13 @@
   min-width: 240px;
 
   .rv-valuation-title {
-    @media screen and (min-width: 501px) {
+    @media screen and (min-width: 500px) {
       padding-left: 24px;
     }
   }
 
   .rv-valuation-value-row {
-    @media screen and (min-width: 501px) {
+    @media screen and (min-width: 500px) {
       padding-left: 24px;
       border-left: thin solid #e0e0e0;
     }
@@ -61,13 +61,13 @@
 
   &:first-child {
     .rv-valuation-title {
-      @media screen and (min-width: 501px) {
+      @media screen and (min-width: 500px) {
         margin-left: -25px;
       }
     }
 
     .rv-valuation-value-row {
-      @media screen and (min-width: 501px) {
+      @media screen and (min-width: 500px) {
         margin-left: -25px;
       }
     }
