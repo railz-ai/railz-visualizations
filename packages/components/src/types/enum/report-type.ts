@@ -29,7 +29,7 @@ export enum RVCreditScoreTypes {
 
 export const RVReportTypesUrlMapping = {
   [RVReportTypes.BALANCE_SHEET]: '/v2/visualizations/balanceSheets',
-  [RVReportTypes.BANK_ACCOUNT]: '/v2/banking/bankAccounts',
+  [RVReportTypes.BANK_ACCOUNT]: '/v2/visualizations/bankAccounts',
   [RVReportTypes.BILLS]: '/v2/visualizations/bills',
   [RVReportTypes.CASHFLOW_STATEMENTS]: '/v2/visualizations/cashflowStatements',
   [RVReportTypes.CREDIT_SCORE]: '/v2/visualizations/railzScore',
@@ -38,6 +38,6 @@ export const RVReportTypesUrlMapping = {
   [RVReportTypes.INCOME_STATEMENTS]: '/v2/visualizations/incomeStatements',
   [RVReportTypes.INVOICES]: '/v2/visualizations/invoices',
   [RVReportTypes.REVENUE]: '/v2/visualizations/revenue',
-  [RVReportTypes.BANK_RECONCILIATION]: '/v2/analytics/bankReconciliation',
-  [RVReportTypes.BUSINESS_VALUATIONS]: '/v2/analytics/businessValuations',
+  [RVReportTypes.BANK_RECONCILIATION]: '/v2/visualizations/bankReconciliation',
+  [RVReportTypes.BUSINESS_VALUATIONS]: '/v2/visualizations/businessValuations',
 };
