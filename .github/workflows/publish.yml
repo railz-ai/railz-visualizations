@@ -31,8 +31,6 @@ jobs:
     steps:
       - name: Copy repo code
         uses: actions/checkout@v2
-        with:
-          token: ${{ secrets.GH_TOKEN }}
 
       - name: Use Node.js ${{ matrix.node-vQersion }}
         uses: actions/setup-node@v2
