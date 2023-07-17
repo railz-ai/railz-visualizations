@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.0.8-alpha.25 (2023-07-17)
+
+
+### Bug Fixes
+
+* business Valuations  Component is not Mobile responsive ([#158](https://github.com/railz-ai/railz-visualizations/issues/158)) ([33bc542](https://github.com/railz-ai/railz-visualizations/commit/33bc5423b80f476f6b495c4fd0e7f2f07ebd1fc1))
+
+
+
+
+
 ## 0.0.8-alpha.24 (2023-06-28)
 
 **Note:** Version bump only for package @railzai/railz-visualizations-angular

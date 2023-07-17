@@ -30,6 +30,10 @@
   display: flex;
   justify-content: flex-start;
   margin-right: 24px;
+  @media screen and (max-width: 500px) {
+    flex-direction: column;
+    min-width: 780px;
+  }
 }
 
 .rv-valuation-section {
@@ -43,21 +47,29 @@
   min-width: 240px;
 
   .rv-valuation-title {
-    padding-left: 24px;
+    @media screen and (min-width: 500px) {
+      padding-left: 24px;
+    }
   }
 
   .rv-valuation-value-row {
-    padding-left: 24px;
-    border-left: thin solid #e0e0e0;
+    @media screen and (min-width: 500px) {
+      padding-left: 24px;
+      border-left: thin solid #e0e0e0;
+    }
   }
 
   &:first-child {
     .rv-valuation-title {
-      margin-left: -25px;
+      @media screen and (min-width: 500px) {
+        margin-left: -25px;
+      }
     }
 
     .rv-valuation-value-row {
-      margin-left: -25px;
+      @media screen and (min-width: 500px) {
+        margin-left: -25px;
+      }
     }
   }
 }
