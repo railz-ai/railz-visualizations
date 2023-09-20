@@ -7,6 +7,7 @@ import numbro from 'numbro';
 import Translations from '../config/translations/en.json';
 import { RVReportTypes } from '../types/enum/report-type';
 import { RVFormat, RVReportFrequency, RVReportStatementSummary } from '../types';
+import { errorLog } from '../services/logger';
 
 /**
  * Format date that will be shown on charts and show short form
@@ -202,4 +203,24 @@ export const fromCssObjectToInline = (cssObject?: { [key: string]: any }): strin
     .filter(([key, value]) => key && (typeof value === 'string' || typeof value === 'number'))
     .map(([key, value]) => `${key.replace(/[A-Z]/g, (m) => '-' + m.toLowerCase())}: ${value}`)
     .join(';');
+};
+
+export const handleError = (responseData): number => {
+  let errorStatusCode = 500;
+  if (responseData?.status === 202) {
+    errorLog(Translations.RV_ERROR_202_TITLE);
+    errorStatusCode = 202;
+  } else if (
+    responseData?.error?.message[0] === 'Combination of service and report type is not supported' ||
+    responseData?.error?.statusCode === 404
+  ) {
+    errorLog(Translations.DASHBOARD_FINANCIAL_SUMMARY_CHART_ERROR_ASP_NOT_SUPPORTED);
+    errorStatusCode = 404;
+  } else {
+    // generic error response
+    errorLog(Translations.RV_ERROR_204_TITLE);
+    errorStatusCode = 204;
+  }
+
+  return errorStatusCode;
 };

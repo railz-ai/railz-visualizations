@@ -20,6 +20,7 @@ import {
 import {
   formatCurrencyValue,
   getTitleByReportType,
+  handleError,
   isBusinessValuations,
 } from '../../helpers/utils';
 
@@ -202,12 +203,8 @@ export class BusinessValuations {
       })) as RVBusinessValuations;
       if (reportData?.reports) {
         this.updateBusinessValuationsParams(reportData);
-      } else if (reportData?.status === 202) {
-        errorLog(Translations.RV_ERROR_202_TITLE);
-        this.errorStatusCode = 202;
       } else {
-        errorLog(Translations.RV_ERROR_204_TITLE);
-        this.errorStatusCode = 204;
+        this.errorStatusCode = handleError(reportData);
       }
     } catch (error) {
       errorLog(Translations.RV_NOT_ABLE_TO_PARSE_REPORT_DATA, error);
