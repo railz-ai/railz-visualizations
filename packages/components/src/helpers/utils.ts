@@ -216,6 +216,12 @@ export const handleError = (responseData): number => {
   ) {
     errorLog(Translations.DASHBOARD_FINANCIAL_SUMMARY_CHART_ERROR_ASP_NOT_SUPPORTED);
     errorStatusCode = 404;
+  } else if (
+    responseData?.error?.message[0] === 'Service provider not supported' ||
+    responseData?.error?.statusCode === 400
+  ) {
+    errorLog(Translations.DASHBOARD_FINANCIAL_SUMMARY_CHART_ERROR_ASP_NOT_SUPPORTED);
+    errorStatusCode = 404;
   } else {
     // generic error response
     errorLog(Translations.RV_ERROR_204_TITLE);
