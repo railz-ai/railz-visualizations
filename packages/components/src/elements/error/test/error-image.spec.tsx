@@ -128,7 +128,7 @@ describe('railz-error-image', () => {
           <path d="M28.1577 30.4427L32.9483 34.773L50.3438 24.7339L45.5748 20.3818L28.1577 30.4427Z" fill="white" stroke="#949494" stroke-width="2" stroke-linejoin="round"/>
         </svg>
         <p class="rv-error-title">
-          The endpoint is not supported for the connected service provider.
+          The data type is not supported for the connected service provider.
         </p>
       </div>
     </mock:shadow-root>
