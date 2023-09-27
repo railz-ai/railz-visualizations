@@ -53,6 +53,47 @@ describe('railz-bank-accounts', () => {
     `);
   });
 
+  it('renders with service not supported', async () => {
+    jest.spyOn(BanksAccountsUtils, 'getReportData').mockImplementation((): any =>
+      Promise.resolve({
+        error: {
+          message: ['Service provider not supported'],
+          statusCode: 404,
+        },
+      }),
+    );
+
+    const page = await newSpecPage({
+      components: [BanksAccounts],
+      template: () => (
+        <railz-bank-accounts
+          configuration={{
+            token: 'eyJhbG',
+            debug: true,
+          }}
+          filter={{
+            connectionUuid: 'CON-1234',
+            reportType: RVReportTypes.BANK_ACCOUNT,
+          }}
+        ></railz-bank-accounts>
+      ),
+    });
+    expect(page.root).toEqualHtml(`
+      <railz-bank-accounts>
+         <mock:shadow-root>
+           <div class="rv-container">
+             <div class="rv-header-container">
+               <p class="rv-title">
+                 Bank Accounts
+               </p>
+             </div>
+             <railz-error-image statuscode="404"></railz-error-image>
+           </div>
+         </mock:shadow-root>
+      </railz-bank-accounts>
+    `);
+  });
+
   it('renders without data and failed', async () => {
     jest.spyOn(BanksAccountsUtils, 'getReportData').mockImplementation((): any => {
       throw new Error('Failed to get result');

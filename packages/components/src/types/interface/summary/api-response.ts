@@ -9,6 +9,14 @@ export interface RVPeriod {
   year: number;
 }
 
+export interface ErrorResponseObject {
+  error?: {
+    error: string;
+    message: Array<string>;
+    statusCode: number;
+  };
+}
+
 export interface RVPeriodData {
   period: RVPeriod;
   value: number;
@@ -167,6 +175,7 @@ export interface RVErrorResponse {
   error: RVErrorInstance;
   payload: any;
   statusCode?: number;
+  message?: Array<string>;
 }
 
 export interface RVReportSummaryApiResponse {
@@ -209,7 +218,7 @@ export interface RVBankReconciliation {
   reports?: Array<any>;
 }
 
-export interface RVBusinessValuations {
+export interface RVBusinessValuations extends ErrorResponseObject {
   count: number;
   reports?: Array<any>;
   status?: number;

@@ -132,6 +132,70 @@ export function Error204({
   );
 }
 
+export function Error404({
+  fillColor = '#949494',
+  width = '56px',
+  height = '56px',
+}: RVErrorIndicatorStyle): HTMLOrSVGElement {
+  return (
+    <svg
+      aria-hidden="true"
+      xmlns="http://www.w3.org/2000/svg"
+      width={width}
+      height={height}
+      viewBox="0 0 56 56"
+      fill="none"
+    >
+      <path
+        d="M45.5315 20.3795L45.4666 39.441L28.1793 49.4802L28.2442 30.4403L45.5315 20.3795Z"
+        stroke={fillColor}
+        stroke-width="2"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M28.244 30.4403L28.1791 49.4802L10.7836 39.441L10.8268 20.3795L28.244 30.4403Z"
+        stroke={fillColor}
+        stroke-width="2"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M45.5296 20.3795L28.2423 30.4403L10.8252 20.3795L28.1341 10.3403L45.5296 20.3795Z"
+        stroke={fillColor}
+        stroke-width="2"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M50.3408 16.0608L45.5503 20.3912L28.1548 10.352L32.9237 6L50.3408 16.0608Z"
+        fill="white"
+        stroke={fillColor}
+        stroke-width="2"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M6.07736 16.0608L10.8679 20.3912L28.2634 10.352L23.4945 6L6.07736 16.0608Z"
+        fill="white"
+        stroke={fillColor}
+        stroke-width="2"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M28.2418 30.4427L23.4513 34.773L6.05579 24.7339L10.8247 20.3818L28.2418 30.4427Z"
+        fill="white"
+        stroke={fillColor}
+        stroke-width="2"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M28.1577 30.4427L32.9483 34.773L50.3438 24.7339L45.5748 20.3818L28.1577 30.4427Z"
+        fill="white"
+        stroke={fillColor}
+        stroke-width="2"
+        stroke-linejoin="round"
+      />
+    </svg>
+  );
+}
+
 export function Error500({
   fillColor,
   width = '88px',

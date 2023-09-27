@@ -19,7 +19,7 @@ import {
   getOptions,
   validateRequiredParams,
 } from '../../helpers/chart.utils';
-import { formatCurrencyValue, isBankReconciliation } from '../../helpers/utils';
+import { formatCurrencyValue, handleError, isBankReconciliation } from '../../helpers/utils';
 
 import { ConfigurationInstance } from '../../services/configuration';
 
@@ -157,13 +157,8 @@ export class BankReconciliation {
       } else if (reportData?.error?.message[0] === 'Business has no bank data') {
         errorLog(Translations.RV_ERROR_422_TITLE);
         this.errorStatusCode = 422;
-      } else if (reportData?.status === 202) {
-        errorLog(Translations.RV_ERROR_202_TITLE);
-        this.errorStatusCode = 202;
       } else {
-        // generic error response
-        errorLog(Translations.RV_ERROR_204_TITLE);
-        this.errorStatusCode = 204;
+        this.errorStatusCode = handleError(reportData);
       }
     } catch (error) {
       errorLog(Translations.RV_NOT_ABLE_TO_PARSE_REPORT_DATA, error);
