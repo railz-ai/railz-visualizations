@@ -2,7 +2,6 @@
 // read env vars from .env file
 require('dotenv').config();
 const express = require('express');
-const axios = require('axios');
 
 //initialize express
 const app = express();
@@ -55,23 +54,30 @@ app.get('/authenticate', (request, response) => {
   }
 
   const encodedString = Buffer.from(`${CLIENT_ID}:${CLIENT_SECRET}`).toString('base64');
-  axios
-    .get(AUTH_URL, { headers: { Authorization: `Basic ${encodedString}` } })
-    .then((res) => {
+  fetch(AUTH_URL, { method: 'GET', headers: { Authorization: `Basic ${encodedString}` } })
+    .then(async (res) => {
       console.log(`statusCode from Railz API: ${res.status}`);
-      response.status(200).json({ success: true, access_token: res.data.access_token });
+      if (res.ok) {
+        res.json().then((json) => {
+          response.status(200).json({ success: true, access_token: json.access_token });
+        });
+      } else {
+        if (res.status === 401) {
+          res.json().then((json) => {
+            const errorMsg = Array.isArray(json.error?.message)
+              ? json.error?.message[0]
+              : json.error?.message;
+            response.status(401).json({ success: false, error: errorMsg || json?.message });
+          });
+        } else {
+          response
+            .status(500)
+            .json({ success: false, error: 'Failure when comunicating to Railz API' });
+        }
+      }
     })
     .catch((error) => {
-      const message = Array.isArray(error?.response?.data?.error?.message)
-        ? error?.response?.data?.error?.message[0]
-        : error;
-      const status = error?.response?.status ? error.response.status : 401;
-      console.error(error?.response?.data, error?.response?.status);
-
-      response.status(status).json({
-        success: false,
-        error: message || 'Authentication with Railz API Failed',
-      });
+      response.status(500).json({ success: false, error });
     });
 });
 
