@@ -39,6 +39,10 @@
   display: flex;
   margin-left: -10px;
   flex-direction: row;
+  @media screen and (max-width: 600px) {
+    flex-direction: column;
+    height: calc(90% - 5px);
+  }
 }
 
 .rv-income-statements-chart-box {
@@ -49,6 +53,11 @@
   align-items: flex-start;
   flex-direction: column;
   justify-content: center;
+  @media screen and (max-width: 600px) {
+    position: relative;
+    top: -20px;
+    align-items: center;
+  }
 }
 
 .rv-income-statements-chart-text {
