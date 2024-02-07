@@ -97,9 +97,11 @@ describe('railz-income-statements', () => {
           <div class="rv-income-statements-chart-container">
             <div id="rv-income-statements-chart"></div>
             <div class="rv-income-statements-chart-box">
-              <p class="rv-income-statements-chart-text">
-                $
-              </p>
+              <div class="rv-income-statements-chart-box-content">
+                <p class="rv-income-statements-chart-text">
+                  $
+                </p>
+                </div>
             </div>
           </div>
         </div>
