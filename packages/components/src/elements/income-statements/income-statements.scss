@@ -39,16 +39,43 @@
   display: flex;
   margin-left: -10px;
   flex-direction: row;
+  @media screen and (max-width: 600px) {
+    flex-direction: column;
+    height: calc(90% + 5px);
+  }
+}
+
+.rv-income-statements-chart-container #rv-income-statements-chart {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  flex-shrink: 1;
+  height: 100%;
+  @media screen and (max-width: 600px) {
+    height: 90%;
+  }
 }
 
 .rv-income-statements-chart-box {
   visibility: inherit;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  justify-content: center;
+  @media screen and (max-width: 600px) {
+    position: relative;
+    top: -20px;
+    align-items: center;
+  }
+}
+
+.rv-income-statements-chart-box-content {
   -webkit-font-smoothing: antialiased;
   color: rgb(0 0 0 / 87%);
   display: flex;
   align-items: flex-start;
   flex-direction: column;
-  justify-content: center;
+  justify-content: left;
 }
 
 .rv-income-statements-chart-text {
