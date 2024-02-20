@@ -9,7 +9,7 @@
   "author": "Railz.ai",
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.26.0",
+    "axios": "^1.6.4",
     "dotenv": "^16.0.0",
     "express": "^4.18.1"
   },
