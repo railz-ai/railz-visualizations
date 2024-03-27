@@ -3,11 +3,17 @@
 require('dotenv').config();
 const express = require('express');
 
-//initialize express
-const app = express();
-
-//use env port or assign 4000
+/*
+ENVIRONMENT VARIABLES: ensure you have set your auth URL, client Id and Secret env variables.
+Check the README.md for more information on how to set these variables
+*/
+const AUTH_URL = process.env.RAILZ_AUTH_URL || 'https://auth.railz.ai/getAccess';
+const CLIENT_ID = process.env.RAILZ_CLIENT_ID;
+const CLIENT_SECRET = process.env.RAILZ_CLIENT_SECRET;
 const PORT = process.env.PORT || 4000;
+
+// initialize express
+const app = express();
 app.use(function (req, res, next) {
   res.setHeader('Access-Control-Allow-Origin', '*');
 
@@ -20,17 +26,6 @@ app.use(function (req, res, next) {
   next();
 });
 
-/*
-ensure you have set your auth URL, client Id and Secret as environment variables
-RAILZ_AUTH_URL
-RAILZ_CLIENT_ID
-RAILZ_CLIENT_SECRET
-*/
-const AUTH_URL = process.env.RAILZ_AUTH_URL || 'https://auth.railz.ai/getAccess';
-const CLIENT_ID = process.env.RAILZ_CLIENT_ID;
-const CLIENT_SECRET = process.env.RAILZ_CLIENT_SECRET;
-
-// Main endpoint
 app.get('/', (request, response) => {
   if (!AUTH_URL || !CLIENT_ID || !CLIENT_SECRET) {
     const err = 'Environment variables not properly set, see documentation';
