@@ -8,7 +8,7 @@
     "url": "https://github.com/railz-ai/railz-visualizations"
   },
   "author": "Railz.ai",
-  "homepage": "https://docs.railz.ai/reference/visualization-sdk",
+  "homepage": "https://docs.railz.ai/docs/visualization-sdk-overview",
   "publishConfig": {
     "access": "public"
   },
