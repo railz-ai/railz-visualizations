@@ -5,12 +5,7 @@ const express = require('express');
 
 /*
 ENVIRONMENT VARIABLES: ensure you have set your auth URL, client Id and Secret env variables.
-To do that, copy the .env.example file to .env and set the values accordingly, then save it as .env
-
-To get the variables, go to https://dashboard.railz.ai/developers/api-keys and create a set of keys with
-the permissions set to `Visualizations SDK`. Copy the client ID and secret and set them as:
-- RAILZ_CLIENT_ID
-- RAILZ_CLIENT_SECRET
+Check the README.md for more information on how to set these variables
 */
 const AUTH_URL = process.env.RAILZ_AUTH_URL || 'https://auth.railz.ai/getAccess';
 const CLIENT_ID = process.env.RAILZ_CLIENT_ID;
