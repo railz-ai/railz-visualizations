@@ -4,7 +4,6 @@ import { h } from '@stencil/core';
 
 import { CreditScore } from '../credit-score';
 import { RVReportFrequency, RVReportTypes } from '../../../types';
-import { RVAllProviders } from '../../../types/enum/service-providers';
 
 describe('railz-credit-score', () => {
   it('renders without props', async () => {
@@ -32,8 +31,7 @@ describe('railz-credit-score', () => {
             startDate: '2021-05-01',
             endDate: '2022-05-31',
             reportFrequency: RVReportFrequency.MONTH,
-            businessName: 'QboFrdTest',
-            serviceName: RVAllProviders.QUICKBOOKS,
+            connectionUuid: 'CON-1234',
             reportType: RVReportTypes.CREDIT_SCORE,
           }}
           options={{

@@ -52,6 +52,26 @@ export class RailzBankReconciliation {
   }
 }
 
+export declare interface RailzBusinessValuations extends Components.RailzBusinessValuations {}
+
+@ProxyCmp({
+  defineCustomElementFn: undefined,
+  inputs: ['configuration', 'filter', 'options'],
+})
+@Component({
+  selector: 'railz-business-valuations',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  inputs: ['configuration', 'filter', 'options'],
+})
+export class RailzBusinessValuations {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
 export declare interface RailzCreditScore extends Components.RailzCreditScore {}
 
 @ProxyCmp({

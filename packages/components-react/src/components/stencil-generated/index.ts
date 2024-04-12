@@ -16,6 +16,10 @@ export const RailzBankReconciliation = /*@__PURE__*/ createReactComponent<
   JSX.RailzBankReconciliation,
   HTMLRailzBankReconciliationElement
 >('railz-bank-reconciliation');
+export const RailzBusinessValuations = /*@__PURE__*/ createReactComponent<
+  JSX.RailzBusinessValuations,
+  HTMLRailzBusinessValuationsElement
+>('railz-business-valuations');
 export const RailzCreditScore = /*@__PURE__*/ createReactComponent<
   JSX.RailzCreditScore,
   HTMLRailzCreditScoreElement

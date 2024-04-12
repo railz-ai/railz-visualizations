@@ -3,7 +3,9 @@ import { format, parseISO } from 'date-fns';
 
 import Translations from '../../config/translations/en.json';
 import {
+  RVFilterAll,
   RVFormattedScoreResponse,
+  RVParams,
   RVReportRequestParameter,
   RVReportTypesUrlMapping,
 } from '../../types';
@@ -19,20 +21,15 @@ export const getReportData = async ({
 }: RVReportRequestParameter): Promise<RVFormattedScoreResponse> => {
   let reportData;
   try {
-    const startDate = format(parseISO(filter.startDate), RAILZ_DATE_FORMAT);
-    const endDate = format(parseISO(filter.endDate), RAILZ_DATE_FORMAT);
-    const parametersToAdd =
-      'connectionId' in filter && filter?.connectionId
-        ? ['connectionId']
-        : ['businessName', 'serviceName'];
+    const endDate = filter.endDate ? format(parseISO(filter.endDate), RAILZ_DATE_FORMAT) : '';
+
     const allParameters = pick(
       {
         ...filter,
-        startDate,
         endDate,
       },
-      ['startDate', 'endDate', ...parametersToAdd],
-    );
+      [endDate && 'endDate', RVParams.CONNECTION_UUID],
+    ) as RVFilterAll;
 
     reportData = await RequestServiceInstance.getReportData({
       path: RVReportTypesUrlMapping[filter.reportType],

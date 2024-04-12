@@ -20,6 +20,7 @@ import {
   RVFilterTransactions,
   RVOptions,
   RVReportTypes,
+  RVFilterBankReconciliation,
 } from '../../types';
 import { getConfiguration, getFilter } from '../../helpers/chart.utils';
 import { ConfigurationInstance } from '../../services/configuration';
@@ -106,6 +107,26 @@ export class Core {
 
     const reportType = (this._filter as RVFilterAll)?.reportType;
 
+    if (RVReportTypes.BANK_RECONCILIATION === reportType) {
+      return (
+        <railz-bank-reconciliation
+          configuration={this.configuration}
+          filter={this.filter as RVFilterBankReconciliation}
+          options={this.options}
+        />
+      );
+    }
+
+    if (RVReportTypes.BUSINESS_VALUATIONS === reportType) {
+      return (
+        <railz-business-valuations
+          configuration={this.configuration}
+          filter={this.filter as any}
+          options={this.options}
+        />
+      );
+    }
+
     if (RVReportTypes.BANK_ACCOUNT === reportType) {
       return (
         <railz-bank-accounts
@@ -163,6 +184,7 @@ export class Core {
         />
       );
     }
+
     return <span />;
   }
 }

@@ -4,7 +4,6 @@ import { h } from '@stencil/core';
 
 import { IncomeStatements } from '../income-statements';
 import { RVReportFrequency, RVReportTypes } from '../../../types';
-import { RVAllProviders } from '../../../types/enum/service-providers';
 import * as PieChartUtils from '../income-statements.utils';
 
 describe('railz-income-statements', () => {
@@ -33,8 +32,7 @@ describe('railz-income-statements', () => {
             startDate: '2021-05-01',
             endDate: '2022-05-31',
             reportFrequency: RVReportFrequency.MONTH,
-            businessName: 'QboFrdTest',
-            serviceName: RVAllProviders.QUICKBOOKS,
+            connectionUuid: 'CON-1234',
             reportType: RVReportTypes.EXPENSES,
           }}
           options={{
@@ -76,8 +74,7 @@ describe('railz-income-statements', () => {
             startDate: '2021-05-01',
             endDate: '2022-05-31',
             reportFrequency: RVReportFrequency.MONTH,
-            businessName: 'QboFrdTest',
-            serviceName: RVAllProviders.QUICKBOOKS,
+            connectionUuid: 'CON-1234',
             reportType: RVReportTypes.REVENUE,
           }}
           options={{
@@ -100,9 +97,11 @@ describe('railz-income-statements', () => {
           <div class="rv-income-statements-chart-container">
             <div id="rv-income-statements-chart"></div>
             <div class="rv-income-statements-chart-box">
-              <p class="rv-income-statements-chart-text">
-                $
-              </p>
+              <div class="rv-income-statements-chart-box-content">
+                <p class="rv-income-statements-chart-text">
+                  $
+                </p>
+                </div>
             </div>
           </div>
         </div>

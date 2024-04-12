@@ -7,6 +7,7 @@ import numbro from 'numbro';
 import Translations from '../config/translations/en.json';
 import { RVReportTypes } from '../types/enum/report-type';
 import { RVFormat, RVReportFrequency, RVReportStatementSummary } from '../types';
+import { errorLog } from '../services/logger';
 
 /**
  * Format date that will be shown on charts and show short form
@@ -35,6 +36,13 @@ export const formatDate = (
   });
 };
 
+export const formatNegativeValues = (name: string, value: number): any => {
+  if (['currentLiabilities', 'nonCurrentLiabilities'].includes(name)) {
+    return value > 0 ? value * -1 : value;
+  }
+  return value;
+};
+
 /**
  * Filter data to ensure there is no undefined field result
  */
@@ -46,7 +54,8 @@ export const formatSeries = (
   name,
   data: summary
     ?.map((data: { [x: string]: any }) => data[field])
-    .filter((data) => data !== undefined),
+    .filter((data) => data !== undefined)
+    ?.map((item: any) => formatNegativeValues(field, item)),
 });
 
 /**
@@ -63,16 +72,14 @@ export const formatNumber = (number: number | string, decimals = 2, minimum = 0)
   return '';
 };
 
-export const formatCurrencyValue = (value: number): string => {
-  const formatCurrencyNumber = (number: number, decimals = 2): string => {
-    if (!isNil(number)) {
-      return numbro(Number(number)).format(`0,000.${'0'.repeat(decimals)}`);
-    }
-    return '';
-  };
-  return formatCurrencyNumber(value as number) === ''
-    ? '-'
-    : '$' + formatCurrencyNumber(value as number);
+const formatCurrencyNumber = (value: number, decimals = 2): string => {
+  if (isNil(value)) return '';
+  return numbro(Number(value)).format(`0,000.${'0'.repeat(decimals)}`);
+};
+
+export const formatCurrencyValue = (value: number, decimals = 2, fallbackValue = '-'): string => {
+  const formattedValue = formatCurrencyNumber(value, decimals);
+  return ['', 'NaN'].includes(formattedValue) ? fallbackValue : '$' + formattedValue;
 };
 
 /**
@@ -100,6 +107,13 @@ export const isCreditScore = (reportType: RVReportTypes): boolean => {
  */
 export const isBankReconciliation = (reportType: RVReportTypes): boolean => {
   return reportType && [RVReportTypes.BANK_RECONCILIATION].includes(reportType);
+};
+
+/**
+ * Determine if report type is business valuations
+ */
+export const isBusinessValuations = (reportType: RVReportTypes): boolean => {
+  return reportType && [RVReportTypes.BUSINESS_VALUATIONS].includes(reportType);
 };
 
 /**
@@ -189,4 +203,33 @@ export const fromCssObjectToInline = (cssObject?: { [key: string]: any }): strin
     .filter(([key, value]) => key && (typeof value === 'string' || typeof value === 'number'))
     .map(([key, value]) => `${key.replace(/[A-Z]/g, (m) => '-' + m.toLowerCase())}: ${value}`)
     .join(';');
+};
+
+export const handleError = (responseData: { [key: string]: any }): number => {
+  let errorStatusCode;
+  if (responseData?.status === 202) {
+    errorLog(Translations.RV_ERROR_202_TITLE);
+    errorStatusCode = 202;
+  } else if (
+    responseData?.error?.message[0] === 'Combination of service and report type is not supported' ||
+    responseData?.error?.statusCode === 404
+  ) {
+    errorLog(Translations.DASHBOARD_FINANCIAL_SUMMARY_CHART_ERROR_ASP_NOT_SUPPORTED);
+    errorStatusCode = 404;
+  } else if (
+    responseData?.error?.message[0] === 'Service provider not supported' ||
+    responseData?.error?.statusCode === 400
+  ) {
+    errorLog(Translations.DASHBOARD_FINANCIAL_SUMMARY_CHART_ERROR_ASP_NOT_SUPPORTED);
+    errorStatusCode = 404;
+  } else if (responseData?.error?.statusCode === 500) {
+    errorLog(Translations.RV_ERROR_500_TITLE);
+    errorStatusCode = 500;
+  } else {
+    // generic error response
+    errorLog(Translations.RV_ERROR_204_TITLE);
+    errorStatusCode = 204;
+  }
+
+  return errorStatusCode;
 };

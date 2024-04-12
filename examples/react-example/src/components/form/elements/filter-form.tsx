@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { ChangeEventHandler, FormEventHandler, useState } from 'react';
 import {
   RVAccountingProviders,
   RVBankingProviders,
@@ -16,33 +16,37 @@ const arrayServiceProviders = [
 ];
 const arrayAllReportTypes = Object.values(RVReportTypes);
 const arrayReportFrequency = Object.values(RVReportFrequency);
-const requiresNoFrequency = (type: string) =>
+const requiresNoFrequency = (type: RVReportTypes) =>
   [
     RVReportTypes.INVOICES,
     RVReportTypes.BILLS,
     RVReportTypes.BANK_ACCOUNT,
     RVReportTypes.CREDIT_SCORE,
-  ].includes(type as RVReportTypes);
-const requiresNoDate = (type: string) =>
-  [RVReportTypes.BANK_ACCOUNT].includes(type as RVReportTypes);
+  ].includes(type);
+
+const requiresNoEndDate = (type: RVReportTypes) => [RVReportTypes.BANK_ACCOUNT].includes(type);
+
+const optionalEndDate = (type: RVReportTypes) =>
+  [RVReportTypes.BANK_ACCOUNT, RVReportTypes.CREDIT_SCORE].includes(type);
+
+const requiresNoStartDate = (type: RVReportTypes) =>
+  [RVReportTypes.BANK_ACCOUNT, RVReportTypes.CREDIT_SCORE].includes(type);
 
 export default function FilterForm({ setFilter }: FormProps) {
   const [formFilter, setFormFilter] = useState({
-    businessName: '',
-    serviceName: arrayServiceProviders[0],
-    connectionId: '',
+    connectionUuid: '',
     reportType: arrayAllReportTypes[0],
     reportFrequency: arrayReportFrequency[0],
     startDate: '',
     endDate: '',
   });
 
-  const submitFilter = (event: any) => {
+  const submitFilter: FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
     setFilter(formFilter);
   };
 
-  const handleFilterChange = (event: any) => {
+  const handleFilterChange: ChangeEventHandler<HTMLSelectElement | HTMLInputElement> = (event) => {
     const target = event.target;
     const value = target.value;
     const name = target.name;
@@ -77,7 +81,7 @@ export default function FilterForm({ setFilter }: FormProps) {
         <form onSubmit={submitFilter} method="POST">
           <div className="overflow-hidden sm:rounded-md bg-white">
             <div className="grid grid-cols-6 gap-6 items-end">
-              <div className="col-span-6 lg:col-span-6">
+              {/* <div className="col-span-6 lg:col-span-6">
                 <label htmlFor="business-name" className="block text-sm font-medium text-gray-700">
                   Business Name
                 </label>
@@ -87,8 +91,8 @@ export default function FilterForm({ setFilter }: FormProps) {
                   id="business-name"
                   onChange={handleFilterChange}
                   value={formFilter.businessName}
-                  required={!formFilter.connectionId}
-                  disabled={!!formFilter.connectionId}
+                  required={!formFilter.connectionUuid}
+                  disabled={!!formFilter.connectionUuid}
                   className="mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                   placeholder="BIZ-1233"
                 />
@@ -101,8 +105,8 @@ export default function FilterForm({ setFilter }: FormProps) {
                   id="service-name"
                   name="serviceName"
                   value={formFilter.serviceName}
-                  required={!formFilter.connectionId || !!formFilter.businessName}
-                  disabled={!!formFilter.connectionId}
+                  required={!formFilter.connectionUuid || !!formFilter.businessName}
+                  disabled={!!formFilter.connectionUuid}
                   onChange={handleFilterChange}
                   className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm"
                 >
@@ -112,19 +116,17 @@ export default function FilterForm({ setFilter }: FormProps) {
                     </option>
                   ))}
                 </select>
-              </div>
+              </div> */}
               <div className="col-span-6 lg:col-span-3">
                 <label htmlFor="business-name" className="block text-sm font-medium text-gray-700">
                   Connection Id
                 </label>
                 <input
                   type="text"
-                  name="connectionId"
+                  name="connectionUuid"
                   id="connection-id"
                   onChange={handleFilterChange}
-                  value={formFilter.connectionId}
-                  required={!formFilter.businessName}
-                  disabled={!!formFilter.businessName}
+                  value={formFilter.connectionUuid}
                   className="mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                   placeholder="CON-12344"
                 />
@@ -161,8 +163,8 @@ export default function FilterForm({ setFilter }: FormProps) {
                   id="start-date"
                   onChange={handleFilterChange}
                   value={formFilter.startDate}
-                  required={!requiresNoDate(formFilter.reportType)}
-                  disabled={requiresNoDate(formFilter.reportType)}
+                  required={!requiresNoStartDate(formFilter.reportType)}
+                  disabled={requiresNoStartDate(formFilter.reportType)}
                   className="mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                   placeholder="id_32"
                 />
@@ -177,8 +179,8 @@ export default function FilterForm({ setFilter }: FormProps) {
                   id="end-date"
                   onChange={handleFilterChange}
                   value={formFilter.endDate}
-                  required={!requiresNoDate(formFilter.reportType)}
-                  disabled={requiresNoDate(formFilter.reportType)}
+                  required={!optionalEndDate(formFilter.reportType)}
+                  disabled={requiresNoEndDate(formFilter.reportType)}
                   className="mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                   placeholder="id_ww"
                 />

@@ -30,7 +30,7 @@ describe('Transactions Chart Utils', () => {
             endDate: '2021-01-01',
             serviceName: RVAccountingProviders.QUICKBOOKS,
             businessName: 'businessName',
-            connectionId: '',
+            connectionUuid: '',
             reportFrequency: RVReportFrequency.MONTH,
           },
         };

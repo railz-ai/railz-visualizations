@@ -4,7 +4,7 @@ import { isEmpty } from 'lodash-es';
 
 import Translations from '../config/translations/en.json';
 import { getOptionsBarChart } from '../elements/statements-chart/statements-chart.utils';
-import { errorLog, warnLog } from '../services/logger';
+import { errorLog } from '../services/logger';
 import {
   RAILZ_CHART_LABEL_COLOR,
   RAILZ_CHART_LEGEND_COLOR,
@@ -15,7 +15,6 @@ import {
   RVOptionsBarStyle,
   RVReportFrequency,
   RVReportTypes,
-  RVAllProviders,
   RVUpdateChartParameter,
   RVCreditScoreSummary,
   RVOptionsBankReconciliationStyle,
@@ -85,26 +84,10 @@ export const validateRequiredParams = (filter: RVFilterAll): boolean => {
 
 export const validateBusinessServiceNameParams = (filter: RVFilterAll): boolean => {
   const filterPassed = filter as unknown as any;
-  const hasConnectionId = !isEmpty(filterPassed?.connectionId);
-  const hasBusinessName = !isEmpty(filterPassed?.businessName);
-  const hasServiceName = !isEmpty(filterPassed?.serviceName);
+  const hasConnectionId = !isEmpty(filterPassed?.connectionUuid);
 
-  //TODO: To remove when connectionId is implemented on the API
-  if (hasConnectionId) {
-    warnLog(Translations.RV_WARN_CONNECTION_ID_NOT_RELEASED);
-    return false;
-  }
-  if (!hasBusinessName && !hasConnectionId) {
+  if (!hasConnectionId) {
     errorLog(Translations.RV_ERROR_INVALID_BUSINESS_IDENTIFICATION);
-    return false;
-  }
-  if (!hasServiceName) {
-    errorLog(Translations.RV_ERROR_NO_SERVICE_NAME);
-    if (hasBusinessName && filter.reportType !== RVReportTypes.BANK_ACCOUNT) {
-      return false;
-    }
-  } else if (!Object.values(RVAllProviders).includes(filter.serviceName)) {
-    errorLog(Translations.RV_ERROR_INVALID_SERVICE_NAME);
     return false;
   }
   return true;
@@ -112,7 +95,7 @@ export const validateBusinessServiceNameParams = (filter: RVFilterAll): boolean 
 
 export const validateDateParams = (filter: RVFilterAll): boolean => {
   const { startDate, endDate, reportType } = filter;
-  if (reportType === RVReportTypes.BANK_ACCOUNT) {
+  if ([RVReportTypes.BANK_ACCOUNT, RVReportTypes.CREDIT_SCORE].includes(reportType)) {
     return true;
   }
   if (startDate && endDate) {

@@ -22,17 +22,13 @@ export const getReportData = async ({
   try {
     const startDate = format(parseISO(filter.startDate), RAILZ_DATE_FORMAT);
     const endDate = format(parseISO(filter.endDate), RAILZ_DATE_FORMAT);
-    const parametersToAdd =
-      RVParams.CONNECTION_ID in filter && filter?.connectionId
-        ? [RVParams.CONNECTION_ID]
-        : [RVParams.BUSINESS_NAME, RVParams.SERVICE_NAME];
     const allParameters = pick(
       {
         ...filter,
         startDate,
         endDate,
       },
-      [RVParams.START_DATE, RVParams.END_DATE, RVParams.REPORT_FREQUENCY, ...parametersToAdd],
+      [RVParams.START_DATE, RVParams.END_DATE, RVParams.REPORT_FREQUENCY, RVParams.CONNECTION_UUID],
     );
 
     reportData = await RequestServiceInstance.getReportData({

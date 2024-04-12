@@ -10,6 +10,7 @@ export enum RVReportTypes {
   INVOICES = 'invoices',
   REVENUE = 'revenue',
   BANK_RECONCILIATION = 'bankReconciliation',
+  BUSINESS_VALUATIONS = 'businessValuations',
 }
 
 export type RVFinancialStatementsTypes =
@@ -27,15 +28,16 @@ export enum RVCreditScoreTypes {
 }
 
 export const RVReportTypesUrlMapping = {
-  [RVReportTypes.BALANCE_SHEET]: '/reports/balanceSheets',
-  [RVReportTypes.BANK_ACCOUNT]: '/bankAccounts',
-  [RVReportTypes.BILLS]: '/reports/bills',
-  [RVReportTypes.CASHFLOW_STATEMENTS]: '/reports/cashflowStatements',
-  [RVReportTypes.CREDIT_SCORE]: '/reports/railzScore',
-  [RVReportTypes.EXPENSES]: '/reports/expenses',
-  [RVReportTypes.FINANCIAL_RATIO]: '/reports/financialRatios',
-  [RVReportTypes.INCOME_STATEMENTS]: '/reports/incomeStatements',
-  [RVReportTypes.INVOICES]: '/reports/invoices',
-  [RVReportTypes.REVENUE]: '/reports/revenue',
-  [RVReportTypes.BANK_RECONCILIATION]: '/bankReconciliation',
+  [RVReportTypes.BALANCE_SHEET]: '/v2/visualizations/balanceSheets',
+  [RVReportTypes.BANK_ACCOUNT]: '/v2/visualizations/bankAccounts',
+  [RVReportTypes.BILLS]: '/v2/visualizations/bills',
+  [RVReportTypes.CASHFLOW_STATEMENTS]: '/v2/visualizations/cashflowStatements',
+  [RVReportTypes.CREDIT_SCORE]: '/v2/visualizations/railzScore',
+  [RVReportTypes.EXPENSES]: '/v2/visualizations/expenses',
+  [RVReportTypes.FINANCIAL_RATIO]: '/v2/visualizations/financialRatios',
+  [RVReportTypes.INCOME_STATEMENTS]: '/v2/visualizations/incomeStatements',
+  [RVReportTypes.INVOICES]: '/v2/visualizations/invoices',
+  [RVReportTypes.REVENUE]: '/v2/visualizations/revenue',
+  [RVReportTypes.BANK_RECONCILIATION]: '/v2/visualizations/bankReconciliation',
+  [RVReportTypes.BUSINESS_VALUATIONS]: '/v2/visualizations/businessValuations',
 };

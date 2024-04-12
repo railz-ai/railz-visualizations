@@ -3,6 +3,172 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.0.8-alpha.30 (2024-03-28)
+
+**Note:** Version bump only for package @railzai/railz-visualizations-angular
+
+
+
+
+
+## 0.0.8-alpha.29 (2024-02-09)
+
+**Note:** Version bump only for package @railzai/railz-visualizations-angular
+
+
+
+
+
+## 0.0.8-alpha.28 (2023-09-27)
+
+**Note:** Version bump only for package @railzai/railz-visualizations-angular
+
+
+
+
+
+## 0.0.8-alpha.27 (2023-08-15)
+
+**Note:** Version bump only for package @railzai/railz-visualizations-angular
+
+
+
+
+
+## 0.0.8-alpha.26 (2023-07-17)
+
+**Note:** Version bump only for package @railzai/railz-visualizations-angular
+
+
+
+
+
+## 0.0.8-alpha.25 (2023-07-17)
+
+
+### Bug Fixes
+
+* business Valuations  Component is not Mobile responsive ([#158](https://github.com/railz-ai/railz-visualizations/issues/158)) ([33bc542](https://github.com/railz-ai/railz-visualizations/commit/33bc5423b80f476f6b495c4fd0e7f2f07ebd1fc1))
+
+
+
+
+
+## 0.0.8-alpha.24 (2023-06-28)
+
+**Note:** Version bump only for package @railzai/railz-visualizations-angular
+
+
+
+
+
+## 0.0.8-alpha.23 (2023-06-28)
+
+**Note:** Version bump only for package @railzai/railz-visualizations-angular
+
+
+
+
+
+## 0.0.8-alpha.22 (2023-06-23)
+
+**Note:** Version bump only for package @railzai/railz-visualizations-angular
+
+
+
+
+
+## 0.0.8-alpha.21 (2023-06-21)
+
+**Note:** Version bump only for package @railzai/railz-visualizations-angular
+
+
+
+
+
+## 0.0.8-alpha.20 (2023-06-21)
+
+**Note:** Version bump only for package @railzai/railz-visualizations-angular
+
+
+
+
+
+## 0.0.8-alpha.19 (2023-06-05)
+
+**Note:** Version bump only for package @railzai/railz-visualizations-angular
+
+
+
+
+
+## 0.0.8-alpha.18 (2023-06-05)
+
+**Note:** Version bump only for package @railzai/railz-visualizations-angular
+
+
+
+
+
+## 0.0.8-alpha.17 (2023-05-26)
+
+**Note:** Version bump only for package @railzai/railz-visualizations-angular
+
+
+
+
+
+## 0.0.8-alpha.16 (2023-05-24)
+
+
+### Bug Fixes
+
+* wrong currentLiabilities and nonCurrentLiabilities values ([#144](https://github.com/railz-ai/railz-visualizations/issues/144)) ([0ebb619](https://github.com/railz-ai/railz-visualizations/commit/0ebb619a8037a3cb2b1493fce64a71e225126fdf))
+
+
+
+
+
+## 0.0.8-alpha.15 (2023-05-18)
+
+**Note:** Version bump only for package @railzai/railz-visualizations-angular
+
+
+
+
+
+## 0.0.8-alpha.14 (2023-05-12)
+
+**Note:** Version bump only for package @railzai/railz-visualizations-angular
+
+
+
+
+
+## 0.0.8-alpha.13 (2023-05-11)
+
+**Note:** Version bump only for package @railzai/railz-visualizations-angular
+
+
+
+
+
+## 0.0.8-alpha.12 (2023-05-01)
+
+**Note:** Version bump only for package @railzai/railz-visualizations-angular
+
+
+
+
+
+## 0.0.8-alpha.11 (2023-04-28)
+
+**Note:** Version bump only for package @railzai/railz-visualizations-angular
+
+
+
+
+
 ## 0.0.8-alpha.10 (2023-04-17)
 
 **Note:** Version bump only for package @railzai/railz-visualizations-angular

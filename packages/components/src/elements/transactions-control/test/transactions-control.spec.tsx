@@ -4,7 +4,6 @@ import { h } from '@stencil/core';
 
 import { TransactionsControl } from '../transactions-control';
 import { RVReportTypes } from '../../../types';
-import { RVAllProviders } from '../../../types/enum/service-providers';
 import * as TransactionsControlUtils from '../transactions-control.utils';
 
 describe('railz-transactions-control', () => {
@@ -32,8 +31,7 @@ describe('railz-transactions-control', () => {
           filter={{
             startDate: '2021-05-01',
             endDate: '2022-05-31',
-            businessName: 'QboFrdTest',
-            serviceName: RVAllProviders.QUICKBOOKS,
+            connectionUuid: 'CON-1234',
             reportType: RVReportTypes.BILLS,
           }}
         ></railz-transactions-control>
@@ -74,8 +72,7 @@ describe('railz-transactions-control', () => {
           ],
           startDate: '2021-05-23T00:00:00.000Z',
           endDate: '2022-03-01T00:00:00.000Z',
-          serviceName: 'quickbooks',
-          businessName: 'TestBusinessAutomationPlaidQBO',
+          connectionUuid: 'CON-1234',
           createdAt: '2022-05-11T06:40:20Z',
           updatedAt: '2022-05-11T07:01:29Z',
         },
@@ -98,8 +95,7 @@ describe('railz-transactions-control', () => {
           filter={{
             startDate: '2021-05-01',
             endDate: '2022-05-31',
-            businessName: 'QboFrdTest',
-            serviceName: RVAllProviders.QUICKBOOKS,
+            connectionUuid: 'CON-1234',
             reportType: RVReportTypes.BILLS,
           }}
         ></railz-transactions-control>

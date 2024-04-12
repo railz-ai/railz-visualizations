@@ -129,7 +129,10 @@ export class BanksAccounts {
         filter: this._filter as RVFilterAll,
       })) as RVFormattedBankAccountsResponse;
       this._summary = reportData.data as RVBankAccounts[];
-      if (isEmpty(this._summary)) {
+      if (reportData?.error?.message[0] === 'Service provider not supported') {
+        errorLog(Translations.DASHBOARD_FINANCIAL_SUMMARY_CHART_ERROR_ASP_NOT_SUPPORTED);
+        this.errorStatusCode = 404;
+      } else if (isEmpty(this._summary)) {
         this.errorStatusCode = 204;
       }
     } catch (error) {

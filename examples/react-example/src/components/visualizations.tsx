@@ -13,6 +13,7 @@ import {
   RVFilterBankAccount,
   RVFilterCreditScore,
   RVFilterBankReconciliation,
+  RVFilterBusinessValuations,
 } from '@railzai/railz-visualizations';
 import {
   RailzBankAccounts,
@@ -22,6 +23,7 @@ import {
   RailzStatementsChart,
   RailzTransactionsControl,
   RailzVisualizations,
+  RailzBusinessValuations,
 } from '@railzai/railz-visualizations-react';
 import { cloneDeep, isEmpty, pick } from 'lodash';
 import { RailzBankReconciliation } from '@railzai/railz-visualizations-react';
@@ -31,7 +33,7 @@ type AllTypes = 'all' & RVReportTypes;
 interface Filter {
   businessName?: string;
   serviceName?: RVServiceProviders;
-  connectionId?: string;
+  connectionUuid?: string;
   startDate: string;
   endDate: string;
   reportFrequency: RVReportFrequency;
@@ -48,36 +50,15 @@ interface ChartProps {
 const formatCodeFilter = (filter: Filter) => {
   let allParameters;
   if ([RVReportTypes.BILLS, RVReportTypes.INVOICES].includes(filter.reportType)) {
-    if (!isEmpty(filter?.connectionId)) {
-      allParameters = pick(filter, ['startDate', 'endDate', 'reportType', 'connectionId']);
-    } else {
-      allParameters = pick(filter, [
-        'startDate',
-        'endDate',
-        'businessName',
-        'reportType',
-        'serviceName',
-      ]);
-    }
+    allParameters = pick(filter, ['startDate', 'endDate', 'reportType', 'connectionUuid']);
   } else {
-    if (!isEmpty(filter?.connectionId)) {
-      allParameters = pick(filter, [
-        'startDate',
-        'endDate',
-        'reportFrequency',
-        'reportType',
-        'connectionId',
-      ]);
-    } else {
-      allParameters = pick(filter, [
-        'startDate',
-        'endDate',
-        'reportFrequency',
-        'reportType',
-        'businessName',
-        'serviceName',
-      ]);
-    }
+    allParameters = pick(filter, [
+      'startDate',
+      'endDate',
+      'reportFrequency',
+      'reportType',
+      'connectionUuid',
+    ]);
   }
   return allParameters;
 };
@@ -138,6 +119,7 @@ const Components = ({ configuration, filter, options, showCode }: ChartProps) =>
           RVReportTypes.FINANCIAL_RATIO,
           RVReportTypes.BANK_ACCOUNT,
           RVReportTypes.BANK_RECONCILIATION,
+          RVReportTypes.BUSINESS_VALUATIONS,
         ].map((reportType, index) => {
           const cloneOptions = cloneDeep(options);
           if (index !== 0) {
@@ -301,6 +283,28 @@ const Components = ({ configuration, filter, options, showCode }: ChartProps) =>
           />
         </div>
       )}
+      {filter.reportType === RVReportTypes.BUSINESS_VALUATIONS && (
+        <div>
+          <h4 className="text-xl font-bold text-gray-900">
+            Using Railz Business Valuations Component
+          </h4>
+          <p>
+            Railz Bank Reconciliation Component only accepts <b>businessValuations</b>
+          </p>
+          <RailzBusinessValuations
+            configuration={configuration}
+            filter={filter as RVFilterBusinessValuations}
+            options={options}
+          />
+          <Code
+            configuration={configuration}
+            filter={filter}
+            options={options}
+            showCode={showCode}
+            displayValue="RailzBusinessValuations"
+          />
+        </div>
+      )}
       {![
         RVReportTypes.CREDIT_SCORE,
         RVReportTypes.EXPENSES,
@@ -309,6 +313,7 @@ const Components = ({ configuration, filter, options, showCode }: ChartProps) =>
         RVReportTypes.FINANCIAL_RATIO,
         RVReportTypes.BANK_ACCOUNT,
         RVReportTypes.BANK_RECONCILIATION,
+        RVReportTypes.BUSINESS_VALUATIONS,
         'all',
       ].includes(filter.reportType) && (
         <DefaultComponent
