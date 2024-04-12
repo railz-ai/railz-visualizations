@@ -1,6 +1,6 @@
 /* eslint-disable max-len, @typescript-eslint/no-unused-vars */
-import { Component, h, Prop, State, Watch } from '@stencil/core';
-import { isEmpty, isEqual, isNil } from 'lodash-es';
+import { Component, h, Listen, Prop, State, Watch } from '@stencil/core';
+import { isEmpty, isEqual, isNil, debounce } from 'lodash-es';
 import Highcharts from 'highcharts';
 import variablePie from 'highcharts/modules/variable-pie.js';
 import highchartsAccessibility from 'highcharts/modules/accessibility';
@@ -63,6 +63,10 @@ export class IncomeStatements {
   @State() private chartOptions: any;
   @State() private containerRef?: HTMLDivElement;
 
+  private debouncedChart = debounce(() => {
+    Highcharts.chart(this.containerRef, this.chartOptions);
+  }, 50);
+
   /**
    * Validates if configuration was passed correctly before setting filter
    * @param configuration - Config for authentication
@@ -107,6 +111,13 @@ export class IncomeStatements {
   watchContainerRef(newValue: HTMLDivElement, _: HTMLDivElement): void {
     if (newValue && this.chartOptions) {
       Highcharts.chart(this.containerRef, this.chartOptions);
+    }
+  }
+
+  @Listen('resize', { target: 'window' })
+  async repaintChartOnResize(): Promise<void> {
+    if (this.containerRef) {
+      this.debouncedChart();
     }
   }
 
@@ -203,27 +214,29 @@ export class IncomeStatements {
           style={{ width: this._options?.chart?.width, height: this._options?.chart?.height }}
         />
         <div class="rv-income-statements-chart-box">
-          {!isNil(this._summary?.percentageChange) && (
-            <div class="rv-income-statements-chart-percentage">
-              {this._summary?.percentageChange >= 0 ? (
-                <div class="rv-positive" style={this._options?.chart?.pie?.positive}>
-                  &#x25B2; {this._summary?.percentageChange}%
-                </div>
-              ) : (
-                <div class="rv-negative" style={this._options?.chart?.pie?.negative}>
-                  &#x25BC; {this._summary?.percentageChange}%
-                </div>
-              )}
-            </div>
-          )}
-          <p class="rv-income-statements-chart-text" style={this._options?.chart?.pie?.total}>
-            {this._summary?.totalAmount < 0 ? '-' : ''}$
-            {roundNumber(
-              this._summary?.totalAmount < 0
-                ? Math.abs(this._summary?.totalAmount)
-                : this._summary?.totalAmount,
+          <div class="rv-income-statements-chart-box-content">
+            {!isNil(this._summary?.percentageChange) && (
+              <div class="rv-income-statements-chart-percentage">
+                {this._summary?.percentageChange >= 0 ? (
+                  <div class="rv-positive" style={this._options?.chart?.pie?.positive}>
+                    &#x25B2; {this._summary?.percentageChange}%
+                  </div>
+                ) : (
+                  <div class="rv-negative" style={this._options?.chart?.pie?.negative}>
+                    &#x25BC; {this._summary?.percentageChange}%
+                  </div>
+                )}
+              </div>
             )}
-          </p>
+            <p class="rv-income-statements-chart-text" style={this._options?.chart?.pie?.total}>
+              {this._summary?.totalAmount < 0 ? '-' : ''}$
+              {roundNumber(
+                this._summary?.totalAmount < 0
+                  ? Math.abs(this._summary?.totalAmount)
+                  : this._summary?.totalAmount,
+              )}
+            </p>
+          </div>
         </div>
       </div>
     );
