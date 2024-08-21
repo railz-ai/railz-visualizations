@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Component, h, Prop, State, Watch } from '@stencil/core';
-import { isEmpty, isEqual } from 'lodash-es';
+import { isEmpty, isEqual, startCase } from 'lodash-es';
 
 import {
   getConfiguration,
@@ -175,7 +175,13 @@ export class FinancialRatios {
       return <railz-loading loadingText={this.loading} {...this._options?.loadingIndicator} />;
     }
 
-    const FinancialRatioItem = ({ key }: { key: string }): HTMLElement => {
+    const FinancialRatioItem = ({
+      key,
+      ratioValue,
+    }: {
+      key: string;
+      ratioValue: string;
+    }): HTMLElement => {
       const translation = (key: string, tooltip = false): string => {
         const financialRatioKey = Object.keys(FinancialRatio).find(
           (ratio: string): boolean => FinancialRatio[ratio] === key,
@@ -189,7 +195,7 @@ export class FinancialRatios {
           return Translations['RV_FINANCIAL_RATIO_TOOLTIP_' + financialRatioKey];
         }
         if (contentTranslation) return contentTranslation;
-        return Translations['RV_FINANCIAL_RATIO_' + financialRatioKey] || '';
+        return Translations['RV_FINANCIAL_RATIO_' + financialRatioKey] || startCase(key);
       };
       const item: RVFinancialRatioItem = this._selected[key];
       const tooltipText = translation(key, true);
@@ -238,8 +244,8 @@ export class FinancialRatios {
     return (
       this._selected && (
         <div class="rv-financial-ratios">
-          {Object.keys(this._selected)?.map((key: string) => (
-            <FinancialRatioItem key={key} />
+          {Object.entries(this._selected)?.map(([key, value]) => (
+            <FinancialRatioItem key={key} ratioValue={value} />
           ))}
         </div>
       )
