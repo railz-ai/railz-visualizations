@@ -60,7 +60,7 @@ describe('railz-financial-ratios', () => {
   it('renders with data', async () => {
     jest
       .spyOn(FinancialRatiosUtils, 'getReportData')
-      .mockImplementation(() => Promise.resolve(FinancialRatioData));
+      .mockImplementation(() => Promise.resolve(FinancialRatioData['data1']));
 
     const page = await newSpecPage({
       components: [FinancialRatios],
@@ -149,6 +149,64 @@ describe('railz-financial-ratios', () => {
               </div>
             </div>
                 <railz-sparkline-chart></railz-sparkline-chart>
+          </div>
+        </div>
+      </div>
+    </mock:shadow-root>
+  </railz-financial-ratios>
+    `);
+  });
+  it('renders with data without key mapped', async () => {
+    jest
+      .spyOn(FinancialRatiosUtils, 'getReportData')
+      .mockImplementation(() => Promise.resolve(FinancialRatioData['data2']));
+
+    const page = await newSpecPage({
+      components: [FinancialRatios],
+      template: () => (
+        <railz-financial-ratios
+          configuration={{
+            token: 'eyJhbG',
+            debug: true,
+          }}
+          filter={{
+            startDate: '2021-05-01',
+            endDate: '2022-05-31',
+            reportFrequency: RVReportFrequency.MONTH,
+            connectionUuid: 'CON-1234',
+            reportType: RVReportTypes.FINANCIAL_RATIO,
+          }}
+        ></railz-financial-ratios>
+      ),
+    });
+    expect(page.root).toEqualHtml(`
+    <railz-financial-ratios>
+    <mock:shadow-root>
+      <div class="rv-container">
+        <div class="rv-header-container">
+          <p class="rv-title">
+            Financial Ratios
+          </p>
+          <railz-select></railz-select>
+        </div>
+        <div class="rv-financial-ratios">
+          <div class="rv-financial-ratio-container-item">
+            <div class="rv-financial-ratio-info">
+              <div class="rv-ratio-name">
+                <div class="rv-ratio-name-text">
+                  Churn Rate
+                </div>
+              </div>
+              <div class="rv-ratio-values">
+                <div class="rv-ratio-summary">
+                  38.41
+                </div>
+                <div class="rv-ratio-percentage">
+                  <railz-percentage percentage="10"></railz-percentage>
+                </div>
+              </div>
+            </div>
+            <railz-sparkline-chart></railz-sparkline-chart>
           </div>
         </div>
       </div>
