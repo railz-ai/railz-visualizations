@@ -48,6 +48,6 @@ export enum FinancialRatio {
   PROBABILITY_OF_DEFAULT = 'probabilityOfDefault',
   LIQUIDATION_VALUE = 'liquidationValue',
   RECEIVABLES_TURNOVER_RATIO = 'receivablesTurnoverRatio',
-  DEBT_TO_ENTERPRISE_VALUE = 'debtToEnterpriseValue',
   ENTERPRISE_VALUE = 'enterpriseValue',
+  DEBT_TO_ENTERPRISE_VALUE = 'debtToEnterpriseValue',
 }
