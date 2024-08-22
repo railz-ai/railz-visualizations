@@ -5774,7 +5774,7 @@
     },
     "data": {
       "efficiency": {
-        "churnRate": {
+        "noTranslation": {
           "currentValue": 38.41,
           "percentageChange": 10,
           "timePeriodData": [
