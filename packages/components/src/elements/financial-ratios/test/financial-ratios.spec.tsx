@@ -194,7 +194,7 @@ describe('railz-financial-ratios', () => {
             <div class="rv-financial-ratio-info">
               <div class="rv-ratio-name">
                 <div class="rv-ratio-name-text">
-                  Churn Rate
+                  No Translation
                 </div>
               </div>
               <div class="rv-ratio-values">
