@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.0.8-alpha.32 (2024-08-22)
+
+
+### Features
+
+* Update test to evaluate no mapping translation ([f138152](https://github.com/railz-ai/railz-visualizations/commit/f138152e11251fd5fefb78c95a6ae92f29a24d1f))
+
+
+
+
+
 ## 0.0.8-alpha.31 (2024-04-12)
 
 **Note:** Version bump only for package @railzai/railz-visualizations
