@@ -1,3 +1,5 @@
+@import 'src/global/theme-variables';
+
 .rv-container {
   display: flex;
   padding: 16px;
@@ -20,7 +22,7 @@
 
 .rv-title {
   display: flex;
-  color: #1d7043;
+  color: $secondary;
   font-size: 18px;
   font-weight: 600;
   margin: 0;
@@ -34,6 +36,7 @@
   overflow-y: auto;
   overflow-x: hidden;
   padding-top: 8px;
+  height: 100%;
 }
 
 .rv-financial-ratio-container-item {
