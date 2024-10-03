@@ -50,8 +50,8 @@ export interface RVFinancialRatioContent {
   [FinancialRatio.DAYS_SALES_RECEIVABLES_INDEX]?: string;
   [FinancialRatio.ASSET_QUALITY_INDEX]?: string;
   [FinancialRatio.DEPRECIATION_INDEX]?: string;
-  [FinancialRatio.ACCOUNTS_RECEIVABLE_TUENOVER_RATIO]?: string;
-  [FinancialRatio.ACCOUNTS_PAYABLE_TUENOVER_RATIO]?: string;
+  [FinancialRatio.ACCOUNTS_RECEIVABLE_TURNOVER_RATIO]?: string;
+  [FinancialRatio.ACCOUNTS_PAYABLE_TURNOVER_RATIO]?: string;
   [FinancialRatio.DAYS_PAYABLE_OUTSTANDING]?: string;
   [FinancialRatio.AVERAGE_OUTSTANDING_PAYABLES_BALANCE]?: string;
   [FinancialRatio.AVERAGE_OUTSTANDING_RECEIVABLES_BALANCE]?: string;
