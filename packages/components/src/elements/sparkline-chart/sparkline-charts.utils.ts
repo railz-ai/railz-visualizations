@@ -29,7 +29,7 @@ export const getOptions = (data: any, options?: RVOptionsBaseChartStyle): any =>
       },
     },
   },
-  colors: options?.colors || ['#009BBD'],
+  colors: options?.colors || ['#015B7E'],
 
   title: {
     text: undefined,

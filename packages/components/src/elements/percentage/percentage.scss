@@ -1,3 +1,5 @@
+@import 'src/global/theme-variables';
+
 .rv-percentage {
   line-height: 1.5;
   display: flex;
@@ -5,10 +7,10 @@
   font-weight: 500;
 
   .rv-positive {
-    color: #003032;
+    color: $positive;
   }
 
   .rv-negative {
-    color: #7d0000;
+    color: $negative;
   }
 }
