@@ -36,21 +36,21 @@ const getData = (score: number): number[] => {
 
 const getColor = (score: number, colors?: RVColorRangesStyle): string => {
   if (score > 750) {
-    return colors?.['750'] || '#00884F';
+    return colors?.['750'] || '#009775';
   }
   if (score > 675) {
-    return colors?.['675'] || '#15D283';
+    return colors?.['675'] || '#4BCD3E';
   }
   if (score > 625) {
-    return colors?.['625'] || '#6DE18D';
+    return colors?.['625'] || '#FFCD00';
   }
   if (score > 575) {
-    return colors?.['575'] || '#A2DF61';
+    return colors?.['575'] || '#FD8D62';
   }
   if (score > 525) {
-    return colors?.['525'] || '#E0E345';
+    return colors?.['525'] || '#FF1F3E';
   }
-  return colors?.default || '#FFD839';
+  return colors?.default || '#B30000';
 };
 
 /**

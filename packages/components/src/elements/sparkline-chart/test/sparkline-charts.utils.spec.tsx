@@ -26,7 +26,7 @@ describe('SparklineChart', () => {
               },
               events: {},
             },
-            colors: ['#009BBD'],
+            colors: ['#015B7E'],
             title: {},
             xAxis: {
               labels: {
@@ -104,7 +104,7 @@ describe('SparklineChart', () => {
               },
               events: {},
             },
-            colors: ['#009BBD'],
+            colors: ['#015B7E'],
             title: {},
             xAxis: {
               labels: {

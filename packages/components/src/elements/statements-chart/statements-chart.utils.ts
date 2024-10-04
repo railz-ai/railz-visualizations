@@ -58,7 +58,7 @@ export const getOptionsBarChart = ({
       },
     },
   },
-  colors: colors || ['#009BBD', '#FFD738', '#003032'],
+  colors: colors || ['#3BCFF0', '#FFED8C', '#003032'],
   title: null,
   xAxis: {
     categories: categories,
