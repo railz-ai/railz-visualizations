@@ -74,7 +74,7 @@ The Accounting Data as a Service™ Visualization components helps to build your
 ## Installation
 
 The library is published as a [scoped NPM package](https://docs.npmjs.com/misc/scope) in
-the [NPMJS Railz account](https://www.npmjs.com/org/railzai).
+the [NPMJS account](https://www.npmjs.com/org/railzai).
 
 [Check our docs on detailed instruction guide](https://docs.railz.ai/docs/visualization-sdk-quickstart).
 
