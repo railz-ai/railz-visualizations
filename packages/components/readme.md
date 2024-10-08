@@ -1,8 +1,8 @@
-Railz is the Accounting Data as a Service™ solution that makes sense of your business customers' financial data.
+Accounting Data as a Service™ is a solution that makes sense of your business customers' financial data.
 
 <h1 align="center">
   <a href="https://docs.railz.ai/docs/visualization-sdk-overview">
-    Railz Visualizations
+    Accounting Data as a Service™ Visualizations
   </a>
 </h1>
 
@@ -18,7 +18,7 @@ Railz is the Accounting Data as a Service™ solution that makes sense of your b
       <img src="https://img.shields.io/badge/code_style-stencil/stylelint/prettier-5851ff.svg?style=flat-square" alt="Code Style" />
   </a>
 </p>
-<h2 align="center">Powerful charting components built with <a href="https://stenciljs.com" target="_blank">StencilJS</a> and <a href="https://www.highcharts.com/" target="_blank">Highcharts</a> based on <a href="https://railz.ai" target="_blank">Railz.ai</a> dashboard.</h2>
+<h2 align="center">Powerful charting components built with <a href="https://stenciljs.com" target="_blank">StencilJS</a> and <a href="https://www.highcharts.com/" target="_blank">Highcharts.</a>
 
 <p align="center">
   <a href="https://docs.railz.ai/docs/visualization-sdk-overview">Docs</a> •
@@ -29,8 +29,8 @@ Railz is the Accounting Data as a Service™ solution that makes sense of your b
   <a href="#license">License</a>
 </p>
 
-<img src="https://railz.ai/_next/image?url=https%3A%2F%2Fa.storyblok.com%2Ff%2F124388%2F2336x2080%2F62bed08777%2Frailz-data-financial-institutions.png&w=2560&q=80" alt="Railz dashboard preview" width="100%" />
-<p align="center"><i>Railz Dashboard.</i></p>
+<img src="https://a.storyblok.com/f/124388/520x464/3dee9121b7/fis-data-financial-institutions-2336x2080.svg&w=2560&q=80" alt="Accounting Data as a Service™ dashboard preview" width="100%" />
+<p align="center"><i>Accounting Data as a Service™ Dashboard.</i></p>
 <br>
 
 ## Why Stencil ?
@@ -41,7 +41,7 @@ Stencil combines the best concepts of the most popular frontend frameworks into 
 
 Stencil components are just Web Components, so they work in any major framework or with no framework at all.
 
-## Key Features of Railz Visualizations
+## Key Features of Accounting Data as a Service™ Visualizations
 
 - Charting components built for financial data and reports.
 - Mobile responsive components;
@@ -56,7 +56,7 @@ Stencil components are just Web Components, so they work in any major framework 
 
 ## Overview
 
-The Railz Visualization components helps to build your dashboard easily with data from the Railz Reports API.
+The Accounting Data as a Service™ Visualization components helps to build your dashboard easily with data from the Accounting Data as a Service™ Reports API.
 <br>
 
 | ![Chrome](https://raw.github.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png) | ![Firefox](https://raw.github.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png) | ![Safari](https://raw.github.com/alrra/browser-logos/master/src/safari/safari_48x48.png) | ![Opera](https://raw.github.com/alrra/browser-logos/master/src/opera/opera_48x48.png) | ![Edge](https://raw.github.com/alrra/browser-logos/master/src/edge/edge_48x48.png) |
@@ -89,7 +89,7 @@ All you have to do just to import the core component on the page and pass its pa
 
 #### Authentication
 
-Setup the process of receiving an access_token from the Railz Authentication API, see details [here](https://docs.railz.ai/reference/authentication)
+Setup the process of receiving an access_token from the Accounting Data as a Service™ Authentication API, see details [here](https://docs.railz.ai/reference/authentication)
 
 #### Framework Specific Installation
 

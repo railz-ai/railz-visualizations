@@ -48,7 +48,7 @@ describe('railz-credit-score', () => {
         <div class="rv-container">
           <div class="rv-header-container">
             <p class="rv-title">
-              Railz Score
+              Credit Score
             </p>
           </div>
           <railz-error-image statuscode="404"></railz-error-image>

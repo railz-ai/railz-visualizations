@@ -1,6 +1,6 @@
 # Getting Started with Node.js Example App
 
-This project is a sample Node.js application that authenticates using your client id and secret generated from the Railz Dashboard.
+This project is a sample Node.js application that authenticates using your client id and secret generated from the Accounting Data as a Service™ Dashboard.
 See details about getting your access [here](https://docs.railz.ai/reference/authentication).
 
 ## Usage
