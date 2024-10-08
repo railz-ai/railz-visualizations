@@ -138,9 +138,9 @@ const Components = ({ configuration, filter, options, showCode }: ChartProps) =>
         })}
       {[RVReportTypes.CREDIT_SCORE].includes(filter.reportType) && (
         <div>
-          <h4 className="text-xl font-bold text-gray-900">Using Railz Credit Score Component</h4>
+          <h4 className="text-xl font-bold text-gray-900">Using Credit Score Component</h4>
           <p>
-            Railz Credit Score Component only accepts <b>creditScore</b>
+            Credit Score Component only accepts <b>creditScore</b>
           </p>
           <RailzCreditScore
             configuration={configuration}
@@ -158,9 +158,9 @@ const Components = ({ configuration, filter, options, showCode }: ChartProps) =>
       )}
       {filter.reportType === RVReportTypes.EXPENSES && (
         <div>
-          <h4 className="text-xl font-bold text-gray-900">Using Railz Pie Chart Component</h4>
+          <h4 className="text-xl font-bold text-gray-900">Using Pie Chart Component</h4>
           <p>
-            Railz Pie Chart Component only accepts <b>expenses</b> and <b>revenues</b>
+            Pie Chart Component only accepts <b>expenses</b> and <b>revenues</b>
           </p>
           <RailzIncomeStatements
             configuration={configuration}
@@ -178,12 +178,10 @@ const Components = ({ configuration, filter, options, showCode }: ChartProps) =>
       )}
       {filter.reportType === RVReportTypes.BALANCE_SHEET && (
         <div>
-          <h4 className="text-xl font-bold text-gray-900">
-            Using Railz Statements Chart Component
-          </h4>
+          <h4 className="text-xl font-bold text-gray-900">Using Statements Chart Component</h4>
           <p>
-            Railz Statements Chart Component only accepts <b>balanceSheets</b>,{' '}
-            <b>cashflowStatements</b> and <b>incomeStatements</b>
+            Statements Chart Component only accepts <b>balanceSheets</b>, <b>cashflowStatements</b>{' '}
+            and <b>incomeStatements</b>
           </p>
           <RailzStatementsChart
             configuration={configuration}
@@ -201,11 +199,9 @@ const Components = ({ configuration, filter, options, showCode }: ChartProps) =>
       )}
       {filter.reportType === RVReportTypes.BILLS && (
         <div>
-          <h4 className="text-xl font-bold text-gray-900">
-            Using Railz Transactions Control Component
-          </h4>
+          <h4 className="text-xl font-bold text-gray-900">Using Transactions Control Component</h4>
           <p>
-            Railz Transactions Control Component only accepts <b>bills</b> and <b>invoices</b>
+            Transactions Control Component only accepts <b>bills</b> and <b>invoices</b>
           </p>
           <RailzTransactionsControl
             configuration={configuration}
@@ -223,9 +219,9 @@ const Components = ({ configuration, filter, options, showCode }: ChartProps) =>
       )}
       {[RVReportTypes.FINANCIAL_RATIO].includes(filter.reportType) && (
         <div>
-          <h4 className="text-xl font-bold text-gray-900">Using Railz FinancialRatios Component</h4>
+          <h4 className="text-xl font-bold text-gray-900">Using FinancialRatios Component</h4>
           <p>
-            Railz Financial Ratios Component only accepts <b>financialRatios</b>
+            Financial Ratios Component only accepts <b>financialRatios</b>
           </p>
           <RailzFinancialRatios
             configuration={configuration}
@@ -243,9 +239,9 @@ const Components = ({ configuration, filter, options, showCode }: ChartProps) =>
       )}
       {filter.reportType === RVReportTypes.BANK_ACCOUNT && (
         <div>
-          <h4 className="text-xl font-bold text-gray-900">Using Railz Bank Accounts Component</h4>
+          <h4 className="text-xl font-bold text-gray-900">Using Bank Accounts Component</h4>
           <p>
-            Railz Bank Accounts Component only accepts <b>bankAccounts</b>
+            Bank Accounts Component only accepts <b>bankAccounts</b>
           </p>
           <RailzBankAccounts
             configuration={configuration}
@@ -263,11 +259,9 @@ const Components = ({ configuration, filter, options, showCode }: ChartProps) =>
       )}
       {filter.reportType === RVReportTypes.BANK_RECONCILIATION && (
         <div>
-          <h4 className="text-xl font-bold text-gray-900">
-            Using Railz Bank Reconciliation Component
-          </h4>
+          <h4 className="text-xl font-bold text-gray-900">Using Bank Reconciliation Component</h4>
           <p>
-            Railz Bank Reconciliation Component only accepts <b>bankReconciliation</b>
+            Bank Reconciliation Component only accepts <b>bankReconciliation</b>
           </p>
           <RailzBankReconciliation
             configuration={configuration}
@@ -285,11 +279,9 @@ const Components = ({ configuration, filter, options, showCode }: ChartProps) =>
       )}
       {filter.reportType === RVReportTypes.BUSINESS_VALUATIONS && (
         <div>
-          <h4 className="text-xl font-bold text-gray-900">
-            Using Railz Business Valuations Component
-          </h4>
+          <h4 className="text-xl font-bold text-gray-900">Using Business Valuations Component</h4>
           <p>
-            Railz Bank Reconciliation Component only accepts <b>businessValuations</b>
+            Bank Reconciliation Component only accepts <b>businessValuations</b>
           </p>
           <RailzBusinessValuations
             configuration={configuration}

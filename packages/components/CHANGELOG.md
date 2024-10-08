@@ -675,4 +675,4 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
-- Build out Railz dashboard SDK using stenciljs. ([1ef145f](https://github.com/railz-ai/railz-visualizations/commit/1ef145f0e66cb1b6308fa784ebd1ec8c0f3423bf))
+- Build out Accounting Data as a Service™ dashboard SDK using stenciljs. ([1ef145f](https://github.com/railz-ai/railz-visualizations/commit/1ef145f0e66cb1b6308fa784ebd1ec8c0f3423bf))
