@@ -1,6 +1,6 @@
-Railz is the Accounting Data as a Service™ solution that makes sense of your business customers' financial data.
+Accounting Data as a Service™ is the solution that makes sense of your business customers' financial data.
 
-# Railz Visualizations Angular
+# Accounting Data as a Service™ Visualizations Angular
 
 <p align="center">
   <a href="https://www.npmjs.com/package/@railzai/railz-visualizations"><img src="https://img.shields.io/npm/v/@railzai/railz-visualizations-angular" alt="Latest Version on NPM"/></a>

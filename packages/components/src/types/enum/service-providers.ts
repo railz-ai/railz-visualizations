@@ -1,4 +1,4 @@
-// Railz Visualization Service Providers
+// Accounting Data as a Service™ Visualization Service Providers
 
 export enum RVSandboxProviders {
   SANDBOX = 'sandbox',

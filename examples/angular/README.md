@@ -26,4 +26,4 @@ yarn angular
 ```
 
 <img src="../../assets/images/example-dashboard.png" alt="Example" width="100%" />
-<p align="center"><i>Railz Visualizations SDK Angular Usage Example.</i></p>
+<p align="center"><i>Accounting Data as a Service™ Visualizations SDK Angular Usage Example.</i></p>

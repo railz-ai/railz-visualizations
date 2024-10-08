@@ -1,6 +1,6 @@
 # Contributing
 
-The Railz Visualization library and documentation are open to contributions.
+The Accounting Data as a Service™ Visualization library and documentation are open to contributions.
 
 You can watch the series below on how to get started with contributing to open source projects.
 [How to Contribute to an Open Source Project on GitHub](https://egghead.io/courses/how-to-contribute-to-an-open-source-project-on-github)
@@ -9,7 +9,7 @@ You can watch the series below on how to get started with contributing to open s
 
 ### Formatting
 
-Railz Visualizations makes use of stylelint and eslint, therefore enable linting in your editor for automatic lint detection will make it easy for you to commit your code.
+Accounting Data as a Service™ Visualizations makes use of stylelint and eslint, therefore enable linting in your editor for automatic lint detection will make it easy for you to commit your code.
 
 To format, run: `yarn lint`
 

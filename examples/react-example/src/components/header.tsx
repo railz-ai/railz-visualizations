@@ -34,7 +34,7 @@ export default function Header({ children, description }: HeaderProps) {
                       <img
                         className="h-8 w-8"
                         src="https://pbs.twimg.com/profile_images/1325486360682180614/p8pwyjLY_400x400.png"
-                        alt="Railz Logo"
+                        alt="FIS Logo"
                       />
                     </div>
                     <div className="hidden md:block">
@@ -100,8 +100,8 @@ export default function Header({ children, description }: HeaderProps) {
           <div className="max-w-full mx-auto py-6 px-4 sm:px-6 lg:px-8 text-left">
             <h1 className="text-3xl font-bold text-gray-900">Sample Dashboard</h1>
             <p className="mt-1 text-md text-gray-600">
-              This is a quickstart example of a React application that consumes the Railz
-              Visualizations SDK. {description}
+              This is a quickstart example of a React application that consumes the Visualizations
+              SDK. {description}
             </p>
             <div className="mt-1 flex flex-col sm:flex-row sm:flex-wrap sm:mt-0 sm:space-x-6">
               <div className="mt-2 flex items-center text-sm text-gray-500">

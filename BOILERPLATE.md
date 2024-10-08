@@ -1,6 +1,6 @@
 # Boilerplate Example Component
 
-Get started building a new Railz Visualization Component using this boilerplate example.
+Get started building a new Accounting Data as a Service™ Visualization Component using this boilerplate example.
 
 ## Component
 

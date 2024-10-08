@@ -26,10 +26,10 @@
     class="md:grid md:grid-cols-1 md:gap-1 text-left"
     *ngIf="filter?.reportType === 'balanceSheets'; else transactions"
   >
-    <h4 class="text-xl font-bold text-gray-900">Using Railz Statements Chart Component</h4>
+    <h4 class="text-xl font-bold text-gray-900">Using Statements Chart Component</h4>
     <p>
-      Railz Statements Chart Component only accepts <b>balanceSheets</b>,
-      <b>cashflowStatements</b> and <b>incomeStatements</b>
+      Statements Chart Component only accepts <b>balanceSheets</b>, <b>cashflowStatements</b> and
+      <b>incomeStatements</b>
     </p>
     <railz-statements-chart [configuration]="configuration" [filter]="filter" [options]="options">
     </railz-statements-chart>
@@ -40,9 +40,9 @@
     class="md:grid md:grid-cols-1 md:gap-1 text-left"
     *ngIf="filter?.reportType === 'bills'; else financialRatios"
   >
-    <h4 class="text-xl font-bold text-gray-900">Using Railz Transactions Control Component</h4>
+    <h4 class="text-xl font-bold text-gray-900">Using Transactions Control Component</h4>
     <p>
-      Railz Transactions Control Component only accepts <b>bills</b> and
+      Transactions Control Component only accepts <b>bills</b> and
       <b>invoices</b>
     </p>
     <railz-transactions-control
@@ -58,8 +58,8 @@
     class="md:grid md:grid-cols-1 md:gap-1 text-left"
     *ngIf="filter?.reportType === 'financialRatios'; else incomeStatements"
   >
-    <h4 class="text-xl font-bold text-gray-900">Using Railz Financial Ratios Component</h4>
-    <p>Railz Financial Ratios Component only accepts <b>financialRatios</b></p>
+    <h4 class="text-xl font-bold text-gray-900">Using Financial Ratios Component</h4>
+    <p>Financial Ratios Component only accepts <b>financialRatios</b></p>
     <railz-financial-ratios [configuration]="configuration" [filter]="filter" [options]="options">
     </railz-financial-ratios>
   </div>
@@ -69,8 +69,8 @@
     class="md:grid md:grid-cols-1 md:gap-1 text-left"
     *ngIf="['expenses', 'revenue'].includes('' + filter?.reportType); else creditScore"
   >
-    <h4 class="text-xl font-bold text-gray-900">Using Railz Pie Chart Component</h4>
-    <p>Railz Income Statements Component only accepts <b>expenses</b> and <b>revenue</b></p>
+    <h4 class="text-xl font-bold text-gray-900">Using Pie Chart Component</h4>
+    <p>Income Statements Component only accepts <b>expenses</b> and <b>revenue</b></p>
     <railz-income-statements [configuration]="configuration" [filter]="filter" [options]="options">
     </railz-income-statements>
   </div>
@@ -80,8 +80,8 @@
     class="md:grid md:grid-cols-1 md:gap-1 text-left"
     *ngIf="['creditScore'].includes('' + filter?.reportType); else bankAccounts"
   >
-    <h4 class="text-xl font-bold text-gray-900">Using Railz Gauge Component</h4>
-    <p>Railz Credit Score Component only accepts <b>creditScore</b></p>
+    <h4 class="text-xl font-bold text-gray-900">Using Gauge Component</h4>
+    <p>Credit Score Component only accepts <b>creditScore</b></p>
     <railz-credit-score [configuration]="configuration" [filter]="filter" [options]="options">
     </railz-credit-score>
   </div>
@@ -91,8 +91,8 @@
     class="md:grid md:grid-cols-1 md:gap-1 text-left"
     *ngIf="filter?.reportType === 'bankAccounts'; else bankReconciliation"
   >
-    <h4 class="text-xl font-bold text-gray-900">Using Railz Bank Accounts Component</h4>
-    <p>Railz Bank Accounts Component only accepts <b>bankAccounts</b></p>
+    <h4 class="text-xl font-bold text-gray-900">Using Bank Accounts Component</h4>
+    <p>Bank Accounts Component only accepts <b>bankAccounts</b></p>
     <railz-bank-accounts [configuration]="configuration" [filter]="filter" [options]="options">
     </railz-bank-accounts>
   </div>
@@ -102,8 +102,8 @@
     class="md:grid md:grid-cols-1 md:gap-1 text-left"
     *ngIf="filter?.reportType === 'bankReconciliation'; else businessValuations"
   >
-    <h4 class="text-xl font-bold text-gray-900">Using Railz Bank Accounts Component</h4>
-    <p>Railz Bank Accounts Component only accepts <b>bankReconciliation</b></p>
+    <h4 class="text-xl font-bold text-gray-900">Using Bank Accounts Component</h4>
+    <p>Bank Accounts Component only accepts <b>bankReconciliation</b></p>
     <railz-bank-reconciliation
       [configuration]="configuration"
       [filter]="filter"
@@ -117,8 +117,8 @@
     class="md:grid md:grid-cols-1 md:gap-1 text-left"
     *ngIf="filter?.reportType === 'businessValuations'; else visualizations"
   >
-    <h4 class="text-xl font-bold text-gray-900">Using Railz Business Valuations Component</h4>
-    <p>Railz Bank Accounts Component only accepts <b>businessValuations</b></p>
+    <h4 class="text-xl font-bold text-gray-900">Using Business Valuations Component</h4>
+    <p>Bank Accounts Component only accepts <b>businessValuations</b></p>
     <railz-business-valuations
       [configuration]="configuration"
       [filter]="filter"
@@ -129,7 +129,7 @@
 </ng-template>
 <ng-template #visualizations>
   <div class="md:grid md:grid-cols-1 md:gap-1 text-left">
-    <h4 class="text-xl font-bold text-gray-900">Using Railz Visualizations Component</h4>
+    <h4 class="text-xl font-bold text-gray-900">Using Visualizations Component</h4>
     <railz-visualizations [configuration]="configuration" [filter]="filter" [options]="options">
     </railz-visualizations>
   </div>

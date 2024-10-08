@@ -51,7 +51,7 @@ app.get('/authenticate', (request, response) => {
   const encodedString = Buffer.from(`${CLIENT_ID}:${CLIENT_SECRET}`).toString('base64');
   fetch(AUTH_URL, { method: 'GET', headers: { Authorization: `Basic ${encodedString}` } })
     .then(async (res) => {
-      console.log(`statusCode from Railz API: ${res.status}`);
+      console.log(`statusCode from Accounting Data as a Service™ API: ${res.status}`);
       if (res.ok) {
         res.json().then((json) => {
           response.status(200).json({ success: true, access_token: json.access_token });
@@ -67,7 +67,10 @@ app.get('/authenticate', (request, response) => {
         } else {
           response
             .status(500)
-            .json({ success: false, error: 'Failure when comunicating to Railz API' });
+            .json({
+              success: false,
+              error: 'Failure when comunicating to Accounting Data as a Service™ API',
+            });
         }
       }
     })

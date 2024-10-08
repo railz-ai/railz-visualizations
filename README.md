@@ -31,7 +31,7 @@ FIS® Accounting Data as a Service™ is the solution that makes sense of your b
   <a href="#license">License</a>
 </p>
 
-<img src="https://railz.ai/_next/image?url=https%3A%2F%2Fa.storyblok.com%2Ff%2F124388%2F2336x2080%2F62bed08777%2Frailz-data-financial-institutions.png&w=2560&q=80" alt="Accounting Data as a Service™ dashboard preview" width="100%" />
+<img src="https://a.storyblok.com/f/124388/520x464/3dee9121b7/fis-data-financial-institutions-2336x2080.svg&w=2560&q=80" alt="Accounting Data as a Service™ dashboard preview" width="100%" />
 <p align="center"><i>Accounting Data as a Service™ Dashboard.</i></p>
 <br>
 
