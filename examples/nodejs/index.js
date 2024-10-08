@@ -65,12 +65,10 @@ app.get('/authenticate', (request, response) => {
             response.status(401).json({ success: false, error: errorMsg || json?.message });
           });
         } else {
-          response
-            .status(500)
-            .json({
-              success: false,
-              error: 'Failure when comunicating to Accounting Data as a Service™ API',
-            });
+          response.status(500).json({
+            success: false,
+            error: 'Failure when comunicating to Accounting Data as a Service™ API',
+          });
         }
       }
     })
