@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.0.8-alpha.35 (2024-10-23)
+
+
+### Bug Fixes
+
+* rebrand issues ([#172](https://github.com/railz-ai/railz-visualizations/issues/172)) ([98ad07c](https://github.com/railz-ai/railz-visualizations/commit/98ad07ce2b0d0cdfa47c9ccdb07ed4301a592713))
+
+
+
+
+
 ## 0.0.8-alpha.34 (2024-10-09)
 
 **Note:** Version bump only for package @railzai/railz-visualizations
