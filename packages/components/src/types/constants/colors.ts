@@ -1,4 +1,4 @@
-export const RAILZ_PRIMARY_COLOR = '#4acc3c';
+export const RAILZ_PRIMARY_COLOR = '#1D1F48';
 export const RAILZ_TEXT_COLOR = '#015b7e';
 export const RAILZ_CHART_LEGEND_COLOR = '#424242';
 export const RAILZ_CHART_LABEL_COLOR = '#424242';
