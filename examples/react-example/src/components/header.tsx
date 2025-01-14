@@ -33,7 +33,7 @@ export default function Header({ children, description }: HeaderProps) {
                     <div className="flex-shrink-0">
                       <img
                         className="h-8 w-8"
-                        src="https://pbs.twimg.com/profile_images/1325486360682180614/p8pwyjLY_400x400.png"
+                        src="https://github.com/railz-ai/railz-visualizations/blob/feature/RLZ-3502-rebrand-visualizations/assets/images/fis-logo.png"
                         alt="FIS Logo"
                       />
                     </div>

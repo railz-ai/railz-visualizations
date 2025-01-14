@@ -11,6 +11,7 @@ export enum RVReportTypes {
   REVENUE = 'revenue',
   BANK_RECONCILIATION = 'bankReconciliation',
   BUSINESS_VALUATIONS = 'businessValuations',
+  TAX_BENCHMARKING = 'taxBenchmarking',
 }
 
 export type RVFinancialStatementsTypes =
@@ -40,4 +41,5 @@ export const RVReportTypesUrlMapping = {
   [RVReportTypes.REVENUE]: '/v2/visualizations/revenue',
   [RVReportTypes.BANK_RECONCILIATION]: '/v2/visualizations/bankReconciliation',
   [RVReportTypes.BUSINESS_VALUATIONS]: '/v2/visualizations/businessValuations',
+  [RVReportTypes.TAX_BENCHMARKING]: '/v2/visualizations/taxBenchmarking',
 };

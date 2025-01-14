@@ -253,3 +253,9 @@ export interface RVFormattedTransactionResponse {
   data?: RVBillInvoiceSummary;
   status?: number;
 }
+
+export interface RVTaxBenchmarking extends ErrorResponseObject {
+  count: number;
+  reports?: Array<any>;
+  status?: number;
+}

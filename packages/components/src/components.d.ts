@@ -16,6 +16,7 @@ import {
   RVFilterFinancialRatio,
   RVFilterIncomeStatementsType,
   RVFilterStatements,
+  RVFilterTaxBenchmarking,
   RVFilterTransactions,
   RVOptions,
   RVOptionsBarStyle,
@@ -223,6 +224,20 @@ export namespace Components {
      */
     options?: RVOptions;
   }
+  interface RailzTaxBenchmarking {
+    /**
+     * Configuration information like authentication configuration
+     */
+    configuration: RVConfiguration;
+    /**
+     * Filter information to query the backend APIs
+     */
+    filter: RVFilterTaxBenchmarking;
+    /**
+     * For whitelabeling styling
+     */
+    options?: RVOptions;
+  }
   interface RailzTooltip {
     /**
      * Question mark with a tooltip text
@@ -346,6 +361,13 @@ declare global {
     prototype: HTMLRailzStatementsChartElement;
     new (): HTMLRailzStatementsChartElement;
   };
+  interface HTMLRailzTaxBenchmarkingElement
+    extends Components.RailzTaxBenchmarking,
+      HTMLStencilElement {}
+  var HTMLRailzTaxBenchmarkingElement: {
+    prototype: HTMLRailzTaxBenchmarkingElement;
+    new (): HTMLRailzTaxBenchmarkingElement;
+  };
   interface HTMLRailzTooltipElement extends Components.RailzTooltip, HTMLStencilElement {}
   var HTMLRailzTooltipElement: {
     prototype: HTMLRailzTooltipElement;
@@ -380,6 +402,7 @@ declare global {
     'railz-select': HTMLRailzSelectElement;
     'railz-sparkline-chart': HTMLRailzSparklineChartElement;
     'railz-statements-chart': HTMLRailzStatementsChartElement;
+    'railz-tax-benchmarking': HTMLRailzTaxBenchmarkingElement;
     'railz-tooltip': HTMLRailzTooltipElement;
     'railz-transactions-control': HTMLRailzTransactionsControlElement;
     'railz-visualizations': HTMLRailzVisualizationsElement;
@@ -583,6 +606,20 @@ declare namespace LocalJSX {
      */
     options?: RVOptions;
   }
+  interface RailzTaxBenchmarking {
+    /**
+     * Configuration information like authentication configuration
+     */
+    configuration: RVConfiguration;
+    /**
+     * Filter information to query the backend APIs
+     */
+    filter: RVFilterTaxBenchmarking;
+    /**
+     * For whitelabeling styling
+     */
+    options?: RVOptions;
+  }
   interface RailzTooltip {
     /**
      * Question mark with a tooltip text
@@ -637,6 +674,7 @@ declare namespace LocalJSX {
     'railz-select': RailzSelect;
     'railz-sparkline-chart': RailzSparklineChart;
     'railz-statements-chart': RailzStatementsChart;
+    'railz-tax-benchmarking': RailzTaxBenchmarking;
     'railz-tooltip': RailzTooltip;
     'railz-transactions-control': RailzTransactionsControl;
     'railz-visualizations': RailzVisualizations;
@@ -672,6 +710,8 @@ declare module '@stencil/core' {
         JSXBase.HTMLAttributes<HTMLRailzSparklineChartElement>;
       'railz-statements-chart': LocalJSX.RailzStatementsChart &
         JSXBase.HTMLAttributes<HTMLRailzStatementsChartElement>;
+      'railz-tax-benchmarking': LocalJSX.RailzTaxBenchmarking &
+        JSXBase.HTMLAttributes<HTMLRailzTaxBenchmarkingElement>;
       'railz-tooltip': LocalJSX.RailzTooltip & JSXBase.HTMLAttributes<HTMLRailzTooltipElement>;
       'railz-transactions-control': LocalJSX.RailzTransactionsControl &
         JSXBase.HTMLAttributes<HTMLRailzTransactionsControlElement>;

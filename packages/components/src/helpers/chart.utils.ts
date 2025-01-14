@@ -77,9 +77,17 @@ export const validateRequiredParams = (filter: RVFilterAll): boolean => {
     validateBusinessServiceNameParams(filter) &&
     validateDateParams(filter) &&
     validateReportFrequencyParams(filter) &&
+    // validateIndustryCodeAndRegionParams(filter) &&
     // validateAccountingMethodParams(filter) &&
     validateReportTypeParams(filter)
   );
+};
+
+export const validateIndustryCodeAndRegionParams = (filter: RVFilterAll): boolean => {
+  console.log(filter);
+  // if tax benchmarking report type then check for industryCode and region
+  // else return true
+  return true;
 };
 
 export const validateBusinessServiceNameParams = (filter: RVFilterAll): boolean => {

@@ -5,6 +5,7 @@ import {
   RVReportRequest,
   RVReportRequestParameter,
   RVReportSummaryApiResponse,
+  RVTaxBenchmarking,
 } from '../types';
 import { RAILZ_API_HOST } from '../types/constants/endpoints';
 
@@ -26,6 +27,7 @@ class RequestService {
     | RVFormattedTransactionResponse
     | RVFormattedScoreResponse
     | RVFilterBankReconciliation
+    | RVTaxBenchmarking
   > {
     const url = `${path}?${new URLSearchParams(filter as any)}`;
     return await this.getRequest({

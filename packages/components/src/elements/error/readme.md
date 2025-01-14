@@ -23,6 +23,7 @@
 - [railz-financial-ratios](../financial-ratios)
 - [railz-income-statements](../income-statements)
 - [railz-statements-chart](../statements-chart)
+- [railz-tax-benchmarking](../tax-benchmarking)
 - [railz-transactions-control](../transactions-control)
 - [railz-visualizations](../core)
 
@@ -37,6 +38,7 @@ graph TD;
   railz-financial-ratios --> railz-error-image
   railz-income-statements --> railz-error-image
   railz-statements-chart --> railz-error-image
+  railz-tax-benchmarking --> railz-error-image
   railz-transactions-control --> railz-error-image
   railz-visualizations --> railz-error-image
   style railz-error-image fill:#f9f,stroke:#333,stroke-width:4px

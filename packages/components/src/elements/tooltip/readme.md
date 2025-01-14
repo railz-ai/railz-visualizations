@@ -21,6 +21,7 @@
 - [railz-financial-ratios](../financial-ratios)
 - [railz-income-statements](../income-statements)
 - [railz-statements-chart](../statements-chart)
+- [railz-tax-benchmarking](../tax-benchmarking)
 - [railz-transactions-control](../transactions-control)
 
 ### Graph
@@ -34,6 +35,7 @@ graph TD;
   railz-financial-ratios --> railz-tooltip
   railz-income-statements --> railz-tooltip
   railz-statements-chart --> railz-tooltip
+  railz-tax-benchmarking --> railz-tooltip
   railz-transactions-control --> railz-tooltip
   style railz-tooltip fill:#f9f,stroke:#333,stroke-width:4px
 ```

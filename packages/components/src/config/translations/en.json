@@ -71,6 +71,7 @@
   "RV_BUSINESS_VALUATIONS_DISCOUNTED_CASH_FLOW": "Discounted Cash Flow",
   "RV_BUSINESS_VALUATIONS_MULTIPLE_TO_REVENUE": "Multiple to Revenue",
   "RV_BUSINESS_VALUATIONS_FIRST_CHICAGO": "First Chicago",
+  "RV_TAX_BENCHMARKING": "Tax Benchmarking",
   "RV_NOT_ABLE_TO_PARSE_REPORT_DATA": "Not able to parse report data. ",
   "RV_END_DATE_BEFORE_START_DATE": "'endDate' should be greater than 'startDate'.",
   "RV_DATE_REQUIRED": "'startDate' and 'endDate' required.",
