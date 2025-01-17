@@ -259,3 +259,9 @@ export interface RVTaxBenchmarking extends ErrorResponseObject {
   reports?: Array<any>;
   status?: number;
 }
+
+export interface RVTaxBenchmarkingReponse extends ErrorResponseObject {
+  meta: Record<string, any>;
+  businessValues: Record<string, any>;
+  taxBenchmarkingData?: Record<string, any>;
+}

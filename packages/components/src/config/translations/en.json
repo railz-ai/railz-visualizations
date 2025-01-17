@@ -187,6 +187,9 @@
   "RV_TOOLTIP_CREDIT_SCORE": "The credit score is based on proprietary models that rely on a business's financial statements to calculate the probability of default at a point in time.",
   "RV_TOOLTIP_ACCURACY_SCORE": "The Accuracy Score is the precision level of reconciliation by taking into account the number of matched transactions and the value of those transactions. ",
   "RV_TOOLTIP_BUSINESS_VALUATION": "Business Valuations are created for the monthly timeframe and are used to determine the estimated worth or financial value of your business. The percent change measures the valuation difference from the previous month.",
+  "RV_TOOLTIP_TAX_BENCHMARKING": "Tax Becnhmarking tooltip.",
+  "RV_TOOLTIP_TAX_BENCHMARKING_BUSINESS_VALUE": "This value represents the business' financial performance for the stated period.",
+  "RV_TOOLTIP_TAX_BENCHMARKING_BENCHMARK_VALUE": "This value represents the standard or industry average based on selected filters.",
   "RV_WARN_CONNECTION_UUID_NOT_RELEASED": "Connection ID feature is not released.",
   "RV_FINANCIAL_RATIO": "Financial Ratios",
   "RV_INVOICES": "Invoices",
@@ -198,5 +201,6 @@
   "RV_REVENUE": "Revenue",
   "RV_CREDIT_SCORE": "Credit Score",
   "RV_BANK_ACCOUNT": "Bank Accounts",
-  "RV_BANK_ACCOUNT_MUST_BE_SERVICE_NAME_PLAID": "Bank Accounts works only with Plaid."
+  "RV_BANK_ACCOUNT_MUST_BE_SERVICE_NAME_PLAID": "Bank Accounts works only with Plaid.",
+  "RV_TAX_BENCHMARKING_REQUIRED_FIELDS": "Industry Code and Region are required."
 }

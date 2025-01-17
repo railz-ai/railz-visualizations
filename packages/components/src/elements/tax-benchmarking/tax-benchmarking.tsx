@@ -11,7 +11,7 @@ import {
   // RVFilterBusinessValuations,
   RVFilterTaxBenchmarking,
   RVOptions,
-  RVTaxBenchmarking,
+  RVTaxBenchmarkingReponse,
 } from '../../types';
 import {
   getConfiguration,
@@ -31,27 +31,27 @@ import { ConfigurationInstance } from '../../services/configuration';
 
 import { errorLog } from '../../services/logger';
 
-import { getReportData } from './tax-benchmarking.utils';
+import { getPercentageChange, getReportData } from './tax-benchmarking.utils';
 
-// const renderPercentageChange = (percentage: number, options: RVOptions): HTMLElement => {
-//   if (percentage < 0) {
-//     return (
-//       <div class="rv-negative" style={options?.chart?.pie?.negative}>
-//         &#x25BC; {Math.abs(percentage)}%
-//       </div>
-//     );
-//   } else {
-//     return (
-//       <div class="rv-positive" style={options?.chart?.pie?.positive}>
-//         &#x25B2;{' '}
-//         {isNil(percentage) || isNaN(percentage) || Math.abs(percentage) === Infinity
-//           ? 0
-//           : Math.abs(percentage)}
-//         %
-//       </div>
-//     );
-//   }
-// };
+const renderPercentageChange = (percentage: number, options: RVOptions): HTMLElement => {
+  if (percentage < 0) {
+    return (
+      <div class="rv-negative" style={options?.chart?.pie?.negative}>
+        &#x25BC; {Math.abs(percentage)}%
+      </div>
+    );
+  } else {
+    return (
+      <div class="rv-positive" style={options?.chart?.pie?.positive}>
+        &#x25B2;{' '}
+        {isNil(percentage) || isNaN(percentage) || Math.abs(percentage) === Infinity
+          ? 0
+          : Math.abs(percentage)}
+        %
+      </div>
+    );
+  }
+};
 
 // const ValuationSection = (
 //   title: string,
@@ -98,37 +98,30 @@ export class BusinessValuations {
   @State() private loading = '';
   @State() private _configuration: RVConfiguration;
   @State() private _filter: RVFilterTaxBenchmarking;
-  @State() private _data: RVTaxBenchmarking['reports'];
+  @State() private _data: RVTaxBenchmarkingReponse;
+  @State() private _taxBenchmarkingData: RVTaxBenchmarkingReponse['taxBenchmarkingData'];
+  @State() private _businessValuesData: RVTaxBenchmarkingReponse['businessValues'];
   @State() private errorStatusCode: number;
 
-  @State() private industryCode: number;
-  @State() private region: string;
   @State() private selectedLineItem: string;
   @State() private selectedCategory: string;
   @State() private lineItemOptions: string[];
   @State() private categoryOptions: string[];
+  @State() private tableData;
 
-  private updateTaxBenchmarkingParams = (summary: RVTaxBenchmarking): void => {
-    if (summary) {
-      this.loading = '';
-      this.industryCode = summary?.reports[0].meta.industryCode;
-      this.region = summary?.reports[0].meta.region;
-    }
-    console.log('industryCode', this.industryCode);
-    console.log('this.region', this.region);
-    console.log('this.selectedCategory', this.selectedCategory);
-    this.selectedLineItem = this._data && Object.keys(this._data)[0];
-    this.selectedCategory = this._data && Object.keys(this._data[this.selectedLineItem])[0];
-    this.setOptions(this._data);
-  };
-
-  private setOptions = (data): void => {
-    this.lineItemOptions = Object.keys(data);
+  private updateTaxBenchmarkingParams = (): void => {
+    this.selectedLineItem = this._taxBenchmarkingData && Object.keys(this._taxBenchmarkingData)[0];
+    this.selectedCategory =
+      this._taxBenchmarkingData && Object.keys(this._taxBenchmarkingData[this.selectedLineItem])[0];
+    // set initial options and selected values
+    this.lineItemOptions = Object.keys(this._taxBenchmarkingData);
     this.setCategoryOptions();
   };
 
   private setCategoryOptions = (): void => {
-    this.categoryOptions = Object.keys(this._data[this.selectedLineItem]);
+    this.categoryOptions = Object.keys(this._taxBenchmarkingData[this.selectedLineItem]);
+    this.selectedCategory = this.categoryOptions[0];
+    this.refreshTableData();
   };
 
   private setSelectedLineItem = (event): void => {
@@ -137,6 +130,27 @@ export class BusinessValuations {
   };
   private setSelectedCategory = (event): void => {
     this.selectedCategory = event?.target?.value;
+    this.refreshTableData();
+  };
+
+  private refreshTableData = (): void => {
+    if (this.selectedLineItem !== null && this.selectedCategory !== null) {
+      const businessValueItem = this._businessValuesData[this.selectedLineItem];
+      // set the keys and values for the table data as a row object
+      // [['Assets', 1234.56], ['Equity', 2134.67].....]
+      const tempDataArray = Object.entries(
+        this._taxBenchmarkingData[this.selectedLineItem][this.selectedCategory],
+      );
+      const dataResp = tempDataArray.map((data) => {
+        return {
+          lineItemName: data[0],
+          businessValue: businessValueItem[data[0]],
+          benchmarkValue: data[1],
+          differencePercent: getPercentageChange(businessValueItem[data[0]], data[1] as number),
+        };
+      });
+      this.tableData = dataResp;
+    }
   };
 
   /**
@@ -191,7 +205,6 @@ export class BusinessValuations {
     newValue: RVFilterTaxBenchmarking,
     oldValue: RVFilterTaxBenchmarking,
   ): Promise<void> {
-    console.log('watch filter called');
     if (newValue && oldValue && !isEqual(oldValue, newValue)) {
       await this.validateParams(this.configuration, newValue, this.options);
     }
@@ -218,12 +231,13 @@ export class BusinessValuations {
     try {
       const reportData = (await getReportData({
         filter: this._filter as RVFilterAll,
-      })) as RVTaxBenchmarking;
-      if (reportData?.reports) {
+      })) as RVTaxBenchmarkingReponse;
+      if (!isNil(reportData?.taxBenchmarkingData) && !isNil(reportData?.businessValues)) {
         console.log('report fetched');
-        this._data = reportData?.reports[0]?.data[0];
-        console.log('this._data', this._data);
-        this.updateTaxBenchmarkingParams(reportData);
+        this._data = reportData;
+        this._taxBenchmarkingData = reportData?.taxBenchmarkingData;
+        this._businessValuesData = reportData?.businessValues;
+        this.updateTaxBenchmarkingParams();
       } else {
         console.log('report error fetching');
         this.errorStatusCode = handleError(reportData);
@@ -243,7 +257,7 @@ export class BusinessValuations {
     const TitleElement = (): HTMLElement => (
       <p class="rv-title" style={this._options?.title?.style}>
         {this._options?.content?.title || getTitleByReportType(this._filter?.reportType) || ''}{' '}
-        {this._options?.tooltipIndicator?.visible === false ? (
+        {/* {this._options?.tooltipIndicator?.visible === false ? (
           ''
         ) : (
           <railz-tooltip
@@ -254,20 +268,19 @@ export class BusinessValuations {
             }}
             tooltipText={
               this._options?.content?.tooltip?.description ||
-              Translations.RV_TOOLTIP_BUSINESS_VALUATION
+              Translations.RV_TOOLTIP_TAX_BENCHMARKING
             }
           />
-        )}
+        )} */}
       </p>
     );
 
     const renderMain = (): HTMLElement => {
-      console.log('error status code', this.errorStatusCode);
       if (
         isEmpty(this.loading) &&
         this.errorStatusCode === undefined &&
-        isNil(this._data) &&
-        isNil('hello')
+        isEmpty(this._data?.taxBenchmarkingData) &&
+        isEmpty(this._data?.businessValues)
       ) {
         // if it's not loading and all are empty, show no data error
         this.errorStatusCode = 204;
@@ -289,11 +302,7 @@ export class BusinessValuations {
       return (
         <div class="rv-tax-benchmarking-container">
           <div class="rv-tax-benchmarking-group">
-            {/* 
-            table header with dropdown for first and last item
-            loop through the prefix
-
-             */}
+            Current Business: {isEmpty(this.loading) && this._data?.meta?.businessName}
             <table class="benchmarking-table" id="benchmarking-table">
               <tr>
                 <th>
@@ -304,8 +313,38 @@ export class BusinessValuations {
                     ))}
                   </select>
                 </th>
-                <th>Business Value</th>
-                <th>Benchmark Value</th>
+                <th>
+                  <div class="header-with-tooltip">
+                    Business Value{' '}
+                    <railz-tooltip
+                      tooltipStyle={{
+                        position: 'bottom-center',
+                        ...this._options?.tooltipIndicator,
+                        style: { marginLeft: '6px', ...this._options?.tooltipIndicator?.style },
+                      }}
+                      tooltipText={
+                        this._options?.content?.tooltip?.description ||
+                        Translations.RV_TOOLTIP_TAX_BENCHMARKING_BUSINESS_VALUE
+                      }
+                    />
+                  </div>
+                </th>
+                <th>
+                  <div class="header-with-tooltip">
+                    Benchmark Value{' '}
+                    <railz-tooltip
+                      tooltipStyle={{
+                        position: 'bottom-center',
+                        ...this._options?.tooltipIndicator,
+                        style: { marginLeft: '6px', ...this._options?.tooltipIndicator?.style },
+                      }}
+                      tooltipText={
+                        this._options?.content?.tooltip?.description ||
+                        Translations.RV_TOOLTIP_TAX_BENCHMARKING_BENCHMARK_VALUE
+                      }
+                    />
+                  </div>
+                </th>
                 <th>
                   <select onChange={this.setSelectedCategory}>
                     {this.categoryOptions.map((category) => (
@@ -314,12 +353,18 @@ export class BusinessValuations {
                   </select>
                 </th>
               </tr>
-              <tr>
-                <td>some value</td>
-                <td>businessVal</td>
-                <td>benchmarkVal</td>
-                <td>some mean</td>
-              </tr>
+              {this.tableData.map((row) => (
+                <tr>
+                  <td>{row.lineItemName}</td>
+                  <td>{row.businessValue}</td>
+                  <td>{row.benchmarkValue}</td>
+                  <td>
+                    <div class="rv-income-statements-chart-percentage">
+                      {renderPercentageChange(row.differencePercent, {})}
+                    </div>
+                  </td>
+                </tr>
+              ))}
             </table>
           </div>
         </div>

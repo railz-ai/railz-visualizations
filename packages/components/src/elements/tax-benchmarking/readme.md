@@ -14,17 +14,17 @@
 
 ### Depends on
 
-- [railz-tooltip](../tooltip)
 - [railz-error-image](../error)
 - [railz-loading](../loading)
+- [railz-tooltip](../tooltip)
 
 ### Graph
 
 ```mermaid
 graph TD;
-  railz-tax-benchmarking --> railz-tooltip
   railz-tax-benchmarking --> railz-error-image
   railz-tax-benchmarking --> railz-loading
+  railz-tax-benchmarking --> railz-tooltip
   style railz-tax-benchmarking fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
