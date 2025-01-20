@@ -27,13 +27,7 @@ export const getReportData = async ({
 }: RVReportRequestParameter): Promise<RVTaxBenchmarkingReponse> => {
   let reportData;
   try {
-    // industry code, region, limit, offset, orderBy
     const allParameters = pick({ ...filter }, ['industryCode', 'region', 'connectionUuid']);
-    // ---temp values ----
-    // allParameters.region = 'VA';
-    // allParameters.industryCode = 33461;
-    // allParameters.connectionUuid = 'CON-263008ad-b230-4e45-8f0c-14414bd7cc3e';
-    // ----------
     reportData = await RequestServiceInstance.getReportData({
       path: RVReportTypesUrlMapping[filter.reportType],
       filter: allParameters,

@@ -5,10 +5,8 @@ import { isNil, isEqual, isEmpty } from 'lodash-es';
 
 import Translations from '../../config/translations/en.json';
 import {
-  // RVBusinessValuations,
   RVConfiguration,
   RVFilterAll,
-  // RVFilterBusinessValuations,
   RVFilterTaxBenchmarking,
   RVOptions,
   RVTaxBenchmarkingReponse,
@@ -19,13 +17,7 @@ import {
   getOptions,
   validateIndustryCodeAndRegionParams,
 } from '../../helpers/chart.utils';
-import {
-  // formatCurrencyValue,
-  getTitleByReportType,
-  handleError,
-  // isBusinessValuations,
-  isTaxBenchmarking,
-} from '../../helpers/utils';
+import { getTitleByReportType, handleError, isTaxBenchmarking } from '../../helpers/utils';
 
 import { ConfigurationInstance } from '../../services/configuration';
 
