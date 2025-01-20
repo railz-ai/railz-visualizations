@@ -26,70 +26,9 @@
   justify-content: space-between;
 }
 
-.rv-valuation-group {
-  width: calc(50% - 24px);
-  min-width: 480px;
-  display: flex;
-  justify-content: flex-start;
-  margin-right: 24px;
-
-  @media screen and (max-width: 500px) {
-    flex-direction: column;
-    min-width: 780px;
-  }
-}
-
-.rv-valuation-section {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: flex-start;
-  padding-bottom: 8px;
-  overflow: visible;
-  flex-basis: 50%;
-  min-width: 240px;
-
-  .rv-valuation-title {
-    @media screen and (min-width: 500px) {
-      padding-left: 24px;
-    }
-  }
-
-  .rv-valuation-value-row {
-    @media screen and (min-width: 500px) {
-      padding-left: 24px;
-      border-left: thin solid #e0e0e0;
-    }
-  }
-
-  &:first-child {
-    .rv-valuation-title {
-      @media screen and (min-width: 500px) {
-        margin-left: -25px;
-      }
-    }
-
-    .rv-valuation-value-row {
-      @media screen and (min-width: 500px) {
-        margin-left: -25px;
-      }
-    }
-  }
-}
-
-.rv-valuation-container {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-between;
-  align-items: center;
+.rv-tax-benchmarking-container {
   width: 100%;
   height: 100%;
-  padding-top: 8px;
-  overflow: hidden;
-
-  @media screen and (min-width: 500px) {
-    row-gap: 15px;
-  }
 }
 
 .rv-title {
@@ -105,36 +44,7 @@
   align-items: baseline;
 }
 
-.rv-valuation-title {
-  font-weight: 600;
-  font-size: 14px;
-  color: #000;
-  padding-bottom: 6px;
-}
-
-.rv-valuation-value-row {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-}
-
-.rv-valuation-value {
-  color: #212121;
-  -webkit-font-smoothing: antialiased;
-  font-size: 24px;
-  font-weight: 600;
-}
-
-.rv-valuation-percentage {
-  font-weight: 500;
-  -webkit-font-smoothing: antialiased;
-  font-size: 14px;
-}
-
-.rv-income-statements-chart-percentage {
+.rv-chart-percentage {
   visibility: inherit;
   -webkit-font-smoothing: antialiased;
   margin: 0;
@@ -163,15 +73,26 @@
   line-height: 28px;
 }
 
+.rv-tax-benchmarking-group {
+  margin-top: 24px;
+}
+
 .benchmarking-table {
   border-collapse: collapse;
   width: 100%;
+  margin-top: 24px;
 }
 
 th,
 td {
-  padding: 8px;
+  padding: 16px;
   text-align: left;
+}
+
+.table-header {
+  font-size: 12px;
+  font-weight: 600;
+  color: #424242;
 }
 
 .header-with-tooltip {

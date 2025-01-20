@@ -43,37 +43,15 @@ const renderPercentageChange = (percentage: number, options: RVOptions): HTMLEle
   } else {
     return (
       <div class="rv-positive" style={options?.chart?.pie?.positive}>
-        &#x25B2;{' '}
-        {isNil(percentage) || isNaN(percentage) || Math.abs(percentage) === Infinity
-          ? 0
-          : Math.abs(percentage)}
-        %
+        {isNil(percentage) || isNaN(percentage) || Math.abs(percentage) === Infinity ? (
+          '-'
+        ) : (
+          <div>&#x25B2; {Math.abs(percentage)}%</div>
+        )}
       </div>
     );
   }
 };
-
-// const ValuationSection = (
-//   title: string,
-//   value: number,
-//   percentage: number,
-//   options: RVOptions,
-// ): HTMLElement => {
-//   const parsedValue = formatCurrencyValue(Math.round(value), 0, 'N/A');
-//   const parsedPercentage =
-//     isNil(percentage) || isNaN(percentage) || Math.abs(percentage) === Infinity
-//       ? null
-//       : renderPercentageChange(percentage, options);
-//   return (
-//     <div class="rv-valuation-section">
-//       <p class="rv-valuation-title">{title}</p>
-//       <div class="rv-valuation-value-row">
-//         <p class="rv-valuation-value">{parsedValue}</p>
-//         <div class="rv-income-statements-chart-percentage">{parsedPercentage}</div>
-//       </div>
-//     </div>
-//   );
-// };
 
 @Component({
   tag: 'railz-tax-benchmarking',
@@ -233,13 +211,11 @@ export class BusinessValuations {
         filter: this._filter as RVFilterAll,
       })) as RVTaxBenchmarkingReponse;
       if (!isNil(reportData?.taxBenchmarkingData) && !isNil(reportData?.businessValues)) {
-        console.log('report fetched');
         this._data = reportData;
         this._taxBenchmarkingData = reportData?.taxBenchmarkingData;
         this._businessValuesData = reportData?.businessValues;
         this.updateTaxBenchmarkingParams();
       } else {
-        console.log('report error fetching');
         this.errorStatusCode = handleError(reportData);
       }
     } catch (error) {
@@ -306,15 +282,17 @@ export class BusinessValuations {
             <table class="benchmarking-table" id="benchmarking-table">
               <tr>
                 <th>
-                  Line Item{' '}
-                  <select onChange={this.setSelectedLineItem}>
-                    {this.lineItemOptions.map((lineItem) => (
-                      <option value={lineItem}>{lineItem}</option>
-                    ))}
-                  </select>
+                  <div class="table-header">
+                    Line Item {'-'}
+                    <select onChange={this.setSelectedLineItem}>
+                      {this.lineItemOptions.map((lineItem) => (
+                        <option value={lineItem}>{lineItem}</option>
+                      ))}
+                    </select>
+                  </div>
                 </th>
                 <th>
-                  <div class="header-with-tooltip">
+                  <div class="header-with-tooltip table-header">
                     Business Value{' '}
                     <railz-tooltip
                       tooltipStyle={{
@@ -330,7 +308,7 @@ export class BusinessValuations {
                   </div>
                 </th>
                 <th>
-                  <div class="header-with-tooltip">
+                  <div class="header-with-tooltip table-header">
                     Benchmark Value{' '}
                     <railz-tooltip
                       tooltipStyle={{
@@ -346,20 +324,22 @@ export class BusinessValuations {
                   </div>
                 </th>
                 <th>
-                  <select onChange={this.setSelectedCategory}>
-                    {this.categoryOptions.map((category) => (
-                      <option value={category}>{category}</option>
-                    ))}
-                  </select>
+                  <div class="table-header">
+                    <select onChange={this.setSelectedCategory}>
+                      {this.categoryOptions.map((category) => (
+                        <option value={category}>{category}</option>
+                      ))}
+                    </select>
+                  </div>
                 </th>
               </tr>
               {this.tableData.map((row) => (
                 <tr>
                   <td>{row.lineItemName}</td>
-                  <td>{row.businessValue}</td>
+                  <td>{row.businessValue || '-'}</td>
                   <td>{row.benchmarkValue}</td>
                   <td>
-                    <div class="rv-income-statements-chart-percentage">
+                    <div class="rv-chart-percentage">
                       {renderPercentageChange(row.differencePercent, {})}
                     </div>
                   </td>
