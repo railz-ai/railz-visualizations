@@ -19,6 +19,18 @@ export const getPercentageChange = (value1: number, value2: number): number => {
   return Math.round(((value1 - value2) / value2) * 10000) / 100;
 };
 
+export const formatDate = (dateString: string): string => {
+  const date = new Date(dateString);
+
+  const formattedDate = date.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+
+  return formattedDate;
+};
+
 /**
  * Make API call to tax benchmarking report
  */

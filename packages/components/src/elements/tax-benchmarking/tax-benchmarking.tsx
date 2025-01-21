@@ -23,7 +23,7 @@ import { ConfigurationInstance } from '../../services/configuration';
 
 import { errorLog } from '../../services/logger';
 
-import { getPercentageChange, getReportData } from './tax-benchmarking.utils';
+import { formatDate, getPercentageChange, getReportData } from './tax-benchmarking.utils';
 
 const renderPercentageChange = (percentage: number, options: RVOptions): HTMLElement => {
   if (percentage < 0) {
@@ -270,7 +270,15 @@ export class BusinessValuations {
       return (
         <div class="rv-tax-benchmarking-container">
           <div class="rv-tax-benchmarking-group">
-            Current Business: {isEmpty(this.loading) && this._data?.meta?.businessName}
+            <div class="rv-tax-benchmarking-business-info">
+              <div>
+                Current Business:{' '}
+                <span style={{ color: '#111111' }}>
+                  {isEmpty(this.loading) && this._data?.meta?.businessName}
+                </span>
+              </div>
+              <div>As of {isEmpty(this.loading) && formatDate(this._data?.meta?.endDate)}</div>
+            </div>
             <table class="benchmarking-table" id="benchmarking-table">
               <tr>
                 <th>
