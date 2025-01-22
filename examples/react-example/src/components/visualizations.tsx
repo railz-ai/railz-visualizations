@@ -134,14 +134,6 @@ const Components = ({ configuration, filter, options, showCode }: ChartProps) =>
                 options={cloneOptions}
                 showCode={showCode}
               />
-              <DefaultComponent
-                configuration={configuration}
-                filter={
-                  cloneDeep({ ...filter, reportType: RVReportTypes.TAX_BENCHMARKING }) as Filter
-                }
-                options={cloneOptions}
-                showCode={showCode}
-              />
             </div>
           );
         })}
