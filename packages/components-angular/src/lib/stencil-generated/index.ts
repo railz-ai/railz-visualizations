@@ -15,6 +15,7 @@ export const DIRECTIVES = [
   d.RailzSelect,
   d.RailzSparklineChart,
   d.RailzStatementsChart,
+  d.RailzTaxBenchmarking,
   d.RailzTooltip,
   d.RailzTransactionsControl,
   d.RailzVisualizations,

@@ -253,3 +253,41 @@ export interface RVFormattedTransactionResponse {
   data?: RVBillInvoiceSummary;
   status?: number;
 }
+
+export interface RVTaxBenchmarking extends ErrorResponseObject {
+  count: number;
+  reports?: Array<any>;
+  status?: number;
+}
+export class BusinessValuesFormattedData {
+  section?: Record<string, number>;
+  subSection?: Record<string, number>;
+  group?: Record<string, number>;
+  subGroup?: Record<string, number>;
+}
+
+export class TaxBenchmarkingSubItems {
+  max: Record<string, number>;
+  mean: Record<string, number>;
+  median: Record<string, number>;
+  min: Record<string, number>;
+  quantile25: Record<string, number>;
+  quantile5: Record<string, number>;
+  quantile75: Record<string, number>;
+  quantile95: Record<string, number>;
+  sdev: Record<string, number>;
+  total: Record<string, number>;
+}
+
+export class TaxBenchmarkingFormattedData {
+  section?: TaxBenchmarkingSubItems;
+  subSection?: TaxBenchmarkingSubItems;
+  group?: TaxBenchmarkingSubItems;
+  subGroup?: TaxBenchmarkingSubItems;
+}
+
+export interface RVTaxBenchmarkingReponse extends ErrorResponseObject {
+  meta: RVReportMetaResponse;
+  businessValues: BusinessValuesFormattedData;
+  taxBenchmarkingData?: TaxBenchmarkingFormattedData;
+}

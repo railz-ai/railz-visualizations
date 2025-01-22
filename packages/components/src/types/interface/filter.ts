@@ -27,6 +27,16 @@ export interface RVFilterConnection {
   connectionUuid: string;
 }
 
+export interface RVFilterIndustryCodeAndRegion {
+  /**
+   * industryCode: industry code from dropdown.
+   * region: region from dropdown.
+   * required **
+   */
+  industryCode: string;
+  region: string;
+}
+
 export interface RVFilterDate {
   /**
    * startDate: Date from which the data begins
@@ -157,10 +167,17 @@ export interface RVFilterBusinessValuations
   reportType: RVReportTypes.BUSINESS_VALUATIONS;
 }
 
+export interface RVFilterTaxBenchmarking extends RVFilterReportType, RVFilterConnection {
+  industryCode?: string;
+  region?: string;
+  reportType: RVReportTypes.TAX_BENCHMARKING;
+}
+
 export interface RVFilterAll
   extends RVFilterConnection,
     RVFilterDate,
     RVFilterReportFrequency,
+    RVFilterIndustryCodeAndRegion,
     RVFilterReportType {}
 
 export type RVFilterAllReportTypes =

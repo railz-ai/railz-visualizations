@@ -298,6 +298,26 @@ export class RailzStatementsChart {
   }
 }
 
+export declare interface RailzTaxBenchmarking extends Components.RailzTaxBenchmarking {}
+
+@ProxyCmp({
+  defineCustomElementFn: undefined,
+  inputs: ['configuration', 'filter', 'options'],
+})
+@Component({
+  selector: 'railz-tax-benchmarking',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  inputs: ['configuration', 'filter', 'options'],
+})
+export class RailzTaxBenchmarking {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
 export declare interface RailzTooltip extends Components.RailzTooltip {}
 
 @ProxyCmp({

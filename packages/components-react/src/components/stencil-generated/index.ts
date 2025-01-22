@@ -64,6 +64,10 @@ export const RailzStatementsChart = /*@__PURE__*/ createReactComponent<
   JSX.RailzStatementsChart,
   HTMLRailzStatementsChartElement
 >('railz-statements-chart');
+export const RailzTaxBenchmarking = /*@__PURE__*/ createReactComponent<
+  JSX.RailzTaxBenchmarking,
+  HTMLRailzTaxBenchmarkingElement
+>('railz-tax-benchmarking');
 export const RailzTooltip = /*@__PURE__*/ createReactComponent<
   JSX.RailzTooltip,
   HTMLRailzTooltipElement

@@ -1,6 +1,6 @@
 import { compareAsc, parseISO } from 'date-fns';
 
-import { isEmpty } from 'lodash-es';
+import { isEmpty, isNil } from 'lodash-es';
 
 import Translations from '../config/translations/en.json';
 import { getOptionsBarChart } from '../elements/statements-chart/statements-chart.utils';
@@ -77,9 +77,24 @@ export const validateRequiredParams = (filter: RVFilterAll): boolean => {
     validateBusinessServiceNameParams(filter) &&
     validateDateParams(filter) &&
     validateReportFrequencyParams(filter) &&
+    // validateIndustryCodeAndRegionParams(filter) &&
     // validateAccountingMethodParams(filter) &&
     validateReportTypeParams(filter)
   );
+};
+
+export const validateIndustryCodeAndRegionParams = (filter: RVFilterAll): boolean => {
+  const hasConnectionId = !isEmpty(filter?.connectionUuid);
+
+  if (!hasConnectionId) {
+    errorLog(Translations.RV_ERROR_INVALID_BUSINESS_IDENTIFICATION);
+    return false;
+  }
+  if (isNil(filter.industryCode) || isNil(filter.region)) {
+    errorLog(Translations.RV_TAX_BENCHMARKING_REQUIRED_FIELDS);
+    return false;
+  }
+  return true;
 };
 
 export const validateBusinessServiceNameParams = (filter: RVFilterAll): boolean => {

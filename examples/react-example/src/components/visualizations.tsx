@@ -120,6 +120,7 @@ const Components = ({ configuration, filter, options, showCode }: ChartProps) =>
           RVReportTypes.BANK_ACCOUNT,
           RVReportTypes.BANK_RECONCILIATION,
           RVReportTypes.BUSINESS_VALUATIONS,
+          RVReportTypes.TAX_BENCHMARKING,
         ].map((reportType, index) => {
           const cloneOptions = cloneDeep(options);
           if (index !== 0) {
@@ -306,6 +307,7 @@ const Components = ({ configuration, filter, options, showCode }: ChartProps) =>
         RVReportTypes.BANK_ACCOUNT,
         RVReportTypes.BANK_RECONCILIATION,
         RVReportTypes.BUSINESS_VALUATIONS,
+        RVReportTypes.TAX_BENCHMARKING,
         'all',
       ].includes(filter.reportType) && (
         <DefaultComponent

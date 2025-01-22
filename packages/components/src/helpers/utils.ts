@@ -117,6 +117,13 @@ export const isBusinessValuations = (reportType: RVReportTypes): boolean => {
 };
 
 /**
+ * Determine if report type is Tax Benchmarking
+ */
+export const isTaxBenchmarking = (reportType: RVReportTypes): boolean => {
+  return reportType && [RVReportTypes.TAX_BENCHMARKING].includes(reportType);
+};
+
+/**
  * Determine if report type is pie
  */
 export const isIncomeStatements = (reportType: RVReportTypes): boolean => {
