@@ -90,7 +90,7 @@ export const validateIndustryCodeAndRegionParams = (filter: RVFilterAll): boolea
     errorLog(Translations.RV_ERROR_INVALID_BUSINESS_IDENTIFICATION);
     return false;
   }
-  if (isNil(filter.industryCode) || isNil(filter.region)) {
+  if (isNil(filter.industryCode)) {
     errorLog(Translations.RV_TAX_BENCHMARKING_REQUIRED_FIELDS);
     return false;
   }
