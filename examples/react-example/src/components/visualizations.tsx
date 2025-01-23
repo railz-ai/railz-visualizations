@@ -14,6 +14,7 @@ import {
   RVFilterCreditScore,
   RVFilterBankReconciliation,
   RVFilterBusinessValuations,
+  RVFilterTaxBenchmarking,
 } from '@railzai/railz-visualizations';
 import {
   RailzBankAccounts,
@@ -24,6 +25,7 @@ import {
   RailzTransactionsControl,
   RailzVisualizations,
   RailzBusinessValuations,
+  RailzTaxBenchmarking,
 } from '@railzai/railz-visualizations-react';
 import { cloneDeep, isEmpty, pick } from 'lodash';
 import { RailzBankReconciliation } from '@railzai/railz-visualizations-react';
@@ -287,6 +289,23 @@ const Components = ({ configuration, filter, options, showCode }: ChartProps) =>
           <RailzBusinessValuations
             configuration={configuration}
             filter={filter as RVFilterBusinessValuations}
+            options={options}
+          />
+          <Code
+            configuration={configuration}
+            filter={filter}
+            options={options}
+            showCode={showCode}
+            displayValue="RailzBusinessValuations"
+          />
+        </div>
+      )}
+      {filter.reportType === RVReportTypes.TAX_BENCHMARKING && (
+        <div>
+          <h4 className="text-xl font-bold text-gray-900">Using Tax Benchmarking Component</h4>
+          <RailzTaxBenchmarking
+            configuration={configuration}
+            filter={filter as RVFilterTaxBenchmarking}
             options={options}
           />
           <Code

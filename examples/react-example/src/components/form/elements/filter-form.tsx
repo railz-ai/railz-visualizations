@@ -22,6 +22,7 @@ const requiresNoFrequency = (type: RVReportTypes) =>
     RVReportTypes.BILLS,
     RVReportTypes.BANK_ACCOUNT,
     RVReportTypes.CREDIT_SCORE,
+    RVReportTypes.TAX_BENCHMARKING,
   ].includes(type);
 
 const requiresNoEndDate = (type: RVReportTypes) => [RVReportTypes.BANK_ACCOUNT].includes(type);
@@ -30,7 +31,9 @@ const optionalEndDate = (type: RVReportTypes) =>
   [RVReportTypes.BANK_ACCOUNT, RVReportTypes.CREDIT_SCORE].includes(type);
 
 const requiresNoStartDate = (type: RVReportTypes) =>
-  [RVReportTypes.BANK_ACCOUNT, RVReportTypes.CREDIT_SCORE].includes(type);
+  [RVReportTypes.BANK_ACCOUNT, RVReportTypes.CREDIT_SCORE, RVReportTypes.TAX_BENCHMARKING].includes(
+    type,
+  );
 
 export default function FilterForm({ setFilter }: FormProps) {
   const [formFilter, setFormFilter] = useState({
@@ -39,6 +42,8 @@ export default function FilterForm({ setFilter }: FormProps) {
     reportFrequency: arrayReportFrequency[0],
     startDate: '',
     endDate: '',
+    region: '',
+    industryCode: '',
   });
 
   const submitFilter: FormEventHandler<HTMLFormElement> = (event) => {
@@ -208,6 +213,44 @@ export default function FilterForm({ setFilter }: FormProps) {
                   ))}
                 </select>
               </div>
+              {formFilter.reportType === RVReportTypes.TAX_BENCHMARKING && (
+                <>
+                  <div className="col-span-6 lg:col-span-3">
+                    <label
+                      htmlFor="business-name"
+                      className="block text-sm font-medium text-gray-700"
+                    >
+                      Industry Code
+                    </label>
+                    <input
+                      type="text"
+                      name="industryCode"
+                      id="industry-code"
+                      onChange={handleFilterChange}
+                      value={formFilter.industryCode}
+                      className="mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                      placeholder="33461"
+                    />
+                  </div>
+                  <div className="col-span-6 lg:col-span-3">
+                    <label
+                      htmlFor="business-name"
+                      className="block text-sm font-medium text-gray-700"
+                    >
+                      Region
+                    </label>
+                    <input
+                      type="text"
+                      name="region"
+                      id="region"
+                      onChange={handleFilterChange}
+                      value={formFilter.region}
+                      className="mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                      placeholder="VA"
+                    />
+                  </div>
+                </>
+              )}
 
               <div className="col-span-6 lg:col-span-6 items-end">
                 <button
