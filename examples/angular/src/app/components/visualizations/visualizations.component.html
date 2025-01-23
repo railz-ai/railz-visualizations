@@ -127,6 +127,16 @@
     </railz-business-valuations>
   </div>
 </ng-template>
+<ng-template #taxBenchmarking>
+  <div
+    class="md:grid md:grid-cols-1 md:gap-1 text-left"
+    *ngIf="filter?.reportType === 'taxBenchmarking'; else visualizations"
+  >
+    <h4 class="text-xl font-bold text-gray-900">Using Tax Benchmarking Component</h4>
+    <railz-tax-benchmarking [configuration]="configuration" [filter]="filter" [options]="options">
+    </railz-tax-benchmarking>
+  </div>
+</ng-template>
 <ng-template #visualizations>
   <div class="md:grid md:grid-cols-1 md:gap-1 text-left">
     <h4 class="text-xl font-bold text-gray-900">Using Visualizations Component</h4>

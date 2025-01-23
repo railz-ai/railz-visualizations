@@ -35,6 +35,8 @@ export class FormComponent implements OnInit {
     reportFrequency: new FormControl(RVReportFrequency.MONTH, Validators.required),
     startDate: new FormControl('', Validators.required),
     endDate: new FormControl('', Validators.required),
+    industryCode: new FormControl('', Validators.required),
+    region: new FormControl('', Validators.required),
   });
 
   requiresNoFrequency = (type: string) =>
@@ -43,6 +45,7 @@ export class FormComponent implements OnInit {
       RVReportTypes.BILLS,
       RVReportTypes.BANK_ACCOUNT,
       RVReportTypes.CREDIT_SCORE,
+      RVReportTypes.TAX_BENCHMARKING,
     ].includes(type as RVReportTypes);
 
   requiresNoEndDate = (type: RVReportTypes) => [RVReportTypes.BANK_ACCOUNT].includes(type);
@@ -51,7 +54,11 @@ export class FormComponent implements OnInit {
     [RVReportTypes.BANK_ACCOUNT, RVReportTypes.CREDIT_SCORE].includes(type);
 
   requiresNoStartDate = (type: RVReportTypes) =>
-    [RVReportTypes.BANK_ACCOUNT, RVReportTypes.CREDIT_SCORE].includes(type);
+    [
+      RVReportTypes.BANK_ACCOUNT,
+      RVReportTypes.CREDIT_SCORE,
+      RVReportTypes.TAX_BENCHMARKING,
+    ].includes(type);
 
   token = '';
 
@@ -101,10 +108,14 @@ export class FormComponent implements OnInit {
             this.filterForm.controls['endDate'].enable();
             this.filterForm.controls['reportFrequency'].setValidators([Validators.required]);
             this.filterForm.controls['reportFrequency'].enable();
+            this.filterForm.controls['industryCode'].enable();
+            this.filterForm.controls['region'].enable();
           }
           this.filterForm.controls['startDate'].updateValueAndValidity();
           this.filterForm.controls['endDate'].updateValueAndValidity();
           this.filterForm.controls['reportFrequency'].updateValueAndValidity();
+          this.filterForm.controls['industryCode'].updateValueAndValidity();
+          this.filterForm.controls['region'].updateValueAndValidity();
         }
       });
   }

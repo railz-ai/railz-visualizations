@@ -40,6 +40,7 @@ export const getReportData = async ({
   let reportData;
   try {
     const allParameters = pick({ ...filter }, ['industryCode', 'region', 'connectionUuid']);
+    if (isNil(allParameters?.region)) delete allParameters?.region;
     reportData = await RequestServiceInstance.getReportData({
       path: RVReportTypesUrlMapping[filter.reportType],
       filter: allParameters,

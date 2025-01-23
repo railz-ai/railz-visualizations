@@ -13,4 +13,6 @@ export interface Filter {
   endDate?: string;
   reportFrequency?: RVReportFrequency;
   reportType: AllTypes;
+  industryCode?: string;
+  region?: string;
 }
