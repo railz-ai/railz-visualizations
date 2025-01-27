@@ -8,6 +8,21 @@ import {
 } from '../../types';
 import { RequestServiceInstance } from '../../services/request';
 import { errorLog } from '../../services/logger';
+
+const MONTHS = [
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December',
+];
 /**
  * Percentage change calculation, 2 decimal places
  */
@@ -22,11 +37,8 @@ export const getPercentageChange = (value1: number, value2: number): number => {
 export const formatDate = (dateString: string): string => {
   const date = new Date(dateString);
 
-  const formattedDate = date.toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  });
+  const fullMonthName = MONTHS[date.getMonth()];
+  const formattedDate = `${fullMonthName} ${date.getDate()}, ${date.getFullYear()}`;
 
   return formattedDate;
 };
