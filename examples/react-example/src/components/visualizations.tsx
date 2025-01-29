@@ -40,6 +40,8 @@ interface Filter {
   endDate: string;
   reportFrequency: RVReportFrequency;
   reportType: AllTypes;
+  industryCode?: string;
+  region?: string;
 }
 
 interface ChartProps {
@@ -60,6 +62,8 @@ const formatCodeFilter = (filter: Filter) => {
       'reportFrequency',
       'reportType',
       'connectionUuid',
+      'industryCode',
+      'region',
     ]);
   }
   return allParameters;
@@ -313,7 +317,7 @@ const Components = ({ configuration, filter, options, showCode }: ChartProps) =>
             filter={filter}
             options={options}
             showCode={showCode}
-            displayValue="RailzBusinessValuations"
+            displayValue="RailzTaxBenchmarking"
           />
         </div>
       )}

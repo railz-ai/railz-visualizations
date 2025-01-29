@@ -213,7 +213,7 @@ export default function FilterForm({ setFilter }: FormProps) {
                   ))}
                 </select>
               </div>
-              {formFilter.reportType === RVReportTypes.TAX_BENCHMARKING && (
+              {[RVReportTypes.TAX_BENCHMARKING, 'all'].includes(formFilter.reportType) && (
                 <>
                   <div className="col-span-6 lg:col-span-3">
                     <label
