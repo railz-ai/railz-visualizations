@@ -286,7 +286,9 @@ export class BusinessValuations {
                     Line Item {'-'}
                     <select onChange={this.setSelectedLineItem}>
                       {this.lineItemOptions.map((lineItem) => (
-                        <option value={lineItem}>{lineItem}</option>
+                        <option selected={this.selectedLineItem === lineItem} value={lineItem}>
+                          {lineItem}
+                        </option>
                       ))}
                     </select>
                   </div>
@@ -327,7 +329,9 @@ export class BusinessValuations {
                   <div class="table-header">
                     <select onChange={this.setSelectedCategory}>
                       {this.categoryOptions.map((category) => (
-                        <option value={category}>{category}</option>
+                        <option selected={this.selectedCategory === category} value={category}>
+                          {category}
+                        </option>
                       ))}
                     </select>
                   </div>
