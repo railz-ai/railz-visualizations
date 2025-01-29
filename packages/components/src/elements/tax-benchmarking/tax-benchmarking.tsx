@@ -50,7 +50,7 @@ const renderPercentageChange = (percentage: number, options: RVOptions): HTMLEle
   styleUrl: './tax-benchmarking.scss',
   shadow: true,
 })
-export class BusinessValuations {
+export class TaxBenchmarking {
   /**
    * Configuration information like authentication configuration
    */

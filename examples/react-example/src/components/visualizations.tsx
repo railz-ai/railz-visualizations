@@ -55,6 +55,14 @@ const formatCodeFilter = (filter: Filter) => {
   let allParameters;
   if ([RVReportTypes.BILLS, RVReportTypes.INVOICES].includes(filter.reportType)) {
     allParameters = pick(filter, ['startDate', 'endDate', 'reportType', 'connectionUuid']);
+  } else if ([RVReportTypes.TAX_BENCHMARKING].includes(filter.reportType)) {
+    allParameters = pick(filter, [
+      'industryCode',
+      'region',
+      'endDate',
+      'reportType',
+      'connectionUuid',
+    ]);
   } else {
     allParameters = pick(filter, [
       'startDate',
@@ -62,8 +70,6 @@ const formatCodeFilter = (filter: Filter) => {
       'reportFrequency',
       'reportType',
       'connectionUuid',
-      'industryCode',
-      'region',
     ]);
   }
   return allParameters;

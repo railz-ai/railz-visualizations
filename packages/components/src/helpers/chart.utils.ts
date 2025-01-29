@@ -94,6 +94,9 @@ export const validateIndustryCodeAndRegionParams = (filter: RVFilterAll): boolea
     errorLog(Translations.RV_TAX_BENCHMARKING_REQUIRED_FIELDS);
     return false;
   }
+  if (!isNil(filter.region) && isEmpty(filter.region)) {
+    delete filter.region;
+  }
   return true;
 };
 
