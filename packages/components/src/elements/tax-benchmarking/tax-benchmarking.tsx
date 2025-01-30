@@ -279,77 +279,83 @@ export class TaxBenchmarking {
               </div>
               <div>As of {isEmpty(this.loading) && formatDate(this._data?.meta?.endDate)}</div>
             </div>
-            <table class="benchmarking-table" id="benchmarking-table">
-              <tr>
-                <th>
-                  <div class="table-header">
-                    Line Item {'-'}
-                    <select onChange={this.setSelectedLineItem}>
-                      {this.lineItemOptions.map((lineItem) => (
-                        <option selected={this.selectedLineItem === lineItem} value={lineItem}>
-                          {lineItem}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-                </th>
-                <th>
-                  <div class="header-with-tooltip table-header">
-                    Business Value{' '}
-                    <railz-tooltip
-                      tooltipStyle={{
-                        position: 'bottom-center',
-                        ...this._options?.tooltipIndicator,
-                        style: { marginLeft: '6px', ...this._options?.tooltipIndicator?.style },
-                      }}
-                      tooltipText={
-                        this._options?.content?.tooltip?.description ||
-                        Translations.RV_TOOLTIP_TAX_BENCHMARKING_BUSINESS_VALUE
-                      }
-                    />
-                  </div>
-                </th>
-                <th>
-                  <div class="header-with-tooltip table-header">
-                    Benchmark Value{' '}
-                    <railz-tooltip
-                      tooltipStyle={{
-                        position: 'bottom-center',
-                        ...this._options?.tooltipIndicator,
-                        style: { marginLeft: '6px', ...this._options?.tooltipIndicator?.style },
-                      }}
-                      tooltipText={
-                        this._options?.content?.tooltip?.description ||
-                        Translations.RV_TOOLTIP_TAX_BENCHMARKING_BENCHMARK_VALUE
-                      }
-                    />
-                  </div>
-                </th>
-                <th>
-                  <div class="table-header">
-                    <select onChange={this.setSelectedCategory}>
-                      {this.categoryOptions.map((category) => (
-                        <option selected={this.selectedCategory === category} value={category}>
-                          {category}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-                </th>
-              </tr>
-              {this.tableData.map((row) => (
-                <tr>
-                  <td>{row.lineItemName}</td>
-                  <td>{row.businessValue || '-'}</td>
-                  <td>{row.benchmarkValue}</td>
-                  <td>
-                    <div class="rv-chart-percentage">
-                      {renderPercentageChange(row.differencePercent, {})}
-                    </div>
-                  </td>
-                </tr>
-              ))}
-            </table>
+            <div class="table-container">
+              <table class="benchmarking-table" id="benchmarking-table">
+                <thead>
+                  <tr>
+                    <th>
+                      <div class="table-header">
+                        Line Item {'-'}
+                        <select onChange={this.setSelectedLineItem}>
+                          {this.lineItemOptions.map((lineItem) => (
+                            <option selected={this.selectedLineItem === lineItem} value={lineItem}>
+                              {lineItem}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
+                    </th>
+                    <th>
+                      <div class="header-with-tooltip table-header">
+                        Business Value{' '}
+                        <railz-tooltip
+                          tooltipStyle={{
+                            position: 'bottom-center',
+                            ...this._options?.tooltipIndicator,
+                            style: { marginLeft: '6px', ...this._options?.tooltipIndicator?.style },
+                          }}
+                          tooltipText={
+                            this._options?.content?.tooltip?.description ||
+                            Translations.RV_TOOLTIP_TAX_BENCHMARKING_BUSINESS_VALUE
+                          }
+                        />
+                      </div>
+                    </th>
+                    <th>
+                      <div class="header-with-tooltip table-header">
+                        Benchmark Value{' '}
+                        <railz-tooltip
+                          tooltipStyle={{
+                            position: 'bottom-center',
+                            ...this._options?.tooltipIndicator,
+                            style: { marginLeft: '6px', ...this._options?.tooltipIndicator?.style },
+                          }}
+                          tooltipText={
+                            this._options?.content?.tooltip?.description ||
+                            Translations.RV_TOOLTIP_TAX_BENCHMARKING_BENCHMARK_VALUE
+                          }
+                        />
+                      </div>
+                    </th>
+                    <th>
+                      <div class="table-header">
+                        <select onChange={this.setSelectedCategory}>
+                          {this.categoryOptions.map((category) => (
+                            <option selected={this.selectedCategory === category} value={category}>
+                              {category}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {this.tableData.map((row) => (
+                    <tr>
+                      <td>{row.lineItemName}</td>
+                      <td>{row.businessValue || '-'}</td>
+                      <td>{row.benchmarkValue}</td>
+                      <td>
+                        <div class="rv-chart-percentage">
+                          {renderPercentageChange(row.differencePercent, {})}
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       );
