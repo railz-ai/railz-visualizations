@@ -85,6 +85,11 @@
   color: #424242;
 }
 
+.table-container {
+  overflow-x: auto;
+  width: 100%;
+}
+
 .benchmarking-table {
   border-collapse: collapse;
   width: 100%;
