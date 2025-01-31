@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.0.8-alpha.41 (2025-01-31)
+
+**Note:** Version bump only for package @railzai/railz-visualizations-angular
+
+
+
+
+
 ## 0.0.8-alpha.40 (2025-01-30)
 
 **Note:** Version bump only for package @railzai/railz-visualizations-angular
