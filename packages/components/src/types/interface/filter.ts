@@ -79,12 +79,30 @@ export interface RVFilterReportType {
   reportType: RVReportTypes;
 }
 
+export interface RVFilterFinancialStatementType {
+  /**
+   * financialStatementType: the enum for to say the type of financial statement
+   */
+  financialStatementType: 'incomeStatements' | 'balanceSheets' | 'cashflowStatements';
+}
+
 export interface RVFilterBalanceSheet
   extends RVFilterReportType,
     RVFilterConnection,
     RVFilterDate,
     RVFilterReportFrequency {
   reportType: RVReportTypes.BALANCE_SHEET;
+}
+
+export interface RVFilterFinancialForecasts
+  extends RVFilterReportType,
+    RVFilterConnection,
+    RVFilterDate,
+    RVFilterReportFrequency,
+    RVFilterFinancialStatementType {
+  reportType: RVReportTypes.FINANCIAL_FORECASTS;
+  percentile?: number;
+  reconstruct?: boolean;
 }
 
 export interface RVFilterBankAccount extends RVFilterReportType, RVFilterConnection {
@@ -178,7 +196,11 @@ export interface RVFilterAll
     RVFilterDate,
     RVFilterReportFrequency,
     RVFilterIndustryCodeAndRegion,
-    RVFilterReportType {}
+    RVFilterReportType,
+    RVFilterFinancialStatementType {
+  percentile?: number;
+  reconstruct: boolean;
+}
 
 export type RVFilterAllReportTypes =
   | RVFilterBalanceSheet
@@ -193,11 +215,13 @@ export type RVFilterAllReportTypes =
   | RVFilterCreditScore
   | RVFilterBankReconciliation
   | RVFilterBusinessValuations
-  | RVFilterDate;
+  | RVFilterDate
+  | RVFilterFinancialForecasts;
 
 export type RVFilterTransactions = RVFilterInvoices | RVFilterBills;
 export type RVFilterStatements =
   | RVFilterBalanceSheet
   | RVFilterIncomeStatements
-  | RVFilterCashflowStatements;
+  | RVFilterCashflowStatements
+  | RVFilterFinancialForecasts;
 export type RVFilterIncomeStatementsType = RVFilterExpenses | RVFilterRevenue;

@@ -140,6 +140,7 @@ export const isStatements = (reportType: RVReportTypes): boolean => {
       RVReportTypes.BALANCE_SHEET,
       RVReportTypes.INCOME_STATEMENTS,
       RVReportTypes.CASHFLOW_STATEMENTS,
+      RVReportTypes.FINANCIAL_FORECASTS,
     ].includes(reportType)
   );
 };
