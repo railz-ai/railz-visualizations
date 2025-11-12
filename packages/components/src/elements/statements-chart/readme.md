@@ -44,11 +44,11 @@ import { RailzStatementsChart } from '@railzai/railz-visualizations-react';
 
 ## Properties
 
-| Property                     | Attribute | Description                                                 | Type                                                                             | Default     |
-| ---------------------------- | --------- | ----------------------------------------------------------- | -------------------------------------------------------------------------------- | ----------- |
-| `configuration` _(required)_ | --        | Configuration information like authentication configuration | `RVConfiguration`                                                                | `undefined` |
-| `filter` _(required)_        | --        | Filter information to query the backend APIs                | `RVFilterBalanceSheet \| RVFilterCashflowStatements \| RVFilterIncomeStatements` | `undefined` |
-| `options`                    | --        | For whitelabeling styling                                   | `RVOptions`                                                                      | `undefined` |
+| Property                     | Attribute | Description                                                 | Type                                                                                                           | Default     |
+| ---------------------------- | --------- | ----------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | ----------- |
+| `configuration` _(required)_ | --        | Configuration information like authentication configuration | `RVConfiguration`                                                                                              | `undefined` |
+| `filter` _(required)_        | --        | Filter information to query the backend APIs                | `RVFilterBalanceSheet \| RVFilterCashflowStatements \| RVFilterFinancialForecasts \| RVFilterIncomeStatements` | `undefined` |
+| `options`                    | --        | For whitelabeling styling                                   | `RVOptions`                                                                                                    | `undefined` |
 
 ## Dependencies
 
