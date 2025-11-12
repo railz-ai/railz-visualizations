@@ -12,12 +12,14 @@ export enum RVReportTypes {
   BANK_RECONCILIATION = 'bankReconciliation',
   BUSINESS_VALUATIONS = 'businessValuations',
   TAX_BENCHMARKING = 'taxBenchmarking',
+  FINANCIAL_FORECASTS = 'financialForecasts',
 }
 
 export type RVFinancialStatementsTypes =
   | RVReportTypes.BALANCE_SHEET
   | RVReportTypes.CASHFLOW_STATEMENTS
-  | RVReportTypes.INCOME_STATEMENTS;
+  | RVReportTypes.INCOME_STATEMENTS
+  | RVReportTypes.FINANCIAL_FORECASTS;
 
 export enum RVCreditScoreTypes {
   VERY_POOR = 'Very Poor',
@@ -42,4 +44,5 @@ export const RVReportTypesUrlMapping = {
   [RVReportTypes.BANK_RECONCILIATION]: '/v2/visualizations/bankReconciliation',
   [RVReportTypes.BUSINESS_VALUATIONS]: '/v2/visualizations/businessValuations',
   [RVReportTypes.TAX_BENCHMARKING]: '/v2/visualizations/taxBenchmarking',
+  [RVReportTypes.FINANCIAL_FORECASTS]: '/v2/visualizations/financialForecasts',
 };

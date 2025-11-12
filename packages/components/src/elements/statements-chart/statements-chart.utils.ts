@@ -299,7 +299,15 @@ export const getReportData = async ({
         startDate,
         endDate,
       },
-      ['startDate', 'endDate', 'reportFrequency', 'connectionUuid'],
+      [
+        'startDate',
+        'endDate',
+        'reportFrequency',
+        'connectionUuid',
+        'financialStatementType',
+        'percentile',
+        'reconstruct',
+      ],
     );
 
     reportData = await RequestServiceInstance.getReportData({

@@ -11,12 +11,13 @@ import { errorLog } from '../../services/logger';
 import {
   RVConfiguration,
   RVFilterAll,
+  RVFilterFinancialForecasts,
   RVFilterStatements,
   RVFormattedStatementData,
   RVFormattedStatementResponse,
   RVOptions,
 } from '../../types';
-import { RVFinancialStatementsTypes } from '../../types/enum/report-type';
+import { RVFinancialStatementsTypes, RVReportTypes } from '../../types/enum/report-type';
 import {
   getConfiguration,
   getFilter,
@@ -151,7 +152,11 @@ export class StatementsChart {
       if (reportData?.data) {
         this._dataFormatted = formatData({
           summary: reportData.data,
-          reportType: this._filter?.reportType as RVFinancialStatementsTypes,
+          reportType:
+            this._filter?.reportType === RVReportTypes.FINANCIAL_FORECASTS
+              ? ((this._filter as RVFilterFinancialForecasts)
+                  ?.financialStatementType as RVFinancialStatementsTypes)
+              : (this._filter?.reportType as RVFinancialStatementsTypes),
           reportFrequency: this._filter?.reportFrequency,
           chart: this._options?.chart,
           date: this._options?.content?.date,
