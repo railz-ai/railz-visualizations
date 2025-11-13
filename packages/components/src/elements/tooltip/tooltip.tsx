@@ -23,12 +23,14 @@ export class Tooltip {
   @Prop() readonly tooltipStyle?: RVTooltipIndicatorStyle = { position: 'bottom-center' };
 
   render(): HTMLElement {
+    const arrowPosition = this.tooltipStyle?.arrow || 'top';
+    const fillColor = this.tooltipStyle?.fillColor || RAILZ_TOOLTIP_COLOR;
+
     return (
       !isEmpty(this.tooltipText) && (
         <div
           class="rv-tooltip"
           style={{
-            color: this.tooltipStyle?.fillColor || RAILZ_TOOLTIP_COLOR,
             ...this.tooltipStyle?.style,
           }}
         >
@@ -37,9 +39,17 @@ export class Tooltip {
           </div>
           <span
             class={`rv-tooltiptext rv-${this.tooltipStyle?.position}`}
-            style={this.tooltipStyle?.tooltipTextStyle}
+            style={{ ...this.tooltipStyle?.tooltipTextStyle, backgroundColor: fillColor }}
           >
             {this.tooltipText}
+            {this.tooltipStyle?.showArrow && (
+              <span
+                class={`rv-tooltip-arrow rv-tooltip-arrow-${arrowPosition}`}
+                style={{
+                  '--rv-tooltip-arrow-color': fillColor,
+                }}
+              />
+            )}
           </span>
         </div>
       )

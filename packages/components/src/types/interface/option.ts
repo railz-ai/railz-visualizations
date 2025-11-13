@@ -460,11 +460,26 @@ export interface RVTooltipIndicatorStyle {
   /**
    * Position where the tooltip text will appear
    */
-  position?: 'bottom-center' | 'bottom-left' | 'bottom-right' | 'center-left' | 'center-right';
+  position?:
+    | 'bottom-center'
+    | 'bottom-left'
+    | 'bottom-right'
+    | 'center-left'
+    | 'center-right'
+    | 'top-right'
+    | 'top-left';
   /**
    * visible: determine if to show tooltip
    */
   visible?: boolean;
+  /**
+   * arrow: determine the position of the arrow
+   */
+  arrow?: string;
+  /**
+   * showArrow: determine if the arrow should be shown
+   */
+  showArrow?: boolean;
 }
 
 export interface RVErrorIndicatorStyle {
