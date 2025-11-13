@@ -83,7 +83,7 @@ export interface RVFilterFinancialStatementType {
   /**
    * financialStatementType: the enum for to say the type of financial statement
    */
-  financialStatementType: 'incomeStatements' | 'balanceSheets' | 'cashflowStatements';
+  financialStatementType?: 'incomeStatements' | 'balanceSheets' | 'cashflowStatements';
 }
 
 export interface RVFilterBalanceSheet
