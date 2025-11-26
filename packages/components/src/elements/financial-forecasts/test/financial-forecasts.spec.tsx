@@ -10,9 +10,6 @@ describe('financial-forecasts', () => {
     });
     expect(page.root).toEqualHtml(`
       <financial-forecasts>
-        <mock:shadow-root>
-          <slot></slot>
-        </mock:shadow-root>
       </financial-forecasts>
     `);
   });
