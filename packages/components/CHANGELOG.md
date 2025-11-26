@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.0.8-alpha.45 (2025-11-26)
+
+
+### Features
+
+* New component financial forecasts ([#182](https://github.com/railz-ai/railz-visualizations/issues/182)) ([c664cd2](https://github.com/railz-ai/railz-visualizations/commit/c664cd28f6da7ac2d46b6d336f57b2bebf52b1f8))
+
+
+
+
+
 ## 0.0.8-alpha.44 (2025-11-13)
 
 **Note:** Version bump only for package @railzai/railz-visualizations
