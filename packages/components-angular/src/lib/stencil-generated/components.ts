@@ -112,6 +112,26 @@ export class RailzErrorImage {
   }
 }
 
+export declare interface RailzFinancialForecasts extends Components.RailzFinancialForecasts {}
+
+@ProxyCmp({
+  defineCustomElementFn: undefined,
+  inputs: ['configuration', 'filter', 'options'],
+})
+@Component({
+  selector: 'railz-financial-forecasts',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  inputs: ['configuration', 'filter', 'options'],
+})
+export class RailzFinancialForecasts {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
 export declare interface RailzFinancialRatios extends Components.RailzFinancialRatios {}
 
 @ProxyCmp({

@@ -18,6 +18,7 @@
 - [railz-bank-reconciliation](../bank-reconciliation)
 - [railz-business-valuations](../business-valuations)
 - [railz-credit-score](../credit-score)
+- [railz-financial-forecasts](../financial-forecasts)
 - [railz-financial-ratios](../financial-ratios)
 - [railz-income-statements](../income-statements)
 - [railz-statements-chart](../statements-chart)
@@ -32,6 +33,7 @@ graph TD;
   railz-bank-reconciliation --> railz-tooltip
   railz-business-valuations --> railz-tooltip
   railz-credit-score --> railz-tooltip
+  railz-financial-forecasts --> railz-tooltip
   railz-financial-ratios --> railz-tooltip
   railz-income-statements --> railz-tooltip
   railz-statements-chart --> railz-tooltip

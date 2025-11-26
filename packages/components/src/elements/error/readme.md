@@ -20,6 +20,7 @@
 - [railz-bank-reconciliation](../bank-reconciliation)
 - [railz-business-valuations](../business-valuations)
 - [railz-credit-score](../credit-score)
+- [railz-financial-forecasts](../financial-forecasts)
 - [railz-financial-ratios](../financial-ratios)
 - [railz-income-statements](../income-statements)
 - [railz-statements-chart](../statements-chart)
@@ -35,6 +36,7 @@ graph TD;
   railz-bank-reconciliation --> railz-error-image
   railz-business-valuations --> railz-error-image
   railz-credit-score --> railz-error-image
+  railz-financial-forecasts --> railz-error-image
   railz-financial-ratios --> railz-error-image
   railz-income-statements --> railz-error-image
   railz-statements-chart --> railz-error-image

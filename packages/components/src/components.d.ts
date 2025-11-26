@@ -106,6 +106,20 @@ export namespace Components {
      */
     width?: string;
   }
+  interface RailzFinancialForecasts {
+    /**
+     * Configuration information like authentication configuration
+     */
+    configuration: RVConfiguration;
+    /**
+     * Filter information to query the backend APIs
+     */
+    filter: RVFilterStatements;
+    /**
+     * For whitelabeling styling
+     */
+    options?: RVOptions;
+  }
   interface RailzFinancialRatios {
     /**
      * Configuration information like authentication configuration
@@ -308,6 +322,13 @@ declare global {
     prototype: HTMLRailzErrorImageElement;
     new (): HTMLRailzErrorImageElement;
   };
+  interface HTMLRailzFinancialForecastsElement
+    extends Components.RailzFinancialForecasts,
+      HTMLStencilElement {}
+  var HTMLRailzFinancialForecastsElement: {
+    prototype: HTMLRailzFinancialForecastsElement;
+    new (): HTMLRailzFinancialForecastsElement;
+  };
   interface HTMLRailzFinancialRatiosElement
     extends Components.RailzFinancialRatios,
       HTMLStencilElement {}
@@ -393,6 +414,7 @@ declare global {
     'railz-business-valuations': HTMLRailzBusinessValuationsElement;
     'railz-credit-score': HTMLRailzCreditScoreElement;
     'railz-error-image': HTMLRailzErrorImageElement;
+    'railz-financial-forecasts': HTMLRailzFinancialForecastsElement;
     'railz-financial-ratios': HTMLRailzFinancialRatiosElement;
     'railz-gauge-chart': HTMLRailzGaugeChartElement;
     'railz-income-statements': HTMLRailzIncomeStatementsElement;
@@ -486,6 +508,20 @@ declare namespace LocalJSX {
      * Width of the SVG Error Indicator
      */
     width?: string;
+  }
+  interface RailzFinancialForecasts {
+    /**
+     * Configuration information like authentication configuration
+     */
+    configuration: RVConfiguration;
+    /**
+     * Filter information to query the backend APIs
+     */
+    filter: RVFilterStatements;
+    /**
+     * For whitelabeling styling
+     */
+    options?: RVOptions;
   }
   interface RailzFinancialRatios {
     /**
@@ -665,6 +701,7 @@ declare namespace LocalJSX {
     'railz-business-valuations': RailzBusinessValuations;
     'railz-credit-score': RailzCreditScore;
     'railz-error-image': RailzErrorImage;
+    'railz-financial-forecasts': RailzFinancialForecasts;
     'railz-financial-ratios': RailzFinancialRatios;
     'railz-gauge-chart': RailzGaugeChart;
     'railz-income-statements': RailzIncomeStatements;
@@ -694,6 +731,8 @@ declare module '@stencil/core' {
         JSXBase.HTMLAttributes<HTMLRailzCreditScoreElement>;
       'railz-error-image': LocalJSX.RailzErrorImage &
         JSXBase.HTMLAttributes<HTMLRailzErrorImageElement>;
+      'railz-financial-forecasts': LocalJSX.RailzFinancialForecasts &
+        JSXBase.HTMLAttributes<HTMLRailzFinancialForecastsElement>;
       'railz-financial-ratios': LocalJSX.RailzFinancialRatios &
         JSXBase.HTMLAttributes<HTMLRailzFinancialRatiosElement>;
       'railz-gauge-chart': LocalJSX.RailzGaugeChart &
