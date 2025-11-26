@@ -19,6 +19,7 @@
 - [railz-bank-accounts](../bank-accounts)
 - [railz-business-valuations](../business-valuations)
 - [railz-credit-score](../credit-score)
+- [railz-financial-forecasts](../financial-forecasts)
 - [railz-financial-ratios](../financial-ratios)
 - [railz-income-statements](../income-statements)
 - [railz-statements-chart](../statements-chart)
@@ -32,6 +33,7 @@ graph TD;
   railz-bank-accounts --> railz-loading
   railz-business-valuations --> railz-loading
   railz-credit-score --> railz-loading
+  railz-financial-forecasts --> railz-loading
   railz-financial-ratios --> railz-loading
   railz-income-statements --> railz-loading
   railz-statements-chart --> railz-loading

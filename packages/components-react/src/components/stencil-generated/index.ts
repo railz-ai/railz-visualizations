@@ -28,6 +28,10 @@ export const RailzErrorImage = /*@__PURE__*/ createReactComponent<
   JSX.RailzErrorImage,
   HTMLRailzErrorImageElement
 >('railz-error-image');
+export const RailzFinancialForecasts = /*@__PURE__*/ createReactComponent<
+  JSX.RailzFinancialForecasts,
+  HTMLRailzFinancialForecastsElement
+>('railz-financial-forecasts');
 export const RailzFinancialRatios = /*@__PURE__*/ createReactComponent<
   JSX.RailzFinancialRatios,
   HTMLRailzFinancialRatiosElement
