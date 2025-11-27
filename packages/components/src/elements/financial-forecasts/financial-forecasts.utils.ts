@@ -329,10 +329,7 @@ export const getReportData = async ({
         macro: 'fis-reconstruct',
       },
     });
-    reportData = {
-      reportDataHistorical,
-      reportDataForecasted,
-    };
+    reportData = { reportDataHistorical, reportDataForecasted };
   } catch (error) {
     errorLog(Translations.RV_NOT_ABLE_TO_RETRIEVE_REPORT_DATA, error);
     reportData = { error };

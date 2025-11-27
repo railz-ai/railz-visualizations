@@ -156,6 +156,7 @@ export class FinancialForecasts {
     this.errorStatusCode = undefined;
     this.loading = Translations.RV_LOADING_REPORT;
     try {
+      // const reportData = SampleBalanceSheetData;
       const reportData = (await getReportData({
         filter: this._filter as RVFilterAll,
       })) as {
