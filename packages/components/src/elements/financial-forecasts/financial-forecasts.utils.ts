@@ -210,7 +210,6 @@ export const formatBalanceSheetData = ({
     series: series as any,
     colors: chart?.colors || RAILZ_BALANCE_SHEET_COLORS,
   };
-  console.log('formattedData', formattedData);
 
   return formattedData;
 };
@@ -357,6 +356,7 @@ export const combineHistoricalAndForecastedData = (
     );
     if (matchingForecastedSeries) {
       return {
+        ...historicalSeries,
         name: historicalSeries.name,
         data: [...historicalSeries.data, null, ...matchingForecastedSeries.data],
       };
