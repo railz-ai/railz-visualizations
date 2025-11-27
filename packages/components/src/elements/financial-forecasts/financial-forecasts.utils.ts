@@ -210,7 +210,6 @@ export const formatBalanceSheetData = ({
     series: series as any,
     colors: chart?.colors || RAILZ_BALANCE_SHEET_COLORS,
   };
-  console.log('formattedData', formattedData);
 
   return formattedData;
 };
@@ -330,7 +329,10 @@ export const getReportData = async ({
         macro: 'fis-reconstruct',
       },
     });
-    reportData = { reportDataHistorical, reportDataForecasted };
+    reportData = {
+      reportDataHistorical,
+      reportDataForecasted,
+    };
   } catch (error) {
     errorLog(Translations.RV_NOT_ABLE_TO_RETRIEVE_REPORT_DATA, error);
     reportData = { error };
@@ -357,6 +359,7 @@ export const combineHistoricalAndForecastedData = (
     );
     if (matchingForecastedSeries) {
       return {
+        ...historicalSeries,
         name: historicalSeries.name,
         data: [...historicalSeries.data, null, ...matchingForecastedSeries.data],
       };
