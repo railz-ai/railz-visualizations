@@ -203,5 +203,9 @@
   "RV_CREDIT_SCORE": "Credit Score",
   "RV_BANK_ACCOUNT": "Bank Accounts",
   "RV_BANK_ACCOUNT_MUST_BE_SERVICE_NAME_PLAID": "Bank Accounts works only with Plaid.",
-  "RV_TAX_BENCHMARKING_REQUIRED_FIELDS": "Industry Code is required."
+  "RV_TAX_BENCHMARKING_REQUIRED_FIELDS": "Industry Code is required.",
+  "RV_HISTORICAL_DATA_LABEL": "Historical",
+  "RV_FORECASTED_DATA_LABEL": "Forecasted",
+  "RV_HISTORICAL_DATA_TOOLTIP": "Historical data: Displays financials results from past periods.",
+  "RV_FORECASTED_DATA_TOOLTIP": "Forecasted data: Displays projected financials for up to 3 years using models and assumptions. "
 }

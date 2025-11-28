@@ -4,8 +4,6 @@
   display: flex;
   padding: 16px;
   position: relative;
-  border: 1px solid #eee;
-  border-radius: 7px;
   flex-direction: column;
   justify-content: space-between;
   width: auto;
@@ -19,6 +17,12 @@
 
 .rv-header-container {
   display: flex;
+}
+
+.rv-header-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .rv-title {
