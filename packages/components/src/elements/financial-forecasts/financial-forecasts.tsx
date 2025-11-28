@@ -277,8 +277,38 @@ export class FinancialForecasts {
         {this._options?.title?.visible === false ? (
           ''
         ) : (
-          <div class="rv-header-container">
-            <TitleElement />
+          <div class="rv-header-wrapper">
+            <div class="rv-header-container">
+              <p class="rv-title" style={this._options?.title?.style}>
+                {Translations.RV_HISTORICAL_DATA_LABEL}{' '}
+                {this._options?.tooltipIndicator?.visible ? (
+                  <railz-tooltip
+                    tooltipStyle={{
+                      position: 'bottom-center',
+                      ...this._options?.tooltipIndicator,
+                      style: { marginLeft: '5px', ...this._options?.tooltipIndicator?.style },
+                    }}
+                    tooltipText={Translations.RV_HISTORICAL_DATA_TOOLTIP}
+                  />
+                ) : null}
+              </p>
+            </div>
+            <div class="rv-header-container">
+              <p class="rv-title" style={this._options?.title?.style}>
+                {Translations.RV_FORECASTED_DATA_LABEL}{' '}
+                {this._options?.tooltipIndicator?.visible ? (
+                  <railz-tooltip
+                    tooltipStyle={{
+                      ...this._options?.tooltipIndicator,
+                      position: 'top-left',
+                      arrow: 'right',
+                      style: { marginLeft: '5px', ...this._options?.tooltipIndicator?.style },
+                    }}
+                    tooltipText={Translations.RV_FORECASTED_DATA_TOOLTIP}
+                  />
+                ) : null}
+              </p>
+            </div>
           </div>
         )}
         {this.renderMain()}
