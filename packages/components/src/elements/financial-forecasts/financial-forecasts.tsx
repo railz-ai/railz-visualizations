@@ -178,6 +178,8 @@ export class FinancialForecasts {
             chart: this._options?.chart,
             date: this._options?.content?.date,
           });
+        } else {
+          this._dataFormattedHistorical = { series: [], colors: [], categories: [] };
         }
         if (reportData?.reportDataForecasted?.data) {
           this._dataFormattedForecasted = formatData({
@@ -188,6 +190,8 @@ export class FinancialForecasts {
             chart: this._options?.chart,
             date: this._options?.content?.date,
           });
+        } else {
+          this._dataFormattedForecasted = { series: [], colors: [], categories: [] };
         }
 
         this._dataFormatted = combineHistoricalAndForecastedData(
