@@ -13,6 +13,6 @@ export const RAILZ_INCOME_STATEMENT_COLORS = [
   '#38C076',
   '#1B1B6F',
 ];
-export const RAILZ_CASHFLOW_COLORS = ['#015B7E', '#F06C3A', '#003032', '#000000'];
+export const RAILZ_CASHFLOW_COLORS = ['#015B7E', '#F06C3A', '#000000', '#1B1B6F'];
 export const RAILZ_STATEMENTS_COLORS = ['#FFED8C', '#F5F5F5'];
 export const RAILZ_PIE_COLORS = ['#015B7E', '#3BCFF0', '#009775', '#1B1B6F', '#FFED8C'];

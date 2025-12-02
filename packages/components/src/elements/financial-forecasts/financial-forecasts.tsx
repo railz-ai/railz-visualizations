@@ -165,12 +165,11 @@ export class FinancialForecasts {
         reportDataHistorical: RVFormattedStatementResponse;
         reportDataForecasted: RVFormattedStatementResponse;
       };
-
       // get historical and forecasted data separately
       // combine the data for both
       // add the null data point between both
-      if (reportData?.reportDataHistorical || reportData?.reportDataForecasted) {
-        if (reportData?.reportDataHistorical) {
+      if (reportData?.reportDataHistorical?.data || reportData?.reportDataForecasted?.data) {
+        if (reportData?.reportDataHistorical?.data) {
           this._dataFormattedHistorical = formatData({
             summary: reportData.reportDataHistorical.data,
             reportType: (this._filter as RVFilterFinancialForecasts)
@@ -180,7 +179,7 @@ export class FinancialForecasts {
             date: this._options?.content?.date,
           });
         }
-        if (reportData?.reportDataForecasted) {
+        if (reportData?.reportDataForecasted?.data) {
           this._dataFormattedForecasted = formatData({
             summary: reportData.reportDataForecasted.data,
             reportType: (this._filter as RVFilterFinancialForecasts)
@@ -196,8 +195,18 @@ export class FinancialForecasts {
           this._dataFormattedForecasted,
         );
         this.updateHighchartsParams();
-      } else if (reportData?.error) {
-        this.errorStatusCode = reportData.error?.statusCode;
+      } else if (
+        reportData?.reportDataHistorical?.error ||
+        reportData?.reportDataForecasted?.error
+      ) {
+        this.errorStatusCode =
+          reportData?.reportDataHistorical?.error?.statusCode ||
+          reportData?.reportDataForecasted?.error?.statusCode;
+      } else if (
+        reportData?.reportDataHistorical?.status == 204 ||
+        reportData?.reportDataForecasted?.status == 204
+      ) {
+        this.errorStatusCode = 204;
       } else {
         this.errorStatusCode = reportData?.status;
       }
@@ -218,7 +227,23 @@ export class FinancialForecasts {
       dataFormatted: this._dataFormatted,
       options: this._options,
     });
+
     if (options) {
+      if (this._dataFormatted.xPlotLineValue !== undefined) {
+        options.xAxis = {
+          ...options.xAxis,
+
+          plotLines: [
+            {
+              color: '#757575', // Color of the line
+              width: 1, // Width of the line
+              value: this._dataFormatted.xPlotLineValue - 0.5, // X-axis value where the line should be drawn
+              dashStyle: 'Solid', // Optional: 'Solid', 'Dot', 'Dash'
+            },
+          ],
+        };
+      }
+
       this.loading = '';
       this.chartOptions = options;
     }
