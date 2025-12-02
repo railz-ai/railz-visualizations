@@ -347,10 +347,10 @@ export const combineHistoricalAndForecastedData = (
 ): RVFormattedStatementData => {
   // if either historical or forecasted data is missing, return the other one
   if (!historicalData?.series || historicalData?.series.length === 0) {
-    return { ...forecastedData, xPlotLineValue: historicalData.categories.length };
+    return { ...forecastedData, xPlotLineValue: 0 };
   }
   if (!forecastedData?.series || forecastedData?.series.length === 0) {
-    return historicalData;
+    return { ...historicalData, xPlotLineValue: historicalData.categories.length };
   }
 
   const combinedCategories = [...historicalData?.categories, ...forecastedData?.categories];
