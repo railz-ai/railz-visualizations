@@ -1,6 +1,6 @@
 import { isNil, pick } from 'lodash-es';
 
-import { format, parseISO, startOfMonth } from 'date-fns';
+import { format, parseISO, startOfMonth, subDays } from 'date-fns';
 
 import Translations from '../../config/translations/en.json';
 import { formatDate, formatSeries, isStatements } from '../../helpers/utils';
