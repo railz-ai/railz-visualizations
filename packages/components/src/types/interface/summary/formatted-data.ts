@@ -27,6 +27,7 @@ export interface RVFormattedStatementData {
   categories: string[];
   series: RVFormattedStatementSeries[];
   colors: string[];
+  xPlotLineValue?: number;
 }
 
 export type RVFormattedData =

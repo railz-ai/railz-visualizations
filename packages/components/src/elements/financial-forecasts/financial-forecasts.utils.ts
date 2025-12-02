@@ -308,15 +308,17 @@ export const getReportData = async ({
       },
       ['startDate', 'endDate', 'reportFrequency', 'connectionUuid'],
     );
-  // Compute beginning of current month as both Date and formatted string for safe comparisons and API params
-  const beginningOfCurrentMonthDate = startOfMonth(new Date());
-  const beginningOfCurrentMonth = format(beginningOfCurrentMonthDate, RAILZ_DATE_FORMAT);
-    
+    // Compute beginning of current month as both Date and formatted string for safe comparisons and API params
+    const beginningOfCurrentMonthDate = startOfMonth(new Date());
+    const beginningOfCurrentMonth = format(beginningOfCurrentMonthDate, RAILZ_DATE_FORMAT);
+
     const historicalDataParams = {
       ...dataParams,
       // Use the earlier of the provided startDate and the beginning of the current month
       startDate:
-        parseISO(filter.startDate) < beginningOfCurrentMonthDate ? startDate : beginningOfCurrentMonth,
+        parseISO(filter.startDate) < beginningOfCurrentMonthDate
+          ? startDate
+          : beginningOfCurrentMonth,
       // Set end date to the beginning of the current month
       endDate: beginningOfCurrentMonth,
     };
@@ -330,8 +332,11 @@ export const getReportData = async ({
       path: RVReportTypesUrlMapping[filter.reportType],
       filter: {
         ...dataParams,
-        startDate:  beginningOfCurrentMonth,
-        endDate: parseISO(filter.endDate) > beginningOfCurrentMonthDate ? endDate : beginningOfCurrentMonth,
+        startDate: beginningOfCurrentMonth,
+        endDate:
+          parseISO(filter.endDate) > beginningOfCurrentMonthDate
+            ? endDate
+            : beginningOfCurrentMonth,
         financialStatementType: filter.financialStatementType,
         percentile: filter?.percentile,
         macro: 'fis-reconstruct',
@@ -357,7 +362,7 @@ export const combineHistoricalAndForecastedData = (
     return historicalData;
   }
 
-  const combinedCategories = [...historicalData?.categories, null, ...forecastedData?.categories];
+  const combinedCategories = [...historicalData?.categories, ...forecastedData?.categories];
   const combinedSeries = historicalData?.series.map((historicalSeries) => {
     const matchingForecastedSeries = forecastedData.series.find(
       (forecastedSeries) => forecastedSeries.name === historicalSeries.name,
@@ -366,7 +371,7 @@ export const combineHistoricalAndForecastedData = (
       return {
         ...historicalSeries,
         name: historicalSeries.name,
-        data: [...historicalSeries.data, null, ...matchingForecastedSeries.data],
+        data: [...historicalSeries.data, ...matchingForecastedSeries.data],
       };
     }
   });
@@ -375,6 +380,7 @@ export const combineHistoricalAndForecastedData = (
     categories: combinedCategories,
     series: combinedSeries,
     colors: historicalData.colors,
+    xPlotLineValue: historicalData.categories.length,
   };
 
   return dataFormatted;
