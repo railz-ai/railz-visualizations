@@ -310,7 +310,6 @@ export const getReportData = async ({
     );
     // Compute beginning of current month as both Date and formatted string for safe comparisons and API params
     const beginningOfCurrentMonth = format(startOfMonth(new Date()), RAILZ_DATE_FORMAT);
-  
 
     const historicalDataParams = {
       ...dataParams,
@@ -348,7 +347,7 @@ export const combineHistoricalAndForecastedData = (
 ): RVFormattedStatementData => {
   // if either historical or forecasted data is missing, return the other one
   if (!historicalData?.series || historicalData?.series.length === 0) {
-    return forecastedData;
+    return { ...forecastedData, xPlotLineValue: historicalData.categories.length };
   }
   if (!forecastedData?.series || forecastedData?.series.length === 0) {
     return historicalData;
