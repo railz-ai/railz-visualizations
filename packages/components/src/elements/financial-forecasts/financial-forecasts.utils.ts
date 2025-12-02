@@ -1,6 +1,6 @@
 import { isNil, pick } from 'lodash-es';
 
-import { format, parseISO } from 'date-fns';
+import { format, parseISO, startOfMonth } from 'date-fns';
 
 import Translations from '../../config/translations/en.json';
 import { formatDate, formatSeries, isStatements } from '../../helpers/utils';
@@ -308,11 +308,17 @@ export const getReportData = async ({
       },
       ['startDate', 'endDate', 'reportFrequency', 'connectionUuid'],
     );
-
+  // Compute beginning of current month as both Date and formatted string for safe comparisons and API params
+  const beginningOfCurrentMonthDate = startOfMonth(new Date());
+  const beginningOfCurrentMonth = format(beginningOfCurrentMonthDate, RAILZ_DATE_FORMAT);
+    
     const historicalDataParams = {
       ...dataParams,
-      startDate: startDate.slice(0).replace(/^\d{4}/, '1990'),
-      endDate: startDate,
+      // Use the earlier of the provided startDate and the beginning of the current month
+      startDate:
+        parseISO(filter.startDate) < beginningOfCurrentMonthDate ? startDate : beginningOfCurrentMonth,
+      // Set end date to the beginning of the current month
+      endDate: beginningOfCurrentMonth,
     };
 
     reportDataHistorical = await RequestServiceInstance.getReportData({
@@ -324,6 +330,8 @@ export const getReportData = async ({
       path: RVReportTypesUrlMapping[filter.reportType],
       filter: {
         ...dataParams,
+        startDate:  beginningOfCurrentMonth,
+        endDate: parseISO(filter.endDate) > beginningOfCurrentMonthDate ? endDate : beginningOfCurrentMonth,
         financialStatementType: filter.financialStatementType,
         percentile: filter?.percentile,
         macro: 'fis-reconstruct',
