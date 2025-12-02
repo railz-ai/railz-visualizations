@@ -25,7 +25,7 @@ describe('Statements Chart Utils', () => {
         };
         expect(formatCashflowData(chartStatementBaseParameter)).toStrictEqual({
           categories: ['Jan 16', 'Feb 16'],
-          colors: ['#015B7E', '#F06C3A', '#003032', '#000000'],
+          colors: ['#015B7E', '#F06C3A', '#008600ff', '#000000'],
           series: [],
         });
       });
@@ -38,7 +38,7 @@ describe('Statements Chart Utils', () => {
         };
         expect(formatCashflowData(chartStatementBaseParameter)).toStrictEqual({
           categories: ['2022', '2022'],
-          colors: ['#015B7E', '#F06C3A', '#003032', '#000000'],
+          colors: ['#015B7E', '#F06C3A', '#008600ff', '#000000'],
           series: [],
         });
       });
