@@ -311,16 +311,9 @@ export const getReportData = async ({
     // Compute beginning of current month as both Date and formatted string for safe comparisons and API params
     const beginningOfCurrentMonth = format(startOfMonth(new Date()), RAILZ_DATE_FORMAT);
 
-    const historicalDataParams = {
-      ...dataParams,
-      // Use the earlier of the provided startDate and the beginning of the current month
-      // Set end date to the beginning of the current month
-      endDate: beginningOfCurrentMonth,
-    };
-
     reportDataHistorical = await RequestServiceInstance.getReportData({
       path: RVReportTypesUrlMapping[filter.financialStatementType],
-      filter: historicalDataParams,
+      filter: dataParams,
     });
 
     reportDataForecasted = await RequestServiceInstance.getReportData({
