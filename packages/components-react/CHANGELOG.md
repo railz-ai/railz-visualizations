@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.0.8-alpha.52 (2025-12-05)
+
+
+### Bug Fixes
+
+* Add macro param for historical data api call ([#190](https://github.com/railz-ai/railz-visualizations/issues/190)) ([e61327c](https://github.com/railz-ai/railz-visualizations/commit/e61327c2c20292c3858f6411afc61a507c330902))
+
+
+
+
+
 ## 0.0.8-alpha.51 (2025-12-03)
 
 **Note:** Version bump only for package @railzai/railz-visualizations-react
