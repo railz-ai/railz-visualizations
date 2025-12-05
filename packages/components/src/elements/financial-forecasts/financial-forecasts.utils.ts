@@ -313,7 +313,7 @@ export const getReportData = async ({
 
     reportDataHistorical = await RequestServiceInstance.getReportData({
       path: RVReportTypesUrlMapping[filter.financialStatementType],
-      filter: dataParams,
+      filter: { ...dataParams, macro: 'fis-reconstruct' },
     });
 
     reportDataForecasted = await RequestServiceInstance.getReportData({
