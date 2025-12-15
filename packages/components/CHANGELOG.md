@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.0.8-alpha.54 (2025-12-15)
+
+
+### Bug Fixes
+
+* start and end date fixes ([#192](https://github.com/railz-ai/railz-visualizations/issues/192)) ([830572d](https://github.com/railz-ai/railz-visualizations/commit/830572d6d074ae0c028c59d55e969ccd8968b6ae))
+
+
+
+
+
 ## 0.0.8-alpha.53 (2025-12-15)
 
 **Note:** Version bump only for package @railzai/railz-visualizations
