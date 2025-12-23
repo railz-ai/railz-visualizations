@@ -3,7 +3,7 @@ import { Component, h, Prop } from '@stencil/core';
 
 import Translations from '../../config/translations/en.json';
 
-import { Error202, Error204, Error404, Error500 } from './images';
+import { Error202, Error204, Error404, Error422, Error500 } from './images';
 
 @Component({
   tag: 'railz-error-image',
@@ -67,10 +67,14 @@ export class ErrorImage {
       case 422:
         return (
           <div>
-            <Error204 fillColor={this.fillColor} width={this.width} height={this.height} />
+            <Error422 fillColor={this.fillColor} width={this.width} height={this.height} />
             <p class="rv-error-title" style={this.textStyle}>
               {Translations.RV_ERROR_422_TITLE}
             </p>
+            {/* if(financialForacasts) show different title and sub title
+            <p class="rv-error-subtitle" style={this.textStyle}>
+              {Translations.RV_ERROR_422_SUBTITLE}
+            </p> */}
           </div>
         );
       default:
