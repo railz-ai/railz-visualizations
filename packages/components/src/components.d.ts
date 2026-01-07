@@ -86,6 +86,10 @@ export namespace Components {
   }
   interface RailzErrorImage {
     /**
+     * Error text variant
+     */
+    errorTextVariant?: number;
+    /**
      * Fill color of the svg image representing a status code
      */
     fillColor?: string;
@@ -488,6 +492,10 @@ declare namespace LocalJSX {
     options?: RVOptions;
   }
   interface RailzErrorImage {
+    /**
+     * Error text variant
+     */
+    errorTextVariant?: number;
     /**
      * Fill color of the svg image representing a status code
      */
