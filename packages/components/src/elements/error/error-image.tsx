@@ -35,6 +35,11 @@ export class ErrorImage {
    */
   @Prop() readonly textStyle?: { [key: string]: any };
 
+  /**
+   * Error text variant
+   */
+  @Prop() readonly errorTextVariant?: number = 1;
+
   render(): HTMLElement {
     switch (this.statusCode) {
       case 202:
@@ -55,6 +60,15 @@ export class ErrorImage {
             </p>
           </div>
         );
+      case 400:
+        return (
+          <div>
+            <Error404 fillColor={this.fillColor} width={this.width} height={this.height} />
+            <p class="rv-error-title" style={this.textStyle}>
+              {Translations.DASHBOARD_FINANCIAL_SUMMARY_CHART_ERROR_ENDPOINT_NOT_SUPPORTED}
+            </p>
+          </div>
+        );
       case 404:
         return (
           <div>
@@ -69,12 +83,15 @@ export class ErrorImage {
           <div>
             <Error422 fillColor={this.fillColor} width={this.width} height={this.height} />
             <p class="rv-error-title" style={this.textStyle}>
-              {Translations.RV_ERROR_422_TITLE}
+              {this.errorTextVariant === 2
+                ? Translations.RV_ERROR_422_TITLE_2
+                : Translations.RV_ERROR_422_TITLE}
             </p>
-            {/* if(financialForacasts) show different title and sub title
-            <p class="rv-error-subtitle" style={this.textStyle}>
-              {Translations.RV_ERROR_422_SUBTITLE}
-            </p> */}
+            {this.errorTextVariant === 2 && (
+              <p class="rv-error-subtitle" style={this.textStyle}>
+                {Translations.RV_ERROR_422_SUBTITLE}
+              </p>
+            )}
           </div>
         );
       default:

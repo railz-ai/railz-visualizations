@@ -96,13 +96,13 @@ export declare interface RailzErrorImage extends Components.RailzErrorImage {}
 
 @ProxyCmp({
   defineCustomElementFn: undefined,
-  inputs: ['fillColor', 'height', 'statusCode', 'textStyle', 'width'],
+  inputs: ['errorTextVariant', 'fillColor', 'height', 'statusCode', 'textStyle', 'width'],
 })
 @Component({
   selector: 'railz-error-image',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
-  inputs: ['fillColor', 'height', 'statusCode', 'textStyle', 'width'],
+  inputs: ['errorTextVariant', 'fillColor', 'height', 'statusCode', 'textStyle', 'width'],
 })
 export class RailzErrorImage {
   protected el: HTMLElement;

@@ -211,7 +211,8 @@ export class FinancialForecasts {
       ) {
         this.errorStatusCode = 204;
       } else {
-        this.errorStatusCode = reportData?.status;
+        this.errorStatusCode =
+          reportData?.reportDataHistorical?.status || reportData?.reportDataForecasted?.status;
       }
     } catch (error) {
       errorLog(Translations.RV_NOT_ABLE_TO_PARSE_REPORT_DATA, error);
@@ -239,7 +240,7 @@ export class FinancialForecasts {
           plotLines: [
             {
               color: '#757575', // Color of the line
-              width: 1, // Width of the line
+              width: 2, // Width of the line
               value: this._dataFormatted.xPlotLineValue - 0.5, // X-axis value where the line should be drawn
               dashStyle: 'Solid', // Optional: 'Solid', 'Dot', 'Dash'
             },
@@ -261,6 +262,7 @@ export class FinancialForecasts {
       return (
         <railz-error-image
           statusCode={this.errorStatusCode || 500}
+          errorTextVariant={2}
           {...this._options?.errorIndicator}
         />
       );

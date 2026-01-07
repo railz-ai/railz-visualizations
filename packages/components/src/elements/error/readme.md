@@ -4,13 +4,14 @@
 
 ## Properties
 
-| Property     | Attribute     | Description                                            | Type                      | Default     |
-| ------------ | ------------- | ------------------------------------------------------ | ------------------------- | ----------- |
-| `fillColor`  | `fill-color`  | Fill color of the svg image representing a status code | `string`                  | `'#949494'` |
-| `height`     | `height`      | Height of the SVG Error Indicator                      | `string`                  | `undefined` |
-| `statusCode` | `status-code` | Status code based on HTTP Response codes               | `number`                  | `undefined` |
-| `textStyle`  | --            | Style of the image text                                | `{ [key: string]: any; }` | `undefined` |
-| `width`      | `width`       | Width of the SVG Error Indicator                       | `string`                  | `undefined` |
+| Property           | Attribute            | Description                                            | Type                      | Default     |
+| ------------------ | -------------------- | ------------------------------------------------------ | ------------------------- | ----------- |
+| `errorTextVariant` | `error-text-variant` | Error text variant                                     | `number`                  | `1`         |
+| `fillColor`        | `fill-color`         | Fill color of the svg image representing a status code | `string`                  | `'#949494'` |
+| `height`           | `height`             | Height of the SVG Error Indicator                      | `string`                  | `undefined` |
+| `statusCode`       | `status-code`        | Status code based on HTTP Response codes               | `number`                  | `undefined` |
+| `textStyle`        | --                   | Style of the image text                                | `{ [key: string]: any; }` | `undefined` |
+| `width`            | `width`              | Width of the SVG Error Indicator                       | `string`                  | `undefined` |
 
 ## Dependencies
 
