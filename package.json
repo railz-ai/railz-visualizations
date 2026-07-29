@@ -3,9 +3,9 @@
   "private": true,
   "scripts": {
     "install:codesandbox": "yarn install",
-    "bootstrap": "lerna bootstrap",
-    "add:angular": "lerna add @railzai/railz-visualizations --scope=@railzai/railz-visualizations-angular",
-    "add:react": "lerna add @railzai/railz-visualizations --scope=@railzai/railz-visualizations-react",
+    "bootstrap": "yarn install",
+    "add:angular": "yarn workspace @railzai/railz-visualizations-angular add @railzai/railz-visualizations@$(node -p \"require('./packages/components/package.json').version\")",
+    "add:react": "yarn workspace @railzai/railz-visualizations-react add @railzai/railz-visualizations@$(node -p \"require('./packages/components/package.json').version\")",
     "run:build": "lerna run --scope '{@railzai/railz-visualizations,@railzai/railz-visualizations-angular,@railzai/railz-visualizations-react}' build",
     "server": "(cd examples/nodejs && yarn && yarn start)",
     "dev": "(cd packages/components && yarn && yarn start)",
@@ -38,7 +38,7 @@
     "@commitlint/cli": "16.2.1",
     "@commitlint/config-conventional": "16.2.1",
     "husky": "8.0.1",
-    "lerna": "5.1.8",
+    "lerna": "9.0.7",
     "lint-staged": "^12.3.5",
     "prettier": "2.5.1"
   },
