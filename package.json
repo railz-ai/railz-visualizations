@@ -42,6 +42,11 @@
     "lint-staged": "^12.3.5",
     "prettier": "2.5.1"
   },
+  "resolutions": {
+    "form-data": "4.0.6",
+    "tough-cookie": "6.0.2",
+    "lodash-es": "4.18.1"
+  },
   "workspaces": [
     "packages/*"
   ],
